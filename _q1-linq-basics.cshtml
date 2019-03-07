@@ -1,0 +1,111 @@
+@* These lines are comments, surrounded by * and @ *@
+@* @using... means that we're going to access .net commands from these namespaces *@
+@using System.Linq;
+
+@{
+  // the following code retrieves data from the app directly - so this is like reading a table of data
+  // note that they are lists of the type IEntity and not dynamic items
+  // this allows us to use LINQ easily, but doesn't allow writing person.Name, as that needs a dynamic object
+  // you'll see how this is converted as needed below
+  var books = App.Data["Books"];
+  var persons = App.Data["Persons"];
+}
+
+<h1>LINQ Basics</h1>
+<p>
+  Learn how to leverage LINQ (Language INtegrated Query) of C# to sort, filter, group content-items. This demo uses the folloing data in app:
+</p>
+<ul>
+  <li>Persons - various people who are used in the data. A person can also have one or many favorite books. </li>
+  <li>Books - books people wrote or contributed to. Books have authors and </li>
+</ul>
+
+<hr>
+
+<h2>Simple Sorting of Persons</h2>
+<h3>OrderBy(EntityId)</h3>
+<p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
+<ol>
+  @{
+    // this first example shows longer code, so we can explain more. The next examples will be briefer
+    var sortedPersons = persons.OrderBy(p => p.EntityId);
+    var dynTypedSortedPersons = AsDynamic(sortedPersons); // convert to dynamic, so we can use the nice Syntax like person.FirstName
+  }
+  @foreach(var person in dynTypedSortedPersons) {
+    <li>@person.FirstName @person.LastName (@person.EntityId)</li>
+  }
+</ol>
+
+<h3>OrderBy(FirstName)</h3>
+<p>This example shows A-Z ordering by a property which exists only on Person-entities. We need to use <code>.Value("FirstName")</code> to get the value.</p>
+<ol>
+  @foreach(var person in AsDynamic(persons.OrderBy(p => p.Value("FirstName")))) {
+    <li>@person.FirstName @person.LastName</li>
+  }
+</ol>
+
+<h3>OrderByDescending(Birthday)</h3>
+<p>This example shows Z-A ordering by a property. We need to use <code>.Value("FirstName")</code> to get the value.</p>
+<ol>
+  @foreach(var person in AsDynamic(persons.OrderByDescending(p => p.Value("Birthday")))) {
+    <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
+  }
+</ol>
+
+<h3>OrderByDescending with <code>dynamic</code> Birthday</h3>
+<p>This example casts the objects to a list of <code>dynamic</code> objects, so we can access the property more easily. This is convenient and works most of the time, but there are advanced cases where you'll need to use the <code>.Value(...)</code>, which is why we're showing both versions.</p>
+<ol>
+  @foreach(var person in AsDynamic(persons).OrderByDescending(p => p.Birthday)) {
+    <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
+  }
+</ol>
+
+
+<hr>
+
+<h2>Advanced Sorting of Books</h2>
+
+<h3>Basic OrderBy Title</h3>
+<p>This example shows the books, and we want to LINQ on the Authors. This doesn't with with <code>dynamic</code> because LINQ doesn't know that it can use <code>Select(...)</code>.</p>
+<ol>
+  @{
+    // let's start by looping through the books
+    foreach(var b in books) {
+      // this is the safest way to get all the names of the authors
+      // the Children(...) method returns a properly typed list of the authors, allowing us to use Select(...)
+      // the downside is that we don't have dynamic objects, so instead of a.LastName we must write a.Value("LastName")
+      var authors = b.Children("Authors")
+        .Select(a => a.Value("LastName"));
+
+      // let's create a dynamic object to work with, so we can write book.Title in the template below
+      var book = AsDynamic(b);
+      
+      // just fyi: the following wouldn't work - you would get an error "Cannot use a lambda expression as an argument to a dynamically dispatched operation without first casting it to a delegate or expression tree type"
+      // var authors = book.Authors.Select(a => a.FirstName + " " + a.LastName);
+      // wheras this works, because we explicitly say that book.Authors is an IEnumerable
+      // var authors = (book.Authors as IEnumerable<dynamic>).Select(a => a.LastName);
+
+      authors = b.Children("Authors")
+        .Select(a => a.Value("LastName"));
+      <li><strong>@book.Title</strong> by 
+      @string.Join(", ", authors.OrderBy(ln => ln)) </li>
+    }
+  }
+</ol>
+
+<h3>OrderBy Amount of Authors</h3>
+<p>This example shows A-Z ordering, where we count the authors to sort. This is special, because LINQ statements like <code>Count()</code> only work, if the compiler knows what type it's working with.</p>
+<ol>
+  @{
+    // this wouldn't work, so it's commented out
+    // the reason is that .Count() is a special extension method, for which the compiler
+    // must know that it's about to process a list. 
+    // foreach(var book in AsDynamic(books).OrderByDescending(p => p.Authors.Count())) {
+    //
+    // so the better solution is to sort first, and surround all of it with AsDynamic
+    // since the core Entity type doesn't have a .Authors, we must use Children("Authors")
+    foreach(var book in AsDynamic(books.OrderByDescending(p => p.Children("Authors").Count()))) {
+      <li><strong>@book.Title</strong> by @string.Join(",", book.Authors) (@book.Authors.Count author) </li>
+    }
+  }
+</ol>
