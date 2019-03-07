@@ -1,6 +1,9 @@
 @* These lines are comments, surrounded by * and @ *@
 @* @using... means that we're going to access .net commands from these namespaces *@
 @using System.Linq;
+@using ToSic.SexyContent;
+@* This is a short-notation we use a lot, so it's declared here *@
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
   // the following code retrieves data from the app directly - so this is like reading a table of data
@@ -8,7 +11,10 @@
   // this allows us to use LINQ easily, but doesn't allow writing person.Name, as that needs a dynamic object
   // you'll see how this is converted as needed below
   var books = App.Data["Books"];
-  var persons = App.Data["Persons"];
+  var persons = App.Data["Persons"];// AsDynamic(App.Data["Persons"];
+
+  var personList = AsDynamic(App.Data["Persons"]);
+  var bookList = AsDynamic(App.Data["Books"]);
 }
 
 <h1>LINQ Basics</h1>
@@ -26,39 +32,27 @@
 <h3>OrderBy(EntityId)</h3>
 <p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
 <ol>
-  @{
-    // this first example shows longer code, so we can explain more. The next examples will be briefer
-    var sortedPersons = persons.OrderBy(p => p.EntityId);
-    var dynTypedSortedPersons = AsDynamic(sortedPersons); // convert to dynamic, so we can use the nice Syntax like person.FirstName
-  }
-  @foreach(var person in dynTypedSortedPersons) {
+  @foreach(var person in personList.OrderBy(p => p.EntityId)) {
     <li>@person.FirstName @person.LastName (@person.EntityId)</li>
   }
 </ol>
 
 <h3>OrderBy(FirstName)</h3>
-<p>This example shows A-Z ordering by a property which exists only on Person-entities. We need to use <code>.Value("FirstName")</code> to get the value.</p>
+<p>This example shows A-Z ordering by a property which exists only on Person-entities. This is simple with <code>dynamic</code> objects</p>
 <ol>
-  @foreach(var person in AsDynamic(persons.OrderBy(p => p.Value("FirstName")))) {
+  @foreach(var person in personList.OrderBy(p => p.FirstName)) {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>
 
 <h3>OrderByDescending(Birthday)</h3>
-<p>This example shows Z-A ordering by a property. We need to use <code>.Value("FirstName")</code> to get the value.</p>
+<p>This example shows Z-A ordering by a property.</p>
 <ol>
-  @foreach(var person in AsDynamic(persons.OrderByDescending(p => p.Value("Birthday")))) {
+  @foreach(var person in personList.OrderByDescending(p => p.Birthday)) {
     <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
   }
 </ol>
 
-<h3>OrderByDescending with <code>dynamic</code> Birthday</h3>
-<p>This example casts the objects to a list of <code>dynamic</code> objects, so we can access the property more easily. This is convenient and works most of the time, but there are advanced cases where you'll need to use the <code>.Value(...)</code>, which is why we're showing both versions.</p>
-<ol>
-  @foreach(var person in AsDynamic(persons).OrderByDescending(p => p.Birthday)) {
-    <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
-  }
-</ol>
 
 
 <hr>
@@ -74,8 +68,7 @@
       // this is the safest way to get all the names of the authors
       // the Children(...) method returns a properly typed list of the authors, allowing us to use Select(...)
       // the downside is that we don't have dynamic objects, so instead of a.LastName we must write a.Value("LastName")
-      var authors = b.Children("Authors")
-        .Select(a => a.Value("LastName"));
+      // var authors = b.Children("Authors").Select(a => a.Value("LastName"));
 
       // let's create a dynamic object to work with, so we can write book.Title in the template below
       var book = AsDynamic(b);
@@ -83,12 +76,14 @@
       // just fyi: the following wouldn't work - you would get an error "Cannot use a lambda expression as an argument to a dynamically dispatched operation without first casting it to a delegate or expression tree type"
       // var authors = book.Authors.Select(a => a.FirstName + " " + a.LastName);
       // wheras this works, because we explicitly say that book.Authors is an IEnumerable
-      // var authors = (book.Authors as IEnumerable<dynamic>).Select(a => a.LastName);
+      var authors = (book.Authors as Dynlist).Select(a => a.LastName);
 
-      authors = b.Children("Authors")
-        .Select(a => a.Value("LastName"));
+      var y = (Dynlist)book.Autors;
+
       <li><strong>@book.Title</strong> by 
-      @string.Join(", ", authors.OrderBy(ln => ln)) </li>
+        @string.Join(", ", authors.OrderBy(ln => ln)) 
+
+      </li>
     }
   }
 </ol>
@@ -109,3 +104,15 @@
     }
   }
 </ol>
+
+
+@functions{
+
+  string x(object y) {
+    return "";
+  }
+
+  IEnumerable<dynamic> AsList(dynamic original) {
+    return original as IEnumerable<dynamic>;
+  }
+}
