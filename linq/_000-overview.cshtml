@@ -1,0 +1,71 @@
+@using System.Linq;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@RenderPage("_header.cshtml")
+
+<p>
+  Learn how to leverage LINQ (Language INtegrated Query) of C# to sort, filter, group content-items. This demo uses the folloing data in app:
+</p>
+<ul>
+  <li><strong>Persons</strong> - various people who are used in the data. A person can also have one or many favorite books. </li>
+  <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
+</ul>
+
+<h2>Some notes before we start</h2>
+<p>
+  All our code uses some general stuff explained here:
+</p>
+
+<ul>
+  <li>to enable LINQ commands we always need: <br>
+  <code>@@using System.Linq</code></li>
+  <li>since LINQ often can't guess object types we are using, we often need to cast lists to: <br>
+  <code>IEnumerable&lt;dynamic&gt;</code> <br>
+  Since this makes our code harder to read, so we shorted that to <code>Dynlist</code> by adding this line to the beginning of the files: <br>
+  <code>@@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;</code> </li>
+  <li>most of the code starts by retrieving a list of <strong>Books</strong> and <strong>Authors</strong>. This is done using: <br>
+  <code>App.Data["Books"]</code></li>
+  <li>Since we want to use <code>dynamic</code> types (which lets us write things like <code>book.Name</code>, we usually wrap it with: <br>
+  <code>AsDynamic(App.Data["Books"])</code></li>
+  <li>You'll sometimes see <code>@@RenderPage(...)</code> - this is not important for the LINQ examples, so you can ignore this for now.</li>
+</ul>
+
+<hr>
+
+<h2>LINQ Examples</h2>
+
+<ol>
+  @TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
+  @TutorialLink("Get First() / Last() item in a list", "linq106")
+  @TutorialLink("Take() / Skip() items in a list", "linq107")
+  @TutorialLink("Count() items in a list", "linq108")
+
+  @TutorialLink("Basic sorting of lists", "linq120")
+
+  @TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
+  @TutorialLink("Group books by authors in 3 ways", "linq220")
+  @TutorialLink("Access a list in list in list", "linq230")
+
+  @TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
+</ol>
+
+<!-- internal notes for organizing the files
+- Sorting 100
+- Sub-Lists Grouping 200
+- Parents 300
+-->
+
+
+
+
+
+
+
+
+@helper TutorialLink(string label, string target) {
+  <li>
+    <a href='@Link.To(parameters: target + "/" + target)'>
+      @label
+    </a>
+  </li>
+}

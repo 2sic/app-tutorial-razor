@@ -1,0 +1,20 @@
+@using System.Linq;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@{
+  var persons = AsDynamic(App.Data["Persons"]);
+}
+
+@RenderPage("_header.cshtml")
+
+
+<h3>Simple First() and Last()</h3>
+<p>This filters the authors with long first names.</p>
+<ol>
+  <li>
+    First: @persons.First().FirstName
+  </li>
+  <li>
+    Last: @persons.Last().FirstName
+  </li>
+</ol>
