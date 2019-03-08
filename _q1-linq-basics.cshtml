@@ -7,14 +7,9 @@
 
 @{
   // the following code retrieves data from the app directly - so this is like reading a table of data
-  // note that they are lists of the type IEntity and not dynamic items
-  // this allows us to use LINQ easily, but doesn't allow writing person.Name, as that needs a dynamic object
-  // you'll see how this is converted as needed below
-  var books = App.Data["Books"];
-  var persons = App.Data["Persons"];// AsDynamic(App.Data["Persons"];
-
-  var personList = AsDynamic(App.Data["Persons"]);
-  var bookList = AsDynamic(App.Data["Books"]);
+  // note we're converting them to dynamic, for easier access to properties like person.Name etc.
+  var persons = AsDynamic(App.Data["Persons"]);
+  var books = AsDynamic(App.Data["Books"]);
 }
 
 <h1>LINQ Basics</h1>
@@ -32,7 +27,7 @@
 <h3>OrderBy(EntityId)</h3>
 <p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
 <ol>
-  @foreach(var person in personList.OrderBy(p => p.EntityId)) {
+  @foreach(var person in persons.OrderBy(p => p.EntityId)) {
     <li>@person.FirstName @person.LastName (@person.EntityId)</li>
   }
 </ol>
@@ -40,7 +35,7 @@
 <h3>OrderBy(FirstName)</h3>
 <p>This example shows A-Z ordering by a property which exists only on Person-entities. This is simple with <code>dynamic</code> objects</p>
 <ol>
-  @foreach(var person in personList.OrderBy(p => p.FirstName)) {
+  @foreach(var person in persons.OrderBy(p => p.FirstName)) {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>
@@ -48,7 +43,7 @@
 <h3>OrderByDescending(Birthday)</h3>
 <p>This example shows Z-A ordering by a property.</p>
 <ol>
-  @foreach(var person in personList.OrderByDescending(p => p.Birthday)) {
+  @foreach(var person in persons.OrderByDescending(p => p.Birthday)) {
     <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
   }
 </ol>
@@ -56,63 +51,153 @@
 
 
 <hr>
+<h2>Accessing Authors, a List inside of Books</h2>
 
-<h2>Advanced Sorting of Books</h2>
-
-<h3>Basic OrderBy Title</h3>
-<p>This example shows the books, and we want to LINQ on the Authors. This doesn't with with <code>dynamic</code> because LINQ doesn't know that it can use <code>Select(...)</code>.</p>
+<h3>Basic Use of List book.Authors</h3>
+<p>This example shows the books, and we want to LINQ on the Authors. We must tell the compiler it's a list, so that LINQ can use <code>Select(...)</code>.</p>
 <ol>
   @{
     // let's start by looping through the books
-    foreach(var b in books) {
-      // this is the safest way to get all the names of the authors
-      // the Children(...) method returns a properly typed list of the authors, allowing us to use Select(...)
-      // the downside is that we don't have dynamic objects, so instead of a.LastName we must write a.Value("LastName")
-      // var authors = b.Children("Authors").Select(a => a.Value("LastName"));
+    foreach(var book in books) {
+      // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
+      var authors = (book.Authors as Dynlist)
+        .Select(a => a.FirstName + " " + a.LastName);
 
-      // let's create a dynamic object to work with, so we can write book.Title in the template below
-      var book = AsDynamic(b);
-      
-      // just fyi: the following wouldn't work - you would get an error "Cannot use a lambda expression as an argument to a dynamically dispatched operation without first casting it to a delegate or expression tree type"
-      // var authors = book.Authors.Select(a => a.FirstName + " " + a.LastName);
-      // wheras this works, because we explicitly say that book.Authors is an IEnumerable
-      var authors = (book.Authors as Dynlist).Select(a => a.LastName);
-
-      var y = (Dynlist)book.Autors;
-
-      <li><strong>@book.Title</strong> by 
-        @string.Join(", ", authors.OrderBy(ln => ln)) 
-
+      <li><strong>@book.Title</strong>
+        by @string.Join(", ", authors.OrderBy(ln => ln)) 
       </li>
     }
   }
 </ol>
 
 <h3>OrderBy Amount of Authors</h3>
-<p>This example shows A-Z ordering, where we count the authors to sort. This is special, because LINQ statements like <code>Count()</code> only work, if the compiler knows what type it's working with.</p>
+<p>This example shows Z-A ordering, where we count the authors to sort.</p>
 <ol>
   @{
-    // this wouldn't work, so it's commented out
-    // the reason is that .Count() is a special extension method, for which the compiler
-    // must know that it's about to process a list. 
-    // foreach(var book in AsDynamic(books).OrderByDescending(p => p.Authors.Count())) {
-    //
-    // so the better solution is to sort first, and surround all of it with AsDynamic
-    // since the core Entity type doesn't have a .Authors, we must use Children("Authors")
-    foreach(var book in AsDynamic(books.OrderByDescending(p => p.Children("Authors").Count()))) {
-      <li><strong>@book.Title</strong> by @string.Join(",", book.Authors) (@book.Authors.Count author) </li>
+    // The following example works, because p.Authors is a List, not just an IEnumerable
+    // So .Count works (part of List) but Count() wouldn't work unless you cast it to Dynlist first
+    foreach(var book in books.OrderByDescending(p => p.Authors.Count)) {
+      var authors = (book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName);
+      <li><strong>@book.Title</strong> 
+        by @string.Join(",", authors.OrderBy(ln => ln)) (@book.Authors.Count author) 
+      </li>
     }
   }
 </ol>
 
 
-@functions{
 
-  string x(object y) {
-    return "";
-  }
+<hr>
+<h2>Grouping by Authors, a List inside of Books</h2>
 
-  IEnumerable<dynamic> AsList(dynamic original) {
-    return original as IEnumerable<dynamic>;
+
+<h3>GroupBy Authors - bad example</h3>
+<p>This example will group the books by authors. This example doesn't give us what we want, because authors that exist in sets and alone are grouped separatel. </p>
+<ol>
+  @foreach(var group in books.GroupBy(b => b.Authors)) {
+    <li>
+      Group
+      <ul>
+        @foreach(var book in group) {
+          <li>
+            <strong>@book.Title</strong> by
+            @string.Join(",",(book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName))
+          </li>
+        }
+      </ul>
+    </li>
   }
+</ol>
+
+
+<h3>GroupBy Authors - better example</h3>
+<p>Let's do it better, and group by each Author individually</p>
+<ol>
+  @{ 
+    var booksGroupedByAuthor = books
+      .SelectMany(b => (b.Authors as Dynlist).Select(a => new { Book = b, Author = a }))
+      .GroupBy(set => set.Author);
+      
+
+    
+    foreach(var group in booksGroupedByAuthor) {
+    <li>
+      Author: @group.Key.FirstName @group.Key.LastName
+      <ul>
+        @foreach(var set in group) {
+          <li>
+            <strong>@set.Book.Title</strong> by
+            @string.Join(",",(set.Book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName))
+          </li>
+        }
+      </ul>
+    </li>
+  }
+  }
+</ol>
+
+<h3>GroupBy Authors - Example starting with Authors</h3>
+<p>In this example, we'll start with the authors list. This is probably not ideal - as some people are not authors, but it's a good learning example. To find the books we have to navigate through <code>Parents(...)</code> because in our data-model, the books reference authors, not the authors to books.</p>
+<ol>
+  @foreach(var author in persons) {
+    var authorsBooks = author.Parents("Books");
+    <li>
+      Author: @author.FirstName @author.LastName
+      <ul>
+        @foreach(var book in authorsBooks) {
+          var coAuthors = (book.Authors as Dynlist).Where(a => a != author);
+          <li>
+            <strong>@book.Title</strong> 
+            @if(coAuthors.Any()) {
+              <span>co-authored by 
+                @string.Join(",", coAuthors.Select(a => a.FirstName + " " + a.LastName))
+              </span>
+            }
+          </li>
+        }
+      </ul>
+    </li>
+  }
+</ol>
+
+
+<hr>
+<h2>Accessing Books.Authors.Awards, a List in a List in a List</h2>
+
+<h3>Show only books of Awarded Authors #1</h3>
+<p>This example first gets book, checks the authors and checks if they have awards with LINQ <code>Any()</code>. </p>
+@{
+  var booksWithAwardedAuthors = books
+    .Where(b => (b.Authors as Dynlist)
+    .SelectMany(a => a.Awards as Dynlist) // this gets all the awards and "flattens" the list
+    .Any());
 }
+<ol>
+  @foreach(var book in booksWithAwardedAuthors) {
+    var awards = (book.Authors as Dynlist).SelectMany(a => (a.Awards as Dynlist));
+    <li><strong>@book.Title</strong> 
+      with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
+    </li>
+  }
+</ol>
+<p>And now the opposite list, so all books which don't contain one of the books with authors. It gets the "other" books by filtering the list to exclude the ones it found first. That demonstrates how to use <code>Contains(x as object)</code>. The <code>Contains(...)</code> cannot work with <code>dynamic</code>, so we must tell it it's an object for it to work.</p>
+@{
+  var otherBooks = books
+    .Where(b => !(booksWithAwardedAuthors as Dynlist)
+    .Contains(b as object));              // important: Contains only works correctly on dynamics in 2sxc 9.42+
+}
+<ol>
+  @foreach(var book in otherBooks) {
+    <li><strong>@book.Title</strong></li>
+  }
+</ol>
+<p>Now let's do the same, but using <code>GroupBy</code> to group by awarded authors and not-awarded authors:</p>
+@{
+  var booksGroupedByAuthorAwards = books
+    .GroupBy(b => ((b.Authors as Dynlist).SelectMany(a => a.Awards as Dynlist).Any()));
+}
+<ul>
+  @foreach(var group in booksGroupedByAuthorAwards) {
+    <li>Authors with Awards: @group.Key</li>
+  }
+</ul>
