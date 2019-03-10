@@ -1,0 +1,41 @@
+@using System.Linq;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+
+@RenderPage("_header.cshtml")
+
+<p>
+  Learn the basics of Razor, like using variables, if/else and loops. 
+</p>
+
+<hr>
+
+<h2>Some notes before we start</h2>
+<p>
+  All our code uses some general stuff explained here:
+</p>
+
+<ul>
+  <li>You'll sometimes see <code>@@RenderPage(...)</code> - this is not important for now, so just ignore it. We'll teach you about it later on.</li>
+</ul>
+
+<hr>
+
+<h2>Basic Examples</h2>
+
+<ol>
+  @TutorialLink("Create variables and show using @variableName", "basics110")
+</ol>
+
+
+
+
+
+
+
+@helper TutorialLink(string label, string target) {
+  <li>
+    <a href='@Link.To(parameters: target + "/" + target)'>
+      @label
+    </a>
+  </li>
+}

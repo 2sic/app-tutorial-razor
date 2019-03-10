@@ -15,9 +15,10 @@
 @{
   var booksWithAwardedAuthors = books
     .Where(b => (b.Authors as Dynlist)
-    // this gets all the awards and combines (flattens) the list
-    .SelectMany(a => a.Awards as Dynlist) 
-    .Any());
+      // this gets all the awards and combines (flattens) the list
+      .SelectMany(a => a.Awards as Dynlist) 
+      .Any()
+    );
 }
 <ol>
   @foreach(var book in booksWithAwardedAuthors) {
@@ -35,8 +36,9 @@
 @{
   var otherBooks = books
     .Where(b => !(booksWithAwardedAuthors as Dynlist)
-    .Contains(b as object));
-    // note: Contains() on dynamic objects needs 2sxc 9.42+ to work
+      .Contains(b as object) // note: Contains() on dynamic objects needs 2sxc 9.42+ to work
+    );
+      
 }
 <ol>
   @foreach(var book in otherBooks) {

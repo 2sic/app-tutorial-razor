@@ -11,25 +11,22 @@ Home
 </p>
 
 <hr>
-<h2>Basic Stuff</h2>
-todo
-
-<hr>
-<h2>LINQ examples</h2>
-<p>
-  The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. 
-</p>
+<h2>Tutorials</h2>
 
 <ol>
-  @TutorialLink("Stuff", "linq/linq")
+  @TutorialLink("Basic Examples", "basics", "Basic use of Razor with variables, loops, conditions etc.")
+  @TutorialLink("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
 </ol>
 
 
 
-@helper TutorialLink(string label, string target) {
+@helper TutorialLink(string label, string target, string description) {
   <li>
-    <a href="@Link.To(parameters: target)">
+    <strong>
+    <a href='@Link.To(parameters: target + "/home")'>
       @label
     </a>
+    </strong><br>
+    @description
   </li>
 }
