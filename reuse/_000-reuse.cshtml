@@ -1,0 +1,67 @@
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Re-using templates and code</h2>
+<p>
+  This will show you how to place partial templates into separate files, and how to put functions you need in many places in separate files as well. It focuses on <code>RenderPage</code> and <code>CreateInstance</code>. You'll see the sources of the other files at the bottom of this page.
+</p>
+</trim>
+
+<hr>
+<h3>Just render the same, external file into here</h3>
+<trim>
+  <p>This uses <code>@@RenderPage</code> to get the file <code>_line.cshtml</code> 3 times.</p>
+</trim>
+@RenderPage("_line.cshtml")
+@RenderPage("_line.cshtml")
+@RenderPage("_line.cshtml")
+
+
+<hr>
+<h2>Passing in values</h2>
+<trim>
+<p>The next example passes in a word to the sub-template, so that can change what it does based on the variable</p>
+</trim>
+@RenderPage("_box.cshtml", new { Label = "Hello, this is the first line" })
+@RenderPage("_box.cshtml", new { Label = "Second line!", Color = "red" })
+@RenderPage("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
+
+
+<hr>
+<h2>Using shared library of functions</h2>
+<trim>
+<p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central library of functions.</p>
+</trim>
+@{
+  var lib = CreateInstance("_library.cshtml");
+}
+<div>Hello from lib: @lib.SayHello()</div>
+<div>
+  <img src='@lib.QrPath("https://2sxc.org")' width="75px">
+</div>
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath.Replace("000-reuse", "line"), 
+  Size = 50, 
+  Title = "_line.cshtml" 
+}) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath.Replace("000-reuse", "box"), 
+  Size = 160, 
+  Title = "_box.cshtml" 
+}) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath.Replace("000-reuse", "library"), 
+  Size = 200, 
+  Title = "_library.cshtml",
+  Language = "csharp"
+}) 
+</hide>

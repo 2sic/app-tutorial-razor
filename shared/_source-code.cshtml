@@ -3,6 +3,11 @@
 @{
   // get parameters
   var fileName = PageData["Path"];
+  var titleInParams = (PageData["Title"] as string);
+  var title = "Source Code of " + (titleInParams == null ? "this file" : titleInParams);
+  var paramSize = PageData["Size"];
+  int size = paramSize != null ? (paramSize as int?).Value : 600;
+  var language = "ace/mode/" + (PageData["Language"] ?? "razor");
 
   // load source code
   var fullPath = Server.MapPath(fileName);
@@ -29,6 +34,7 @@
 
   source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->" );
 
+  var rndId = Guid.NewGuid().ToString();
 
 }
 
@@ -37,19 +43,19 @@
 <link rel="stylesheet" href="@App.Path/assets/styles.css" enableoptimizations="true" />
 
 <hr>
-<h2>Source code of this File</h2>
+<h2>@title</h2>
 <p>
   Below you'll see the source code of the file. Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
 </p>
 
-<pre id="source" style="height: 600px; font-size: 16px">@source</pre>
+<pre id='@("source" + rndId)' style="height: @(size + "px"); font-size: 16px">@source</pre>
 
 <script>
-    var editor = ace.edit("source", { 
+    var editor = ace.edit('@("source" + rndId)', { 
       useWrapMode: true,
       maxLines: 30
     });
     editor.setTheme("ace/theme/sqlserver");
-    editor.session.setMode("ace/mode/razor");
+    editor.session.setMode("@language");
 </script>
 
