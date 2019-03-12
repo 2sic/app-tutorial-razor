@@ -1,0 +1,27 @@
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+@{
+  var normalText = "this is text, it doesn't have tags";
+  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+}
+
+<h3>Show the variables as is (will result in encoding)</h3>
+<ul>
+  <li>@normalText</li>
+  <li>@htmlText</li>
+</ul>
+
+<hr>
+<h2>Encode using <code>@@Html.Raw(...)</code></h2>
+<ul>
+  <li>@Html.Raw(normalText)</li>
+  <li>@Html.Raw(htmlText)</li>
+</ul>
+
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>
