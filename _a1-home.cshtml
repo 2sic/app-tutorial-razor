@@ -1,14 +1,13 @@
-
-
-Home
-
-
+<hide>
 @RenderPage("shared/_title.cshtml", new { Title = "Razor Tutorial - Home"})
+</hide>
 
+<trim>
 <h2>How to use this Tutorial</h2>
 <p>
   Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then click on "edit-code" to see how it's written. You can also make changes and see what happens, but of course you could also break the code :)
 </p>
+</trim>
 
 <hr>
 <h2>Tutorials</h2>
@@ -17,6 +16,14 @@ Home
   @TutorialLink("Basic Examples", "basics", "Basic use of Razor with variables, loops, conditions etc.")
   @TutorialLink("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
 </ol>
+
+
+
+
+@* hide *@
+@* anything below this is not shown in the page view-source, as it's internal "plumbing" and not helpful for the tutorial *@
+
+@RenderPage("shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
 
 

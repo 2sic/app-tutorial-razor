@@ -22,3 +22,7 @@
     Books with Illustrators: @books.Where(b => (b.Illustrators as Dynlist).Count() > 0).Count()
   </li>
 </ol>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

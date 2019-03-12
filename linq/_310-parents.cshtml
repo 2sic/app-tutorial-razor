@@ -9,7 +9,9 @@
 @RenderPage("_header.cshtml")
 
 <h3>Find Parents of Authors - Things that point to Authors</h3>
+<trim>
 <p>In this example, we'll start with the authors list. This is probably not ideal - as some people are not authors, but it's a good learning example. To find the books we have to navigate through <code>Parents(...)</code> because in our data-model, the books reference authors, not the authors to books.</p>
+</trim>
 <ol>
   @foreach(var author in persons) {
     // this line would work, if Books only had people in the Authors. 
@@ -37,5 +39,6 @@
 </ol>
 
 
-
-<hr>
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

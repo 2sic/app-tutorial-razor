@@ -37,3 +37,7 @@
     Persons with 10-char names or more: @persons.Any(p => p.FirstName.Length > 10)
   </li>
 </ol>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

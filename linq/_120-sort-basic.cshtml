@@ -34,3 +34,7 @@
     <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
   }
 </ol>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>
