@@ -1,13 +1,5 @@
-@helper TutorialLink(string label, string target) {
-  <li>
-    <a href='@Link.To(parameters: target + "/" + target)'>
-      @label
-    </a>
-  </li>
-}
-
 @helper Title(string title) {
-  <h1>@title</h1>
+  <h1 @Edit.TagToolbar()>@title</h1>
 }
 
 @helper Breadcrumb(string name, string topicUrl) {
@@ -23,4 +15,12 @@
   @Title(title)
   @Breadcrumb(name, topicUrl)
   <hr>
+}
+
+@helper TutorialLink(string label, string target) {
+  <li>
+    <a href='@Link.To(parameters: target + "/" + target)'>
+      @label
+    </a>
+  </li>
 }

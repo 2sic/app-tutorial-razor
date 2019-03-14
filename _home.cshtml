@@ -1,5 +1,6 @@
 <hide>
-@RenderPage("shared/_title.cshtml", new { Title = "Razor Tutorial - Home"})
+@{  var helpers = CreateInstance("shared/_helpers.cshtml"); }
+@helpers.Title("Razor Tutorial - Home")
 </hide>
 
 <trim>
@@ -14,8 +15,8 @@
 
 <ol>
   @TutorialLink("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
-  @TutorialLink("Working with HTML", "html", "Learn the difference of showing variables with @variable and @Html.Raw(variable)")
-  @TutorialLink("Reuse templates and code", "reuse", "You can place shared templates and functions into separate files.")
+  @TutorialLink("Working with HTML", "html", "Learn the difference of showing variables with @variable and @Html.Raw(variable), and re-using snippets with @helper")
+  @TutorialLink("Reuse templates and code", "reuse", "You can place common templates, helpers and functions into shared files.")
 </ol>
 
 <hr>
