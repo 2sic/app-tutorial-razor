@@ -17,10 +17,25 @@
   <hr>
 }
 
+@helper TutLink(string label, string target) {
+  <a href='@Link.To(parameters: target + "/" + target)'>
+    @label
+  </a>
+}
+
 @helper TutorialLink(string label, string target) {
   <li>
-    <a href='@Link.To(parameters: target + "/" + target)'>
+    @TutLink(label, target)
+  </li>
+}
+
+@helper TutorialLinkHome(string label, string target, string description) {
+  <li>
+    <strong>
+    <a href='@Link.To(parameters: target + "/home")'>
       @label
     </a>
+    </strong><br>
+    @description
   </li>
 }

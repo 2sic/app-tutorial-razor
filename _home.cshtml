@@ -14,9 +14,9 @@
 <h2>Razor Basics</h2>
 
 <ol>
-  @TutorialLink("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
-  @TutorialLink("Working with HTML", "html", "Learn the difference of showing variables with @variable and @Html.Raw(variable), and re-using snippets with @helper")
-  @TutorialLink("Reuse templates and code", "reuse", "You can place common templates, helpers and functions into shared files.")
+  @helpers.TutorialLinkHome("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
+  @helpers.TutorialLinkHome("Working with HTML", "html", "Learn the difference of showing variables with @variable and @Html.Raw(variable), and re-using snippets with @helper")
+  @helpers.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, helpers and functions into shared files.")
 </ol>
 
 <hr>
@@ -24,24 +24,11 @@
 <p>In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it.</p>
 
 <ol>
-  @TutorialLink("Visualize current Content", "content", "Show content which was entered for this module")
-  <li>todo: data</li>
-  @TutorialLink("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
+  @helpers.TutorialLinkHome("Visualize current Content", "content", "Show content which was entered for this module")
+
+  @helpers.TutorialLinkHome("Visualize Data", "data", "Show data from a DataSource like SQL, CSV etc.")
+
+  @helpers.TutorialLinkHome("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
 </ol>
 
 
-
-@* hide *@
-@* anything below this is not shown in the page view-source, as it's internal "plumbing" and not helpful for the tutorial *@
-
-
-@helper TutorialLink(string label, string target, string description) {
-  <li>
-    <strong>
-    <a href='@Link.To(parameters: target + "/home")'>
-      @label
-    </a>
-    </strong><br>
-    @description
-  </li>
-}
