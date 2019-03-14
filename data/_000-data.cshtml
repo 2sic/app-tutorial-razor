@@ -1,36 +1,57 @@
 <hide>
 @RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 @using Connect.Razor.Blade;
 @using System.Linq;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
-<h2>Working with Content</h2>
 <trim>
+<h2>Working with Data</h2>
   <p>
-    In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it. The current content item (if it's just one) is always available on the variable called <code>Content</code>. It's a <code>dynamic</code> object, so you can just type things like <code>@@Content.FirstName</code> to access the properties. 
+    If you want to work with <strong>data</strong> (like from a database) instead of <strong>@helpers.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:
+  </p>
+  <ul>
+    <li>the current App, using <code>App.Data[...]</code></li>
+    <li>a query in the App, using <code>App.Query[...]</code></li>
+    <li>a SQL database - either through an <code>App.Query</code>, from a <code>DataSource</code> or from a <code>SqlReader</code></li>
+    <li>a CSV file - either through an <code>App.Query</code>, from a <code>DataSource</code> or from your own code</li>
+    <li>DNN objects like the users - either through an <code>App.Query</code>, from a <code>DataSource</code>, from DNN-objects or from your own code</li>
+    <li>a JSON or XML file - usually loaded from your own code</li>
+    <li>a WebService - usually loaded from your own code</li>
+  </ul>
+  <p>
+    Once you have the data, you will usually want to loop-and-show, which is easiest using <code>dynamic</code> objects, so you can just type things like <code>@@Content.FirstName</code> to show the properties. 
   </p>
 </trim>
 
+<trim>
+<hr>
+<h3>Basic Example from App.Data</h3>
+<p>
+  The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @helpers.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
+</p>
+</trim>
+<ul>
+@foreach(var person in AsDynamic(App.Data["Persons"])) {
+  @ShowPersonListItem(person)
+}
+</ul>
 
 <hr>
-<h3>Show Content of the Current template</h3>
-<img src="@Content.Mugshot?w=100&h=100&mode=crop" align="right"  style="border-radius: 50%">
+<h3>Basic Example from App.Query</h3>
+<p>
+  Queries are pre-build definitions like "get all The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @helpers.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
+</p>
+</trim>
 <ul>
-  <li>Name: @Content.FirstName @Content.LastName</li>
-  <li>Birthday: @Content.Birthday.ToString("d")</li>
+@foreach(var person in AsDynamic(App.Data["Persons"])) {
+  @ShowPersonListItem(person)
+}
 </ul>
 
 
-<hr>
-<h3>Show all Items assigned to current template</h3>
-<trim>
-  <p>
-    If a view has many items assigned (called a list) these should be retrieved from <code>Data["Default"]</code>. You will usually want to convert it to a dynamic list using <code>AsDynamic(...)</code>. This example also uses <code>Text.Has(...)</code> to only show a picture if it really has a mugshot. 
-  </p>
-</trim>
-<ul>
-@foreach(var person in AsDynamic(Data["Default"])) {
+@helper ShowPersonListItem(dynamic person) {
   <li>
     @if(Text.Has(person.Mugshot)) {
       <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
@@ -38,35 +59,6 @@
     @person.FirstName @person.LastName
   </li>
 }
-</ul>
-
-<hr>
-<h3>Show sub-items of current items</h3>
-<trim>
-  <p>
-    This example builds on the last one, and additionally shows awards these authors have won, which is on the <code>Awards</code> property.
-  </p>
-</trim>
-
-<ul>
-@foreach(var person in AsDynamic(Data["Default"])) {
-  <li>
-    @if(Text.Has(person.Mugshot)) {
-      <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
-    }
-    @person.FirstName @person.LastName
-    @if(person.Awards.Count > 0 ) {
-      // we just want the award names - to understand this, look at the LINQ tutorial
-      var awardNames = (person.Awards as Dynlist).Select(a => a.Name);
-      <span>
-        (awards: @string.Join(",", awardNames))
-      </span>
-      
-
-    }
-  </li>
-}
-</ul>
 
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 

@@ -1,5 +1,5 @@
 <hide>
-RenderPage("_header.cshtml")
+@RenderPage("_header.cshtml")
 </hide>
 @using Connect.Razor.Blade;
 @using System.Linq;
@@ -15,13 +15,6 @@ RenderPage("_header.cshtml")
 </trim>
 
 
-<hr>
-<h3>Show Content of the Current template</h3>
-<img src="@Content.Mugshot?w=100&h=100&mode=crop" align="right"  style="border-radius: 50%">
-<ul>
-  <li>Name: @Content.FirstName @Content.LastName</li>
-  <li>Birthday: @Content.Birthday.ToString("d")</li>
-</ul>
 
 
 <hr>
