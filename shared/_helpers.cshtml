@@ -1,0 +1,26 @@
+@helper TutorialLink(string label, string target) {
+  <li>
+    <a href='@Link.To(parameters: target + "/" + target)'>
+      @label
+    </a>
+  </li>
+}
+
+@helper Title(string title) {
+  <h1>@title</h1>
+}
+
+@helper Breadcrumb(string name, string topicUrl) {
+  <a href='@Link.To(parameters: "")'>Tutorial Home</a>
+
+  if(!string.IsNullOrEmpty(name)) {
+    <text> › </text>
+    <a href="@Link.To(parameters: topicUrl)">@name</a>
+  }
+}
+
+@helper TitleAndBreadcrumb(string title, string name, string topicUrl) {
+  @Title(title)
+  @Breadcrumb(name, topicUrl)
+  <hr>
+}

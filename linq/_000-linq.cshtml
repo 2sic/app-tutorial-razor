@@ -1,5 +1,6 @@
 <hide>
 @RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
 <trim>
@@ -35,18 +36,18 @@
 <h2>LINQ Examples</h2>
 
 <ol>
-  @TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
-  @TutorialLink("Get First() / Last() item in a list", "linq106")
-  @TutorialLink("Take() / Skip() items in a list", "linq107")
-  @TutorialLink("Count() items in a list", "linq108")
+  @helpers.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
+  @helpers.TutorialLink("Get First() / Last() item in a list", "linq106")
+  @helpers.TutorialLink("Take() / Skip() items in a list", "linq107")
+  @helpers.TutorialLink("Count() items in a list", "linq108")
 
-  @TutorialLink("Basic sorting of lists", "linq120")
+  @helpers.TutorialLink("Basic sorting of lists", "linq120")
 
-  @TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
-  @TutorialLink("Group books by authors in 3 ways", "linq220")
-  @TutorialLink("Access a list in list in list", "linq230")
+  @helpers.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
+  @helpers.TutorialLink("Group books by authors in 3 ways", "linq220")
+  @helpers.TutorialLink("Access a list in list in list", "linq230")
 
-  @TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
+  @helpers.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
 </ol>
 
 <hide>
@@ -58,13 +59,4 @@
 - Parents 300
 -->
 
-
-
-@helper TutorialLink(string label, string target) {
-  <li>
-    <a href='@Link.To(parameters: target + "/" + target)'>
-      @label
-    </a>
-  </li>
-}
 </hide>

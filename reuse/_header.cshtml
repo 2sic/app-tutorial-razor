@@ -1,4 +1,1 @@
-
-@RenderPage("../shared/_title.cshtml", new { Title = "Basic Tutorials" })
-@RenderPage("../shared/_breadcrumb.cshtml", new { Topic = "Reuse Code", TopicKey = "reuse/home"})
-<hr>
+@CreateInstance("../shared/_helpers.cshtml").TitleAndBreadcrumb("Reusing Templates and Code Tutorials", "Reuse", "reuse/home")

@@ -2,15 +2,21 @@
 @using Connect.Razor.Blade;
 @{
   // get parameters
-  var fileName = PageData["Path"];
   var titleInParams = (PageData["Title"] as string);
-  var title = "Source Code of " + (titleInParams == null ? "this file" : titleInParams);
+  var filePath = PageData["Path"];
+  var file = PageData["File"];
+  if(file != null) {
+    file = "_" + file + ".cshtml";
+    var lastSlash = filePath.LastIndexOf("/");
+    filePath = filePath.Substring(0, lastSlash) + "/" + file;
+  }
+  var title = titleInParams ?? "Source Code of " + (file == null ? "this file" : file);
   var paramSize = PageData["Size"];
   int size = paramSize != null ? (paramSize as int?).Value : 600;
   var language = "ace/mode/" + (PageData["Language"] ?? "razor");
 
   // load source code
-  var fullPath = Server.MapPath(fileName);
+  var fullPath = Server.MapPath(filePath);
   string source = System.IO.File.ReadAllText(fullPath);
 
   // remove the unimportant parts which might confuse the user
