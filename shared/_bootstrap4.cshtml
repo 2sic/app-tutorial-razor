@@ -1,5 +1,7 @@
 @using Connect.Koi;
 @helper EnsureBootstrap4() {
+  // if the theme framework is not BS4, just include it
+  // this solves both the cases where its unknown, or another framework
   if(!Koi.Is("bs4")) {
     <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
