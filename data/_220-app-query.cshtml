@@ -1,13 +1,17 @@
 <hide>
 @RenderPage("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  
+  var helpers = CreateInstance("../shared/_helpers.cshtml");
+  var fancybox = CreateInstance("../shared/_fancybox.cshtml");
+}
 </hide>
 @using Connect.Razor.Blade;
 @using System.Linq;
 <trim>
 <h2>Example from App.Query</h2>
+@fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-authors-with-books.png", 400, 200, "float-right")
 <p>
-  Queries are pre-build definitions like "get all authors and the books of the author in the URL" or anything similar. These are configured in the App administration. Below you'll see us first list through all the <code>Authors</code> of the query <code>AuthorsWithBooks</code>, and if an author was clicked on (which put the author-id in the url), the qury will also return the <code>Books</code> of that author. 
+  Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar. These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the qury will also return the specific Author and the <code>Books</code> of that author. 
 </p>
 </trim>
 @{
@@ -33,7 +37,7 @@
 
 @if(current != null) {
   if(Text.Has(current.Mugshot)) {
-    <img src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" style="border-radius: 50%; float: right">
+    <img src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right">
   }
   <h3>Current Author: @current.FirstName @current.LastName</h3>
   <strong>Books</strong>
