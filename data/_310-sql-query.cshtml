@@ -1,0 +1,41 @@
+<hide>
+@RenderPage("_header.cshtml")
+@{  
+  var helpers = CreateInstance("../shared/_helpers.cshtml");
+  var fancybox = CreateInstance("../shared/_fancybox.cshtml");
+}
+</hide>
+@using Connect.Razor.Blade;
+@using System.Linq;
+<trim>
+<h2>Example from SQL in a Query</h2>
+@fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-sql-dnn-files.png", 400, 200, "float-right")
+<p>
+  The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <code>Select Top 10 * from Files Where PortalId = [Portal:PortalId]</code>. You can read more about the <code>DnnSqlDataSource</code> <a href="https://2sxc.org/en/Docs/Feature/feature/4670" target="_blank">here</a>.
+</p>
+</trim>
+@{
+  // get the query
+  var query = App.Query["DnnFilesFromSql"];
+
+  // get the data from the query
+  var files = AsDynamic(query["Default"]);
+}
+<ul>
+  @foreach(var file in files) {
+    <li>
+      @file.FileName
+    </li>
+  }
+</ul>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath,
+  File = "assets/products.csv",
+  Size = 400, 
+  Type = "csv"
+}) 
+</hide>
