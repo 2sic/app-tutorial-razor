@@ -16,7 +16,7 @@
   var language = "ace/mode/" + (PageData["Language"] ?? "razor");
 
   // load source code
-  var fullPath = Server.MapPath(filePath);
+  var fullPath = filePath.IndexOf(":") == -1 ? Server.MapPath(filePath) : filePath;
   string source = System.IO.File.ReadAllText(fullPath);
 
   // remove the unimportant parts which might confuse the user

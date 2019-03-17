@@ -13,7 +13,7 @@
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 </trim>
 @{
-  var helpers = CreateInstance("_helpers.cshtml");
+  var helpers = CreateInstance("../shared/_fancybox.cshtml");
 }
 @helpers.PreviewWithLightbox(@App.Path + "/app-icon.png")
 &nbsp;
@@ -23,8 +23,8 @@
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
 @RenderPage("../shared/_source-code.cshtml", new { 
-  Path = VirtualPath,
-  File = "helpers",
+  Path = App.PhysicalPath + "/shared/",
+  File = "fancybox",
   Size = 400
 }) 
 </hide>

@@ -1,0 +1,59 @@
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+@using Connect.Razor.Blade;
+@using System.Linq;
+<trim>
+<h2>Example from App.Query</h2>
+<p>
+  Queries are pre-build definitions like "get all authors and the books of the author in the URL" or anything similar. These are configured in the App administration. Below you'll see us first list through all the <code>Authors</code> of the query <code>AuthorsWithBooks</code>, and if an author was clicked on (which put the author-id in the url), the qury will also return the <code>Books</code> of that author. 
+</p>
+</trim>
+@{
+  // get the query
+  var query = App.Query["AuthorsWithBooks"];
+  // get all authors from the stream Authors in the query
+  var allAuthors = AsDynamic(query["Authors"]);
+  // get the current author (if available) from the stream Current
+  var current = AsDynamic(query["Current"].FirstOrDefault());
+  // get the books of the current author (if available) from stream CurrentBook
+  var books = AsDynamic(query["CurrentBooks"]);
+}
+<ul>
+  @foreach(var person in allAuthors) {
+    <li>
+      <!-- this creates a link to the current tutorial (data220) and author=id -->
+      <a href='@Link.To(parameters: "data220/true/author/" + person.EntityId)'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>
+
+@if(current != null) {
+  if(Text.Has(current.Mugshot)) {
+    <img src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" style="border-radius: 50%; float: right">
+  }
+  <h3>Current Author: @current.FirstName @current.LastName</h3>
+  <strong>Books</strong>
+  <ol>
+    @foreach(var book in books) {
+      <li>@book.Title</li>
+    }
+  </ol>
+} else {
+  <h3>No author selected - click on an author above</h3>
+}
+
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath,
+  File = "helpers",
+  Size = 400, 
+}) 
+</hide>

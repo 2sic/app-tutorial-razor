@@ -25,23 +25,24 @@
   </p>
 </trim>
 
+
+<h2>Basic Examples</h2>
+
+<ol>
+  @helpers.TutorialLink("Data from the App using App.Data", "data210")
+  @helpers.TutorialLink("Data from the App using App.Query", "data220")
+  @helpers.TutorialLink("CSV data from an App.Query", "data310")
+  @helpers.TutorialLink("CSV data from an DataSource", "data320")
+
+  @helpers.TutorialLink("CSV data from an DataSource", "data310")
+  @helpers.TutorialLink("CSV data from an DataSource", "data310")
+</ol>
+
 <trim>
 <hr>
 <h3>Basic Example from App.Data</h3>
 <p>
   The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @helpers.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
-</p>
-</trim>
-<ul>
-@foreach(var person in AsDynamic(App.Data["Persons"])) {
-  @ShowPersonListItem(person)
-}
-</ul>
-
-<hr>
-<h3>Basic Example from App.Query</h3>
-<p>
-  Queries are pre-build definitions like "get all The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @helpers.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
 </p>
 </trim>
 <ul>
