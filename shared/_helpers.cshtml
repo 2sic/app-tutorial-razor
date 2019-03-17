@@ -1,6 +1,6 @@
 @helper Title(string title) {
+  @InitializedPageAssets()
   <img src="@App.Path/app-icon.png?w=75&h=75" class="float-right">
-  <link rel="stylesheet" href="@App.Path/assets/styles.css" enableoptimizations="true" />
   <h1 @Edit.TagToolbar()>@title</h1>
 }
 
@@ -29,7 +29,18 @@
 
 @helper TutorialLink(string label, string target, bool ready = true) {
   <li>
-    @TutLink(label, target, ready)
+    <strong>
+      @TutLink(label, target, ready)
+    </strong>
+  </li>
+}
+
+@helper TutorialLink(string label, string target, string description, bool ready = true) {
+  <li>
+    <strong>
+      @TutLink(label, target, ready)
+    </strong><br>
+    @description
   </li>
 }
 
@@ -42,4 +53,10 @@
     </strong><br>
     @description
   </li>
+}
+
+@helper InitializedPageAssets() {
+  var bsCheck = CreateInstance("_bootstrap4.cshtml");
+  @bsCheck.EnsureBootstrap4()
+  <link rel="stylesheet" href="@App.Path/assets/styles.css" enableoptimizations="true" />
 }

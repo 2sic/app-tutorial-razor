@@ -1,0 +1,23 @@
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+
+<trim>
+<img src="@App.Path/koi/assets/koi-slogan-bottom.png?w=400" class="float-right">
+<p>
+  Learn how to use <code>Connect.Koi</code> to ensure your module/temlate has the right CSS frameworks, to either auto-include otherwise, show messages to the admin or generate different output. This uses <a href="https://connect-koi.net/" target="_blank">Connect.Koi</a>. 
+</p>
+
+<h2>Some notes before we start</h2>
+<p>
+  Koi works like magic behind the scenes, ensuring that your component knows what CSS-framework is already included, and can adapt its behavior. For this to work, the theme must <em>publish</em> what framework it's using, by including a <code>koi.json</code> file as explained in the <a href="https://connect-koi.net/dnn-themes" target="_blank">docs</a>. This is included in the default DNN themes sinc DNN 9.2, as well as in <a href="https://github.com/2sic/dnn-theme-bootstrap4-instant" target="_blank">Bootstrap Instant</a>, <a href="https://www.nvquicktheme.com/" target="_blank">nvQuickTheme</a> and many other themes. Some themes may not include that file, so your best bet is to always have something which either alerts the user, that this is missing, or automatically adds your framework, if it can't detect what's happening. 
+</p>
+</trim>
+
+<hr>
+<h2>Koi Examples</h2>
+
+<ol>
+  @helpers.TutorialLink("Koi - Auto-Add Bootstrap4 if missing", "koi110", "Automatically add the Bootstrap4 CSS package from a CDN, if the current theme does not include Bootstrap4 already, but skip it if it's already included.")
+</ol>
