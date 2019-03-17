@@ -6,7 +6,9 @@
   var filePath = PageData["Path"];
   var file = PageData["File"];
   if(file != null) {
-    file = "_" + file + ".cshtml";
+    if(file.IndexOf(".") == -1) {
+      file = "_" + file + ".cshtml";
+    }
     var lastSlash = filePath.LastIndexOf("/");
     filePath = filePath.Substring(0, lastSlash) + "/" + file;
   }

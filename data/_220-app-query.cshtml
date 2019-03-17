@@ -11,22 +11,26 @@
 <h2>Example from App.Query</h2>
 @fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-authors-with-books.png", 400, 200, "float-right")
 <p>
-  Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar. These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the qury will also return the specific Author and the <code>Books</code> of that author. 
+  Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar (<a href="https://2sxc.org/en/Learn/Visual-Query-Designer" target="_blank">more</a>). These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the <code>Current</code> stream as well as the <code>CurrentBooks</code> of that author. 
 </p>
 </trim>
 @{
   // get the query
   var query = App.Query["AuthorsWithBooks"];
+
   // get all authors from the stream Authors in the query
   var allAuthors = AsDynamic(query["Authors"]);
+
   // get the current author (if available) from the stream Current
   var current = AsDynamic(query["Current"].FirstOrDefault());
+
   // get the books of the current author (if available) from stream CurrentBook
   var books = AsDynamic(query["CurrentBooks"]);
 }
 <ul>
   @foreach(var person in allAuthors) {
-    <li>
+    <!-- this li will have class=selected if it's the current one -->
+    <li class='@(person == current ? "selected" : "")'>
       <!-- this creates a link to the current tutorial (data220) and author=id -->
       <a href='@Link.To(parameters: "data220/true/author/" + person.EntityId)'>
         @person.FirstName @person.LastName
@@ -51,13 +55,6 @@
 }
 
 
-
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
-
-@RenderPage("../shared/_source-code.cshtml", new { 
-  Path = VirtualPath,
-  File = "helpers",
-  Size = 400, 
-}) 
 </hide>
