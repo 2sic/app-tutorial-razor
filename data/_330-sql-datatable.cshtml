@@ -9,7 +9,7 @@
 <trim>
 <h2>The top 10 files found in this portal as returned from DB</h2>
 <p>
-  This example queries the DNN SQL for the files. You can find more about this <a href="https://2sxc.org/en/Docs/Feature/feature/2579" target="_blank">here</a>.
+  This example queries the DNN SQL for the files using a <code>DataTable</code> object. You can find more about this <a href="https://2sxc.org/en/Docs/Feature/feature/2579" target="_blank">here</a>.
 </p>
 </trim>
 @{
@@ -25,7 +25,7 @@
   // create an adapter object, tell it what to do, and load results into fileTable
   var adapter = new SqlDataAdapter(sqlCommand, conString);
   adapter.SelectCommand.Parameters.AddWithValue("@PortalId", Dnn.Portal.PortalId);
-  DataTable fileTable = new DataTable();
+  var fileTable = new DataTable();
   adapter.Fill(fileTable);
 }
 <ol>
