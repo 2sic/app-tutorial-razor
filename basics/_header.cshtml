@@ -1,4 +1,1 @@
-
-@RenderPage("../shared/_title.cshtml", new { Title = "Basic Tutorials" })
-@RenderPage("../shared/_breadcrumb.cshtml", new { Topic = "Basics", TopicKey = "basics/home"})
-<hr>
+@CreateInstance("../shared/_helpers.cshtml").TitleAndBreadcrumb("Basic Tutorials", "Basics", "basics/home")

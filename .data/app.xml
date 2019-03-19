@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.42.00" ExportDate="2019-03-19T10:42:34.0657964+01:00">
+  <Header>
+    <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
+    <Language Default="en-US" />
+    <Dimensions />
+  </Header>
+  <AttributeSets>
+    <AttributeSet StaticName="App-Resources" Name="App-Resources" Description="Stores resources like translations for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes />
+    </AttributeSet>
+    <AttributeSet StaticName="App-Settings" Name="App-Settings" Description="Stores settings for an app" Scope="2SexyContent-App" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="GroupQR" Type="Empty" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="4a40c8e4-bbb9-41e4-80bb-6f8390f8b4cd" KeyNumber="2908">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="empty-default" Type="String" />
+            <Value Key="Name" Value="QR Code Settings for Various Demos" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="0ef6e5a7-fdb8-4922-b7d1-3043a29a4d05" KeyNumber="2908">
+            <Value Key="DefaultCollapsed" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="QrForegroundColor" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b5a022d1-51b9-443f-a5b1-18b5eefd6194" KeyNumber="2909">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="QrForegroundColor" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="QrBackgroundColor" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0f2b9099-e3ff-46a2-8ffe-789721ae4313" KeyNumber="2910">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="QrBackgroundColor" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="QrDimension" Type="Number" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="148387ff-af58-4a1c-b61c-dc56ccbe8466" KeyNumber="2911">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="QrDimension" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="QrEcc" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="6e84453b-bbe4-48f7-91b7-4d98525bea20" KeyNumber="2912">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="string-dropdown" Type="String" />
+            <Value Key="Name" Value="QR Error Correction Level" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;This is how much error-correction is built into the image. We recommend to use the lowest value, as more error correction actually makes the QR harder to scan.&lt;/p&gt;" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="78e61629-fffe-47ac-807a-efa634c0038c" KeyNumber="2912">
+            <Value Key="DropdownValues" Value="" Type="String" />
+            <Value Key="InputType" Value="" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="ca0d2a10-30de-44e8-957a-ef0e89250b2d" KeyNumber="2912">
+            <Value Key="DropdownValues" Value="Low (recommended):l&#xA;Medium:m&#xA;High:h" Type="String" />
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="b48238d4-0a90-43b9-978b-d1657177b8d3" Name="BookAwards" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Name" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="e3a2108f-2aca-4fb1-a8bb-81c1d885368a" KeyNumber="2866">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Name" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="497fab5d-2c04-41f7-8980-3e2647afb9fd" Name="Books" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1e35f7d7-eb36-48e7-97b9-e86799f5e7d9" KeyNumber="2861">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Teaser" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="26a62261-544b-4ce9-b499-9f3bc02e1fa0" KeyNumber="2862">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Teaser" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Cover" Type="Hyperlink" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="e6a3989a-ba9e-499b-a319-5661eb7d88bb" KeyNumber="2864">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Cover" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="d8d04874-d71f-49ec-9da2-a3e14d09ca1a" KeyNumber="2864">
+            <Value Key="Buttons" Value="adam" Type="String" />
+            <Value Key="DefaultDialog" Value="Adam" Type="String" />
+            <Value Key="FileFilter" Value="" Type="String" />
+            <Value Key="Paths" Value="" Type="String" />
+            <Value Key="ServerResourceMapping" Value="" Type="String" />
+            <Value Key="ShowAdam" Value="True" Type="Boolean" />
+            <Value Key="ShowFileManager" Value="False" Type="Boolean" />
+            <Value Key="ShowImageManager" Value="False" Type="Boolean" />
+            <Value Key="ShowPagePicker" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Authors" Type="Entity" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="bbfd744b-f685-4a08-8be4-28db0d6f377b" KeyNumber="2863">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="Authors" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="565f3b52-8551-479d-979e-9b06dc2a4483" KeyNumber="2863">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean" />
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean" />
+            <Value Key="EnableCreate" Value="True" Type="Boolean" />
+            <Value Key="EnableDelete" Value="False" Type="Boolean" />
+            <Value Key="EnableEdit" Value="False" Type="Boolean" />
+            <Value Key="EnableRemove" Value="True" Type="Boolean" />
+            <Value Key="EntityType" Value="Persons" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="02bf59c4-d00e-4091-9b64-0a6cdfa34132" KeyNumber="2863" />
+        </Attribute>
+        <Attribute StaticName="Awards" Type="Entity" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="6e5d0f6a-3ff8-45fe-9bec-0ed212d91049" KeyNumber="2867">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="Awards" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="23ab3df7-bbe4-4869-a85b-adb2ebe14710" KeyNumber="2867">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean" />
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean" />
+            <Value Key="EnableCreate" Value="True" Type="Boolean" />
+            <Value Key="EnableDelete" Value="False" Type="Boolean" />
+            <Value Key="EnableEdit" Value="True" Type="Boolean" />
+            <Value Key="EnableRemove" Value="True" Type="Boolean" />
+            <Value Key="EntityType" Value="BookAwards" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="0765d014-30d4-48d6-893f-a2e70b2c1475" KeyNumber="2867" />
+        </Attribute>
+        <Attribute StaticName="Illustrators" Type="Entity" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a8ac6063-aa26-4a45-a028-1b218c7c1ee3" KeyNumber="2870">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="Illustrator" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;This one is to show how problems arise if Person items are assigned to a book, which are not an author, and how to differentiate them.&amp;nbsp;&lt;/p&gt;" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="8d791864-566b-4404-8ae1-cefd9db8f60f" KeyNumber="2870">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean" />
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean" />
+            <Value Key="EnableCreate" Value="False" Type="Boolean" />
+            <Value Key="EnableDelete" Value="False" Type="Boolean" />
+            <Value Key="EnableEdit" Value="False" Type="Boolean" />
+            <Value Key="EnableRemove" Value="True" Type="Boolean" />
+            <Value Key="EntityType" Value="Persons" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="f6ace3e4-648e-4f9d-9967-e7427e1becb2" KeyNumber="2870" />
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="23efb193-1a4d-40f3-9d41-274570a6e57f" Name="PersonAwards" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Name" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7e229a6a-5e49-4bdf-a66a-18d0efb07b8e" KeyNumber="2868">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="e748cf30-7849-46f1-a331-f181ba047cb2" Name="Persons" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="FirstName" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="73646c6f-5e0d-4779-af2c-32b6b3f68a5c" KeyNumber="2858">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="First Name" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="06ced61e-9a11-4a6d-82ec-2607c80219ed" KeyNumber="2858">
+            <Value Key="DropdownValues" Value="" Type="String" />
+            <Value Key="InputType" Value="" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="10bebf0f-e4e9-4b31-93f1-edc9564f5b80" KeyNumber="2858">
+            <Value Key="RowCount" Value="1.0" Type="Number" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="LastName" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f52be594-0a2d-4211-a8d0-e3093daf595d" KeyNumber="2859">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Last Name" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="8b7f7cb8-ba62-4ce2-a3fe-6cf6dc8bcde7" KeyNumber="2859">
+            <Value Key="DropdownValues" Value="" Type="String" />
+            <Value Key="InputType" Value="" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="4c007c8e-6bd8-428c-b39c-dc52f88ae11e" KeyNumber="2859">
+            <Value Key="RowCount" Value="1.0" Type="Number" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Birthday" Type="DateTime" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="71150a68-2047-4648-8741-442b95ac65fa" KeyNumber="2860">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="datetime-default" Type="String" />
+            <Value Key="Name" Value="Birthday" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@DateTime" AttributeSetName="@DateTime" EntityGUID="e98f8665-a809-4c31-b5c2-55177afabf3a" KeyNumber="2860">
+            <Value Key="UseTimePicker" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Mugshot" Type="Hyperlink" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="4ed1bcc0-95ad-4f8e-be9f-b4b4d085fe28" KeyNumber="2865">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="hyperlink-default" Type="String" />
+            <Value Key="Name" Value="Mugshot" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Hyperlink" AttributeSetName="@Hyperlink" EntityGUID="438df4cb-045b-4576-8c41-e7ca508a53ac" KeyNumber="2865">
+            <Value Key="Buttons" Value="adam" Type="String" />
+            <Value Key="DefaultDialog" Value="Adam" Type="String" />
+            <Value Key="FileFilter" Value="" Type="String" />
+            <Value Key="Paths" Value="" Type="String" />
+            <Value Key="ServerResourceMapping" Value="" Type="String" />
+            <Value Key="ShowAdam" Value="True" Type="Boolean" />
+            <Value Key="ShowFileManager" Value="False" Type="Boolean" />
+            <Value Key="ShowImageManager" Value="False" Type="Boolean" />
+            <Value Key="ShowPagePicker" Value="False" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Awards" Type="Entity" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="cc610f66-5299-4c3d-990b-94fcf1cf01fb" KeyNumber="2869">
+            <Value Key="CustomJavaScript" Value="" Type="String" />
+            <Value Key="DefaultValue" Value="" Type="String" />
+            <Value Key="Disabled" Value="False" Type="Boolean" />
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="Awards" Type="String" />
+            <Value Key="Notes" Value="" Type="String" />
+            <Value Key="Required" Value="False" Type="Boolean" />
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="9ec085d0-a159-4828-9749-b1becd2c6ab3" KeyNumber="2869">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean" />
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean" />
+            <Value Key="EnableCreate" Value="True" Type="Boolean" />
+            <Value Key="EnableDelete" Value="False" Type="Boolean" />
+            <Value Key="EnableEdit" Value="True" Type="Boolean" />
+            <Value Key="EnableRemove" Value="True" Type="Boolean" />
+            <Value Key="EntityType" Value="PersonAwards" Type="String" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="7e294774-38e7-4891-b5ce-1fbb555cfb2d" KeyNumber="2869" />
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+  </AttributeSets>
+  <Entities>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="406c2665-77c4-4838-af22-c5b2ef409dc5" KeyNumber="153">
+      <Value Key="AllowRazorTemplates" Value="True" Type="Boolean" />
+      <Value Key="AllowTokenTemplates" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="DisplayName" Value="Tutorial-Razor" Type="String" />
+      <Value Key="Folder" Value="Tutorial-Razor" Type="String" />
+      <Value Key="Hidden" Value="False" Type="Boolean" />
+      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="RequiredDnnVersion" Value="07.02.00" Type="String" />
+      <Value Key="RequiredVersion" Value="09.42.00" Type="String" />
+      <Value Key="SupportsAjaxReload" Value="False" Type="Boolean" />
+      <Value Key="Version" Value="09.42.00" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="aca7fe14-4960-4265-8f46-795d40e31011" KeyNumber="153">
+      <Value Key="QrBackgroundColor" Value="#FFFFFF" Type="String" />
+      <Value Key="QrDimension" Value="200" Type="Number" />
+      <Value Key="QrEcc" Value="l" Type="String" />
+      <Value Key="QrForegroundColor" Value="#000000" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="cee028c4-88bf-4b5b-98a1-b32d1d754cc3" KeyNumber="153" />
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="af52c092-9882-4837-b75c-e01c268a288e">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="False" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Razor Tutorial Home" Type="String" />
+      <Value Key="Path" Value="_home.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="5faf3ee9-6efe-4ce6-8061-571f8da71c32">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="B-Basics" Type="String" />
+      <Value Key="Path" Value="basics/_000-basics.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="basics/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="dfd82ad7-6ab0-4586-892a-c7eb2d2791ba">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="C1 Code Basics" Type="String" />
+      <Value Key="Path" Value="_c1-code-basics.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="c1/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="c7aa9d55-6eca-4bc6-8e40-5737d5f921fe">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="l1 Lists General" Type="String" />
+      <Value Key="Path" Value="_l1-lists-general.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="44616625-4765-4d09-b695-bd2950a1746c">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q1 - LINQ" Type="String" />
+      <Value Key="Path" Value="linq/_000-linq.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="497fab5d-2c04-41f7-8980-3e2647afb9fd" AttributeSetName="Books" EntityGUID="797967ee-071b-4e6d-81d2-21de23360b09">
+      <Value Key="Authors" Value="36726e4e-21cd-4c00-9ce8-72080f8935da" Type="Entity" />
+      <Value Key="Cover" Value="file:1530" Type="Hyperlink" />
+      <Value Key="Teaser" Value="Seconds before the Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker's Guide to the Galaxy who, for the last 15 years, has been posing as an out-of-work actor. Together this dynamic pair begin a journey through space aided by quotes from The Hitchhiker's Guide (&quot;A towel is about the most massively useful thing an interstellar hitchhiker can have.&quot;) and a galaxy full of fellow travelers: Zaphod Beeblebrox, the two-headed, three-armed ex-hippie and totally out-to-lunch president of the galaxy; Trillian, Zaphod's girlfriend (formally Tricia McMillan), whom Arthur tried to pick up at a cocktail party once upon a time zone; Marvin, a paranoid, brilliant, and chronically depressed robot; and Veet Voojagig, a former graduate student who is obsessed with the disappearance of all the ballpoint pens he bought over the years." Type="String" />
+      <Value Key="Title" Value="Hitchhikers Guide to the Galaxy" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="36726e4e-21cd-4c00-9ce8-72080f8935da">
+      <Value Key="Birthday" Value="1952-03-11T00:00:00" Type="DateTime" />
+      <Value Key="FirstName" Value="Douglas" Type="String" />
+      <Value Key="LastName" Value="Adams" Type="String" />
+      <Value Key="Mugshot" Value="file:1532" Type="Hyperlink" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="97ccde9f-65c5-49d7-9900-371b2a69812b">
+      <Value Key="Birthday" Value="1948-04-28T00:00:00" Type="DateTime" />
+      <Value Key="FirstName" Value="Terry" Type="String" />
+      <Value Key="LastName" Value="Pratchett" Type="String" />
+      <Value Key="Mugshot" Value="file:1533" Type="Hyperlink" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="67af60b7-f6a6-4403-a489-06b0935c07a3">
+      <Value Key="Birthday" Value="1960-11-10T00:00:00" Type="DateTime" />
+      <Value Key="FirstName" Value="Neil" Type="String" />
+      <Value Key="LastName" Value="Gaiman" Type="String" />
+      <Value Key="Mugshot" Value="file:1534" Type="Hyperlink" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="497fab5d-2c04-41f7-8980-3e2647afb9fd" AttributeSetName="Books" EntityGUID="f80c0770-b3b4-47fd-a519-9e40610765af">
+      <Value Key="Authors" Value="67af60b7-f6a6-4403-a489-06b0935c07a3,97ccde9f-65c5-49d7-9900-371b2a69812b" Type="Entity" />
+      <Value Key="Cover" Value="file:1535" Type="Hyperlink" />
+      <Value Key="Teaser" Value="The Nice and Accurate Prophecies of Agnes Nutter, Witch is a World Fantasy Award-nominated novel, written as a collaboration between the English authors Terry Pratchett and Neil Gaiman. The book is a comedy about the birth of the son of Satan, the coming of the End Times." Type="String" />
+      <Value Key="Title" Value="Good Omens" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="b48238d4-0a90-43b9-978b-d1657177b8d3" AttributeSetName="BookAwards" EntityGUID="53057f5c-2aad-435d-9177-5930aa8cc642">
+      <Value Key="Name" Value="Lebon Literature Prize" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="b48238d4-0a90-43b9-978b-d1657177b8d3" AttributeSetName="BookAwards" EntityGUID="f2c1cb05-47da-4951-80a6-3f7e41264c87">
+      <Value Key="Name" Value="Lebon Peace Prize" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="8d483786-97e0-4d81-bfcb-a81c1222643f">
+      <Value Key="Awards" Value="77b3b63e-cedd-4e89-83f0-fb07dd49df2e" Type="Entity" />
+      <Value Key="Birthday" Value="1940-06-17T00:00:00" Type="DateTime" />
+      <Value Key="FirstName" Value="George" Type="String" />
+      <Value Key="LastName" Value="Akerlof" Type="String" />
+      <Value Key="Mugshot" Value="file:1537" Type="Hyperlink" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="497fab5d-2c04-41f7-8980-3e2647afb9fd" AttributeSetName="Books" EntityGUID="df9e4496-a883-470a-a4d3-3c9cafa9c435">
+      <Value Key="Authors" Value="8d483786-97e0-4d81-bfcb-a81c1222643f" Type="Entity" />
+      <Value Key="Awards" Value="f2c1cb05-47da-4951-80a6-3f7e41264c87" Type="Entity" />
+      <Value Key="Cover" Value="file:1536" Type="Hyperlink" />
+      <Value Key="Teaser" Value="Markets are full of manipulative traps, and we can all be easily coerced into spending money to our detriment. Akerlof and Shiller bring life to their progressive theories with stories of how anyone can be vulnerable to economic trickery." Type="String" />
+      <Value Key="Title" Value="Phishing for Phools" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="23efb193-1a4d-40f3-9d41-274570a6e57f" AttributeSetName="PersonAwards" EntityGUID="77b3b63e-cedd-4e89-83f0-fb07dd49df2e">
+      <Value Key="Name" Value="Nobel Peace Prize" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="497fab5d-2c04-41f7-8980-3e2647afb9fd" AttributeSetName="Books" EntityGUID="b4db49fc-54eb-4c32-aaba-8368364b757c">
+      <Value Key="Authors" Value="97ccde9f-65c5-49d7-9900-371b2a69812b" Type="Entity" />
+      <Value Key="Cover" Value="file:1538" Type="Hyperlink" />
+      <Value Key="Illustrators" Value="0be666db-152c-4a93-94e5-fafe6cea71ec" Type="Entity" />
+      <Value Key="Teaser" Value="Ane awesome parody of Australians." Type="String" />
+      <Value Key="Title" Value="The Last Continent" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="addfdc97-3d83-465a-a7cf-a66a0e39658b">
+      <Value Key="Birthday" Value="2000-03-01T00:00:00" Type="DateTime" />
+      <Value Key="FirstName" Value="Raphael" Type="String" />
+      <Value Key="LastName" Value="Müller (not an author)" Type="String" />
+      <Value Key="Mugshot" Value="" Type="Hyperlink" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="0be666db-152c-4a93-94e5-fafe6cea71ec">
+      <Value Key="Birthday" Value="1945-01-01T00:00:00" Type="DateTime" />
+      <Value Key="FirstName" Value="Ed" Type="String" />
+      <Value Key="LastName" Value="Hardy" Type="String" />
+      <Value Key="Mugshot" Value="file:1539" Type="Hyperlink" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="d2622de7-3996-465b-b5a0-f6e6de8dd251">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q230 - List List List" Type="String" />
+      <Value Key="Path" Value="linq/_230-list-list-list.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq230/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="05d21930-7c24-4e2f-9c75-84b176793d2e">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q120 Sorting" Type="String" />
+      <Value Key="Path" Value="linq/_120-sort-basic.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq120/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="1f3fc4bb-89f1-4a8f-bbb0-6ec0f169927e">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q210 List-In-List" Type="String" />
+      <Value Key="Path" Value="linq/_210-list-list.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq210/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="f599d562-3dd7-4537-8c98-09b65506d9b4">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q220 Grouping" Type="String" />
+      <Value Key="Path" Value="linq/_220-basic grouping.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq220/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="97990de3-3a20-4b67-aacd-789d462eb928">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q310 Parents" Type="String" />
+      <Value Key="Path" Value="linq/_310-parents.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq310/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="0efc2f67-908b-437f-a911-fa399b82ec62">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q105 LINQ Where" Type="String" />
+      <Value Key="Path" Value="linq/_105-where.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq105/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="56c27adc-4ae3-4827-bff1-2185ebeb937a">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q106 First/Last" Type="String" />
+      <Value Key="Path" Value="linq/_106-first-last.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq106/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="bc3bb0f3-686e-4d59-9187-21d39f4d7b07">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q107 Take Skip" Type="String" />
+      <Value Key="Path" Value="linq/_107-take-skip.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq107/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="15ac27ec-8d19-4fd4-8afe-14775019ba16">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="Q108 Count" Type="String" />
+      <Value Key="Path" Value="linq/_108-count.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="linq108/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="4c8d2eb4-3bbc-427c-8033-4d32c5488416">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="B110 Variables" Type="String" />
+      <Value Key="Path" Value="basics/_110-variables.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="basics110/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="c7c7cd5b-54c6-4637-a95f-6f8b9018d9ec">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="B210 If Else Ternary" Type="String" />
+      <Value Key="Path" Value="basics/_210-if-else.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="basics210/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="543d8d55-7c17-4dc9-8d06-93b279cf9dfe">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="B220 - For and Foreach" Type="String" />
+      <Value Key="Path" Value="basics/_220-loops.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="basics220/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="cef4cec5-aaa4-42f9-930e-bdf46672a88c">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="H000 - HTML" Type="String" />
+      <Value Key="Path" Value="html/_000-html.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="html/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="16f54771-a79c-45f1-b2c7-71c825c4b000">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="R000 - Reuse code and templates" Type="String" />
+      <Value Key="Path" Value="reuse/_000-reuse.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="reuse/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="1bb2f468-8e01-4cc5-921c-a4e5f9562390">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="This query will let module have data, but also simulate that it has data even if it doesn't." Type="String" />
+      <Value Key="Name" Value="SimulatedModuleData" Type="String" />
+      <Value Key="StreamsOut" Value="ListContent,Default" Type="String" />
+      <Value Key="StreamWiring" Value="e7d3bb05-72fe-4ce3-a22f-d395de732861:Default&gt;daf9eea1-956a-45ca-a43e-21c869cf42fb:Default&#xD;&#xA;e7d3bb05-72fe-4ce3-a22f-d395de732861:Drafts&gt;daf9eea1-956a-45ca-a43e-21c869cf42fb:Drafts&#xD;&#xA;e7d3bb05-72fe-4ce3-a22f-d395de732861:Published&gt;daf9eea1-956a-45ca-a43e-21c869cf42fb:Published&#xD;&#xA;daf9eea1-956a-45ca-a43e-21c869cf42fb:Default&gt;7fb51a9d-398d-4d1d-9897-bb91be5913f4:Default&#xD;&#xA;7fb51a9d-398d-4d1d-9897-bb91be5913f4:ListContent&gt;Out:ListContent&#xD;&#xA;7fb51a9d-398d-4d1d-9897-bb91be5913f4:Default&gt;3ba3a53e-9689-441b-b5a0-4057a76ca594:Default&#xD;&#xA;3ba3a53e-9689-441b-b5a0-4057a76ca594:Default&gt;Out:Default&#xD;&#xA;e8ec68a1-4a07-4c6f-8d73-c85d62097003:Persons&gt;3ba3a53e-9689-441b-b5a0-4057a76ca594:Fallback&#xD;&#xA;e7d3bb05-72fe-4ce3-a22f-d395de732861:Default&gt;e8ec68a1-4a07-4c6f-8d73-c85d62097003:Default" Type="String" />
+      <Value Key="TestParameters" Value="" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e7d3bb05-72fe-4ce3-a22f-d395de732861" KeyGuid="1bb2f468-8e01-4cc5-921c-a4e5f9562390">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ICache" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Caches.ICache, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 672,&#xD;&#xA;  &quot;Left&quot;: 248&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="daf9eea1-956a-45ca-a43e-21c869cf42fb" KeyGuid="1bb2f468-8e01-4cc5-921c-a4e5f9562390">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="PublishingFilter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.PublishingFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 520,&#xD;&#xA;  &quot;Left&quot;: 260&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="7fb51a9d-398d-4d1d-9897-bb91be5913f4" KeyGuid="1bb2f468-8e01-4cc5-921c-a4e5f9562390">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ModuleDataSource" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.SexyContent.DataSources.ModuleDataSource, ToSic.SexyContent" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 367,&#xD;&#xA;  &quot;Left&quot;: 260&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e8ec68a1-4a07-4c6f-8d73-c85d62097003" KeyGuid="1bb2f468-8e01-4cc5-921c-a4e5f9562390">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 520,&#xD;&#xA;  &quot;Left&quot;: 606&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="3ba3a53e-9689-441b-b5a0-4057a76ca594" KeyGuid="1bb2f468-8e01-4cc5-921c-a4e5f9562390">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="StreamFallback" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.StreamFallback, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 252,&#xD;&#xA;  &quot;Left&quot;: 630&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="aad3b0af-5cf4-44dc-91be-b4287c5ed013">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="C000 - Content" Type="String" />
+      <Value Key="Path" Value="content/_000-content.cshtml" Type="String" />
+      <Value Key="Pipeline" Value="1bb2f468-8e01-4cc5-921c-a4e5f9562390" Type="Entity" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="content/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="a6b883ca-3e2e-488b-bb7d-95971aaadf6b">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="R110 Reuse Templates" Type="String" />
+      <Value Key="Path" Value="reuse/_110-renderpage.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="reuse110/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="e71b1251-cd2d-43eb-bc8d-edddd6358acf">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="R210 Reuse Helpers" Type="String" />
+      <Value Key="Path" Value="reuse/_210-helpers.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="reuse210/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="29d56734-0a5e-4148-9793-9a8a377d7468">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="R310 Reuse Functions" Type="String" />
+      <Value Key="Path" Value="reuse/_310-functions.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="reuse310/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="d889d7b8-12d1-4d0f-820c-363e0705e9d0">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D000 Data" Type="String" />
+      <Value Key="Path" Value="data/_000-data.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="bc4ce14e-437d-4aa1-8509-5a4105544229">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D210 App.Data" Type="String" />
+      <Value Key="Path" Value="data/_210-app-data.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data210/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="44d945ca-5087-41af-834a-23d0223dc28c">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D220 App.Query" Type="String" />
+      <Value Key="Path" Value="data/_220-app-query.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data220/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="Get all authors and the books of the current author" Type="String" />
+      <Value Key="Name" Value="AuthorsWithBooks" Type="String" />
+      <Value Key="StreamsOut" Value="ListContent,Default,Authors,CurrentBooks,Current" Type="String" />
+      <Value Key="StreamWiring" Value="9ae58358-e78f-434c-9699-7a0ee90b72c7:Default&gt;29d45812-185a-4949-b83c-bfc7910ad213:Default&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Drafts&gt;29d45812-185a-4949-b83c-bfc7910ad213:Drafts&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Published&gt;29d45812-185a-4949-b83c-bfc7910ad213:Published&#xD;&#xA;29d45812-185a-4949-b83c-bfc7910ad213:Default&gt;76d59af4-53f8-4728-81d3-09c9e5e30c51:Default&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&#xD;&#xA;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&gt;Out:Authors&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Books&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&#xD;&#xA;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&gt;Out:CurrentBooks&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;Out:Current&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Author" Type="String" />
+      <Value Key="TestParameters" Value="[QueryString:Author]=10681" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="9ae58358-e78f-434c-9699-7a0ee90b72c7" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ICache" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Caches.ICache, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 611,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="29d45812-185a-4949-b83c-bfc7910ad213" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="PublishingFilter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.PublishingFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 480,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="76d59af4-53f8-4728-81d3-09c9e5e30c51" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 360,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="4d0f3299-18b4-4ac7-9444-bd4a14053e12" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ValueSort" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 209,&#xD;&#xA;  &quot;Left&quot;: 120&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.ValueSort" AttributeSetName="|Config ToSic.Eav.DataSources.ValueSort" EntityGUID="6e595dd0-782f-4306-855d-81882c88b029" KeyGuid="4d0f3299-18b4-4ac7-9444-bd4a14053e12">
+      <Value Key="Attributes" Value="LastName" Type="String" />
+      <Value Key="Directions" Value="asc" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="2f35c531-4fdf-472a-9e75-c6f72d6e4dfa" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="RelationshipFilter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.RelationshipFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 120,&#xD;&#xA;  &quot;Left&quot;: 620&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.RelationshipFilter" AttributeSetName="|Config ToSic.Eav.DataSources.RelationshipFilter" EntityGUID="075b825a-f5d2-41dd-807c-7f9c89b7c3cc" KeyGuid="2f35c531-4fdf-472a-9e75-c6f72d6e4dfa">
+      <Value Key="AttributeOnRelationship" Value="EntityId" Type="String" />
+      <Value Key="Comparison" Value="" Type="String" />
+      <Value Key="Filter" Value="[In:Author:EntityId]" Type="String" />
+      <Value Key="Notes" Value="" Type="String" />
+      <Value Key="Relationship" Value="Authors" Type="String" />
+      <Value Key="Separator" Value="" Type="String" />
+      <Value Key="Title" Value="Find books of the current author in url" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ba47c9cb-528e-4c50-b118-b4aeeb226df4" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ItemIdFilter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 211,&#xD;&#xA;  &quot;Left&quot;: 390&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="|Config ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="127d6b34-459b-47e0-84e5-96de60e88fce" KeyGuid="ba47c9cb-528e-4c50-b118-b4aeeb226df4">
+      <Value Key="EntityIds" Value="[QueryString:Author]" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="Load products from the CSV file" Type="String" />
+      <Value Key="Name" Value="ProductsFromCSV" Type="String" />
+      <Value Key="StreamsOut" Value="ListContent,Default,Current" Type="String" />
+      <Value Key="StreamWiring" Value="6ce81104-df78-415f-9a32-a886f9b49264:Default&gt;ac37f57e-5832-4764-b7c5-4c6cd0c1a062:Default&#xD;&#xA;ac37f57e-5832-4764-b7c5-4c6cd0c1a062:Default&gt;Out:Default&#xD;&#xA;6ce81104-df78-415f-9a32-a886f9b49264:Default&gt;3a3137ff-784a-497e-98ef-e31ed9b86cc9:Default&#xD;&#xA;3a3137ff-784a-497e-98ef-e31ed9b86cc9:Default&gt;Out:Current" Type="String" />
+      <Value Key="TestParameters" Value="[App:Path]=/Portals/tutorial-razor/2sxc/Tutorial-Razor" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="6ce81104-df78-415f-9a32-a886f9b49264" KeyGuid="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Load CSV" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.CsvDataSource, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 312,&#xD;&#xA;  &quot;Left&quot;: 380&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.CsvDataSource" AttributeSetName="|Config ToSic.Eav.DataSources.CsvDataSource" EntityGUID="2aaac685-a9e0-4b4f-9cfa-800c7c12d75a" KeyGuid="6ce81104-df78-415f-9a32-a886f9b49264">
+      <Value Key="ContentType" Value="Csv Data" Type="String" />
+      <Value Key="Delimiter" Value=";" Type="String" />
+      <Value Key="FilePath" Value="[App:Path]/data/assets/products.csv" Type="String" />
+      <Value Key="IdColumnName" Value="Id" Type="String" />
+      <Value Key="Title" Value="Csv Data Source" Type="String" />
+      <Value Key="TitleColumnName" Value="Name" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="dccdfd1a-a325-4a85-93b1-428f8946c67c">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D230 CSV from Query" Type="String" />
+      <Value Key="Path" Value="data/_230-csv-query.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data230/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ac37f57e-5832-4764-b7c5-4c6cd0c1a062" KeyGuid="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ValueSort" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 151,&#xD;&#xA;  &quot;Left&quot;: 226&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.ValueSort" AttributeSetName="|Config ToSic.Eav.DataSources.ValueSort" EntityGUID="2ab73515-5fe2-4b8c-accc-53a57fab8764" KeyGuid="ac37f57e-5832-4764-b7c5-4c6cd0c1a062">
+      <Value Key="Attributes" Value="Name" Type="String" />
+      <Value Key="Directions" Value="asc" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="3a3137ff-784a-497e-98ef-e31ed9b86cc9" KeyGuid="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Find QueryString:Product" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 152,&#xD;&#xA;  &quot;Left&quot;: 554&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="|Config ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="95ff7675-eb21-4970-8050-0271cb186bf3" KeyGuid="3a3137ff-784a-497e-98ef-e31ed9b86cc9">
+      <Value Key="EntityIds" Value="[QueryString:Product]" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="f0f356f4-e820-43e2-9fa6-468f4d509391">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D510 DNN Pages/Tabs" Type="String" />
+      <Value Key="Path" Value="data/_510-dnn-pages.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data510/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="5d0daa67-d94c-4b08-8b6c-655dac06f819">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D330 SQL DataTable" Type="String" />
+      <Value Key="Path" Value="data/_330-sql-datatable.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data330/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="e9620dd0-b32c-49c5-a859-6f250efd5a15">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D331 SQL Datareader" Type="String" />
+      <Value Key="Path" Value="data/_331-sql-datareader.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data331/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="05781728-750b-478a-b43a-94897e5d05fc">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="Get 10 DNN files from SQL" Type="String" />
+      <Value Key="Name" Value="DnnFilesFromSQL" Type="String" />
+      <Value Key="StreamsOut" Value="ListContent,Default" Type="String" />
+      <Value Key="StreamWiring" Value="e17ad0b8-ad8f-42ba-9c2d-606f38cae213:Default&gt;Out:Default" Type="String" />
+      <Value Key="TestParameters" Value="[Portal:PortalId]=59" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e17ad0b8-ad8f-42ba-9c2d-606f38cae213" KeyGuid="05781728-750b-478a-b43a-94897e5d05fc">
+      <Value Key="Description" Value="Get 10 files from current portal" Type="String" />
+      <Value Key="Name" Value="DnnSqlDataSource" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.SexyContent.Environment.Dnn7.DataSources.DnnSqlDataSource, ToSic.SexyContent" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 230,&#xD;&#xA;  &quot;Left&quot;: 428&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.SexyContent.DataSources.DnnSqlDataSource" AttributeSetName="|Config ToSic.SexyContent.DataSources.DnnSqlDataSource" EntityGUID="c4967b92-4fcf-4a43-8111-2a83e668995c" KeyGuid="e17ad0b8-ad8f-42ba-9c2d-606f38cae213">
+      <Value Key="ContentType" Value="DnnFile" Type="String" />
+      <Value Key="SelectCommand" Value="Select Top 10 * from Files Where PortalId = [Portal:PortalId]" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="f6c713ca-99d1-405e-9ec1-0d06e6d08f24">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="D310 SQL Query" Type="String" />
+      <Value Key="Path" Value="data/_310-sql-query.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="data310/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="475dc563-3ed9-4a94-bce5-1f4b86acaa7b">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="K000 - Koi" Type="String" />
+      <Value Key="Path" Value="koi/_000-koi.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="koi/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="8955c581-af64-4b6a-91b7-7117e70f6c9f">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="K110 Auto Include BS4" Type="String" />
+      <Value Key="Path" Value="koi/_110-include-if-missing.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="koi110/.*" Type="String" />
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="b0ff0b04-eb9f-4916-857e-15dfc06d40a6">
+      <Value Key="ContentTypeStaticName" Value="" Type="String" />
+      <Value Key="IsHidden" Value="True" Type="Boolean" />
+      <Value Key="ListContentTypeStaticName" Value="" Type="String" />
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="Location" Value="Portal File System" Type="String" />
+      <Value Key="Name" Value="K120 Warn about missing bootstrap" Type="String" />
+      <Value Key="Path" Value="koi/_120-alert-if-missing.cshtml" Type="String" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String" />
+      <Value Key="PublishData" Value="False" Type="Boolean" />
+      <Value Key="StreamsToPublish" Value="" Type="String" />
+      <Value Key="Type" Value="C# Razor" Type="String" />
+      <Value Key="UseForList" Value="False" Type="Boolean" />
+      <Value Key="ViewNameInUrl" Value="koi120/.*" Type="String" />
+    </Entity>
+  </Entities>
+  <PortalFiles>
+    <File Id="1530" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\image.png" />
+    <File Id="1532" RelativePath="adam\Tutorial-Razor\Tm5yNs0hAEyc6HIID4k12g\Mugshot\douglas adams.png" />
+    <File Id="1533" RelativePath="adam\Tutorial-Razor\n97Ml8Vl10mZADcbKmmBKw\Mugshot\terry.png" />
+    <File Id="1534" RelativePath="adam\Tutorial-Razor\t2CvZ6b2A0SkiQawk1wHow\Mugshot\neil.png" />
+    <File Id="1535" RelativePath="adam\Tutorial-Razor\cAcM-LSz_UelGZ5AYQdlrw\Cover\good omens.png" />
+    <File Id="1537" RelativePath="adam\Tutorial-Razor\hjdIjeCXgU2_y6gcEiJkPw\Mugshot\George.png" />
+    <File Id="1536" RelativePath="adam\Tutorial-Razor\lkSe34OoCkek0zycr6nENQ\Cover\Phishing for Phools.png" />
+    <File Id="1538" RelativePath="adam\Tutorial-Razor\_EnbtOtUMkyquoNoNkt1fA\Cover\Last Continent.png" />
+    <File Id="1539" RelativePath="adam\Tutorial-Razor\22bmCywVk0qU5fr-bOpx7A\Mugshot\ed hardy.png" />
+  </PortalFiles>
+  <PortalFolders>
+    <Folder Id="3091" RelativePath="adam/Tutorial-Razor/7md5eRsHbU6B0iHeIzYLCQ/Cover/" />
+    <Folder Id="3093" RelativePath="adam/Tutorial-Razor/Tm5yNs0hAEyc6HIID4k12g/Mugshot/" />
+    <Folder Id="3095" RelativePath="adam/Tutorial-Razor/n97Ml8Vl10mZADcbKmmBKw/Mugshot/" />
+    <Folder Id="3097" RelativePath="adam/Tutorial-Razor/t2CvZ6b2A0SkiQawk1wHow/Mugshot/" />
+    <Folder Id="3099" RelativePath="adam/Tutorial-Razor/cAcM-LSz_UelGZ5AYQdlrw/Cover/" />
+    <Folder Id="3103" RelativePath="adam/Tutorial-Razor/hjdIjeCXgU2_y6gcEiJkPw/Mugshot/" />
+    <Folder Id="3101" RelativePath="adam/Tutorial-Razor/lkSe34OoCkek0zycr6nENQ/Cover/" />
+    <Folder Id="3105" RelativePath="adam/Tutorial-Razor/_EnbtOtUMkyquoNoNkt1fA/Cover/" />
+    <Folder Id="3107" RelativePath="adam/Tutorial-Razor/22bmCywVk0qU5fr-bOpx7A/Mugshot/" />
+    <Folder Id="3089" RelativePath="adam/Tutorial-Razor/" />
+    <Folder Id="3104" RelativePath="adam/Tutorial-Razor/_EnbtOtUMkyquoNoNkt1fA/" />
+    <Folder Id="3106" RelativePath="adam/Tutorial-Razor/22bmCywVk0qU5fr-bOpx7A/" />
+    <Folder Id="3090" RelativePath="adam/Tutorial-Razor/7md5eRsHbU6B0iHeIzYLCQ/" />
+    <Folder Id="3098" RelativePath="adam/Tutorial-Razor/cAcM-LSz_UelGZ5AYQdlrw/" />
+    <Folder Id="3102" RelativePath="adam/Tutorial-Razor/hjdIjeCXgU2_y6gcEiJkPw/" />
+    <Folder Id="3100" RelativePath="adam/Tutorial-Razor/lkSe34OoCkek0zycr6nENQ/" />
+    <Folder Id="3094" RelativePath="adam/Tutorial-Razor/n97Ml8Vl10mZADcbKmmBKw/" />
+    <Folder Id="3096" RelativePath="adam/Tutorial-Razor/t2CvZ6b2A0SkiQawk1wHow/" />
+    <Folder Id="3092" RelativePath="adam/Tutorial-Razor/Tm5yNs0hAEyc6HIID4k12g/" />
+  </PortalFolders>
+</SexyContent>
