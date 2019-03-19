@@ -18,8 +18,7 @@
   var language = "ace/mode/" + (PageData["Language"] ?? "razor");
 
   // load source code
-  var fullPath = filePath.IndexOf(":") == -1 ? Server.MapPath(filePath) : filePath;
-  string source = System.IO.File.ReadAllText(fullPath);
+  var fullPath = (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) ? Server.MapPath(filePath) : filePath;  string source = System.IO.File.ReadAllText(fullPath);
 
   // remove the unimportant parts which might confuse the user
   const string hideMarker = "@* hide *@";
