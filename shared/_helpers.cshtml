@@ -60,3 +60,13 @@
   @bsCheck.EnsureBootstrap4()
   <link rel="stylesheet" href="@App.Path/assets/styles.css" enableoptimizations="true" />
 }
+
+@helper ExternalLink(string target, string description) {
+  <a href="@target" target="_blank">@description</a>
+}
+
+@helper LiExtLink(string target, string description) {
+  <li>
+    @ExternalLink(target, description)
+  </li>
+}
