@@ -1,0 +1,10 @@
+<h3>List of Persons</h3>
+<ul>
+  @foreach(var person in AsDynamic(App.Data["Persons"])) {
+    <li>
+      <a href='@Link.To(parameters: "data611/true/id/" + person.EntityId )'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>
