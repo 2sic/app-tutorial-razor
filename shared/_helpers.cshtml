@@ -27,32 +27,41 @@
    @(ready ? "": " (pending)")
 }
 
-@helper TutorialLink(string label, string target, bool ready = true) {
+@helper TutorialLink(string label, string target, bool ready = true, string newText = null) {
   <li>
     <strong>
       @TutLink(label, target, ready)
+      @Highlighted(newText)
     </strong>
   </li>
 }
 
-@helper TutorialLink(string label, string target, string description, bool ready = true) {
+@helper TutorialLink(string label, string target, string description, bool ready = true, string newText = null) {
   <li>
     <strong>
       @TutLink(label, target, ready)
+      @Highlighted(newText)
     </strong><br>
     @description
   </li>
 }
 
-@helper TutorialLinkHome(string label, string target, string description) {
+@helper TutorialLinkHome(string label, string target, string description, string newText = null) {
   <li>
     <strong>
     <a href='@Link.To(parameters: target + "/home")'>
       @label
+      @Highlighted(newText)
     </a>
     </strong><br>
     @description
   </li>
+}
+
+@helper Highlighted(string specialText) {
+  if(specialText != null) {
+    <span class="text-warning"> @specialText</span>
+  }
 }
 
 @helper InitializedPageAssets() {
