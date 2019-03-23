@@ -19,27 +19,23 @@
   <hr>
 }
 
-@helper TutLink(string label, string target, bool ready = true) {
-  var link = ready 
-    ? Link.To(parameters: target + "/" + target)
-    : "javascript: alert(\'this tutorial is not ready yet\'); ";
-  <a href='@link' class='@(ready ? "": "pending")'>@label</a>
-   @(ready ? "": " (pending)")
+@helper TutLink(string label, string target) {
+  <a href='@Link.To(parameters: target + "/page")'>@label</a>
 }
 
-@helper TutorialLink(string label, string target, bool ready = true, string newText = null) {
+@helper TutorialLink(string label, string target, string newText = null) {
   <li>
     <strong>
-      @TutLink(label, target, ready)
+      @TutLink(label, target)
       @Highlighted(newText)
     </strong>
   </li>
 }
 
-@helper TutorialLink(string label, string target, string description, bool ready = true, string newText = null) {
+@helper TutorialLink(string label, string target, string description, string newText = null) {
   <li>
     <strong>
-      @TutLink(label, target, ready)
+      @TutLink(label, target)
       @Highlighted(newText)
     </strong><br>
     @description
