@@ -2,16 +2,14 @@
 @using Connect.Razor.Blade;
 @RenderPage("_header.cshtml")
 </hide>
-
 <trim>
   <img src="@App.Path/blade/assets/razor-blade-icon.png?w=400" class="float-right">
   <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
   <p>
-      These demos show how to really check if a variable has text using Text.Has. This combines null-checks, empty checks, empty-html-nbsp-checks and more. 
+      These demos show how to really check if a variable has text using Text.Has. This combines null-checks, empty checks, empty-html-nbsp-checks and more. <br>
+      <em>Note that this example uses <a href='@Link.To(parameters: "html=home")'>@@helper</a> and emojis, so click on the links if you don't understand that.</em>
   </p>
 </trim>
-
-
 
 <h2>Examples</h2>
 <table class="demo">
@@ -32,9 +30,12 @@
 </table>
 
 @helper RowEmojified(string label, string value) {
+  var valueForShowing = value == null 
+    ? "null" 
+    : "\"" + value.Replace("\n", "\\n").Replace("\t", "\\t") + "\"";
   <tr>
     <td>@label</td>
-    <td>Text.Has(@(value == null ? "null" : "\"" + value.Replace("\n", "\\n").Replace("\t", "\\t") + "\""))</td>
+    <td>Text.Has(@valueForShowing)</td>
     <td>@Emojify(Text.Has(value))</td>
     <td>@Emojify(Text.Has(value, false))</td>
   </tr>
@@ -46,9 +47,10 @@
 
 <h2>Special case: &lt;BR&gt; Whitespace</h2>
 
+TODO - UPDATE LINK BELOW ONCE THAT HAS BEEN ADDED
+
 <ul>
-  <li>If your string is like Text.Has("&lt;br&gt;")</li>
-  <li>...then it will return: @Text.Has("<br>")</li>
+  <li>If your string is like Text.Has("&lt;br&gt;") it will be: @Text.Has("<br>")</li>
   <li>If you want to ignore BRs, combine it with <a href='@Link.To(parameters: "tags=true")'>Tags.Br2Nl(...)</a> </li>
   <li>...resulting in: @Text.Has(Tags.Br2Nl("<br>"))</li>
 </ul>
