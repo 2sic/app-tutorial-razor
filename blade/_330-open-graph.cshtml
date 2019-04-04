@@ -1,0 +1,21 @@
+<hide>
+@using Connect.Razor.Blade;
+@RenderPage("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> add Open-Graph Headers <em>v1.1</em></h2>
+  <div>
+    This page sets various open-graph headers. 
+
+    Look at the resulting output-source to see the effect. 
+  </div>
+</trim>
+
+@{
+  HtmlPage.AddOpenGraph("og:xyz", "other");
+}
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>
