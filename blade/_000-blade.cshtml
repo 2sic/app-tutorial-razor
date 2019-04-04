@@ -1,0 +1,37 @@
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+
+<trim>
+<img src="@App.Path/blade/assets/razor-blade-wide.png" width="100%">
+<p>
+  Learn how to use <code>Connect.Razor.Blade</code> to do really cool stuff. For example, take a html-string, strip the html tags, truncate to 100 characters without splitting word and then show using a standard html-ellipsis. And way more. This uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Connect.Razor.Blade</a>. 
+</p>
+
+<h2>Some notes before we start</h2>
+<p>
+  <em>RazorBlade</em> can be installed as a <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">stand-alone DNN module</a> or if you are creating your own module, you can include it in your distribution. If you're viewing this tutorial with 2sxc 9.40+, then it already includes <em>RazorBlade</em> 1.1, but some examples need an even newer version. The following examples will be updated with new releases of <em>RazorBlade</em> and you'll see a version-note beside each link. So if you see errors, you probably need to install a newer version of <em>RazorBlade</em>
+</p>
+</trim>
+
+<hr>
+<h2><em>RazorBlade</em> Examples</h2>
+
+<ol>
+  @helpers.TutorialLink("RazorBlade - Crop() and Ellipsis() with v1.1", "blade110", "Correctly crop text without splitting words or html-characters like &amp;", "new!")
+
+  @helpers.TutorialLink("RazorBlade - Has() tells you if something really has content", "blade120", "Check if strings really have something correctly, incl. spaces or even &nbsp; whitespaces. ", "new!")
+</ol>
+
+<hr>
+<h2>More Information around Connect.Koi</h2>
+<ol>
+  @helpers.LiExtLink("https://github.com/DNN-Connect/razor-blade", "RazorBlade Github Repo")
+  @helpers.LiExtLink("https://github.com/DNN-Connect/razor-blade/releases", "RazorBlade download page")
+  <li>Blogs
+    <ul>
+      @helpers.LiExtLink("https://2sxc.org/en/blog/tag/razor-blade", "Blog posts & tutorials on 2sxc.org around RazorBlade")
+    </ul>
+  </li>
+</ol>

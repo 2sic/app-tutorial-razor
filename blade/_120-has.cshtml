@@ -1,0 +1,96 @@
+<hide>
+@using Connect.Razor.Blade;
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+  <img src="@App.Path/blade/assets/razor-blade-icon.png?w=400" class="float-right">
+  <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
+  <p>
+      These demos show how to really check if a variable has text using Text.Has. This combines null-checks, empty checks, empty-html-nbsp-checks and more. 
+  </p>
+</trim>
+
+
+<h2>Examples</h2>
+<table class="demo">
+  <tr>
+    <th>Test</th>
+    <th>Code</th>
+    <th>Result</th>
+    <th>...when html counts</th>
+  </tr>
+  @RowEmojified("Null value", null)
+  @RowEmojified("Just spaces", "     ")
+  @RowEmojified("text with only line breaks", "\n\n")
+  <tr>
+    <td>text with only line breaks </td>
+    <td>Text.Has("\n\n")</td>
+    <td>@Text.Has("\n\n")</td>
+    <td>@Text.Has("\n\n", false)</td>
+  </tr>
+  <tr>
+    <td>tabs, spaces and line breaks </td>
+    <td>Text.Has("\n\t  \n")</td>
+    <td>@Text.Has("\n\t  \n")</td>
+    <td>@Text.Has("\n\t  \n", false)</td>
+  </tr>
+  <tr>
+    <td>only nbsp characters </td>
+    <td>Text.Has("&amp;nbsp; &amp;nbsp;")</td>
+    <td>@Text.Has("&nbsp; &nbsp;")</td>
+    <td>@Text.Has("&nbsp; &nbsp;", false)</td>
+  </tr>
+  <tr>
+    <td>char-code of nbsp characters </td>
+    <td>Text.Has("&#35;160;")</td>
+    <td>@Text.Has("&#160;")</td>
+    <td>@Text.Has("&#160;", false)</td>
+  </tr>
+  <tr>
+    <td>real text </td>
+    <td>Text.Has("real text")</td>
+    <td>@Text.Has("real text")</td>
+    <td>@Text.Has("real text", false)</td>
+  </tr>
+  <tr>
+    <td>Real text with nbps etc.</td>
+    <td>Text.Has("real\n text &amp;nbsp;")</td>
+    <td>@Text.Has("real\n text &nbsp;")</td>
+    <td>@Text.Has("real\n text &nbsp;", false)</td>
+  </tr>
+</table>
+
+@helper RowEmojified(string label, string value) {
+  <tr>
+    <td>@label.Replace("\n", "\\n").Replace("\t", "\\t")x</td>
+    <td>Text.Has(@(value == null ? "null" : "\"" + value + "\""))</td>
+    <td>@Emojify(Text.Has(value))</td>
+    <td>@Emojify(Text.Has(value, false))</td>
+  </tr>
+}
+
+@helper Emojify(bool value) {
+  @(value ? "✔️" : "❌")
+}
+
+<h2>Special case: &lt;BR&gt; Whitespace</h2>
+
+<ul>
+  <li>If your string is like Text.Has("&lt;br&gt;")</li>
+  <li>...then it will return: @Text.Has("<br>")</li>
+  <li>If you want to ignore BRs, combine it with <a href='@Link.To(parameters: "tags=true")'>Tags.Br2Nl(...)</a> </li>
+  <li>...resulting in: @Text.Has(Tags.Br2Nl("<br>"))</li>
+</ul>
+
+
+<hide>
+<style>
+  table.demo td {
+    white-space: pre-wrap;
+  }
+</style>
+
+
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>
