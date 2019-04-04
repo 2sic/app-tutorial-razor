@@ -1,0 +1,33 @@
+<hide>
+@using Connect.Razor.Blade;
+@RenderPage("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> Tags.Strip(...) <em>v1.1</em></h2>
+  <p>
+    These demos show how to strip all html from a string. You often need this in combination with @hlp.TutLink("crop or ellipsis", "blade110") to create teasers.
+  </p>
+</trim>
+
+@{
+    var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
+    var cropLen = 50;
+}
+
+<h2>Simple example</h2>
+<h3>Original</h3>
+<code>@val1</code>
+
+<div>which if cropped at @cropLen would be really messy</div>
+<code>@val1.Substring(0, cropLen)</code>
+
+<h3>After Strip</h3>
+<code>@Tags.Strip(val1)</code>
+
+<h3>Usually you will then combine with crop or ellipsis</h3>
+<code>@Html.Raw(Text.Ellipsis(Tags.Strip(val1), cropLen))</code>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

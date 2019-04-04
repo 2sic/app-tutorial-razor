@@ -1,6 +1,8 @@
 @helper Title(string title) {
   @InitializedPageAssets()
-  <img src="@App.Path/app-icon.png?w=75&h=75" class="float-right">
+  @TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+  <!-- <img src="@App.Path/app-icon.png?w=75&h=75" class="float-right"> -->
+
   <h1 @Edit.TagToolbar()>@title</h1>
 }
 
@@ -17,6 +19,12 @@
   @Title(title)
   @Breadcrumb(name, topicUrl)
   <hr>
+}
+
+@helper TitleLogo(string path, string link) {
+  <a href="@link" target="_blank">
+    <img src="@App.Path/@path?w=75&h=75" class="float-right ml-3">
+  </a>
 }
 
 @helper TutLink(string label, string target) {
