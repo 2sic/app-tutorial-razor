@@ -1,13 +1,14 @@
 <hide>
 @using Connect.Razor.Blade;
 @RenderPage("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
 <trim>
   <img src="@App.Path/blade/assets/razor-blade-icon.png?w=400" class="float-right">
   <h2><em>RazorBlade</em> Text.First(...) <em>v1.1</em></h2>
   <p>
-    These demos show how to get the first <em>real</em> text of a series of values. Basically it will ignore nulls, empty texts, space-strings and even combinations containing empty lines, html-nbsps and more. Internally it uses <a href="@Link.To(parameters: "blade120/page")">Text.Has(...)</a>.
+    These demos show how to get the first <em>real</em> text of a series of values. Basically it will ignore nulls, empty texts, space-strings and even combinations containing empty lines, html-nbsps and more. Internally it uses @hlp.TutLink("Text.Has(...)", "blade120/page").
   </p>
 </trim>
 
@@ -28,32 +29,32 @@
 <ol>
     <li>
       <code>Text.First(null, @val1)</code> 
-      =&gt; @Text.First(null, val1)
+      ⇒ @Text.First(null, val1)
     </li>
     <li>
       <code>Text.First(null, null)</code> 
-      =&gt; @Text.First(null, null)
+      ⇒ @Text.First(null, null)
     </li>
     <li>
       <code>Text.First(@val1, @val2)</code> 
-      =&gt; @Text.First(val1, val2)
+      ⇒ @Text.First(val1, val2)
     </li>
     <li>
       <code>Text.First("@spc" = 3 spaces, @val1)</code> 
-      =&gt; @Text.First(spc, val1)
+      ⇒ @Text.First(spc, val1)
     </li>
     <li>
       <code>Text.First(null, @fallback)</code> 
-      =&gt; @Text.First(null, fallback)
+      ⇒ @Text.First(null, fallback)
     </li>
     <li>
       <code>Text.First(@nbsp, @fallback)</code>
-      =&gt; @Text.First(nbsp, fallback)
+      ⇒ @Text.First(nbsp, fallback)
     </li>
     <li>
       <code>Text.First(@nbsp, @fallback, false)</code> 
-      =&gt; @Text.First(nbsp, fallback, false) <br>
-        <em>"false" at the end means don't treat html-whitespace as whitespace, so @nbsp will be treated as a real value</em>
+      ⇒ @Text.First(nbsp, fallback, false) <br>
+        <em></em>"false" at the end means don't treat html-whitespace as whitespace, so @nbsp will be treated as a real value</em>
     </li>
 </ol>
 
@@ -66,27 +67,27 @@
 <ol>
     <li>
       <code>Text.First(null, @val1, @fallback)</code> 
-      =&gt; @Text.First(null, val1, fallback)
+      ⇒ @Text.First(null, val1, fallback)
     </li>
     <li>
       <code>Text.First(null, @val1, @val2, @fallback)</code> 
-      =&gt; @Text.First(null, val1, val2, fallback)
+      ⇒ @Text.First(null, val1, val2, fallback)
     </li>
     <li>
       <code>Text.First(null, @nbsp, @val1, @val2, @fallback)</code> 
-      =&gt; @Text.First(null, nbsp, val1, val2, fallback)
+      ⇒ @Text.First(null, nbsp, val1, val2, fallback)
     </li>
     <li>
       <code>Text.First(null, @nbsp, @val1, @val2, @fallback, false)</code> 
-      =&gt; @Text.First(null, nbsp, val1, val2, fallback, false)
+      ⇒ @Text.First(null, nbsp, val1, val2, fallback, false)
     </li>
     <li>
-      <code>Text.First(new string[] { null, null, @nbsp, @val1, @val2, "@spc", @fallback})</code> =&gt;
-        @Text.First(new string[] { null, null, nbsp, val1, val2, spc, fallback})
+      <code>Text.First(new string[] { null, null, @nbsp, @val1, @val2, "@spc", @fallback})</code> 
+      ⇒ @Text.First(new string[] { null, null, nbsp, val1, val2, spc, fallback})
     </li>
     <li>
-      <code>Text.First(new string[] { null, null, @nbsp, @val1, @val2, "@spc", @fallback}, false)</code> =&gt;
-        @Text.First(new string[] { null, null, nbsp, val1, val2, spc, fallback}, false)
+      <code>Text.First(new string[] { null, null, @nbsp, @val1, @val2, "@spc", @fallback}, false)</code> 
+      ⇒ @Text.First(new string[] { null, null, nbsp, val1, val2, spc, fallback}, false)
     </li>
 </ol>
 

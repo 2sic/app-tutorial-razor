@@ -20,7 +20,8 @@
 }
 
 @helper TutLink(string label, string target) {
-  <a href='@Link.To(parameters: target + "/page")'>@label</a>
+  target = target + (target.Contains("/") ? "" : "/page");
+  <a href='@Link.To(parameters: target)'>@label</a>
 }
 
 @helper TutorialLink(string label, string target, string newText = null) {
@@ -32,11 +33,12 @@
   </li>
 }
 
-@helper TutorialLink(string label, string target, string description, string newText = null) {
+@helper TutorialLink(string label, string target, string description, string newText = null, string appendix = null) {
   <li>
     <strong>
       @TutLink(label, target)
       @Highlighted(newText)
+      @Html.Raw(appendix)
     </strong><br>
     @description
   </li>

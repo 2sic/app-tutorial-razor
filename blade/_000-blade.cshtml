@@ -1,6 +1,23 @@
 <hide>
 @RenderPage("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@using System.Diagnostics;
+@using System.IO;
+@{
+  var hlp = CreateInstance("../shared/_helpers.cshtml"); 
+  var pathToRazorDll = "~/bin/Connect.Razor.dll";
+  pathToRazorDll = System.Web.HttpContext.Current.Server.MapPath(pathToRazorDll);
+  double version = 0;
+  bool versionOk = false;
+  var exists = File.Exists(pathToRazorDll);
+  if(exists) {
+    var rzrVersionInfo = FileVersionInfo.GetVersionInfo(pathToRazorDll);
+    var major = rzrVersionInfo.FileMajorPart;
+    var minor = rzrVersionInfo.FileMinorPart;
+    version = Convert.ToDouble(major + "." + minor);
+    versionOk = version >= 1.2;
+  }
+}
+
 </hide>
 
 <trim>
@@ -11,30 +28,56 @@
 
 <h2>Some notes before we start</h2>
 <p>
-  <em>RazorBlade</em> can be installed as a <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">stand-alone DNN module</a> or if you are creating your own module, you can include it in your distribution. If you're viewing this tutorial with 2sxc 9.40+, then it already includes <em>RazorBlade</em> 1.1, but some examples need an even newer version. The following examples will be updated with new releases of <em>RazorBlade</em> and you'll see a version-note beside each link. So if you see errors, you probably need to install a newer version of <em>RazorBlade</em>
+  <em>RazorBlade</em> can be installed as a <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">stand-alone DNN module</a> or if you are creating your own module, you can include it in your distribution. If you're viewing this tutorial with 2sxc 9.40+, then it already includes <em>RazorBlade</em> 1.1, but some examples need an even newer version. If you see errors, you probably need to install a newer version of <em>RazorBlade</em>
 </p>
+@if(!exists) {
+  <div class="alert alert-danger" role="alert">
+    We can not find <code>Connect.Razor.dll</code> in your <code>bin</code> folder. It seems you have not installed <em>RazorBlade</em> - please install it from <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">releases</a> to continue.
+  </div>
+} else if(versionOk) {
+  <div class="alert alert-primary" role="alert">
+    Your RazorBlade version is @version - which is what you need for all these tutorials. 
+  </div>
+} else {
+  <div class="alert alert-warning" role="alert">
+    Your RazorBlade version is @version. Only the examples marked like @Html.Raw(VersionInfo(1.2, 1.2)) will work. The examples marked like @Html.Raw(VersionInfo(0, 1.2)) will not work unless you install a newer version from the <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">releases</a>.
+  </div>
+}
 </trim>
 
 <hr>
 <h2><em>RazorBlade</em> Examples</h2>
 
 <ol>
-  @helpers.TutorialLink("RazorBlade - Crop() and Ellipsis() v1.1", "blade110", "Correctly crop text without splitting words or html-characters like &amp;", "new!")
+  @hlp.TutorialLink("RazorBlade - Crop() and Ellipsis()", "blade110", 
+  "Correctly crop text without splitting words or html-characters like &amp;", 
+  "new!", VersionInfo(version, 1.1))
 
-  @helpers.TutorialLink("RazorBlade - Has() tells you if something really has content v1.1", "blade120", "Check if strings really have something correctly, incl. spaces or even &nbsp; whitespaces. ", "new!")
+  @hlp.TutorialLink("RazorBlade - Has() tells you if something really has content", "blade120", 
+  "Check if strings really have something correctly, incl. spaces or even &nbsp; whitespaces. ", 
+  "new!", VersionInfo(version, 1.1))
 
-  @helpers.TutorialLink("RazorBlade - First() lets you pick a value from many variables v1.1", "blade130", "Often you have to check many variables to find the first one to use.", "new!")
+  @hlp.TutorialLink("RazorBlade - First() lets you pick a value from many variables v1.1", "blade130", 
+  "Often you have to check many variables to find the first one to use.", 
+  "new!", VersionInfo(version, 1.1))
 
 </ol>
 
 <hr>
-<h2>More Information around Connect.Koi</h2>
+<h2>More Information around <em>RazorBlade</em></h2>
 <ol>
-  @helpers.LiExtLink("https://github.com/DNN-Connect/razor-blade", "RazorBlade Github Repo")
-  @helpers.LiExtLink("https://github.com/DNN-Connect/razor-blade/releases", "RazorBlade download page")
+  @hlp.LiExtLink("https://github.com/DNN-Connect/razor-blade", "RazorBlade Github Repo")
+  @hlp.LiExtLink("https://github.com/DNN-Connect/razor-blade/releases", "RazorBlade download page")
   <li>Blogs
     <ul>
-      @helpers.LiExtLink("https://2sxc.org/en/blog/tag/razor-blade", "Blog posts & tutorials on 2sxc.org around RazorBlade")
+      @hlp.LiExtLink("https://2sxc.org/en/blog/tag/razor-blade", "Blog posts & tutorials on 2sxc.org around RazorBlade")
     </ul>
   </li>
 </ol>
+
+@functions{
+  string VersionInfo(double version, double expected) {
+    var cls = expected <= version ? "secondary" : "danger";
+    return "<span class='badge badge-" + cls + "'>v" + expected + "</span>";
+  }
+}

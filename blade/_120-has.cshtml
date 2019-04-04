@@ -1,13 +1,14 @@
 <hide>
 @using Connect.Razor.Blade;
 @RenderPage("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 <trim>
   <img src="@App.Path/blade/assets/razor-blade-icon.png?w=400" class="float-right">
   <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
   <p>
       These demos show how to really check if a variable has text using Text.Has. This combines null-checks, empty checks, empty-html-nbsp-checks and more. <br>
-      <em>Note that this example uses <a href='@Link.To(parameters: "html=home")'>@@helper</a> and emojis, so click on the links if you don't understand that.</em>
+      <em>Note that this example uses @hlp.TutLink("@helper", "html=home") and emojis, so click on the links if you don't understand that.</em>
   </p>
 </trim>
 
