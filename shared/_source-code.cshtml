@@ -33,7 +33,7 @@
 
   source = Regex.Replace(source, patternTrim, m => { 
     var part = Tags.Strip(m.ToString());
-    return Text.Ellipsis(part, 20, "... <!-- unimportant stuff, hidden -->");
+    return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
   });
 
   // hide unnecessary parts

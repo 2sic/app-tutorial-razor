@@ -1,19 +1,17 @@
-<hide>
 @using Connect.Razor.Blade;
+@{
+  var sample1 = "We love Tokyo, Z&uuml;rich &amp; M&uuml;nchen";
+  var realLength = 31;
+}
+<hide>
 @RenderPage("_header.cshtml")
 </hide>
-
 <trim>
   <h2><em>RazorBlade</em> Text.Crop(...) and Text.Ellipsis(...) <em>v1.1</em></h2>
   <p>
       These demos show how to crop text properly, because Razor Blade handles a lot of issues you'll usually have cropping text. 
   </p>
-</trim>
 
-@{
-  var sample1 = "We love Tokyo, Z&uuml;rich &amp; M&uuml;nchen";
-  var realLength = 31;
-}
 
 <h2>Example Text</h2>
 Original which visually has @realLength characters:
@@ -33,7 +31,7 @@ Original which visually has @realLength characters:
     </li>
 </ul>
 
-<trim>
+
 <h2>Word-Split Problems</h2>
 <div>
     This demonstrates how strings are cut off in the middle of words if we don't use razor blade. It also breaks html entities like &amp;amp; (the &amp; character) or umlauts because ü = &amp;uuml;.
@@ -41,25 +39,27 @@ Original which visually has @realLength characters:
 </trim>
 
 <table class="table table-hover table-sm">
-    <tr>
-        <th></th>
-        <th><em>Using C# Method</em></th>
-        <th colspan="2"><em>Razor Blade</em></th>
-    </tr>
-    <tr>
-        <th>Len</th>
-        <th>C# Substring</th>
-        <th>Text.Crop(...)</th>
-        <th>Text.Ellipsis(...)</th>
-    </tr>
-    @for(var len = 1; len <= 32; len++) {
-        <tr>
-            <td>@len</td>
-            <td>@sample1.Substring(0, len)...</td>
-            <td>@Html.Raw(Text.Crop(sample1, len))</td>
-            <td>@Html.Raw(Text.Ellipsis(sample1, len))</td>
-        </tr>
-    }
+  <!-- headers -->
+  <tr>
+      <th></th>
+      <th><em>Using C# Method</em></th>
+      <th colspan="2"><em>Razor Blade</em></th>
+  </tr>
+  <tr>
+      <th>Len</th>
+      <th>C# Substring</th>
+      <th>Text.Crop(...)</th>
+      <th>Text.Ellipsis(...)</th>
+  </tr>
+  <!-- the code --> 
+  @for(var len = 1; len <= 32; len++) {
+      <tr>
+          <td>@len</td>
+          <td>@sample1.Substring(0, len)...</td>
+          <td>@Html.Raw(Text.Crop(sample1, len))</td>
+          <td>@Html.Raw(Text.Ellipsis(sample1, len))</td>
+      </tr>
+  }
 </table>
 
 <hide>

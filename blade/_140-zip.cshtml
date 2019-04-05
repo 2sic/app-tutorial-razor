@@ -1,7 +1,7 @@
 <hide>
-@using Connect.Razor.Blade;
 @RenderPage("_header.cshtml")
 </hide>
+@using Connect.Razor.Blade;
 @{
   var samples = new string[] {
     "This        contains multi-spaces and \t\t\t tabs",
@@ -18,25 +18,24 @@
     <li>Cleane-up html, which may have more spaces and line-breaks than expected</li>
     <li>Just any text pasted from somewhere, which could even contain surprise white-space</li>
   </ul>
-</trim>
 
-<trim>
-<h2>Example Text</h2>
-<div>
-  The example texts which have invisible problem characters:
-</div>
+  <h2>Example Text</h2>
+  <div>
+    The example texts which have invisible problem characters:
+  </div>
+  <ol>
+    @foreach(var s in samples) {
+      <li>
+        <code>@Html.Raw(ShowHiddenCharacters(s))</code>
+      </li>
+    }
+  </ol>
 </trim>
-<ol>
-  @foreach(var s in samples) {
-    <li>
-      <code>@Html.Raw(ShowHiddenCharacters(s))</code>
-    </li>
-  }
-</ol>
 
 <h2>Correct and incorrect Character Counts</h2>
 
 <table class="table table-hover" width="100%">
+    <!-- table header -->
     <tr>
         <th>Html output hides the problems</th>
         <th class="table-warning">Whitespace output showing problems</th>
@@ -44,6 +43,7 @@
         <th class="table-success">Output using Text.Zip(...)</th>
         <th>Zip Length</th>
     </tr>
+    <!-- the real code -->
     @foreach(var s in samples) {
       <tr>
         <td>@s </td>
@@ -55,6 +55,7 @@
     }
 </table>
 
+<hide>
 @functions{
   private string ShowHiddenCharacters(string original) {
     return original
@@ -63,7 +64,5 @@
       .Replace("\t", "↦");
   }
 }
-
-<hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

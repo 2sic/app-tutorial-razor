@@ -1,5 +1,5 @@
-<hide>
 @using Connect.Razor.Blade;
+<hide>
 @RenderPage("_header.cshtml")
 @{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
@@ -10,7 +10,6 @@
     These demos show how to get the first <em>real</em> text of a series of values. Basically it will ignore nulls, empty texts, space-strings and even combinations containing empty lines, html-nbsps and more. Internally it uses @hlp.TutLink("Text.Has(...)", "blade120/page").
   </p>
 </trim>
-
 
 @{
     var val1 = "John";
