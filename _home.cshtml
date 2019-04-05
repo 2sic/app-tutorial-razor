@@ -1,6 +1,6 @@
 <hide>
-@{  var helpers = CreateInstance("shared/_helpers.cshtml"); }
-@helpers.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
+@{  var hlp = CreateInstance("shared/_helpers.cshtml"); }
+@hlp.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
 </hide>
 
 <trim>
@@ -14,13 +14,13 @@
 <h2>Razor Basics</h2>
 
 <ol>
-  @helpers.TutorialLinkHome("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.", newText: "(new: working with url parameters)")
+  @hlp.TutorialLinkHome("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
 
-  @helpers.TutorialLinkHome("Working with HTML", "html", "Learn the difference of showing variables with @variable and @Html.Raw(variable), and re-using snippets with @helper")
+  @hlp.TutorialLinkHome("Working with HTML", "html", "Learn the difference of showing variables with @variable and @Html.Raw(variable), and re-using snippets with @helper")
 
-  @helpers.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "(new!)")
+  @hlp.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "(new!)")
 
-  @helpers.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, helpers and functions into shared files.")
+  @hlp.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, hlp and functions into shared files.")
 </ol>
 
 <hr>
@@ -28,27 +28,46 @@
 <p>In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it.</p>
 
 <ol>
-  @helpers.TutorialLinkHome("Visualize current Content", "content", "Show content which was entered for this module")
+  @hlp.TutorialLinkHome("Visualize current Content", "content", "Show content which was entered for this module")
 
-  @helpers.TutorialLinkHome("Visualize Data", "data", "Show data from DNN, the current App, DataSources or SQL, CSV etc.", "(new! list/details examples)")
+  @hlp.TutorialLinkHome("Visualize Data", "data", "Show data from DNN, the current App, DataSources or SQL, CSV etc. Also includes list/details (parent/child) examples.")
 
-  @helpers.TutorialLinkHome("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ", "(new!)")
+  @hlp.TutorialLinkHome("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
 </ol>
 
+
 <hr>
+@hlp.TitleLogo("blade/assets/app-icon.png", "https://github.com/DNN-Connect/razor-blade")
+<h2><em>RazorBlade</em> Examples</h2>
+<p>These examples help you quickly do hard stuff, once you've mastered the basics above</p>
+<ol>
+  @hlp.TutorialLinkHome("RazorBlade - Making real tasks easier", "blade", "Properly create preview-texts, strip HTML, pick the right variables, set page titles and way more. Includes...", "(new!)")
+  <ul>
+    <li>Text manipulation, clean-up, cropping and ellipsis</li>
+    <li>Picking the ideal string-values</li>
+    <li>Html stripping to protectect agains XSS and for teasers</li>
+    <li>Convert html to text and back</li>
+    <li>Set page title, headers, keywords</li>
+    <li>Create SEO JSON-LD headers</li>
+    <li>Create social media Open-Graph headers</li>
+  </ul>
+</ol>
+
+
+<hr>
+@hlp.TitleLogo("koi/assets/koi.png", "https://connect-koi.net/")
 <h2>Advanced Examples</h2>
 <p>These examples help you do cool stuff, once you've mastered the basics above</p>
 <ol>
-  @helpers.TutorialLinkHome("Koi - Cool things with CSS-Frameworks and Classes", "koi", "Automatically include missing frameworks, conditionally modify the HTML or CSS-Classes and more, depending on what CSS-framework is used by the theme of this page.")
-  @helpers.TutorialLinkHome("Razor Blade - Advanced things in Razor", "blade", "Properly create preview-texts, strip HTML, pick the right variables, set page titles and way more.", "(new!)")
+  @hlp.TutorialLinkHome("Koi - Cool things with CSS-Frameworks and Classes", "koi", "Automatically include missing frameworks, conditionally modify the HTML or CSS-Classes and more, depending on what CSS-framework is used by the theme of this page.")
 </ol>
+
+
 
 <hr>
 <h2>Next Tutorials (Work-In-Progress</h2>
 <p>We'll create some more tutorials in March/April 2019, incl. the following</p>
 <ul>
-  <li>working with Emojis</li>
-  <li>Razor Blade</li>
   <li>Linking around in dnn</li>
   <li>Using js/css and image resources in the app folder</li>
   <li>Using app settings and resources</li>
