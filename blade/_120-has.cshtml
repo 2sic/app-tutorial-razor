@@ -45,12 +45,12 @@
   <tr>
     <td>@label</td>
     <td>Text.Has(@valueForShowing)</td>
-    <td>@Emojify(Text.Has(value))</td>
-    <td>@Emojify(Text.Has(value, false))</td>
+    <td>@Boolmoji(Text.Has(value))</td>
+    <td>@Boolmoji(Text.Has(value, false))</td>
   </tr>
 }
 
-@helper Emojify(bool value) {
+@helper Boolmoji(bool value) {
   @(value ? "✔️" : "❌")
 }
 
