@@ -1,0 +1,54 @@
+@using Connect.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> HtmlTags API Introduction <em>v1.2</em></h2>
+  <div>
+    This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
+  </div>
+
+</trim>
+
+<trim>
+  <hr>
+  <h2>Creating a Simple Attribute</h2>
+  <div>
+    Writing this kind of code: <br>
+    <code>&lt;div title="@@myTitle"&gt;...&lt;/div&gt;</code> <br>
+    This is risky, because it can accidentally place <code>"</code> or even <code>&gt;</code> in the title, breaking everything. Instead you would write: <br>
+    <code>&lt;div @@Tags.Attribute(title, myTitle)&gt;...&lt;/div&gt;</code> <br>
+    That will ensure that nothing breaks. 
+  </div>
+</trim>
+@{
+  var titleWithIssues = "Don't \"unsafe\" texts ever bother you & me?";
+}
+<div @Tags.Attribute("title", titleWithIssues) class="alert alert-primary">
+  <trim>
+  This is a simple demo showing how to add the <code>title</code> containing unsafe characters. Mouse-over to see the tooltips showing stuff which would cause trouble otherwise.
+  </trim>
+</div>
+
+
+<trim>
+  <hr>
+  <h2>Creating Simple Tags <code>hr</code> and <code>div</code></h2>
+  <div>
+    Instead of trying to merge strings like <br>
+    <code>&lt;div</code> and <code>id='@@yourId'</code> and <code>&gt;</code> followed by the content and closed by <code>&lt;/div&gt;</code> <br>
+    you would instead write: <br>
+    <code>@@Tag("div").Id("wrapper").Wrap("your content")</code>
+  </div>
+
+</trim>
+@* this will place an HR in the page - not very useful, but just for a first example *@
+@Tags.Tag("hr")
+
+@* now let's create a bootstrap-style box *@
+@Tags.Tag("div").Class("alert alert-warning").Wrap("This div was coded")
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

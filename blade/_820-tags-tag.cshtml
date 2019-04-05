@@ -1,0 +1,74 @@
+@using Connect.Razor.Blade;
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> HtmlTags API <code>@@Tags.Tag</code> <em>v1.2</em></h2>
+  <div>
+    Let's look at some more advanced scenarios using <code>@@Tags.Tag(...)</code>
+  </div>
+</trim>
+
+<trim>
+<hr>
+<h2>Set Common Attributes Using 
+  <code>.Id</code>,
+  <code>.Class</code>,
+  <code>.Style</code>,
+  <code>.Title</code>
+</h2>
+<div>
+  All html attributes can have the properties
+  <code>id</code>,
+  <code>class</code>,
+  <code>style</code> and
+  <code>title</code>. 
+  So <code>Tag</code> objects have quick commands to set these. What makes it magical is that they always return the main object again, so you can chain them like <br>
+  <code>@@Tags.Tag("div").Id("wrapper").Class("alert").Class("alert-primary)</code> <br>
+  <em>Note that some of these, like <code>Id</code> will replace the previous value, while others like <code>Class</code> will add new values to the attribute.</em>
+</div>
+</trim>
+@Tags.Tag("div").Id("wrapper").Class("alert").Class("alert-primary").Wrap("This div was coded")
+@{
+  // often you would rather do the chaining on multiple lines, so let's try that
+  var infoBox = Tags.Tag("div")
+    .Id("wrapper")
+    .Class("alert")
+    .Class("alert-dark")
+    .Wrap("This div was coded on many lines to be more readable");
+}
+@infoBox
+
+<trim>
+<hr>
+<h2>Creating Open/Close Tags separately</h2>
+</trim>
+@{
+  var successBox = Tags.Tag("div")
+    .Class("alert alert-success");
+}
+@successBox.Open
+  This tag was written using both <code>.Open</code> and <code>.Close</code> 
+  because it may be easier for you that way.
+@successBox.Close
+
+<trim>
+<hr>
+<h2>Building Tags within Tags</h2>
+</trim>
+@{
+  var darkBox = Tags.Tag("div")
+    .Class("alert alert-dark")
+    .Add("Did you know, that you can add text...")
+    .Add(Tags.Tag("code").Wrap("and tags"))
+    .Add(Tags.Tag("div")
+      .Class("alert alert-danger")
+      .Add("as well as more tags inside it?")
+    );
+}
+@darkBox
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>
