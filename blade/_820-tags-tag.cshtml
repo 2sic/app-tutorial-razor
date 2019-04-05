@@ -42,6 +42,9 @@
 <trim>
 <hr>
 <h2>Creating Open/Close Tags separately</h2>
+<div>
+  A <code>Tag</code> object also has a <code>.Open</code> and <code>.Close</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
+</div>
 </trim>
 @{
   var successBox = Tags.Tag("div")
@@ -54,7 +57,10 @@
 
 <trim>
 <hr>
-<h2>Building Tags within Tags</h2>
+<h2>Building Tags within Tags using <code>Add(...)</code></h2>
+<div>
+  Now the real power start: using the <code>Add</code> method, you can add more content to your tag - and this can be both text, more <code>Tag</code> objects or even lists of <code>Tag</code> objects.
+</div>
 </trim>
 @{
   var darkBox = Tags.Tag("div")
