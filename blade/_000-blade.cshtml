@@ -35,11 +35,11 @@
   </div>
 } else if(versionOk) {
   <div class="alert alert-primary" role="alert">
-    Your RazorBlade version is @version - which is what you need for all these tutorials. 
+    Your RazorBlade version is @version.ToString("00.00") - which is what you need for all these tutorials. 
   </div>
 } else {
   <div class="alert alert-warning" role="alert">
-    Your RazorBlade version is @version. Only the examples marked like @Html.Raw(VersionInfo(1.2, 1.2)) will work. The examples marked like @Html.Raw(VersionInfo(0, 1.2)) will not work unless you install a newer version from the <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">releases</a>.
+    Your RazorBlade version is @version.ToString("00.00"). Only the examples marked like @Html.Raw(VersionInfo(1.2, 1.2)) will work. The examples marked like @Html.Raw(VersionInfo(0, 1.2)) will not work unless you install a newer version from the <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">releases</a>.
   </div>
 }
 </trim>
@@ -102,20 +102,20 @@
 </ol>
 
 <hr>
-<h2><em>RazorBlade</em> HtmlTags API for creating HTML using code</h2>
+<h2><em>RazorBlade</em> Fluent Html Tag API for creating HTML using code</h2>
 
 <ol>
   @hlp.TutorialLink("Creating HTML from code - introduction", "blade800", 
     "The basics of creating html directly from code", 
-    "new!", VersionInfo(version, 1.02))
+    "new!", VersionInfo(version, 2.00))
 
   @hlp.TutorialLink("Safe HTML Attributes from code", "blade810", 
     "Working with attributes in your code to stay error-free", 
-    "new!", VersionInfo(version, 1.02))
+    "new!", VersionInfo(version, 2.00))
 
   @hlp.TutorialLink("Safe HTML Tags from code", "blade820", 
     "Working with tags in your code to stay error-free and do amazing stuff", 
-    "new!", VersionInfo(version, 1.02))
+    "new!", VersionInfo(version, 2.00))
 
 </ol>
 

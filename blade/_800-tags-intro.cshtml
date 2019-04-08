@@ -3,11 +3,10 @@
 @RenderPage("_header.cshtml")
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> HtmlTags API Introduction <em>v1.2</em></h2>
+  <h2><em>RazorBlade</em> Fluent Html Tag API Introduction <em>v2.0</em></h2>
   <div>
     This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
   </div>
-
 </trim>
 
 <trim>
@@ -43,7 +42,7 @@
 
 </trim>
 @* this will place an HR in the page - not very useful, but just for a first example *@
-@Tags.Tag("hr")
+@Tags.Tag("h4").Wrap("This title was code-generated")
 
 @* now let's create a bootstrap-style box *@
 @Tags.Tag("div").Class("alert alert-warning").Wrap("This div was coded")
