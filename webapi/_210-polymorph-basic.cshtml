@@ -21,8 +21,8 @@
 <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
   Get Hello from live
 </button> 
-<button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'staging')">
-  Get Hello from staging
+<button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
+  Get Hello from dev
 </button> 
 
 <script>
@@ -47,10 +47,10 @@
 }) 
 
 @RenderPage("../shared/_source-code.cshtml", new { 
-  Path = App.PhysicalPath + "/staging/api/",
+  Path = App.PhysicalPath + "/dev/api/",
   File = "DemoController.cs",
   Size = 300,
   Language = "csharp",
-  TitlePath = "/staging/api/",
+  TitlePath = "/dev/api/",
 }) 
 </hide>

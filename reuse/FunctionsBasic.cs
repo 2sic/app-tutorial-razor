@@ -3,7 +3,7 @@
 public class FunctionsBasic {
 
   public string SayHello() {
-    return "Hello!";
+    return "Hello from shared functions!";
   }
 }
 
