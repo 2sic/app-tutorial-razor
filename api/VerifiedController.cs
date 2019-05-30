@@ -17,7 +17,7 @@ public class VerifiedController : SxcApiController
 	[HttpGet]
 	public string Hello()
 	{
-		return "Hello from the controller with TokenVerification in /api";
+		return "Hello from the controller with ValidateAntiForgeryToken in /api";
 	}
 
 }

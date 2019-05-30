@@ -2,9 +2,10 @@
 @using Connect.Razor.Blade;
 @{
   // get parameters
-  var titleInParams = (PageData["Title"] as string);
+  var titleInParams = PageData["Title"] as string;
   var filePath = PageData["Path"];
   var file = PageData["File"];
+  var titlePath = PageData["TitlePath"] as string;
   if(file != null) {
     if(file.IndexOf(".") == -1) {
       file = "_" + file + ".cshtml";
@@ -12,7 +13,8 @@
     var lastSlash = filePath.LastIndexOf("/");
     filePath = filePath.Substring(0, lastSlash) + "/" + file;
   }
-  var title = titleInParams ?? "Source Code of " + (file == null ? "this file" : file);
+  var fileInTitle = titlePath + file;
+  var title = titleInParams ?? "Source Code of " + (file == null ? "this file" : fileInTitle);
   var paramSize = PageData["Size"];
   int size = paramSize != null ? (paramSize as int?).Value : 600;
   var language = "ace/mode/" + (PageData["Language"] ?? "razor");

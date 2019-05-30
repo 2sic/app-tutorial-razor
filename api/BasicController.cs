@@ -15,4 +15,10 @@ public class BasicController : SxcApiController
 		return "Hello from the basic controller in /api";
 	}
 
+	[HttpGet]
+	public int Square(int number)
+	{
+		return number * number;
+	}
+
 }
