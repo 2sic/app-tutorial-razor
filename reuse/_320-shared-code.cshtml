@@ -15,7 +15,7 @@
 <h2>Using shared library of simple functions</h2>
 <trim>
 <p>
-  The example takes a cs file with shared code. 
+  The example takes a cs file <code>FunctionsBasic.cs</code> with shared code in a class <code>FunctionsBasic</code>. 
   This example uses a simple C# class, so the code only has what's in it.
 </p>
 </trim>
@@ -23,6 +23,18 @@
   var lib = CreateInstance("FunctionsBasic.cs");
 }
 <div>Hello from FunctionsBasic: @lib.SayHello()</div>
+
+<hr>
+<h2>Using a different Class from a library files</h2>
+<trim>
+<p>
+  The example takes a cs file with shared code, but gets the class <code>Second</code>.
+</p>
+</trim>
+@{
+  var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
+}
+<div>Hello from FunctionsBasic: @lib2.SayHello()</div>
 
 <hr>
 <h2>Using shared code with context</h2>
@@ -38,10 +50,18 @@
 @{
   var powerLib = CreateInstance("FunctionsWithContext.cs");
 }
-
 <div>
   <img src='@powerLib.QrPath("https://2sxc.org")' width="75px">
 </div>
+
+<hide>
+<hr>
+<h2>Using shared libraries in WebApi Controllers</h2>
+<p>
+  The mechanism above also works in WebApi Controllers (if you have 2sxc 10.01+). 
+  Note that specifically in WebApi you can only use <code>CreateInstance(...)</code> for <code>.cs</code> files. 
+</p>
+</hide>
 
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
