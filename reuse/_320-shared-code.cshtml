@@ -1,0 +1,62 @@
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Reuse code with .cs files (new in 2sxc 10.01)</h2>
+<p>
+  Starting with 2sxc 10.01 <code>CreateInstance()</code> can also be used with .cs files, 
+  from both razor pages as well as WebApi controllers. 
+  This allows you to create shared code which can be used in Razor and WebApi controllers.
+</p>
+</trim>
+
+<hr>
+<h2>Using shared library of simple functions</h2>
+<trim>
+<p>
+  The example takes a cs file with shared code. 
+  This example uses a simple C# class, so the code only has what's in it.
+</p>
+</trim>
+@{
+  var lib = CreateInstance("FunctionsBasic.cs");
+}
+<div>Hello from FunctionsBasic: @lib.SayHello()</div>
+
+<hr>
+<h2>Using shared code with context</h2>
+<trim>
+<p>
+  Often you may need context - like the <code>Dnn</code> or <code>App</code> objects. 
+  We made this easy by defining a base class you can inherit from, called <code>ToSic.Sxc.Code.SharedWithDnnContext</code>.
+
+  If you use that as your base-class, all existing context is automatically attached, allowing you to 
+  access variables like <code>App</code>.
+</p>
+</trim>
+@{
+  var powerLib = CreateInstance("FunctionsWithContext.cs");
+}
+
+<div>
+  <img src='@powerLib.QrPath("https://2sxc.org")' width="75px">
+</div>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath,
+  File = "FunctionsBasic.cs",
+  Size = 400, 
+  Language = "csharp"
+}) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath,
+  File = "FunctionsWithContext.cs",
+  Size = 400, 
+  Language = "csharp"
+}) 
+</hide>
