@@ -3,9 +3,9 @@
 </hide>
 
 <trim>
-<h2>Very basic WebApi Example</h2>
+<h2>More secure Basic WebApi Example</h2>
 <p>
-  In this example, we'll assume your WebApi controller is called <code>Basic</code> (so the file is called <code>BasicController.cs</code> and has a class called <code>BasicController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. 
+  In this example, we'll ensure that calls to your API only come from users who are visiting your website. This is to protect agains <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">CSRF</a> attacks, where another website gets your users to interact with your API. That could be dangerous, because maybe your API has things only a logged in user should see - and without the CSRF protection, the other website could get access to that because the user is logged in. 
 </p>
 
 <p>
@@ -19,7 +19,7 @@
 <script>
   function callBasicHelloApi(moduleContext) {
     $2sxc(moduleContext)
-      .webApi.get('app/auto/api/basic/hello')
+      .webApi.get('app/auto/api/verified/hello')
       .then(function (results) {
         alert(results);      
       });
@@ -31,7 +31,7 @@
 
 @RenderPage("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",
-  File = "BasicController.cs",
+  File = "VerifiedController.cs",
   Size = 400,
   Language = "csharp"
 }) 
