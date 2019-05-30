@@ -61,7 +61,23 @@
   The mechanism above also works in WebApi Controllers (if you have 2sxc 10.01+). 
   Note that specifically in WebApi you can only use <code>CreateInstance(...)</code> for <code>.cs</code> files. 
 </p>
+<blockquote>
+  Click to see the result of a WebApi call with the shared code:  
+  <button type="button" class="btn btn-primary" onclick="callApiWithSharedCode(this)">
+    Call WebApi
+  </button> 
+</blockquote>
 </hide>
+<script>
+  function callApiWithSharedCode(context) {
+    $2sxc(context).webApi.get('app/auto/live/api/basic/hello')
+      .then(function (results) {
+        console.log(results);
+        alert(results);      
+      });
+    return false;
+  }
+</script>
 
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 

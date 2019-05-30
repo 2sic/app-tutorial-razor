@@ -1,0 +1,40 @@
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+
+<trim>
+<p>
+  Learn how to create and use <strong>WebApi</strong> to provide data to JavaScript SPA apps. 
+</p>
+
+<h2>Some notes before we start</h2>
+<p>
+  WebApi is not directly razor, as it's not meant to actualy render HTML. It's coded using C# just like razor, 
+  but won't have commands like <code>@@Html.Raw(...)</code>. Since it's the best way to communicate from the server with your JavaScript apps, we've included the basics in this tutorial. 
+</p>
+<p>
+  Our examples use very trivial JavaScript code to call the API and show the results. Your SPA apps will usually be more sophisticated, but that would then be a topic for a JavaScript tutorial. 
+</p>
+</trim>
+
+<hr>
+<h2>WebApi Examples</h2>
+
+<ol>
+  @helpers.TutorialLink("WebApi - Very basic example", "webapi110", "Creating the simplest possible hello WebApi.", null)
+
+  @helpers.TutorialLink("Koi - Auto-Add Bootstrap4 but inform Admin", "koi120", "Automatically add the Bootstrap4 CSS package from a CDN (same as above), but also show a warning to admins that this happened.", null)
+</ol>
+
+<hr>
+<h2>More Information around Connect.Koi</h2>
+<ol>
+  @helpers.LiExtLink("https://connect-koi.net/", "Connect.Koi website")
+  @helpers.LiExtLink("https://github.com/DNN-Connect/connect.koi/", "Connect.Koi Github Repo")
+  <li>Blogs
+    <ul>
+      @helpers.LiExtLink("https://2sxc.org/en/blog/tag/koi", "Blog posts & tutorials on 2sxc.org around Connect.Koi")
+    </ul>
+  </li>
+</ol>

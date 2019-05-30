@@ -1,0 +1,38 @@
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Very basic WebApi Example</h2>
+<p>
+  In this example, we'll assume your WebApi controller is called <code>Basic</code> (so the file is called <code>BasicController.cs</code> and has a class called <code>BasicController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. 
+</p>
+
+<p>
+  Click to see the result of a WebApi call with the shared code:  
+</p>
+</trim>
+<button type="button" class="btn btn-primary" onclick="callBasicHelloApi(this)">
+  Call WebApi
+</button> 
+
+<script>
+  function callBasicHelloApi(moduleContext) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/basic/hello')
+      .then(function (results) {
+        alert(results);      
+      });
+  }
+</script>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "BasicController.cs",
+  Size = 400,
+  Language = "csharp"
+}) 
+</hide>
