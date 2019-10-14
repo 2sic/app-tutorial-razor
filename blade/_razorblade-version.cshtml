@@ -26,7 +26,6 @@
 
 
 @helper RazorVersionBox(double expected) {
-  // var rzrVersionInfo = GetRazorBladeVersion();
   double version = VersionDouble();
   var exists = version != 0;
   bool versionOk = version >= expected;
