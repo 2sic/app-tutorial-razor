@@ -1,4 +1,8 @@
+@using Connect.Razor.Blade;
+
 @helper Title(string title) {
+  // set browser title for SEO
+  HtmlPage.Title = title + " DNN / 2sxc Razor Tutorials";
   @InitializedPageAssets()
   @TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
   <h1 @Edit.TagToolbar()>@title</h1>
