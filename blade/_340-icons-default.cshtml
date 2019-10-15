@@ -22,8 +22,8 @@
 </trim>
 
 @{
-  // use url parameter to decide which icon(s) to show, and default to "one"
-  var mode = Request.QueryString["mode"] ?? "one";
+  // use url parameter to decide which icon(s) to show, and default to "set"
+  var mode = Request.QueryString["mode"] ?? "set";
 
   // the icon we want to use for this page is this png file
   var iconUrl = App.Path + "/blade/assets/razor-blade-icon.png";
