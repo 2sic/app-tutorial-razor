@@ -3,20 +3,20 @@
 @RenderPage("_header.cshtml")
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Fluent HTML5 Tags <code>@@Tags.Div(...)</code> <em>v2.02</em></h2>
+  <h2><em>RazorBlade</em> Fluent HTML5 Tags <code>@@Tag.Div(...)</code> <em>v3.0</em></h2>
   <div>
-    Let's look at some more simple scenarios using the typed HTML5 objects. They are all available under <code>Tags.*</code> - so any HTML5 tag like <code>Div</code>, <code>B</code>, <code>Table</code> etc. will work. They also return a typed object - because many HTML5 tags like <code>Img</code> have additional commands like <code>.Src(url)</code>
+    Let's look at some more simple scenarios using the typed HTML5 objects. They are all available under <code>Tag.*</code> - so any HTML5 tag like <code>Div</code>, <code>B</code>, <code>Table</code> etc. will work. They also return a typed object - because many HTML5 tags like <code>Img</code> have additional commands like <code>.Src(url)</code>
   </div>
 </trim>
 
 <trim>
 <hr>
-<h2>Simple example: <code>Tags.Div</code></h2>
+<h2>Simple example: <code>Tag.Div</code></h2>
 
 </trim>
-@(Tags.Div("This is the intro. ", 
-    Tags.B("I hope you like it"), 
-    Tags.I(" otherwise it's ok too"), 
+@(Tag.Div("This is the intro. ", 
+    Tag.B("I hope you like it"), 
+    Tag.I(" otherwise it's ok too"), 
     " 😉")
     .Id("wrapper")
     .Class("alert")
@@ -30,18 +30,18 @@
 </div>
 </trim>
 @{
-  var darkBox = Tags.Div()
+  var darkBox = Tag.Div()
     .Class("alert alert-dark")
     .Wrap(
       "Did you know, that you can add text...",
-      Tags.Code("and tags"),
-      Tags.Div(
+      Tag.Code("and tags"),
+      Tag.Div(
         "as well as more ", 
-        Tags.B("tags"),
+        Tag.B("tags"),
         " and strings inside it?"
       )
-      .Class("alert")
-      .Class("alert-danger")
+        .Class("alert")
+        .Class("alert-danger")
     );
 
 }
