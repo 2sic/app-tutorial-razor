@@ -1,7 +1,7 @@
 @using System.Diagnostics;
 @functions {
   public FileVersionInfo GetRazorBladeVersion() {
-    var pathToRazorDll = "~/bin/Connect.Razor.dll";
+    var pathToRazorDll = "~/bin/ToSic.Razor.dll";
     pathToRazorDll = System.Web.HttpContext.Current.Server.MapPath(pathToRazorDll);
     var exists = File.Exists(pathToRazorDll);
     return exists
@@ -32,7 +32,7 @@
 
   if(!exists) {
     <div class="alert alert-danger" role="alert">
-      We can not find <code>Connect.Razor.dll</code> in your <code>bin</code> folder. It seems you have not installed <em>RazorBlade</em> - please install it from <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">releases</a> to continue.
+      We can not find <code>ToSic.Razor.dll</code> in your <code>bin</code> folder. It seems you have not installed <em>RazorBlade</em> - please install it from <a href="https://github.com/DNN-Connect/razor-blade/releases" target="_blank">releases</a> to continue.
     </div>
   } else if(versionOk) {
     <div class="alert alert-primary" role="alert">
