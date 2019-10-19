@@ -3,9 +3,9 @@
 @RenderPage("_header.cshtml")
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tags.Tag</code> <em>v2.0</em></h2>
+  <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Custom</code> <em>v3</em></h2>
   <div>
-    Let's look at some more advanced scenarios using <code>@@Tags.Tag(...)</code>
+    Let's look at some more advanced scenarios using <code>@@Tag.Custom(...)</code>
   </div>
 </trim>
 
@@ -24,14 +24,14 @@
   <code>style</code> and
   <code>title</code>. 
   So <code>Tag</code> objects have quick commands to set these. What makes it magical is that they always return the main object again, so you can chain them like <br>
-  <code>@@Tags.Tag("div").Id("wrapper").Class("alert").Class("alert-primary)</code> <br>
+  <code>@@Tag.Div().Id("wrapper").Class("alert").Class("alert-primary)</code> <br>
   <em>Note that some of these, like <code>Id</code> will replace the previous value, while others like <code>Class</code> will add new values to the attribute.</em>
 </div>
 </trim>
-@Tags.Tag("div").Id("wrapper").Class("alert").Class("alert-primary").Wrap("This div was coded")
+@Tag.Div().Id("wrapper").Class("alert").Class("alert-primary").Wrap("This div was coded")
 @{
   // often you would rather do the chaining on multiple lines, so let's try that
-  var infoBox = Tags.Tag("div")
+  var infoBox = Tag.Custom("div")
     .Id("wrapper")
     .Class("alert")
     .Class("alert-dark")
@@ -43,17 +43,17 @@
 <hr>
 <h2>Creating Open/Close Tags separately</h2>
 <div>
-  A <code>Tag</code> object also has a <code>.Open</code> and <code>.Close</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
+  A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
 </div>
 </trim>
 @{
-  var successBox = Tags.Tag("div")
+  var successBox = Tag.Div()
     .Class("alert alert-success");
 }
-@successBox.Open
+@successBox.TagStart
   This tag was written using both <code>.Open</code> and <code>.Close</code> 
   because it may be easier for you that way.
-@successBox.Close
+@successBox.TagEnd
 
 <trim>
 <hr>
@@ -63,11 +63,11 @@
 </div>
 </trim>
 @{
-  var darkBox = Tags.Tag("div")
+  var darkBox = Tag.Div()
     .Class("alert alert-dark")
     .Add("Did you know, that you can add text...")
-    .Add(Tags.Tag("code").Wrap("and tags"))
-    .Add(Tags.Tag("div")
+    .Add(Tag.Code().Wrap("and tags"))
+    .Add(Tag.Div()
       .Class("alert alert-danger")
       .Add("as well as more tags inside it?")
     );

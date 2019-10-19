@@ -3,9 +3,9 @@
 @RenderPage("_header.cshtml")
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Fluent Tag API - @@Tags.Attribute <em>v1.2</em></h2>
+  <h2><em>RazorBlade</em> Fluent Tag API - @@Tag.Attr <em>v3</em></h2>
   <div>
-    Here we'll go through some more advanced examples using <code>@@Tags.Attribute(...)</code>
+    Here we'll go through some more advanced examples using <code>@@Tag.Attr(...)</code>
   </div>
 </trim>
 
@@ -18,9 +18,9 @@
   var cls = "alert alert-";
   cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
 }
-<div @Tags.Attribute("title", titleWithIssues) 
-  @Tags.Attribute("class", cls)
-  @Tags.Attribute("number", 27)>
+<div @Tag.Attr("title", titleWithIssues) 
+  @Tag.Attr("class", cls)
+  @Tag.Attr("number", 27)>
   <trim>
   This is a simple demo showing how to add the <code>title</code> and <code>class</code> attribute using code. <br>
   It switches between warning/primary depending of the second being odd or even. Refresh the page to see the difference. <br>
@@ -40,9 +40,9 @@
     Description="This isn't your normal text - it has \n line breaks and apostrophes"
   };
 }
-<div class="alert alert-secondary" @Tags.Attribute("data-my", myObj)>
+<div class="alert alert-secondary" @Tag.Attr("data-my", myObj)>
   <trim>
-  This div has an attribute created using an object, because we wanted json. If you look at the source, youll find <code>@Tags.Attribute("data-my", myObj)</code>
+  This div has an attribute created using an object, because we wanted json. If you look at the source, youll find <code>@Tag.Attr("data-my", myObj)</code>
   </trim>
 </div>
 
