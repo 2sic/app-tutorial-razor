@@ -2,7 +2,9 @@
 @{  var hlp = CreateInstance("shared/_helpers.cshtml"); }
 @hlp.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
 </hide>
-
+@{
+  ToSic.Razor.Blade.HtmlPage.AddBase();
+}
 <trim>
 <h2>How to use this Tutorial</h2>
 <p>
@@ -51,6 +53,7 @@
     <li>Create SEO JSON-LD headers</li>
     <li>Create social media Open-Graph headers</li>
     <li>Create favicons, apple-icons, android icons and more @hlp.Highlighted("(new!)")</li>
+    <li>Add base-tags with the correct url @hlp.Highlighted("(new!)")</li>
   </ul>
   @hlp.TutorialLink("RazorBlade - using the Html5 Tag API", "blade800", 
     "The basics of creating html directly from code - new in 2.0 and enhanced in 2.1", 
