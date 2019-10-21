@@ -1,12 +1,15 @@
 @using ToSic.Razor.Blade;
 <hide>
 @RenderPage("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
+@{  
+  var hlp = CreateInstance("../shared/_helpers.cshtml"); 
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
 </hide>
 <trim>
   <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
   <p>
-      These demos show how to really check if a variable has text using Text.Has. This combines...
+      These demos show how to really check if a variable has text using Text.Has. This combines checks for...
   </p>
   <ul>
     <li>null</li>
@@ -15,8 +18,13 @@
     <li>only html character #160 (also nbsp)</li>
     <li>only new-line</li>
   </ul>
-  <div class="alert alert-info" role="alert">
-    Note that this example uses @hlp.TutLink("@helper", "html=home") and emojis, so click on the links if you don't understand that.
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Text.Has(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Has_System_Object_System_Boolean_",
+  })
+
+  <div class="alert alert-success" role="alert">
+    Note that these examples use @hlp.TutLink("@helper", "html=home") and  @hlp.TutLink("emojis", "html210"), so click on the links if you don't understand that.
   </div>
 </trim>
 

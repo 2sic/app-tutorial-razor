@@ -1,12 +1,20 @@
 <hide>
 @RenderPage("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
+@{  
+  var hlp = CreateInstance("../shared/_helpers.cshtml"); 
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
 </hide>
 <trim>
   <h2><em>RazorBlade</em> Tags BR/NewLine Conversions <em>v1.1</em></h2>
   <p>
     These demos show how to convert BR tags to spaces, New-Lines or New-Lines to BRs. 
   </p>
+  @rzrHelp.ApiLinks(new string[] { 
+    "Tags.Br2Nl(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Br2Nl_System_String_",
+    "Tags.Br2Space(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Br2Space_System_String_",
+    "Tags.Nl2Br(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Nl2Br_System_String_",
+  })
 </trim>
 @using ToSic.Razor.Blade;
 @{

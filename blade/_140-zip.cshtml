@@ -1,5 +1,8 @@
 <hide>
 @RenderPage("_header.cshtml")
+@{  
+  var rzrHelp = CreateInstance("_api-docs.cshtml");
+}
 </hide>
 @using ToSic.Razor.Blade;
 @{
@@ -18,6 +21,10 @@
     <li>Cleane-up html, which may have more spaces and line-breaks than expected</li>
     <li>Just any text pasted from somewhere, which could even contain surprise white-space</li>
   </ul>
+
+  @rzrHelp.ApiLinks(new string[] { 
+    "Text.Zip(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Zip_System_String_", 
+  })
 
   <h2>Example Text</h2>
   <div>
