@@ -68,22 +68,60 @@
     <code>&lt;div</code> and <code>id='@@yourId'</code> and <code>&gt;</code> followed by the content and closed by <code>&lt;/div&gt;</code> <br>
     you would instead write: <br>
     <code>@@Tag.Div("your content").Id("wrapper")</code> <br>
-    Here's what you get with an <code>@@Tag.H4(...)</code> and <code>@@Tag.Div(...)</code> and when you combine them: 
+    Here's what you get with an <code>@@Tag.H4(...)</code> and <code>@@Tag.Div(...)</code> and when you combine them...
   </div>
-
+  <hr>
 </trim>
 
 @* this will place an HR in the page - not very useful, but just for a first example *@
-@Tag.H4("This title was code-generated")
+@Tag.H3("Example 1: This title was code-generated")
 
 @* now let's create a bootstrap-style box *@
 @Tag.Div("This div was coded").Class("alert alert-warning")
 
 @Tag.Div(
-  Tag.H4("This h4 title is inside the div"),
+  Tag.H4("Example2: This h4 title is inside the div"),
   "and this text in the div ",
   Tag.Em("follows the title")
 ).Class("alert alert-warning")
+
+<trim>
+<hr>
+<h3>Example 3: Using <code>Tag.Div</code></h3>
+
+</trim>
+@(Tag.Div("This is the intro. ", 
+    Tag.B("I hope you like it"), 
+    Tag.I(" otherwise it's ok too"), 
+    " 😉")
+    .Id("wrapper")
+    .Class("alert")
+    .Class("alert-dark"))
+
+<trim>
+<hr>
+<h3>Example 4: Tag contents can also use <code>Wrap(...)</code> and <code>Add(...)</code></h2>
+<div>
+  Now the real power start: using the <code>Wrap</code> method, you can add more content to your tag - and this can be both text, more <code>Tag</code> objects or even lists of <code>Tag</code> objects. Wrap always replaces the content, and you could also use <code>Add(...)</code> instead to append stuff.
+</div>
+</trim>
+@{
+  var darkBox = Tag.Div()
+    .Class("alert alert-dark")
+    .Wrap(
+      "Did you know, that you can add text...",
+      Tag.Code("and tags"),
+      Tag.Div(
+        "as well as more ", 
+        Tag.B("tags"),
+        " and strings inside it?"
+      )
+        .Class("alert")
+        .Class("alert-danger")
+    );
+
+}
+@darkBox
 
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
