@@ -13,7 +13,9 @@
 </trim>
 
 @{
-  HtmlPage.AddOpenGraph("og:xyz", "other");
+  // note: 'og:' is auto-prefixed if not given in the key
+  HtmlPage.AddOpenGraph("title", "Demo of OpenGraph headers");
+  HtmlPage.AddOpenGraph("type", "website");
 }
 
 <hide>
