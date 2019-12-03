@@ -1,20 +1,13 @@
-// the using statements tell the compiler what you need
-// the first one is needed so you can write [HttpGet] and [AllowAnonymous]
-// The second one is needed so the compiler can find the SxcApiController
-// The final one allows us to verify the AntiForgeryToken
-using System.Web.Http;
-using ToSic.SexyContent.WebApi;
-using DotNetNuke.Web.Api;
+using System.Web.Http;		// this enables [HttpGet] and [AllowAnonymous]
+using DotNetNuke.Web.Api;	// this is to verify the AntiForgeryToken
 
-// Tell the server that all commands can be accessed without a login
-// But requires the user to be on your website
-// the the API can't be used from other websites (CSRF protection)
-[AllowAnonymous]
-[ValidateAntiForgeryToken]
-public class VerifiedController : SxcApiController
+[AllowAnonymous]			// define that all commands can be accessed without a login
+[ValidateAntiForgeryToken]	// protects the API from users not on your site (CSRF protection)
+// Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://rebrand.ly/CustomWebApi
+public class VerifiedController : ToSic.Sxc.Dnn.ApiController
 {
-	// Tell the server that we're listening to GET requests
-	[HttpGet]
+
+	[HttpGet]				// [HttpGet] says we're listening to GET requests
 	public string Hello()
 	{
 		return "Hello from the controller with ValidateAntiForgeryToken in /api";

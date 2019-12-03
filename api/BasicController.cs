@@ -1,24 +1,22 @@
-// the using statements tell the compiler what you need
-// the first one is needed so you can write [HttpGet] and [AllowAnonymous]
-// The second one is needed so the compiler can find the SxcApiController
-using System.Web.Http;
-using ToSic.SexyContent.WebApi;
+using System.Web.Http;		// this enables [HttpGet] and [AllowAnonymous]
 
-// Tell the server that all commands can be accessed without a login 
-[AllowAnonymous]
-public class BasicController : SxcApiController
+[AllowAnonymous]			// define that all commands can be accessed without a login
+// Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://rebrand.ly/CustomWebApi
+public class BasicController : ToSic.Sxc.Dnn.ApiController
 {
-	// Tell the server that we're listening to GET requests
-	[HttpGet]
+
+	[HttpGet]				// [HttpGet] says we're listening to GET requests
 	public string Hello()
 	{
 		return "Hello from the basic controller in /api";
 	}
 
-	[HttpGet]
+
+	[HttpGet]				// [HttpGet] says we're listening to GET requests
 	public int Square(int number)
 	{
 		return number * number;
 	}
+
 
 }

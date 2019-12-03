@@ -1,3 +1,4 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
 <hide>
 @RenderPage("_header.cshtml")
 </hide>
@@ -37,17 +38,15 @@
     Remember to add <code>@@using System</code> to make this fly
   </li>
 </ul>
-</hide>
 
 
-<hide>
-  <style>
-    #demo-logo {
-      float: left;
-      width: 50px;
-      padding-right: 20px;
-    }
-  </style>
+<style>
+  #demo-logo {
+    float: left;
+    width: 50px;
+    padding-right: 20px;
+  }
+</style>
 
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>
