@@ -3,9 +3,8 @@
 @RenderPage("_header.cshtml")
 @{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @{
-  var persons = AsDynamic(App.Data["Persons"]);
+  var persons = AsList(App.Data["Persons"]);
 
   // check if we have a url-parameter called "id" with a value
   // if we do, switch on showDetails and filter the persons to only one
@@ -36,7 +35,7 @@
 </ul>
 } else {
   // find the person with this Id using LINQ
-  var person = (persons as Dynlist).First(p => p.EntityId == id);
+  var person = persons.First(p => p.EntityId == id);
   <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
   <h3>Details of @person.FirstName @person.LastName</h3>
   <a href='@Link.To(parameters: "data610/true")'>back to list</a>

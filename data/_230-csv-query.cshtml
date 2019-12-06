@@ -20,10 +20,10 @@
   var query = App.Query["ProductsFromCSV"];
 
   // get the data from the query
-  var products = AsDynamic(query["Default"]);
+  var products = AsList(query["Default"]);
 
   // get the current author (if available) from the stream Current
-  var current = AsDynamic(query["Current"].FirstOrDefault());
+  var current = AsList(query["Current"].FirstOrDefault());
 }
 <ul>
   @foreach(var product in products) {

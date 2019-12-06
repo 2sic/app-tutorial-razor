@@ -1,11 +1,10 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @{
   // the ID is already given by the caller, so we just get that
   var id = (int)PageData["Id"];
 
   // find the person with this Id using LINQ
-  var person = (AsDynamic(App.Data["Persons"]) as Dynlist)
+  var person = AsList(App.Data["Persons"])
     .First(p => p.EntityId == id);
 }
 

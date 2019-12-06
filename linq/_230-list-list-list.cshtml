@@ -3,8 +3,8 @@
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var persons = AsDynamic(App.Data["Persons"]);
-  var books = AsDynamic(App.Data["Books"]);
+  var persons = AsList(App.Data["Persons"]);
+  var books = AsList(App.Data["Books"]);
 }
 
 @RenderPage("_header.cshtml")

@@ -12,7 +12,7 @@
 
   <h3>List of Persons</h3>
 <ul>
-  @foreach(var person in AsDynamic(App.Data["Persons"])) {
+  @foreach(var person in AsList(App.Data["Persons"])) {
     <li>
       <a href='@Link.To(parameters: "data620id/" + person.EntityId )'>
         @person.FirstName @person.LastName

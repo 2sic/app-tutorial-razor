@@ -1,9 +1,8 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var persons = AsDynamic(App.Data["Persons"]);
+  var persons = AsList(App.Data["Persons"]);
 }
 
 @RenderPage("_header.cshtml")

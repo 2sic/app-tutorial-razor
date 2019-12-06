@@ -14,13 +14,12 @@
 </p>
 </trim>
 
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @{
   var urlId = Request.QueryString["data620id"];
   int id = Int32.Parse(urlId);
 
   // find the person with this Id using LINQ
-  var person = (AsDynamic(App.Data["Persons"]) as Dynlist)
+  var person = AsList(App.Data["Persons"])
     .First(p => p.EntityId == id);
 }
 

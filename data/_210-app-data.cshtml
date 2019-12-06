@@ -13,7 +13,7 @@
 </p>
 </trim>
 <ul>
-  @foreach(var person in AsDynamic(App.Data["Persons"])) {
+  @foreach(var person in AsList(App.Data["Persons"])) {
     @snippets.ShowPersonListItem(person)
   }
 </ul>

@@ -20,7 +20,7 @@
   var query = App.Query["DnnFilesFromSql"];
 
   // get the data from the query
-  var files = AsDynamic(query["Default"]);
+  var files = AsList(query["Default"]);
 }
 <ul>
   @foreach(var file in files) {
