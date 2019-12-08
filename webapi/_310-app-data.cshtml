@@ -13,18 +13,37 @@
   Click to see the result of a WebApi call with the shared code:  
 </p>
 </trim>
-<button type="button" class="btn btn-primary" onclick="callBasicHelloApi(this)">
-  Call WebApi
+<button type="button" class="btn btn-primary" onclick="getPersons(this)">
+  Get Persons
+</button> 
+
+<button type="button" class="btn btn-primary" onclick="getBooks(this)">
+  Get Books
 </button> 
 
 <script>
-  function callBasicHelloApi(moduleContext) {
+  function getPersons(moduleContext) {
     $2sxc(moduleContext)
       .webApi.get('app/auto/api/books/persons')
       .then(function (results) {
-        alert(results);      
+        alert('Found ' + results.length + ' persons. \n'
+          + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(results)
+        );
       });
   }
+
+  function getBooks(moduleContext) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/books/books')
+      .then(function (results) {
+        alert('Found ' + results.length + ' books. \n'
+          + 'The first one is "' + results[0].Title + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(results)
+          );
+      });
+  }
+
 </script>
 
 <hide>
@@ -32,8 +51,8 @@
 
 @RenderPage("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",
-  File = "VerifiedController.cs",
-  Size = 500,
+  File = "BooksController.cs",
+  Size = 800,
   Language = "csharp",
   TitlePath = "/api/",
 }) 
