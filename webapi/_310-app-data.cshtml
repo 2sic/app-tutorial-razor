@@ -1,0 +1,40 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+
+<trim>
+<h2>App Data Examples</h2>
+<p>
+  In this example, we'll get app-data from the WebApi.
+</p>
+
+<p>
+  Click to see the result of a WebApi call with the shared code:  
+</p>
+</trim>
+<button type="button" class="btn btn-primary" onclick="callBasicHelloApi(this)">
+  Call WebApi
+</button> 
+
+<script>
+  function callBasicHelloApi(moduleContext) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/books/persons')
+      .then(function (results) {
+        alert(results);      
+      });
+  }
+</script>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@RenderPage("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "VerifiedController.cs",
+  Size = 500,
+  Language = "csharp",
+  TitlePath = "/api/",
+}) 
+</hide>
