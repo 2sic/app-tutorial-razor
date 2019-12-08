@@ -3,7 +3,7 @@ using DotNetNuke.Web.Api;	// this is to verify the AntiForgeryToken
 
 [AllowAnonymous]			// define that all commands can be accessed without a login
 [ValidateAntiForgeryToken]	// protects the API from users not on your site (CSRF protection)
-// Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://rebrand.ly/CustomWebApi
+// Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
 public class VerifiedController : ToSic.Sxc.Dnn.ApiController
 {
 
