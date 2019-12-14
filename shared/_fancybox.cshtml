@@ -1,9 +1,17 @@
-@helper PreviewWithLightbox(string url, int width = 100, int height = 100, string classes = "") {
+@using ToSic.Razor.Blade;
+
+@helper PreviewWithLightbox(string url, int width = 100, int height = 100, 
+  string classes = "",
+  string label = null) {
   @AddFancyBoxOnce()
-  <a data-fancybox="gallery" href="@url" class="@classes">
-    <img src="@url?w=@width&h=@height">
-  </a>
+  <figure>
+    <a data-fancybox="gallery" href="@url" class="@classes" data-caption="@label">
+      <img src="@url?w=@width&h=@height">
+    </a>
+  </figure>
 }
+
+
 
 @helper AddFancyBoxOnce() {
   if(!initialized) {

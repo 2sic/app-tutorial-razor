@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="10.20.06" ExportDate="2019-12-08T21:02:58.2116734+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="10.22.01" ExportDate="2019-12-14T12:58:37.9522876+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-US" />
@@ -340,13 +340,13 @@
       <Value Key="RequiredDnnVersion" Value="07.04.02" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="10.20.06" Type="String">
+      <Value Key="RequiredVersion" Value="10.23.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="10.20.06" Type="String">
+      <Value Key="Version" Value="10.23.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -888,14 +888,15 @@
       <Value Key="AllowEdit" Value="True" Type="Boolean" />
       <Value Key="Description" Value="Get all authors and the books of the current author" Type="String" />
       <Value Key="Name" Value="AuthorsWithBooks" Type="String" />
+      <Value Key="Params" Value="AuthorId" Type="String" />
       <Value Key="StreamsOut" Value="ListContent,Default,Authors,CurrentBooks,Current" Type="String" />
       <Value Key="StreamWiring" Value="9ae58358-e78f-434c-9699-7a0ee90b72c7:Default&gt;29d45812-185a-4949-b83c-bfc7910ad213:Default&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Drafts&gt;29d45812-185a-4949-b83c-bfc7910ad213:Drafts&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Published&gt;29d45812-185a-4949-b83c-bfc7910ad213:Published&#xD;&#xA;29d45812-185a-4949-b83c-bfc7910ad213:Default&gt;76d59af4-53f8-4728-81d3-09c9e5e30c51:Default&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&#xD;&#xA;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&gt;Out:Authors&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Books&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&#xD;&#xA;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&gt;Out:CurrentBooks&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;Out:Current&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Author" Type="String" />
-      <Value Key="TestParameters" Value="[QueryString:Author]=10681" Type="String" />
+      <Value Key="TestParameters" Value="[Params:AuthorId]=10681" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="9ae58358-e78f-434c-9699-7a0ee90b72c7" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
       <Value Key="Description" Value="" Type="String" />
       <Value Key="Name" Value="ICache" Type="String" />
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Caches.ICache, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.IAppRoot, ToSic.Eav.DataSources" Type="String" />
       <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 611,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="29d45812-185a-4949-b83c-bfc7910ad213" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
@@ -942,7 +943,7 @@
       <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 211,&#xD;&#xA;  &quot;Left&quot;: 390&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="|Config ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="127d6b34-459b-47e0-84e5-96de60e88fce" KeyGuid="ba47c9cb-528e-4c50-b118-b4aeeb226df4">
-      <Value Key="EntityIds" Value="[QueryString:Author]" Type="String" />
+      <Value Key="EntityIds" Value="[Params:AuthorId]" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
       <Value Key="AllowEdit" Value="True" Type="Boolean" />
@@ -1049,19 +1050,20 @@
       <Value Key="AllowEdit" Value="True" Type="Boolean" />
       <Value Key="Description" Value="Get 10 DNN files from SQL" Type="String" />
       <Value Key="Name" Value="DnnFilesFromSQL" Type="String" />
+      <Value Key="Params" Value="PortalId=[Portal:PortalId]" Type="String" />
       <Value Key="StreamsOut" Value="ListContent,Default" Type="String" />
       <Value Key="StreamWiring" Value="e17ad0b8-ad8f-42ba-9c2d-606f38cae213:Default&gt;Out:Default" Type="String" />
-      <Value Key="TestParameters" Value="[Portal:PortalId]=59" Type="String" />
+      <Value Key="TestParameters" Value="[Params:PortalId]=59" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e17ad0b8-ad8f-42ba-9c2d-606f38cae213" KeyGuid="05781728-750b-478a-b43a-94897e5d05fc">
       <Value Key="Description" Value="Get 10 files from current portal" Type="String" />
       <Value Key="Name" Value="DnnSqlDataSource" Type="String" />
-      <Value Key="PartAssemblyAndType" Value="ToSic.SexyContent.Environment.Dnn7.DataSources.DnnSqlDataSource, ToSic.SexyContent" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Sxc.Dnn.DataSources.DnnSql, ToSic.Sxc.Dnn" Type="String" />
       <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 230,&#xD;&#xA;  &quot;Left&quot;: 428&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.SexyContent.DataSources.DnnSqlDataSource" AttributeSetName="|Config ToSic.SexyContent.DataSources.DnnSqlDataSource" EntityGUID="c4967b92-4fcf-4a43-8111-2a83e668995c" KeyGuid="e17ad0b8-ad8f-42ba-9c2d-606f38cae213">
       <Value Key="ContentType" Value="DnnFile" Type="String" />
-      <Value Key="SelectCommand" Value="Select Top 10 * from Files Where PortalId = [Portal:PortalId]" Type="String" />
+      <Value Key="SelectCommand" Value="Select Top 10 * from Files Where PortalId = [Params:PortalId]" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="f6c713ca-99d1-405e-9ec1-0d06e6d08f24">
       <Value Key="ContentTypeStaticName" Value="" Type="String" />

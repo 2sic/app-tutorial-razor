@@ -4,26 +4,61 @@
 @{  
   var helpers = CreateInstance("../shared/_helpers.cshtml");
   var fancybox = CreateInstance("../shared/_fancybox.cshtml");
+  var width = 200;
+  var height = 200;
 }
 </hide>
 @using ToSic.Razor.Blade;
 @using System.Linq;
 <trim>
 <h2>Example from SQL in a Query</h2>
-@fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-sql-dnn-files.png", 400, 200, "float-right")
+<div class="float-right" style="width: 50%">
+  @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") 
+  @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", width, height, "float-left", label: "Query Configuration with Params and Test-Values")
+  @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", width, height, "float-left", label: "SQL Query using Params")
+</div>
+
+
 <p>
-  The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <code>Select Top 10 * from Files Where PortalId = [Portal:PortalId]</code>. You can read more about the <code>DnnSqlDataSource</code> <a href="https://2sxc.org/en/Docs/Feature/feature/4670" target="_blank">here</a>.
+  The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
+  <code>Select Top 10 * from Files Where PortalId = [Params:PortalId]</code> <br>
+  You can read more about the <code>DnnSqlDataSource</code> <a href="https://2sxc.org/en/Docs/Feature/feature/4670" target="_blank">here</a>. <br/>
+  Note that the parameter <code>PortalId</code> is preset to be <code>[Portal:PortalId]</code>. 
+  Read about <a href="https://r.2sxc.org/QueryParams" target="_blank">params in the docs</a>.
 </p>
+<hr>
+
 </trim>
+<h2>Current Portal</h2>
+<div>In this example PortalId is preset to be <code>[Portal:PortalId]</code></div>
 @{
   // get the query
   var query = App.Query["DnnFilesFromSql"];
 
   // get the data from the query
-  var files = AsList(query["Default"]);
+  var files = AsList(query);
 }
 <ul>
   @foreach(var file in files) {
+    <li>
+      @file.FileName
+    </li>
+  }
+</ul>
+
+<hr>
+<h2>Root Portal</h2>
+<div>In this example we will set the PortalId for the SQL query.</div>
+@{
+  // reset the query to run again
+  query.Reset();
+  query.Param("PortalId", "0");
+
+  // get the data from the query
+  var rootFiles = AsList(query);
+}
+<ul>
+  @foreach(var file in rootFiles) {
     <li>
       @file.FileName
     </li>
