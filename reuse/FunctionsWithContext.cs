@@ -3,8 +3,7 @@
 // - This inherits from ToSic.Sxc.Code.WithDnnContext
 //   which will automatically provide the common objects like App, Dnn etc.
 //   from the current context to use in your code
-using ToSic.Sxc.Code;
-public class FunctionsWithContext: WithDnnContext {
+public class FunctionsWithContext: ToSic.Sxc.Dnn.DynamicCode {
 
   public string QrPath(string link) {
         // path to qr-code generator
