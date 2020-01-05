@@ -1,7 +1,8 @@
 using System.Linq;        // this enables .Select(x => ...)
 using System.Web.Http;    // this enables [HttpGet] and [AllowAnonymous]
 using DotNetNuke.Web.Api; // this is to verify the AntiForgeryToken
-using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+using ToSic.Sxc.Conversion; // for the auto-conversion example below
+// using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 [AllowAnonymous]            // define that all commands can be accessed without a login
 [ValidateAntiForgeryToken]  // protects the API from users not on your site (CSRF protection)
@@ -22,6 +23,14 @@ public class BooksController : ToSic.Sxc.Dnn.ApiController
         p.LastName,
         Picture = p.Mugshot,
       });
+  }
+
+  [HttpGet]
+  public dynamic PersonsAuto()
+  {
+    // this uses ToSic.Sxc.Conversion.DataToDictionary
+    return new DataToDictionary(Edit.Enabled)
+      .Convert(App.Data["Persons"]);
   }
 
   [HttpGet]

@@ -14,11 +14,15 @@
 </p>
 </trim>
 <button type="button" class="btn btn-primary" onclick="getPersons(this)">
-  Get Persons
+  Get Persons Custom
 </button> 
 
 <button type="button" class="btn btn-primary" onclick="getBooks(this)">
-  Get Books
+  Get Books Custom
+</button> 
+
+<button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
+  Get Persons with Auto-Convert
 </button> 
 
 <script>
@@ -44,6 +48,16 @@
       });
   }
 
+  function getPersonsAuto(moduleContext) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/books/personsAuto')
+      .then(function (results) {
+        alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
+          + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(results)
+        );
+      });
+  }
 </script>
 
 <hide>
