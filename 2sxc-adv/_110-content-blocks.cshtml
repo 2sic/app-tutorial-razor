@@ -53,8 +53,16 @@
   var block2ModuleMap = contentBlocks.GroupJoin(allMods, 
     cb => cb.EntityGuid,
     m => TryParseGuid(m.ModuleSettings[SettingsCG]),
-    (cb, m) => new { Block = cb, Modules = m }
+    (cb, m) => new { 
+      Block = cb, 
+      Modules = m 
+    }
   );
+
+  var view2BlockModuleMap = block2ModuleMap.GroupBy(b2m => {
+    var templates = AsList(b2m.Block.Template as object);
+    return templates.Any() ? templates.First().EntityGuid : null;
+  });
 
   // group the blocks by template - make sure that blocks without templates are grouped into null
   var cbByViews = contentBlocks.GroupBy(cb => {
@@ -69,16 +77,15 @@
     (cb, m) => new { Block = cb, Modules = m }
   );
 
-  var viewsWithBlocks = views.GroupJoin(blocksWithModules, 
+  var viewsWithBlocks = views.GroupJoin(view2BlockModuleMap,
     v => v.EntityGuid,
-    bwm => bwm.Block.Key,
+    bwm => bwm.Key,
     (v, bwm) => {
       var blockWithMod = bwm.SingleOrDefault();
       return new { 
         View = v, 
-        BlOld = bwm,
-        Blocks = blockWithMod != null ? blockWithMod.Block : null,
-        Modules = blockWithMod != null ? blockWithMod.Modules : null
+        Blocks = blockWithMod,
+        ModsCount = blockWithMod != null ? blockWithMod.SelectMany(bmlist => bmlist.Modules).Count() : 0,
       };
     }
   );
@@ -99,19 +106,18 @@
 @foreach(var set in viewsWithBlocks) {
   <li>
     View <strong>@set.View.Name</strong>
+
+    @set.Blocks.Count() / @set.ModsCount
     @if(set.Blocks != null) {
-      <text>has @set.Blocks.Count() content-blocks </text>
-      if(set.Modules != null) {
-        <text>has @set.Modules.Count() modules </text>
-      }
-      <ol>
-        @foreach(var block in set.Blocks) {
+       <text>has @set.Blocks.Count() content-blocks in @set.ModsCount modules </text>
+       <ol>
+        @foreach(var blockSet in set.Blocks) {
           <li>
-            @block.EntityGuid
-            @* <text>on @block.Count() modules</text> *@
+            Block: @blockSet.Block.EntityGuid (@blockSet.Block.EntityId) 
+            in @blockSet.Modules.Count() modules: @string.Join(",", blockSet.Modules.Select(m => m.ModuleID))
           </li>
         }
-      </ol>
+       </ol>
     } else {
       <text>not in use</text>
     }
