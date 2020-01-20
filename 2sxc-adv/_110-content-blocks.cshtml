@@ -52,29 +52,25 @@
   var allMods = mergedMods
     .Where(m => m.DefaultLanguageModule == null)
     .Where(m => !m.IsDeleted)
-    .Where(m => m.ModuleSettings.ContainsKey(SettingsCG))
-    ;
-  var modsGuid = allMods
-      .Select(m => new { 
-      Guid = Guid.Parse(m.ModuleSettings[SettingsCG].ToString()),
-      Module = m
-    })
-;
+    .Where(m => m.ModuleSettings.ContainsKey(SettingsCG));
 
   var blocksWithModules = cbByViews.GroupJoin(allMods, 
     cb => cb.Key,
     m => TryParseGuid(m.ModuleSettings[SettingsCG]),
     (cb, m) => new { Block = cb, Modules = m }
-  )
-  // .GroupBy(set => set.Block.Key)
-  ;
+  );
 
   var viewsWithBlocks = views.GroupJoin(blocksWithModules, 
     v => v.EntityGuid,
     bwm => bwm.Block.Key,
-    (v, bwm) => new { 
-      View = v, 
-      Blocks = bwm
+    (v, bwm) => {
+      var blockWithMod = bwm.SingleOrDefault();
+      return new { 
+        View = v, 
+        BlOld = bwm,
+        Blocks = blockWithMod != null ? blockWithMod.Block : null,
+        Modules = blockWithMod != null ? blockWithMod.Modules : null
+      };
     }
   );
 }
@@ -94,13 +90,16 @@
 @foreach(var set in viewsWithBlocks) {
   <li>
     View <strong>@set.View.Name</strong>
-    @if(set.Blocks.Any()) {
-      <text>has @set.Blocks.Count() content-blocks</text>
+    @if(set.Blocks != null) {
+      <text>has @set.Blocks.Count() content-blocks </text>
+      if(set.Modules != null) {
+        <text>has @set.Modules.Count() modules </text>
+      }
       <ol>
         @foreach(var block in set.Blocks) {
           <li>
-            @block.Block.Key
-            <text>on @block.Modules.Count() modules</text>
+            @block.EntityGuid
+            @* <text>on @block.Count() modules</text> *@
           </li>
         }
       </ol>
