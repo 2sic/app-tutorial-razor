@@ -1,4 +1,5 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
+@using System.Collections;
 @using System.Linq;
 @using DotNetNuke.Entities.Modules;
 <hide>
@@ -16,6 +17,8 @@
 
 </trim>
 @{
+  // this key is used in module settings
+  const string SettingsCG = "ToSIC_SexyContent_ContentGroupGuid";
   // isDev should just tell us, if we're looking at the dev-portal (while creating this demo app) or if it's running on 2sxc.org
   // where we use other zoneId and appId;
   var isDev = Dnn.Portal.PortalId == 59;
@@ -39,13 +42,18 @@
 
   // create array with all 2sxc modules
   var mc = ModuleController.Instance;
-  var dnnMod2sxcContent = mc.GetModulesByDefinition(portalId, "2Sexy Content").ModuleDefID;
-  var dnnMod2sxcApp = mc.GetModulesByDefinition(portalId, "2Sexy Content App").ModuleDefID;
-  var dnnModsC = mc.GetAllTabsModulesByModuleID(dnnMod2sxcContent);
-  var dnnModsA = mc.GetAllTabsModulesByModuleID(dnnMod2sxcApp);
-  var allMods = new ModuleInfo[dnnModsC.Count + dnnModsA.Count];
-  dnnModsC.CopyTo(allMods);// .ToList();// as IEnumerable<object>).Select(x => x);
-  dnnModsA.CopyTo(allMods, dnnModsC.Count);
+  var dnnMod2sxcContent = mc.GetModulesByDefinition(portalId, "2Sexy Content");
+  var dnnMod2sxcApp = mc.GetModulesByDefinition(portalId, "2Sexy Content App");
+
+  var mergedMods = new ModuleInfo[dnnMod2sxcContent.Count + dnnMod2sxcApp.Count];
+  dnnMod2sxcContent.CopyTo(mergedMods);
+  dnnMod2sxcApp.CopyTo(mergedMods, dnnMod2sxcContent.Count);
+
+  var allMods = mergedMods
+    .Where(m => m.DefaultLanguageModule == null)
+    .Where(m => !m.IsDeleted)
+    .Where(m => m.ModuleSettings.ContainsKey(SettingsCG))
+    ;
 
   var modules = mc.GetAllTabsModules(portalId, false);
 
@@ -59,7 +67,11 @@
 <div>
   <h3>Statistics</h3>
   <ol>
-    <li>We're looking at portal @portalId, Zone @app.ZoneId, App: @app.AppId. Module Def for Content is @dnnMod2sxcContent (@dnnModsC.Count), App is @dnnMod2sxcApp (@dnnModsA.Count)</li>
+    <li>We're looking at portal @portalId, Zone @app.ZoneId, App: @app.AppId. 
+      Modules: @allMods.Count()
+      Module Def for Content is 
+      @* @dnnMod2sxcContent (@dnnModsC.Count), App is @dnnMod2sxcApp (@dnnModsA.Count) *@
+    </li>
     <li>@views.Count() Views</li>
     <li>@contentBlocks.Count() Content Blocks </li>
     <li>@modules.Count DNN Modules </li>
@@ -83,10 +95,19 @@
 <h3>Modules</h3>
 <ol>
   @foreach(var m in allMods) {
-    <li>@m.ModuleID</li>
+
+    <li>@m.ModuleID / @m.PortalID - modDef: @m.ModuleDefID - settings = @ShowSettings(m.ModuleSettings)</li>
   }
 </ol>
 
+@helper ShowSettings(Hashtable settings) {
+
+  foreach(var k in settings.Keys) {
+    <span>
+    @k = @settings[k],
+    </span>
+  }
+}
 
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
