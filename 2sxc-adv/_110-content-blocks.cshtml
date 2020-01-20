@@ -35,9 +35,9 @@
   var contentBlocks = AsList(app.Data["2SexyContent-ContentGroup"]);
 
   // group the blocks by template - make sure that blocks without templates are grouped into null
-  var cbGroups = contentBlocks.GroupBy(cb => {
+  var cbByViews = contentBlocks.GroupBy(cb => {
     var templates = AsList(cb.Template as object);
-    return templates.Any() ? templates.First().EntityId : null;
+    return templates.Any() ? templates.First().EntityGuid : null;
   });
 
   // create array with all 2sxc modules
@@ -54,42 +54,76 @@
     .Where(m => !m.IsDeleted)
     .Where(m => m.ModuleSettings.ContainsKey(SettingsCG))
     ;
+  var modsGuid = allMods
+      .Select(m => new { 
+      Guid = Guid.Parse(m.ModuleSettings[SettingsCG].ToString()),
+      Module = m
+    })
+;
 
-  var modules = mc.GetAllTabsModules(portalId, false);
-
-  var viewsWithBlocks = views.Join(cbGroups, 
-    v => v.EntityId,
+  var blocksWithModules = cbByViews.GroupJoin(allMods, 
     cb => cb.Key,
-    (v, cb) => new { View = v, Blocks = cb}
+    m => TryParseGuid(m.ModuleSettings[SettingsCG]),
+    (cb, m) => new { Block = cb, Modules = m }
+  )
+  // .GroupBy(set => set.Block.Key)
+  ;
+
+  var viewsWithBlocks = views.GroupJoin(blocksWithModules, 
+    v => v.EntityGuid,
+    bwm => bwm.Block.Key,
+    (v, bwm) => new { 
+      View = v, 
+      Blocks = bwm
+    }
   );
 }
 
 <div>
   <h3>Statistics</h3>
   <ol>
-    <li>We're looking at portal @portalId, Zone @app.ZoneId, App: @app.AppId. 
-      Modules: @allMods.Count()
-      Module Def for Content is 
-      @* @dnnMod2sxcContent (@dnnModsC.Count), App is @dnnMod2sxcApp (@dnnModsA.Count) *@
-    </li>
+    <li>We're looking at portal @portalId, Zone @app.ZoneId, App: @app.AppId </li>
     <li>@views.Count() Views</li>
     <li>@contentBlocks.Count() Content Blocks </li>
-    <li>@modules.Count DNN Modules </li>
+    <li>@allMods.Count() DNN Modules in the primary language </li>
   </ol>
 </div>
 <h3>Views</h3>
+
 <ol>
 @foreach(var set in viewsWithBlocks) {
   <li>
     View <strong>@set.View.Name</strong>
     @if(set.Blocks.Any()) {
       <text>has @set.Blocks.Count() content-blocks</text>
+      <ol>
+        @foreach(var block in set.Blocks) {
+          <li>
+            @block.Block.Key
+            <text>on @block.Modules.Count() modules</text>
+          </li>
+        }
+      </ol>
     } else {
       <text>not in use</text>
     }
 
   </li>
 }
+</ol>
+
+<h3>Content Blocks</h3>
+<ol>
+  @foreach(var cbSet in cbByViews) {
+    <li>
+      @cbSet.Key / @cbSet.Count()
+      @* <ol>
+        @foreach(var cb in cbSet) {
+          
+        }
+      </ol> *@
+    </li>
+  }
 </ol>
 
 <h3>Modules</h3>
@@ -106,6 +140,18 @@
     <span>
     @k = @settings[k],
     </span>
+  }
+}
+
+@functions {
+  Guid TryParseGuid(object original) {
+    try {
+        // var setGuid = m.ModuleSettings[SettingsCG];
+        return Guid.Parse(original.ToString());
+      }
+      catch {
+        return Guid.Empty;
+      }
   }
 }
 
