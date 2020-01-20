@@ -17,13 +17,29 @@
 
 </trim>
 @{
+  // CONSTANTS
   // this key is used in module settings
   const string SettingsCG = "ToSIC_SexyContent_ContentGroupGuid";
+
   // isDev should just tell us, if we're looking at the dev-portal (while creating this demo app) or if it's running on 2sxc.org
   // where we use other zoneId and appId;
   var isDev = Dnn.Portal.PortalId == 59;
   var is2sxcTutorial = Dnn.Portal.PortalId == 24;
   var portalId = isDev ? 10 : is2sxcTutorial ? 0 : Dnn.Portal.PortalId;
+
+  // create array with all 2sxc modules in this portal
+  var mc = ModuleController.Instance;
+  var dnnMod2sxcContent = mc.GetModulesByDefinition(portalId, "2Sexy Content");
+  var dnnMod2sxcApp = mc.GetModulesByDefinition(portalId, "2Sexy Content App");
+  var mergedMods = new ModuleInfo[dnnMod2sxcContent.Count + dnnMod2sxcApp.Count];
+  dnnMod2sxcContent.CopyTo(mergedMods);
+  dnnMod2sxcApp.CopyTo(mergedMods, dnnMod2sxcContent.Count);
+  var allMods = mergedMods
+    .Where(m => m.DefaultLanguageModule == null)
+    .Where(m => !m.IsDeleted)
+    .Where(m => m.ModuleSettings.ContainsKey(SettingsCG));
+
+  // Get the app & views we're going to investiage the views of
   var app = isDev 
     ? ToSic.Sxc.Dnn.Factory.App(11, 35) // some app on our dev environment
     : is2sxcTutorial
@@ -34,25 +50,18 @@
   // get all content blocks which have templates - skip the ones without, as they have not been initialized yet
   var contentBlocks = AsList(app.Data["2SexyContent-ContentGroup"]);
 
+  var block2ModuleMap = contentBlocks.GroupJoin(allMods, 
+    cb => cb.EntityGuid,
+    m => TryParseGuid(m.ModuleSettings[SettingsCG]),
+    (cb, m) => new { Block = cb, Modules = m }
+  );
+
   // group the blocks by template - make sure that blocks without templates are grouped into null
   var cbByViews = contentBlocks.GroupBy(cb => {
     var templates = AsList(cb.Template as object);
     return templates.Any() ? templates.First().EntityGuid : null;
   });
 
-  // create array with all 2sxc modules
-  var mc = ModuleController.Instance;
-  var dnnMod2sxcContent = mc.GetModulesByDefinition(portalId, "2Sexy Content");
-  var dnnMod2sxcApp = mc.GetModulesByDefinition(portalId, "2Sexy Content App");
-
-  var mergedMods = new ModuleInfo[dnnMod2sxcContent.Count + dnnMod2sxcApp.Count];
-  dnnMod2sxcContent.CopyTo(mergedMods);
-  dnnMod2sxcApp.CopyTo(mergedMods, dnnMod2sxcContent.Count);
-
-  var allMods = mergedMods
-    .Where(m => m.DefaultLanguageModule == null)
-    .Where(m => !m.IsDeleted)
-    .Where(m => m.ModuleSettings.ContainsKey(SettingsCG));
 
   var blocksWithModules = cbByViews.GroupJoin(allMods, 
     cb => cb.Key,
@@ -111,16 +120,16 @@
 }
 </ol>
 
-<h3>Content Blocks</h3>
+<h3>Content Blocks with Modules</h3>
 <ol>
-  @foreach(var cbSet in cbByViews) {
+  @foreach(var cbSet in block2ModuleMap) {
     <li>
-      @cbSet.Key / @cbSet.Count()
-      @* <ol>
-        @foreach(var cb in cbSet) {
-          
+      @cbSet.Block.Key / @cbSet.Modules.Count()
+      <ol>
+        @foreach(var mod in cbSet.Modules) {
+          <li>@mod.ModuleID on tab @mod.TabID</li>
         }
-      </ol> *@
+      </ol>
     </li>
   }
 </ol>
