@@ -17,10 +17,6 @@
 
 </trim>
 @{
-  // CONSTANTS
-  // this key is used in module settings
-  const string SettingsCG = "ToSIC_SexyContent_ContentGroupGuid";
-
   // isDev should just tell us, if we're looking at the dev-portal (while creating this demo app) or if it's running on 2sxc.org
   // where we use other zoneId and appId;
   var isDev = Dnn.Portal.PortalId == 59;
@@ -28,16 +24,7 @@
   var portalId = isDev ? 10 : is2sxcTutorial ? 0 : Dnn.Portal.PortalId;
 
   // create array with all 2sxc modules in this portal
-  var mc = ModuleController.Instance;
-  var dnnMod2sxcContent = mc.GetModulesByDefinition(portalId, "2Sexy Content");
-  var dnnMod2sxcApp = mc.GetModulesByDefinition(portalId, "2Sexy Content App");
-  var mergedMods = new ModuleInfo[dnnMod2sxcContent.Count + dnnMod2sxcApp.Count];
-  dnnMod2sxcContent.CopyTo(mergedMods);
-  dnnMod2sxcApp.CopyTo(mergedMods, dnnMod2sxcContent.Count);
-  var allMods = mergedMods
-    .Where(m => m.DefaultLanguageModule == null)
-    .Where(m => !m.IsDeleted)
-    .Where(m => m.ModuleSettings.ContainsKey(SettingsCG));
+  var allMods = GetAllModulesOfPortal(portalId);
 
   // Get the app & views we're going to investiage the views of
   var app = isDev 
@@ -45,11 +32,14 @@
     : is2sxcTutorial
       ? ToSic.Sxc.Dnn.Factory.App(2, 2) // the 2sxc.org Content-App
       : App; // fallback, use this app, but not very exciting
+  
+  // all views in this specific app, sorted by name
   var views = AsList(app.Data["2SexyContent-Template"]).OrderBy(t => t.Name);
 
   // get all content blocks which have templates - skip the ones without, as they have not been initialized yet
   var contentBlocks = AsList(app.Data["2SexyContent-ContentGroup"]);
 
+  // create a map of all blocks to DNN modules
   var block2ModuleMap = contentBlocks.GroupJoin(allMods, 
     cb => cb.EntityGuid,
     m => TryParseGuid(m.ModuleSettings[SettingsCG]),
@@ -59,25 +49,13 @@
     }
   );
 
-  var view2BlockModuleMap = block2ModuleMap.GroupBy(b2m => {
+  // now map all the template-IDs to the block-module map
+  var template2BlockModuleMap = block2ModuleMap.GroupBy(b2m => {
     var templates = AsList(b2m.Block.Template as object);
     return templates.Any() ? templates.First().EntityGuid : null;
   });
 
-  // group the blocks by template - make sure that blocks without templates are grouped into null
-  var cbByViews = contentBlocks.GroupBy(cb => {
-    var templates = AsList(cb.Template as object);
-    return templates.Any() ? templates.First().EntityGuid : null;
-  });
-
-
-  var blocksWithModules = cbByViews.GroupJoin(allMods, 
-    cb => cb.Key,
-    m => TryParseGuid(m.ModuleSettings[SettingsCG]),
-    (cb, m) => new { Block = cb, Modules = m }
-  );
-
-  var viewsWithBlocks = views.GroupJoin(view2BlockModuleMap,
+  var viewsWithBlocks = views.GroupJoin(template2BlockModuleMap,
     v => v.EntityGuid,
     bwm => bwm.Key,
     (v, bwm) => {
@@ -91,81 +69,65 @@
   );
 }
 
-<div>
-  <h3>Statistics</h3>
-  <ol>
-    <li>We're looking at portal @portalId, Zone @app.ZoneId, App: @app.AppId </li>
-    <li>@views.Count() Views</li>
-    <li>@contentBlocks.Count() Content Blocks </li>
-    <li>@allMods.Count() DNN Modules in the primary language </li>
-  </ol>
-</div>
-<h3>Views</h3>
-
+<h2>Statistics</h2>
 <ol>
+  <li>We're looking at portal @portalId, Zone @app.ZoneId, App: @app.AppId </li>
+  <li>@views.Count() Views</li>
+  <li>@contentBlocks.Count() Content Blocks </li>
+  <li>@allMods.Count() DNN Modules in the primary language </li>
+</ol>
+<hr>
+
+<h2>Views</h2>
+
 @foreach(var set in viewsWithBlocks) {
-  <li>
-    View <strong>@set.View.Name</strong>
-
-    @set.Blocks.Count() / @set.ModsCount
-    @if(set.Blocks != null) {
-       <text>has @set.Blocks.Count() content-blocks in @set.ModsCount modules </text>
-       <ol>
-        @foreach(var blockSet in set.Blocks) {
-          <li>
-            Block: @blockSet.Block.EntityGuid (@blockSet.Block.EntityId) 
-            in @blockSet.Modules.Count() modules: @string.Join(",", blockSet.Modules.Select(m => m.ModuleID))
-          </li>
-        }
-       </ol>
-    } else {
-      <text>not in use</text>
-    }
-
-  </li>
-}
-</ol>
-
-<h3>Content Blocks with Modules</h3>
-<ol>
-  @foreach(var cbSet in block2ModuleMap) {
-    <li>
-      @cbSet.Block.Key / @cbSet.Modules.Count()
+  <h3>View @set.View.Name</h3>
+  if(set.Blocks != null) {
+    <div>
+      Used in @set.Blocks.Count() blocks and @set.ModsCount modules
+    </div>
       <ol>
-        @foreach(var mod in cbSet.Modules) {
-          <li>@mod.ModuleID on tab @mod.TabID</li>
-        }
+      @foreach(var blockSet in set.Blocks) {
+        <li>
+          Block: @blockSet.Block.EntityGuid (@blockSet.Block.EntityId) 
+          in @blockSet.Modules.Count() modules: @string.Join(",", blockSet.Modules.Select(m => m.ModuleID))
+        </li>
+      }
       </ol>
-    </li>
-  }
-</ol>
-
-<h3>Modules</h3>
-<ol>
-  @foreach(var m in allMods) {
-
-    <li>@m.ModuleID / @m.PortalID - modDef: @m.ModuleDefID - settings = @ShowSettings(m.ModuleSettings)</li>
-  }
-</ol>
-
-@helper ShowSettings(Hashtable settings) {
-
-  foreach(var k in settings.Keys) {
-    <span>
-    @k = @settings[k],
-    </span>
+  } else {
+    <text>not in use</text>
   }
 }
+
 
 @functions {
+  // CONSTANTS
+  // this key is used in module settings
+  const string SettingsCG = "ToSIC_SexyContent_ContentGroupGuid";
+
+  // create array with all 2sxc modules in this portal
+  List<ModuleInfo> GetAllModulesOfPortal(int portalId) {
+    var mc = ModuleController.Instance;
+    var dnnMod2sxcContent = mc.GetModulesByDefinition(portalId, "2Sexy Content");
+    var dnnMod2sxcApp = mc.GetModulesByDefinition(portalId, "2Sexy Content App");
+    var mergedMods = new ModuleInfo[dnnMod2sxcContent.Count + dnnMod2sxcApp.Count];
+    dnnMod2sxcContent.CopyTo(mergedMods);
+    dnnMod2sxcApp.CopyTo(mergedMods, dnnMod2sxcContent.Count);
+    var allMods = mergedMods
+      .Where(m => m.DefaultLanguageModule == null)
+      .Where(m => !m.IsDeleted)
+      .Where(m => m.ModuleSettings.ContainsKey(SettingsCG));
+    return allMods.ToList();
+  }
+
+  // older versions of .net framework don't have Guid.TryParse, so use this
   Guid TryParseGuid(object original) {
     try {
-        // var setGuid = m.ModuleSettings[SettingsCG];
-        return Guid.Parse(original.ToString());
-      }
-      catch {
-        return Guid.Empty;
-      }
+      return Guid.Parse(original.ToString());
+    }
+    catch {
+      return Guid.Empty;
+    }
   }
 }
 
