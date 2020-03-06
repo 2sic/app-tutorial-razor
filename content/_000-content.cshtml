@@ -19,7 +19,12 @@
 <ul>
   <li>Name: @Content.FirstName @Content.LastName</li>
   <li>Birthday: @Content.Birthday.ToString("d")</li>
+  <li>Award: @Content.Awards.Name</li>
 </ul>
+
+<trim>
+<p>In this example, the Content-Item is of the type <code>Person</code>. It has properties like <code>Name, Birthday</code> etc. and a property called <code>Awards</code>. <code>Awards</code> refers to other items of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. Below we'll show some ways to show many items, if there are more than one.  
+</trim>
 
 <trim>
 <hr>
