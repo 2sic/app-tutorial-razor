@@ -7,7 +7,8 @@
 
 <h2>2sxc Custom Input Fields (11.02+)</h2>
 <p>
-  2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. This example shows the most basic case - just a dummy message (so not a real input field). You can use it to learn about things like...
+  2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
+  This example shows the most basic case - just a dummy message (so not a real input field). You can use it to learn about things like...
 </p>
 <ol>
   <li>Naming conventions for where to put the files</li>
@@ -25,33 +26,17 @@
 <h2>Basic Hello-World Custom Field</h2>
 <p>
   This example shows a dummy-field which doesn't allow editing, but will just show a message. <br>
-  Hit this edit button to have a look: @Edit.Toolbar(Content, toolbar: new [] { "toolbar=empty", "+new" })
+  Hit this edit button to have a look: @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })
 </p>
 
 <hide>
-  <div class="alert alert-warning">
-    Important: We opened permissions that you can experience the edit dialog - so you can save, but it will just create draft data 😉. 
-  </div>
-
-
-<hr>
-<h2>More Stuff</h2>
-<div>
-  TODO 
-  <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">how-to</a> and the 
-  <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.
-</div>
-
-@RenderPage("../shared/_source-code.cshtml", new { 
-  Path = VirtualPath,
-  Size = 200,
-}) 
+@RenderPage("_warning-and-links.cshtml")
 
 @RenderPage("../shared/_source-code.cshtml", new {
   Path = VirtualPath,
   File = "../system/field-empty-app-hello-world/index.js",
   Size = 700,
   Language = "javascript",
-  // TitlePath = "system/field-empty-app-hello-world/index.js",
+  Title = "Source of [app]/system/field-empty-app-hello-world/index.js",
 })
 </hide>
