@@ -1,0 +1,85 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@{
+  // Special command to ensure that the toolbars appear, even if they are won't work.
+  // This is not an official API, and may change any time.
+  // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
+  Edit.Enabled = true;
+  // This will tell the edit-UI that we need the JS features
+  Edit.Enable(api: true, context: true, styles: true);
+}
+@RenderPage("_header.cshtml")
+
+
+<h2>2sxc Toolbar Customization</h2>
+<div>
+  Since you can do so many things customizing the toolbar, we created a bunch of small examples for you. Note that we are basically providing a list of commands how the toolbar should be modified. You should also 
+  <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">read the docs</a> to learn more about this. 
+</div>
+
+<div class="alert alert-warning">
+  Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (&hellip;). <br>
+  Hover over the various boxes to see the result - like this: <br>
+  <img src="@App.Path/ui/assets/hover-example.jpg" width="100%">
+</div>
+
+<hr>
+</hide>
+
+<h2>Initial Setup, No Configuration</h2>
+
+<div class="alert alert-secondary" @Edit.TagToolbar()>
+  <h3><code>Edit.TagToolbar()</code> without any Data</h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content)>
+  <h3><code>Edit.TagToolbar(Content)</code> with a content-item</h3>
+</div>
+
+<hr>
+
+<h2>Add / Remove Buttons with <code>+</code>/<code>-</code></h2>
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+edit", "+new"})>
+  <h3>Add two buttons </h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&color=pink,black"})>
+  <h3>Add <code>new</code> button with colors </h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-0"})>
+  <h3>Add <code>new</code> at the end of button-list</h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "-more" })>
+  <h3>Remove <code>more</code> button</h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "toolbar=empty", "+edit"})>
+  <h3>Use empty toolbar template and add <code>edit</code></h3>
+</div>
+
+<hr>
+
+<h2>Modify a button with <code>%</code></h2>
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%edit&color=red"})>
+  <h3>Edit button is now red</h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "+new&color=red&title=Blog-Post?contentType=BlogPost",
+  "+new&color=green&title=Category?contentType=Category",
+})>
+  <h3>New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%delete&show=true"})>
+  <h3>Always show <code>Delete</code></h3>
+  <div>Note that you'll have to hit the ellipsis a few times to see it.</div>
+</div>
+
+
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

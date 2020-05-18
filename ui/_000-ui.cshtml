@@ -1,0 +1,28 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+<hide>
+@RenderPage("_header.cshtml")
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+
+<trim>
+<p>
+  Learn to customize the edit experience (UI/UX).
+</p>
+
+<h2>Some notes before we start</h2>
+<p>
+  TODO
+</p>
+
+<hr>
+<h2>Toolbar Customization Examples</h2>
+
+<ol>
+  @helpers.TutorialLink("Test toolbar", "ui100")
+</ol>
+
+<hr>
+<h2>More Information around Customizing the Edit UX</h2>
+<ol>
+  @helpers.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html", "2sxc Docs showing how to customize the toolbar")
+</ol>
