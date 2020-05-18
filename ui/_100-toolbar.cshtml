@@ -1,15 +1,6 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 <hide>
-@{
-  // Special command to ensure that the toolbars appear, even if they are won't work.
-  // This is not an official API, and may change any time.
-  // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
-  Edit.Enabled = true;
-  // This will tell the edit-UI that we need the JS features
-  Edit.Enable(api: true, context: true, styles: true);
-}
 @RenderPage("_header.cshtml")
-
 
 <h2>2sxc Toolbar Customization</h2>
 <div>
@@ -78,7 +69,73 @@
   <div>Note that you'll have to hit the ellipsis a few times to see it.</div>
 </div>
 
+<hr>
 
+<h2>Button Groups</h2>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "+group=my",
+  "+new&group=my&color=red&title=Blog-Post?contentType=BlogPost",
+  "+new&group=my&color=green&title=Category?contentType=Category",
+})>
+  <h3>Add a button-group just for my buttons</h3>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "+group=my1",
+  "+new&group=my1&color=red&title=Blog-Post?contentType=BlogPost",
+  "+group=my2",
+  "+new&group=my2&color=green&title=Category?contentType=Category",
+})>
+  <h3>Add two button-groups</h3>
+</div>
+
+<hr>
+
+<h2>Hover Behavior</h2>
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "settings&hover=left",
+})>
+  <h3>Hover Left</h3>
+</div>
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "settings&hover=left&autoAddMore=start",
+})>
+  <h3>Hover Left and <code>more</code> button to the left</h3>
+</div>
+
+<hr>
+
+<h2>Custom JavaScript Code</h2>
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "custom&title=Show%20Message?call=showMsg1",
+})>
+  <h3>Just call <code>showMsg1()</code> </h3>
+</div>
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "custom&title=Show%20Message?call=showMsg2&id=42",
+})>
+  <h3>Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
+</div>
+
+<script>
+    function showMsg1() {
+        alert('hello from my button!');
+    }
+    function showMsg2(context, event) {
+        console.log(context, event);
+        alert('hello from my Message - got this id:' + context.button.command.params.id);
+    }
+</script>
+
+<hr>
+<h2>More Stuff</h2>
+<div>
+  You can do much more - like change icons, call call-parameters etc. 
+  Read the 
+  <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">how-to</a> and the 
+  <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.
+</div>
 
 <hide>
 @RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
