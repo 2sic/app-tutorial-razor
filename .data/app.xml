@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.01.00" ExportDate="2020-05-18T16:15:59.1985878+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.01.01" ExportDate="2020-05-18T20:30:30.8673434+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-US" />
@@ -310,6 +310,159 @@
             <Value Key="EntityType" Value="PersonAwards" Type="String" />
           </Entity>
           <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="7e294774-38e7-4891-b5ce-1fbb555cfb2d" Json="True" KeyNumber="2869" />
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="9588197a-3365-4ea8-9377-63ba70c333b2" Name="UiDemoData" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="2f88911e-4085-4f11-b72d-624c90cd5d6d" Json="True" KeyNumber="4113">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="30dd6c73-50b5-4792-b096-95b4a39d92aa" Name="UiEmptyHelloWorld" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="HelloWorld" Type="Empty" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="407f42c9-e33b-4206-ad63-2f2e66c181c8" Json="True" KeyNumber="4115">
+            <Value Key="InputType" Value="empty-app-hello-world" Type="String" />
+            <Value Key="Name" Value="HelloWorld" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="f3693de8-bf50-46ba-a43b-c645d3a2a998" Name="UiStringColorPickr" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Color1" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="382965f6-a261-4aca-a1c6-3eb38a3eb87d" Json="True" KeyNumber="4116">
+            <Value Key="InputType" Value="string-app-color-pickr" Type="String" />
+            <Value Key="Name" Value="Color1" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Color2" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="245bdb47-f304-4539-af0f-8997f2babaf8" Json="True" KeyNumber="4117">
+            <Value Key="InputType" Value="string-app-color-pickr" Type="String" />
+            <Value Key="Name" Value="Color2" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="ColorWithDefault" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="32d4126d-5a54-48c8-926a-28c45e766528" Json="True" KeyNumber="4118">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="#E91E63F2" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-app-color-pickr" Type="String" />
+            <Value Key="Name" Value="Color With Default Value" Type="String" />
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="6177cb37-6e2f-4cfe-b87e-e4e757c2b51a" Json="True" KeyNumber="4118">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="ade32777-6bb7-4a61-aeeb-258a3cc9ea2d" Name="UiStringColorPickrPro" Description="" Scope="2SexyContent" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="PickerWithNoPresets" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="c0b11f24-ca64-473f-b753-02e7ab884ce8" Json="True" KeyNumber="4119">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-app-color-pickr-pro" Type="String" />
+            <Value Key="Name" Value="Picker With No Presets" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;This Picker doesn't have pre-defined colors.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="feb5332e-1437-4eeb-a381-69b00751d246" Json="True" KeyNumber="4119">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" AttributeSetName="@string-app-color-pickr-pro" EntityGUID="98c85e16-2ed8-4c2a-8698-560cea3e6f5b" Json="True" KeyNumber="4119">
+            <Value Key="Swatches" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="PickerWith2sicPresets" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a64bb592-4d23-420c-88fe-0769162466b6" Json="True" KeyNumber="4120">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-app-color-pickr-pro" Type="String" />
+            <Value Key="Name" Value="Picker With 2sic Color Presets" Type="String" />
+            <Value Key="Notes" Value="&lt;p&gt;This picker has pre-configured 2sic colors.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="3bd01e0e-2e28-4106-9357-987dfca5915f" Json="True" KeyNumber="4120">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" AttributeSetName="@string-app-color-pickr-pro" EntityGUID="bd716745-b444-4cf2-8b4f-88d52fb8ab44" Json="True" KeyNumber="4120">
+            <Value Key="Swatches" Value="#0088F4 Cyan&#xA;#D50F7E Magenta&#xA;#97D600 Lime&#xA;#000879 Mix cyan and magenta&#xA;#7E0D00 Mix magenta and lime&#xA;#007200 Mix cyan and lime" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
         </Attribute>
       </Attributes>
     </AttributeSet>
@@ -2604,7 +2757,7 @@
       <Value Key="ContentTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IsHidden" Value="False" Type="Boolean">
+      <Value Key="IsHidden" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ListContentTypeStaticName" Value="" Type="String">
@@ -2638,6 +2791,358 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ViewNameInUrl" Value="reuse410/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="90224d2d-2742-4810-a86b-d3af665d1f81" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="UI000 - Customize UX Home" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="ui/_000-ui.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="ui/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="f5299e63-0293-4d5d-91f5-5106912bf967" Json="True">
+      <Value Key="ContentDemoEntity" Value="731e42e9-6cec-41a0-86b0-2984f5b515ac" Type="Entity">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ContentTypeStaticName" Value="9588197a-3365-4ea8-9377-63ba70c333b2" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="UI100 - Toolbar" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="ui/_100-toolbar.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="ui100/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="9588197a-3365-4ea8-9377-63ba70c333b2" AttributeSetName="UiDemoData" EntityGUID="731e42e9-6cec-41a0-86b0-2984f5b515ac">
+      <Value Key="Title" Value="Test Example" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="57182799-8a06-40e4-8ae8-8fe1d75f7bff" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="UI201 - Custom Field - Empty - Hello World" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="ui/_201-field-hello-world.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="ui201/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="30dd6c73-50b5-4792-b096-95b4a39d92aa" AttributeSetName="UiEmptyHelloWorld" EntityGUID="3e873735-962b-4cdc-8466-59d7770c76aa" />
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="f262d201-9460-4845-b752-2f0b3e60aac6" Json="True" KeyGuid="30dd6c73-50b5-4792-b096-95b4a39d92aa">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="$" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Allow Anon to read schema" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="1c3c4290-a412-48fc-874b-e04774666715" Json="True" KeyGuid="30dd6c73-50b5-4792-b096-95b4a39d92aa">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="3a9028ef-dccf-4afb-99f9-077e33acda1a" Json="True" KeyString="30dd6c73-50b5-4792-b096-95b4a39d92aa">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="&lt;p&gt;This just shows a field using the custom &lt;strong&gt;empty-app-hello-world&lt;/strong&gt; input field.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="UI Custom Field - Empty with HelloWorld!" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="7fb5c09e-f9b1-4547-bfa8-c10243cc7595" Json="True" KeyString="f3693de8-bf50-46ba-a43b-c645d3a2a998">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="UI Custom Field - String Color Picker" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="45bafbe6-57af-448e-b051-3e95d019983b" Json="True" KeyGuid="f3693de8-bf50-46ba-a43b-c645d3a2a998">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="$" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Anon Schema" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="94f55c85-2139-44da-aacc-649a74fb3b98" Json="True" KeyGuid="f3693de8-bf50-46ba-a43b-c645d3a2a998">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="View draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="733f8358-81a5-4b5f-831c-6bd4275e2be8" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="UI211 String Color Picker" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="ui/_211-string-color-picker.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="ui211/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="f3693de8-bf50-46ba-a43b-c645d3a2a998" AttributeSetName="UiStringColorPickr" EntityGUID="6ef81dfd-d176-469d-8d62-7e5866d36612">
+      <Value Key="Color1" Value="#9C27B0E6" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Color2" Value="#009688BF" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="86c49cf3-d85d-4641-86fb-1973576ed6b8" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Portal File System" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="UI221 String - Color Picker Pro" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="ui/_221-string-color-picker-pro.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="ui221/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="28e1bc6b-9547-4701-b4d9-fb6174b1d2e9" Json="True" KeyGuid="ade32777-6bb7-4a61-aeeb-258a3cc9ea2d">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="$" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="View can access schema" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="8bacb9e2-0799-4b61-b981-5c75fe018653" Json="True" KeyGuid="ade32777-6bb7-4a61-aeeb-258a3cc9ea2d">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="View can create draft" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

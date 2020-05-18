@@ -6,15 +6,20 @@
 }
 
 <h2>2sxc Custom Color-Picker Input Field</h2>
-<p>
-  2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
-  This example shows a color picker using <a href="https://simonwep.github.io/pickr/" target="_blank">Pickr</a>, a cool JS library. You can learn how to...
-</p>
-<ul>
-  <li>Use <code>connector.loadScript(...)</code> to load a js library</li>
-  <li>Use <code>connector.data</code> to get the <code>value</code> and update it</li>
-  <li>Use <code>disconnectedCallback()</code> to destroy inner objects</li>
-</ul>
+<div class="alert alert-info">
+  <p>
+    2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
+    This example shows a color picker using <a href="https://simonwep.github.io/pickr/" target="_blank">Pickr</a>, a cool JS library. 
+  </p>
+  <p>You can learn how to:</p>
+  <ul>
+    <li>Use <code>connector.loadScript(...)</code> to load a js library</li>
+    <li>Use <code>connector.data</code> to get the <code>value</code> and update it</li>
+    <li>How to only update the data if you really change it (so users can cancel the dialog without being asked)</li>
+    <li>How to save <code>null</code> to explicitly not save or reset a value</li>
+    <li>Use <code>disconnectedCallback()</code> to destroy inner objects</li>
+  </ul>
+  </div>
 <hr>
 </hide>
 
@@ -32,6 +37,6 @@
   File = "../system/field-string-app-color-pickr/index.js",
   Size = 2500,
   Language = "javascript",
-  Title = "Source of [app]/system/field-string-app-color-pickr/index.js"
+  Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
 })
 </hide>

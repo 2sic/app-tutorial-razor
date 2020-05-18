@@ -6,6 +6,9 @@
   var filePath = PageData["Path"];
   var file = PageData["File"];
   var titlePath = PageData["TitlePath"] as string;
+
+  var wrap = PageData["Wrap"] != null ? (Boolean)PageData["Wrap"] : false;
+
   if(file != null) {
     if(file.IndexOf(".") == -1) {
       file = "_" + file + ".cshtml";
@@ -65,5 +68,8 @@
     });
     editor.setTheme("ace/theme/sqlserver");
     editor.session.setMode("@language");
+    editor.session.setOptions({
+      wrap: @(wrap ? "true" : "false"),
+    })
 </script>
 
