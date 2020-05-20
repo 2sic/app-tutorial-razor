@@ -15,11 +15,6 @@
 
   class StringColorPicker extends HTMLElement {
 
-    /** Constructor for WebComponents - the first line must always be super() */
-    constructor() {
-      super();
-    }
-
     /** connectedCallback() is the standard callback when the component has been attached */
     connectedCallback() {
       this.innerHTML = html;
@@ -125,6 +120,6 @@
     }
   }
 
-  // Register this web component
-  customElements.define(tagName, StringColorPicker);
+  // Register this web component - if it hasn't been registered yet
+  if (!customElements.get(tagName)) customElements.define(tagName, StringColorPicker);
 })();

@@ -116,6 +116,6 @@
     }
   }
 
-  // Register this web component
-  customElements.define(tagName, StringColorPickerFlat);
+  // Register this web component - if it hasn't been registered yet
+  if (!customElements.get(tagName)) customElements.define(tagName, StringColorPickerFlat);
 })();

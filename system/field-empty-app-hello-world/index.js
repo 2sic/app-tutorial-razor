@@ -27,6 +27,6 @@
     }
   }
 
-  // Register this web component
-  customElements.define(tagName, EmptyHelloWorld);
+  // Register this web component - if it hasn't been registered yet
+  if (!customElements.get(tagName)) customElements.define(tagName, EmptyHelloWorld);
 })();

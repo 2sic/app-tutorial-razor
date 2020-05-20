@@ -1,3 +1,4 @@
+@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
   <div class="alert alert-warning">
     Important: We opened permissions that you can experience the edit dialog - so you can save, but it will just create draft data 😉. 
   </div>
@@ -5,6 +6,8 @@
 
 <hr>
 <h2>More Stuff</h2>
-<div>
-  <a href="https://docs.2sxc.org/how-to/customize-edit-ux/input-fields.html" target="_blank">How-To Docs for Custom Input Fields</a> 
-</div>
+<ul>
+  @helpers.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/input-fields.html", "How-To Docs for Custom Input Fields")
+  @helpers.LiExtLink("https://docs.2sxc.org/specs/form/index.html", "Specs for Field Customization")
+  @helpers.LiExtLink("https://docs.2sxc.org/specs/form/field-wysiwyg.html", "Specs for WYSIWYG customization")
+</ul>
