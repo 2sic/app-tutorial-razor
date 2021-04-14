@@ -1,0 +1,44 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using System.Collections.Generic;
+@using System.Linq;
+@using ToSic.Eav.Data;
+<hide>
+@RenderPage("_header.cshtml")
+</hide>
+<trim>
+
+<h2>Look at the Content-Type of something</h2>
+<p>
+  In some advanced cases you want to find out information about a specific content-type.
+</p>
+</trim>
+
+<h3>Content-Type Information</h3>
+@{
+  var type = AsEntity(Content).Type;
+  var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
+}
+<ul>
+  <li>Type object: <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html" target="_blank">@type 🔗</a></li>
+  <li>Type Name: "@type.Name"</li>
+  <li>Type Internal Name: "@type.StaticName"</li>
+  <li>Type of the Awards field: "@attributes.First(t => t.Name == "Awards").Type"</li>
+</ul>
+
+<h3>Properties / Attributes</h3>
+<p>
+  Read more about <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html#ToSic_Eav_Data_IContentType_Attributes" target="_blank">attributes in the docs 🔗</a>
+</p>
+<ul>
+    @foreach(var attr in type.Attributes) {
+    <li>
+      @* This will get the label from the metadata entity *@
+      @(attr.Metadata.GetBestValue<string>("Name", "@All"))
+      (@attr.Name, <code>@attr.Type</code> = typeId @((int)attr.ControlledType))
+    </li>
+  }
+</ul>
+
+<hide>
+@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>
