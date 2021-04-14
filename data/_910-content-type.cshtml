@@ -17,13 +17,26 @@
 @{
   var type = AsEntity(Content).Type;
   var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
+  var sexAttr = attributes.First(t => t.Name == "Sex");
+  // Check the metadata for the DropdownValues in the type @string-dropdown
+  var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
 }
-<ul>
+<ol>
   <li>Type object: <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html" target="_blank">@type 🔗</a></li>
   <li>Type Name: "@type.Name"</li>
   <li>Type Internal Name: "@type.StaticName"</li>
   <li>Type of the Awards field: "@attributes.First(t => t.Name == "Awards").Type"</li>
-</ul>
+  <li>
+    Values in the <code>Sex</code> field (@sexAttr.Type) dropdown
+    <ul>
+      @foreach (var s in sexDropdown.Split(new [] { '\r', '\n' }))
+      {
+        var parts = s.Split(':');
+        <li>@parts[0] = '@(parts.Length > 0 ? parts[1] : "")'</li>
+      }
+    </ul>
+  </li>
+</ol>
 
 <h3>Properties / Attributes</h3>
 <p>

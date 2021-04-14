@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.13.00" ExportDate="2021-04-14T07:56:21.1324502+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.13.00" ExportDate="2021-04-14T08:11:53.5732942+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -340,6 +340,59 @@
             <Value Key="EntityType" Value="PersonAwards" Type="String" />
           </Entity>
           <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="7e294774-38e7-4891-b5ce-1fbb555cfb2d" Json="True" KeyNumber="2869" />
+        </Attribute>
+        <Attribute StaticName="Sex" Type="String" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0938a3fa-a7ee-49b1-af70-65061fec3954" Json="True" KeyNumber="4652">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-dropdown" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Sex" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="5c811aa6-34bb-4ddb-bb68-520e6d3e0100" Json="True" KeyNumber="4652">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="cd6c6206-1841-4b32-9072-a9e4a37a375c" Json="True" KeyNumber="4652">
+            <Value Key="DropdownValues" Value="Unknown:&#xA;Male:m&#xA;Female:f&#xA;Non-binary:nb" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
         </Attribute>
       </Attributes>
     </AttributeSet>
@@ -3514,6 +3567,8 @@
     <Folder Id="3102" RelativePath="adam/Tutorial-Razor/hjdIjeCXgU2_y6gcEiJkPw/" />
     <Folder Id="3100" RelativePath="adam/Tutorial-Razor/lkSe34OoCkek0zycr6nENQ/" />
     <Folder Id="3094" RelativePath="adam/Tutorial-Razor/n97Ml8Vl10mZADcbKmmBKw/" />
+    <Folder Id="10562" RelativePath="adam/Tutorial-Razor/rHgUNyVUF0aXmDUb4o6SDg/" />
+    <Folder Id="10563" RelativePath="adam/Tutorial-Razor/rHgUNyVUF0aXmDUb4o6SDg/Mugshot/" />
     <Folder Id="3096" RelativePath="adam/Tutorial-Razor/t2CvZ6b2A0SkiQawk1wHow/" />
     <Folder Id="3092" RelativePath="adam/Tutorial-Razor/Tm5yNs0hAEyc6HIID4k12g/" />
     <Folder Id="10560" RelativePath="adam/Tutorial-Razor/YjBw9OeCIkC5x4Pqo-_q9w/" />
