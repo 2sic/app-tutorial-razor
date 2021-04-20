@@ -1,3 +1,4 @@
+@inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -20,14 +21,16 @@
     Below you'll see a helper I created called Boolmoji - it will show a @Boolmoji(true) or @Boolmoji(false) instead of boolean values.
   </div>
 </trim>
+
+@functions {
+  string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
+}
+
 <ul>
   <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
   <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
 </ul>
 
-@helper Boolmoji(bool value) {
-  @(value ? "✔️" : "❌")
-}
 
 <hide>
 <hr>

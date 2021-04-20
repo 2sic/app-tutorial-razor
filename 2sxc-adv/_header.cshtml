@@ -1,5 +1,2 @@
 @inherits ToSic.Custom.Razor12
-@{
-  var hlp = CreateInstance("../shared/_helpers.cshtml");
-}
-@hlp.TitleAndBreadcrumb("2sxc Advanced Tutorials", "2sxc-adv", "2sxc-adv/home")
+@CreateInstance("../shared/_helpers.cshtml").TitleAndBreadcrumb("2sxc Advanced Tutorials", "2sxc-adv", "2sxc-adv/home")

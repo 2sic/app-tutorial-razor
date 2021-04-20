@@ -1,3 +1,4 @@
+@inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
@@ -35,7 +36,7 @@
 
 <trim>
 <hr>
-<h2>Reusing a Snippet using <code>@@helper</code></h2>
+<h2>Reuse a Snippet using <code>@@helper</code></h2>
 <p>Razor Helpers are like functions, which you can call again and again to produce html. What makes them special is that you can write html into the function, just like normal razor code. </p>
 </trim>
 <ul>
@@ -44,8 +45,8 @@
   @BoldLi("this is just a bold line")
 </ul>
 
-@* TODO V12 - old syntax *@
-@helper BoldLiOld(string label) {
+@* Just FYI - this is the classic syntax not used in the example above *@
+@helper BoldLiDnnOnly(string label) {
   <li>
     <strong>
       @Html.Raw(label)

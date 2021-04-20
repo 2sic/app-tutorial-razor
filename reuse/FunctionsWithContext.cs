@@ -1,6 +1,6 @@
 // Important notes: 
 // - This class should have the same name as the file it's in
-// - This inherits from ToSic.Sxc.Code.WithDnnContext
+// - This inherits from ToSic.Custom.Code12
 //   which will automatically provide the common objects like App, Dnn etc.
 //   from the current context to use in your code
 public class FunctionsWithContext: ToSic.Custom.Code12 {

@@ -1,14 +1,16 @@
 @* Code-Behind files must inherit from RazorCode12 *@
-@inherits ToSic.Custom.Razor12Code
+@inherits ToSic.Sxc.Dnn.RazorComponentCode
+@using ToSic.Razor.Blade;
 
 @* Functions can just be called by the parent like normal C# functions*@
 @functions {
   public string Hello() {
     return "Hello from inner code";
   }
-}
 
-@* Helpers can be used in the razor code like @Message *@
-@helper Message(string message) {
-  <div class="alert alert-success" >@message</div>
+  // This is an example of a helper returning HTML which will be rendered directly
+  // You could also do: return Html.Raw(...);
+  public dynamic Message(string message) {
+    return Tag.Div(message).Class("alert alert-success");
+  }
 }

@@ -8,11 +8,11 @@
   {
     return Html.Raw(
       AddFancyBoxOnce()
-      + Tag.Custom("figure").Wrap(
-        Tag.A().Attr("data-fancybox='gallery'").Href(url).Class(classes).Attr("data-caption", label).Wrap(
-          Tag.Img().Src(url + "?w=" + width + "&h=" + height)
+      + Tag.Figure(
+          Tag.A().Attr("data-fancybox='gallery'").Href(url).Class(classes).Attr("data-caption", label).Wrap(
+            Tag.Img().Src(url + "?w=" + width + "&h=" + height)
+          )
         )
-      )
     );
   }
 

@@ -1,91 +1,100 @@
+@inherits ToSic.Custom.Razor12
 @using ToSic.Razor.Blade;
 
-@helper Title(string title) {
-  // set browser title for SEO
-  HtmlPage.Title = title + " DNN / 2sxc Razor Tutorials";
-  @InitializedPageAssets()
-  @TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
-  <h1 @Edit.TagToolbar()>@title</h1>
-}
+@functions {
 
-@helper Breadcrumb(string name, string topicUrl) {
-  <a href='@Link.To(parameters: "")'>Tutorial Home</a>
-
-  if(!string.IsNullOrEmpty(name)) {
-    <text> › </text>
-    <a href="@Link.To(parameters: topicUrl)">@name</a>
+  public dynamic Title(string title) {
+    // set browser title for SEO
+    HtmlPage.Title = title + " DNN / 2sxc Razor Tutorials";
+    return Html.Raw(
+      InitializedPageAssets().ToString()
+      + TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+      + Tag.H1(title).Attr(Edit.TagToolbar())
+    );
   }
-}
 
-@helper TitleAndBreadcrumb(string title, string name, string topicUrl) {
-  @Title(title)
-  @Breadcrumb(name, topicUrl)
-  <hr>
-}
 
-@helper TitleLogo(string path, string link) {
-  <a href="@link" target="_blank">
-    <img src="@App.Path/@path?w=75&h=75" class="float-right ml-3">
-  </a>
-}
-
-@helper TutLink(string label, string target) {
-  target = target + (target.Contains("/") ? "" : "/page");
-  <a href='@Link.To(parameters: target)'>@label</a>
-}
-
-@helper TutorialLink(string label, string target, string newText = null) {
-  <li>
-    <strong>
-      @TutLink(label, target)
-      @Highlighted(newText)
-    </strong>
-  </li>
-}
-
-@helper TutorialLink(string label, string target, string description, string newText = null, string appendix = null) {
-  <li>
-    <strong>
-      @TutLink(label, target)
-      @Highlighted(newText)
-      @Html.Raw(appendix)
-    </strong><br>
-    @description
-  </li>
-}
-
-@helper TutorialLinkHome(string label, string target, string description, string newText = null) {
-  <li>
-    <strong>
-    <a href='@Link.To(parameters: target + "/home")'>
-      @label
-      @Highlighted(newText)
-    </a>
-    </strong><br>
-    @Html.Raw(description)
-  </li>
-}
-
-@helper Highlighted(string specialText) {
-  if(specialText != null) {
-    <span class="text-warning"> @specialText</span>
+  private dynamic Breadcrumb(string name, string topicUrl) {
+    var result = Tag.Custom(null).Wrap( 
+        Tag.A("Tutorial Home").Href(Link.To())
+    );
+    if (!string.IsNullOrEmpty(name)) {
+      result.Add(" › ", Tag.A(name).Href(Link.To(parameters: topicUrl)));
+    }
+    return result;
   }
-}
 
-@helper InitializedPageAssets() {
-  var bsCheck = CreateInstance("_bootstrap4.cshtml");
-  @bsCheck.EnsureBootstrap4()
-  <link rel="stylesheet" href="@App.Path/assets/styles.css" enableoptimizations="true" />
-  <script type="text/javascript" src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js" 
-    data-enableoptimizations="true"></script>
-}
+  public dynamic TitleAndBreadcrumb(string title, string name, string topicUrl) {
+    return Html.Raw(
+      Title(title).ToString()
+      + Breadcrumb(name, topicUrl).ToString()
+      + Tag.Hr()
+    );
+  }
 
-@helper ExternalLink(string target, string description) {
-  <a href="@target" target="_blank">@description</a>
-}
 
-@helper LiExtLink(string target, string description) {
-  <li>
-    @ExternalLink(target, description)
-  </li>
+  public dynamic TitleLogo(string path, string link) {
+    return Tag.A().Href(link).Target("_blank").Wrap(
+      Tag.Img().Src(App.Path + "/" + path + "?w=75&h=75").Class("float-right ml-3")
+    );
+  }
+  
+  public dynamic TutLink(string label, string target) {
+    target = target + (target.Contains("/") ? "" : "/page");
+    return Tag.A(label).Href(Link.To(parameters: target));
+  }
+
+
+  public dynamic TutorialLink(string label, string target, string description = null, string newText = null, string appendix = null) {
+    var result = Tag.Li(
+      Tag.Strong(
+        TutLink(label + " ", target),
+        Highlighted(newText),
+        appendix
+      )
+    );
+    if(!string.IsNullOrWhiteSpace(description)) {
+      result.Add(Tag.Br(), description);
+    }
+    return result;
+  }
+  
+  public dynamic TutorialLinkHome(string label, string target, string description, string newText = null) {
+    return Tag.Li(
+      Tag.Strong(
+        Tag.A().Href(Link.To(parameters: target + "/home")).Wrap(
+          label + " ",
+          Highlighted(newText)
+        )
+      ),
+      Tag.Br(),
+      description
+    );
+  }
+
+
+  public dynamic Highlighted(string specialText) {
+    if(specialText == null) { return null; }
+    return Tag.Span(specialText).Class("text-warning");
+  }
+
+
+  dynamic InitializedPageAssets() {
+    Edit.Enable(js: true);
+    var bsCheck = CreateInstance("_bootstrap4.cshtml");
+    return Html.Raw(
+      bsCheck.EnsureBootstrap4()
+      + "<link rel='stylesheet' href=" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
+    );
+  }
+
+
+  public dynamic ExternalLink(string target, string description) {
+    return Tag.A(description).Href(target).Target("_blank");
+  }
+
+
+  public dynamic LiExtLink(string target, string description) {
+    return Tag.Li(ExternalLink(target, description));
+  }  
 }

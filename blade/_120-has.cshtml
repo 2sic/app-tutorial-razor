@@ -29,6 +29,24 @@
   </div>
 </trim>
 
+@functions {
+  // Quick helper to convert true/false into emojis
+  string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
+
+  // Create a row (TR) containing data about a Text.Has example
+  dynamic RowEmojified(string label, string value) {
+    var valueForShowing = value == null 
+      ? "null" 
+      : "\"" + value.Replace("\n", "\\n").Replace("\t", "\\t") + "\"";
+    return Tag.Tr(
+      Tag.Td(label),
+      Tag.Td("Text.Has(" + Tags.Encode(valueForShowing) + ")"),
+      Tag.Td(Boolmoji(Text.Has(value))),
+      Tag.Td(Boolmoji(Text.Has(value, false)))
+    );
+  }
+}
+
 <h2>Examples</h2>
 <table class="demo table table-hover">
   <tr>
@@ -46,22 +64,6 @@
   @RowEmojified("real text", "real text")
   @RowEmojified("Real text with nbps etc.", "real\n text &nbsp;")
 </table>
-
-@helper RowEmojified(string label, string value) {
-  var valueForShowing = value == null 
-    ? "null" 
-    : "\"" + value.Replace("\n", "\\n").Replace("\t", "\\t") + "\"";
-  <tr>
-    <td>@label</td>
-    <td>Text.Has(@valueForShowing)</td>
-    <td>@Boolmoji(Text.Has(value))</td>
-    <td>@Boolmoji(Text.Has(value, false))</td>
-  </tr>
-}
-
-@helper Boolmoji(bool value) {
-  @(value ? "✔️" : "❌")
-}
 
 <h2>Special case: &lt;BR&gt; Whitespace</h2>
 
