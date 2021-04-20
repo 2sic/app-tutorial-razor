@@ -1,10 +1,10 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @{
   var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/json/demo.json");
   var thing = AsDynamic(someJson);
 }
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 
 <h2>Working with JSON Data</h2>
   <p>
@@ -31,9 +31,9 @@
 </ol>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Title = "Demo.json ",
   Path = App.PhysicalPath + "/json/",
   File = "demo.json",

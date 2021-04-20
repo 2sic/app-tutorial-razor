@@ -1,11 +1,11 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using ToSic.Razor.Blade;
 @{
   var sample1 = "We love Tokyo, Z&uuml;rich &amp; M&uuml;nchen";
   var realLength = 31;
 }
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 @{  
   var rzrHelp = CreateInstance("_api-docs.cshtml");
 }
@@ -72,5 +72,5 @@ Original which visually has @realLength characters:
 </table>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

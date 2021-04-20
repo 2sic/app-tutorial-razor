@@ -1,8 +1,8 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @* tell 2sxc that we'll use the js API *@
 @Edit.Enable(js:true)
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 
 <trim>
@@ -38,9 +38,9 @@
 </script>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",
   File = "AuthorsQueryController.cs",
   Size = 600,

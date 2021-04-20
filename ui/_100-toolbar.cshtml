@@ -1,6 +1,6 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 
 <h2>2sxc Toolbar Customization</h2>
 <div>
@@ -138,5 +138,5 @@
 </div>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

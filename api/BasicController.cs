@@ -2,7 +2,7 @@ using System.Web.Http;		// this enables [HttpGet] and [AllowAnonymous]
 
 [AllowAnonymous]			// define that all commands can be accessed without a login
 // Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
-public class BasicController : ToSic.Sxc.Dnn.ApiController
+public class BasicController : ToSic.Custom.Api12
 {
 
 	[HttpGet]				// [HttpGet] says we're listening to GET requests

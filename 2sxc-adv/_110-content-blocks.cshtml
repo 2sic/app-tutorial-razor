@@ -1,9 +1,9 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using System.Collections;
 @using System.Linq;
 @using DotNetNuke.Entities.Modules;
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 
 <trim>
@@ -26,7 +26,7 @@
   // create array with all 2sxc modules in this portal
   var allMods = GetAllModulesOfPortal(portalId);
 
-  // Get the app & views we're going to investiage the views of
+  // Get the app & views we're going to investigate the views of
   var app = isDev 
     ? ToSic.Sxc.Dnn.Factory.App(11, 35) // some app on our dev environment
     : is2sxcTutorial
@@ -132,5 +132,5 @@
 }
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

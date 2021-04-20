@@ -1,7 +1,7 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using ToSic.Razor.Blade;
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 @{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 <trim>
@@ -44,7 +44,7 @@
 }
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
 @helper SubpageLink(string label, string value) {
   @SubpageLink(label, "blade340=page", "mode", value)

@@ -1,6 +1,6 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 @using ToSic.Razor.Blade;
 @using System;
@@ -48,5 +48,5 @@
   }
 </style>
 
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

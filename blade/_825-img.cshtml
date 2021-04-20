@@ -1,7 +1,7 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using ToSic.Razor.Blade;
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 @{  
   var rzrHelp = CreateInstance("_api-docs.cshtml");
 }
@@ -41,5 +41,5 @@ And now the same thing with <code>Srcset</code> which allows high-density images
 <hide>
 <pre>@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2).ToString()</pre>
 
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

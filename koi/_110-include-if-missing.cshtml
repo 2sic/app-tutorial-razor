@@ -1,6 +1,6 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 
 <trim>
@@ -25,9 +25,9 @@
 @bsCheck.EnsureBootstrap4()
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
   File = "bootstrap4",
   Size = 400

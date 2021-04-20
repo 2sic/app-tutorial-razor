@@ -1,7 +1,7 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using ToSic.Razor.Blade;
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 <trim>
   <h2><em>RazorBlade</em> Safe Attributes API @@Tag.Attr <em>v3</em></h2>
@@ -30,5 +30,5 @@
 </div>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

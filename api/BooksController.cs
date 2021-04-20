@@ -7,7 +7,7 @@ using ToSic.Sxc.Conversion; // for the auto-conversion example below
 [AllowAnonymous]            // define that all commands can be accessed without a login
 [ValidateAntiForgeryToken]  // protects the API from users not on your site (CSRF protection)
 // Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
-public class BooksController : ToSic.Sxc.Dnn.ApiController
+public class BooksController : ToSic.Custom.Api12
 {
   [HttpGet]
   public dynamic Persons()

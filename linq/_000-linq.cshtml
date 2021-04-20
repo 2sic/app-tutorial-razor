@@ -1,6 +1,6 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 @{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
@@ -29,7 +29,7 @@
   <code>App.Data["Books"]</code></li>
   <li>Since we want to use <code>dynamic</code> types (which lets us write things like <code>book.Name</code>, we usually wrap it with: <br>
   <code>AsList(App.Data["Books"])</code></li>
-  <li>You'll sometimes see <code>@@RenderPage(...)</code> - this is not important for the LINQ examples, so you can ignore this for now.</li>
+  <li>You'll sometimes see <code>@@Html.Partial(...)</code> - this is not important for the LINQ examples, so you can ignore this for now.</li>
 </ul>
 </trim>
 

@@ -1,4 +1,4 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using System.Linq;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
@@ -7,7 +7,7 @@
   var books = AsList(App.Data["Books"]);
 }
 
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 
 <h2>Grouping by Authors, a List inside of Books</h2>
 
@@ -87,5 +87,5 @@
 </ol>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

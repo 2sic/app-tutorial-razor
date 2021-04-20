@@ -1,7 +1,7 @@
 @* Note that the Code-Behind features requires this @inherits statement *@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 
 <trim>
@@ -30,9 +30,9 @@
 @Code.Message("Message in a special format")
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Path = VirtualPath,
   File = "_410-code-behind.code.cshtml",
   Size = 400, 

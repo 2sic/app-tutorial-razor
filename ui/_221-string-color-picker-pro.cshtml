@@ -1,6 +1,6 @@
 <hide>
-@inherits ToSic.Sxc.Dnn.RazorComponent
-@RenderPage("_header.cshtml")
+@inherits ToSic.Custom.Razor12
+@Html.Partial("_header.cshtml")
 @{
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
 }
@@ -30,9 +30,9 @@
 </p>
 
 <hide>
-@RenderPage("_warning-and-links.cshtml")
+@Html.Partial("_warning-and-links.cshtml")
 
-@RenderPage("../shared/_source-code.cshtml", new {
+@Html.Partial("../shared/_source-code.cshtml", new {
   Path = VirtualPath,
   File = "../system/field-string-app-color-pickr-pro/index.js",
   Size = 1000,
@@ -40,7 +40,7 @@
   Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
 })
 
-@RenderPage("../shared/_source-code.cshtml", new {
+@Html.Partial("../shared/_source-code.cshtml", new {
   Path = VirtualPath,
   File = "../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json",
   Size = 400,

@@ -1,4 +1,4 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 @using System.Linq;
 
 @{
@@ -6,7 +6,7 @@
   var books = AsList(App.Data["Books"]);
 }
 
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 
 
 <h2>Take() / Skip()</h2>
@@ -39,5 +39,5 @@
 </ol>
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

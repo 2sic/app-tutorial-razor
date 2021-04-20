@@ -6,7 +6,7 @@ using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 [AllowAnonymous]            // define that all commands can be accessed without a login
 [ValidateAntiForgeryToken]  // protects the API from users not on your site (CSRF protection)
 // Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
-public class AuthorsQueryController : ToSic.Sxc.Dnn.ApiController
+public class AuthorsQueryController : ToSic.Custom.Api12
 {
   [HttpGet]
   public dynamic Get(int authorId)

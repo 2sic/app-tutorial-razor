@@ -1,6 +1,6 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 @{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 @{
@@ -19,21 +19,21 @@
 </p>
 </trim>
 @if(!showDetails) {
-  @RenderPage("_611-list.cshtml")
+  @Html.Partial("_611-list.cshtml")
 } else {
-  @RenderPage("_611-details.cshtml", new { Id = id })
+  @Html.Partial("_611-details.cshtml", new { Id = id })
 }
 
 <hide>
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Path = VirtualPath,
   File = "611-list",
   Size = 400, 
 }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Path = VirtualPath,
   File = "611-details",
   Size = 400, 

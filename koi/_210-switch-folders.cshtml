@@ -1,6 +1,6 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits ToSic.Custom.Razor12
 <hide>
-@RenderPage("_header.cshtml")
+@Html.Partial("_header.cshtml")
 </hide>
 
 <trim>
@@ -25,20 +25,20 @@
 *@
 @using Connect.Koi;
 @using ToSic.Razor.Blade;
-@RenderPage((Koi.If("bs3", "bs3", "bs4")) + "/_Alert.cshtml")
+@Html.Partial((Koi.If("bs3", "bs3", "bs4")) + "/_Alert.cshtml")
 
 <hide>
 
-@RenderPage("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Title = "Bootstrap3 template in /bs3/",
   Path = App.PhysicalPath + "/koi/bs3/",
   File = "Alert",
   Size = 200
 }) 
 
-@RenderPage("../shared/_source-code.cshtml", new { 
+@Html.Partial("../shared/_source-code.cshtml", new { 
   Title = "Bootstrap4 template in /bs4/",
   Path = App.PhysicalPath + "/koi/bs4/",
   File = "Alert",

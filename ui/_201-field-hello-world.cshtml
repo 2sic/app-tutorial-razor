@@ -1,6 +1,6 @@
 <hide>
-@inherits ToSic.Sxc.Dnn.RazorComponent
-@RenderPage("_header.cshtml")
+@inherits ToSic.Custom.Razor12
+@Html.Partial("_header.cshtml")
 @{
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
 }
@@ -33,9 +33,9 @@
 </p>
 
 <hide>
-@RenderPage("_warning-and-links.cshtml")
+@Html.Partial("_warning-and-links.cshtml")
 
-@RenderPage("../shared/_source-code.cshtml", new {
+@Html.Partial("../shared/_source-code.cshtml", new {
   Path = VirtualPath,
   File = "../system/field-empty-app-hello-world/index.js",
   Size = 700,
