@@ -1,7 +1,7 @@
 @inherits ToSic.Custom.Razor12
 @{
   // the ID is already given by the caller, so we just get that
-  var id = (int)PageData["Id"];
+  var id = (int)DynamicModel.Id;
 
   // find the person with this Id using LINQ
   var person = AsList(App.Data["Persons"])

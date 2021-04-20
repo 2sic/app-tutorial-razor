@@ -1,7 +1,8 @@
+@inherits ToSic.Custom.Razor12
 @* This is a shared, re-used fragment *@
 @{
-  var topicHome = PageData["Topic"];
-  var topicUrl = PageData["TopicKey"];
+  var topicHome = DynamicModel.Topic;
+  var topicUrl = DynamicModel.TopicKey;
 }
 
 <a href='@Link.To(parameters: "")'>Tutorial Home</a>
