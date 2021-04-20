@@ -12,11 +12,11 @@
     One of the magic bits of the Html5 tags is that they are smart. For example, url properties like <code>Src()</code> or <code>Href()</code> will safely encode if they are not yet encoded. 
     This is super important for CMS solutions where the image file may easily contain umlaut characters or spaces. <br>
 
-  @rzrHelp.ApiLinks(new string[] { 
+  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
     "Img()", "https://razor-blade.net/api/ToSic.Razor.Html5.Img.html",
     ".Src()", "https://razor-blade.net/api/ToSic.Razor.Html5.Img.html#ToSic_Razor_Html5_Img_Src_System_String_", 
     ".Srcset()", "https://razor-blade.net/api/ToSic.Razor.Html5.Img.html#ToSic_Razor_Html5_Img_Srcset_System_String_", 
-  })
+  }})
 
     <em>Note that it's <code>Srcset()</code> and not <code>SrcSet</code>. For consistency, everything is always lower case. </em>
   </div>

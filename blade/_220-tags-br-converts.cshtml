@@ -11,11 +11,11 @@
   <p>
     These demos show how to convert BR tags to spaces, New-Lines or New-Lines to BRs. 
   </p>
-  @rzrHelp.ApiLinks(new string[] { 
+  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
     "Tags.Br2Nl(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Br2Nl_System_String_",
     "Tags.Br2Space(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Br2Space_System_String_",
     "Tags.Nl2Br(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Tags.html#ToSic_Razor_Blade_Tags_Nl2Br_System_String_",
-  })
+  }})
 </trim>
 @using ToSic.Razor.Blade;
 @{

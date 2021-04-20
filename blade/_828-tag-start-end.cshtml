@@ -11,10 +11,10 @@
   <div>
     A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
   </div>
-  @rzrHelp.ApiLinks(new string[] { 
+  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
     ".TagStart", "https://razor-blade.net/api/ToSic.Razor.Markup.TagBase.html#ToSic_Razor_Markup_TagBase_TagStart",
     ".TagEnd", "https://razor-blade.net/api/ToSic.Razor.Markup.TagBase.html#ToSic_Razor_Markup_TagBase_TagEnd", 
-  })
+  }})
   <hr>
   <h3>The result</h3>
 </trim>
