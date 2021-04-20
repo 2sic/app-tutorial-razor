@@ -3,9 +3,28 @@
 </hide>
 
 <trim>
-<h2>Re-using Shared Razor Helpers</h2>
+<h2>Reuse Shared Razor Helpers</h2>
 <p>
-  Razor helpers are like functions that put HTML into the page. You can create them using the <code>@@helpers helpername() { ... } </code> syntax. What most people don't know: you can also share them, by placing them into a separate file. This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
+  There are multiple ways to create shared Razor helpers:
+</p>
+<ul>
+  <li>
+    public functions returning html <br>
+    ⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅
+  </li>
+  <li>
+    the <code>@@helper</code> command <br>
+    👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔
+  </li>
+</ul>
+<p>
+  Razor helpers are functions that put HTML into the page. You can create them using either <br>
+  <code>@@functions { dynamic helpername() { ... } }</code> <br>
+  or <br>
+  <code>@@helper helpername() { ... } </code>
+</p>
+<p>
+  You can also share them by placing them into a separate file (just remember to mark them <code>public</code>). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
 </p>
 
 <hr>
@@ -13,18 +32,21 @@
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 </trim>
 @{
-  var helpers = CreateInstance("../shared/_fancybox.cshtml");
+  var lightbox = CreateInstance("../shared/_fancybox.cshtml");
 }
-@linker.PreviewWithLightbox(@App.Path + "/app-icon.png")
+@lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
 &nbsp;
-@linker.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
+@lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = VirtualPath,
+  Size = 250
+}) 
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
   File = "fancybox",
-  Size = 400
+  Size = 600
 }) 
 </hide>
