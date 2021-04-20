@@ -5,6 +5,13 @@
 @{
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+
+  // TODO: V12 - experimental helper new using Template Delegate
+  Func<dynamic, object> BoldLi = @<li>
+    <strong>
+      @Html.Raw(item)
+    </strong>
+  </li>;
 }
 <trim>
 <h3>Show the variables as is</h3>
@@ -37,7 +44,8 @@
   @BoldLi("this is just a bold line")
 </ul>
 
-@helper BoldLi(string label) {
+@* TODO V12 - old syntax *@
+@helper BoldLiOld(string label) {
   <li>
     <strong>
       @Html.Raw(label)

@@ -2,7 +2,6 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 <trim>
   <h2><em>RazorBlade</em> AddIcon to Html Headers <em>v2.1</em></h2>
@@ -44,17 +43,18 @@
 }
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+@functions {
+  dynamic SubpageLink(string label, string root, string key, string value) {
+    return Tag.Li().Class(Request.QueryString[key] == value ? "selected" : "")
+      .Wrap(
+        Tag.A(label).Href(@Link.To(parameters: "?" + root + "&" + key + "=" + value))
+      );
+  }
 
-@helper SubpageLink(string label, string value) {
-  @SubpageLink(label, "blade340=page", "mode", value)
+  dynamic SubpageLink(string label, string value) {
+    return SubpageLink(label, "blade340=page", "mode", value);
+  }
 }
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath })
 
-@helper SubpageLink(string label, string root, string key, string value) {
-  <li class='@(Request.QueryString[key] == value ? "selected" : "")'>
-    <a href='@Link.To(parameters: "?" + root + "&" + key + "=" + value)'>
-      @label
-    </a>
-  </li>
-}
 </hide>
