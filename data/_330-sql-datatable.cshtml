@@ -1,7 +1,7 @@
 @inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 @using System.Configuration
 @using System.Data
@@ -25,7 +25,7 @@
 
   // create an adapter object, tell it what to do, and load results into fileTable
   var adapter = new SqlDataAdapter(sqlCommand, conString);
-  adapter.SelectCommand.Parameters.AddWithValue("@PortalId", Dnn.Portal.PortalId);
+  adapter.SelectCommand.Parameters.AddWithValue("@PortalId", CmsContext.Site.Id);
   var fileTable = new DataTable();
   adapter.Fill(fileTable);
 }

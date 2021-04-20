@@ -1,3 +1,4 @@
+@inherits ToSic.Custom.Razor12
 @using Connect.Koi;
 @helper EnsureBootstrap4() {
   // if the theme framework is not BS4, just include it
@@ -11,7 +12,7 @@
 }
 
 @helper WarnAboutMissingOrUnknownBootstrap() {
-  if(Dnn.User.IsInRole(Dnn.Portal.AdministratorRoleName)) {
+  if(CmsContext.User.IsSiteAdmin) {
     var message = Koi.IsUnknown
       ? "This template could not detect if bootstrap4 was already included in the page or not. Because of this, we auto-included it - but this may be unnecessary and slow down this page. Please fix, by supplying a koi.json file in the theme folder."
       : !Koi.Is("bs4")

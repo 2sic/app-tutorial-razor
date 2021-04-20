@@ -12,16 +12,16 @@
   In this example, we'll see what content-blocks are in the system, and where they are in use. 
 </p>
 <p>
-  You are on portal <strong>@Dnn.Portal.PortalId</strong> - this sample has hard-wired IDs for portal 59 (our dev-environment) and 24 (the tutorials on 2sxc.org). If one of these is detected, it will show the stats for a portal we know on that system, otherwise from the current app - which won't show much, since this tutorial app doesn't have many content-blocks. 
+  You are on portal <strong>@CmsContext.Site.Id</strong> - this sample has hard-wired IDs for portal 59 (our dev-environment) and 24 (the tutorials on 2sxc.org). If one of these is detected, it will show the stats for a portal we know on that system, otherwise from the current app - which won't show much, since this tutorial app doesn't have many content-blocks. 
 </p>
 
 </trim>
 @{
   // isDev should just tell us, if we're looking at the dev-portal (while creating this demo app) or if it's running on 2sxc.org
   // where we use other zoneId and appId;
-  var isDev = Dnn.Portal.PortalId == 59;
-  var is2sxcTutorial = Dnn.Portal.PortalId == 24;
-  var portalId = isDev ? 10 : is2sxcTutorial ? 0 : Dnn.Portal.PortalId;
+  var isDev = CmsContext.Site.Id == 59;
+  var is2sxcTutorial = CmsContext.Site.Id == 24;
+  var portalId = isDev ? 10 : is2sxcTutorial ? 0 : CmsContext.Site.Id;
 
   // create array with all 2sxc modules in this portal
   var allMods = GetAllModulesOfPortal(portalId);
