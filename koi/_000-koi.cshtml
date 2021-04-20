@@ -1,7 +1,7 @@
 @inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
 <trim>
@@ -26,22 +26,22 @@
 <h2>Koi Examples</h2>
 
 <ol>
-  @helpers.TutorialLink("Koi - Auto-Add Bootstrap4 if missing", "koi110", "Automatically add the Bootstrap4 CSS package from a CDN, if the current theme does not include Bootstrap4 already, but skip it if it's already included.", null)
+  @linker.TutorialLink("Koi - Auto-Add Bootstrap4 if missing", "koi110", "Automatically add the Bootstrap4 CSS package from a CDN, if the current theme does not include Bootstrap4 already, but skip it if it's already included.", null)
 
-  @helpers.TutorialLink("Koi - Auto-Add Bootstrap4 but inform Admin", "koi120", "Automatically add the Bootstrap4 CSS package from a CDN (same as above), but also show a warning to admins that this happened.", null)
+  @linker.TutorialLink("Koi - Auto-Add Bootstrap4 but inform Admin", "koi120", "Automatically add the Bootstrap4 CSS package from a CDN (same as above), but also show a warning to admins that this happened.", null)
 
-  @helpers.TutorialLink("Koi - Switch between template files", "koi210", "Automatically switch between Bootstrap3 and Bootstrap4 templates.", "new!")
+  @linker.TutorialLink("Koi - Switch between template files", "koi210", "Automatically switch between Bootstrap3 and Bootstrap4 templates.", "new!")
 
 </ol>
 
 <hr>
 <h2>More Information around Connect.Koi</h2>
 <ol>
-  @helpers.LiExtLink("https://connect-koi.net/", "Connect.Koi website")
-  @helpers.LiExtLink("https://github.com/DNN-Connect/connect.koi/", "Connect.Koi Github Repo")
+  @linker.LiExtLink("https://connect-koi.net/", "Connect.Koi website")
+  @linker.LiExtLink("https://github.com/DNN-Connect/connect.koi/", "Connect.Koi Github Repo")
   <li>Blogs
     <ul>
-      @helpers.LiExtLink("https://2sxc.org/en/blog/tag/koi", "Blog posts & tutorials on 2sxc.org around Connect.Koi")
+      @linker.LiExtLink("https://2sxc.org/en/blog/tag/koi", "Blog posts & tutorials on 2sxc.org around Connect.Koi")
     </ul>
   </li>
 </ol>

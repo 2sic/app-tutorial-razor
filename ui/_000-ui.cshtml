@@ -1,7 +1,7 @@
 @inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
 <trim>
@@ -13,14 +13,14 @@
   </p>
 </div>
 <ol>
-  @helpers.TutorialLink("Customize Toolbars", "ui100", "(new ⭐)")
+  @linker.TutorialLink("Customize Toolbars", "ui100", "(new ⭐)")
 </ol>
 <br>
 <h4>More Information around Customizing the Edit UX</h4>
 <ol>
-  @helpers.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html", "2sxc Docs showing how to customize the toolbar")
-  @helpers.LiExtLink("https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html", "2sxc Docs showing specs for customizing the toolbar")
-  @helpers.LiExtLink("https://docs.2sxc.org/specs/js/commands.html", "List of commands (button-names)")
+  @linker.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html", "2sxc Docs showing how to customize the toolbar")
+  @linker.LiExtLink("https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html", "2sxc Docs showing specs for customizing the toolbar")
+  @linker.LiExtLink("https://docs.2sxc.org/specs/js/commands.html", "List of commands (button-names)")
 </ol>
 
 <hr>
@@ -33,17 +33,17 @@
   </p>
 </div>
 <ol>
-  @helpers.TutorialLink("Basic HelloWorld Input Field", "ui201", "(new)")
-  @helpers.TutorialLink("Custom Color Picker using Pickr", "ui211", "(new)")
-  @helpers.TutorialLink("Configurable Color Picker", "ui221", "(new)")
-  @helpers.TutorialLink("Custom lightweight WYSIWYG (4 buttons)", "ui241", "(new)")
-  @helpers.TutorialLink("Custom WYSIWYG with 1 additional button, multi-language", "ui242", "(new)")
+  @linker.TutorialLink("Basic HelloWorld Input Field", "ui201", "(new)")
+  @linker.TutorialLink("Custom Color Picker using Pickr", "ui211", "(new)")
+  @linker.TutorialLink("Configurable Color Picker", "ui221", "(new)")
+  @linker.TutorialLink("Custom lightweight WYSIWYG (4 buttons)", "ui241", "(new)")
+  @linker.TutorialLink("Custom WYSIWYG with 1 additional button, multi-language", "ui242", "(new)")
 </ol>
 
 <br>
 <h4>More Information around Customizing the Edit UX</h4>
 <ol>
-  @helpers.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/input-fields.html", "How-To Docs for Custom Input Fields")
-  @helpers.LiExtLink("https://docs.2sxc.org/specs/form/index.html", "Specs for Field Customization")
-  @helpers.LiExtLink("https://docs.2sxc.org/specs/form/field-wysiwyg.html", "Specs for WYSIWYG customization")
+  @linker.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/input-fields.html", "How-To Docs for Custom Input Fields")
+  @linker.LiExtLink("https://docs.2sxc.org/specs/form/index.html", "Specs for Field Customization")
+  @linker.LiExtLink("https://docs.2sxc.org/specs/form/field-wysiwyg.html", "Specs for WYSIWYG customization")
 </ol>

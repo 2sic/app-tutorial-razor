@@ -1,7 +1,7 @@
 @inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
 <trim>
@@ -37,24 +37,24 @@
 <h2>LINQ Examples</h2>
 
 <ol>
-  @helpers.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
-  @helpers.TutorialLink("Get First() / Last() item in a list", "linq106")
-  @helpers.TutorialLink("Take() / Skip() items in a list", "linq107")
-  @helpers.TutorialLink("Count() items in a list", "linq108")
+  @linker.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
+  @linker.TutorialLink("Get First() / Last() item in a list", "linq106")
+  @linker.TutorialLink("Take() / Skip() items in a list", "linq107")
+  @linker.TutorialLink("Count() items in a list", "linq108")
 
-  @helpers.TutorialLink("Basic sorting of lists", "linq120")
+  @linker.TutorialLink("Basic sorting of lists", "linq120")
 
-  @helpers.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
-  @helpers.TutorialLink("Group books by authors in 3 ways", "linq220")
-  @helpers.TutorialLink("Access a list in list in list", "linq230")
+  @linker.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
+  @linker.TutorialLink("Group books by authors in 3 ways", "linq220")
+  @linker.TutorialLink("Access a list in list in list", "linq230")
 
-  @helpers.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
+  @linker.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
 </ol>
 
 <hr>
 <h2>More Information around LINQ</h2>
 <ol>
-  @helpers.LiExtLink("https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/", "LINQ Manual from Microsoft")
-  @helpers.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq-guide", "LINQ guide to working with dynamic things in C# in the 2sxc wiki")
-  @helpers.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq", "Using LINQ with 2sxc from the wiki")
+  @linker.LiExtLink("https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/", "LINQ Manual from Microsoft")
+  @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq-guide", "LINQ guide to working with dynamic things in C# in the 2sxc wiki")
+  @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq", "Using LINQ with 2sxc from the wiki")
 </ol>

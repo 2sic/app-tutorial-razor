@@ -2,7 +2,6 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
-  var helpers = CreateInstance("../shared/_helpers.cshtml"); 
   var fancybox = CreateInstance("../shared/_fancybox.cshtml");
 }
 @fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-configuration.png", 400, 200, "float-right")

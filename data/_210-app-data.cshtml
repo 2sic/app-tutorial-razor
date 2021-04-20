@@ -1,7 +1,7 @@
 @inherits ToSic.Custom.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 @{
   var snippets = CreateInstance("_helpers.cshtml");
@@ -9,7 +9,7 @@
 <trim>
 <h2>Basic Example from App.Data</h2>
 <p>
-  The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @helpers.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
+  The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @linker.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
 </p>
 </trim>
 <ul>

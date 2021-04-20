@@ -15,9 +15,9 @@
 @{
   var helpers = CreateInstance("../shared/_fancybox.cshtml");
 }
-@helpers.PreviewWithLightbox(@App.Path + "/app-icon.png")
+@linker.PreviewWithLightbox(@App.Path + "/app-icon.png")
 &nbsp;
-@helpers.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
+@linker.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 

@@ -2,7 +2,7 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
-  var helpers = CreateInstance("../shared/_helpers.cshtml");
+  var linker = CreateInstance("../shared/_helpers.cshtml");
 }
 </hide>
 @using DotNetNuke.Entities.Tabs;
@@ -16,7 +16,7 @@
 @{
   // get the pages
   var controller = new TabController();
-  var pages = TabController.GetPortalTabs(Dnn.Portal.PortalId, 0, true, false);
+  var pages = TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
   var current = TabController.CurrentPage;
 }
 <ul>

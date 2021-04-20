@@ -1,6 +1,6 @@
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var helpers = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
 </hide>
 
 <trim>
@@ -14,14 +14,14 @@
 <h2>Reusing Shared Stuff Examples</h2>
 
 <ol>
-  @helpers.TutorialLink("Reuse template with @RenderPage", "reuse110")
-  @helpers.TutorialLink("Reuse Razor Helpers (mini-templates) with CreateInstance", "reuse210")
-  @helpers.TutorialLink("Reuse a function library CreateInstance", "reuse310")
-  @helpers.TutorialLink("Reuse code with .cs files", 
+  @linker.TutorialLink("Reuse template with @RenderPage", "reuse110")
+  @linker.TutorialLink("Reuse Razor Helpers (mini-templates) with CreateInstance", "reuse210")
+  @linker.TutorialLink("Reuse a function library CreateInstance", "reuse310")
+  @linker.TutorialLink("Reuse code with .cs files", 
     "reuse320",
     "CreateInstance is enhanced in 2sxc 10.01 to support .cs files to share code across Razor files and WebApi Controllers.",
     "new in v10")
-  @helpers.TutorialLink("Split Razor Templates into C#-Code and Template", 
+  @linker.TutorialLink("Split Razor Templates into C#-Code and Template", 
     "reuse410",
     "Now you can split out complicated C# code so designers don't have to worry about it. ",
     "new in v11")
