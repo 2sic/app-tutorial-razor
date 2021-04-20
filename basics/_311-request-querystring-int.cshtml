@@ -59,13 +59,14 @@
 
 
 <hide>
-@helper SubpageLink(string label, string urlparams) {
-  <li>
-    <a href='@Link.To(parameters: "?basics311=page&" + urlparams)'>
-      @label
-    </a>
-  </li>
-
+@functions {
+  dynamic SubpageLink(string label, string urlparams) {
+    return Tag.Li()
+      .Wrap(
+        Tag.A(label).Href(Link.To(parameters: "?basics311=page&" + urlparams))
+      );
+  }
 }
+
 @Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

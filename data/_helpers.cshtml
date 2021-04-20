@@ -1,10 +1,12 @@
 @inherits ToSic.Custom.Razor12
 @using ToSic.Razor.Blade;
-@helper ShowPersonListItem(dynamic person) {
-  <li>
-    @if(Text.Has(person.Mugshot)) {
-      <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
-    }
-    @person.FirstName @person.LastName
-  </li>
+@functions {
+  public dynamic ShowPersonListItem(dynamic person) {
+    return Tag.Li(
+      Text.Has(person.Mugshot)
+        ? Tag.Img().Src(person.Mugshot + "?w=50&h=50&mode=crop").Width("50px").Style("border-radius: 50%")
+        : null,
+      person.FirstName + " " + person.LastName
+    );
+  }
 }

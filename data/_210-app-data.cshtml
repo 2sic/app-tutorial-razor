@@ -1,4 +1,5 @@
 @inherits ToSic.Custom.Razor12
+@using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
 @{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
@@ -14,9 +15,20 @@
 </trim>
 <ul>
   @foreach(var person in AsList(App.Data["Persons"])) {
-    @snippets.ShowPersonListItem(person)
+    @ShowPersonListItem(person)
   }
 </ul>
+
+@functions {
+  public dynamic ShowPersonListItem(dynamic person) {
+    return Tag.Li(
+      Text.Has(person.Mugshot)
+        ? Tag.Img().Src(person.Mugshot + "?w=50&h=50&mode=crop").Width("50px").Style("border-radius: 50%")
+        : null,
+      person.FirstName + " " + person.LastName
+    );
+  }
+}
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
