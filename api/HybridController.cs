@@ -1,12 +1,13 @@
 // Add namespaces to enable [HttpGet] and [AllowAnonymous]
 // In Oqtane it's on a different .net namespace than in Dnn
 #if OQTANE
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization; // for [Authorize]
+using Microsoft.AspNetCore.Mvc; // for [AllowAnonymous]
+#else
+using System.Web.Http; // for [AllowAnonymous] 
 #endif
-#if !OQTANE
-using System.Web.Http;		
-#endif
+
+// Todo: verification token?
 
 // All commands can be accessed without security checks
 [AllowAnonymous]
