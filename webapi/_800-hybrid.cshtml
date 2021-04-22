@@ -1,0 +1,55 @@
+@inherits ToSic.Custom.Razor12
+@* tell 2sxc that we'll use the js API *@
+@Edit.Enable(js:true)
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Hybrid (Dnn / Oqtane) WebApi Examples</h2>
+<p>
+  This is an advanced implementation of the basic examples before. It uses <code>#if</code> statements to ensure that the same code can run in Dnn and Oqtane. 
+</p>
+
+<p>
+  Click to see the result of a WebApi call with the shared code:  
+</p>
+</trim>
+<button type="button" class="btn btn-primary" onclick="callBasicHello(this)">
+  Get Hello
+</button> 
+<button type="button" class="btn btn-primary" onclick="callSquare(this, 7)">
+  Square 7
+</button> <button type="button" class="btn btn-primary" onclick="callSquare(this, 27)">
+  Square 27
+</button> 
+
+<script>
+  function callBasicHello(moduleContext) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/hybrid/hello')
+      .then(function (results) {
+        alert(results);      
+      });
+  }
+
+  function callSquare(moduleContext, original) {
+    $2sxc(moduleContext)
+      .webApi.get('app/auto/api/hybrid/square?number=' + original)
+      .then(function (results) {
+        alert(results);      
+      });
+  }
+</script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "HybridController.cs",
+  Size = 500,
+  Language = "csharp",
+  TitlePath = "/api/",
+}) 
+</hide>
