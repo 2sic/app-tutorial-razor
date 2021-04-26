@@ -13,7 +13,7 @@ using DotNetNuke.Security;  // SecurityAccessLevel.Xyz
 [Produces("application/json")]  // Ensures that strings are JSON and have quotes around them in .net 5
 #endif
 [ValidateAntiForgeryToken]      // This has the same name, but comes from a different namespace
-public class HybridController : ToSic.Custom.Api12
+public class HybridController : Custom.Hybrid.Api12
 {
   [AllowAnonymous]  // Works in Oqtane and DNN
   [HttpGet]         // Works in Oqtane and DNN

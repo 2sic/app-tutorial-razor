@@ -3,7 +3,7 @@ using System.Web.Http;		// this enables [HttpGet] and [AllowAnonymous]
 // All commands can be accessed without security checks
 [AllowAnonymous]
 // Inherit from ToSic...Api12 to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
-public class BasicController : ToSic.Custom.Api12
+public class BasicController : Custom.Hybrid.Api12
 {
 
   [HttpGet]				// [HttpGet] says we're listening to GET requests

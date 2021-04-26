@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Hybrid Templates using Preprocessor Directives</h2>
+<p>
+  todo <code>#if</code> .
+</p>
+</trim>
+
+<hr>
+
+@{#if NETCOREAPP}
+  <h3>.net Core code = Oqtane 💧</h3>
+  <p>
+    On Oqtane or any .net core system you should see this because <code>#if NETCOREAPP</code> was <code>true</code>. <br>
+
+    Here you can also place code which only works in Oqtane, like: 
+    Version: @Oqtane.Shared.Constants.Version
+  </p>
+@{#else}
+  <h3>NON .net Core code = Dnn ☢</h3>
+  <p>
+    On Dnn you'll see this because <code>#if NETCOREAPP</code> was <code>false</code>. <br>
+
+    Here you can also place code which only compiles in DNN, like: 
+    PortalId = @DotNetNuke.Entities.Portals.PortalSettings.Current.PortalId
+  </p>
+@{#endif}
+
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+
+</hide>

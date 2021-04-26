@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
+</hide>
+
+<trim>
+<h2>Hybrid Razor for Dnn ☢ and Oqtane 💧</h2>
+<p>
+  WIP
+</p>
+</trim>
+
+<hr>
+<h2>Hybrid Examples</h2>
+
+<ol>
+  @linker.TutorialLink("Advanced Hybrid Use", 
+    "hybrid410",
+    "Use compiler Preprocessor Directives to enable Hybrid Razor",
+    "new in v12")
+</ol>
