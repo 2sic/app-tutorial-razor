@@ -1,12 +1,12 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Razor.Blade;
+using ToSic.Razor.Blade;
 
-@functions {
+public class Helpers: Custom.Hybrid.Code12
+{
 
   public dynamic Title(string title) {
     // set browser title for SEO
     HtmlPage.Title = title + " DNN / 2sxc Razor Tutorials";
-    return Html.Raw(
+    return Tag.Custom(
       InitializedPageAssets()
       + TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
       + Tag.H1(title).Attr(Edit.TagToolbar())
@@ -25,7 +25,7 @@
   }
 
   public dynamic TitleAndBreadcrumb(string title, string name, string topicUrl) {
-    return Html.Raw(
+    return Tag.Custom(
       Title(title).ToString()
       + Breadcrumb(name, topicUrl).ToString()
       + Tag.Hr()
@@ -81,11 +81,10 @@
 
   dynamic InitializedPageAssets() {
     Edit.Enable(js: true);
-    var bsCheck = CreateInstance("_bootstrap4.cshtml");
-    return // Html.Raw(
+    var bsCheck = CreateInstance("Bootstrap4.cs");
+    return
       bsCheck.EnsureBootstrap4()
       + "<link rel='stylesheet' href=" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
-    //);
     ;
   }
 

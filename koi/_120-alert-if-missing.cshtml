@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/Helpers.cs"); }
 </hide>
 @using Connect.Koi
 <trim>
@@ -16,7 +16,7 @@
 
 </p>
 </trim>
-@{  var bsCheck = CreateInstance("../shared/_bootstrap4.cshtml");  }
+@{  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");  }
 @bsCheck.EnsureBootstrap4()
 @bsCheck.WarnAboutMissingOrUnknownBootstrap()
 
@@ -25,7 +25,7 @@
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
-  File = "bootstrap4",
+  File = "Bootstrap4.cs",
   Size = 400
 }) 
 </hide>

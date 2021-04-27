@@ -1,4 +1,5 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
@@ -23,9 +24,11 @@
     - note that the BS4 edition has an additional check for unknown frameworks
   2. Then it will load the real cshtml-template from the matching edition-folder
 *@
-@using Connect.Koi;
-@using ToSic.Razor.Blade;
-@Html.Partial((Koi.If("bs3", "bs3", "bs4")) + "/_Alert.cshtml")
+@{ 
+  var pageCss = GetService<Connect.Koi.ICss>();
+  var folder = pageCss.Is("bs3") ? "bs3" : "bs4";
+}
+@Html.Partial(folder + "/_Alert.cshtml")
 
 <hide>
 

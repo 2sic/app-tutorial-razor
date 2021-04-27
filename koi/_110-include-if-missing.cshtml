@@ -21,7 +21,7 @@
 
 
 </trim>
-@{  var bsCheck = CreateInstance("../shared/_bootstrap4.cshtml");  }
+@{  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");  }
 @bsCheck.EnsureBootstrap4()
 
 <hide>
@@ -29,7 +29,7 @@
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
-  File = "bootstrap4",
+  File = "Bootstrap4.cs",
   Size = 400
 }) 
 </hide>

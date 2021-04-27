@@ -4,8 +4,8 @@
 @using System.Diagnostics;
 @using System.IO;
 @{
-  var hlp = CreateInstance("../shared/_helpers.cshtml"); 
-  var rzr = CreateInstance("_razorblade-version.cshtml");
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var rzr = CreateInstance("RazorbladeVersion.cs");
   double version = rzr.VersionDouble();
 }
 </hide>
@@ -16,7 +16,7 @@
   Learn how to use <code>ToSic.Razor.Blade</code> fluent <code>Tag</code> API to do really cool stuff. This uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">ToSic.Razor.Blade</a>. 
 </p>
 
-@Html.Partial("_razorblade-version.cshtml", new { Expected =  3.00 } )
+@Html.Partial("_razorblade-version-info.cshtml", new { Expected =  3.00 } )
 </trim>
 
 <hr>

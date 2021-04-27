@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/_helpers.cshtml"); }
+@{  var linker = CreateInstance("../shared/Helpers.cs"); }
 </hide>
 @{
   var persons = AsList(App.Data["Persons"]);
