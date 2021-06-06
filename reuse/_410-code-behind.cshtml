@@ -1,11 +1,25 @@
 @* Note that the Code-Behind features requires this @inherits statement *@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Dnn.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
+@{  var linker = CreateInstance("../shared/Helpers.cs"); }
 </hide>
 
 <trim>
-<h2>Use Code-Behind in Razor Templates (new in V11)</h2>
+<h2>Use Code-Behind in Razor Templates (new in V11, deprecated in v12)</h2>
+<div class="alert alert-warning">
+  <p>
+    Code-Behind is being depraced in v12, because the idea behind it won't work in Oqtane 💧. <br>
+    We'll continue to support it in Dnn and to use it, you'll have to inherit from <code>Custom.Dnn.Razor12</code>, 
+    but we strongly suggest you move to the other features which provide the same functionality:
+    <ol>
+        @linker.TutorialLink("Reuse CreateInstance instead", 
+    "reuse320",
+    "CreateInstance is enhanced in 2sxc 10.01 to support .cs files to share code across Razor files and WebApi Controllers.",
+    "")
+    </ol>
+  </p>
+</div>
 <div class="alert alert-info">
   <p>
     Razor Templates should be simple to edit for web designers. When you end up getting complex functions we recommend placing them in a Code-Behind file. This is different from shared code, since the code isn't shared. We're just splitting a razor file into the code-parts and design parts. 
