@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+</hide>
+<trim>
+  <h2><em>IPageService</em> set Base tag in header</h2>
+  <div>
+    This page sets the Base tag in the header. Look at the source of this page to see the result. <br>
+    There are two ways to do this:
+  </div>
+  <ul>
+    <li>
+      <code>IPageService.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
+    </li>
+    <li>
+      <code>IPageService.SetBase("/some/page")</code> create the base tag with the specified url. 
+    </li>
+  </ul>
+</trim>
+
+@{
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  page.SetBase();
+}
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+</hide>

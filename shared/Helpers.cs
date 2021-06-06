@@ -5,7 +5,8 @@ public class Helpers: Custom.Hybrid.Code12
 
   public dynamic Title(string title) {
     // set browser title for SEO
-    HtmlPage.Title = title + " DNN / 2sxc Razor Tutorials";
+    var page = GetService<ToSic.Sxc.Web.IPageService>();
+    page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");
     return Tag.Custom(
       InitializedPageAssets()
       + TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")

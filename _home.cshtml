@@ -4,7 +4,8 @@
 @hlp.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
 </hide>
 @{
-  ToSic.Razor.Blade.HtmlPage.AddBase();
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  page.SetBase(); 
 }
 <trim>
 <h2>How to use this Tutorial</h2>
@@ -24,6 +25,8 @@
   @hlp.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "")
 
   @hlp.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, hlp and functions into shared files - both <code>.cshtml</code> and <code>.cs</code>. And you can split Razor files into code and templates.", "enhanced for v11")
+
+  @hlp.TutorialLinkHome("Set Page Title, Keywords etc. and Headers", "page", "Use the IPageService to set page properties, base tags and headers - even JsonLD and OpenGraph.", "new in v12")
 
   @hlp.TutorialLinkHome("Hybrid Razor for Dnn and Oqtane", "hybrid", "WIP", "new in v12")
 </ol>

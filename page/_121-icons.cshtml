@@ -1,0 +1,61 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>IPageService</em> AddIcon to Html Headers</h2>
+  <div>
+    This page sets various icon headers according to best practices. 
+
+    Look at the html-header in the output-source to see the effect. <br>
+    The following links will set different icons depending on what you need.
+  </div>
+  <ul>
+    @SubpageLink("Just add single icon", "one")
+    @SubpageLink("Add default set incl. favicon and apple-touch", "set")
+    @SubpageLink("Add default set without favicon", "nofav")
+    @SubpageLink("Add default set with custom favicon (recommended)", "pngfav")
+  </ul>
+</trim>
+
+@{
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  // use url parameter to decide which icon(s) to show, and default to "set"
+  var mode = CmsContext.Page.Parameters["mode"];
+
+  // the icon we want to use for this page is this png file
+  var iconUrl = App.Path + "/blade/assets/razor-blade-icon.png";
+
+  // now add the headers depending on the demo you picked
+  // in your code you would only use one of these
+  if(mode == "one") {
+    page.AddIcon(iconUrl);
+  } 
+  else if (mode == "set") {
+    page.AddIconSet(iconUrl);
+  } 
+  else if (mode == "nofav") {
+    page.AddIconSet(iconUrl, favicon: false);
+  }
+  else if (mode == "pngfav") {
+    page.AddIconSet(iconUrl, favicon: iconUrl);
+  }
+}
+
+<hide>
+@functions {
+  dynamic SubpageLink(string label, string root, string key, string value) {
+    return Tag.Li().Class(Request.QueryString[key] == value ? "selected" : "")
+      .Wrap(
+        Tag.A(label).Href(@Link.To(parameters: "?" + root + "&" + key + "=" + value))
+      );
+  }
+
+  dynamic SubpageLink(string label, string value) {
+    return SubpageLink(label, "page121=page", "mode", value);
+  }
+}
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath })
+
+</hide>
