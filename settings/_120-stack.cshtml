@@ -1,0 +1,44 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Settings Stack</h2>
+<p>
+  Settings are <em>stacked</em> in a way that the View-settings have a higher priority than App-settings, which has a higher priority than Site, etc. 
+  In rare cases you may want to explicitly check for a setting at a specific place in the stack. 
+</p>
+<p>
+  This example has a setting called <code>CustomColor</code> which is set at App and View level. Using <code>GetSource(...)</code> we can access a specific source.
+</p>
+</trim>
+
+<ul>
+  <li>
+    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.CustomColor'></div>
+    &nbsp; <code>@@Settings.CustomColor</code>: @Settings.CustomColor 
+  </li>
+  <li>
+    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.GetSource("View").CustomColor'></div>
+    &nbsp; <code>@@Settings.GetSource("View").CustomColor</code>: @Settings.GetSource("View").CustomColor 
+  </li>
+  <li>
+    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.GetSource("App").CustomColor'></div>
+    &nbsp; <code>@@Settings.GetSource("App").CustomColor</code>: @Settings.GetSource("App").CustomColor 
+  </li>
+  <li>
+    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.GetSource("App").CustomColor'></div>
+    &nbsp; <code>@@Settings.GetSource("Site").CustomColor</code>: @Settings.GetSource("Site").CustomColor (note this will be empty, as Site doesn't have this setting)
+  </li>
+</ul>
+
+TODO: WHAT SHOULD WE DO WHEN A LEVEL SITE/GLOBAL DOESN'T HAVE SETTINGS ? i THINK WE SHOULD USE AN EMPTY / AUTOMATIC ENTITY TO NOT BREAK THE API
+
+
+
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+</hide>
