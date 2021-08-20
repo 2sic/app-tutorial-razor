@@ -7,15 +7,30 @@
 <trim>
 <h2>Reuse templates and code</h2>
 <p>
-  This will show you how to place partial templates into separate files, and how to put functions you need in many places in separate files as well. It focuses on <code>RenderPage</code> and <code>CreateInstance</code>. You'll see the sources of the other files at the bottom of this page.
+  This will show you how to place partial templates into separate files, and how to put functions you need in many places in separate files as well. It focuses on: 
 </p>
+<ol>
+  <li>
+    <code>@@Html.Partial(...)</code> to render another page (older versions of 2sxc used <code>@@RenderPage(...)</code>) 
+    - see <a href="https://docs.2sxc.org/net-code/dynamic-code/object-html.html" target="_blank">docs</a>
+  </li>
+  <li>
+    <code>DynamicModel</code> is the object used in sub-pages to receive parameters from the caller 
+    - see <a href="https://docs.2sxc.org/net-code/dynamic-code/object-dynamic-model.html" target="_blank">docs</a>
+  </li>
+  <li>
+     <code>CreateInstance(...)</code> to create objects from .cs files 
+     - see <a href="https://docs.2sxc.org/net-code/dynamic-code/create-instance.html" target="_blank">docs</a>
+  </li>
+
+</ol>
 </trim>
 
 <hr>
 <h2>Reuse Shared Stuff Examples</h2>
 
 <ol>
-  @linker.TutorialLink("Reuse template with @RenderPage", "reuse110")
+  @linker.TutorialLink("Reuse template with @Html.Partial and DynamicModel", "reuse110")
   @linker.TutorialLink("Reuse Razor Helpers (mini-templates) with CreateInstance", "reuse210")
   @linker.TutorialLink("Reuse a function library CreateInstance", "reuse310")
   @linker.TutorialLink("Reuse code with .cs files", 
