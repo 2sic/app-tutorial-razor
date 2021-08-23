@@ -4,50 +4,117 @@
 </hide>
 
 <trim>
-<h2>Reuse Shared Razor Helpers</h2>
+<h2>Create Image Tags using the Link.Image helper and Predefined Settings</h2>
 <p>
-  There are multiple ways to create shared Razor helpers:
+  2sxc 12.03 introduces a new <code>Link.Image</code> command which makes it easy to create image urls containing the correct resize parameters. 
+  Even better: The parameters can be in a global setting for re-use across all apps and templates. 
 </p>
-<ul>
-  <li>
-    public functions returning html <br>
-    ⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅
-  </li>
-  <li>
-    the <code>@@helper</code> command <br>
-    👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔
-  </li>
-</ul>
+
+<h2>Simple Examples with Parameters</h2>
 <p>
-  Razor helpers are functions that put HTML into the page. You can create them using either <br>
-  <code>@@functions { dynamic helpername() { ... } }</code> <br>
-  or <br>
-  <code>@@helper helpername() { ... } </code>
+  Look at the source-code below to see how they are made. Note that we're adding a pink border around all <code>img</code> tags to make it easier to see the image bounds. 
 </p>
-<p>
-  You can also share them by placing them into a separate file (just remember to mark them <code>public</code>). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
-</p>
+</trim>
+<div class="examples">
+  @{
+    var imgUrl = App.Path + "/settings/demo.png";
+  }
+  <h3>Simple Example</h3>
+  <img src='@Link.Image(imgUrl)'>
+
+  <h3>Simple resize</h3>
+  <ul>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 200)'>
+      width: 200px
+    </li>
+    <li>
+      <img src='@Link.Image(url: imgUrl, height: 150)'>
+      height: 150px
+    </li>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 250, height: 150)'>
+      width: 200px, height 150px
+    </li>
+  </ul>
+
+  <h3>Resize and Change Format to JPG</h4>
+  <ul>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 200, format: "jpg")'>
+      200px, jpg
+    </li>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 200, format: "jpg", quality: 15)'>
+      200px, jpg, 15% quality only
+    </li>
+  </ul>
+
+  <h3>Resize Modes</h3>
+  All of these examples are width 250px, height 150px
+  <ul>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
+      Resize mode <code>crop</code>
+    </li>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "max")'>
+      Resize Mode <code>max</code>
+    </li>
+    <li>
+      <img src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "stretch")'>
+      Resize Mode <code>stretch</code>
+    </li>
+    <li>
+      Other modes not demonstrated here, see <a href="https://imageresizing.net/docs/v4/reference" target="_blank">Image Resizer docs</a>.
+    </li>
+  </ul>
+</div>
 
 <hr>
-<h2>Using Shared Helpers</h2>
-<p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
-</trim>
-@{
-  var lightbox = CreateInstance("../shared/Fancybox.cs");
-}
-@lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
-&nbsp;
-@lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
+
+<div class="examples">
+  <trim>
+    <h2>Examples using Settings</h2>
+    <p>
+      The following examples use predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
+      We'll use <code>Settings.Images.Content</code> which has the following configuration:
+    </p>
+    <ol>
+      <li>Width: @Settings.Images.Content.Width</li>
+      <li>Height: @Settings.Images.Content.Height</li>
+      <li>AspectRatio: @Settings.Images.Content.AspectRatio</li>
+      <li>Quality: @Settings.Images.Content.Quality</li>
+    </ol>
+  </trim>
+
+  <h3>Image with Default Content Settings</h3>
+  <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
+  <img src='@Link.Image(imgUrl, Settings.Images.Content)'>
+
+  <h3>Image with <em>Half</em> or <em>1/3rd</em> the Content Settings</h3>
+  <p>This example uses the <code>Settings.Images.Content</code> settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).</p>
+  <img src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.5)'>
+  <img src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.333)'>
+
+  <h3>Image with Settings, Custom Width & Height</h3>
+  <p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
+  <img src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
+
+  <h3>Image with Settings, Custom Width & Reset Height</h3>
+  <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
+  <img src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 0)'>
+
+
+</div>
 
 <hide>
+<style>
+  div.examples img { border: 2px pink dotted;}
+</style>
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = VirtualPath,
-  Size = 250
+  Size = 800
 }) 
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path = App.PhysicalPath + "/shared/",
-  File = "fancybox.cs",
-  Size = 600
-}) 
 </hide>
