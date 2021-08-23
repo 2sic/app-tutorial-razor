@@ -85,7 +85,7 @@ public class Helpers: Custom.Hybrid.Code12
     var bsCheck = CreateInstance("Bootstrap4.cs");
     return
       bsCheck.EnsureBootstrap4()
-      + "<link rel='stylesheet' href=" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
+      + "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
     ;
   }
 
