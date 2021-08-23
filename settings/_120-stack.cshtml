@@ -28,14 +28,16 @@
     &nbsp; <code>@@Settings.GetSource("App").CustomColor</code>: @Settings.GetSource("App").CustomColor 
   </li>
   <li>
-    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.GetSource("App").CustomColor'></div>
-    &nbsp; <code>@@Settings.GetSource("Site").CustomColor</code>: @Settings.GetSource("Site").CustomColor (note this will be empty, as Site doesn't have this setting)
+    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.GetSource("Site").CustomColor'></div>
+    &nbsp; <code>@@Settings.GetSource("Site").CustomColor</code>: @Settings.GetSource("Site").CustomColor <br>
+    <em>Note: this will be empty, as Site doesn't have this setting)</em>
+  </li>
+  <li>
+    <div style='width: 20px; height: 20px; float: left; background-color: @Settings.GetSource("Global").CustomColor'></div>
+    &nbsp; <code>@@Settings.GetSource("Global").CustomColor</code>: @Settings.GetSource("Global").CustomColor <br>
+    <em>Note: this will be empty, as Site doesn't have this setting)</em>
   </li>
 </ul>
-
-TODO: WHAT SHOULD WE DO WHEN A LEVEL SITE/GLOBAL DOESN'T HAVE SETTINGS ? i THINK WE SHOULD USE AN EMPTY / AUTOMATIC ENTITY TO NOT BREAK THE API
-
-
 
 
 <hide>

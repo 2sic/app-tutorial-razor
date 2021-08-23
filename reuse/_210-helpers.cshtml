@@ -33,7 +33,7 @@
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 </trim>
 @{
-  var lightbox = CreateInstance("../shared/_fancybox.cshtml");
+  var lightbox = CreateInstance("../shared/Fancybox.cs");
 }
 @lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
 &nbsp;
@@ -47,7 +47,7 @@
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
-  File = "fancybox",
+  File = "fancybox.cs",
   Size = 600
 }) 
 </hide>
