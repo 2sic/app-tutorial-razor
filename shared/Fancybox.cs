@@ -2,32 +2,16 @@ using ToSic.Razor.Blade;
 public class Fancybox: Custom.Hybrid.Code12
 {
   // Create an image which opens a larger version in a lighbox
-  public dynamic PreviewWithLightbox(string url, int width = 100, int height = 100, 
-    string classes = "",
-    string label = null)
+  public dynamic PreviewWithLightbox(string url, int width = 100, int height = 100, string classes = "", string label = null)
   {
-    return Tag.Custom(
-      AddFancyBoxOnce()
-      + Tag.Figure(
-          Tag.A().Attr("data-fancybox='gallery'").Href(url).Class(classes).Attr("data-caption", label).Wrap(
-            Tag.Img().Src(url + "?w=" + width + "&h=" + height)
-          )
-        )
+    // Make sure the fancybox is added to the page, but only once
+    var pageService = GetService<ToSic.Sxc.Web.IPageService>();
+    pageService.Activate("fancybox4"); 
+
+    return Tag.Figure(
+      Tag.A().Attr("data-fancybox='gallery'").Href(url).Class(classes).Attr("data-caption", label).Wrap(
+        Tag.Img().Src(Link.Image(url, width: width, height: height))
+      )
     );
   }
-
-  // this value will be used to ensure we only add the scripts once
-  private bool initialized = false;
-
-  // Make sure the fancybox is added to the page, but only once
-  string AddFancyBoxOnce() {
-    if(initialized) { return null; }
-    initialized = true;
-    // TODO: USE NEW SETTING
-    return 
-      "<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css' />"
-      + "<script src='https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js'></script>"
-    ;
-  }
-
 }
