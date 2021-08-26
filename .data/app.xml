@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="12.04.00" ExportDate="2021-08-26T22:28:41.7787644+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="12.04.00" ExportDate="2021-08-26T23:01:08.0524862+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -5806,7 +5806,13 @@
       <Value Key="ContentTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IsHidden" Value="False" Type="Boolean">
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ListContentTypeStaticName" Value="" Type="String">
@@ -5815,7 +5821,7 @@
       <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Location" Value="Portal File System" Type="String">
+      <Value Key="Location" Value="Site" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Name" Value="W800 - Hybrid" Type="String">
@@ -5830,6 +5836,12 @@
       <Value Key="PublishData" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="StreamsToPublish" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -5837,6 +5849,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ViewNameInUrl" Value="webapi800/.*" Type="String">
@@ -6617,6 +6632,62 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="32749249-49c6-486d-b6d6-946175c02806" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="S300 - Settings PageService.Activate" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="settings/_300-pageservice-activate.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="settings300/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="1530" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\image.png" />
@@ -6659,6 +6730,8 @@
     <Folder Id="13250" RelativePath="adam/Tutorial-Razor/gPMaDl_bDkeWmcPYtlIVoQ/" />
     <Folder Id="13251" RelativePath="adam/Tutorial-Razor/gPMaDl_bDkeWmcPYtlIVoQ/Icon/" />
     <Folder Id="3102" RelativePath="adam/Tutorial-Razor/hjdIjeCXgU2_y6gcEiJkPw/" />
+    <Folder Id="13254" RelativePath="adam/Tutorial-Razor/Iusw-KB2A0Sfvn86X6gtdA/" />
+    <Folder Id="13255" RelativePath="adam/Tutorial-Razor/Iusw-KB2A0Sfvn86X6gtdA/Icon/" />
     <Folder Id="12757" RelativePath="adam/Tutorial-Razor/L3sxVguakEC1kYr0vulGtg/" />
     <Folder Id="12758" RelativePath="adam/Tutorial-Razor/L3sxVguakEC1kYr0vulGtg/Icon/" />
     <Folder Id="3100" RelativePath="adam/Tutorial-Razor/lkSe34OoCkek0zycr6nENQ/" />
@@ -6669,6 +6742,8 @@
     <Folder Id="10563" RelativePath="adam/Tutorial-Razor/rHgUNyVUF0aXmDUb4o6SDg/Mugshot/" />
     <Folder Id="12753" RelativePath="adam/Tutorial-Razor/rP8xIyGxEU2TOpA_cGxxPg/" />
     <Folder Id="12754" RelativePath="adam/Tutorial-Razor/rP8xIyGxEU2TOpA_cGxxPg/Icon/" />
+    <Folder Id="13252" RelativePath="adam/Tutorial-Razor/SZJ0MsZJbUi21pRhdcAoBg/" />
+    <Folder Id="13253" RelativePath="adam/Tutorial-Razor/SZJ0MsZJbUi21pRhdcAoBg/Icon/" />
     <Folder Id="3096" RelativePath="adam/Tutorial-Razor/t2CvZ6b2A0SkiQawk1wHow/" />
     <Folder Id="3092" RelativePath="adam/Tutorial-Razor/Tm5yNs0hAEyc6HIID4k12g/" />
     <Folder Id="13248" RelativePath="adam/Tutorial-Razor/tYYFsHQwX0Wq6VyEdxTfzg/" />
