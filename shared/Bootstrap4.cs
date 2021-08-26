@@ -8,7 +8,7 @@ public class Bootstrap4 : Custom.Hybrid.Code12
   public void EnsureBootstrap4()
   {
     var pageCss = GetService<ICss>();
-    if(!pageCss.Is("bs4x")) {
+    if(!pageCss.Is("bs4")) {
       GetService<ToSic.Sxc.Web.IPageService>().Activate("Bootstrap4");
     }
   }

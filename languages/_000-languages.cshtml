@@ -1,0 +1,65 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+</hide>
+
+<trim>
+@* todo: language feature logo *@
+
+<h2>Going all Multilanguage / i18n</h2>
+<p>
+  Everything in 2sxc is multi-language right from the start. It's important to understand that every field in 2sxc can be translated or not - and the lookup happens automatically. So the following examples will automatically show the correct value based on the language you're on. 
+</p>
+<p>
+  There are two important types of multi-language:
+</p>
+<ol>
+  <li>Multi-Language Resources - like messages / button labels etc.</li>
+  <li>Multi-Language Content - things the content editor will work with</li>
+</ol>
+<div class="alert alert-warning">
+  If you installed the Tutorial App on your system these examples may not work. 
+  That's because Dnn / 2sxc must be have DE and EN activated <em>before</em> installing the tutorial app.
+  Otherwise it will only import the EN data and not import the DE data.
+</div>
+</trim>
+
+<hr>
+<h2>Multi-Language (i18n) Resources</h2>
+<p>
+  These are configured in the App Resources or in the global resources. 
+</p>
+
+<ol>
+  <li>The Greeting Text: <br>
+    @Html.Raw(Resources.Greeting)
+  </li>
+  <li>A button: <button type="button">@Resources.ButtonOrder</button> </li>
+</ol>
+
+<hr>
+<h2>Multi-Language (i18n) Content</h2>
+<p>
+  The editor can edit anything and choose which field to translate. In the following example, only one book is translated - and even the cover-image is translated. 
+</p>
+
+<ul>
+  @foreach (var book in AsList(App.Data["Books"])) {
+    <li>
+      <div style="overflow: auto">
+        @if (Text.Has(book.Cover)) {
+          <img src='@Link.Image(book.Cover, width: 200, height: 300, resizeMode: "crop", scaleMode: "both")' align="left" style="padding-right: 20px;">
+        }
+        <h3>@book.Title</h3> <br>
+        @Html.Raw(book.Teaser)
+      </div>
+    </li>
+  }
+</ul>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
+
+</hide>
