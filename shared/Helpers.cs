@@ -83,9 +83,8 @@ public class Helpers: Custom.Hybrid.Code12
   dynamic InitializedPageAssets() {
     Edit.Enable(js: true);
     var bsCheck = CreateInstance("Bootstrap4.cs");
-    return
-      bsCheck.EnsureBootstrap4()
-      + "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
+    bsCheck.EnsureBootstrap4();
+    return "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
     ;
   }
 

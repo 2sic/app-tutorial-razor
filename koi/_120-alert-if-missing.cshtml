@@ -16,8 +16,10 @@
 
 </p>
 </trim>
-@{  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");  }
-@bsCheck.EnsureBootstrap4()
+@{
+  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");
+  bsCheck.EnsureBootstrap4();
+}
 @bsCheck.WarnAboutMissingOrUnknownBootstrap()
 
 <hide>

@@ -1,6 +1,18 @@
 @inherits Custom.Hybrid.Razor12
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
+@functions {
+  string FindLanguage(string filePath) {
+    var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
+    switch (extension)
+    {
+      case "cs": return "csharp";
+      case "js": return "javascript";
+      case "json": return "json";
+      default: return "razor";
+    }
+  }
+}
 @{
   // get parameters
   var titleInParams = DynamicModel.Title as string;
@@ -21,7 +33,10 @@
   var title = titleInParams ?? "Source Code of " + (file == null ? "this file" : fileInTitle);
   var paramSize = DynamicModel.Size;
   int size = paramSize != null ? (paramSize as int?).Value : 600;
-  var language = "ace/mode/" + (DynamicModel.Language ?? "razor");
+
+  string language = DynamicModel.Language ?? FindLanguage(filePath);
+
+  language = "ace/mode/" + language;
 
   // load source code
   var fullPath = (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) ? Server.MapPath(filePath) : filePath;  string source = System.IO.File.ReadAllText(fullPath);

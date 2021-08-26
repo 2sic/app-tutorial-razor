@@ -1,5 +1,5 @@
-@inherits Custom.Hybrid.Razor12
-@functions {
+
+public class SharedFunctions: Custom.Hybrid.Code12 {
 
   public string SayHello() {
     return "Hello!";

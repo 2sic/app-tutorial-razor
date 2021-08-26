@@ -21,8 +21,10 @@
 
 
 </trim>
-@{  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");  }
-@bsCheck.EnsureBootstrap4()
+@{  
+  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");  
+  bsCheck.EnsureBootstrap4();
+}
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 

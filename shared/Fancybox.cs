@@ -5,8 +5,7 @@ public class Fancybox: Custom.Hybrid.Code12
   public dynamic PreviewWithLightbox(string url, int width = 100, int height = 100, string classes = "", string label = null)
   {
     // Make sure the fancybox is added to the page, but only once
-    var pageService = GetService<ToSic.Sxc.Web.IPageService>();
-    pageService.Activate("fancybox4"); 
+    GetService<ToSic.Sxc.Web.IPageService>().Activate("fancybox4"); 
 
     return Tag.Figure(
       Tag.A().Attr("data-fancybox='gallery'").Href(url).Class(classes).Attr("data-caption", label).Wrap(
