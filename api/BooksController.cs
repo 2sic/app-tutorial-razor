@@ -1,12 +1,11 @@
 using System.Linq;        // this enables .Select(x => ...)
 using System.Web.Http;    // this enables [HttpGet] and [AllowAnonymous]
 using DotNetNuke.Web.Api; // this is to verify the AntiForgeryToken
-using ToSic.Sxc.Conversion; // for the auto-conversion example below
-// using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+using ToSic.Eav.DataFormats.EavLight; // For Auto-Conversion (see below)
 
 [AllowAnonymous]            // define that all commands can be accessed without a login
 [ValidateAntiForgeryToken]  // protects the API from users not on your site (CSRF protection)
-// Inherit from ToSic...ApiController to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
+// Inherit from ToSic...ApiController to get features like App and Data - see https://r.2sxc.org/CustomWebApi
 public class BooksController : Custom.Hybrid.Api12
 {
   [HttpGet]
@@ -28,9 +27,8 @@ public class BooksController : Custom.Hybrid.Api12
   [HttpGet]
   public dynamic PersonsAuto()
   {
-    // this uses ToSic.Sxc.Conversion.DataToDictionary
-    return new DataToDictionary(Edit.Enabled)
-      .Convert(App.Data["Persons"]);
+    var json = GetService<IConvertToEavLight>();
+    return json.Convert(App.Data["Persons"]);
   }
 
   [HttpGet]
