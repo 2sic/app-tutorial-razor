@@ -20,7 +20,7 @@ public class Helpers: Custom.Hybrid.Code12
         Tag.A("Tutorial Home").Href(Link.To())
     );
     if (!string.IsNullOrEmpty(name)) {
-      result.Add(" › ", Tag.A(name).Href(Link.To(parameters: topicUrl)));
+      result.Add(" › ", Tag.A(name).Href(Link.To(parameters: topicUrl.Replace("/", "="))));
     }
     return result;
   }
@@ -41,7 +41,8 @@ public class Helpers: Custom.Hybrid.Code12
   }
   
   public dynamic TutLink(string label, string target) {
-    target = target + (target.Contains("/") ? "" : "/page");
+    target = target.Replace("/", "=");
+    target = target + (target.Contains("=") ? "" : "=page");
     return Tag.A(label).Href(Link.To(parameters: target));
   }
 
@@ -63,7 +64,7 @@ public class Helpers: Custom.Hybrid.Code12
   public dynamic TutorialLinkHome(string label, string target, string description, string newText = null) {
     return Tag.Li(
       Tag.Strong(
-        Tag.A().Href(Link.To(parameters: target + "/home")).Wrap(
+        Tag.A().Href(Link.To(parameters: target + "=home")).Wrap(
           label + " ",
           Highlighted(newText)
         )
