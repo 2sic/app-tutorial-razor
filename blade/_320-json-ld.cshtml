@@ -13,7 +13,8 @@
 
 @{
   // example adding a json-ld as a string
-  HtmlPage.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
 }
 @{
   // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
@@ -29,9 +30,12 @@
     }}
   };
 
-  HtmlPage.AddJsonLd(jsonLd);
+  page.AddJsonLd(jsonLd);
 }
-
+<p>
+  This is the tag you should see in the header: <br>
+  @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
+</p>
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path = VirtualPath }) 
 </hide>

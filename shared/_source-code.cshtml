@@ -39,7 +39,22 @@
   language = "ace/mode/" + language;
 
   // load source code
-  var fullPath = (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) ? Server.MapPath(filePath) : filePath;  string source = System.IO.File.ReadAllText(fullPath);
+  var fullPath = filePath;
+  if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) {
+#if NETCOREAPP
+  // This is the Oqtane implementation - cannot use Server.MapPath
+  var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+  var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
+  fullPath = System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
+#else
+  // The .net 451 implementation
+  fullPath = Server.MapPath(filePath);
+#endif
+  }
+    @* ? 
+    : filePath; *@
+
+  string source = System.IO.File.ReadAllText(fullPath);
 
   // remove the unimportant parts which might confuse the user
   const string hideMarker = "@* hide *@";

@@ -1,25 +1,23 @@
 using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.IO;
 
 public class RazorBladeVersion: Custom.Hybrid.Code12
 {
 
-  public FileVersionInfo GetRazorBladeVersion() {
-    var pathToRazorDll = "~/bin/ToSic.Razor.dll";
-    pathToRazorDll = System.Web.HttpContext.Current.Server.MapPath(pathToRazorDll);
-    var exists = File.Exists(pathToRazorDll);
-    return exists
-      ? FileVersionInfo.GetVersionInfo(pathToRazorDll)
-      : null;
+  public Version GetRazorBladeVersion() {
+    var div = ToSic.Razor.Blade.Tag.Div();
+    var version = Assembly.GetAssembly(div.GetType()).GetName().Version; //.ToString(4);
+    return version;
   }
 
   public double VersionDouble() {
     var verInfo = GetRazorBladeVersion();
     if(verInfo == null) return 0;
 
-    var major = verInfo.FileMajorPart;
-    var minor = verInfo.FileMinorPart;
+    var major = verInfo.Major;
+    var minor = verInfo.Minor;
     return Convert.ToDouble(major + "." + minor.ToString("D2"));
   }
 
