@@ -46,6 +46,9 @@
 </ul>
 
 @* Just FYI - this is the classic syntax not used in the example above *@
+@{
+// The following #if statements makes sure that .net core doesn't try to compile it, because it would throw an exception
+#if NETSTANDARD
 @helper BoldLiDnnOnly(string label) {
   <li>
     <strong>
@@ -53,7 +56,8 @@
     </strong>
   </li>
 }
-
+#endif
+}
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
 </hide>
