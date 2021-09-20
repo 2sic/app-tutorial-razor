@@ -14,7 +14,7 @@
 </trim>
 
 @{
-  var urlId = Request.QueryString["data620id"];
+  var urlId = CmsContext.Page.Parameters["data620id"];
   int id = Int32.Parse(urlId);
 
   // find the person with this Id using LINQ

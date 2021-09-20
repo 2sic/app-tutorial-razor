@@ -18,10 +18,10 @@
 </trim>
 @{
   // this variable is a string, but could be null or empty
-  var idAsString = Request.QueryString["id"];
+  var idAsString = CmsContext.Page.Parameters["id"];
 
   // this one is better - Text.First ensures that we have a value
-  var idAsStringWithFallback = Text.First(Request.QueryString["id"], "0");
+  var idAsStringWithFallback = Text.First(CmsContext.Page.Parameters["id"], "0");
 
   // let's convert to a real number (int)
   var id = Int32.Parse(idAsStringWithFallback);

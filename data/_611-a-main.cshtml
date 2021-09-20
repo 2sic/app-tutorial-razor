@@ -7,7 +7,7 @@
   // check if we have a url-parameter called "id" with a value
   int id;
   // showdetails will be true, if urlId had a number
-  var showDetails = Int32.TryParse(Request.QueryString["id"], out id);
+  var showDetails = Int32.TryParse(CmsContext.Page.Parameters["id"], out id);
 }
 <trim>
 <h2>Basic List Details using Code - with separate Details-File</h2>

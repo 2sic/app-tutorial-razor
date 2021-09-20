@@ -8,7 +8,7 @@
 
   // check if we have a url-parameter called "id" with a value
   // if we do, switch on showDetails and filter the persons to only one
-  var urlId = Request.QueryString["id"];
+  var urlId = CmsContext.Page.Parameters["id"];
   int id;
   // showdetails will be true, if urlId had a number
   var showDetails = Int32.TryParse(urlId, out id);

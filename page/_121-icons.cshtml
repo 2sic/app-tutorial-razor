@@ -46,7 +46,7 @@
 <hide>
 @functions {
   dynamic SubpageLink(string label, string root, string key, string value) {
-    return Tag.Li().Class(Request.QueryString[key] == value ? "selected" : "")
+    return Tag.Li().Class(CmsContext.Page.Parameters[key] == value ? "selected" : "")
       .Wrap(
         Tag.A(label).Href(@Link.To(parameters: "?" + root + "&" + key + "=" + value))
       );
