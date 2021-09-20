@@ -8,7 +8,7 @@
   var path = App.Path + "/basics/assets/urls/";
   var exampleImgName = "göögle plus.png";
   var resizeParameters = "?w=100";
-  var safeUrl = Uri.EscapeUriString(path + exampleImgName + resizeParameters);
+  var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
 }
 <trim>
 <h2>Safely Linking URLs with Umlauts and similar</h2>
@@ -18,10 +18,10 @@
 
 <hide>
 <p>
-  👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Uri.EscapeUriString(exampleImgName)</code>
+  👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
 </p>
 <p>
-  Sometimes you have files with unexpected characters - like umlauts or spaces. The best way to encode this is using <code>Uri.EscapeUriString(...)</code>. 
+  Sometimes you have files with unexpected characters - like umlauts or spaces. The best way to encode this is using <code>Tags.SafeUrl(...)</code> from RazorBlade, or <code>Uri.EscapeUriString(...)</code> from .net. 
 </p>
 <h3>Important notes</h3>
 <ul>

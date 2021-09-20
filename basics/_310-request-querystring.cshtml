@@ -4,9 +4,20 @@
 </hide>
 @using ToSic.Razor.Blade;
 <trim>
-<h2>Working with URL Parameters using <code>@@Request.QueryString[...]</code></h2>
+<h2>Working with URL Parameters using Page Parameters</h2>
 <p>
-  The following code will use a value from the url querystring. Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@Request.QueryString["id"]</code> you would pick it up. <br>
+  The following code will use a value from the url querystring. There are various ways to pick it up, but we recommend the cross-platform API which works in Dnn and Oqtane.
+</p>
+<ol>
+    <li>
+        Cross-Platform (Dnn and Oqtane): <code>@@CmsContext.Page.Parameters["id"]</code>
+    </li>
+    <li>
+        This would just work in Dnn: <code>@@Request.QueryString["id"]</code>
+    </li>
+</ol>
+<p>
+  Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
   But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. Below you'll find some links which change the url, so you can see how the output changes:
 </p>
 <ul>
@@ -17,26 +28,26 @@
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
 </trim>
 <ul>
-  <li>URL contains <code>sort</code> using null-check: <br>
-    @(Request.QueryString["sort"] != null)
+  <li>URL contains <code>sort</code> using null-check: 
+    @(CmsContext.Page.Parameters["sort"] != null)
   </li>
-  <li>URL contains <code>sort</code> using <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a> (this will also return false, if sort is empty): <br>
-    @Text.Has(Request.QueryString["sort"])
+  <li>URL contains <code>sort</code> using <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a> (this will also return false, if sort is empty):
+    @Text.Has(CmsContext.Page.Parameters["sort"])
   </li>
-  <li>Sort value from URL: <br>
-    @Request.QueryString["sort"]
+  <li>Sort value from URL:
+    @CmsContext.Page.Parameters["sort"]
   </li>
   <li>
-    Put <code>sort</code> in a variable for further use: <br>
+    Put <code>sort</code> in a variable for further use:
     @{
-      var sort = Request.QueryString["sort"];
+      var sort = CmsContext.Page.Parameters["sort"];
     }
     @sort
   </li>
   <li>
-    Get sort from url, or if it doesn't exist, use a default value <code>descending</code> (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>): <br>
+    Get sort from url, or if it doesn't exist, use a default value <code>descending</code> (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>):
     @{
-      sort = Text.First(Request.QueryString["sort"], "descending");
+      sort = Text.First(CmsContext.Page.Parameters["sort"], "descending");
     }
     @sort
   </li>
