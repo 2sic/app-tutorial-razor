@@ -51,7 +51,7 @@
     <li>
       <div style="overflow: auto">
         @if (Text.Has(book.Cover)) {
-          <img src='@Link.Image(book.Cover, width: 200, height: 300, resizeMode: "crop", scaleMode: "both")' align="left" style="padding-right: 20px;">
+          <img loading="lazy" src='@Link.Image(book.Cover, width: 200, height: 300, resizeMode: "crop", scaleMode: "both")' align="left" style="padding-right: 20px;">
         }
         <h3>@book.Title</h3> <br>
         @Html.Raw(book.Teaser)

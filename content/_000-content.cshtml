@@ -15,7 +15,7 @@
 
 <hr>
 <h3>Show Content of the Current template</h3>
-<img src="@Content.Mugshot?w=100&h=100&mode=crop" align="right"  style="border-radius: 50%">
+<img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" align="right"  style="border-radius: 50%">
 <ul>
   <li>Name: @Content.FirstName @Content.LastName</li>
   <li>Birthday: @Content.Birthday.ToString("d")</li>
@@ -37,7 +37,7 @@
 @foreach(var person in AsList(Data)) {
   <li>
     @if(Text.Has(person.Mugshot)) {
-      <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
+      <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
     }
     @person.FirstName @person.LastName
   </li>
@@ -57,7 +57,7 @@
 @foreach(var person in AsList(Data)) {
   <li>
     @if(Text.Has(person.Mugshot)) {
-      <img src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
+      <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
     }
     @person.FirstName @person.LastName
     @if(person.Awards.Count > 0 ) {

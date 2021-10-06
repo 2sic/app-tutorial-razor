@@ -20,20 +20,20 @@
     var imgUrl = App.Path + "/settings/demo.png";
   }
   <h3>Simple Example</h3>
-  <img src='@Link.Image(imgUrl)'>
+  <img loading="lazy" src='@Link.Image(imgUrl)'>
 
   <h3>Simple resize</h3>
   <ul>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 200)'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200)'>
       width: 200px
     </li>
     <li>
-      <img src='@Link.Image(url: imgUrl, height: 150)'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, height: 150)'>
       height: 150px
     </li>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 250, height: 150)'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150)'>
       width: 200px, height 150px
     </li>
   </ul>
@@ -41,11 +41,11 @@
   <h3>Resize and Change Format to JPG</h4>
   <ul>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 200, format: "jpg")'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg")'>
       200px, jpg
     </li>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 200, format: "jpg", quality: 15)'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg", quality: 15)'>
       200px, jpg, 15% quality only
     </li>
   </ul>
@@ -54,15 +54,15 @@
   All of these examples are width 250px, height 150px
   <ul>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
       Resize mode <code>crop</code>
     </li>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "max")'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "max")'>
       Resize Mode <code>max</code>
     </li>
     <li>
-      <img src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "stretch")'>
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "stretch")'>
       Resize Mode <code>stretch</code>
     </li>
     <li>
@@ -90,20 +90,20 @@
 
   <h3>Image with Default Content Settings</h3>
   <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
-  <img src='@Link.Image(imgUrl, Settings.Images.Content)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
 
   <h3>Image with <em>Half</em> or <em>1/3rd</em> the Content Settings</h3>
   <p>This example uses the <code>Settings.Images.Content</code> settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).</p>
-  <img src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.5)'>
-  <img src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.333)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.5)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.333)'>
 
   <h3>Image with Settings, Custom Width & Height</h3>
   <p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
-  <img src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
 
   <h3>Image with Settings, Custom Width & Reset Height</h3>
   <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
-  <img src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 0)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 0)'>
 
 
 </div>

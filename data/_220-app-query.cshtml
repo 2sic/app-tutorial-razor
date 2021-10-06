@@ -42,7 +42,7 @@
 
 @if(current != null) {
   if(Text.Has(current.Mugshot)) {
-    <img src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right">
+    <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right">
   }
   <h3>Current Author: @current.FirstName @current.LastName</h3>
   <strong>Books</strong>
