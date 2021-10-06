@@ -36,7 +36,7 @@ You can also download the latest copy of this App directly from the [releases](.
 
 Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
-[//]: ## Customize the App not needed, so commented out
+[//]: # (## Customize the App not needed, so commented out)
 
 ## History
 
