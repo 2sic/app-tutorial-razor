@@ -25,7 +25,10 @@
      <code>CreateInstance(...)</code> to create objects from .cs files 
      - see <a href="https://docs.2sxc.org/net-code/dynamic-code/create-instance.html" target="_blank">docs</a>
   </li>
-
+  <li>
+     <code>Func&lt;dynamic, dynamic&gt;</code> micro-helpers are ideal for small sub-templates 
+     - see <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0#templated-razor-delegates" target="_blank">docs</a>
+  </li>
 </ol>
 </trim>
 
@@ -33,7 +36,8 @@
 <h2>Reuse Shared Stuff Examples</h2>
 
 <ol>
-  @linker.TutorialLink("Reuse template with @Html.Partial and DynamicModel", "reuse110")
+  @linker.TutorialLink("Micro-Helpers (like functions) with Template Delegates", "reuse101")
+  @linker.TutorialLink("Reuse Razor Components with @Html.Partial and DynamicModel", "reuse110")
   @linker.TutorialLink("Reuse Razor Helpers (mini-templates) with CreateInstance", "reuse210")
   @linker.TutorialLink("Reuse a function library CreateInstance", "reuse310")
   @linker.TutorialLink("Reuse code with .cs files", 
