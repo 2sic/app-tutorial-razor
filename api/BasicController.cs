@@ -1,12 +1,17 @@
-using System.Web.Http;		// this enables [HttpGet] and [AllowAnonymous]
+// Add namespaces for security check in Oqtane & DNN despite differences in .net core/.net Framework
+// If you only target one platform, you can remove the parts you don't need
+#if NETCOREAPP
+using Microsoft.AspNetCore.Authorization; // .net core [AllowAnonymous] & [Authorize]
+using Microsoft.AspNetCore.Mvc;           // .net core [HttpGet] / [HttpPost] etc.
+#else
+using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGet]
+using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
+#endif
 
-// All commands can be accessed without security checks
-[AllowAnonymous]
-// Inherit from ToSic...Api12 to get features like App, Data or Dnn - see https://r.2sxc.org/CustomWebApi
-public class BasicController : Custom.Hybrid.Api12
+[AllowAnonymous]                          // all commands can be accessed without a login
+public class BasicController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
 {
-
-  [HttpGet]				// [HttpGet] says we're listening to GET requests
+  [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public string Hello()
   {
     return "Hello from the basic controller in /api";
@@ -21,3 +26,6 @@ public class BasicController : Custom.Hybrid.Api12
 
 
 }
+
+// The next line is for 2sxc-internal quality checks, you can ignore this
+// 2sxclint:disable:no-dnn-namespaces - 2sxclint:disable:no-web-namespace

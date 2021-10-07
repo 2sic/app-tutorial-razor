@@ -1,14 +1,20 @@
+// Add namespaces for security check in Oqtane & DNN despite differences in .net core/.net Framework
+// If you only target one platform, you can remove the parts you don't need
+#if NETCOREAPP
+using Microsoft.AspNetCore.Authorization; // .net core [AllowAnonymous] & [Authorize]
+using Microsoft.AspNetCore.Mvc;           // .net core [HttpGet] / [HttpPost] etc.
+#else
+using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGet]
+using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
+#endif
 using System.Linq;        // this enables .Select(x => ...)
-using System.Web.Http;    // this enables [HttpGet] and [AllowAnonymous]
-using DotNetNuke.Web.Api; // this is to verify the AntiForgeryToken
 using ToSic.Eav.DataFormats.EavLight; // For Auto-Conversion (see below)
 
-[AllowAnonymous]            // define that all commands can be accessed without a login
-[ValidateAntiForgeryToken]  // protects the API from users not on your site (CSRF protection)
-// Inherit from ToSic...ApiController to get features like App and Data - see https://r.2sxc.org/CustomWebApi
-public class BooksController : Custom.Hybrid.Api12
+[AllowAnonymous]                          // all commands can be accessed without a login
+[ValidateAntiForgeryToken]                // protects API from users not on your site (CSRF protection)
+public class BooksController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
 {
-  [HttpGet]
+  [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public dynamic Persons()
   {
     // we could do: return App.Data["Persons"];
@@ -24,14 +30,14 @@ public class BooksController : Custom.Hybrid.Api12
       });
   }
 
-  [HttpGet]
+  [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public dynamic PersonsAuto()
   {
     var json = GetService<IConvertToEavLight>();
     return json.Convert(App.Data["Persons"]);
   }
 
-  [HttpGet]
+  [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public dynamic Books()
   {
     return AsList(App.Data["Books"])
@@ -44,3 +50,6 @@ public class BooksController : Custom.Hybrid.Api12
       });
   }
 }
+
+// The next line is for 2sxc-internal quality checks, you can ignore this
+// 2sxclint:disable:no-dnn-namespaces - 2sxclint:disable:no-web-namespace

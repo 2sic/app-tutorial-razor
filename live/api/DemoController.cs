@@ -1,15 +1,20 @@
-using System.Web.Http;
-using ToSic.SexyContent.WebApi;
-using DotNetNuke.Web.Api;
+// Add namespaces for security check in Oqtane & DNN despite differences in .net core/.net Framework
+// If you only target one platform, you can remove the parts you don't need
+#if NETCOREAPP
+using Microsoft.AspNetCore.Authorization; // .net core [AllowAnonymous] & [Authorize]
+using Microsoft.AspNetCore.Mvc;           // .net core [HttpGet] / [HttpPost] etc.
+#else
+using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGet]
+using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
+#endif
 
-[AllowAnonymous]
-[ValidateAntiForgeryToken]
-public class DemoController : SxcApiController
+[AllowAnonymous]                          // all commands can be accessed without a login
+[ValidateAntiForgeryToken]                // protects API from users not on your site (CSRF protection)
+public class DemoController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
 {
-	[HttpGet]
-	[AllowAnonymous]
-	public string Hello()
-	{
-		return "Hello from the live controller";
-	}
+  [HttpGet]
+  public string Hello()
+  {
+    return "Hello from the live controller";
+  }
 }

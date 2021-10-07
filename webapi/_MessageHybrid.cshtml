@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
+<div class="alert alert-info" role="alert">
+  <h3>Hybrid WebAPIs</h3>
+  These examples are all done to work in both Dnn ☢️ and Oqtane 💧. 
+  Because of this, the Api Controller have special conditional statements like <code>#if NETSTANDARD</code> which uses different namespaces in .net core and .net Framework. 
+  <br>
+  If you only target Dnn <em>or</em> Oqtane, you can remove the lines you don't need.  
+  See @hlp.TutLink("See how to use #if", "hybrid410/page")
+</div>

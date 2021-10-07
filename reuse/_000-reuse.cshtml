@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{
+  // 2sxclint:disable:razor-no-renderpage
+  var linker = CreateInstance("../shared/Helpers.cs");
+}
 </hide>
 
 <trim>
