@@ -4,7 +4,7 @@
 @{  var linker = CreateInstance("../shared/Helpers.cs"); }
 </hide>
 <trim>
-<img loading="lazy" src="@App.Path/koi/assets/koi.png?w=400" class="float-right">
+<img loading="lazy" src="@App.Path/koi/assets/koi.png?w=400" class="float-right float-end">
 <h2>Show Warning if Bootstrap4 not Included or Unclear</h2>
 <p>
   In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap4</a> as the preferred CSS framework. And we'll also assume, that you don't want to @linker.TutLink("auto-include it", "koi110"), but instead want to warn the admin, to ensure he can correct the situation. This is what you want to do, when you believe the Admin should optimize the output, and prevent accidentally loading Bootstrap multiple times. 

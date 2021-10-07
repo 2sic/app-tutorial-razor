@@ -36,7 +36,9 @@ public class Helpers: Custom.Hybrid.Code12
 
   public dynamic TitleLogo(string path, string link) {
     return Tag.A().Href(link).Target("_blank").Wrap(
-      Tag.Img().Src(App.Path + "/" + path + "?w=75&h=75").Class("float-right ml-3")
+      Tag.Img().Src(App.Path + "/" + path + "?w=75&h=75")
+        // note: float-right is bs4, float-end BS5
+        .Class("float-right ml-3 float-end")
     );
   }
   

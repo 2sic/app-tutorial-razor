@@ -10,7 +10,7 @@
 @using System.Linq;
 <trim>
 <h2>Example from App.Query</h2>
-@fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-authors-with-books.png", 400, 200, "float-right")
+@fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-authors-with-books.png", 400, 200, "float-right float-end")
 <p>
   Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar (<a href="https://2sxc.org/en/Learn/Visual-Query-Designer" target="_blank">more</a>). These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the <code>Current</code> stream as well as the <code>CurrentBooks</code> of that author. 
 </p>
@@ -42,7 +42,7 @@
 
 @if(current != null) {
   if(Text.Has(current.Mugshot)) {
-    <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right">
+    <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right float-end">
   }
   <h3>Current Author: @current.FirstName @current.LastName</h3>
   <strong>Books</strong>
