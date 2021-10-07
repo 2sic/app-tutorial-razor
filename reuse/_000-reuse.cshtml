@@ -48,9 +48,15 @@
 <p>
   This shows / documents features which work, but are not recommended any more:
 </p>
-<ol>
-  @linker.TutorialLink("Split Razor Templates into C#-Code and Template", 
-    "reuse410",
-    "Now you can split out complicated C# code so designers don't have to worry about it. ",
-    "deprecated, Dnn Only")
-</ol>
+
+@{#if NETCOREAPP}
+  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+@{#else}
+
+  <ol>
+    @linker.TutorialLink("Split Razor Templates into C#-Code and Template", 
+      "reuse410",
+      "Now you can split out complicated C# code so designers don't have to worry about it. ",
+      "deprecated, Dnn Only")
+  </ol>
+@{#endif}

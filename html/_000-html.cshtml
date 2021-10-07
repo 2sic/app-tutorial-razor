@@ -2,22 +2,14 @@
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
-
+<trim>
+<h3>Show a variable</h3>
+<p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
+</trim>
 @{
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
-
-  // TODO: V12 - experimental helper new using Template Delegate
-  Func<dynamic, object> BoldLi = @<li>
-    <strong>
-      @Html.Raw(item)
-    </strong>
-  </li>;
 }
-<trim>
-<h3>Show the variables as is</h3>
-<p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
-</trim>
 <ul>
   <li>@normalText</li>
   <li>@htmlText</li>
@@ -25,39 +17,47 @@
 
 <trim>
 <hr>
-<h2>Encode using <code>@@Html.Raw(...)</code> or <code>@@:...</code></h2>
+<h2>Encode using <code>@@Html.Raw(...)</code> </h2>
 </trim>
 <ul>
   <li>@Html.Raw(normalText)</li>
   <li>@Html.Raw(htmlText)</li>
 </ul>
 
-<em>By the way: if you're only working on newer DNNs like 9.x, you can also use <code>@@:...</code> as a shorter version of Html.Raw</em>
-
-<trim>
 <hr>
-<h2>Reuse a Snippet using <code>@@helper</code></h2>
-<p>Razor Helpers are like functions, which you can call again and again to produce html. What makes them special is that you can write html into the function, just like normal razor code. </p>
-</trim>
-<ul>
-  @BoldLi(normalText)
-  @BoldLi(htmlText)
-  @BoldLi("this is just a bold line")
-</ul>
+<h2>Add "uncontrolled" html using <code>@@:...</code></h2>
+<p>
+  Sometimes you need to conditionally add tags, in which case Razor cannot verify that open/close of tags is correct.
+  This would normally throw an error. so you need <code>@@:</code>. 
+</p>
+<div>
+  @{ var makeBold = new System.Random().NextDouble() > 0.5; }
+  @if (makeBold) { 
+    @:<strong> 
+  }
+    This is randomly bold or not, depending on a random event. If it's bold, you'll see a <code>strong</code> tag around it, otherwise not.
+  @if (makeBold) { 
+    @:</strong>
+  }
+</div>
 
-@* Just FYI - this is the classic syntax not used in the example above *@
-@{
-// The following #if statements makes sure that .net core doesn't try to compile it, because it would throw an exception
-#if NETSTANDARD
-@helper BoldLiDnnOnly(string label) {
-  <li>
-    <strong>
-      @Html.Raw(label)
-    </strong>
-  </li>
-}
-#endif
-}
+
+
+<hr>
+<h2>Reuse a Snippet using <code>@@helper</code> (Dnn ☢️ only)</h2>
+@{#if NETCOREAPP}
+  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+@{#else}
+  @Html.Partial("_000-html.dnn.helper.cshtml")
+@{#endif}
+
 <hide>
+
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  File = "_000-html.dnn.helper.cshtml"
+}) 
+
 </hide>

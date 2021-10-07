@@ -1,0 +1,68 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+<h2>TODO Template DELEGATE </h2>
+
+
+
+<hr>
+<h2>Reuse Code Snippet with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
+<p>If you just need a quick snippet with only one parameter, Template Delegates are the way to go. They are very limited though, so only for simple stuff. Note that <code>item</code> is the property given</p>
+@{
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<dynamic, object> BoldLi = @<li>
+    <strong>
+      @Html.Raw(item)
+    </strong>
+  </li>;
+}
+<ul>
+  @BoldLi(normalText)
+  @BoldLi(htmlText)
+  @BoldLi("this is just a bold line")
+</ul>
+
+<hr>
+<h2>Complex Data with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
+<p>if you have multiple values, you need to merge in into one object like this: </p>
+@{
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<dynamic, dynamic> FancyLink = @<li>
+    <strong style="color: @item.Color">
+      @Html.Raw(item.Label)
+    </strong>
+  </li>;
+}
+<ul>
+  @FancyLink(new { Label = normalText, Color = "red" })
+  @FancyLink(new { Label = htmlText, Color = "lime" })
+</ul>
+
+<hr>
+<h2>Complex Data with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
+<p>if you have multiple values, you need to merge in into one object like this: </p>
+@{
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<dynamic, dynamic> FancyLink2 = @<li>
+    <strong style="color: @item.Color">
+      @Html.Raw(item.Label)
+    </strong>
+  </li>;
+}
+<ul>
+  @FancyLink2(new { Label = normalText, Color = "red" })
+  @FancyLink2(new { Label = htmlText, Color = "lime" })
+</ul>
+
+
+
+
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+
+
+</hide>
