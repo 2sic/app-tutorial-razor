@@ -4,12 +4,18 @@
 @{  
   var linker = CreateInstance("../shared/Helpers.cs");
 }
+@*
+  Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
+  2sxclint:disable:no-dnn-namespaces
+*@
 </hide>
 @using System.Collections.Generic;
 <trim>
 <h2>Example from DNN Data</h2>
 <p>
-  DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. To read more about the DNN APIs, check out the API docs for <a href="https://dotnetnukeru.com/dnndocs/api/html/T_DotNetNuke_Entities_Tabs_TabController.htm" target="_blank">TabController</a> and <a href="https://dotnetnukeru.com/dnndocs/api/html/T_DotNetNuke_Entities_Tabs_TabInfo.htm" target="_blank">TabInfo</a>. Please note that the API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
+  DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. 
+  To read more about the DNN APIs, check out the API docs for <a href="https://docs.dnncommunity.org/api/DotNetNuke.Entities.Tabs.TabController.html" target="_blank">TabController</a> and <a href="https://docs.dnncommunity.org/api/DotNetNuke.Entities.Tabs.TabInfo.html" target="_blank">TabInfo</a>. 
+  Please note that the API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
 </p>
 </trim>
 @{#if NETCOREAPP}
@@ -17,9 +23,8 @@
 @{#else}
 @{
   // get the pages
-  var controller = new DotNetNuke.Entities.Tabs.TabController();
-  var pages = TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
-  var current = TabController.CurrentPage;
+  var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
+  var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
 }
 <ul>
   @foreach(DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
