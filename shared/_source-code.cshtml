@@ -32,7 +32,8 @@
   var fileInTitle = titlePath + file;
   var title = titleInParams ?? "Source Code of " + (file == null ? "this file" : fileInTitle);
   var paramSize = DynamicModel.Size;
-  int size = paramSize != null ? (paramSize as int?).Value : 600;
+  var test = Convert.Json;
+  int size = this.Convert.ToInt(paramSize, fallback: 600); // paramSize != null ? (paramSize as int?).Value : 600;
 
   string language = DynamicModel.Language ?? FindLanguage(filePath);
 

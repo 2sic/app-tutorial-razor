@@ -18,7 +18,6 @@ public class VerifiedController : Custom.Hybrid.Api12 // see https://r.2sxc.org/
   {
     return "Hello from the controller with ValidateAntiForgeryToken in /api";
   }
-
 }
 
 // The next line is for 2sxc-internal quality checks, you can ignore this

@@ -23,8 +23,6 @@ public class BasicController : Custom.Hybrid.Api12 // see https://r.2sxc.org/Cus
   {
     return number * number;
   }
-
-
 }
 
 // The next line is for 2sxc-internal quality checks, you can ignore this
