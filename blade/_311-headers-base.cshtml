@@ -26,9 +26,13 @@
   </ul>
 </trim>
 
+@{#if NETSTANDARD}
 @{
   HtmlPage.AddBase();
 }
+@{#else}
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+@{#endif}
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 

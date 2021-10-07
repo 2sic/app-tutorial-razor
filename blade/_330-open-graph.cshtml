@@ -19,11 +19,15 @@
   </div>
 </trim>
 
+@{#if NETSTANDARD}
 @{
   // note: 'og:' is auto-prefixed if not given in the key
   HtmlPage.AddOpenGraph("title", "Demo of OpenGraph headers");
   HtmlPage.AddOpenGraph("type", "website");
 }
+@{#else}
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+@{#endif}
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 

@@ -25,6 +25,7 @@
   </ul>
 </trim>
 
+@{#if NETSTANDARD}
 @{
   // use url parameter to decide which icon(s) to show, and default to "set"
   var mode = CmsContext.Page.Parameters["mode"] ?? "set";
@@ -50,6 +51,9 @@
     HtmlPage.AddIconSet(iconUrl, favicon: iconUrl);
   }
 }
+@{#else}
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+@{#endif}
 
 <hide>
 @functions {

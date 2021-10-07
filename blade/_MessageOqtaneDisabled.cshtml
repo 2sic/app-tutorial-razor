@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
+<div class="alert alert-info" role="alert">
+  <h3>⚠️ Code Disabled in Oqtane 💧</h3>
+  This code only works in DNN, so the tutorial has special conditional statements like <code>#if NETSTANDARD</code> which disable the code in Oqtane. 
+  
+  TODO: create tutorial for if-statements
+  See @hlp.TutLink("Razor Page Service", "page/home")
+</div>
