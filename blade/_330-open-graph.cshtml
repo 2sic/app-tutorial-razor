@@ -19,11 +19,9 @@
   </div>
 </trim>
 
-@{
-  #if NETCOREAPP
-  @Html.Partial("_MessageOqtaneDisabled.cshtml");
-  #else
-}
+@{#if NETCOREAPP}
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+@{#else}
 @{
   // note: 'og:' is auto-prefixed if not given in the key
   HtmlPage.AddOpenGraph("title", "Demo of OpenGraph headers");

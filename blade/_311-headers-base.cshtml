@@ -26,11 +26,9 @@
   </ul>
 </trim>
 
-@{
-  #if NETCOREAPP
-  @Html.Partial("_MessageOqtaneDisabled.cshtml");
-  #else
-}
+@{#if NETCOREAPP}
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+@{#else}
 @{
   HtmlPage.AddBase();
 }
