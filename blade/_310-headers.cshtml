@@ -2,10 +2,16 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+@{
+  // 2sxclint:disable:no-razorblade-htmlpage
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> set Title, Description and other headers <em>v1.1</em></h2>
+  <h2><em>RazorBlade</em> set Title, Description and other headers</h2>
+
+  @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
   <div>
     This page sets the title, description, keywords and some manual tags to the header. 
 
@@ -14,6 +20,8 @@
 </trim>
 
 @{
+  // Note: this only works because we have @using ToSic.Razor.Blade on top
+  // Again note that this only works in DNN and is not recommended any more - see warning
   HtmlPage.Title = "Title changed from the razor using Razor Blade! original: " + HtmlPage.Title;
   HtmlPage.Description = "Learn to use Razor Blade " + HtmlPage.Description;
   HtmlPage.Keywords = "Tutorial, Razor, Blade" + HtmlPage.Keywords;

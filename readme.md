@@ -1,4 +1,4 @@
-<img loading="lazy" src="app-icon.png" align="right" width="200px">
+<img src="app-icon.png" align="right" width="200px">
 
 # Razor Tutorials for .net CMSs
 

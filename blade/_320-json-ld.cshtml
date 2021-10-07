@@ -2,10 +2,16 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+@{
+  // 2sxclint:disable:no-razorblade-htmlpage
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> add JSON-LD Headers <em>v1.1</em></h2>
+  <h2><em>RazorBlade</em> add JSON-LD Headers</h2>
+
+  @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
   <div>
     This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
   </div>

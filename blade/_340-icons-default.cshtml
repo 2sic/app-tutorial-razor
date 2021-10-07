@@ -2,9 +2,15 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  // 2sxclint:disable:no-razorblade-htmlpage
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> AddIcon to Html Headers <em>v2.1</em></h2>
+  <h2><em>RazorBlade</em> AddIcon to Html Headers</h2>
+
+  @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
   <div>
     This page sets various icon headers according to best practices. 
 
@@ -32,16 +38,16 @@
   // now add the headers depending on the demo you picked
   // in your code you would only use one of these
   if(mode == "one") {
-    page.AddIcon(iconUrl);
+    HtmlPage.AddIcon(iconUrl);
   } 
   else if (mode == "set") {
-    page.AddIconSet(iconUrl);
+    HtmlPage.AddIconSet(iconUrl);
   } 
   else if (mode == "nofav") {
-    page.AddIconSet(iconUrl, favicon: false);
+    HtmlPage.AddIconSet(iconUrl, favicon: false);
   }
   else if (mode == "pngfav") {
-    page.AddIconSet(iconUrl, favicon: iconUrl);
+    HtmlPage.AddIconSet(iconUrl, favicon: iconUrl);
   }
 }
 

@@ -2,10 +2,16 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+@{
+  // 2sxclint:disable:no-razorblade-htmlpage
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> set Base tag in header <em>v3</em></h2>
+  <h2><em>RazorBlade</em> set Base tag in header</h2>
+
+  @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
   <div>
     This page sets the Base tag in the header. Look at the source of this page to see the result. <br>
     There are two ways to do this:
