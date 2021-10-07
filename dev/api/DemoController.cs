@@ -18,3 +18,6 @@ public class DemoController : Custom.Hybrid.Api12 // see https://r.2sxc.org/Cust
     return "Hello from the staging controller - we're still developing this, so you may see errors. Once it's tested, we'll copy this to /live/api/ so the public users will see this too.";
   }
 }
+
+// The next line is for 2sxc-internal quality checks, you can ignore this
+// 2sxclint:disable:no-dnn-namespaces - 2sxclint:disable:no-web-namespace

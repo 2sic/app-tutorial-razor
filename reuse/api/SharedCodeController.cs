@@ -20,3 +20,6 @@ public class SharedCodeController : Custom.Hybrid.Api12 // see https://r.2sxc.or
 		return shared.SayHello();
 	}
 }
+
+// The next line is for 2sxc-internal quality checks, you can ignore this
+// 2sxclint:disable:no-dnn-namespaces - 2sxclint:disable:no-web-namespace
