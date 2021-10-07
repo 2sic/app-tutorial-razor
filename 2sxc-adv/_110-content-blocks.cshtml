@@ -43,7 +43,7 @@
   // create a map of all blocks to DNN modules
   var block2ModuleMap = contentBlocks.GroupJoin(allMods, 
     cb => cb.EntityGuid,
-    m => TryParseGuid(m.ModuleSettings[SettingsCG]),
+    m => Convert.ToGuid(m.ModuleSettings[SettingsCG]),
     (cb, m) => new { 
       Block = cb, 
       Modules = m 
@@ -119,16 +119,6 @@
       .Where(m => !m.IsDeleted)
       .Where(m => m.ModuleSettings.ContainsKey(SettingsCG));
     return allMods.ToList();
-  }
-
-  // older versions of .net framework don't have Guid.TryParse, so use this
-  Guid TryParseGuid(object original) {
-    try {
-      return Guid.Parse(original.ToString());
-    }
-    catch {
-      return Guid.Empty;
-    }
   }
 }
 
