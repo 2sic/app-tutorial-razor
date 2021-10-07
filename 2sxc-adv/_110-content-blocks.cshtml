@@ -16,7 +16,11 @@
 </p>
 
 </trim>
-@Html.Partial("_110-content-blocks.dnn.cshtml")
+@{#if NETCOREAPP}
+  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+@{#else}
+  @Html.Partial("_110-content-blocks.dnn.cshtml")
+@{#endif}
 
 <hide>
 
