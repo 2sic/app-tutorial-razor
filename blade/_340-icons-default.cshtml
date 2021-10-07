@@ -25,16 +25,17 @@
   </ul>
 </trim>
 
-@{#if NETSTANDARD}
+@{
+  #if NETCOREAPP
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+  #else
+}
 @{
   // use url parameter to decide which icon(s) to show, and default to "set"
   var mode = CmsContext.Page.Parameters["mode"] ?? "set";
 
   // the icon we want to use for this page is this png file
   var iconUrl = App.Path + "/blade/assets/razor-blade-icon.png";
-
-  // The IPageService helps set icons/headers etc.
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
 
   // now add the headers depending on the demo you picked
   // in your code you would only use one of these
@@ -51,8 +52,6 @@
     HtmlPage.AddIconSet(iconUrl, favicon: iconUrl);
   }
 }
-@{#else}
-  @Html.Partial("_MessageOqtaneDisabled.cshtml")
 @{#endif}
 
 <hide>

@@ -11,17 +11,18 @@
   <h2><em>RazorBlade</em> add JSON-LD Headers</h2>
 
   @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
-TODO: RESTORE OLD CODE HERE FOR DNN
   <div>
     This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
   </div>
 </trim>
 
-@{#if NETSTANDARD}
 @{
-  // example adding a json-ld as a string
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
-  page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+  #if NETCOREAPP
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+  #else
+}
+@{
+  HtmlPage.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
 }
 @{
   // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
@@ -37,14 +38,12 @@ TODO: RESTORE OLD CODE HERE FOR DNN
     }}
   };
 
-  page.AddJsonLd(jsonLd);
+  HtmlPage.AddJsonLd(jsonLd);
 }
 <p>
   This is the tag you should see in the header: <br>
   @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
 </p>
-@{#else}
-  @Html.Partial("_MessageOqtaneDisabled.cshtml")
 @{#endif}
 
 <hide>

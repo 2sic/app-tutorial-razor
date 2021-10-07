@@ -26,12 +26,14 @@
   </ul>
 </trim>
 
-@{#if NETSTANDARD}
+@{
+  #if NETCOREAPP
+  @Html.Partial("_MessageOqtaneDisabled.cshtml")
+  #else
+}
 @{
   HtmlPage.AddBase();
 }
-@{#else}
-  @Html.Partial("_MessageOqtaneDisabled.cshtml")
 @{#endif}
 
 <hide>
