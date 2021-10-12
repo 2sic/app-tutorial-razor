@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="12.05.00" ExportDate="2021-10-07T21:40:36.8692562+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="12.05.00" ExportDate="2021-10-12T09:57:38.8231599+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -900,11 +900,7 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
-          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" AttributeSetName="@string-app-color-pickr-pro" EntityGUID="98c85e16-2ed8-4c2a-8698-560cea3e6f5b" Json="True" KeyNumber="4824">
-            <Value Key="Swatches" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" AttributeSetName="459d4ce3-b96b-4664-9947-75e46df9d33e" EntityGUID="98c85e16-2ed8-4c2a-8698-560cea3e6f5b" KeyNumber="4824" />
         </Attribute>
         <Attribute StaticName="PickerWith2sicPresets" Type="String" IsTitle="false">
           <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a64bb592-4d23-420c-88fe-0769162466b6" Json="True" KeyNumber="4825">
@@ -944,11 +940,7 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
-          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" AttributeSetName="@string-app-color-pickr-pro" EntityGUID="bd716745-b444-4cf2-8b4f-88d52fb8ab44" Json="True" KeyNumber="4825">
-            <Value Key="Swatches" Value="#0088F4 Cyan&#xA;#D50F7E Magenta&#xA;#97D600 Lime&#xA;#000879 Mix cyan and magenta&#xA;#7E0D00 Mix magenta and lime&#xA;#007200 Mix cyan and lime" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" AttributeSetName="459d4ce3-b96b-4664-9947-75e46df9d33e" EntityGUID="bd716745-b444-4cf2-8b4f-88d52fb8ab44" KeyNumber="4825" />
         </Attribute>
       </Attributes>
     </AttributeSet>
@@ -2623,23 +2615,15 @@
       <Value Key="StreamWiring" Value="6ce81104-df78-415f-9a32-a886f9b49264:Default&gt;ac37f57e-5832-4764-b7c5-4c6cd0c1a062:Default&#xD;&#xA;ac37f57e-5832-4764-b7c5-4c6cd0c1a062:Default&gt;Out:Default&#xD;&#xA;6ce81104-df78-415f-9a32-a886f9b49264:Default&gt;3a3137ff-784a-497e-98ef-e31ed9b86cc9:Default&#xD;&#xA;3a3137ff-784a-497e-98ef-e31ed9b86cc9:Default&gt;Out:Current" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TestParameters" Value="[App:Path]=/Portals/tutorial-razor/2sxc/Tutorial-Razor" Type="String">
+      <Value Key="TestParameters" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="6ce81104-df78-415f-9a32-a886f9b49264" Json="True" KeyGuid="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="Load CSV" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.CsvDataSource, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 312,&#xD;&#xA;  &quot;Left&quot;: 380&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Load CSV" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.CsvDataSource, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 312,&#xD;&#xA;  &quot;Left&quot;: 380&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.CsvDataSource" AttributeSetName="ToSic.Eav.DataSources.CsvDataSource" EntityGUID="2aaac685-a9e0-4b4f-9cfa-800c7c12d75a" Json="True" KeyGuid="6ce81104-df78-415f-9a32-a886f9b49264">
       <Value Key="ContentType" Value="Csv Data" Type="String">
@@ -2652,6 +2636,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IdColumnName" Value="Id" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Csv Data Source" Type="String">
@@ -2703,18 +2690,10 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ac37f57e-5832-4764-b7c5-4c6cd0c1a062" Json="True" KeyGuid="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="ValueSort" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 151,&#xD;&#xA;  &quot;Left&quot;: 226&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ValueSort" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 151,&#xD;&#xA;  &quot;Left&quot;: 226&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.ValueSort" AttributeSetName="ToSic.Eav.DataSources.ValueSort" EntityGUID="2ab73515-5fe2-4b8c-accc-53a57fab8764" Json="True" KeyGuid="ac37f57e-5832-4764-b7c5-4c6cd0c1a062">
       <Value Key="Attributes" Value="Name" Type="String">
@@ -2725,18 +2704,10 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="3a3137ff-784a-497e-98ef-e31ed9b86cc9" Json="True" KeyGuid="4324ba7f-314f-43d4-b29c-6d12ea4d5663">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="Find QueryString:Product" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 152,&#xD;&#xA;  &quot;Left&quot;: 554&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Find QueryString:Product" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 152,&#xD;&#xA;  &quot;Left&quot;: 554&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="95ff7675-eb21-4970-8050-0271cb186bf3" Json="True" KeyGuid="3a3137ff-784a-497e-98ef-e31ed9b86cc9">
       <Value Key="EntityIds" Value="[Params:ProductId]" Type="String">
