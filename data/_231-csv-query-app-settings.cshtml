@@ -10,17 +10,18 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 <trim>
-<h2>Example from CSV</h2>
+<h2>Example from CSV which was uploaded as an App Setting</h2>
 @fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200, "float-right float-end")
 <p>
-  CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
+  This is similar to the previous example, except that the CSV file 
+  can be uploaded again and again in the App-Settings UI. So the path isn't hard-coded.  
   <br>
   You can read more about the <code>CsvDataSource</code> <a href="https://r.2sxc.org/ds-csv" target="_blank">here</a>.
 </p>
 </trim>
 @{
   // get the query
-  var query = App.Query["ProductsFromCSV"];
+  var query = App.Query["ProductsFromCsvInAppSettings"];
 
   // get the data from the query
   var products = AsList(query);
