@@ -34,7 +34,7 @@
     <!-- this li will have class=selected if it's the current one -->
     <li class='@(product == current ? "selected" : "")'>
       <!-- this creates a link to the current tutorial (data220) and product=id -->
-      <a href='@Link.To(parameters: "data230=true&product=" + product.EntityId)'>
+      <a href='@Link.To(parameters: "data231=true&product=" + product.EntityId)'>
         @product.Name (#@product.Id)
       </a>
       @if(current == product) {
