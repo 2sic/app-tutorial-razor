@@ -2,18 +2,12 @@
 <hide>
 @Html.Partial("_header.cshtml")
 
-<h2>2sxc UI - cms.run commands TODO: WIP</h2>
+<h2>2sxc UI - cms.run commands</h2>
 <p>
-  TODO:
-  Toolbars will automatically do things like open a dialog or refresh the page when the dialog closes. 
-  But sometimes you want to override or change the default behavior - like:
-</p>
-<ol>
-  <li>Prevent refresh on dialog close - to retrieve the data in JS</li>
-  <li>Prevent creating new if a specific condition applies</li>
-</ol>
-<p>
-  This is what the Workflows are for. You can register custom <code>before</code> and <code>after</code> code to run, change specs or prevent the action from executing. 
+  In some cases you need to call a CMS command without using the toolbar - like in SPAs and in situations where a normal HTML button should call edit. 
+
+  You can also use this to trigger Workflows (new in 12.10).
+  You can register custom <code>before</code> and <code>after</code> code to run, change specs or prevent the action from executing. 
   <a href="https://r.2sxc.org/js-workflow" target="_blank">Read the workflow docs</a> or the 
   <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">toolbar docs</a> to learn more about this. 
 </p>
