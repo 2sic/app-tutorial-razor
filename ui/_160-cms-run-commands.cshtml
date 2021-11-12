@@ -1,0 +1,77 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+
+<h2>2sxc UI - cms.run commands TODO: WIP</h2>
+<p>
+  TODO:
+  Toolbars will automatically do things like open a dialog or refresh the page when the dialog closes. 
+  But sometimes you want to override or change the default behavior - like:
+</p>
+<ol>
+  <li>Prevent refresh on dialog close - to retrieve the data in JS</li>
+  <li>Prevent creating new if a specific condition applies</li>
+</ol>
+<p>
+  This is what the Workflows are for. You can register custom <code>before</code> and <code>after</code> code to run, change specs or prevent the action from executing. 
+  <a href="https://r.2sxc.org/js-workflow" target="_blank">Read the workflow docs</a> or the 
+  <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">toolbar docs</a> to learn more about this. 
+</p>
+
+<div class="alert alert-warning">
+  Important: Usually only editors see these toolbars - so saving won't work. 
+  Hover over the various boxes to see the result - like this: <br>
+  <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
+</div>
+
+<hr>
+</hide>
+
+<h2>Simple Setup, Custom Link</h2>
+
+<div class="alert alert-primary" style="width: 50%;">
+
+    <a href="#" onclick="openAndCancelRefreshAfterwards(this, 'new', { contentType: 'UiEmptyHelloWorld'})">Run open command</a>
+
+<hr>
+    Float over this box to get a (+) button. 
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process.
+</div>
+
+<script>
+
+  function openAndCancelRefreshAfterwards(tag, command, params) {
+    $2sxc.cms.run(tag, command, params)
+      .then(function(data) {
+        console.log("after run", data);
+        debugger;
+        return false;
+      });
+  }
+</script>
+
+<hide>
+  <hr>
+  <h2>More Stuff</h2>
+  <div>
+    You can do much more - like change icons, call call-parameters etc. 
+    Read the 
+    <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">how-to</a> and the 
+    <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.
+  </div>
+</hide>
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@* 2sxclint:disable:no-inline-script *@
+
+@{
+  // Special command to ensure that the toolbars appear, even if they are won't work.
+  // This is not an official API, and may change any time.
+  // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
+  Edit.Enabled = true;
+
+  // This will tell the edit-UI that we need the JS features
+  Edit.Enable(api: true, context: true, styles: true);
+}
+</hide>
