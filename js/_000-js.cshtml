@@ -1,0 +1,21 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+</hide>
+
+<trim>
+<h2>JavaScript APIs in 2sxc (Tutorial WIP)</h2>
+
+<p>
+  This section will show you all the magic you can do with the 2sxc JS API. 
+</p>
+
+<ol>
+  @linker.TutorialLink("Advanced Hybrid Use", 
+    "hybrid410",
+    "Use compiler Preprocessor Directives to enable Hybrid Razor",
+    "new in v12")
+</ol>
+
+</trim>
