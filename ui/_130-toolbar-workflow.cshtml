@@ -44,7 +44,7 @@
     const workflow = initEvent.detail.workflow;
 
     // This workflow step will run on every action, just to log what's happening
-    var workflowToLog = {
+    const workflowToLog = {
       command: 'all',   // Run on every command/action
       phase: 'all',     // Run before and after
       code: (wfArgs) => {
@@ -53,7 +53,7 @@
     }
 
     // This is the workflow step we will register to stop page refresh
-    var workflowToDisableRefresh = {
+    const workflowToDisableRefresh = {
       command: 'refresh',   // The command name it's for
       phase: 'before',      // The workflow-step should run before the command is executed
       code: (wfArgs) => {   // The code which should be run
