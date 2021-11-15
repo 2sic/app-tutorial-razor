@@ -32,7 +32,7 @@
 <h2>Standard TagToolbar</h2>
 
 <div class="alert alert-primary" style="width: 50%;">
-  <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })>
+  <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" }, settings: new { hover = "left", show = "always" } )>
     Float over this box to get a (+) button. 
     When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
     Instead, you'll see console messages that a custom JS took over the process.
