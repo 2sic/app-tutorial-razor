@@ -54,7 +54,7 @@
       }
     };
 
-    $2sxc.cms.run({ tag: tag, action: action, params: params, workflowSteps: [workflowToLog, workflowToDisableRefresh]})
+    $2sxc.cms.run({ tag: tag, action: action, params: params, workflows: [workflowToLog, workflowToDisableRefresh]})
       .then(function(data) {
         console.log("after run", data);
         return false;
