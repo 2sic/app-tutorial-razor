@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-
+@{
+  // IMPORTANT: This must be at the top of the file, so it executes first
+  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+}
 <h2>2sxc UI - cms.run commands</h2>
 <p>
   In some cases you need to call a CMS command without using the toolbar - like in SPAs and in situations where a normal HTML button should call edit. 
@@ -76,13 +79,5 @@
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
 @* 2sxclint:disable:no-inline-script *@
 
-@{
-  // Special command to ensure that the toolbars appear, even if they are won't work.
-  // This is not an official API, and may change any time.
-  // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
-  Edit.Enabled = true;
 
-  // This will tell the edit-UI that we need the JS features
-  Edit.Enable(api: true, context: true, styles: true);
-}
 </hide>

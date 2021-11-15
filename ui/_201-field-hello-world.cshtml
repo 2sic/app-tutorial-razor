@@ -2,6 +2,7 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{
+  // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
 }
 

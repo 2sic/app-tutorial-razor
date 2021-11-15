@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-
+@{
+  // IMPORTANT: This must be at the top of the file, so it executes first
+  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+}
 <h2>2sxc UI - Toolbar Workflows</h2>
 <p>
   Toolbars will automatically do things like open a dialog or refresh the page when the dialog closes. 
@@ -26,7 +29,7 @@
 <hr>
 </hide>
 
-<h2>Simple Setup, Single Toolbar</h2>
+<h2>Standard TagToolbar</h2>
 
 <div class="alert alert-primary" style="width: 50%;">
   <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })>
@@ -36,31 +39,42 @@
   </div>
 </div>
 
+<h2>Standard Inline Toolbar</h2>
+
+<div class="alert alert-primary" style="width: 50%;">
+  <div id='inlineToolbar'>
+    @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process.
+  </div>
+</div>
+
+
 <script>
-  // Attach event-listener to the parent, so we can register the workflow when the toolbar is created
+  // This workflow definition will run on every action, just to log what's happening
+  const workflowToLog = {
+    command: 'all',   // Run on every command/action
+    phase: 'all',     // Run before and after
+    code: (wfArgs) => {
+      console.log("Toolbar asked to to something - here are the details.", wfArgs);
+    }
+  }
+
+  // This is the workflow definition we will register to stop page refresh
+  const workflowToDisableRefresh = {
+    command: 'refresh',   // The command name it's for
+    phase: 'before',      // The workflow-step should run before the command is executed
+    code: (wfArgs) => {   // The code which should be run
+      console.log('Toolbar asked to refresh, will return false to stop it. These are the arguments we got.', wfArgs);
+      return false;       // Return false to stop this command from happening
+    }
+  };
+
+  // Attach event-listener to the TagToolbar parent, so we can register the workflow when the toolbar is created
   var parent = document.getElementById('tagWithToolbar1');
   parent.addEventListener('toolbar-init', (initEvent) => {
-    console.log("Workflow Demo: Toolbar was initialized - event kicked in - will now register");
+    console.log("Workflow Demo: Tag Toolbar was initialized - event kicked in - will now register");
     const workflow = initEvent.detail.workflow;
-
-    // This workflow step will run on every action, just to log what's happening
-    const workflowToLog = {
-      command: 'all',   // Run on every command/action
-      phase: 'all',     // Run before and after
-      code: (wfArgs) => {
-        console.log("Toolbar asked to to something - here are the details.", wfArgs);
-      }
-    }
-
-    // This is the workflow step we will register to stop page refresh
-    const workflowToDisableRefresh = {
-      command: 'refresh',   // The command name it's for
-      phase: 'before',      // The workflow-step should run before the command is executed
-      code: (wfArgs) => {   // The code which should be run
-        console.log('Toolbar asked to refresh, will return false to stop it. These are the arguments we got.', wfArgs);
-        return false;       // Return false to stop this command from happening
-      }
-    };
 
     workflow.add(workflowToLog);
     workflow.add(workflowToDisableRefresh);
@@ -68,6 +82,19 @@
     // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
     initEvent.stopPropagation();
   });
+
+  // Attach event-listener to the parent of the inline-toolbar, so we can register the workflow when the toolbar is created
+  var parent = document.getElementById('inlineToolbar');
+  parent.addEventListener('toolbar-init', (initEvent) => {
+    console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register");
+    const workflow = initEvent.detail.workflow;
+
+    workflow.add(workflowToLog);
+    workflow.add(workflowToDisableRefresh);
+
+    // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
+    initEvent.stopPropagation();
+  }); 
 </script>
 
 <hide>
@@ -81,16 +108,6 @@
   </div>
 </hide>
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1600 }) 
 @* 2sxclint:disable:no-inline-script *@
-
-@{
-  // Special command to ensure that the toolbars appear, even if they are won't work.
-  // This is not an official API, and may change any time.
-  // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
-  Edit.Enabled = true;
-
-  // This will tell the edit-UI that we need the JS features
-  Edit.Enable(api: true, context: true, styles: true);
-}
 </hide>
