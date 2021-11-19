@@ -133,9 +133,13 @@
       return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
     });
 
-    // hide unnecessary parts
+    // hide unnecessary parts with comment
     var patternHide = @"(?:<hide>)([\s\S]*?)(?:</hide>)";
-    source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->" );
+    source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->");
+
+    // hide unnecessary parts without comment
+    var patternHideSilent = @"(?:<hide-silent>)([\s\S]*?)(?:</hide-silent>)";
+    source = Regex.Replace(source, patternHideSilent, "");
 
     // remove snippet markers
     var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";

@@ -1,0 +1,157 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  
+  /* Internal remarks for the tutorial developers
+    To reall see the images loading they must have different names in each tutorial.
+    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
+  */
+}
+</hide>
+<trim>
+  <h2>Image vs. Picture and Auto-Load Different Formats &amp; Sizes</h2>
+  <div>
+    HTML has a few ways to show an image, and you should know which way is best. Discover: 
+  </div>
+  <ol>
+    <li><code>img</code> for your standard image</li>
+    <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
+    <li><code>picture</code> for images in different sizes, which the browser picks based on the screen and capabilities</li>
+  </ol>
+</trim>
+
+<trim>
+  <hr>
+  <h2>Standard <code>img</code> Image</h2>
+  <p>
+    This is used for showing an image, and we won't go into much detail, because you probably already know this one. 
+    It shows the same picture as jpg, png and <a href="https://en.wikipedia.org/wiki/WebP" target="_blank">webp</a>:
+  </p>
+</trim>
+
+<snippet id="img-basic">
+  <div class="row">
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.jpg"> <br> (jpg 15k)</div>
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.png"> <br> (png 11k)</div>
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.webp"> <br> (webp 8k)</div>
+  </div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-basic", Size = 120 }) 
+</hide-silent>
+
+<trim>
+  <hr>
+  <h2>Responsive <code>img</code> with <code>srcset</code> and <code>sizes</code> To Load Different Pictures</h2>
+  <p>
+    With <code>srcset</code> on the <code>img</code> tag you can tell the browser to load different images based on screen size. 
+    To really get the hang of this, best check out <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">the MDN docs</a>.
+  </p>
+</trim>
+
+<snippet id="img-srcset">
+  <img src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" style="width: 100%;" alt="Image SrcSet Demo"
+    srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
+            @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
+            @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
+            @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
+    sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  <h3>What you need to know about <code>srcset</code></h3>
+  <ol>
+    <li>
+      <strong>Important: </strong> If the browser already has a large image, it won't load smaller ones. 
+      So to see this in action, you have to start with a tiny browser window, loading the 250px - then make it larger to see bigger pictures load. 
+    </li>
+    <li>The main picture in <code>src</code> is used in all old browsers</li>
+    <li>You can also use <code>srcset</code> to specify different resolutions for retina displays.</li>
+    <li><strong>Important: </strong> the width specified in the <code>max-width</code> is the view/page width, not the image width</li>
+  </ol>
+</hide>
+
+<trim>
+  <hr>
+  <h2>Browser-Capabilities <code>picture</code> with different formats</h2>
+  <p>
+    The perfect image depends on browser capabilities. 
+    The following example will get modern browsers a webp image (which is smaller/faster) and normal browsers a jpg. 
+  </p>
+</trim>
+
+<snippet id="demo-picture-formats">
+  <picture>
+    <source type="image/webp" srcset="@App.Path/img/assets/koi-picture-400.webp">
+    <source type="image/png" srcset="@App.Path/img/assets/koi-picture-400.png">
+    <img src="@App.Path/img/assets/koi-picture-400.jpg" alt="Picture Formats demo">
+  </picture>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "demo-picture-formats", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  <h3>What you need to know about <code>picture</code></h3>
+  <ol>
+    <li>It's just a wrapper for the <code>img</code></li>
+    <li>You always need an <code>img</code> tag inside it, and this is what old browsers like IE6 will take even if they don't understand <code>picture</code></li>
+    <li>The <code>img</code> tag also caries the <code>alt</code> description, width, size, styles etc. which is used for all images</li>
+    <li>The <code>source</code> tags contain rules like <code>type</code> or <code>media</code> which the browser uses to pick the best image</li>
+    <li>The <code>source</code> also supports the same <code>srcset</code> and <code>sizes</code> just like the <code>img</code> tag</li>
+    <li><strong>Important: </strong> you must use <code>srcset</code> and not <code>src</code> on the <code>source</code> tags</li>
+    <li><strong>Important: </strong> Order matters! Put the <code>source</code> tags first in the order you need, as the first match will be taken.</li>
+  </ol>
+</hide>
+
+<trim>
+  <hr>
+  <h2>Responsive <code>picture</code> with many resolutions</h2>
+  <p>
+    The perfect image is often different depending on the screen size. 
+    The following example will get two different sizes, depending on the screen size. 
+    Try resizing the screen and watch the network (F12) to see when the other sizes are loaded. 
+  </p>
+  <div> TODO COLORS
+    Important: This examples uses the server-side image resizer, which is explained in the next tutorial TODO
+  </div>
+</trim>
+
+<snippet id="demo-picture-sizes">
+  <picture>
+    <img src="@App.Path/img/assets/jellyfish-1000.jpg">
+    <source src="@App.Path/img/assets/jellyfish-2000.jpg" type="image/webp">
+    <source src="@App.Path/img/assets/koi-400.png" type="image/png">
+  </picture>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "demo-picture-formats", Size = 120 }) 
+</hide-silent>
+
+
+<hide>
+  @* 
+  Photo by <a href="https://unsplash.com/@dorianbaumann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dorian Baumann</a> on <a href="https://unsplash.com/s/photos/aescher?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+  Werdenberg: Photo by <a href="https://unsplash.com/@calina?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Georg Bommeli</a> on <a href="https://unsplash.com/s/photos/buchs-sg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+  *@
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+
+  <div class="alert alert-info">
+    <strong>Credits: </strong>
+    <ol>
+      <li>
+        Koi fish Photo by <a href="https://unsplash.com/@("@")agusprianto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">agus prianto</a> on <a href="https://unsplash.com/s/photos/colorful-shrimp?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </li>
+      <li>
+          Jellyfish Photo by <a href="https://unsplash.com/@("@")kkkaran?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Karan Karnik</a> on <a href="https://unsplash.com/s/photos/sea-life?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </li>
+    </ol>
+  </div>
+</hide>

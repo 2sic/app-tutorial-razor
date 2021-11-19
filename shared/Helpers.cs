@@ -27,9 +27,9 @@ public class Helpers: Custom.Hybrid.Code12
 
   public dynamic TitleAndBreadcrumb(string title, string name, string topicUrl) {
     return Tag.Custom(
-      Title(title).ToString()
-      + Breadcrumb(name, topicUrl).ToString()
-      + Tag.Hr()
+      Title(title).ToString() +
+      Breadcrumb(name, topicUrl) +
+      Tag.Hr()
     );
   }
 

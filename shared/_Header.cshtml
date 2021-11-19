@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor12
+@using System.Linq;
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var title = DynamicModel.Title;
+  var name = DynamicModel.Name;
+  var topicHomeLink = DynamicModel.Link;
+
+  // Page Metadata - will create a toolbar for this
+  var sharingType = "SharingMetadata";
+  var md = CmsContext.View.Metadata;
+  var mdShareList = md.OfType(sharingType);
+  var mdShare = mdShareList.Any() ? AsDynamic(mdShareList.First()) : null;
+}
+
+<div @Edit.TagToolbar(mdShare, toolbar: new [] { "toolbar=empty", "+metadata?contentType=" + sharingType + "&for=4,guid," }, settings: new { hover = "left"})>
+  @hlp.TitleAndBreadcrumb(title, name, topicHomeLink)
+</div>
