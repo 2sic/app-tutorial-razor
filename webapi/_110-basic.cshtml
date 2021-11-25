@@ -9,46 +9,104 @@
 <h2>Very basic WebApi Examples</h2>
 <p>
   In this example, we'll assume your WebApi controller is called <code>Basic</code> (so the file is called <code>BasicController.cs</code> and has a class called <code>BasicController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. <br>
-  The second and third button calls the Api using a parameter <code>?number=7</code> and <code>?number=27</code> so you can see how url parameters are used.
+  We'll show various usages both with the new <code>webApi.fetchJson(...)</code> and <code>webApi.fetch(...)</code> standard <code>fetch</code>
 </p>
+<ol>
+  <li>with the new <code>webApi.fetchJson(...)</code> and <code>webApi.fetch(...)</code> commands (new in v12.10)</li>
+  <li>with the browser built in <code>fetch</code></li>
+  <li>using jQuery (not recommended any more, because we believe jQuery is dying)</li>
+  <li>another example calling the endpoint using a parameter to calculate something so you can see how to use url parameters.</li>
+</ol>
 
 <p>
   Click to see the result of a WebApi call with the shared code:  
 </p>
 </trim>
-<button type="button" class="btn btn-primary" onclick="callBasicHello(this)">
-  Get Hello
-</button> 
-<button type="button" class="btn btn-primary" onclick="callSquare(this, 7)">
-  Square 7
-</button> <button type="button" class="btn btn-primary" onclick="callSquare(this, 27)">
-  Square 27
-</button> 
+<button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-json", Size = 200 }) 
+</hide-silent>
+<button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch", Size = 220 }) 
+</hide-silent>
+<button type="button" class="btn btn-primary" onclick="helloFetchManual(this)">Quick Fetch "Hello"</button>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-manual", Size = 250 }) 
+</hide-silent>
+<button type="button" class="btn btn-secondary" onclick="helloJQuery(this)">jQuery Get Hello</button>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "jquery", Size = 200 }) 
+</hide-silent>
+<button type="button" class="btn btn-primary" onclick="squareFetch(this, 7)">Fetch Square 7</button>
+<button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">Fetch Square 27</button>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "square", Size = 140 }) 
+</hide-silent>
 
+<snippet id="fetch-json">
 <script>
-  function callBasicHello(moduleContext) {
-    $2sxc(moduleContext)
-      .webApi.get('app/auto/api/basic/hello')
-      .then(function (results) {
-        alert(results);      
-      });
+  // Fetch using modern Browser Fetch-promises, with auto-get Json
+  // This is the recommended method if you expect JSON, because it's simpler
+  // This also uses the shortest API syntax `controller/method`
+  function helloFetchJson(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('basic/hello')
+      .then(data => alert('Result using quick Fetch JSON: ' + data));
   }
-
-  function callSquare(moduleContext, original) {
-    $2sxc(moduleContext)
-      .webApi.get('app/auto/api/basic/square?number=' + original)
+</script>
+</snippet>
+<snippet id="fetch">
+<script>
+  // Fetch using modern Browser APIs
+  // This is the more manual method, in case you don't expect JSON or want more control
+  // This uses the full internal syntax `app/auto/api/controller/method`
+  function helloFetch(moduleContext) {
+    $2sxc(moduleContext).webApi.fetch('app/auto/api/basic/hello')
+      .then(response => response.json())
+      .then(data => alert('Result using quick Fetch: ' + data));
+  }
+</script>
+</snippet>
+<snippet id="fetch-manual">
+<script>
+  // Manual Fetch call using more code
+  // This is the most manual method, but shows how it actually works internally
+  function helloFetchManual(moduleContext) {
+    var moduleApi = $2sxc(moduleContext).webApi;  // webApi for this specific Module
+    var fullApiUrl = moduleApi.url('app/auto/api/basic/hello'); // API url based on current App
+    var headers = moduleApi.headers("GET");       // Headers used for GET calls
+    fetch(fullApiUrl, { headers: { ...headers } })
+        .then(response => response.json())
+        .then(data => alert('Result using manual Fetch: ' + data));
+  }
+</script>
+</snippet>
+<snippet id="jquery">
+<script>
+  // jQuery versions (not recommended any more, will not work on pages without jQuery)
+  function helloJQuery(moduleContext) {
+    $2sxc(moduleContext).webApi.get('app/auto/api/basic/hello')
       .then(function (results) {
-        alert(results);      
+        alert("Result using jQuery: " + results);      
       });
   }
 </script>
+</snippet>
+<snippet id="square">
+<script>
+  function squareFetch(moduleContext, original) {
+    $2sxc(moduleContext).webApi.fetchJson('basic/square?number=' + original)
+      .then(data => alert('The square of ' + original + '= ' + data));
+  }
+</script>
+</snippet>
 
 <hide>
 @* 2sxclint:disable:no-inline-script *@
 
-@Html.Partial("_MessageHybrid.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1500 }) 
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
+@Html.Partial("_MessageHybrid.cshtml")
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",

@@ -29,20 +29,18 @@
 
 <script>
   function getPersons(moduleContext) {
-    $2sxc(moduleContext)
-      .webApi.get('app/auto/api/books/persons')
-      .then(function (results) {
-        alert('Found ' + results.length + ' persons. \n'
-          + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
-          + 'The raw JSON: \n' + JSON.stringify(results)
+    $2sxc(moduleContext).webApi.fetchJson('books/persons')
+      .then(function(data) {
+        alert('Found ' + data.length + ' persons. \n'
+          + 'The first one is "' + data[0].FirstName + ' ' + data[0].LastName + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(data)
         );
       });
   }
 
   function getBooks(moduleContext) {
-    $2sxc(moduleContext)
-      .webApi.get('app/auto/api/books/books')
-      .then(function (results) {
+    $2sxc(moduleContext).webApi.fetchJson('books/books')
+      .then(function(results) {
         alert('Found ' + results.length + ' books. \n'
           + 'The first one is "' + results[0].Title + '"\n\n'
           + 'The raw JSON: \n' + JSON.stringify(results)
@@ -51,9 +49,8 @@
   }
 
   function getPersonsAuto(moduleContext) {
-    $2sxc(moduleContext)
-      .webApi.get('app/auto/api/books/personsAuto')
-      .then(function (results) {
+    $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
+      .then(function(results) {
         alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
           + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
           + 'The raw JSON: \n' + JSON.stringify(results)
@@ -65,8 +62,9 @@
 <hide>
 @* 2sxclint:disable:no-inline-script *@
 
-@Html.Partial("_MessageHybrid.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) 
+
+@Html.Partial("_MessageHybrid.cshtml")
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",

@@ -76,7 +76,7 @@
 
 <script>
   function callApiWithSharedCode(context) {
-    $2sxc(context).webApi.get('app/auto/reuse/api/sharedcode/hello')
+    $2sxc(context).webApi.fetchJson('app/auto/reuse/api/sharedcode/hello')
       .then(function (results) {
         console.log(results);
         alert(results);

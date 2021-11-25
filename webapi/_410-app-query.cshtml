@@ -24,8 +24,7 @@
 
 <script>
   function getAuthor(moduleContext, authorId) {
-    $2sxc(moduleContext)
-      .webApi.get('app/auto/api/authorsquery/get?authorId=' + authorId)
+    $2sxc(moduleContext).webApi.fetchJson('authorsquery/get?authorId=' + authorId)
       .then(function (author) {
         alert('Found author: '
           + author.FirstName + ' ' + author.LastName 
@@ -40,8 +39,9 @@
 <hide>
 @* 2sxclint:disable:no-inline-script *@
 
-@Html.Partial("_MessageHybrid.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+
+@Html.Partial("_MessageHybrid.cshtml")
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",
