@@ -1,0 +1,81 @@
+@inherits Custom.Hybrid.Razor12
+@* tell 2sxc that we'll use the js API *@
+@Edit.Enable(js:true)
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+  <h2>Bare Metal WebAPI Commands (v12.10+)</h2>
+  <p>
+    In some cases you want to have more control over the API calls, but still need 2sxc to help you get the right headers and urls. 
+    This is what we call the <strong>Bare Metal WebApi</strong> since it gives you the stuff so you can do the work yourself. 
+  </p>
+  <p>
+    As with everything, you usually need to get the module <code>sxc</code> controller first, so that the values you get match your app and use case. 
+    In these examples, we're using the current HTML-node to find the <code>sxc</code> controller, 
+    but there are other ways as well if you prefer working the the Module Id.
+  </p>
+
+  <hr>
+  <h3>Headers</h3>
+  <p>
+    This will show you the headers which will probably be needed for a request:
+  </p>
+</trim>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "show-headers", Size = 200 }) 
+</hide-silent>
+
+
+<trim>
+  <hr>
+  <h3>URL</h3>
+  <p>
+    Resolve URLs to endpoints and similar
+  </p>
+</trim>
+<button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
+<button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
+<button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "show-url", Size = 200 }) 
+</hide-silent>
+
+
+
+<snippet id="show-headers">
+<script>
+  function showHeaders(moduleContext, optionalVerb) {
+    var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
+    alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
+      + JSON.stringify(headers, null, 2));
+  }
+</script>
+</snippet>
+<snippet id="show-url">
+<script>
+  function showUrl(moduleContext, url) {
+    var finalUrl = $2sxc(moduleContext).webApi.url(url);
+    alert('These is the full url for "' + url + '":\n' + finalUrl);
+  }
+</script>
+</snippet>
+
+<hide>
+@* 2sxclint:disable:no-inline-script *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
+
+@Html.Partial("_MessageHybrid.cshtml")
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "VerifiedController.cs",
+  TitlePath = "/api/"
+}) 
+</hide>
