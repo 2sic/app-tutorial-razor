@@ -5,10 +5,10 @@
 @{  var hlp = CreateInstance("../shared/Helpers.cs"); }
 </hide>
 <trim>
-  <h2>Turn-On activate and execute basic tasks</h2>
+  <h2>Activate Turn-On and execute basic tasks</h2>
   <div>
-    This page 
-    Look at the resulting output-source to see the effect. 
+    This page activates Turn-On and executes a JavaScript function on initial loading.
+    Look at the resulting log in the console to see the effect. 
   </div>
 </trim>
 
@@ -19,12 +19,16 @@
 }
 
 <script>
-  function activate() {
-
+  function init() {
+    console.log("This function was executed by the 2sxc Turn-On. 😉");
   }
 
-  window.razorTutorial.activate ??= activate;
+  window.razorTutorial ??= {};
+  window.razorTutorial.init = init;
 </script>
+
+@* Executes the JavaScript function window.razorTutorial.init() from above *@
+<turnOn turn-on='{ "run": "window.razorTutorial.init()" }'></turnOn>
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
