@@ -1,0 +1,42 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_111-js-example.js";
+}
+</hide>
+<trim>
+  <h2>Pass function parameters with Turn-On</h2>
+  <div>
+    This page passes a unique DOM attribute as parameter to a JavaScript function with turnOn. 
+    The executed JavaScript then modifies the DOM element in the page.
+    Look at the text below to see the effect. 
+  </div>
+</trim>
+<hide>
+  <hr>
+</hide>
+
+@{
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  // activate the turnOn feature
+  page.Activate("turnOn");
+
+  // create unique DOM attribute with Module Id
+  var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
+}
+
+@* inject attribute into DIV, to make it accessible for query *@
+<div @uniqueDomAttrubute>turnOn hasn't passed any parameters.</div>
+
+@* Passes the parameter domAttribute in a JSON format and executes the window.razorTutorial.init function *@
+<turnOn turn-on='{ "run": "window.razorTutorial.init()", "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+
+<script src="@scriptPath"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = scriptPath }) 
+</hide>

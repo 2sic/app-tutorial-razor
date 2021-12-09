@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_110-js-example.js";
+}
+</hide>
+<trim>
+  <h2>Pass function parameters with Turn-On</h2>
+  <div>
+    This page passes parameters to a JavaScript function with turnOn.
+    Look at the text below to see the effect. 
+  </div>
+</trim>
+<hide>
+  <hr>
+</hide>
+
+@{
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  // activate the turnOn feature
+  page.Activate("turnOn");
+}
+
+<div id="turn-on-example">turnOn hasn't passed the domAttribute yet.</div>
+
+@* Passes the parameters Hello for word1 and World for word2 in a JSON format and executes the window.razorTutorial.init function *@
+<turnOn turn-on='{ "run": "window.razorTutorial.init()", "data": { "word1": "Hello", "word2": "World" } }'></turnOn>
+
+<script src="@scriptPath"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = scriptPath }) 
+</hide>
