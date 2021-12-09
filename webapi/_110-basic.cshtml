@@ -22,10 +22,21 @@
   Click to see the result of a WebApi call with the shared code:  
 </p>
 </trim>
+<snippet id="fetch-json">
 <button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-json", Size = 200 }) 
+<script>
+  // Fetch using modern Browser Fetch-promises, with auto-get Json
+  // This is the recommended method if you expect JSON, because it's simpler
+  // This also uses the shortest API syntax `controller/method`
+  function helloFetchJson(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('basic/hello')
+      .then(data => alert('Result using quick Fetch JSON: ' + data));
+  }
+</script>
+</snippet><hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-json", Size = 220 }) 
 </hide-silent>
+
 <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch", Size = 220 }) 
@@ -44,17 +55,7 @@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "square", Size = 140 }) 
 </hide-silent>
 
-<snippet id="fetch-json">
-<script>
-  // Fetch using modern Browser Fetch-promises, with auto-get Json
-  // This is the recommended method if you expect JSON, because it's simpler
-  // This also uses the shortest API syntax `controller/method`
-  function helloFetchJson(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('basic/hello')
-      .then(data => alert('Result using quick Fetch JSON: ' + data));
-  }
-</script>
-</snippet>
+
 <snippet id="fetch">
 <script>
   // Fetch using modern Browser APIs

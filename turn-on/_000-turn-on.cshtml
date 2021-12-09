@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+</hide>
+
+<trim>
+
+<p>
+  Learn how to execute JavaScript functions using the 2sxc Turn-On. Extend basic usage by passing data, awaiting conditions and more.
+  <br>
+  <br>
+  Turn-On usage requires at least <a href="https://2sxc.org/en/download" target="_blank">2sxc 12.02</a> and works on DNN and Oqtane.
+</p>
+
+<hr>
+<h2>Examples of using Turn-On</h2>
+
+<ol>
+  @linker.TutorialLink("Basic Turn-On usage and activation", 
+    "turn-on-100",
+    "Activate turn-on and execute local JavaScript functions")
+</ol>
+
+</trim>
