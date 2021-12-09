@@ -1,0 +1,46 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_200-js-example.js";
+}
+</hide>
+<trim>
+  <h2>Await objects, before executing functions with turnOn</h2>
+  <div>
+    This page waits for a thirdparty library to finish loading, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
+    The executed JavaScript then triggers thirdparty library code, which modifies the DOM element in the page.
+    Look at the text below to see the effect. 
+  </div>
+</trim>
+<hide>
+  <hr>
+</hide>
+
+@{
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  // activate the turnOn feature
+  page.Activate("turnOn");
+
+  // create unique DOM attribute with Module Id
+  var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
+}
+
+@* inject attribute into DIV, to make it accessible for query *@
+<div @uniqueDomAttrubute></div>
+
+@* Wait for thirdparty library to load, then execute the window.razorTutorial.init function and pass the domAttribute as JSON *@
+<turnOn turn-on='{ "await": "window.spritejs", "run": "window.razorTutorial.init()", "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+
+@* include thirdparty library from CDN *@
+<script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
+
+@* include local JavaScript file *@
+<script src="@scriptPath"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = scriptPath }) 
+</hide>
