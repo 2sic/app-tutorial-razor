@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+</hide>
+<trim>
+  <h2>Turn-On activate and execute basic tasks</h2>
+  <div>
+    This page 
+    Look at the resulting output-source to see the effect. 
+  </div>
+</trim>
+
+@{
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  // activate the Turn-On feature
+  page.Activate("turnOn");
+}
+
+<script>
+  function activate() {
+
+  }
+
+  window.razorTutorial.activate ??= activate;
+</script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+</hide>
