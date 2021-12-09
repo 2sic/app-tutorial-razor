@@ -2,34 +2,36 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_100-js-example.js";
+}
 </hide>
 <trim>
-  <h2>Activate Turn-On and execute basic tasks</h2>
+  <h2>Activate turnOn and execute basic tasks</h2>
   <div>
-    This page activates Turn-On and executes a JavaScript function on initial loading.
-    Look at the resulting log in the console to see the effect. 
+    This page activates turnOn and executes a JavaScript function on initial loading.
+    Look at the text below to see the effect. 
   </div>
 </trim>
+<hide>
+  <hr>
+</hide>
 
 @{
   var page = GetService<ToSic.Sxc.Web.IPageService>();
-  // activate the Turn-On feature
+  // activate the turnOn feature
   page.Activate("turnOn");
 }
 
-<script>
-  function init() {
-    console.log("This function was executed by the 2sxc Turn-On. 😉");
-  }
+<div id="turn-on-example">turnOn hasn't been executed yet. 😔</div>
 
-  window.razorTutorial ??= {};
-  window.razorTutorial.init = init;
-</script>
-
-@* Executes the JavaScript function window.razorTutorial.init() from above *@
+@* Executes the JavaScript function window.razorTutorial.init() from the included script file *@
 <turnOn turn-on='{ "run": "window.razorTutorial.init()" }'></turnOn>
+
+<script src="@scriptPath"></script>
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path = scriptPath }) 
 </hide>
