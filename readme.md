@@ -43,3 +43,5 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 * v12.05 2021-10
     * Upgraded everythnig to also run in Oqtane (except for Dnn specific examples)
     * Using the latest & greatest best-practices of 2sxc 12.05
+* v12.11 2021-12
+    * Added new tutorials for turnOn
