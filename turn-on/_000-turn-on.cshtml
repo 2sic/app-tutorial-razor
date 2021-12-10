@@ -4,6 +4,16 @@
 @{  var linker = CreateInstance("../shared/Helpers.cs"); }
 </hide>
 
+Todo
+- Add turn-on icon in corner like with KOi in header
+- add big / wide image into this page
+- Pls design an infobox which is a cshtml in shared
+  - Title & Link
+- Create sample 120 using a anonymous object and IConvertService.Json.ToJson(...)
+- Add a bit more info what you're doing
+- long comments better on multiple lines
+- second+ samples use one-liner for IPageService
+- name js files same as cshtml so they come after it in folder
 <trim>
 
 <p>
@@ -27,9 +37,16 @@
   @linker.TutorialLink("Passing module parameters with turnOn", 
     "turn-on111",
     "Pass module parameters to JavaScript functions with turnOn")
-  @linker.TutorialLink("Await different objects", 
+
+TODO: creating many (safe) parameters using json-object
+
+  @linker.TutorialLink("Wait for multiple scripts", 
     "turn-on200",
     "Await an object before executing JavaScript functions")
+
+TODO: wait for system scripts like Fancybox4
+
+
   @linker.TutorialLink("Await custom conditions through functions", 
     "turn-on201",
     "Await custom conditions before executing JavaScript functions")

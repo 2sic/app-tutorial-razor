@@ -20,9 +20,8 @@
 </hide>
 
 @{
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
-  // activate the turnOn feature
-  page.Activate("turnOn");
+  // Use the PageService to activate turnOn
+  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
 
   // create unique DOM attribute with Module Id
   var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;

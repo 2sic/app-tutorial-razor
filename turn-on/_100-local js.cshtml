@@ -4,7 +4,15 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs"); 
-  var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_100-js-example.js";
+
+  // todo @2mh
+  // - sync all samples to use size
+  // - better name of js object
+  // - better script-path
+  // - better attach of 'init'
+  // - always move up the target-div, maybe make 3 lines
+  // - sentences & comments start with Upper case
+  @* var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_100-js-example.js"; *@
 }
 </hide>
 <trim>
@@ -18,20 +26,28 @@
   <hr>
 </hide>
 
+<div id="turn-on-example">
+  turnOn is waiting - this will be replaced within 3 seconds... 😔
+</div>
+
 @{
   var page = GetService<ToSic.Sxc.Web.IPageService>();
   // activate the turnOn feature
   page.Activate("turnOn");
 }
 
-<div id="turn-on-example">turnOn hasn't been executed yet. 😔</div>
 
-@* Executes the JavaScript function window.razorTutorial.init() from the included script file *@
-<turnOn turn-on='{ "run": "window.razorTutorial.init()" }'></turnOn>
+@* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@
+<turnOn turn-on='{ "run": "window.turnOnTutorial100.init()" }'></turnOn>
 
-<script src="@scriptPath"></script>
+<script src="@App.Path/turn-on/_100-js-example.js"></script>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-@Html.Partial("../shared/_source-code.cshtml", new { Path = scriptPath }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 440 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 400,
+  File = "_100-js-example.js",
+  // TitlePath = "/api/"
+}) 
 </hide>
