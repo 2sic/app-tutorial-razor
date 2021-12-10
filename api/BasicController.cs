@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;           // .net core [HttpGet] / [HttpPost] et
 using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGet]
 using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
 #endif
-
 [AllowAnonymous]                          // all commands can be accessed without a login
 public class BasicController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
 {
@@ -17,11 +16,16 @@ public class BasicController : Custom.Hybrid.Api12 // see https://r.2sxc.org/Cus
     return "Hello from the basic controller in /api";
   }
 
-
   [HttpGet]				// [HttpGet] says we're listening to GET requests
   public int Square(int number)
   {
     return number * number;
+  }
+
+  [HttpPost]				// [HttpPost] says we're listening to POST requests
+  public string Questions([FromBody] string question)
+  {
+    return "Ask that your local weatherman.";
   }
 }
 

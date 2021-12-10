@@ -30,6 +30,10 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch", Size = 220 }) 
 </hide-silent>
+<button type="button" class="btn btn-primary" onclick="questionFetch(this)">Quick Fetch Post "Questions"</button> 
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-post", Size = 220 }) 
+</hide-silent>
 <button type="button" class="btn btn-primary" onclick="helloFetchManual(this)">Quick Fetch "Hello"</button>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-manual", Size = 250 }) 
@@ -62,6 +66,19 @@
   // This uses the full internal syntax `app/auto/api/controller/method`
   function helloFetch(moduleContext) {
     $2sxc(moduleContext).webApi.fetch('app/auto/api/basic/hello')
+      .then(response => response.json())
+      .then(data => alert('Result using quick Fetch: ' + data));
+  }
+</script>
+</snippet>
+<snippet id="fetch-post">
+<script>
+  const question = "How is the weather tomorrow?";
+  // Fetch using modern Browser APIs
+  // This is the more manual method, in case you don't expect JSON or want more control
+  // This also uses the shortest API syntax `controller/method`
+  function questionFetch(moduleContext) {
+    $2sxc(moduleContext).webApi.fetch('basic/questions', { question: question })
       .then(response => response.json())
       .then(data => alert('Result using quick Fetch: ' + data));
   }
