@@ -1,25 +1,18 @@
-// data gets passed as a single object, so we need to deconstruct it.
+// Data gets passed as a single object, so we need to deconstruct it.
 function init({domAttribute}) {
-  // the element gets found in the DOM by a querySelector with the passed attribute
+  // The element gets found in the DOM by a querySelector with the passed attribute
   const foundElement = document.querySelector(`[${domAttribute}]`)
   foundElement.style.width = '100%';
   foundElement.style.height = '250px';
   
-  // thirdparty code gets executed
+  // Thirdparty code gets executed
   animateSpaceship(foundElement)
 }
 
-function ready() {
-  // checks if spritejs exists and returns either true or false
-  if (spritejs) return true
-  return false
-}
+const tt = window.turnOnTutorial200 = window.turnOnTutorial200 || {};
+tt.init = tt.init || init;
 
-window.razorTutorial = window.razorTutorial || {};
-window.razorTutorial.init = init;
-window.razorTutorial.ready = ready;
-
-// example code that consumes thirdparty library
+// Example code that consumes thirdparty library
 function animateSpaceship(container) {
   const {Scene, Sprite} = spritejs;
   const scene = new Scene({container, width: 1000, height: 250, mode: 'stickyTop'});

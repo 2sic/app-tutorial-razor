@@ -1,0 +1,59 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+<trim>
+  <h2>Pass function the Module Id as parameter with turnOn</h2>
+  <div>This page creates a anonymous object and sets it on a div. turnOn then passes this attribute to a JavaScript function, which identifies the element with a queryselector and performs DOM manipulations.</div>
+  <br>
+  In this tutorial you'll learn how to:
+  <ul>
+    <li>
+      Create a anonymous object in c#
+    </li>
+    <li>
+      Pass it's data to a JavaScript function
+    </li>
+  </ul>
+  Look at the text below to see the effect. 
+</trim>
+<hide>
+  <hr>
+</hide>
+
+@* Inject attribute into DIV, to make it accessible for query *@
+<div id="turn-on-example">
+  turnOn hasn't started yet.
+</div>
+
+@{
+  // Use the PageService to activate turnOn
+  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+  
+  // Create an anonymous object and define example settings 
+  var exampleObject = new {
+    domId = "turn-on-example",
+    style = new {
+      backgroundColor = "mediumpurple",
+      height = 100,
+      width = 400
+    }
+  };
+}
+
+@* Passes the exampleObject as parameter in a JSON format and executes the window.turnOnTutorial120.init function *@
+<turnOn turn-on='{ 
+  "run": "window.turnOnTutorial120.init()", 
+  "data": @Html.Raw(Convert.Json.ToJson(exampleObject)) }'></turnOn>
+
+<script src="@App.Path/turn-on/_120-anonymous-object.js"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 650 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 325,
+  File = "_120-anonymous-object.js"
+}) 
+</hide>

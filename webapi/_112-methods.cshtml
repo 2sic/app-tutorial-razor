@@ -1,7 +1,8 @@
 @inherits Custom.Hybrid.Razor12
-@* tell 2sxc that we'll use the js API *@
-@{ GetService<ToSic.Sxc.Services.IPageService>().Activate("2sxc.Core"); }
-@* 2dm TODO: Edit.Enable(js:true) *@
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  GetService<ToSic.Sxc.Services.IPageService>().Activate("2sxc.JsCore"); 
+}
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>

@@ -2,25 +2,21 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-
-  // todo @2mh
-  // - sync all samples to use size
-  // - better name of js object
-  // - better script-path
-  // - better attach of 'init'
-  // - always move up the target-div, maybe make 3 lines
-  // - sentences & comments start with Upper case
-  @* var scriptPath = "/Portals/tutorial-razor/2sxc/Tutorial-Razor/turn-on/_100-js-example.js"; *@
-}
 </hide>
 <trim>
   <h2>Activate turnOn and execute basic tasks</h2>
-  <div>
-    This page activates turnOn and executes a JavaScript function on initial loading.
-    Look at the text below to see the effect. 
-  </div>
+  <div>This page activates turnOn and executes a JavaScript function using turnOn.</div>
+  <br>
+  In this tutorial you'll learn how to:
+  <ul>
+    <li>
+      Activate turnOn using the PageService
+    </li>
+    <li>
+      Execute a JavaScript function on initial loading
+    </li>
+  </ul>
+  Look at the text below to see the effect. 
 </trim>
 <hide>
   <hr>
@@ -32,22 +28,20 @@
 
 @{
   var page = GetService<ToSic.Sxc.Web.IPageService>();
-  // activate the turnOn feature
+  // Use the PageService to activate turnOn
   page.Activate("turnOn");
 }
-
 
 @* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@
 <turnOn turn-on='{ "run": "window.turnOnTutorial100.init()" }'></turnOn>
 
-<script src="@App.Path/turn-on/_100-js-example.js"></script>
+<script src="@App.Path/turn-on/_100-local js.js"></script>
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 440 }) 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
-  Size = 400,
-  File = "_100-js-example.js",
-  // TitlePath = "/api/"
+  Size = 350,
+  File = "_100-local js.js"
 }) 
 </hide>

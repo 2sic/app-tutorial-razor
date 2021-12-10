@@ -1,8 +1,8 @@
 // The init function which should be called
 function init() {
-  // example element gets found in the DOM
+  // Example element gets found in the DOM
   const exampleElement = document.querySelector("#turn-on-example")
-  // success text gets displayed in the DOM
+  // Success text gets displayed in the DOM
   exampleElement.innerText = "turnOn has been executed. 😉";
 }
 

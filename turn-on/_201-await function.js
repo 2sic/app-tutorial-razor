@@ -9,8 +9,15 @@ function init({domAttribute}) {
   animateSpaceship(foundElement)
 }
 
-window.razorTutorial = window.razorTutorial || {};
-window.razorTutorial.init = init;
+function ready() {
+  // checks if spritejs exists and returns either true or false
+  if (spritejs) return true
+  return false
+}
+
+const tt = window.turnOnTutorial201 = window.turnOnTutorial201 || {};
+tt.init = tt.init || init;
+tt.ready = tt.ready || ready;
 
 // example code that consumes thirdparty library
 function animateSpaceship(container) {

@@ -5,16 +5,10 @@
 </hide>
 
 Todo
-- Add turn-on icon in corner like with KOi in header
-- add big / wide image into this page
 - Pls design an infobox which is a cshtml in shared
   - Title & Link
-- Create sample 120 using a anonymous object and IConvertService.Json.ToJson(...)
-- Add a bit more info what you're doing
-- long comments better on multiple lines
-- second+ samples use one-liner for IPageService
-- name js files same as cshtml so they come after it in folder
 <trim>
+<img loading="lazy" src="@App.Path/turn-on/assets/turn-on.svg" class="img-responsive" width="100%">
 
 <p>
   Learn how to execute JavaScript functions using the 2sxc turnOn. Extend basic usage by passing data, awaiting conditions and more.
@@ -37,9 +31,9 @@ Todo
   @linker.TutorialLink("Passing module parameters with turnOn", 
     "turn-on111",
     "Pass module parameters to JavaScript functions with turnOn")
-
-TODO: creating many (safe) parameters using json-object
-
+  @linker.TutorialLink("Passing anonymous objects as parameters with turnOn", 
+    "turn-on120",
+    "Pass anonymous object to JavaScript functions with turnOn")
   @linker.TutorialLink("Wait for multiple scripts", 
     "turn-on200",
     "Await an object before executing JavaScript functions")
