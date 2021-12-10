@@ -32,7 +32,12 @@
 <div @uniqueDomAttrubute></div>
 
 @* Wait for thirdparty library to load, then execute the window.razorTutorial.init function and pass the domAttribute as JSON *@
-<turnOn turn-on='{ "await": "window.spritejs", "run": "window.razorTutorial.init()", "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+<turnOn turn-on='{
+  "await": "window.spritejs",
+  "run": "window.razorTutorial.init()",
+  "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+
+TODO: TEST @@ IN OQTANE...
 
 @* include thirdparty library from CDN *@
 <script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
