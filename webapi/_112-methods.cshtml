@@ -1,9 +1,15 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
 @{
   // Tell the page that we need the 2sxc Js APIs
-  GetService<ToSic.Sxc.Services.IPageService>().Activate("2sxc.JsCore"); 
+  GetService<IPageService>().Activate("2sxc.JsCore"); 
 }
 <hide>
+@{
+  // TODO: @2mh
+  // Move up the js snippets to always be after the button and wrap the button into the snippet
+  // so the preview shows the button and the js
+}
 @Html.Partial("_header.cshtml")
 </hide>
 
