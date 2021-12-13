@@ -1,4 +1,9 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  GetService<IPageService>().Activate("2sxc.JsCore"); 
+}
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
@@ -63,9 +68,6 @@
   Note that specifically in WebApi you can only use <code>CreateInstance(...)</code> for <code>.cs</code> files.
 </p>
 </hide>
-
-@* tell 2sxc that we'll use the js API *@
-@Edit.Enable(js:true)
 
 <blockquote>
   Click to see the result of a WebApi call with the shared code:

@@ -1,5 +1,5 @@
 using ToSic.Razor.Blade;
-
+using ToSic.Sxc.Services;
 public class Helpers: Custom.Hybrid.Code12
 {
 
@@ -84,20 +84,30 @@ public class Helpers: Custom.Hybrid.Code12
 
 
   dynamic InitializedPageAssets() {
-    // Edit.Enable(js: true);
+    // Tell the page that we need the 2sxc Js APIs
+    GetService<IPageService>().Activate("2sxc.JsCore"); 
+    
     var bsCheck = CreateInstance("Bootstrap4.cs");
     bsCheck.EnsureBootstrap4();
-    return "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />"
-    ;
+    return "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />";
   }
-
 
   public dynamic ExternalLink(string target, string description) {
     return Tag.A(description).Href(target).Target("_blank");
   }
 
-
   public dynamic LiExtLink(string target, string description) {
     return Tag.Li(ExternalLink(target, description));
   }  
+
+  public dynamic InfoSection(dynamic content, string title, string icon = "fa-info-circle") {
+    return Tag.Div(Tag.H6(Tag.I().Class("fas " + icon), Tag.Span(title).Class("ml-2")).Class("card-header"), Tag.Div(Tag.Ul(content).Class("list-group list-group-flush"))).Class("card");
+  }
+  public dynamic InfoContent(string title, string link = "", string textColor = "") {
+    var content = Tag.Div(title);
+    if (Text.Has(link)) {
+      return Tag.A(content).Href(link).Target("_blank").Class("list-group-item " + textColor);
+    }
+    return content.Class("list-group-item " + textColor);
+  }
 }

@@ -1,22 +1,29 @@
+@using ToSic.Razor.Blade;
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var linker = CreateInstance("../shared/Helpers.cs"); 
+
+  var infoRequirements = linker.InfoSection(linker.InfoContent("2sxc 12.02 - download latest", "https://2sxc.org/en/download", "text-danger"), "Requirements", "fa-exclamation-circle");
+  var infoResources = linker.InfoSection(linker.InfoContent("Read about turnOn in the docs", "https://docs.2sxc.org/js-code/turn-on/index.html"), "Resources");
+}
 </hide>
 
-Todo
-- Pls design an infobox which is a cshtml in shared
-  - Title & Link
 <trim>
-<img loading="lazy" src="@App.Path/turn-on/assets/turn-on.svg" class="img-responsive" width="100%">
+<div class="row">
+  <img loading="lazy" src="@App.Path/turn-on/assets/turn-on.svg" class="img-responsive col-md-7 mb-2">
+  <div class="col-md-5">
+    @infoRequirements
+    @infoResources
+  </div>
+</div>
 
 <p>
   Learn how to execute JavaScript functions using the 2sxc turnOn. Extend basic usage by passing data, awaiting conditions and more.
   <br>
-  <br>
-  turnOn usage requires at least <a href="https://2sxc.org/en/download" target="_blank">2sxc 12.02</a> and works on DNN and Oqtane.<br>
-  Read about the <a href="https://docs.2sxc.org/js-code/turn-on/index.html" target="_blank">turnOn in the Docs</a>.
 </p>
+
 
 <hr>
 <h2>Examples of using turnOn</h2>
