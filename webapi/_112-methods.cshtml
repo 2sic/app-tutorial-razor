@@ -5,11 +5,6 @@
   GetService<IPageService>().Activate("2sxc.JsCore"); 
 }
 <hide>
-@{
-  // TODO: @2mh
-  // Move up the js snippets to always be after the button and wrap the button into the snippet
-  // so the preview shows the button and the js
-}
 @Html.Partial("_header.cshtml")
 </hide>
 
@@ -24,71 +19,71 @@
   Click to see the result of a WebApi call with the shared code:  
 </p>
 </trim>
-<button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-get", Size = 220 }) 
-</hide-silent>
-<button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-post", Size = 220 }) 
-</hide-silent>
-<button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-put", Size = 220 }) 
-</hide-silent>
-<button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-delete", Size = 220 }) 
-</hide-silent>
 
 
 <snippet id="fetch-get">
-<script>
-  // Fetch using modern Browser APIs
-  // This is the more manual method, in case you don't expect JSON or want more control
-  // This uses the full internal syntax `app/auto/api/controller/method`
-  function getOrdersFetch(moduleContext) {
-    $2sxc(moduleContext).webApi.fetch('orders/get')
-      .then(response => response.json())
-      .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-  }
-</script>
-</snippet>
+  <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-get", Size = 250 }) 
+  </hide-silent>
+  <script>
+    // Fetch using modern Browser APIs
+    // This is the more manual method, in case you don't expect JSON or want more control
+    // This uses the full internal syntax `app/auto/api/controller/method`
+    function getOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetch('orders/get')
+        .then(response => response.json())
+        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+    }
+  </script>
+  </snippet>
 <snippet id="fetch-post">
-<script>
-  // Fetch using modern Browser APIs
-  // This is the more manual method, in case you don't expect JSON or want more control
-  // This also uses the shortest API syntax `controller/method`
-  function postOrdersFetch(moduleContext) {
-    $2sxc(moduleContext).webApi.fetch('orders/post', { amount: Math.floor(Math.random() * 100) })
-      .then(response => response.json())
-      .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-  }
-</script>
+  <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-post", Size = 250 }) 
+  </hide-silent>
+  <script>
+    // Fetch using modern Browser APIs
+    // This is the more manual method, in case you don't expect JSON or want more control
+    // This also uses the shortest API syntax `controller/method`
+    function postOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetch('orders/post', { amount: Math.floor(Math.random() * 100) })
+        .then(response => response.json())
+        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+    }
+  </script>
 </snippet>
 <snippet id="fetch-put">
-<script>
-  // Fetch using modern Browser APIs
-  // This is the more manual method, in case you don't expect JSON or want more control
-  // This also uses the shortest API syntax `controller/method`
-  function putOrdersFetch(moduleContext) {
-    $2sxc(moduleContext).webApi.fetch('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
-      .then(response => response.json())
-      .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-  }
-</script>
+  <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-put", Size = 250 }) 
+  </hide-silent>
+  <script>
+    // Fetch using modern Browser APIs
+    // This is the more manual method, in case you don't expect JSON or want more control
+    // This also uses the shortest API syntax `controller/method`
+    function putOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetch('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
+        .then(response => response.json())
+        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+    }
+  </script>
 </snippet>
 <snippet id="fetch-delete">
-<script>
-  // Fetch using modern Browser APIs
-  // This is the more manual method, in case you don't expect JSON or want more control
-  // This also uses the shortest API syntax `controller/method`
-  function deleteOrdersFetch(moduleContext) {
-    $2sxc(moduleContext).webApi.fetch('orders/delete', null, 'DELETE')
-      .then(response => response.json())
-      .then(data => alert('Delete executed'));
-  }
-</script>
+  <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-delete", Size = 250 }) 
+  </hide-silent>
+  <script>
+    // Fetch using modern Browser APIs
+    // This is the more manual method, in case you don't expect JSON or want more control
+    // This also uses the shortest API syntax `controller/method`
+    function deleteOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetch('orders/delete', null, 'DELETE')
+        .then(response => response.json())
+        .then(data => alert('Delete executed'));
+    }
+  </script>
 </snippet>
 
 <hide>
