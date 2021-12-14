@@ -20,6 +20,7 @@ function addMembership(poetGuid) {
     Guid: poetGuid
   };
 
+  // TODO: 2dm
   // Create data in the backend with .create(object, target) and reload page after
   deadPoetMembersSvc.create(membershipMetadata, target).then(() => location.reload());
 }
