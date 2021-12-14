@@ -86,7 +86,7 @@ public class Helpers: Custom.Hybrid.Code12
   dynamic InitializedPageAssets() {
     // Tell the page that we need the 2sxc Js APIs
     GetService<IPageService>().Activate("2sxc.JsCore"); 
-    
+
     var bsCheck = CreateInstance("Bootstrap4.cs");
     bsCheck.EnsureBootstrap4();
     return "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />";

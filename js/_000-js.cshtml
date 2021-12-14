@@ -1,24 +1,76 @@
+@using ToSic.Razor.Blade;
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var linker = CreateInstance("../shared/Helpers.cs"); 
+  var infoResources = linker.InfoSection(
+    Tag.Div(
+      linker.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home"),  
+      linker.InfoContent("Learn more about 2sxc toolbars", "https://docs.2sxc.org/js-code/toolbars/index.html")  
+    ), "Resources");
+
+  // sxc data section
+
+  var sxcRequirements = linker.InfoSection(linker.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
+  var sxcResources = linker.InfoSection(
+    Tag.Div(
+      linker.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),  
+      linker.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html")  
+    ), "Resources");
+}
 </hide>
 
 <trim>
-<h2>JavaScript APIs in 2sxc (Tutorial WIP)</h2>
+  <div class="row">
+    <div class="col-md-7 mb-2">
+      <h2>JavaScript APIs in 2sxc (Tutorial WIP)</h2>
+      <p>
+        This section will show you all the magic you can do with the 2sxc JS API.
+      </p>
+    </div>
+    <div class="col-md-5">
+      @infoResources
+    </div>
+  </div>
 
-<p>
-  This section will show you all the magic you can do with the 2sxc JS API.
-  <br><br>
-  Learn more about our JS Web API fetch <a href="https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home" target="_blank">here</a>.<br>
-  Learn more about 2sxc toolbars <a href="https://docs.2sxc.org/js-code/toolbars/index.html">in the docs</a>.
-</p>
 
-<ol>
-  @linker.TutorialLink("Advanced Hybrid Use", 
-    "hybrid410",
-    "Use compiler Preprocessor Directives to enable Hybrid Razor",
-    "new in v12")
-</ol>
+  <ol>
+    @linker.TutorialLink("Advanced Hybrid Use", 
+      "hybrid410",
+      "Use compiler Preprocessor Directives to enable Hybrid Razor",
+      "new in v12")
+  </ol>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-7 mb-2">
+      <h2>Examples of using sxc.data()</h2>
+
+      <ol>
+        @linker.TutorialLink("Get data from the backend", 
+          "js200",
+          "Use the 2sxc .data() API and get data from a specified data source")
+        @linker.TutorialLink("Create data in the backend", 
+          "js210",
+          "Use the 2sxc .data() API and create new data for a specified data source")
+        @linker.TutorialLink("Create metadata in the backend", 
+          "js220",
+          "Use the 2sxc .data() API and create new metadata")
+        @linker.TutorialLink("Delete data from the backend", 
+          "js230",
+          "Use the 2sxc .data() API and delete existing data")
+        @linker.TutorialLink("Update data in the backend", 
+          "js240",
+          "Use the 2sxc .data() API and update existing data")
+      </ol>
+    </div>
+    <div class="col-md-5">
+      @sxcRequirements
+      @sxcResources
+    </div>
+  </div>
+
 
 </trim>

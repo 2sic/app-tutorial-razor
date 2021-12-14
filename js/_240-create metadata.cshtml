@@ -1,0 +1,100 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var helper = CreateInstance("../shared/Helpers.cs");
+  var infoResources = helper.InfoSection(helper.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home"), "Resources");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Use the sxc.data() API to create metadata</h2>
+      <div>This page uses the sxc.data() API to create metadata in the backend.</div>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Create metadata using the .create() method
+        </li>
+      </ul>
+      <br>
+      Look at the content below to see the effect. 
+    </div>
+    <div class="col-md-5">
+      @infoResources
+    </div>
+  </div>
+</trim>
+
+<table id="example-content" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birth date</th>
+      <th>Memberships</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      var poetIndex = 0;
+    }
+    @* Reverse show newest entries first *@
+    @foreach(var poet in AsList(App.Data["Poets"]).Reverse()) {
+      // make sure only 3 elements are shown
+      if (poetIndex >= 3) { 
+        break; 
+      }
+
+      var md = AsEntity(poet).Metadata;
+      var membershipMd = md.OfType("DeadPoetSocietyMembership") as Dynlist;
+      <tr>
+        <td>@poet.Name</td>
+        <td>@poet.BirthDate.ToShortDateString()</td>
+        <td>
+          @if (membershipMd != null) {
+            var membershipIndex = 0;
+            @* Reverse list to show the newest data first *@
+            foreach (var membership in membershipMd.Reverse())
+            {
+              // Make sure only 3 numbers are shown
+              if (membershipIndex >= 3) { 
+                break; 
+              }
+              @* Check, if needs to be separated by commas  *@
+              var isSeparated = membershipIndex < membershipMd.Count() - 1 && membershipIndex < 3;
+              <span>@(AsDynamic(membership).MembershipNumber + (isSeparated ? "," : ""))</span>
+              membershipIndex++;
+            }
+          }
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" onclick='addMembership("@poet.EntityGuid")'>Add new membership metadata</button>
+        </td>
+      </tr>
+      poetIndex++;
+    }
+  </tbody>
+</table>
+
+@* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
+@{
+  // Use the PageService to activate turnOn
+  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+}
+<turnOn turn-on='{ "run": "window.sxcDataTutorial240.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+
+<script src="@App.Path/js/_240-create metadata.js"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1300 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 650,
+  File = "_240-create metadata.js"
+}) 
+</hide>

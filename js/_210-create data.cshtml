@@ -1,0 +1,91 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var helper = CreateInstance("../shared/Helpers.cs");
+  var infoResources = helper.InfoSection(helper.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home"), "Resources");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Use the sxc.data() API to create backend data</h2>
+      <div>This page uses the sxc.data() API to create data from/for the backend.</div>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Create data using the .create() method
+        </li>
+      </ul>
+      <br>
+      Look at the content below to see the effect.
+    </div>
+    <div class="col-md-5">
+      @infoResources
+    </div>
+  </div>
+</trim>
+
+<table id="example-content" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birth date</th>
+      <th>Poems</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      var poetIndex = 0;
+    }
+    @* Reverse show newest entries first *@
+     @foreach(var poet in AsList(App.Data["Poets"]).Reverse()) {
+      // make sure only 3 elements are shown
+      if (poetIndex >= 3) { 
+        break; 
+      }
+
+      <tr>
+        <td>@poet.Name</td>
+        <td>@poet.BirthDate.ToShortDateString()</td>
+        <td>@poet.Poems</td>
+      </tr>
+      poetIndex++;
+    }
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <input id="name" class="form-control" placeholder="Name">
+  </div>
+  <div class="col-md-3">
+    <input type="date" id="birthdate" class="form-control" min="1938-01-01" max="1949-01-01" placeholder="Birthdate">
+  </div>
+  <div class="col-md-3">
+    <input type="number" id="poems" min="0" class="form-control" placeholder="Poems">
+  </div>
+  <button type="button" class="btn btn-primary" onclick="addPoet()" >Add poet</button>
+</div>
+
+
+@* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
+@{
+  // Use the PageService to activate turnOn
+  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+}
+<turnOn turn-on='{ "run": "window.sxcDataTutorial210.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+
+<script src="@App.Path/js/_210-create data.js"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1150 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 600,
+  File = "_210-create data.js"
+}) 
+</hide>
