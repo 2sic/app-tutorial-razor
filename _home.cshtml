@@ -1,150 +1,286 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @{  var hlp = CreateInstance("shared/Helpers.cs"); }
-@hlp.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
 </hide>
 @{
   var page = GetService<ToSic.Sxc.Web.IPageService>();
   page.SetBase(); 
 }
-<trim>
-<p>
-  Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples. You can also modify the source files and see what happens :)
-</p>
-</trim>
 
-<hr>
-<h2>Razor Basics</h2>
+<div class="tutorial-wrapper">
+  @hlp.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
+  <p>
+    Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples. You can also modify the source files and see what happens :)
+  </p>
 
-<ol>
-  @hlp.TutorialLinkHome("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="basics">
+        <h2 class='co-no-icon'>Razor Basics</h2>
+        
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="basics">
+        <ol>
+          @hlp.TutorialLinkHome("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
 
-  @hlp.TutorialLinkHome("Work with HTML", "html", "Learn the difference of showing variables with <code>@variable</code> and <code>@Html.Raw(variable)</code>, and re-use very simple snippets")
+          @hlp.TutorialLinkHome("Work with HTML", "html", "Learn the difference of showing variables with <code>@variable</code> and <code>@Html.Raw(variable)</code>, and re-use very simple snippets")
 
-  @hlp.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "")
+          @hlp.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "")
 
-  @hlp.TutorialLinkHome("Images - proper HTML, automatic resizing and SEO optimizations", "img", "Use images the perfect, fastest and SEO way", "new!")
+          @hlp.TutorialLinkHome("Images - proper HTML, automatic resizing and SEO optimizations", "img", "Use images the perfect, fastest and SEO way", "new!")
 
-  @hlp.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, hlp and functions into shared files - both <code>.cshtml</code> and <code>.cs</code>. And you can split Razor files into code and templates.", "")
+          @hlp.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, hlp and functions into shared files - both <code>.cshtml</code> and <code>.cs</code>. And you can split Razor files into code and templates.", "")
 
-  @hlp.TutorialLinkHome("Set Page Title, Keywords etc. and Headers", "page", "Use the IPageService to set page properties, base tags and headers - even JsonLD and OpenGraph.", "new in v12")
+          @hlp.TutorialLinkHome("Set Page Title, Keywords etc. and Headers", "page", "Use the IPageService to set page properties, base tags and headers - even JsonLD and OpenGraph.", "new in v12")
 
-  @hlp.TutorialLinkHome("Hybrid Razor for Dnn and Oqtane", "hybrid", "Advanced way to create Razor which works on Dnn and Oqtane", "new in v12")
-</ol>
+          @hlp.TutorialLinkHome("Hybrid Razor for Dnn and Oqtane", "hybrid", "Advanced way to create Razor which works on Dnn and Oqtane", "new in v12")
+        </ol>
+      </div>
+    </div>
 
-<hr>
-<h2>Work with Content, Data &amp; Settings 🆕</h2>
-<p>In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which lets editors work with content - and your template only needs to visualize it.</p>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="content">
+        <h2 class='co-no-icon'>Work with Content, Data &amp; Settings 🆕</h2>
+        <p>In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which lets editors work with content - and your template only needs to visualize it.</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="content">
+        <ol>
+          @hlp.TutorialLinkHome("Working with Entity (Item) Values", "entity", "Every <em>thing</em> is an <strong>Entity</strong>. Here some basic examples how to show values like Name, Birthday etc. of such an Entity.", "")
 
-<ol>
-  @hlp.TutorialLinkHome("Working with Entity (Item) Values", "entity", "Every <em>thing</em> is an <strong>Entity</strong>. Here some basic examples how to show values like Name, Birthday etc. of such an Entity.", "")
+          @hlp.TutorialLinkHome("Visualize current Content", "content", "Show content which was entered for this module", "")
 
-  @hlp.TutorialLinkHome("Visualize current Content", "content", "Show content which was entered for this module", "")
+          @hlp.TutorialLinkHome("Visualize Data", "data", "Show data from DNN, the current App, DataSources or SQL, CSV etc. Also includes list/details (parent/child) examples.", "")
 
-  @hlp.TutorialLinkHome("Visualize Data", "data", "Show data from DNN, the current App, DataSources or SQL, CSV etc. Also includes list/details (parent/child) examples.", "")
+          @hlp.TutorialLinkHome("Visualize JSON", "json", "Easily work with JSON data.", "")
 
-  @hlp.TutorialLinkHome("Visualize JSON", "json", "Easily work with JSON data.", "")
+          @hlp.TutorialLinkHome("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
 
-  @hlp.TutorialLinkHome("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="languages">
+        <h2 class='co-no-icon'>Multi-Language Content and Resources (i18n) 🌐</h2>
+          <p>2sxc is super-powerful with multiple languages. It's actually one of the best multi-language solutions in all known CMS solutions out there. </p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="languages">
+        <ol>
+          @hlp.TutorialLinkHome("Using multiple languages", "languages", "Everything in 2sxc can be multi-language. Discover how!", "")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="settings">
+        <h2 class='co-no-icon'>Advanced Settings and Automation</h2>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="settings">
+        <ol>
+          @hlp.TutorialLinkHome("Use Settings", "settings", "Work with settings on View/App/Site/System.", "🆕 new in v12")
 
-</ol>
+          @hlp.TutorialLinkHome("Automatically Resize Images based on Presets", "settings200", "Link.Image generates resize-links with centrally managed sizes / rules.", "🆕 new in v12")
 
-<hr>
-<h2>Multi-Language Content and Resources (i18n) 🌐 </h2>
-<p>2sxc is super-powerful with multiple languages. It's actually one of the best multi-language solutions in all known CMS solutions out there. </p>
-
-<ol>
-  @hlp.TutorialLinkHome("Using multiple languages", "languages", "Everything in 2sxc can be multi-language. Discover how!", "")
-</ol>
-
-<hr>
-<h2>Advanced Settings and Automation </h2>
-
-<ol>
-  @hlp.TutorialLinkHome("Use Settings", "settings", "Work with settings on View/App/Site/System.", "🆕 new in v12")
-
-  @hlp.TutorialLinkHome("Automatically Resize Images based on Presets", "settings200", "Link.Image generates resize-links with centrally managed sizes / rules.", "🆕 new in v12")
-
-  @hlp.TutorialLinkHome("Use PageService.Activate to enable features, Css and Js", "settings300", "Imagine controlling web resources/features in central management. No duplicate loading, full control!", "🆕 new in v12")
-</ol>
-
-<hr>
-<h2>Customize Edit UI / UX</h2>
-<p>Sometimes you want to customize what the editor will experience - using special toolbars or custom input fields. Note that this only applies to 2sxc.</p>
-
-<ol>
-  @hlp.TutorialLinkHome("Customize the Edit Experience", "ui", "Customize the editor experience by providing great toolbars or custom input fields", "")
-
-</ol>
-
-
-<hr>
-<h2>JavaScript</h2>
-<p>2sxc offers powerful helpers to just get things done - or to do things <em>your way</em>.</p>
-
-<ol>
-  @hlp.TutorialLinkHome("Really use the JavaScript API", "js", "Learn to leverage the JavaScript API", "new!")
-  @hlp.TutorialLinkHome("Execute JavaScript with turnOn", "turn-on", "Use the turnOn feature to execute Javascript functions from Razor files", "new in v12")
-</ol>
-
-<hr>
-@hlp.TitleLogo("blade/assets/app-icon.png", "https://github.com/2sic/razor-blade")
-<h2><em>RazorBlade</em> Examples</h2>
-<p>These examples help you quickly do hard stuff, once you've mastered the basics above</p>
-<ol>
-  @hlp.TutorialLinkHome("RazorBlade - Making real tasks easier", "blade", "Properly create preview-texts, strip HTML, pick the right variables, set page titles and way more. Includes...", "")
-  <ul>
-    <li>Text manipulation, clean-up, cropping and ellipsis</li>
-    <li>Picking the ideal string-values</li>
-    <li>Html stripping for teasers and to protect against XSS</li>
-    <li>Convert html to text and back</li>
-  </ul>
-  @hlp.TutorialLink("RazorBlade - using the Html5 Tag API", "blade800", 
-    "The basics of creating html directly from code - new in 2.0 and enhanced in 2.1", 
-    "")
-</ol>
-
-<hr>
-@hlp.TitleLogo("koi/assets/koi-tutorial-icon.png", "https://connect-koi.net/")
-<h2>Koi Examples</h2>
-<p>These examples help you do cool stuff, once you've mastered the basics above</p>
-<ol>
-  @hlp.TutorialLinkHome("Koi - Cool things with CSS-Frameworks and Classes", "koi", "Automatically include missing frameworks, conditionally modify the HTML or CSS-Classes and more, depending on what CSS-framework is used by the theme of this page.", "enhanced for v12")
-</ol>
-
-<hr>
-<h2>WebApi / JSON Endpoints Examples</h2>
-<p>These examples show how to create and use WebApi. This isn't Razor, but also uses C#. You'll often need this when creating JavaScript and SPA apps.</p>
-<ol>
-  @hlp.TutorialLinkHome("WebApi - Providing Data and more to JavaScript", "webapi", "Provide data to SPAs and do things like sending mails, changing data and more.", "")
-</ol>
-
-<hr>
-<h2>Crazy 2sxc Advanced Examples</h2>
-<p>These are really advanced examples and meant more to give guidance for specific questions. Don't worry if you don't understand these</p>
-<ol>
-  @hlp.TutorialLinkHome("2sxc Advanced Stuff", "2sa", "Really special crazy stuff", "")
-</ol>
-
-
-<hr>
-<h2>Next Tutorials (Work-In-Progress</h2>
-<p>We'll create some more tutorials in March/April 2019, incl. the following</p>
-<ul>
-  <li>UI Formulas</li>
-  <li>Linking around in dnn</li>
-  <li>Using js/css and image resources in the app folder</li>
-  <li>Using app settings and resources</li>
-  <li>Image Resizing on the server</li>
-  <li>Navigation links</li>
-  <li>Leveraging Connect.Koi</li>
-  <li>Permission examples</li>
-  <li>In-Page Editing experience</li>
-  <li>Customizing Search Results</li>
-  <li>work with icon-fonts, font-awesome etc.</li>
-  <li>More data examples, working with users, SQL-write, PetaPoco etc.</li>
-  <li>Working with DataSources in all kinds of ways</li>
-  <li>Using data from other apps</li>
-  <li>customizing search from data</li>
-  <li>custom dynamic WebApi</li>
-</ul>
+          @hlp.TutorialLinkHome("Use PageService.Activate to enable features, Css and Js", "settings300", "Imagine controlling web resources/features in central management. No duplicate loading, full control!", "🆕 new in v12")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="ui">
+        <h2 class='co-no-icon'>Customize Edit UI / UX</h2>
+        <p>Sometimes you want to customize what the editor will experience - using special toolbars or custom input fields. Note that this only applies to 2sxc.</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="ui">
+        <ol>
+          @hlp.TutorialLinkHome("Customize the Edit Experience", "ui", "Customize the editor experience by providing great toolbars or custom input fields", "")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="js">
+        <h2 class='co-no-icon'>JavaScript</h2>
+        <p>2sxc offers powerful helpers to just get things done - or to do things <em>your way</em>.</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="js">
+        <ol>
+          @hlp.TutorialLinkHome("Really use the JavaScript API", "js", "Learn to leverage the JavaScript API", "new!")
+          @hlp.TutorialLinkHome("Execute JavaScript with turnOn", "turn-on", "Use the turnOn feature to execute Javascript functions from Razor files", "new in v12")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/blade/assets/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="razor-blade">
+        <h2 class='co-no-icon'><em>RazorBlade</em> Examples</h2>
+        <p>These examples help you quickly do hard stuff, once you've mastered the basics above</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="razor-blade">
+        <ol>
+          @hlp.TutorialLinkHome("RazorBlade - Making real tasks easier", "blade", "Properly create preview-texts, strip HTML, pick the right variables, set page titles and way more. Includes...", "")
+          <ul>
+            <li>Text manipulation, clean-up, cropping and ellipsis</li>
+            <li>Picking the ideal string-values</li>
+            <li>Html stripping for teasers and to protect against XSS</li>
+            <li>Convert html to text and back</li>
+          </ul>
+          @hlp.TutorialLink("RazorBlade - using the Html5 Tag API", "blade800", 
+            "The basics of creating html directly from code - new in 2.0 and enhanced in 2.1", 
+            "")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/koi/assets/koi-tutorial-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="koi">
+        <h2 class='co-no-icon'>Koi Examples</h2>
+        <p>These examples help you do cool stuff, once you've mastered the basics above</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="koi">
+        <ol>
+          @hlp.TutorialLinkHome("Koi - Cool things with CSS-Frameworks and Classes", "koi", "Automatically include missing frameworks, conditionally modify the HTML or CSS-Classes and more, depending on what CSS-framework is used by the theme of this page.", "enhanced for v12")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="webapi">
+        <h2 class='co-no-icon'>WebApi / JSON Endpoints Examples</h2>
+        <p>These examples show how to create and use WebApi. This isn't Razor, but also uses C#. You'll often need this when creating JavaScript and SPA apps.</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="webapi">
+        <ol>
+          @hlp.TutorialLinkHome("WebApi - Providing Data and more to JavaScript", "webapi", "Provide data to SPAs and do things like sending mails, changing data and more.", "")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="2sa">
+        <h2 class='co-no-icon'>Crazy 2sxc Advanced Examples</h2>
+        <p>These are really advanced examples and meant more to give guidance for specific questions. Don't worry if you don't understand these</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="2sa">
+        <ol>
+          @hlp.TutorialLinkHome("2sxc Advanced Stuff", "2sa", "Really special crazy stuff", "")
+        </ol>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='tutorial-item row'>
+    <div class="icon-wrapper">
+      <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
+    </div>
+    <div class="ml-3 col">
+      <div class='tutorial-title' data-accordion-parent="wip">
+        <h2 class='co-no-icon'>Next Tutorials (Work-In-Progress)</h2>
+        <p>We'll create some more tutorials in March/April 2019, incl. the following</p>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-down fa-w-14"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-chevron-up fa-w-14"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z" class=""></path></svg>
+      </div>
+      <div class='tutorial-group' data-accordion-child="wip">
+        <ul>
+          <li>UI Formulas</li>
+          <li>Linking around in dnn</li>
+          <li>Using js/css and image resources in the app folder</li>
+          <li>Using app settings and resources</li>
+          <li>Image Resizing on the server</li>
+          <li>Navigation links</li>
+          <li>Leveraging Connect.Koi</li>
+          <li>Permission examples</li>
+          <li>In-Page Editing experience</li>
+          <li>Customizing Search Results</li>
+          <li>work with icon-fonts, font-awesome etc.</li>
+          <li>More data examples, working with users, SQL-write, PetaPoco etc.</li>
+          <li>Working with DataSources in all kinds of ways</li>
+          <li>Using data from other apps</li>
+          <li>customizing search from data</li>
+          <li>custom dynamic WebApi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+@Html.Partial("./_home.PartAssets.cshtml")
