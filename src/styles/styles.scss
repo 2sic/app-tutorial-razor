@@ -1,14 +1,19 @@
+.icon-wrapper {
+  height: 75px;
+  width: 75px;
+  img {
+    object-fit: cover;
+    object-position: left;
+    height: 100%;
+  }
+}
 .tutorial-wrapper {
   .tutorial-item {
-    .icon-wrapper {
-      height: 75px;
-      width: 75px;
-    }
     &.is-expanded {
       .tutorial-title {
         border: none;
 
-        > svg {
+        > img {
           &.fa-chevron-up {
             display: block;
           }
@@ -25,7 +30,7 @@
     position: relative;
     transition: color 0.3s linear, border-color 0.3s linear;
 
-    > svg {
+    > img {
       position: absolute;
       top: 50%;
       right: 10px;
@@ -68,7 +73,6 @@
   }
   .tutorial-group {
     display: none;
-    padding: 15px;
 
     &.is-expanded {
       display: block;

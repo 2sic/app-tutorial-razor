@@ -1,46 +1,13 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  
+@{  
   /* Internal remarks for the tutorial developers
     To reall see the images loading they must have different names in each tutorial.
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
 }
 </hide>
-<trim>
-  <h2>Image vs. Picture and Auto-Load Different Formats &amp; Sizes</h2>
-  <div>
-    HTML has a few ways to show an image, and you should know which way is best. Discover: 
-  </div>
-  <ol>
-    <li><code>img</code> for your standard image</li>
-    <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
-    <li><code>picture</code> for images in different sizes, which the browser picks based on the screen and capabilities</li>
-  </ol>
-</trim>
-
-<trim>
-  <hr>
-  <h2>Standard <code>img</code> Image</h2>
-  <p>
-    This is used for showing an image, and we won't go into much detail, because you probably already know this one. 
-    It shows the same picture as jpg, png and <a href="https://en.wikipedia.org/wiki/WebP" target="_blank">webp</a>:
-  </p>
-</trim>
-
-<snippet id="img-basic">
-  <div class="row">
-    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.jpg"> <br> (jpg 15k)</div>
-    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.png"> <br> (png 11k)</div>
-    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.webp"> <br> (webp 8k)</div>
-  </div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-basic", Size = 120 }) 
-</hide-silent>
 
 <trim>
   <hr>

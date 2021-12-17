@@ -1,0 +1,54 @@
+@inherits Custom.Hybrid.Razor12
+<trim>
+  <h2>Image vs. Picture and Auto-Load Different Formats &amp; Sizes</h2>
+  <div>
+    HTML has a few ways to show an image, and you should know which way is best. Discover: 
+  </div>
+  <ol>
+    <li><code>img</code> for your standard image</li>
+    <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
+    <li><code>picture</code> for images in different sizes, which the browser picks based on the screen and capabilities</li>
+  </ol>
+</trim>
+
+<trim>
+  <h3>Differences in image compression</h3>
+  <ul>
+    <li>
+      Since we humans can't distinguish details in color very well, <strong>JPG</strong> uses it as an advantage. 
+      It basically removes the color details we can't see by lowering the resolution of the color map. 
+      After that, the image is separated into chunks which data percision is lowered using a process called <a href="https://asecuritysite.com/comms/dct" target="_blank">DCT quantization</a>.
+      Finally JPG uses <a href="https://en.wikipedia.org/wiki/Huffman_coding">Huffman Coding</a> for optimizing the usage of bits. 
+    </li>
+    <li>
+      On the other hand <strong>PNG</strong> compresses your image using the <a href="https://en.wikipedia.org/wiki/LZ77_and_LZ78" target="_blank">lz77</a> compression, which uses pointers and a dictionary to
+      reference data patterns. This approach enables a lossless compression. Like JPG, PNG finishes it's compression with the Huffman Coding that optimizes the usage of bits.
+    </li>
+    <li>
+      <strong>WebP</strong> combines and levereges the features of JPG and PNG compression. With WebP you can have lossy compression and an alpha channel. 
+      For the lossy compression which is similar to JPG, WEBP optimizes the process of DCT quantization by using prediction models 
+      and compressing it using <a href="https://en.wikipedia.org/wiki/Arithmetic_coding">Arithmetic encoding</a> instead of Huffman.
+      The alpha channel gets compressed lossless seperatly using Huffman. 
+    </li>
+  </ul>
+</trim>
+
+<trim>
+  <hr>
+  <h2>Standard <code>img</code> Image</h2>
+  <p>
+    This is used for showing an image, and we won't go into much detail, because you probably already know this one. 
+    It shows the same picture as jpg, png and <a href="https://en.wikipedia.org/wiki/WebP" target="_blank">webp</a>:
+  </p>
+</trim>
+
+<snippet id="img-basic">
+  <div class="row">
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.jpg"> <br> (jpg 15k)</div>
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.png"> <br> (png 11k)</div>
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.webp"> <br> (webp 8k)</div>
+  </div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-basic", Size = 120 }) 
+</hide-silent>

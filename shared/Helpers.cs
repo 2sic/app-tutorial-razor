@@ -34,12 +34,10 @@ public class Helpers: Custom.Hybrid.Code12
   }
 
 
-  public dynamic TitleLogo(string path, string link, int height = 0) {
-    var img = Tag.Img().Src(App.Path + "/" + path + "?w=75&h=75")
-      // note: float-right is bs4, float-end BS5
-      .Class("float-right ml-3 float-end");
-    if (height != 0) img.Style("height: " + height + "px;");
-    return Tag.A().Href(link).Target("_blank").Wrap(img);
+  public dynamic TitleLogo(string path, string link, int size = 0) {
+    var img = Tag.Div(Tag.Img().Src(App.Path + "/" + path + "?w=75&h=75").Class("img-fluid")).Class("icon-wrapper");
+    if (size != 0) img.Style("height: " + size + "px;" + " width: " + size + "px;");
+    return Tag.A().Href(link).Target("_blank").Wrap(img.Class("float-right ml-3 float-end"));
   }
   
   public dynamic TutLink(string label, string target) {
