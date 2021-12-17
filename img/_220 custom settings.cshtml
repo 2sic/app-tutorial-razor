@@ -23,10 +23,15 @@
       ResizeMode = "Crop"
     };
   }
+  <ol>
+    <li>Height: @customSize.Height</li>
+    <li>Width: @customSize.Width</li>
+    <li>ResizeMode: @customSize.ResizeMode</li>
+  </ol>
   <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customSize))'>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-1", Size = 225 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-1", Size = 310 }) 
 </hide-silent>
 
 <snippet id="custom-settings-2">
@@ -39,10 +44,15 @@
       ResizeMode = "Stretch"
     };
   }
+  <ol>
+    <li>Height: @customSettingsStreched.Height</li>
+    <li>Width: @customSettingsStreched.Width</li>
+    <li>ResizeMode: @customSettingsStreched.ResizeMode</li>
+  </ol>
   <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customSettingsStreched))'>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-2", Size = 225 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-2", Size = 310 }) 
 </hide-silent>
 
 <snippet id="custom-settings-3">
@@ -55,8 +65,13 @@
       ResizeMode = "Max"
     };
   }
+  <ol>
+    <li>Height: @customSettingsMax.Height</li>
+    <li>Width: @customSettingsMax.Width</li>
+    <li>ResizeMode: @customSettingsMax.ResizeMode</li>
+  </ol>
   <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customSettingsMax), format: "jpg", quality: 1)'>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-3", Size = 225 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-3", Size = 310 }) 
 </hide-silent>
