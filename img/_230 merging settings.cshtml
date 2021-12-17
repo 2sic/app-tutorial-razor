@@ -1,0 +1,56 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var imgUrl = App.Path + "/settings/demo.png";
+}
+</hide>
+
+<h2>Merge image settings</h2>
+<trim>
+  <p>
+    The following examples merge custom settings with predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
+    We'll use <code>Settings.Images.Content</code> which has the following configuration:
+  </p>
+  <ol>
+    <li>Width: @Settings.Images.Content.Width</li>
+    <li>Height: @Settings.Images.Content.Height</li>
+    <li>AspectRatio: @Settings.Images.Content.AspectRatio</li>
+    <li>Quality: @Settings.Images.Content.Quality</li>
+  </ol>
+</trim>
+
+<snippet id="merge-settings-1">
+  <h3>Image with merged settings</h3>
+  <p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
+  @{
+    var customImageSettings = AsDynamic(new {
+      Height = 100,
+      ResizeMode = "Stretch",
+      Quality = 50
+    });
+  }
+  <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customImageSettings, Settings.Images.Content))'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 250 }) 
+</hide-silent>
+
+<snippet id="merge-settings-1">
+  <h3>Image with multiple merged settings</h3>
+  <p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
+  @{
+    var customImageHeight = AsDynamic(new {
+      Height = 100,
+    });
+    var customImageWidthAndMore = AsDynamic(new {
+      Width = 400,
+      ResizeMode = "Stretch",
+      Quality = 50
+    });
+  }
+  <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customImageWidthAndMore, customImageHeight, Settings.Images.Content))'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 250 }) 
+</hide-silent>

@@ -1,0 +1,122 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+<h2>Create Image Tags using the Link.Image helper and Predefined Settings</h2>
+<p>
+  2sxc 12.03 introduces a new <code>Link.Image</code> command which makes it easy to create image urls containing the correct resize parameters. 
+  Even better: The parameters can be in a global setting for re-use across all apps and templates. 
+</p>
+
+<h2>Simple Examples with Parameters</h2>
+<p>
+  Look at the source-code below to see how they are made. Note that we're adding a pink border around all <code>img</code> tags to make it easier to see the image bounds. 
+</p>
+</trim>
+@{
+  var imgUrl = App.Path + "/settings/demo.png";
+}
+<h3>Simple Example</h3>
+<img loading="lazy" src='@Link.Image(imgUrl)'>
+
+<h3>Simple resize</h3>
+<ul>
+  <li>
+    <snippet id="size-1">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200)'>
+      width: 200px
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "size-1", Size = 75 }) 
+    </hide-silent>
+  </li>
+  <li>
+    <snippet id="size-2">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, height: 150)'>
+      height: 150px
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "size-2", Size = 75 }) 
+    </hide-silent>
+  </li>
+  <li>
+    <snippet id="size-3">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, height: 150)'>
+      width: 200px, height 150px
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "size-3", Size = 75 }) 
+    </hide-silent>
+  </li>
+</ul>
+
+<h3>Resize and Change Format to JPG</h4>
+<ul>
+  <li>
+    <snippet id="resize-format-1">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg")'>
+      200px, jpg
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "resize-format-1", Size = 75 }) 
+    </hide-silent>
+  </li>
+  <li>
+    <snippet id="resize-format-2">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg", quality: 15)'>
+      200px, jpg, 15% quality only
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "resize-format-2", Size = 75 }) 
+    </hide-silent>
+  </li>
+</ul>
+
+<h3>Resize Modes</h3>
+All of these examples are width 250px, height 150px
+<ul>
+  <li>
+    <snippet id="resize-mode-1">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
+      Resize mode <code>crop</code>
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "resize-mode-1", Size = 75 }) 
+    </hide-silent>
+  </li>
+  <li>
+    <snippet id="resize-mode-2">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "max")'>
+      Resize Mode <code>max</code>
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "resize-mode-2", Size = 75 }) 
+    </hide-silent>
+  </li>
+  <li>
+    <snippet id="resize-mode-3">
+      <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "stretch")'>
+      Resize Mode <code>stretch</code>
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "resize-mode-3", Size = 75 }) 
+    </hide-silent>
+  </li>
+  <li>
+    Other modes not demonstrated here, see <a href="https://imageresizing.net/docs/v4/reference" target="_blank">Image Resizer docs</a>.
+  </li>
+</ul>
+
+
+<hide>
+<style>
+  div.examples img { border: 2px pink dotted;}
+</style>
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 1700
+}) 
+
+</hide>

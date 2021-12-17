@@ -1,0 +1,61 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+
+@{
+  var imgUrl = App.Path + "/settings/demo.png";
+}
+<trim>
+  <h2>Examples using Settings</h2>
+  <p>
+    The following examples use predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
+    We'll use <code>Settings.Images.Content</code> which has the following configuration:
+  </p>
+  <ol>
+    <li>Width: @Settings.Images.Content.Width</li>
+    <li>Height: @Settings.Images.Content.Height</li>
+    <li>AspectRatio: @Settings.Images.Content.AspectRatio</li>
+    <li>Quality: @Settings.Images.Content.Quality</li>
+  </ol>
+</trim>
+
+<snippet id="content-settings">
+  <h3>Image with Default Content Settings</h3>
+  <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-settings", Size = 85 }) 
+</hide-silent>
+
+<snippet id="content-custom-1">
+  <h3>Image with <em>Half</em> or <em>1/3rd</em> the Content Settings</h3>
+  <p>
+    This example uses the <code>Settings.Images.Content</code> 
+    settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).
+  </p>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.5)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.333)'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-1", Size = 175 }) 
+</hide-silent>
+
+<snippet id="content-custom-2">
+  <h3>Image with Settings, Custom Width & Height</h3>
+  <p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-2", Size = 85 }) 
+</hide-silent>
+
+<snippet id="content-custom-3">
+  <h3>Image with Settings, Custom Width & Reset Height</h3>
+  <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 0)'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-3", Size = 85 }) 
+</hide-silent>
