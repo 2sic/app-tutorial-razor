@@ -20,52 +20,20 @@
   </ol>
 </trim>
 
-<snippet id="merge-settings-1">
   <h3>Image with merged settings</h3>
   <p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
+<snippet id="merge-settings-1">
   @{
     var customImageSettings = AsDynamic(new {
       Height = 100,
       ResizeMode = "Stretch",
       Quality = 50
     });
+    // Merged settings, first one has highes priority
+    var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
   }
-  <ol>
-    <li>Height: @customImageSettings.Height</li>
-    <li>ResizeMode: @customImageSettings.ResizeMode</li>
-    <li>Quality: @customImageSettings.Quality</li>
-  </ol>
-  <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customImageSettings, Settings.Images.Content))'>
+  <img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 310 }) 
-</hide-silent>
-
-<snippet id="merge-settings-1">
-  <h3>Image with multiple merged settings</h3>
-  <p>This example uses the configuration as is, to create an image according to specs in <code>customImageHeight</code> and <code>customImageWidthAndMore</code></p>
-  @{
-    var customImageHeight = AsDynamic(new {
-      Height = 100,
-    });
-    var customImageWidthAndMore = AsDynamic(new {
-      Width = 400,
-      ResizeMode = "Stretch",
-      Quality = 50
-    });
-  }
-  <code>customImageHeight:</code>
-  <ol>
-    <li>Height: @customImageHeight.Height</li>
-  </ol>
-  <code>customImageWidthAndMore:</code>
-  <ol>
-    <li>Width: @customImageWidthAndMore.Width</li>
-    <li>ResizeMode: @customImageWidthAndMore.ResizeMode</li>
-    <li>Quality: @customImageWidthAndMore.Quality</li>
-  </ol>
-  <img loading="lazy" src='@Link.Image(imgUrl, AsDynamic(customImageWidthAndMore, customImageHeight, Settings.Images.Content))'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 310 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 220 }) 
 </hide-silent>

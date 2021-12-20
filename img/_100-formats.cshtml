@@ -1,28 +1,17 @@
 @inherits Custom.Hybrid.Razor12
 <trim>
-  <h2>Image vs. Picture and Auto-Load Different Formats &amp; Sizes</h2>
-  <div>
-    HTML has a few ways to show an image, and you should know which way is best. Discover: 
-  </div>
-  <ol>
-    <li><code>img</code> for your standard image</li>
-    <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
-    <li><code>picture</code> for images in different sizes, which the browser picks based on the screen and capabilities</li>
-  </ol>
-</trim>
-
-<trim>
-  <h3>Differences in image compression</h3>
+  <h1>Different Image Formats</h1>
+  <p>
+    It's important that you know the core image formats first:
+  </p>
   <ul>
-    <li>
-      Since we humans can't distinguish details in color very well, <strong>JPG</strong> uses it as an advantage. 
-      It basically removes the color details we can't see by lowering the resolution of the color map. 
-      After that, the image is separated into chunks which data percision is lowered using a process called <a href="https://asecuritysite.com/comms/dct" target="_blank">DCT quantization</a>.
-      Finally JPG uses <a href="https://en.wikipedia.org/wiki/Huffman_coding">Huffman Coding</a> for optimizing the usage of bits. 
+    <li><strong>JPG</strong> <br>
+      <code>.jpg</code> files are ideal for Photos, as they compress natural color gradients very well. 
+      It doesn't support transparancy, which is a problem for various use cases. 
     </li>
-    <li>
-      On the other hand <strong>PNG</strong> compresses your image using the <a href="https://en.wikipedia.org/wiki/LZ77_and_LZ78" target="_blank">lz77</a> compression, which uses pointers and a dictionary to
-      reference data patterns. This approach enables a lossless compression. Like JPG, PNG finishes it's compression with the Huffman Coding that optimizes the usage of bits.
+    <li><strong>PNG</strong> <br>
+      PNG is similar to <strong>GIF</strong> and is perfect for images which have areas with the exactly same color - something that's common in artificial images like Logos, but not in Photos. 
+      It also supports transparencies. Unfortunately the compression isn't so good for photos (see sample below).
     </li>
     <li>
       <strong>WebP</strong> combines and levereges the features of JPG and PNG compression. With WebP you can have lossy compression and an alpha channel. 

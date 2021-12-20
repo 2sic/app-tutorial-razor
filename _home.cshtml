@@ -42,8 +42,6 @@
 
         @hlp.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "")
 
-        @hlp.TutorialLinkHome("Images - proper HTML, automatic resizing and SEO optimizations", "img", "Use images the perfect, fastest and SEO way", "new!")
-
         @hlp.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, hlp and functions into shared files - both <code>.cshtml</code> and <code>.cs</code>. And you can split Razor files into code and templates.", "")
 
         @hlp.TutorialLinkHome("Set Page Title, Keywords etc. and Headers", "page", "Use the IPageService to set page properties, base tags and headers - even JsonLD and OpenGraph.", "new in v12")
@@ -85,6 +83,38 @@
       </ol>
     </div>
   </div>
+
+
+  <hr>
+  <div class='tutorial-item'>
+    <div class='tutorial-title' data-accordion-parent="img">
+      <div class="row">
+        <div class="col-auto">
+          <div class="icon-wrapper">
+            <img loading="lazy" class="img-fluid" src="@App.Path/img/assets/image-resizer.svg">
+          </div>
+        </div>
+        <div class="ml-3 col">
+          <h2 class='co-no-icon'>Images Examples</h2>
+          <p>Learn the basics of Images, Image Resizing and Pictures.</p>
+        </div>
+      </div>
+      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
+      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
+    </div>
+    <div class='tutorial-group pt-3' data-accordion-child="img">
+      <ol>
+        @hlp.TutorialLink("Introduction to Image formats", "img100")
+        @hlp.TutorialLink("Images (img) and Pictures (picture) with Responsive Best Practices", "img105")
+        @hlp.TutorialLink("Resize and Crop Images on the Server", "img200")
+        @hlp.TutorialLink("Resize using Configuration Bundles", "img220")
+        @hlp.TutorialLink("Resize and Crop using Global Preset Configurations", "img210")
+        @hlp.TutorialLink("Resize mixing Presets with Custom Config-Bundles", "img230")
+      </ol>
+    </div>
+  </div>
+
   <hr>
   <div class='tutorial-item'>
     <div class='tutorial-title' data-accordion-parent="languages">
@@ -109,36 +139,11 @@
       </ol>
     </div>
   </div>
-  <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="img">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/img/assets/image-resizer.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Images Examples</h2>
-          <p>Learn the basics of Images, Image Resizing and Pictures.</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="img">
-      <ol>
-        @hlp.TutorialLink("Introduction browser formats", "img100", "Best ways to use img, picture and also give various sizes / formats for the browser to load")
-        @hlp.TutorialLink("Images (img) and Pictures (picture) with Best Practices", "img105", "Best ways to use img, picture and also give various sizes / formats for the browser to load")
-        @* todo: seo, figure, figcaption *@
-        @hlp.TutorialLink("Resize and Crop Images", "img200")
-        @hlp.TutorialLink("Resize and Crop using Preset Sizes and Configurations", "img210")
-        @hlp.TutorialLink("Custom image settings", "img220")
-        @hlp.TutorialLink("Merge image settings", "img230")
-      </ol>
-    </div>
-  </div>
+
+
+
+
+
   <hr>
   <div class='tutorial-item'>
     <div class='tutorial-title' data-accordion-parent="settings">
