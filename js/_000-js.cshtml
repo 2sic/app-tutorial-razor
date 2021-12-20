@@ -4,19 +4,13 @@
 @Html.Partial("_header.cshtml")
 @{  
   var linker = CreateInstance("../shared/Helpers.cs"); 
-  var infoResources = linker.InfoSection(
-    Tag.Div(
-      linker.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home"),  
-      linker.InfoContent("Learn more about 2sxc toolbars", "https://docs.2sxc.org/js-code/toolbars/index.html")  
-    ), "Resources");
-
-  // sxc data section
 
   var sxcRequirements = linker.InfoSection(linker.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
   var sxcResources = linker.InfoSection(
     Tag.Div(
-      linker.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),  
-      linker.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html")  
+      linker.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),
+      linker.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html"),
+      linker.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home")
     ), "Resources");
 }
 </hide>
@@ -28,25 +22,6 @@
       <p>
         This section will show you all the magic you can do with the 2sxc JS API.
       </p>
-    </div>
-    <div class="col-md-5">
-      @infoResources
-    </div>
-  </div>
-
-
-  <ol>
-    @linker.TutorialLink("Advanced Hybrid Use", 
-      "hybrid410",
-      "Use compiler Preprocessor Directives to enable Hybrid Razor",
-      "new in v12")
-  </ol>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-7 mb-2">
-      <h2>Examples of using the $2sxc data API</h2>
 
       <ol>
         @linker.TutorialLink("Get data from the backend", 

@@ -1,3 +1,4 @@
+// TODO: @2mh - use IFFE - see sample 240
 
 // This is a more modern JS feature to deconstruct parameters
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
@@ -20,6 +21,8 @@ function displayPoets(poets) {
     
     let tr = document.createElement('tr')
     
+    // TODO: @2mh 3x REPEATING CODE, pls put into a function like
+    // addField(tr, text);
     let name = document.createElement('td')
     name.innerText = stock.Name
     tr.appendChild(name)

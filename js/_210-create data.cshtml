@@ -5,6 +5,7 @@
 @{
   var helper = CreateInstance("../shared/Helpers.cs");
   var infoResources = helper.InfoSection(helper.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home"), "Resources");
+  var randomName = "SuperPoet " + new Random().Next(1000);
 }
 </hide>
 <trim>
@@ -29,44 +30,42 @@
 </trim>
 
 <table id="example-content" class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Birth date</th>
-      <th>Poems</th>
-      <th></th>
-    </tr>
-  </thead>
+  <trim>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birth date</th>
+        <th>Poems</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+  </trim>
   <tbody>
-    @{
-      var poetIndex = 0;
-    }
-    @* Reverse show newest entries first *@
-     @foreach(var poet in AsList(App.Data["Poets"]).Reverse()) {
-      // make sure only 3 elements are shown
-      if (poetIndex >= 3) { 
-        break; 
-      }
-
+     @foreach(var poet in AsList(App.Data["PoetsToEdit"])) {
       <tr>
         <td>@poet.Name</td>
         <td>@poet.BirthDate.ToShortDateString()</td>
-        <td>@poet.Poems</td>
+        <td data-poet="@poet.EntityId">
+          @poet.Poems
+          <button type="button" class="btn btn-primary" onclick="window.sxcDataTutorial210.updateCount(@poet.EntityId)">Update</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" onclick="window.sxcDataTutorial210.delete(@poet.EntityId)">Delete Poet</button>
+        </td>
       </tr>
-      poetIndex++;
     }
   </tbody>
 </table>
 
 <div class="row">
   <div class="col-md-3">
-    <input id="name" class="form-control" placeholder="Name">
+    <input id="name" class="form-control" placeholder="Name" value="@randomName">
   </div>
   <div class="col-md-3">
-    <input type="date" id="birthdate" class="form-control" min="1938-01-01" max="1949-01-01" placeholder="Birthdate">
+    <input type="date" id="birthdate" class="form-control" min="1938-01-01" max="1949-01-01" placeholder="Birthdate" value="2021-01-01">
   </div>
   <div class="col-md-3">
-    <input type="number" id="poems" min="0" class="form-control" placeholder="Poems">
+    <input type="number" id="poems" min="0" class="form-control" placeholder="Poems" value="@(new Random().Next(999))">
   </div>
   <button type="button" class="btn btn-primary" onclick="addPoet()" >Add poet</button>
 </div>
