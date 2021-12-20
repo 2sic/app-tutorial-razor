@@ -84,7 +84,7 @@
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
 @{
   // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
 }
 <turnOn turn-on='{ "run": "window.sxcDataTutorial240.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 

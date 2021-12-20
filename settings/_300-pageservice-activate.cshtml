@@ -22,7 +22,7 @@
 </trim>
 
 @{
-  var pageService = GetService<ToSic.Sxc.Web.IPageService>();
+  var pageService = GetService<ToSic.Sxc.Services.IPageService>();
   pageService.Activate("fancybox4");
   pageService.Activate("fancybox4"); // even if called multiple times, it will only be activated once
 

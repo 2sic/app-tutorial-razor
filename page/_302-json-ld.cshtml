@@ -13,7 +13,7 @@
 
 @{
   // example adding a json-ld as a string
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  var page = GetService<ToSic.Sxc.Services.IPageService>();
   page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
 }
 @{

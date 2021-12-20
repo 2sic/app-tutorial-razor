@@ -8,7 +8,7 @@ public class Bootstrap4 : Custom.Hybrid.Code12
   {
     var pageCss = GetService<Connect.Koi.ICss>();
     if(pageCss.IsUnknown) {
-      GetService<ToSic.Sxc.Web.IPageService>().Activate("Bootstrap4");
+      GetService<ToSic.Sxc.Services.IPageService>().Activate("Bootstrap4");
     }
   }
 

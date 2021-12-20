@@ -15,7 +15,7 @@
 
 @{
   // note: 'og:' is auto-prefixed if not given in the key
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  var page = GetService<ToSic.Sxc.Services.IPageService>();
 
   page.AddOpenGraph("title", "Demo of OpenGraph headers");
   page.AddOpenGraph("type", "website");

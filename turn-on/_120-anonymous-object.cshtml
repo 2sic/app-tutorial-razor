@@ -29,7 +29,7 @@
 
 @{
   // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Web.IPageService>().Activate("turnOn");
+  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
   
   // Create an anonymous object and define example settings 
   var exampleObject = new {

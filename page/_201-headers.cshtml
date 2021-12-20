@@ -14,7 +14,7 @@
 </trim>
 
 @{
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  var page = GetService<ToSic.Sxc.Services.IPageService>();
   // prefix the current title, description and keywords with additional values
   page.AddToHead("<meta xyz>");
   page.AddMeta("somename", "somevalue");
