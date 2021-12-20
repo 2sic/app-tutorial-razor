@@ -12,7 +12,7 @@ function init({ moduleId }) {
 
 function addMembership(poetGuid) {
   const membershipMetadata = { 
-    membershipNumber: Math.floor(Math.random() * 999999).toString()
+    MembershipNumber: Math.floor(Math.random() * 999999).toString()
   };
 
   const target = { 
@@ -22,7 +22,10 @@ function addMembership(poetGuid) {
 
   // TODO: 2dm
   // Create data in the backend with .create(object, target) and reload page after
-  deadPoetMembersSvc.create(membershipMetadata, target).then(() => location.reload());
+  deadPoetMembersSvc.create(membershipMetadata, target).then(() => {
+    // alert('probably created new metadata');
+    // location.reload();
+  });
 }
 
 // This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home

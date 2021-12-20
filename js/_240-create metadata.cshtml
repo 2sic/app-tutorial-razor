@@ -40,16 +40,7 @@
     </tr>
   </thead>
   <tbody>
-    @{
-      var poetIndex = 0;
-    }
-    @* Reverse show newest entries first *@
-    @foreach(var poet in AsList(App.Data["Poets"]).Reverse()) {
-      // make sure only 3 elements are shown
-      if (poetIndex >= 3) { 
-        break; 
-      }
-
+    @foreach(var poet in AsList(App.Data["Poets"])) {
       var md = AsEntity(poet).Metadata;
       var membershipMd = md.OfType("DeadPoetSocietyMembership") as Dynlist;
       <tr>
@@ -57,18 +48,8 @@
         <td>@poet.BirthDate.ToShortDateString()</td>
         <td>
           @if (membershipMd != null) {
-            var membershipIndex = 0;
-            @* Reverse list to show the newest data first *@
-            foreach (var membership in membershipMd.Reverse())
-            {
-              // Make sure only 3 numbers are shown
-              if (membershipIndex >= 3) { 
-                break; 
-              }
-              @* Check, if needs to be separated by commas  *@
-              var isSeparated = membershipIndex < membershipMd.Count() - 1 && membershipIndex < 3;
-              <span>@(AsDynamic(membership).MembershipNumber + (isSeparated ? "," : ""))</span>
-              membershipIndex++;
+            foreach (var membership in membershipMd) {
+              <span>@AsDynamic(membership).MembershipNumber</span>
             }
           }
         </td>
@@ -76,7 +57,6 @@
           <button type="button" class="btn btn-primary" onclick='addMembership("@poet.EntityGuid")'>Add new membership metadata</button>
         </td>
       </tr>
-      poetIndex++;
     }
   </tbody>
 </table>
