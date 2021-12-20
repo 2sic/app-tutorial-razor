@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -11,14 +12,14 @@
 <trim>
   <div class="row">
     <div class="col-md-7">
-      <h2>Use the sxc data API to create backend data</h2>
+      <h2>Use the sxc data API to create/edit/delete data</h2>
       <div>This page uses the sxc data API to create data for the backend.</div>
       <br>
       In this tutorial you'll learn how to:
       <ul>
-        <li>
-          Create data using the .create() method
-        </li>
+        <li>Create data using the <code>.create(...)</code> method</li>
+        <li>Update data using the <code>.update(...)</code> method</li>
+        <li>Delete data using the <code>.delete(...)</code> method</li>
       </ul>
       <br>
       Look at the content below to see the effect.
@@ -45,12 +46,10 @@
       <tr>
         <td>@poet.Name</td>
         <td>@poet.BirthDate.ToShortDateString()</td>
-        <td data-poet="@poet.EntityId">
-          @poet.Poems
-          <button type="button" class="btn btn-primary" onclick="window.sxcDataTutorial210.updateCount(@poet.EntityId)">Update</button>
-        </td>
+        <td data-poet="@poet.EntityId">@poet.Poems</td>
         <td>
-          <button type="button" class="btn btn-primary" onclick="window.sxcDataTutorial210.delete(@poet.EntityId)">Delete Poet</button>
+          <button type="button" class="btn btn-primary" onclick="window.editPoets.updateCount(@poet.EntityId)">Update Poems</button>
+          <button type="button" class="btn btn-primary" onclick="window.editPoets.delete(@poet.EntityId)">Delete Poet</button>
         </td>
       </tr>
     }
@@ -67,24 +66,20 @@
   <div class="col-md-3">
     <input type="number" id="poems" min="0" class="form-control" placeholder="Poems" value="@(new Random().Next(999))">
   </div>
-  <button type="button" class="btn btn-primary" onclick="addPoet()" >Add poet</button>
+  <button type="button" class="btn btn-primary" onclick="window.editPoets.add()" >Add poet</button>
 </div>
 
 
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
-@{
-  // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
-}
-<turnOn turn-on='{ "run": "window.sxcDataTutorial210.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
-
-<script src="@App.Path/js/_210-create data.js"></script>
+@{ GetService<IPageService>().Activate("turnOn"); }
+<turnOn turn-on='{ "run": "window.editPoets.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+<script src="@App.Path/js/_300-edit.js"></script>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1150 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
-  Size = 600,
-  File = "_210-create data.js"
+  Size = 1000,
+  File = "_300-edit.js"
 }) 
 </hide>
