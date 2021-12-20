@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.00.00" ExportDate="2021-12-20T11:43:48.9609473+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.00.00" ExportDate="2021-12-20T23:48:33.3713227+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -901,6 +901,31 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
+    <AttributeSet StaticName="5d80444c-6a29-4603-949a-29d977c0e459" Name="PoetsToEdit" Description="" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Name" Type="String" IsTitle="true">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="dee25e40-7d79-4140-a58a-2db6a9374024" Json="True" KeyNumber="5037">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Name" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="BirthDate" Type="DateTime" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="dd353f0a-0d7b-4627-8499-09e51bc4d525" Json="True" KeyNumber="5038">
+            <Value Key="InputType" Value="datetime-default" Type="String" />
+            <Value Key="Name" Value="BirthDate" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Poems" Type="Number" IsTitle="false">
+          <Entity AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="565623a4-fa85-4482-8cc4-241c591d7ab5" Json="True" KeyNumber="5039">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="Poems" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
     <AttributeSet StaticName="24267d3c-296b-4645-9e85-22e1ad02371d" Name="SharingMetadata" Description="" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
         <Attribute StaticName="Title" Type="String" IsTitle="true">
@@ -1322,7 +1347,7 @@
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="12.90.00" Type="String">
+      <Value Key="Version" Value="13.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -2680,83 +2705,38 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="57daf3cd-05f5-40b2-8a0d-766e0b87bffe" Json="True">
-      <Value Key="AllowEdit" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Description" Value="Get all authors and the books of the current author" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="AuthorsWithBooks" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Params" Value="AuthorId" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsOut" Value="ListContent,Default,Authors,CurrentBooks,Current" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamWiring" Value="9ae58358-e78f-434c-9699-7a0ee90b72c7:Default&gt;29d45812-185a-4949-b83c-bfc7910ad213:Default&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Drafts&gt;29d45812-185a-4949-b83c-bfc7910ad213:Drafts&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Published&gt;29d45812-185a-4949-b83c-bfc7910ad213:Published&#xD;&#xA;29d45812-185a-4949-b83c-bfc7910ad213:Default&gt;76d59af4-53f8-4728-81d3-09c9e5e30c51:Default&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&#xD;&#xA;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&gt;Out:Authors&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Books&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&#xD;&#xA;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&gt;Out:CurrentBooks&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;Out:Current&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Author" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TestParameters" Value="[Params:AuthorId]=10681" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="Get all authors and the books of the current author" Type="String" />
+      <Value Key="Name" Value="AuthorsWithBooks" Type="String" />
+      <Value Key="Params" Value="AuthorId=[QueryString:AuthorId]" Type="String" />
+      <Value Key="StreamsOut" Value="ListContent,Default,Authors,CurrentBooks,Current" Type="String" />
+      <Value Key="StreamWiring" Value="9ae58358-e78f-434c-9699-7a0ee90b72c7:Default&gt;29d45812-185a-4949-b83c-bfc7910ad213:Default&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Drafts&gt;29d45812-185a-4949-b83c-bfc7910ad213:Drafts&#xD;&#xA;9ae58358-e78f-434c-9699-7a0ee90b72c7:Published&gt;29d45812-185a-4949-b83c-bfc7910ad213:Published&#xD;&#xA;29d45812-185a-4949-b83c-bfc7910ad213:Default&gt;76d59af4-53f8-4728-81d3-09c9e5e30c51:Default&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&#xD;&#xA;4d0f3299-18b4-4ac7-9444-bd4a14053e12:Default&gt;Out:Authors&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Books&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&#xD;&#xA;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Default&gt;Out:CurrentBooks&#xD;&#xA;76d59af4-53f8-4728-81d3-09c9e5e30c51:Persons&gt;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;Out:Current&#xD;&#xA;ba47c9cb-528e-4c50-b118-b4aeeb226df4:Default&gt;2f35c531-4fdf-472a-9e75-c6f72d6e4dfa:Author" Type="String" />
+      <Value Key="TestParameters" Value="[Params:AuthorId]=10681" Type="String" />
+      <Value Key="VisualDesignerData" Value="" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="9ae58358-e78f-434c-9699-7a0ee90b72c7" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="ICache" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.IAppRoot, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 547,&#xD;&#xA;  &quot;Left&quot;: 393&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ICache" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.IAppRoot, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 547,&#xD;&#xA;  &quot;Left&quot;: 393&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="29d45812-185a-4949-b83c-bfc7910ad213" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="PublishingFilter" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.PublishingFilter, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 440,&#xD;&#xA;  &quot;Left&quot;: 394&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="PublishingFilter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.PublishingFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 440,&#xD;&#xA;  &quot;Left&quot;: 394&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="76d59af4-53f8-4728-81d3-09c9e5e30c51" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="App" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 340,&#xD;&#xA;  &quot;Left&quot;: 400&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 340,&#xD;&#xA;  &quot;Left&quot;: 400&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="4d0f3299-18b4-4ac7-9444-bd4a14053e12" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="Sort Authors" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 126,&#xD;&#xA;  &quot;Left&quot;: 120&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Sort Authors" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueSort, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 126,&#xD;&#xA;  &quot;Left&quot;: 120&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.ValueSort" AttributeSetName="ToSic.Eav.DataSources.ValueSort" EntityGUID="6e595dd0-782f-4306-855d-81882c88b029" Json="True" KeyGuid="4d0f3299-18b4-4ac7-9444-bd4a14053e12">
       <Value Key="Attributes" Value="LastName" Type="String">
@@ -2767,18 +2747,10 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="2f35c531-4fdf-472a-9e75-c6f72d6e4dfa" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="Filter Books of Author" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.RelationshipFilter, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 120,&#xD;&#xA;  &quot;Left&quot;: 500&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Filter Books of Author" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.RelationshipFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 120,&#xD;&#xA;  &quot;Left&quot;: 500&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.RelationshipFilter" AttributeSetName="ToSic.Eav.DataSources.RelationshipFilter" EntityGUID="075b825a-f5d2-41dd-807c-7f9c89b7c3cc" Json="True" KeyGuid="2f35c531-4fdf-472a-9e75-c6f72d6e4dfa">
       <Value Key="AttributeOnRelationship" Value="EntityId" Type="String">
@@ -2804,18 +2776,10 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ba47c9cb-528e-4c50-b118-b4aeeb226df4" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
-      <Value Key="Description" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="Id Filter Find Author" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 220,&#xD;&#xA;  &quot;Left&quot;: 332&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Id Filter Find Author" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 220,&#xD;&#xA;  &quot;Left&quot;: 332&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="127d6b34-459b-47e0-84e5-96de60e88fce" Json="True" KeyGuid="ba47c9cb-528e-4c50-b118-b4aeeb226df4">
       <Value Key="EntityIds" Value="[Params:AuthorId]" Type="String">
@@ -8058,10 +8022,10 @@
       <Value Key="Location" Value="Site" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Name" Value="JS210 - Create data" Type="String">
+      <Value Key="Name" Value="JS300 - Edit" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Path" Value="js/_210-create data.cshtml" Type="String">
+      <Value Key="Path" Value="js/_300-edit.cshtml" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PresentationTypeStaticName" Value="" Type="String">
@@ -8088,7 +8052,7 @@
       <Value Key="ViewController" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ViewNameInUrl" Value="js210/.*" Type="String">
+      <Value Key="ViewNameInUrl" Value="js300/.*" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -8114,10 +8078,10 @@
       <Value Key="Location" Value="Site" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Name" Value="JS240 - Create metadata" Type="String">
+      <Value Key="Name" Value="JS310 - Create metadata" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Path" Value="js/_240-create metadata.cshtml" Type="String">
+      <Value Key="Path" Value="js/_310-create metadata.cshtml" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PresentationTypeStaticName" Value="" Type="String">
@@ -8144,7 +8108,7 @@
       <Value Key="ViewController" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ViewNameInUrl" Value="js240/.*" Type="String">
+      <Value Key="ViewNameInUrl" Value="js310/.*" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -8188,26 +8152,7 @@
       <Value Key="Name" Value="Richard Cameron" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Poems" Value="86" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="aedbbdff-adf5-47f8-942d-12cc3a2246b5" Json="True" KeyGuid="c4b4441e-c32f-401c-b1aa-fdf3a5b4f54a">
-      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Grant" Value="crud" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identity" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Security Rule" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="7fc97843-1baa-4836-95cb-27b729014c74" AttributeSetName="DeadPoetSocietyMembership" EntityGUID="2f067103-81be-4caa-a245-44a43567aeff" KeyGuid="505aa319-589b-4b52-8b71-f1209fdcc734">
-      <Value Key="MembershipNumber" Value="8947359" Type="String">
+      <Value Key="Poems" Value="51" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -8218,77 +8163,6 @@
     </Entity>
     <Entity AssignmentObjectType="Entity" AttributeSetStaticName="7fc97843-1baa-4836-95cb-27b729014c74" AttributeSetName="DeadPoetSocietyMembership" EntityGUID="c0c5967b-415a-44df-8a6a-1380c48aa0de" KeyGuid="ae64a227-8a47-4e11-a2a2-57d3f99eaf41">
       <Value Key="MembershipNumber" Value="7922348" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="b9f36404-836f-45a8-b749-174b321a779a" Json="True">
-      <Value Key="ContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Icon" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identifier" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IsHidden" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Location" Value="Site" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="JS220 - Update Data " Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Path" Value="js/_220-update data.cshtml" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PublishData" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingStreams" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsToPublish" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Type" Value="C# Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="UseForList" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewController" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewNameInUrl" Value="js220/.*" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="7fc97843-1baa-4836-95cb-27b729014c74" AttributeSetName="DeadPoetSocietyMembership" EntityGUID="03b94ee4-4533-4cb6-803a-26574474f7f9" KeyGuid="505aa319-589b-4b52-8b71-f1209fdcc734">
-      <Value Key="MembershipNumber" Value="234321" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="7fc97843-1baa-4836-95cb-27b729014c74" AttributeSetName="DeadPoetSocietyMembership" EntityGUID="89cc630f-3b7e-490f-adb1-0969392a2215" KeyGuid="505aa319-589b-4b52-8b71-f1209fdcc734">
-      <Value Key="MembershipNumber" Value="9873247" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="7fc97843-1baa-4836-95cb-27b729014c74" AttributeSetName="DeadPoetSocietyMembership" EntityGUID="b122ec63-1583-4491-961b-4d0491ba7d02" KeyGuid="505aa319-589b-4b52-8b71-f1209fdcc734">
-      <Value Key="MembershipNumber" Value="439785" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -8372,62 +8246,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Notes" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="e40bb540-5466-46a7-a877-0382d1b6c416" Json="True">
-      <Value Key="ContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Icon" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identifier" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IsHidden" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Location" Value="Site" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="JS230 - Delete data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Path" Value="js/_230-delete data.cshtml" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PublishData" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingStreams" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsToPublish" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Type" Value="C# Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="UseForList" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewController" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewNameInUrl" Value="js230/.*" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -8708,6 +8526,210 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ViewNameInUrl" Value="img230/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="05bb4e2f-c60f-4793-bde0-4d57257c786f" Json="True" KeyGuid="7fc97843-1baa-4836-95cb-27b729014c74">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="crud" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Anon Users can Create/Delete" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="fb5b0793-6e61-4758-ab98-fabfd55c6531" Json="True" KeyString="5d80444c-6a29-4603-949a-29d977c0e459">
+      <Value Key="Description" Value="Editable poets, just used for CRUD samples" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Poets To Edit" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="183c6538-c063-4ce8-ba85-72a6f409ef54" Json="True" KeyGuid="5d80444c-6a29-4603-949a-29d977c0e459">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="crud" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Viewers can Create / Delete" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="c4b4441e-c32f-401c-b1aa-fdf3a5b4f54a" AttributeSetName="Poets" EntityGUID="c41e3207-4e19-4fa2-a405-82a0ac13d3c5">
+      <Value Key="BirthDate" Value="1949-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Daniel" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="43" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="f0b00ff2-198c-4264-8d01-622f9985ebfd">
+      <Value Key="BirthDate" Value="1949-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Daniel" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="64" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="fbde3cae-c068-4288-b9c1-61dee644a9e4">
+      <Value Key="BirthDate" Value="2021-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="SuperPoet 814" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="78" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="044df760-74fe-4096-b888-0e748cc28a4b">
+      <Value Key="BirthDate" Value="2021-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="iJungleboy" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="75" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="d874f533-2ce0-4b08-af53-90db9cd9b12b" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="JS220 - Get Queries" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="js/_220-query.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="js220/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="c4952a70-002a-4532-88e4-a49bf8916e38" Json="True" KeyGuid="57daf3cd-05f5-40b2-8a0d-766e0b87bffe">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="r" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Viewers may call using JS" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="ee25e07a-d5f5-42ad-8dcd-3901fa42064b" Json="True" KeyGuid="56ee1e44-28d0-4931-9d19-3b2deacaeb8a">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="r" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Viewers can call js" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="d406a6c3-a9e9-4197-88b2-d07be5441139">
+      <Value Key="BirthDate" Value="2021-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="SuperPoet 426" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="979" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="94036c91-59ba-46a8-af7d-bce59ff64419">
+      <Value Key="BirthDate" Value="2021-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="SuperPoet 602" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="601" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
