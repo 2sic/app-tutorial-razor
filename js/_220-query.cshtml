@@ -1,0 +1,70 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var helper = CreateInstance("../shared/Helpers.cs");
+  var infoResources = helper.InfoSection(helper.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home"), "Resources");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Use the sxc <code>query(...)</code> API to get Queries in JS</h2>
+      @* 
+        TODO: @2mh 
+        - make sure you use <p> instead of <div> in your examples where appropriate (check all files) - it also makes the spaces etc. correct and doesn't need as many BRs
+        - Update all tutorials which have GetService<ToSic.Sxc.Services.IPageService>() and update to have a @using ToSic.Sxc.Services; and then just GetService<IPageService>()
+        - Create another query which uses parameters, and create separate tutorial to show how to do that!
+      *@
+      <p>
+        This page uses the sxc data API to get data from the backend and display it in a table with JavaScript.
+        <br>
+        In this tutorial you'll learn how to:
+      </p>
+
+
+      <ul>
+        <li>
+          Create a $2sxc object using the current Module Id
+        </li>
+        <li>
+          Create a Query service using the <code>.query(...)</code>.
+        </li>
+        <li>
+          Read data using <code>getAll()</code>, <code>getStream(...)</code> and <code>getStreams(...)</code>
+        </li>
+      </ul>
+      <p>
+        Note that this sample will run the query <code>RandomAuthorWithBooks</code>. There are some things which you should know:
+      </p>
+      <ol>
+        <li>The Query has permissions configured to allow viewers to use the query in JS. </li>
+        <li>Each call returns a random author with his books, so sometimes the books-list may be empty</li>
+      </ol>
+    </div>
+    <div class="col-md-5">
+      @infoResources
+    </div>
+  </div>
+</trim>
+
+<button id="mod-@CmsContext.Module.Id-load-all" type="button" class="btn btn-primary">Get entire Query</button>
+<button id="mod-@CmsContext.Module.Id-author" type="button" class="btn btn-primary">Get Stream <code>Author</code></button>
+<button id="mod-@CmsContext.Module.Id-streams" type="button" class="btn btn-primary">Get Streams <code>Author</code> and <code>Books</code></button>
+
+@* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
+@{ GetService<IPageService>().Activate("turnOn"); }
+<turnOn turn-on='{ "run": "window.tutQuery.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+
+<script src="@App.Path/js/_220-query.js"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 750,
+  File = "_220-query.js"
+}) 
+</hide>
