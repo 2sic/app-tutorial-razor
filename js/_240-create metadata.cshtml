@@ -1,7 +1,8 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+@using ToSic.Sxc.Services;
+
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -18,7 +19,10 @@
       In this tutorial you'll learn how to:
       <ul>
         <li>
-          Create metadata using the .create() method
+          Create metadata for other entities using the javascript <code>.create(..., ...)</code> method
+        </li>
+        <li>
+          Delete existing items (so the demo doesn't grow uncontrollably) using the <code>.delete(...)</code> method
         </li>
       </ul>
       <br>
@@ -34,27 +38,28 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Birth date</th>
       <th>Memberships</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     @foreach(var poet in AsList(App.Data["Poets"])) {
-      var md = AsEntity(poet).Metadata;
-      var membershipMd = md.OfType("DeadPoetSocietyMembership") as Dynlist;
+      var membershipMd = AsList(poet.Metadata.OfType("DeadPoetSocietyMembership") as object);
       <tr>
         <td>@poet.Name</td>
-        <td>@poet.BirthDate.ToShortDateString()</td>
         <td>
-          @if (membershipMd != null) {
+          @if(membershipMd.Any()) {
             foreach (var membership in membershipMd) {
-              <span>@AsDynamic(membership).MembershipNumber</span>
+              <span>
+                @membership.MembershipNumber
+                <a href="#" onclick="window.sxcDataTutorial240.del(@membership.EntityId)">delete</a>
+              </span>
             }
+          } else {
+            <button type="button" class="btn btn-primary" onclick='window.sxcDataTutorial240.add("@poet.EntityGuid")'>
+              add membership (metadata)
+            </button>
           }
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary" onclick='addMembership("@poet.EntityGuid")'>Add new membership metadata</button>
         </td>
       </tr>
     }
@@ -62,19 +67,15 @@
 </table>
 
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
-@{
-  // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
-}
+@{ GetService<IPageService>().Activate("turnOn"); }
 <turnOn turn-on='{ "run": "window.sxcDataTutorial240.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
-
 <script src="@App.Path/js/_240-create metadata.js"></script>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1300 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
-  Size = 650,
+  Size = 1000,
   File = "_240-create metadata.js"
 }) 
 </hide>
