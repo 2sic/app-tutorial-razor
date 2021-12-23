@@ -11,8 +11,12 @@
   var md = CmsContext.View.Metadata;
   var mdShareList = md.OfType(sharingType);
   var mdShare = mdShareList.Any() ? AsDynamic(mdShareList.First()) : null;
+
+  // Metadata with new toolbar services
+  var tlbSvc = GetService<ToSic.Sxc.Services.IToolbarService>();
+  var newConfig = tlbSvc.Metadata(CmsContext.View, "SharingMetadata").Settings(hover: "left");
 }
 
-<div @Edit.TagToolbar(mdShare, toolbar: new [] { "toolbar=empty", "+metadata?contentType=" + sharingType + "&for=4,guid," }, settings: new { hover = "left"})>
+<div @Edit.TagToolbar(newConfig)>
   @hlp.TitleAndBreadcrumb(title, name, topicHomeLink)
 </div>
