@@ -1,3 +1,4 @@
+@* FYI: THIS PAGE IS NOT BEING USED *@
 @using ToSic.Razor.Blade;
 @inherits Custom.Hybrid.Razor12
 <hide>
@@ -5,12 +6,7 @@
 @{  
   var linker = CreateInstance("../shared/Helpers.cs");
   var infoBox = CreateInstance("../shared/InfoBox.cs");
-
-  // TODO: @2mh 
-  // - Dann bei allen JS tutorials vermutlich dasselbe anzeigen
-  // - Danach startseite nicht mehr verlinken von home, sondern gleich die Tutorials
-  // Dann das JS-Feature-Logo neben dem tutorial logo als doppel-logo analog Koi
-
+  
   var sxcRequirements = infoBox.InfoSection(infoBox.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
   var sxcResources = infoBox.InfoSection(
     Tag.Div(

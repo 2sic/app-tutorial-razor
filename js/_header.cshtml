@@ -1,2 +1,7 @@
 @inherits Custom.Hybrid.Razor12
-@CreateInstance("../shared/Helpers.cs").TitleAndBreadcrumb("JavaScript API", "JavaScript", "js/home")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="false">
+@hlp.TitleLogo("js/assets/js-api.svg", "https://docs.2sxc.org/js-code/2sxc-api/")
+@hlp.TitleAndBreadcrumb("JavaScript API", "JavaScript", "js/home")

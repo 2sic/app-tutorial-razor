@@ -4,8 +4,15 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{
-  var helper = CreateInstance("../shared/Helpers.cs");
-  var infoResources = helper.InfoSection(helper.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home"), "Resources");
+  var infoBox = CreateInstance("../shared/InfoBox.cs");
+  var sxcRequirements = infoBox.InfoSection(infoBox.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
+  var sxcResources = infoBox.InfoSection(
+    Tag.Div(
+      infoBox.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),
+      infoBox.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html"),
+      infoBox.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home"),
+      infoBox.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home")
+    ), "Resources");
 }
 </hide>
 <trim>
@@ -45,7 +52,8 @@
       </ol>
     </div>
     <div class="col-md-5">
-      @infoResources
+      @sxcRequirements
+      @sxcResources
     </div>
   </div>
 </trim>
