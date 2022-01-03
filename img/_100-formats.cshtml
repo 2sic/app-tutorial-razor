@@ -1,4 +1,13 @@
 @inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  /* Internal remarks for the tutorial developers
+    To reall see the images loading they must have different names in each tutorial.
+    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
+  */
+}
+</hide>
 <trim>
   <h1>Different Image Formats</h1>
   <p>
