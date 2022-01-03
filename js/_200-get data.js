@@ -16,14 +16,14 @@
       displayPoets(poets);
 
       // Get data of first poet with .getOne(id) query and log it in the console
-      poetsSvc.getOne(poets[0].Id).then((poet) => console.log(poet));
+      poetsSvc.getOne(poets[0].Id).then((poet) => console.log(`Queried poet using .getOne(): ${poet}`));
     });
   }
 
-  // display example data in table
+  // Display example data in table
   function displayPoets(poets) {
     Array.prototype.forEach.call(poets.reverse(), (poet, poetIndex) => {
-      // make sure only 3 elements are shown
+      // Make sure only 3 elements are shown
       if (poetIndex >= 3) return
       
       let tr = document.createElement('tr')

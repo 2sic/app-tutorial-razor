@@ -1,0 +1,88 @@
+@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var infoBox = CreateInstance("../shared/InfoBox.cs");
+  var sxcRequirements = infoBox.InfoSection(infoBox.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
+  var sxcResources = infoBox.InfoSection(
+    Tag.Div(
+      infoBox.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),
+      infoBox.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html"),
+      infoBox.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home"),
+      infoBox.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home")
+    ), "Resources");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Use the sxc <code>query(...)</code> API to get Queries in JS</h2>
+      <p>
+        This page uses the sxc data API to query data from the backend using parameters and display it in a table with JavaScript.
+        <br>
+        In this tutorial you'll learn how to:
+      </p>
+
+      <ul>
+        <li>
+          Create a $2sxc object using the current Module Id
+        </li>
+        <li>
+          Create a Query service using the <code>.query(...)</code>.
+        </li>
+        <li>
+          Add Parameters to the query through object or string
+        </li>
+      </ul>
+      <p>
+        Note that this sample will run the query <code>Poets</code>.
+      </p>
+    </div>
+    <div class="col-md-5">
+      @sxcRequirements
+      @sxcResources
+    </div>
+  </div>
+</trim>
+
+<table id="example-content" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>Poems</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <input id="param-name" class="form-control" placeholder="Name" value="">
+  </div>
+  <div class="col-md-3">
+    <input id="param-poems" class="form-control" placeholder="Poems" value="">
+  </div>
+  <div class="col-md-3">
+    <input type="checkbox" id="is-querystring" name="is-querystring" placeholder="Poems" value="">
+    <label for="is-querystring">Query using string?</label><br>
+  </div>
+  <button type="button" class="btn btn-primary" onclick="window.queryParameters.queryByParameters()">Query Poets</button>
+</div>
+
+@* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
+@{ GetService<IPageService>().Activate("turnOn"); }
+<turnOn turn-on='{ "run": "window.queryParameters.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+
+<script src="@App.Path/js/_230-query-parameters.js"></script>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 750 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 1250,
+  File = "_230-query-parameters.js"
+}) 
+</hide>
