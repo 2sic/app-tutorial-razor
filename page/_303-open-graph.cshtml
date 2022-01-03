@@ -1,4 +1,5 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -15,7 +16,7 @@
 
 @{
   // note: 'og:' is auto-prefixed if not given in the key
-  var page = GetService<ToSic.Sxc.Services.IPageService>();
+  var page = GetService<IPageService>();
 
   page.AddOpenGraph("title", "Demo of OpenGraph headers");
   page.AddOpenGraph("type", "website");

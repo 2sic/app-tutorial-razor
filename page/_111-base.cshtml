@@ -1,4 +1,5 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -21,7 +22,7 @@
 </trim>
 
 @{
-  var page = GetService<ToSic.Sxc.Services.IPageService>();
+  var page = GetService<IPageService>();
   page.SetBase();
 }
 

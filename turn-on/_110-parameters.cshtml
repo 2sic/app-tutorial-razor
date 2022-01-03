@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
 <trim>
   <h2>Pass function parameters with turnOn</h2>
-  <div>In this page turnOn passes parameters to a JavaScript function. The passed parameters then get deconstructed and used for DOM manipulation.</div>
+  <p>In this page turnOn passes parameters to a JavaScript function. The passed parameters then get deconstructed and used for DOM manipulation.</p>
   <br>
   In this tutorial you'll learn how to:
   <ul>
@@ -31,7 +32,7 @@
 
 @{
   // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
+  GetService<IPageService>().Activate("turnOn");
 }
 
 @* Passes the parameters Hello for greeting and World for name in a JSON format and executes the window.turnOnTutorial110.init function *@

@@ -1,3 +1,4 @@
+@using ToSic.Sxc.Services
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 <hide>
@@ -18,22 +19,21 @@
   <div class="row">
     <div class="col-md-7">
       <h2>Use the sxc data API to get backend data</h2>
-      <div>This page uses the sxc data API to get data from the backend and display it in a table with JavaScript.</div>
+      <p>This page uses the sxc data API to get data from the backend and display it in a table with JavaScript.</p>
       <br>
       In this tutorial you'll learn how to:
       <ul>
         <li>
-          Create a $2sxc object using the current Module Id
+          Create a <code>$2sxc</code> object using the current Module Id
         </li>
         <li>
-          @* TODO: @2mh 
-            - immer code-nippets mit <code> wickeln, damit gut hervorgeben 
-            - bitte auch eine Demo using getOne(id) - ist auch egal, wenn nur in alert/console
-          *@
-          Use the correct data source using .data()
+          Use the correct data source using <code>.data()</code>
         </li>
         <li>
-          Read data using the .getAll() query method
+          Read data using the <code>.getOne(id)</code> query method
+        </li>
+        <li>
+          Read data using the <code>.getAll()</code> query method
         </li>
       </ul>
       <br>
@@ -60,7 +60,7 @@
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
 @{
   // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
+  GetService<IPageService>().Activate("turnOn");
 }
 <turnOn turn-on='{ "run": "window.sxcDataTutorial200.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 

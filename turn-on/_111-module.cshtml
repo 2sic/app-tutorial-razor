@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
 <trim>
   <h2>Pass function the Module Id as parameter with turnOn</h2>
-  <div>This page creates a unique DOM attribute and sets it on a div. turnOn then passes this attribute to a JavaScript function, which identifies the element with a queryselector and performs DOM manipulations.</div>
+  <p>This page creates a unique DOM attribute and sets it on a div. turnOn then passes this attribute to a JavaScript function, which identifies the element with a queryselector and performs DOM manipulations.</p>
   <br>
   In this tutorial you'll learn how to:
   <ul>
@@ -24,7 +25,7 @@
 
 @{
   // Use the PageService to activate turnOn
-  GetService<ToSic.Sxc.Services.IPageService>().Activate("turnOn");
+  GetService<IPageService>().Activate("turnOn");
 
   // Create unique DOM attribute with Module Id
   var uniqueDomAttribute = "turn-on-example-" + CmsContext.Module.Id;

@@ -1,4 +1,5 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -27,7 +28,7 @@
 </div>
 
 @{
-  var page = GetService<ToSic.Sxc.Services.IPageService>();
+  var page = GetService<IPageService>();
   // Use the PageService to activate turnOn
   page.Activate("turnOn");
 }

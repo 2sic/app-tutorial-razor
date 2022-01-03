@@ -1,3 +1,4 @@
+using ToSic.Sxc.Services;
 using ToSic.Razor.Blade;
 
 public class Bootstrap4 : Custom.Hybrid.Code12
@@ -8,7 +9,7 @@ public class Bootstrap4 : Custom.Hybrid.Code12
   {
     var pageCss = GetService<Connect.Koi.ICss>();
     if(pageCss.IsUnknown) {
-      GetService<ToSic.Sxc.Services.IPageService>().Activate("Bootstrap4");
+      GetService<IPageService>().Activate("Bootstrap4");
     }
   }
 

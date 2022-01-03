@@ -1,3 +1,4 @@
+@using ToSic.Sxc.Services;
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
@@ -22,7 +23,7 @@
 </trim>
 
 @{
-  var pageService = GetService<ToSic.Sxc.Services.IPageService>();
+  var pageService = GetService<IPageService>();
   pageService.Activate("fancybox4");
   pageService.Activate("fancybox4"); // even if called multiple times, it will only be activated once
 

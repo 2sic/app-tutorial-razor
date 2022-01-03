@@ -1,9 +1,10 @@
+@using ToSic.Sxc.Services;
 @inherits Custom.Hybrid.Razor12
 <hide>
 @{  var hlp = CreateInstance("shared/Helpers.cs"); }
 </hide>
 @{
-  var page = GetService<ToSic.Sxc.Services.IPageService>();
+  var page = GetService<IPageService>();
   page.SetBase(); 
 }
 
