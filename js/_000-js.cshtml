@@ -4,19 +4,19 @@
 @Html.Partial("_header.cshtml")
 @{  
   var linker = CreateInstance("../shared/Helpers.cs");
+  var infoBox = CreateInstance("../shared/InfoBox.cs");
 
   // TODO: @2mh 
-  // - bitte die info-box zentralisieren eigenes file
   // - Dann bei allen JS tutorials vermutlich dasselbe anzeigen
   // - Danach startseite nicht mehr verlinken von home, sondern gleich die Tutorials
   // Dann das JS-Feature-Logo neben dem tutorial logo als doppel-logo analog Koi
 
-  var sxcRequirements = linker.InfoSection(linker.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
-  var sxcResources = linker.InfoSection(
+  var sxcRequirements = infoBox.InfoSection(infoBox.InfoContent("2sxc 13.00 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
+  var sxcResources = infoBox.InfoSection(
     Tag.Div(
-      linker.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),
-      linker.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html"),
-      linker.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home")
+      infoBox.InfoContent("Read about js in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.data.html"),
+      infoBox.InfoContent("Read about sxc-query in the docs", "https://docs.2sxc.org/js-code/2sxc-api/sxc.query.html"),
+      infoBox.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home")
     ), "Resources");
 }
 </hide>
