@@ -49,6 +49,7 @@ window.queryParameters = {
     const isQueryString = document.getElementById("is-querystring").value
     if (isQueryString) console.log(`Query string: ${queryString}`)
 
+    // TODO 2mh: ask 2dm how query using parameters works
     // Read data from the backend data source with the .getAll() query and additional parameters
     // Note: Parameters can be passed as a string or object
     this.querySvc.getAll(isQueryString ? queryString : this.poetQueryParameters).then((poets) => {
