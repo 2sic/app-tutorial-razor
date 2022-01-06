@@ -1,10 +1,12 @@
 
 window.tutQueryParameters = {
   querySvc: null,
-  init: function({ moduleId }) {
+  demoAuthorId: 0,
+  init: function({ moduleId, demoAuthorId }) {
     // Create a $2sxc object using the current Module Id
     const sxc = $2sxc(moduleId);
     this.querySvc = sxc.query('AuthorsWithBooks');
+    this.demoAuthorId = demoAuthorId;
 
     // Attach click-handlers to button
     document.getElementById(`mod-${moduleId}-object`).onclick = () => this.queryWithObjectParams();
@@ -15,7 +17,7 @@ window.tutQueryParameters = {
 
   queryWithObjectParams: function() {
     const queryParameters = {
-      authorId: 20068,
+      authorId: this.demoAuthorId,
       authorPageResults: 2,
       currentAuthorPage: 1
     };
@@ -29,7 +31,7 @@ window.tutQueryParameters = {
   queryWithStringParams: function() {
     // For passing parameters as a string it's important to use the default query string structure (key=value seperated by a &)
     // See: https://en.wikipedia.org/wiki/Query_string#Structure
-    const stringWithParameters = 'authorId=20068&authorPageResults=2&currentAuthorPage=1';
+    const stringWithParameters = `authorId=${this.demoAuthorId}&authorPageResults=2&currentAuthorPage=1`;
 
     this.querySvc.getAll(stringWithParameters).then(data => {
       console.log("Get query with passing url parameters as string", data);
@@ -39,10 +41,9 @@ window.tutQueryParameters = {
 
   queryStreamWithParams: function() {
     const queryParameters = {
-      AuthorId: 20068
+      authorId: this.demoAuthorId
     };
 
-    // Ask 2dm why this doesnt work
     this.querySvc.getStream('Current', queryParameters).then(data => {
       console.log("Get Query stream with passing url parameter", data);
       alert('Got all - see console for details. \n \n' + JSON.stringify(data, null, 2));
@@ -51,7 +52,7 @@ window.tutQueryParameters = {
 
   queryStreamsWithParams: function() {
     const queryParameters = {
-      authorId: 20068,
+      authorId: this.demoAuthorId,
       authorPageResults: 2,
       currentAuthorPage: 1
     };

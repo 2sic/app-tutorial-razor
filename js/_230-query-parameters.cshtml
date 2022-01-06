@@ -13,8 +13,11 @@
       infoBox.InfoContent("Learn more about our JS Web API fetch", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/webapi/home"),
       infoBox.InfoContent("This tutorial uses turnOn, learn more", "https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home")
     ), "Resources");
+
+  var demoAuthorId = AsList(Data["RandomAuthor"]).FirstOrDefault().EntityId;
 }
 </hide>
+
 <trim>
   <div class="row">
     <div class="col-md-7">
@@ -54,12 +57,15 @@
 
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
 @{ GetService<IPageService>().Activate("turnOn"); }
-<turnOn turn-on='{ "run": "window.tutQueryParameters.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+<turnOn turn-on='{ 
+  "run": "window.tutQueryParameters.init()", 
+  "data": { "moduleId": "@CmsContext.Module.Id", "demoAuthorId": "@demoAuthorId" } }'>
+</turnOn>
 
 <script src="@App.Path/js/_230-query-parameters.js"></script>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 350 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 420 }) 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   Size = 1250,
