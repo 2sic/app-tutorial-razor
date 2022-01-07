@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
+@{
+  var imgService = GetService<IImageService>();
+}
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
@@ -46,14 +50,69 @@
     srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
             @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
             @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
-            @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
-    sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
+            @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
+  <code id="label"></code>
 </snippet>
 
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset", Size = 160 }) 
 </hide-silent>
 
+... and here the automatic version with Image resizing
+<snippet id="img-srcset-auto">
+  @{
+    var imgSet = imgService.Img(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+  }
+  @imgSet
+  <code id="label"></code>
+</snippet>
+
+
+
+<hr>
+Now picture 1
+
+<snippet id="pic-auto">
+@{
+  var picSet = imgService.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+}
+@picSet
+<code id="label"></code>
+</snippet>
+
+<hr>
+<h1>Picture detailed</h1>
+<picture>
+  @* @foreach(var st in picSet.SourceTags){
+    @st
+  } *@
+  @picSet.SourceTags
+  @picSet.ImgTag
+</picture>
+
+<script>
+  function getbySelector(id) { return document.querySelector(id) };
+
+  function showCurrentSrc(imgId, labelId) {
+    const img = document.querySelector(imgId);
+    getbySelector(labelId).innerHTML = 'CurrentSrc:' + img.currentSrc; 
+  }
+  
+  function showChangingSrc(imgId, labelId) {
+    showCurrentSrc(imgId, labelId);
+    getbySelector(imgId).onload = function () { showCurrentSrc(imgId, labelId); }
+  }
+  showChangingSrc("#img-srcset img", "#img-srcset #label")
+  showChangingSrc('#img-srcset-auto img', '#img-srcset-auto #label');
+  showChangingSrc('#pic-auto img', '#pic-auto #label');
+</script>
+
+<hr>
+
+
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto-snippet", Size = 160 }) 
+</hide-silent>
 
 <trim>
   <hr>
@@ -77,6 +136,7 @@
   </ol>
 </hide>
 
+Todo: 2mh - as described above you cannot use src on source-tags, you must use srcset - pls fix
 <snippet id="demo-picture-formats">
   <picture>
     <source src="@App.Path/img/assets/jellyfish-2000.jpg" type="image/webp">
