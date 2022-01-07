@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Sxc.Services;
 @{
-  var imgService = GetService<IImageService>();
+  var imgSvc = GetService<IImageService>();
 }
 <hide>
 @Html.Partial("_header.cshtml")
@@ -23,12 +23,24 @@
     <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
     <li><code>picture</code> for images in different sizes, which the browser picks based on the screen and capabilities</li>
   </ol>
+
+  <div class="alert alert-info">
+    These examples are optimized. 
+    The browser will only load new images, if they are larger than the previous one. 
+    So to see the effect, you must make the browser vary small (narrow), reload the page, and then drag it wider. 
+    <br>
+    <br>
+    Some examples show the currently loaded URL below it, and the difference may be very small as it changes. So look closely 🔍
+  </div>
+
   <hr>
   <h2>Responsive <code>img</code> with <code>srcset</code> and <code>sizes</code> To Load Different Pictures</h2>
   <p>
     With <code>srcset</code> on the <code>img</code> tag you can tell the browser to load different images based on screen size. 
     To really get the hang of this, best check out <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">the MDN docs</a>.
   </p>
+
+
 </trim>
 
 <hide>
@@ -45,7 +57,7 @@
 </hide>
 
 <snippet id="img-srcset">
-  <img style="width: 100%;" alt="Image SrcSet Demo"
+  <img class="img-fluid" alt="Image SrcSet Demo"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
     srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
             @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
@@ -61,9 +73,10 @@
 ... and here the automatic version with Image resizing
 <snippet id="img-srcset-auto">
   @{
-    var imgSet = imgService.Img(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+    var imgSet = imgSvc.Img(App.Path + "/img/assets/pexels-pixabay-533288.jpg");
+    var imgSettings = imgSvc.ResizeSettings(Settings.Images.Content, height: 0);
   }
-  @imgSet
+  @imgSvc.Img(App.Path + "/img/assets/pexels-pixabay-533288.jpg", settings: imgSettings, imgClass: "img-fluid")
   <code id="label"></code>
 </snippet>
 
@@ -74,7 +87,7 @@ Now picture 1
 
 <snippet id="pic-auto">
 @{
-  var picSet = imgService.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+  var picSet = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
 }
 @picSet
 <code id="label"></code>
@@ -172,7 +185,7 @@ Todo: 2mh - as described above you cannot use src on source-tags, you must use s
               @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
               @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
             sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
-    <img style="width: 100%;" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
+    <img class="img-fluid" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
   </picture>
 </snippet>
 <hide-silent> @* Show only this snippet *@
