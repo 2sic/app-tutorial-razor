@@ -14,7 +14,8 @@
 </hide>
 
 <trim>
-  <h1>Use <code>img</code>, <code>srcset</code> and <code>picture</code></h1>
+  <h1>Best-Possible Image for Every Screen &amp; Device</h1>
+  <h2>...using <code>img</code>, <code>srcset</code> and <code>picture</code></h2>
   <p>
     HTML has a few ways to show an image, and you should know which way is best. Discover: 
   </p>
@@ -54,6 +55,7 @@
     <li>You can also use <code>srcset</code> to specify different resolutions for retina displays.</li>
     <li><strong>Important: </strong> the width specified in the <code>max-width</code> is the view/page width, not the image width</li>
   </ol>
+  <h3>Example with Different Files for Each Resolution</h3> 
 </hide>
 
 <snippet id="img-srcset">
@@ -63,69 +65,111 @@
             @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
             @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
             @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
-  <code id="label"></code>
 </snippet>
+<code id="img-srcset-label"></code>
 
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset", Size = 160 }) 
 </hide-silent>
 
-... and here the automatic version with Image resizing
+<h3>Example with Automatically Resized Files for Each Resolution</h3>
+
 <snippet id="img-srcset-auto">
+  @{ var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg"; }
+  @* This uses the IImageService created at the top of this file *@
+  @imgSvc.Img(tomatoPicUrl)
+</snippet>
+<code id="img-srcset-auto-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto", Size = 100 }) 
+</hide-silent>
+
+<h3>Example with Automatic Resize and Special Settings</h3>
+<p>
+  The following example (and the ones after this) will use a flatter image to make it easier to see all the samples. 
+  To achieve this, we must create <code>ResizeSettings</code> for this. It will be based on the default <code>Content</code> settings.
+</p>
+<snippet id="img-srcset-auto2">
   @{
-    var imgSet = imgSvc.Img(App.Path + "/img/assets/pexels-pixabay-533288.jpg");
-    var imgSettings = imgSvc.ResizeSettings(Settings.Images.Content, height: 0);
+    var flatSettings = imgSvc.ResizeSettings(Settings.Images.Content, aspectRatio: "8:1");
   }
-  @imgSvc.Img(App.Path + "/img/assets/pexels-pixabay-533288.jpg", settings: imgSettings, imgClass: "img-fluid")
-  <code id="label"></code>
+  @imgSvc.Img(tomatoPicUrl, settings: flatSettings)
 </snippet>
+<code id="img-srcset-auto2-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto2", Size = 100 }) 
+</hide-silent>
 
 
+<h3>Example with Automatic Resize and Special SrcSets</h3>
+<p>
+  The default settings contains a list of default resizes - which is why the examples before just worked. 
+  You can also specify your own, according to the specs in the
+  <a href="https://docs.2sxc.org/net-code/images/srcset.html" target="_blank">srcset docs</a>. 
+</p>
+<snippet id="img-srcset-auto-srcset">
 
-<hr>
-Now picture 1
-
-<snippet id="pic-auto">
-@{
-  var picSet = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
-}
-@picSet
-<code id="label"></code>
+  @imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcSet: "1600,1200,1000,900,800,700,600,500,400")
 </snippet>
+<code id="img-srcset-auto-srcset-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto-srcset", Size = 100 }) 
+</hide-silent>
 
-<hr>
-<h1>Picture detailed</h1>
-<picture>
-  @* @foreach(var st in picSet.SourceTags){
-    @st
-  } *@
-  @picSet.SourceTags
-  @picSet.ImgTag
-</picture>
+
+<h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
+
+<snippet id="img-srcset-auto3">
+  @imgSvc.Img(tomatoPicUrl, settings: flatSettings,
+    imgAlt: "SEO Text", imgClass: "border border-primary")
+</snippet>
+<code id="img-srcset-auto3-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto3", Size = 100 }) 
+</hide-silent>
+
+
+<h3>Automatic Resize with Detailed Control</h3>
+<snippet id="img-srcset-auto4">
+  @{
+    var imgControlled = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
+    imgControlled.ImgTag.Id("Some-Id").Style("Width: 75%");
+  }
+  @imgControlled
+</snippet>
+<code id="img-srcset-auto4-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto4", Size = 120 }) 
+</hide-silent>
+
+
+<h3>Automatic Resize with Full Control</h3>
+<snippet id="img-srcset-auto5">
+  @{
+    var imgFullControl = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
+  }
+  <img src="@imgFullControl.Url" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+</snippet>
+<code id="img-srcset-auto5-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto5", Size = 100 }) 
+</hide-silent>
 
 <script>
-  function getbySelector(id) { return document.querySelector(id) };
-
-  function showCurrentSrc(imgId, labelId) {
-    const img = document.querySelector(imgId);
-    getbySelector(labelId).innerHTML = 'CurrentSrc:' + img.currentSrc; 
-  }
-  
-  function showChangingSrc(imgId, labelId) {
-    showCurrentSrc(imgId, labelId);
-    getbySelector(imgId).onload = function () { showCurrentSrc(imgId, labelId); }
-  }
-  showChangingSrc("#img-srcset img", "#img-srcset #label")
-  showChangingSrc('#img-srcset-auto img', '#img-srcset-auto #label');
-  showChangingSrc('#pic-auto img', '#pic-auto #label');
+  showChangingSrc("#img-srcset img", "#img-srcset-label")
+  showChangingSrc('#img-srcset-auto img', '#img-srcset-auto-label');
+  showChangingSrc('#img-srcset-auto-srcset img', '#img-srcset-auto-srcset-label');
+  showChangingSrc('#img-srcset-auto2 img', '#img-srcset-auto2-label');
+  showChangingSrc('#img-srcset-auto3 img', '#img-srcset-auto3-label');
+  showChangingSrc('#img-srcset-auto4 img', '#img-srcset-auto4-label');
+  showChangingSrc('#img-srcset-auto5 img', '#img-srcset-auto5-label');
 </script>
 
-<hr>
 
+@*
+  TODO: @2mh - pls put the picture examples in an own file
+*@
 
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto-snippet", Size = 160 }) 
-</hide-silent>
 
 <trim>
   <hr>
@@ -149,14 +193,15 @@ Now picture 1
   </ol>
 </hide>
 
-Todo: 2mh - as described above you cannot use src on source-tags, you must use srcset - pls fix
 <snippet id="demo-picture-formats">
   <picture>
-    <source src="@App.Path/img/assets/jellyfish-2000.jpg" type="image/webp">
-    <source src="@App.Path/img/assets/koi-400.png" type="image/png">
-    <img style="width: 100%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
+    <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
+    <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
+    <img style="width: 40%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
   </picture>
 </snippet>
+<br>
+<code id="demo-picture-formats-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "demo-picture-formats", Size = 120 }) 
 </hide-silent>
@@ -174,26 +219,88 @@ Todo: 2mh - as described above you cannot use src on source-tags, you must use s
 <snippet id="demo-picture-srcset">
   <picture>
     <source type="image/webp"
-            srcset="@App.Path/img/assets/koi-img-srcset-2000.webp 2000w,
-              @App.Path/img/assets/koi-img-srcset-1000.webp 1000w,
-              @App.Path/img/assets/koi-img-srcset-500.webp 500w,
-              @App.Path/img/assets/koi-img-srcset-250.webp 250w,"
-            sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
+      srcset="@App.Path/img/assets/koi-img-srcset-2000.webp 2000w,
+        @App.Path/img/assets/koi-img-srcset-1000.webp 1000w,
+        @App.Path/img/assets/koi-img-srcset-500.webp 500w,
+        @App.Path/img/assets/koi-img-srcset-250.webp 250w,"
+      sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
     <source type="image/png"
-            srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
-              @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
-              @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
-              @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
-            sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
+      srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
+        @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
+        @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
+        @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
+      sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
     <img class="img-fluid" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
   </picture>
 </snippet>
+<code id="demo-picture-srcset-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "demo-picture-srcset", Size = 320 }) 
 </hide-silent>
 
 
+
+<hr>
+<h2>Automatically Resized Files &amp Formats</h2>
+
+<snippet id="pic-auto">
+
+@imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
+</snippet>
+<code id="pic-auto-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto", Size = 100 }) 
+</hide-silent>
+
+<hr>
+<h2>Automatically Resized Bits with More Control</h2>
+<snippet id="pic-auto-control1">
+@{
+  var picControlled = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+}
+<picture>
+  @picControlled.SourceTags
+  @picControlled.ImgTag.Id("some-id").Style("width: 75%").Title("Mouseover this!")
+</picture>
+</snippet>
+<br>
+<code id="pic-auto-control1-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-control1", Size = 160 }) 
+</hide-silent>
+
+
+<hr>
+<h2>Automatically Resized Bits with Lots of Control</h2>
+<snippet id="pic-auto-control2">
+@{
+  var picFullControl = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+}
+<picture>
+  @foreach(var st in picFullControl.SourceTags){
+    @st
+  }
+  <img src="@picFullControl.Url" style="width: 50%" class="border border-primary">
+</picture>
+</snippet>
+<br>
+<code id="pic-auto-control2-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-control2", Size = 200 }) 
+</hide-silent>
 <hide>
+
+
+
+
+<script>
+  showChangingSrc('#demo-picture-formats img', '#demo-picture-formats-label');
+  showChangingSrc('#demo-picture-srcset img', '#demo-picture-srcset-label');
+  showChangingSrc('#pic-auto img', '#pic-auto-label');
+  showChangingSrc('#pic-auto-control1 img', '#pic-auto-control1-label');
+  showChangingSrc('#pic-auto-control2 img', '#pic-auto-control2-label');
+</script>
+
   @* 
   Photo by <a href="https://unsplash.com/@dorianbaumann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dorian Baumann</a> on <a href="https://unsplash.com/s/photos/aescher?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 

@@ -7,7 +7,7 @@
   var imgUrl = App.Path + "/settings/demo.png";
 }
 <trim>
-  <h2>Examples using Settings</h2>
+  <h2>Resize using Presets and Global Settings</h2>
   <p>
     The following examples use predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
     We'll use <code>Settings.Images.Content</code> which has the following configuration:
@@ -30,13 +30,13 @@
 </hide-silent>
 
 <snippet id="content-custom-1">
-  <h3>Image with <em>Half</em> or <em>1/3rd</em> the Content Settings</h3>
+  <h3>Image with <code>factor</code> <em>1/3rd</em> or <em>0.25</em> the Content Settings</h3>
   <p>
     This example uses the <code>Settings.Images.Content</code> 
     settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).
   </p>
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.5)'>
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.333)'>
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: "1/3")'> - 
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.25)'>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-1", Size = 175 }) 

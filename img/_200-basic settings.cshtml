@@ -4,24 +4,61 @@
 </hide>
 
 <trim>
-<h2>Create Image Tags using the Link.Image helper and Predefined Settings</h2>
-<p>
-  2sxc 12.03 introduces a new <code>Link.Image</code> command which makes it easy to create image urls containing the correct resize parameters. 
-  Even better: The parameters can be in a global setting for re-use across all apps and templates. 
-</p>
+  <h2>Use the ImageResizer for Server-Side Resizing</h2>
+  <p>
+    2sxc comes with a built-in image resizer. 
+    V12 and before used <a href="https://imageresizing.net/" target="_blank">ImageResizer.net</a>, 
+    while v13 now uses <a href="https://www.imageflow.io/" target="_blank">imageflow</a>. 
+    They work the same way. 
+  </p>
+  <p>The core principles:</p>
+  <ol>
+    <li>Add parameters like <code>?w=200</code> or <code>?w=200&h=150</code> to the url, so the server knows what size to deliver</li>
+    <li>Additional parameters like <code>mode=crop</code> specify how to handle scenarios where the size doesn't match what you need</li>
+  </ol>
 
-<h2>Simple Examples with Parameters</h2>
-<p>
-  Look at the source-code below to see how they are made. Note that we're adding a pink border around all <code>img</code> tags to make it easier to see the image bounds. 
-</p>
+  <h2>The Unmodified Image</h2>
+  <p>
+    For starters - this is the image we'll resize later on:
+  </p>
+<snippet id="img-default">
+  @{
+    var imgUrl = App.Path + "/settings/demo.png";
+  }
+  @* <img loading="lazy" src='@imgUrl'> <-- don't do this *@
+  <img loading="lazy" src='@Link.Image(imgUrl)'>
+</snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-default", Size = 100 }) 
+  </hide-silent>
+
+  <h2>The <code>Link.Image(...)</code> Helper</h2>
+  <p>
+    Above you can see that you shouldn't do <code>src='@@imgUrl'</code> because it can cause trouble in a CMS - like when the image has special characters in the name. 
+    So you should always use <code>@@Link.Image(imgUrl)</code> instead. 
+    <br>
+    <br>
+    The <code>Link.Image</code> also makes it easy to create image urls containing the correct resize parameters. 
+    Even better: The parameters can be in a global setting for re-use across all apps and templates. 
+  </p>
+
+  <hr>
+  <h2>Simple Examples with Parameters</h2>
+  <p>
+    Look at the source-code below to see how they are made. Note that we're adding a pink border around all <code>img</code> tags to make it easier to see the image bounds. 
+  </p>
 </trim>
-@{
-  var imgUrl = App.Path + "/settings/demo.png";
-}
-<h3>Simple Example</h3>
-<img loading="lazy" src='@Link.Image(imgUrl)'>
 
-<h3>Simple resize</h3>
+<h3>Resize to 200px Width</h3>
+<snippet id="size-1">
+  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200)'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "size-1", Size = 50 }) 
+</hide-silent>
+
+@* TODO: 2MH - pls update all samples below to be like the one above - H3 title, no text beside it, small snipped size 50 below*@
+
 <ul>
   <li>
     <snippet id="size-1">
@@ -52,7 +89,8 @@
   </li>
 </ul>
 
-<h3>Resize and Change Format to JPG</h4>
+<h2>Resize and Change Format to JPG</h2>
+
 <ul>
   <li>
     <snippet id="resize-format-1">
@@ -74,8 +112,10 @@
   </li>
 </ul>
 
-<h3>Resize Modes</h3>
-All of these examples are width 250px, height 150px
+<h2>Resize Modes</h2>
+<p>
+  All of these examples are width 250px, height 150px
+</p>
 <ul>
   <li>
     <snippet id="resize-mode-1">

@@ -2,5 +2,24 @@
 @Html.Partial("../shared/_Header.cshtml", new { Title = "Images Tutorial", Name = "Images", Link = "#img" })
 @* Styles to use on all Img Demos *@
 <style>
-  // snippet img { width: 100% }
+  snippet img { width: 100% }
 </style>
+
+@*
+ Scripts used on many of the samples
+ Should probably be improved / moved out but for now it's simple and works
+*@
+
+<script>
+  function getbySelector(id) { return document.querySelector(id) };
+
+  function showCurrentSrc(imgId, labelId) {
+    const img = document.querySelector(imgId);
+    getbySelector(labelId).innerHTML = 'CurrentSrc:' + img.currentSrc; 
+  }
+  
+  function showChangingSrc(imgId, labelId) {
+    showCurrentSrc(imgId, labelId);
+    getbySelector(imgId).onload = function () { showCurrentSrc(imgId, labelId); }
+  }
+</script>
