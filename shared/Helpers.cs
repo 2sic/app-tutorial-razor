@@ -2,6 +2,8 @@ using ToSic.Razor.Blade;
 using ToSic.Sxc.Services;
 public class Helpers: Custom.Hybrid.Code12
 {
+  public string TutorialSectionType = "TutorialSections";
+  public string TutViewMetadataType = "TutorialViewMetadata";
 
   public dynamic Title(string title) {
     // set browser title for SEO
@@ -60,6 +62,21 @@ public class Helpers: Custom.Hybrid.Code12
     }
     return result;
   }
+
+  public dynamic TutorialViewLink(string label, string target, string description = null, string newText = null, string appendix = null) {
+    var result = Tag.Li(
+      Tag.Strong(
+        TutLink(label + " ", target),
+        Highlighted(newText),
+        appendix
+      )
+    );
+    if(!string.IsNullOrWhiteSpace(description)) {
+      result.Add(description);
+    }
+    return result;
+  }
+
   
   public dynamic TutorialLinkHome(string label, string target, string description, string newText = null) {
     return Tag.Li(

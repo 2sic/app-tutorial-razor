@@ -1,4 +1,5 @@
 @using ToSic.Sxc.Services;
+@using System.Linq;
 @inherits Custom.Hybrid.Razor12
 <hide>
 @{  var hlp = CreateInstance("shared/Helpers.cs"); }
@@ -87,37 +88,65 @@
 
 
   <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="img">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/img/assets/image-resizer.svg">
+  @{
+    var tlbSvc = GetService<ToSic.Sxc.Services.IToolbarService>();
+    var tutSecType = hlp.TutorialSectionType as string;
+    var viewMdType = hlp.TutViewMetadataType as string;
+
+    var unknownViewMetadata = AsDynamic(new {
+      LinkTitle = "Todo",
+      LinkTeaser = ""
+    });
+
+    var tutorialSet = AsList(App.Data[tutSecType]).FirstOrDefault(ts => ts.NameId == "img");
+  }
+  @* TODO: @2mh - put this in a sub-page _Home-Section.cshtml, call with parameter *@
+  @if (tutorialSet != null) {
+    var featureLogoPath = tutorialSet.FeatureLogo as string;
+    if (featureLogoPath != null && featureLogoPath.IndexOf("/") == -1) {
+      featureLogoPath = App.Path + "/img/assets/" + featureLogoPath;
+    }
+
+    <div class='tutorial-item'>
+      <div class='tutorial-title' data-accordion-parent="@tutorialSet.NameId">
+        <div class="row">
+          <div class="col-auto">
+            <div class="icon-wrapper"><img loading="lazy" class="img-fluid" src="@featureLogoPath"></div>
+          </div>
+          <div class="ml-3 col" @Edit.TagToolbar(tutorialSet)>
+            <h2 class='co-no-icon'>@Html.Raw(tutorialSet.Title)</h2>
+            @Html.Raw(tutorialSet.Introduction)
           </div>
         </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Images, Automatic Resizing and Responsive Pictures</h2>
-          <p>Learn the basics of Images, Image Resizing and Pictures.</p>
-        </div>
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
+        <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
       </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="img">
-      <ol>
-        @hlp.TutorialLink("Introduction to the <code>&lt;img&gt;</code> Tag and Image formats", "img100", "Basics of showing images in HTML and understand JPG vs. PNG vs. WebP.")
-        @hlp.TutorialLink("Resize and Crop Images on the Server", "img200", "Learn to use the built-in Image-Resizer to create perfect images no matter what the editor adds in the CMS.")
-        @hlp.TutorialLink("Resize using Resize-Settings", "img220", "Store all the resize-parameters in a variable for re-use.")
-        @hlp.TutorialLink("Resize and Crop using Global Presets", "img210", "Site-wide and App-Wide Presets help to resize with the same settings everywhere. ")
-        @hlp.TutorialLink("Resize combining Presets with Custom Resize-Settings", "img230", "Merge presets with custom settings")
-        @hlp.TutorialLink("Responsive Server-Side Images (img) and Pictures (picture)", "img105", 
-          "Professional sites give each screen the best possible picture using <code>srcset</code> and <code>&lt;picture&gt;</code>", "for real pros!")
+      <div class='tutorial-group pt-3' data-accordion-child="@tutorialSet.NameId">
+        <ol>
+          @foreach (var tutView in AsList(tutorialSet.Views))
+          {
+            var urlPattern = tutView.ViewNameInUrl.Replace("/.*", "");
+            var viewMetadata = tutView.Metadata;
+            var viewMd = AsList(viewMetadata.OfType(viewMdType) as object).FirstOrDefault()
+              ?? unknownViewMetadata;
 
-        @* Todo: @2mh - split the responsive img into an img and a picture tutorial *@
-      </ol>
+            var tutLink = hlp.TutorialViewLink(
+                viewMd.LinkTitle.Replace("<p>", ""). Replace("</p>", ""),
+                urlPattern,
+                viewMd.LinkTeaser, // "Basics of showing images in HTML and understand JPG vs. PNG vs. WebP.",
+                viewMd.LinkEmphasis
+              );
+            // Metadata with new toolbar services
+            tutLink.Attr(Edit.TagToolbar(tlbSvc.Metadata(tutView, viewMdType)));
+            @tutLink
+          }
+        </ol>
+      </div>
     </div>
-  </div>
+  }
+
+  @* Todo: @2mh - split the responsive img into an img and a picture tutorial *@
 
   <hr>
   <div class='tutorial-item'>

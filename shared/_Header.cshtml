@@ -7,14 +7,14 @@
   var topicHomeLink = DynamicModel.Link;
 
   // Page Metadata - will create a toolbar for this
-  var sharingType = "SharingMetadata";
+  var viewMd = "TutorialViewMetadata";
   var md = CmsContext.View.Metadata;
-  var mdShareList = md.OfType(sharingType);
+  var mdShareList = md.OfType(viewMd);
   var mdShare = mdShareList.Any() ? AsDynamic(mdShareList.First()) : null;
 
   // Metadata with new toolbar services
   var tlbSvc = GetService<ToSic.Sxc.Services.IToolbarService>();
-  var newConfig = tlbSvc.Metadata(CmsContext.View, "SharingMetadata").Settings(hover: "left");
+  var newConfig = tlbSvc.Metadata(CmsContext.View, viewMd).Settings(hover: "left");
 }
 
 <div @Edit.TagToolbar(newConfig)>
