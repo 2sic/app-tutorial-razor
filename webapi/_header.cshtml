@@ -1,5 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-@hlp.TitleAndBreadcrumb("WebApi Tutorials", "WebApi", "webapi/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "WebApi Tutorials", Name = "WebApi", Link = "#webapi" })

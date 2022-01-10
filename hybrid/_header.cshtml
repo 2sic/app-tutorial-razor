@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@CreateInstance("../shared/Helpers.cs").TitleAndBreadcrumb("Hybrid Razor Templates", "Hybrid", "hybrid/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Hybrid Razor Templates", Name = "Hybrid", Link = "#basics" })

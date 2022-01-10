@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@CreateInstance("../shared/Helpers.cs").TitleAndBreadcrumb("Reuse Templates and Code Tutorials", "Reuse", "reuse/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Reuse Templates and Code Tutorials", Name = "Reuse", Link = "#basics" })

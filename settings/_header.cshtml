@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@CreateInstance("../shared/Helpers.cs").TitleAndBreadcrumb("Settings in 2sxc", "Settings", "settings/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Settings in 2sxc", Name = "Settings", Link = "#settings" })

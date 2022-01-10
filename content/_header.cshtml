@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@CreateInstance("../shared/Helpers.cs").TitleAndBreadcrumb("Content Tutorials", "content", "content/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Content Tutorials", Name = "Content", Link = "#content" })

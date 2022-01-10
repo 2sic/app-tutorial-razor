@@ -1,6 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-@* TODO: LANGUAGE FEATURE LOGO *@
-@hlp.TitleAndBreadcrumb("Language Tutorials", "Languages / i18n", "languages/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Language Tutorials", Name = "Languages / i18n", Link = "#languages" })

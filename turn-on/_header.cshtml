@@ -1,9 +1,5 @@
 @inherits Custom.Hybrid.Razor12
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-
-@hlp.TitleLogo("turn-on/assets/turn-on.svg", "https://connect-koi.net/")
-@hlp.TitleAndBreadcrumb("turnOn Tutorials", "turnOn", "turn-on/home")
-
+@Html.Partial("../shared/_Header.cshtml", new { Title = "turnOn Tutorials", Name = "turnOn", Link = "#js" })
 <link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="false">
+
+@* TODO: 2mh @hlp.TitleLogo("turn-on/assets/turn-on.svg", "https://connect-koi.net/") *@

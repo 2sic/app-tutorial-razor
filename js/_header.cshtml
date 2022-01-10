@@ -1,7 +1,4 @@
 @inherits Custom.Hybrid.Razor12
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+@Html.Partial("../shared/_Header.cshtml", new { Title = "JavaScript API Tutorials", Name = "JavaScript", Link = "#js" })
 <link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="false">
-@hlp.TitleLogo("js/assets/js-api.svg", "https://docs.2sxc.org/js-code/2sxc-api/")
-@hlp.TitleAndBreadcrumb("JavaScript API", "JavaScript", "js/home")
+@* TODO: 2mh @hlp.TitleLogo("js/assets/js-api.svg", "https://docs.2sxc.org/js-code/2sxc-api/") *@

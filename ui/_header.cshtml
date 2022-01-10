@@ -1,5 +1,5 @@
 @inherits Custom.Hybrid.Razor12
-@CreateInstance("../shared/Helpers.cs").TitleAndBreadcrumb("Customize Edit UI/UX", "Customize Edit UX", "ui/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Customize Edit UI/UX", Name = "Customize Edit UX", Link = "#ui" })
 
 @* disable the quick-e, because it will appear since our settings activates all *@
 <div quick-edit-config='{ "enable": false }'></div>

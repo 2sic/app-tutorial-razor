@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor12
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-@hlp.TitleLogo("blade/assets/app-icon.png", "https://github.com/DNN-Connect/razor-blade")
-@hlp.TitleAndBreadcrumb("Razor Blade Tutorials", "Razor.Blade", "blade/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Razor Blade Tutorials", Name = "Razor.Blade", Link = "#razor-blade" })
+
+@* TODO: 2mh *@
+@* @hlp.TitleLogo("blade/assets/app-icon.png", "https://github.com/DNN-Connect/razor-blade") *@

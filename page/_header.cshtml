@@ -1,7 +1,2 @@
 @inherits Custom.Hybrid.Razor12
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-@hlp.TitleAndBreadcrumb("Razor Page Service Tutorials", 
-  "Razer Page Service", 
-  "page/home")
+@Html.Partial("../shared/_Header.cshtml", new { Title = "Razor Page Service Tutorials", Name = "Razer Page Service", Link = "#basics" })
