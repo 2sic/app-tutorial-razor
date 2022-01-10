@@ -2,7 +2,7 @@ using ToSic.Razor.Blade;
 using ToSic.Sxc.Services;
 public class Helpers: Custom.Hybrid.Code12
 {
-  public string TutorialSectionType = "TutorialSections";
+  public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";
 
   public dynamic Title(string title) {

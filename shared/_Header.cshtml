@@ -7,10 +7,10 @@
   var topicHomeLink = DynamicModel.Link;
 
   // Page Metadata - will create a toolbar for this
-  var viewMd = "TutorialViewMetadata";
+  var viewMd = hlp.TutViewMetadataType as string;
   var md = CmsContext.View.Metadata;
-  var mdShareList = md.OfType(viewMd);
-  var mdShare = mdShareList.Any() ? AsDynamic(mdShareList.First()) : null;
+  // var mdShareList = md.OfType(viewMd);
+  // var mdShare = mdShareList.Any() ? AsDynamic(mdShareList.First()) : null;
 
   // Metadata with new toolbar services
   var tlbSvc = GetService<ToSic.Sxc.Services.IToolbarService>();
