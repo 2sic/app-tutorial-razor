@@ -18,5 +18,8 @@
 }
 
 <div @Edit.TagToolbar(newConfig)>
+  @if (DynamicModel.FeatureIconPath != null) {
+    @hlp.TitleLogo(DynamicModel.FeatureIconPath, DynamicModel.FeatureLink)
+  }
   @hlp.TitleAndBreadcrumb(title, name, topicHomeLink)
 </div>
