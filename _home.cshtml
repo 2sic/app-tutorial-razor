@@ -2,366 +2,48 @@
 @using System.Linq;
 @inherits Custom.Hybrid.Razor12
 <hide>
-@{  var hlp = CreateInstance("shared/Helpers.cs"); }
-</hide>
 @{
+  var hlp = CreateInstance("shared/Helpers.cs");
   var page = GetService<IPageService>();
   page.SetBase(); 
+
+  var wipSection = new {
+    NameId = "wip",
+    Title = "Next Tutorials (Work-In-Progress)",
+    Introduction = "We'll create some more tutorials in March/April 2019, incl. the following",
+    FeatureLogo = App.Path + "/app-icon.png",
+    Tutorials = new[]{
+      new { Title = "UI Formulas" },
+      new { Title = "Linking around in dnn" },
+      new { Title = "Using js/css and image resources in the app folder" },
+      new { Title = "Using app settings and resources" },
+      new { Title = "Image Resizing on the server" },
+      new { Title = "Navigation links" },
+      new { Title = "Leveraging Connect.Koi" },
+      new { Title = "Permission examples" },
+      new { Title = "In-Page Editing experience" },
+      new { Title = "Customizing Search Results" },
+      new { Title = "work with icon-fonts, font-awesome etc." },
+      new { Title = "More data examples, working with users, SQL-write, PetaPoco etc." },
+      new { Title = "Working with DataSources in all kinds of ways" },
+      new { Title = "Using data from other apps" },
+      new { Title = "customizing search from data" },
+      new { Title = "custom dynamic WebApi" },
+    }
+  };
 }
+</hide>
 
-<div class="tutorial-wrapper">
-  @hlp.Title("Razor Tutorial - Home (" + App.Configuration.Version + ")")
-  <p>
-    Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples.
-  </p>
+<div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
+  @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
+  @Html.Raw(Content.Teaser)
 
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="basics">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Razor Basics</h2>
-          <p>
-            Learn how to use variables and loops, encode HTML, use 🚀😁💪 Emojis. <br>
-            Also advanced stuff like re-using code or setting page titles and SEO stuff.
-          </p>
-        </div>
-      </div>
-
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="basics">
-      <ol>
-        @hlp.TutorialLinkHome("Very Basics", "basics", "Basic use of Razor with variables, loops, conditions etc.")
-
-        @hlp.TutorialLinkHome("Work with HTML", "html", "Learn the difference of showing variables with <code>@variable</code> and <code>@Html.Raw(variable)</code>, and re-use very simple snippets")
-
-        @hlp.TutorialLinkHome("Using Emojis / Emoticons 👍", "html210", "Show Emojis in your output or use them for showing true/false", "")
-
-        @hlp.TutorialLinkHome("Reuse templates and code", "reuse", "You can place common templates, hlp and functions into shared files - both <code>.cshtml</code> and <code>.cs</code>. And you can split Razor files into code and templates.", "")
-
-        @hlp.TutorialLinkHome("Set Page Title, Keywords etc. and Headers", "page", "Use the IPageService to set page properties, base tags and headers - even JsonLD and OpenGraph.", "new in v12")
-
-        @hlp.TutorialLinkHome("Hybrid Razor for Dnn and Oqtane", "hybrid", "Advanced way to create Razor which works on Dnn and Oqtane", "new in v12")
-      </ol>
-    </div>
-  </div>
-  <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="content">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/content/assets/content-templates.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Show Content and Data on a Page</h2>
-          <p>In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which lets editors work with content - and your template only needs to visualize it.</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="content">
-      <ol>
-        @hlp.TutorialLinkHome("Working with Entity (Item) Values", "entity", "Every <em>thing</em> is an <strong>Entity</strong>. Here some basic examples how to show values like Name, Birthday etc. of such an Entity.", "")
-
-        @hlp.TutorialLinkHome("Visualize current Content", "content", "Show content which was entered for this module", "")
-
-        @hlp.TutorialLinkHome("Visualize Data", "data", "Show data from DNN, the current App, DataSources or SQL, CSV etc. Also includes list/details (parent/child) examples.", "")
-
-        @hlp.TutorialLinkHome("Visualize JSON", "json", "Easily work with JSON data.", "")
-
-        @hlp.TutorialLinkHome("LINQ Examples", "linq", "The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer. ")
-
-      </ol>
-    </div>
-  </div>
-
-
-  <hr>
-  @{
-    var tutSecType = hlp.TutorialSectionType as string;
-    @* var imgTutorialSet = AsList(App.Data[tutSecType]).FirstOrDefault(ts => ts.NameId == "img"); *@
-  }
-
-  @foreach (var tutorialSet in AsList(App.Data[tutSecType]))
+  @foreach (var tutorialSection in AsList(Content.Sections))
   {
-    @Html.Partial("_Home-Section.cshtml", new { TutorialSet = tutorialSet })
+    @Html.Partial("_Home-Section.cshtml", new { TutorialSet = tutorialSection })
+    <hr>
   }
-
-
-  <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="languages">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/languages/assets/multi-language.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Multi-Language Content and Resources (i18n) 🌐</h2>
-          <p>2sxc is super-powerful with multiple languages. It's actually one of the best multi-language solutions in all known CMS solutions out there. </p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="languages">
-      <ol>
-        @hlp.TutorialLinkHome("Using multiple languages", "languages", "Everything in 2sxc can be multi-language. Discover how!", "")
-      </ol>
-    </div>
-  </div>
-
-  <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="settings">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/turn-on/assets/turn-on.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Advanced Settings and Automation</h2>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="settings">
-      <ol>
-        @hlp.TutorialLinkHome("Use Settings", "settings", "Work with settings on View/App/Site/System.", "🆕 new in v12")
-
-        @hlp.TutorialLinkHome("Automatically Resize Images based on Presets", "settings200", "Link.Image generates resize-links with centrally managed sizes / rules.", "🆕 new in v12")
-
-        @hlp.TutorialLinkHome("Use PageService.Activate to enable features, Css and Js", "settings300", "Imagine controlling web resources/features in central management. No duplicate loading, full control!", "🆕 new in v12")
-      </ol>
-    </div>
-  </div>
-  <hr>
-
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="razor-blade">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/blade/assets/app-icon.png">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'><em>RazorBlade</em> Tutorials</h2>
-          <p>These examples help you quickly do hard stuff, once you've mastered the basics above</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="razor-blade">
-      <ol>
-        @hlp.TutorialLinkHome("RazorBlade - Making real tasks easier", "blade", "Properly create preview-texts, strip HTML, pick the right variables, set page titles and way more. Includes...", "")
-        <ul>
-          <li>Text manipulation, clean-up, cropping and ellipsis</li>
-          <li>Picking the ideal string-values</li>
-          <li>Html stripping for teasers and to protect against XSS</li>
-          <li>Convert html to text and back</li>
-        </ul>
-        @hlp.TutorialLink("RazorBlade - using the Html5 Tag API", "blade800", 
-          "The basics of creating html directly from code - new in 2.0 and enhanced in 2.1", 
-          "")
-      </ol>
-    </div>
-  </div>
-  <hr>
-
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="koi">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/koi/assets/koi-tutorial-icon.png">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Koi Tutorials</h2>
-          <p>These examples help you do cool stuff, once you've mastered the basics above</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="koi">
-      <ol>
-        @hlp.TutorialLinkHome("Koi - Cool things with CSS-Frameworks and Classes", "koi", "Automatically include missing frameworks, conditionally modify the HTML or CSS-Classes and more, depending on what CSS-framework is used by the theme of this page.", "enhanced for v12")
-      </ol>
-    </div>
-  </div>
-  <hr>
-
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="js">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/js/assets/js-api.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>JavaScript</h2>
-          <p>2sxc offers powerful helpers to just get things done - or to do things <em>your way</em>.</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="js">
-      <ol>
-        @hlp.TutorialLink("Get Data from the Backend using JS", 
-          "js200",
-          "Use the 2sxc data API and get data of a specific Content-Type")
-        @hlp.TutorialLink("Get a Query from the Backend using JS", 
-          "js220",
-          "Use the 2sxc data API and get data from a Query")
-        @hlp.TutorialLink("Add Parameters to Query from the Backend using JS", 
-          "js230",
-          "Use the 2sxc data API and get data from a Query using Parameters")
-        @hlp.TutorialLink("Create data, update and delete using JS APIs", 
-          "js300",
-          "Use the 2sxc data API and create, update, delete data")
-        @hlp.TutorialLink("Create Metadata using JS APIs", 
-          "js310",
-          "Use the 2sxc data API and create new metadata")
-        @hlp.TutorialLinkHome("Execute JavaScript with turnOn", "turn-on", "Use the turnOn feature to execute Javascript functions from Razor files", "new in v12")
-      </ol>
-    </div>
-  </div>
-  <hr>
-
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="webapi">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/webapi/assets/web-api.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>WebApi / JSON Endpoints Examples</h2>
-          <p>These examples show how to create and use WebApi. This isn't Razor, but also uses C#. You'll often need this when creating JavaScript and SPA apps.</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="webapi">
-      <ol>
-        @hlp.TutorialLinkHome("WebApi - Providing Data and more to JavaScript", "webapi", "Provide data to SPAs and do things like sending mails, changing data and more.", "")
-      </ol>
-    </div>
-  </div>
-  <hr>
-
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="ui">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/ui/assets/toolbar.svg">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Customize Edit UI / UX</h2>
-          <p>Sometimes you want to customize what the editor will experience - using special toolbars or custom input fields. Note that this only applies to 2sxc.</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="ui">
-      <ol>
-        @hlp.TutorialLinkHome("Customize the Edit Experience", "ui", "Customize the editor experience by providing great toolbars or custom input fields", "")
-      </ol>
-    </div>
-  </div>
-  <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="2sa">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Crazy 2sxc Advanced Examples</h2>
-          <p>These are really advanced examples and meant more to give guidance for specific questions. Don't worry if you don't understand these</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="2sa">
-      <ol>
-        @hlp.TutorialLinkHome("2sxc Advanced Stuff", "2sa", "Really special crazy stuff", "")
-      </ol>
-    </div>
-  </div>
-  <hr>
-  <div class='tutorial-item'>
-    <div class='tutorial-title' data-accordion-parent="wip">
-      <div class="row">
-        <div class="col-auto">
-          <div class="icon-wrapper">
-            <img loading="lazy" class="img-fluid" src="@App.Path/app-icon.png">
-          </div>
-        </div>
-        <div class="ml-3 col">
-          <h2 class='co-no-icon'>Next Tutorials (Work-In-Progress)</h2>
-          <p>We'll create some more tutorials in March/April 2019, incl. the following</p>
-        </div>
-      </div>
-      @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-      <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-      <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-    </div>
-    <div class='tutorial-group pt-3' data-accordion-child="wip">
-      <ul>
-        <li>UI Formulas</li>
-        <li>Linking around in dnn</li>
-        <li>Using js/css and image resources in the app folder</li>
-        <li>Using app settings and resources</li>
-        <li>Image Resizing on the server</li>
-        <li>Navigation links</li>
-        <li>Leveraging Connect.Koi</li>
-        <li>Permission examples</li>
-        <li>In-Page Editing experience</li>
-        <li>Customizing Search Results</li>
-        <li>work with icon-fonts, font-awesome etc.</li>
-        <li>More data examples, working with users, SQL-write, PetaPoco etc.</li>
-        <li>Working with DataSources in all kinds of ways</li>
-        <li>Using data from other apps</li>
-        <li>customizing search from data</li>
-        <li>custom dynamic WebApi</li>
-      </ul>
-    </div>
-  </div>
+  @Html.Partial("_Home-Section.cshtml", new { TutorialSet = wipSection, IsWipSection = true })
 </div>
+
 @Html.Partial("./_home.PartAssets.cshtml")
