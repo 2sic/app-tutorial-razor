@@ -37,7 +37,7 @@
   <div class='tutorial-group pt-3' data-accordion-child="@tutorialSet.NameId">
     <ol>
       @foreach (var tutView in AsList(tutorialSet.Views ?? tutorialSet.Tutorials)) {
-        // used for wip section
+        // Used for wip section
         if (AsDynamic(tutView).Title != null) {
           <li>@AsDynamic(tutView).Title</li>
           continue;
