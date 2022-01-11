@@ -36,27 +36,27 @@
   </div>
   <div class='tutorial-group pt-3' data-accordion-child="@tutorialSet.NameId">
     <ol>
-      @if (DynamicModel.IsWipSection == true) {
-        foreach (var tutorial in AsList(tutorialSet.Tutorials)) {
-          <li>@tutorial.Title</li>
+      @foreach (var tutView in AsList(tutorialSet.Views ?? tutorialSet.Tutorials)) {
+        // used for wip section
+        if (AsDynamic(tutView).Title != null) {
+          <li>@AsDynamic(tutView).Title</li>
+          continue;
         }
-      } else {
-        foreach (var tutView in AsList(tutorialSet.Views)) {
-          var urlPattern = tutView.ViewNameInUrl.Replace("/.*", "");
-          var viewMetadata = tutView.Metadata;
-          var viewMd = AsList(viewMetadata.OfType(viewMdType) as object).FirstOrDefault()
-            ?? unknownViewMetadata;
 
-          var tutLink = hlp.TutorialViewLink(
-              viewMd.LinkTitle.Replace("<p>", ""). Replace("</p>", ""),
-              urlPattern,
-              viewMd.LinkTeaser, // "Basics of showing images in HTML and understand JPG vs. PNG vs. WebP.",
-              viewMd.LinkEmphasis
-            );
-          // Metadata with new toolbar services
-          tutLink.Attr(Edit.TagToolbar(tlbSvc.Metadata(tutView, viewMdType)));
-          @tutLink
-        }
+        var urlPattern = tutView.ViewNameInUrl.Replace("/.*", "");
+        var viewMetadata = tutView.Metadata;
+        var viewMd = AsList(viewMetadata.OfType(viewMdType) as object).FirstOrDefault()
+          ?? unknownViewMetadata;
+
+        var tutLink = hlp.TutorialViewLink(
+            viewMd.LinkTitle.Replace("<p>", ""). Replace("</p>", ""),
+            urlPattern,
+            viewMd.LinkTeaser, // "Basics of showing images in HTML and understand JPG vs. PNG vs. WebP.",
+            viewMd.LinkEmphasis
+          );
+        // Metadata with new toolbar services
+        tutLink.Attr(Edit.TagToolbar(tlbSvc.Metadata(tutView, viewMdType)));
+        @tutLink
       }
     </ol>
   </div>
