@@ -18,6 +18,7 @@
 
 <hr>
 
+<snippet id="hybrid">
 @{#if NETCOREAPP}
   <h3>.net Core code = Oqtane 💧</h3>
   <p>
@@ -36,10 +37,14 @@
   </p>
 @{#endif}
 
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "hybrid", Size = 400 }) 
+</hide-silent>
 
 <hide>
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
 
 @* 2sxclint:disable:no-dnn-namespaces *@
 
