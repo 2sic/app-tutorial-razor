@@ -16,6 +16,8 @@
 </ul>
 <hr>
 </trim>
+
+<snippet id="basic-number-params">
 @{
   // this variable is a string, but could be null or empty
   var idAsString = CmsContext.Page.Parameters["id"];
@@ -43,7 +45,10 @@
     Equal to number 27: @(id == 27) <br>
   </li>
 </ul>
-
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-number-params", Size = 550 }) 
+</hide-silent>
 
 
 <trim>
@@ -51,9 +56,7 @@
 <h3>More Links about converting strings to numbers</h3>
 <ol>
   @hlp.LiExtLink("https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number", "Documentation from MSDN")
-
 </ol>
-
 </trim>
 
 
@@ -68,5 +71,5 @@
   }
 }
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 850 }) 
 </hide>

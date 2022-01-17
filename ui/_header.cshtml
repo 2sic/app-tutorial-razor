@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.Razor12
 @Html.Partial("../shared/_Header.cshtml", new { Title = "Customize Edit UI/UX", Name = "Customize Edit UX", Link = "#ui" })
+@Html.Partial("../shared/_NavigationToolbar.cshtml")
 
 @* disable the quick-e, because it will appear since our settings activates all *@
 <div quick-edit-config='{ "enable": false }'></div>

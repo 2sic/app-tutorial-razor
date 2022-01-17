@@ -1,0 +1,56 @@
+@inherits Custom.Hybrid.Razor12
+@using System.Linq;
+@{
+  var hlp = CreateInstance("Helpers.cs");
+  var currentView = CmsContext.View;
+  var viewMdType = hlp.TutViewMetadataType as string;
+  
+  var unknownViewMetadata = AsDynamic(new {
+    Title = "Todo",
+  });
+
+  var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata);
+  var tutorialSection = AsDynamic(AsList(
+    App.Data["TutorialSection"])
+      .Where(section => (section.Views as IEnumerable<dynamic>)
+      .Any(view => view.EntityId == currentView.Id)
+    ).FirstOrDefault());
+
+  
+  var viewList = (tutorialSection.Views as IEnumerable<dynamic>).ToList();
+  var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
+  var previousTutorial = currentIndex > 0 ? viewList[currentIndex - 1] : null;
+  var nextTutorial = currentIndex < viewList.Count() - 1 ? viewList[currentIndex + 1] : null;
+  var homeTarget ="#" + tutorialSection.NameId;
+}
+
+<div class="alert alert-dark container-fluid">
+  <div class="row justify-content-between">
+    <div class="col-auto">
+      @{
+        var previousTutorialMd = previousTutorial != null ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+        var previousTutorialTarget = previousTutorialMd != null ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
+      }
+
+      <a href="@Link.To(parameters: previousTutorialTarget)">
+        <i class="fas fa-chevron-left"></i>
+        @(previousTutorial != null ? previousTutorialMd.Title : "Home")
+      </a>
+    </div>
+    <div class="col-auto">
+      <strong>#@(currentIndex + 1) @viewMd.Title</strong>
+    </div>
+    <div class="col-auto">
+      @{
+        var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+        var nextTutorialTarget = nextTutorialMd != null ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
+      }
+
+      <a href="@Link.To(parameters: nextTutorialTarget)">
+        @(nextTutorial != null ? nextTutorialMd.Title : "Home")
+        <i class="fas fa-chevron-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<hr>

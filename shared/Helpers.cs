@@ -30,8 +30,7 @@ public class Helpers: Custom.Hybrid.Code12
   public dynamic TitleAndBreadcrumb(string title, string name, string topicUrl) {
     return Tag.Custom(
       Title(title).ToString() +
-      Breadcrumb(name, topicUrl) +
-      Tag.Hr()
+      Breadcrumb(name, topicUrl)
     );
   }
 
@@ -43,9 +42,13 @@ public class Helpers: Custom.Hybrid.Code12
   }
   
   public dynamic TutLink(string label, string target) {
+    return Tag.A(label).Href(Link.To(parameters: GetTargetUrl(target)));
+  }
+
+  public string GetTargetUrl(string target) {
     target = target.Replace("/", "=");
     target = target + (target.Contains("=") ? "" : "=page");
-    return Tag.A(label).Href(Link.To(parameters: target));
+    return target;
   }
 
 
