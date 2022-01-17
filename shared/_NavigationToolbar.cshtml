@@ -1,14 +1,21 @@
 @inherits Custom.Hybrid.Razor12
 @using System.Linq;
+@using ToSic.Sxc.Services;
 @{
   var hlp = CreateInstance("Helpers.cs");
   var currentView = CmsContext.View;
   var viewMdType = hlp.TutViewMetadataType as string;
+
+  // Enable Fa5 for icons
+  var page = GetService<IPageService>();  // Service to set titles etc. on the page
+  page.Activate("FontAwesome5");
   
+  // Fallback for missing metadata
   var unknownViewMetadata = AsDynamic(new {
     Title = "Todo",
   });
 
+  // Get current datasets
   var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata);
   var tutorialSection = AsDynamic(AsList(
     App.Data["TutorialSection"])
@@ -16,7 +23,6 @@
       .Any(view => view.EntityId == currentView.Id)
     ).FirstOrDefault());
 
-  
   var viewList = (tutorialSection.Views as IEnumerable<dynamic>).ToList();
   var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
   var previousTutorial = currentIndex > 0 ? viewList[currentIndex - 1] : null;
