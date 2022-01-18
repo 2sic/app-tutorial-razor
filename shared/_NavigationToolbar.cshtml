@@ -12,7 +12,7 @@
   
   // Fallback for missing metadata
   var unknownViewMetadata = AsDynamic(new {
-    Title = "Todo",
+    LinkTitle = "Todo",
   });
 
   // Get current datasets
@@ -32,7 +32,7 @@
 
 <div class="alert alert-dark container-fluid">
   <div class="row justify-content-between">
-    <div class="col-auto">
+    <div class="col-4">
       @{
         var previousTutorialMd = previousTutorial != null ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
         var previousTutorialTarget = previousTutorialMd != null ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
@@ -40,20 +40,20 @@
 
       <a href="@Link.To(parameters: previousTutorialTarget)">
         <i class="fas fa-chevron-left"></i>
-        @(previousTutorial != null ? previousTutorialMd.Title : "Home")
+        @(previousTutorial != null ? Html.Raw(previousTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
       </a>
     </div>
-    <div class="col-auto">
-      <strong>#@(currentIndex + 1) @viewMd.Title</strong>
+    <div class="col-4 text-center">
+      <strong>#@(currentIndex + 1) @Html.Raw(viewMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) </strong>
     </div>
-    <div class="col-auto">
+    <div class="col-4 text-end">
       @{
         var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
         var nextTutorialTarget = nextTutorialMd != null ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
       }
 
       <a href="@Link.To(parameters: nextTutorialTarget)">
-        @(nextTutorial != null ? nextTutorialMd.Title : "Home")
+        @(nextTutorial != null ? Html.Raw(nextTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
         <i class="fas fa-chevron-right"></i>
       </a>
     </div>
