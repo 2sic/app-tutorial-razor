@@ -6,7 +6,6 @@
   var hlp = CreateInstance("shared/Helpers.cs");
   var page = GetService<IPageService>();
   page.SetBase(); 
-  var razorTutorial = AsList(App.Data["Tutorial"]).FirstOrDefault();
 
   var wipSection = new {
     NameId = "wip",
@@ -36,10 +35,10 @@
 </hide>
 
 <div class="tutorial-wrapper" @Edit.TagToolbar()>
-  @hlp.Title(razorTutorial.Title + " (" + App.Configuration.Version + ")")
-  @Html.Raw(razorTutorial.Teaser)
+  @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
+  @Html.Raw(Content.Teaser)
 
-  @foreach (var tutorialSection in AsList(razorTutorial.Sections))
+  @foreach (var tutorialSection in AsList(Content.Sections))
   {
     @Html.Partial("_Home-Section.cshtml", new { TutorialSet = tutorialSection })
     <hr>

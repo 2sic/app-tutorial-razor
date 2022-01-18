@@ -15,12 +15,17 @@
 
 <hr>
 <h3>Show Content of the Current template</h3>
+<snippet id="content-values">
 <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" align="right"  style="border-radius: 50%">
 <ul>
   <li>Name: @Content.FirstName @Content.LastName</li>
   <li>Birthday: @Content.Birthday.ToString("d")</li>
   <li>Award: @Content.Awards.Name</li>
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-values", Size = 150 }) 
+</hide-silent>
 
 <trim>
 <p>In this example, the Content-Item is of the type <code>Person</code>. It has properties like <code>Name, Birthday</code> etc. and a property called <code>Awards</code>. <code>Awards</code> refers to other items of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. Below we'll show some ways to show many items, if there are more than one.  
@@ -33,6 +38,7 @@
     If a view has many items assigned (called a list) these should be retrieved from <code>Data</code> - if you don't specify a stream, it's treated as <code>Data["Default"]</code>. You will usually want to convert it to a dynamic list using <code>AsList(...)</code>. This example also uses <code>Text.Has(...)</code> to only show a picture if it really has a mugshot. 
   </p>
 </trim>
+<snippet id="content-assigned-items">
 <ul>
 @foreach(var person in AsList(Data)) {
   <li>
@@ -43,6 +49,11 @@
   </li>
 }
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-assigned-items", Size = 150 }) 
+</hide-silent>
+
 
 <trim>
 <hr>
@@ -53,6 +64,7 @@
   </p>
 </trim>
 
+<snippet id="content-sub-items">
 <ul>
 @foreach(var person in AsList(Data)) {
   <li>
@@ -72,7 +84,11 @@
   </li>
 }
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-sub-items", Size = 150 }) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1100 }) 
 </hide>

@@ -2,7 +2,9 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
+@Html.Partial("_ShortIntro.cshtml")
 </hide>
+<hr>
 
 <trim>
 <h2>Use PageService.Activate to enable Features and Load JS/CSS</h2>
@@ -36,6 +38,6 @@
 
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
 
 </hide>

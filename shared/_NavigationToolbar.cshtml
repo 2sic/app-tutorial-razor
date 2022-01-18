@@ -17,46 +17,55 @@
 
   // Get current datasets
   var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata);
-  var tutorialSection = AsDynamic(AsList(
+  var tutorialSection = AsList(
     App.Data["TutorialSection"])
       .Where(section => (section.Views as IEnumerable<dynamic>)
       .Any(view => view.EntityId == currentView.Id)
-    ).FirstOrDefault());
+    ).FirstOrDefault() ?? null;
+}
 
+@if (tutorialSection != null) {
   var viewList = (tutorialSection.Views as IEnumerable<dynamic>).ToList();
   var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
   var previousTutorial = currentIndex > 0 ? viewList[currentIndex - 1] : null;
   var nextTutorial = currentIndex < viewList.Count() - 1 ? viewList[currentIndex + 1] : null;
-  var homeTarget ="#" + tutorialSection.NameId;
-}
+  var homeTarget = "#" + tutorialSection.NameId;
 
-<div class="alert alert-dark container-fluid">
-  <div class="row justify-content-between">
-    <div class="col-4">
-      @{
-        var previousTutorialMd = previousTutorial != null ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
-        var previousTutorialTarget = previousTutorialMd != null ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
-      }
+  <div class="alert alert-dark container-fluid">
+    <div class="row justify-content-between">
+      <div class="col-4 text-truncate">
+        @{
+          var previousTutorialMd = previousTutorial != null ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+          var previousTutorialTarget = previousTutorialMd != null ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
+        }
 
-      <a href="@Link.To(parameters: previousTutorialTarget)">
-        <i class="fas fa-chevron-left"></i>
-        @(previousTutorial != null ? Html.Raw(previousTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
-      </a>
-    </div>
-    <div class="col-4 text-center">
-      <strong>#@(currentIndex + 1) @Html.Raw(viewMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) </strong>
-    </div>
-    <div class="col-4 text-end">
-      @{
-        var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
-        var nextTutorialTarget = nextTutorialMd != null ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
-      }
-
-      <a href="@Link.To(parameters: nextTutorialTarget)">
-        @(nextTutorial != null ? Html.Raw(nextTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
-        <i class="fas fa-chevron-right"></i>
-      </a>
+        <a href="@Link.To(parameters: previousTutorialTarget)" class="row">
+          <div class="col-auto">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="col text-truncate">
+            @(previousTutorial != null ? Html.Raw(previousTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
+          </div>
+        </a>
+      </div>
+      <div class="col-4 text-center text-truncate">
+        <strong>#@(currentIndex + 1) @Html.Raw(viewMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) </strong>
+      </div>
+      <div class="col-4 text-end text-right">
+        @{
+          var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+          var nextTutorialTarget = nextTutorialMd != null ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
+        }
+        <a href="@Link.To(parameters: nextTutorialTarget)" class="row">
+          <div class="col text-truncate">
+            @(nextTutorial != null ? Html.Raw(nextTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
-</div>
-<hr>
+  <hr>
+}

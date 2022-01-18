@@ -11,7 +11,7 @@ public class Helpers: Custom.Hybrid.Code12
     page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");
     return Tag.Custom(
       InitializedPageAssets()
-      + TitleLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+      + AddFeatureLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
       + Tag.H1(title).Attr(Edit.TagToolbar())
     );
   }
@@ -35,10 +35,10 @@ public class Helpers: Custom.Hybrid.Code12
   }
 
 
-  public dynamic TitleLogo(string path, string link, int size = 0) {
+  public dynamic AddFeatureLogo(string path, string link, int size = 0) {
     var img = Tag.Div(Tag.Img().Src(App.Path + "/" + path + "?w=75&h=75").Class("img-fluid")).Class("icon-wrapper");
     if (size != 0) img.Style("height: " + size + "px;" + " width: " + size + "px;");
-    return Tag.A().Href(link).Target("_blank").Wrap(img.Class("float-right ml-3 float-end"));
+    return Tag.A().Href(link).Target("_blank").Wrap(img.Class("float-right ml-3 ms-3 float-end"));
   }
   
   public dynamic TutLink(string label, string target) {
@@ -50,7 +50,6 @@ public class Helpers: Custom.Hybrid.Code12
     target = target + (target.Contains("=") ? "" : "=page");
     return target;
   }
-
 
   public dynamic TutorialLink(string label, string target, string description = null, string newText = null, string appendix = null) {
     var result = Tag.Li(

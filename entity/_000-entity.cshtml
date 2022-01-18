@@ -39,12 +39,18 @@
 
 <hr>
 <h3>Show Entity Values</h3>
+
+<snippet id="entity-values">
 <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" align="right" style="border-radius: 50%">
 <ul>
   <li>Name: @Content.FirstName @Content.LastName</li>
   <li>Birthday: @Content.Birthday.ToString("d")</li>
   <li>Award: @Content.Awards.Name</li>
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "entity-values", Size = 150 }) 
+</hide-silent>
 
 <trim>
 <p>Note that <code>Awards</code> refers to other Entities of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. In other tutorials you'll see how to work with such related Entities if there are more than one.  
