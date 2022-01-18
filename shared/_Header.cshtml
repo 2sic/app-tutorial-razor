@@ -18,7 +18,7 @@
     .Settings(hover: "left");
 }
 
-<div @Edit.TagToolbar(newConfig)>
+<div @Edit.TagToolbar(newConfig) class="mb-2">
   @if (DynamicModel.FeatureIconPath != null) {
     @hlp.AddFeatureLogo(DynamicModel.FeatureIconPath, DynamicModel.FeatureLink)
   }

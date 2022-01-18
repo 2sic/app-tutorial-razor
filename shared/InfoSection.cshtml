@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.Razor12
+<div class="card" @Edit.TagToolbar(DynamicModel.Data[0], toolbar: new [] { "toolbar=empty", "new" })>
+  <h6 class="card-header">
+    <i class='fas @(DynamicModel.Icon ?? "fa-info-circle")'></i>
+    <span class="ml-2 ms-2">@DynamicModel.Title</span>
+  </h6>
+  <div class="list-group list-group-flush">
+    <ul class="list-unstyled list-group-item ml-2 ms-2">
+      @foreach (var dataEl in DynamicModel.Data) {
+        <a href="@dataEl.Link" target="_blank" class="@DynamicModel.TextColor">
+          <li @Edit.TagToolbar(dataEl, toolbar: new [] { "toolbar=empty", "moveup", "movedown", "edit", "remove" })>@dataEl.Title</li>
+        </a>
+      }
+    </ul>
+  </div>
+</div>

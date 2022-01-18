@@ -10,7 +10,7 @@
     foundElement.style.width = `${style.width}px`;
   
     // Parameters get displayed in the DOM
-    foundElement.innerText = `turnOn has passed this data: ${JSON.stringify(data)}`;
+    foundElement.innerText = `turnOn has passed this data: ${JSON.stringify({domId, style})}`;
   }
   
   const tt = window.turnOnTutorial120 = window.turnOnTutorial120 || {};

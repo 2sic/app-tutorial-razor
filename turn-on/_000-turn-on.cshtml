@@ -3,11 +3,8 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
-  var linker = CreateInstance("../shared/Helpers.cs"); 
-  var infoBox = CreateInstance("../shared/InfoBox.cs"); 
-
-  var infoRequirements = infoBox.InfoSection(infoBox.InfoContent("2sxc 12.02 - download latest", "https://2sxc.org/en/download"), "Requirements", "fa-exclamation-circle");
-  var infoResources = infoBox.InfoSection(infoBox.InfoContent("Read about turnOn in the docs", "https://docs.2sxc.org/js-code/turn-on/index.html"), "Resources");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 
@@ -15,8 +12,8 @@
 <div class="row">
   <img loading="lazy" src="@App.Path/turn-on/assets/turn-on.svg" class="img-responsive col-md-7 mb-2">
   <div class="col-md-5">
-    @infoRequirements
-    @infoResources
+    @Html.Partial("../shared/InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
   </div>
 </div>
 
@@ -30,25 +27,25 @@
 <h2>Examples of using turnOn</h2>
 
 <ol>
-  @linker.TutorialLink("Basic turnOn usage and activation", 
+  @hlp.TutorialLink("Basic turnOn usage and activation", 
     "turn-on100",
     "Activate turn-on and execute local JavaScript functions")
-  @linker.TutorialLink("Passing parameters with turnOn", 
+  @hlp.TutorialLink("Passing parameters with turnOn", 
     "turn-on110",
     "Pass parameters to JavaScript functions with turnOn")
-  @linker.TutorialLink("Passing module parameters with turnOn", 
+  @hlp.TutorialLink("Passing module parameters with turnOn", 
     "turn-on111",
     "Pass module parameters to JavaScript functions with turnOn")
-  @linker.TutorialLink("Passing anonymous objects as parameters with turnOn", 
+  @hlp.TutorialLink("Passing anonymous objects as parameters with turnOn", 
     "turn-on120",
     "Pass anonymous object to JavaScript functions with turnOn")
-  @linker.TutorialLink("Wait for multiple scripts", 
+  @hlp.TutorialLink("Wait for multiple scripts", 
     "turn-on200",
     "Await a library before executing JavaScript functions")
-  @linker.TutorialLink("Await custom conditions through functions", 
+  @hlp.TutorialLink("Await custom conditions through functions", 
     "turn-on201",
     "Await custom conditions before executing JavaScript functions")
-  @linker.TutorialLink("Await system scripts", 
+  @hlp.TutorialLink("Await system scripts", 
     "turn-on202",
     "Await a system script before executing JavaScript functions")
 </ol>
