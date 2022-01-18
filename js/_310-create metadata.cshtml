@@ -69,13 +69,13 @@
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
 @{ GetService<IPageService>().Activate("turnOn"); }
 <turnOn turn-on='{ "run": "window.sxcDataTutorial240.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
-<script src="@App.Path/js/_240-create metadata.js"></script>
+<script src="@App.Path/js/_310-create metadata.js"></script>
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
-  Size = 1000,
-  File = "_240-create metadata.js"
+  Size = 900,
+  File = "_310-create metadata.js"
 }) 
 </hide>

@@ -58,12 +58,12 @@
 </hide>
 
 <snippet id="img-srcset">
-  <img class="img-fluid" alt="Image SrcSet Demo"
-    src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
-    srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
-            @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
-            @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
-            @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
+<img class="img-fluid" alt="Image SrcSet Demo"
+  src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
+  srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
+          @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
+          @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
+          @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
 </snippet>
 <code id="img-srcset-label"></code>
 
@@ -74,9 +74,9 @@
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 
 <snippet id="img-srcset-auto">
-  @{ var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg"; }
-  @* This uses the IImageService created at the top of this file *@
-  @imgSvc.Img(tomatoPicUrl)
+@{ var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg"; }
+@* This uses the IImageService created at the top of this file *@
+@imgSvc.Img(tomatoPicUrl)
 </snippet>
 <code id="img-srcset-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
@@ -89,10 +89,10 @@
   To achieve this, we must create <code>ResizeSettings</code> for this. It will be based on the default <code>Content</code> settings.
 </p>
 <snippet id="img-srcset-auto2">
-  @{
-    var flatSettings = imgSvc.ResizeSettings(Settings.Images.Content, aspectRatio: "8:1");
-  }
-  @imgSvc.Img(tomatoPicUrl, settings: flatSettings)
+@{
+  var flatSettings = imgSvc.ResizeSettings(Settings.Images.Content, aspectRatio: "8:1");
+}
+@imgSvc.Img(tomatoPicUrl, settings: flatSettings)
 </snippet>
 <code id="img-srcset-auto2-label"></code>
 <hide-silent> @* Show only this snippet *@
@@ -107,8 +107,7 @@
   <a href="https://docs.2sxc.org/net-code/images/srcset.html" target="_blank">srcset docs</a>. 
 </p>
 <snippet id="img-srcset-auto-srcset">
-
-  @imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcSet: "1600,1200,1000,900,800,700,600,500,400")
+@imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcSet: "1600,1200,1000,900,800,700,600,500,400")
 </snippet>
 <code id="img-srcset-auto-srcset-label"></code>
 <hide-silent> @* Show only this snippet *@
@@ -119,8 +118,8 @@
 <h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
 
 <snippet id="img-srcset-auto3">
-  @imgSvc.Img(tomatoPicUrl, settings: flatSettings,
-    imgAlt: "SEO Text", imgClass: "border border-primary")
+@imgSvc.Img(tomatoPicUrl, settings: flatSettings,
+  imgAlt: "SEO Text", imgClass: "border border-primary")
 </snippet>
 <code id="img-srcset-auto3-label"></code>
 <hide-silent> @* Show only this snippet *@
@@ -130,11 +129,11 @@
 
 <h3>Automatic Resize with Detailed Control</h3>
 <snippet id="img-srcset-auto4">
-  @{
-    var imgControlled = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
-    imgControlled.ImgTag.Id("Some-Id").Style("Width: 75%");
-  }
-  @imgControlled
+@{
+  var imgControlled = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
+  imgControlled.ImgTag.Id("Some-Id").Style("Width: 75%");
+}
+@imgControlled
 </snippet>
 <code id="img-srcset-auto4-label"></code>
 <hide-silent> @* Show only this snippet *@
@@ -144,10 +143,10 @@
 
 <h3>Automatic Resize with Full Control</h3>
 <snippet id="img-srcset-auto5">
-  @{
-    var imgFullControl = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
-  }
-  <img src="@imgFullControl.Url" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+@{
+  var imgFullControl = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
+}
+<img src="@imgFullControl.Url" srcset="@imgFullControl.SrcSet" title="Hover to see this">
 </snippet>
 <code id="img-srcset-auto5-label"></code>
 <hide-silent> @* Show only this snippet *@

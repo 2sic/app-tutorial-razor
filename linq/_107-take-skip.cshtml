@@ -8,36 +8,50 @@
 
 @Html.Partial("_header.cshtml")
 
-
 <h2>Take() / Skip()</h2>
 <h3>Take(3)</h3>
 <p>Take the first three authors.</p>
+<snippet id="linq-take">
 <ol>
   @foreach(var person in persons.Take(3)) {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>
-
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "linq-take", Size = 130 }) 
+</hide-silent>
 
 <hr>
 <h3>Skip(3)</h3>
 <p>Skip the first three authors.</p>
+<snippet id="linq-skip">
 <ol>
   @foreach(var person in persons.Skip(3)) {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "linq-skip", Size = 130 }) 
+</hide-silent>
 
 
 <hr>
 <h3>Skip(3).Take(2)</h3>
 <p>Skip the first three authors, then take 2.</p>
+<snippet id="linq-take-skip">
 <ol>
   @foreach(var person in persons.Skip(3).Take(2)) {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "linq-take-skip", Size = 130 }) 
+</hide-silent>
+
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 </hide>

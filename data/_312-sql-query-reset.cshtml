@@ -30,6 +30,7 @@
 <hr>
 
 </trim>
+<snippet id="sql-query-reset">
 @{
   // get the query and ask for the "Default" results as a dynamic List
   var query = App.Query["DnnFilesFromSql"];
@@ -38,22 +39,36 @@
   query.Params("PortalId", "0");
   var rootFiles = AsList(query);
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-reset", Size = 200 }) 
+</hide-silent>
+
 <h2>files from the current Portal</h2>
+<snippet id="sql-query-current">
 <ul>
   @foreach(var file in currentFiles) {
     <li>@file.FileName</li>
   }
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-current", Size = 100 }) 
+</hide-silent>
+
 
 <hr>
 <h2>Files from the root portal</h2>
+<snippet id="sql-query-root">
 <ul>
   @foreach(var file in rootFiles) {
     <li>@file.FileName</li>
   }
 </ul>
-
-
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-root", Size = 100 }) 
+</hide-silent>
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 

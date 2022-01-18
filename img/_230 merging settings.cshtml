@@ -20,19 +20,20 @@
   </ol>
 </trim>
 
-  <h3>Image with merged settings</h3>
-  <p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
+<h3>Image with merged settings</h3>
+<p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
 <snippet id="merge-settings-1">
-  @{
-    var customImageSettings = AsDynamic(new {
-      Height = 100,
-      ResizeMode = "Stretch",
-      Quality = 50
-    });
-    // Merged settings, first one has highes priority
-    var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
-  }
-  <img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
+@{
+  var customImageSettings = AsDynamic(new {
+    Height = 100,
+    ResizeMode = "Stretch",
+    Quality = 50
+  });
+  // Merged settings, first one has highes priority
+  var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
+}
+
+<img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 220 }) 

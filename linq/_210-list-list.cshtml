@@ -13,6 +13,7 @@
 
 <h3>Basic Use of List book.Authors</h3>
 <p>This example shows the books, and we want to LINQ on the Authors. We must tell the compiler it's a list, so that LINQ can use <code>Select(...)</code>.</p>
+<snippet id="list-dynamic">
 <ol>
   @foreach(var book in books) {
     // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
@@ -24,10 +25,16 @@
     </li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "list-dynamic", Size = 300 }) 
+</hide-silent>
 
 <hr>
+
 <h3>OrderBy Amount of Authors</h3>
 <p>This example shows Z-A ordering, where we count the authors to sort.</p>
+<snippet id="list-advanced">
 <ol>
   @foreach(var book in books.OrderByDescending(p => p.Authors.Count)) {
     var authors = (book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName);
@@ -36,7 +43,12 @@
     </li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "list-advanced", Size = 200 }) 
+</hide-silent>
+
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 </hide>

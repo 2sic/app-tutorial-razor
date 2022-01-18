@@ -13,6 +13,7 @@
 
 <h3>Show only books of Awarded Authors #1</h3>
 <p>This example first gets book, checks the authors and checks if they have awards with LINQ <code>Any()</code>. </p>
+<snippet id="list-list-list">
 @{
   var booksWithAwardedAuthors = books
     .Where(b => (b.Authors as Dynlist)
@@ -29,11 +30,16 @@
     </li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "list-list-list", Size = 400 }) 
+</hide-silent>
 <hr>
 
 
 <h3>Now the list of books NOT in that list</h3>
 <p>And now the opposite list, so all books which don't contain one of the books with authors. It gets the "other" books by filtering the list to exclude the ones it found first. That demonstrates how to use <code>Contains(x as object)</code>. The <code>Contains(...)</code> cannot work with <code>dynamic</code>, so we must tell it it's an object for it to work.</p>
+<snippet id="opposite-list">
 @{
   var otherBooks = books
     .Where(b => !(booksWithAwardedAuthors as Dynlist)
@@ -46,11 +52,16 @@
     <li><strong>@book.Title</strong></li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "opposite-list", Size = 300 }) 
+</hide-silent>
 
 <hr>
 
 <h3>Now the same using GroupBy</h3>
 <p>Now let's do the same, but using <code>GroupBy</code> to group by awarded authors and not-awarded authors:</p>
+<snippet id="groupby-author">
 @{
   var booksGroupedByAuthorAwards = books
     .GroupBy(b => ((b.Authors as Dynlist).SelectMany(a => a.Awards as Dynlist).Any()));
@@ -69,7 +80,12 @@
     </li>
   }
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "groupby-author", Size = 400 }) 
+</hide-silent>
+
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1600 }) 
 </hide>

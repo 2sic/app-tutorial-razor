@@ -10,6 +10,7 @@
 
 <h3>Simple First() and Last()</h3>
 <p>This filters the authors with long first names.</p>
+<snippet id="linq-first-last">
 <ol>
   <li>
     First: @persons.First().FirstName
@@ -18,6 +19,11 @@
     Last: @persons.Last().FirstName
   </li>
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "linq-first-last", Size = 200 }) 
+</hide-silent>
+
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 

@@ -27,11 +27,11 @@
 }
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 300 }) 
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
   File = "Bootstrap4.cs",
-  Size = 400
+  Size = 600
 }) 
 </hide>

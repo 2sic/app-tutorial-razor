@@ -26,18 +26,17 @@
 <h3>Going through a list</h3>
 <ol>
 @foreach(var tag in thing.Tags) {
-  <li>@tag   </li>
+  <li>@tag</li>
 }
 </ol>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Title = "Demo.json ",
   Path = App.PhysicalPath + "/json/",
   File = "demo.json",
-  Size = 400
+  Size = 250
 }) 
 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
 </hide>

@@ -18,6 +18,7 @@
   Please note that the API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
 </p>
 </trim>
+<snippet id="dnn-pages">
 @{#if NETCOREAPP}
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 @{#else}
@@ -26,6 +27,13 @@
   var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
   var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "dnn-pages", Size = 200 }) 
+</hide-silent>
+
+
+<snippet id="dnn-pages-foreach">
 <ul>
   @foreach(DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
     <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
@@ -35,7 +43,12 @@
     </li>
   }
 </ul>
+
 @{#endif}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "dnn-pages-foreach", Size = 250 }) 
+</hide-silent>
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 

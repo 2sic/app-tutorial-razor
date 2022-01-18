@@ -20,6 +20,7 @@
   </ul>
 </trim>
 
+<snippet id="page-icons">
 @{
   var page = GetService<IPageService>();
   // use url parameter to decide which icon(s) to show, and default to "set"
@@ -43,6 +44,11 @@
     page.AddIconSet(iconUrl, favicon: iconUrl);
   }
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "page-icons", Size = 450 }) 
+</hide-silent>
+
 
 <hide>
 @functions {
@@ -57,6 +63,6 @@
     return SubpageLink(label, "page121=page", "mode", value);
   }
 }
-@Html.Partial("../shared/_source-code.cshtml", new { Path })
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 670 })
 
 </hide>

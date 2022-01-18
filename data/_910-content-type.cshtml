@@ -14,6 +14,7 @@
 </trim>
 
 <h3>Content-Type Information</h3>
+<snippet id="content-type-information">
 @{
   var type = AsEntity(Content).Type;
   var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
@@ -21,6 +22,13 @@
   // Check the metadata for the DropdownValues in the type @string-dropdown
   var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-type-information", Size = 200 }) 
+</hide-silent>
+
+<snippet id="content-types">
+
 <ol>
   <li>Type object: <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html" target="_blank">@type 🔗</a></li>
   <li>Type Name: "@type.Name"</li>
@@ -37,11 +45,18 @@
     </ul>
   </li>
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-types", Size = 350 }) 
+</hide-silent>
+
+
 
 <h3>Properties / Attributes</h3>
 <p>
   Read more about <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html#ToSic_Eav_Data_IContentType_Attributes" target="_blank">attributes in the docs 🔗</a>
 </p>
+<snippet id="content-type-attributes">
 <ul>
     @foreach(var attr in type.Attributes) {
     <li>
@@ -51,7 +66,12 @@
     </li>
   }
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-type-attributes", Size = 200 }) 
+</hide-silent>
+
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) 
 </hide>

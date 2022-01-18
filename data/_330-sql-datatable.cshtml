@@ -15,6 +15,7 @@
   This example queries the DNN SQL for the files using a <code>DataTable</code> object. You can find more about this <a href="https://2sxc.org/en/Docs/Feature/feature/2579" target="_blank">here</a>.
 </p>
 </trim>
+<snippet id="sql-datatable">
 @{
   // load the sql connection name from Web.Config
   // the default connection string for DNN is SiteSqlServer
@@ -31,16 +32,27 @@
   var fileTable = new DataTable();
   adapter.Fill(fileTable);
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-datatable", Size = 350 }) 
+</hide-silent>
+<snippet id="sql-rows">
 <ol>
   @foreach (DataRow row in fileTable.Rows)
   {
     <li>@row["FileName"]</li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-rows", Size = 150 }) 
+</hide-silent>
+
 
 <trim>
 <h2>The top 10 files found in this portal with reverse sorting</h2>
 </trim>
+<snippet id="sql-reverse">
 @{
   // This applies a default-view with more parameters
   fileTable.DefaultView.Sort = "FileName DESC";
@@ -51,7 +63,12 @@
     <li>@row["FileName"]</li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-reverse", Size = 200 }) 
+</hide-silent>
+
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 </hide>

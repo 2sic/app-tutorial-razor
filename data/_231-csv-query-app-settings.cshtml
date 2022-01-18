@@ -18,6 +18,7 @@
   You can read more about the <code>CsvDataSource</code> <a href="https://r.2sxc.org/ds-csv" target="_blank">here</a>.
 </p>
 </trim>
+<snippet id="data-csv-query-settings">
 @{
   // get the query
   var query = App.Query["ProductsFromCsvInAppSettings"];
@@ -47,13 +48,20 @@
   }
 </ul>
 
-<hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "data-csv-query-settings", Size = 600 }) 
+</hide-silent>
 
+<hide>
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   File = "assets/products.csv",
-  Size = 400, 
+  Size = 300, 
   Type = "csv"
 }) 
+</hide>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 </hide>

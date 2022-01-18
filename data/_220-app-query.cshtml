@@ -15,6 +15,7 @@
   Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar (<a href="https://2sxc.org/en/Learn/Visual-Query-Designer" target="_blank">more</a>). These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the <code>Current</code> stream as well as the <code>CurrentBooks</code> of that author. 
 </p>
 </trim>
+<snippet id="data-query">
 @{
   // get the query
   var query = App.Query["AuthorsWithBooks"];
@@ -54,8 +55,11 @@
 } else {
   <h3>No author selected - click on an author above</h3>
 }
-
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "data-query", Size = 800 }) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 </hide>

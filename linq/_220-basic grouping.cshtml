@@ -13,6 +13,7 @@
 
 <h3>GroupBy Authors - bad example</h3>
 <p>This example will group the books by the <code>Authors</code> property. This example doesn't give us what we want, because authors that exist in sets and alone are grouped separately. </p>
+<snippet id="basic-grouping">
 <ol>
   @foreach(var group in books.GroupBy(b => b.Authors)) {
     <li>
@@ -28,17 +29,21 @@
     </li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-grouping", Size = 300 }) 
+</hide-silent>
+
 
 <hr>
 <h3>GroupBy Authors - better example</h3>
 <p>Let's do it better, and group by each Author individually</p>
+<snippet id="individual-grouping">
 <ol>
   @{ 
     var booksGroupedByAuthor = books
       .SelectMany(b => (b.Authors as Dynlist).Select(a => new { Book = b, Author = a }))
       .GroupBy(set => set.Author);
-      
-
     
     foreach(var group in booksGroupedByAuthor) {
     <li>
@@ -55,11 +60,15 @@
   }
   }
 </ol>
-
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "individual-grouping", Size = 400 }) 
+</hide-silent>
 
 <hr>
 <h3>GroupBy Authors - Example starting with Authors</h3>
 <p>In this example, we'll start with the authors list. This is probably not ideal - as some people are not authors, but it's a good learning example. To find the books we have to navigate through <code>Parents(...)</code> because in our data-model, the books reference authors, not the authors to books.</p>
+<snippet id="grouping-by-parents">
 <ol>
   @foreach(var author in persons) {
     // this line would work, if Books only had people in the Authors. 
@@ -85,7 +94,11 @@
     </li>
   }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "grouping-by-parents", Size = 500 }) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1800 }) 
 </hide>

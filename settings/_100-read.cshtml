@@ -17,6 +17,7 @@
 <hide>
   <p>The following settings were configured on this View - see <a href="https://docs.2sxc.org/basics/app/views/settings.html" target="_blank">docs</a></p>
 </hide>
+<snippet id="settings-view">
 <ul>
   <li>
     <div style="width: 20px; height: 20px; float: left; background-color: @Settings.PrimaryColor"></div>
@@ -28,13 +29,18 @@
   </li>
   <li><code>@@Settings.Tiles</code> (for example to configure images side-by-side): @Settings.Tiles</li>
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "settings-view", Size = 300 }) 
+</hide-silent>
+
 
 <hr>
 <h3>App Settings</h3>
 <hide>
   <p>The following settings were configured on this App - see <a href="https://docs.2sxc.org/basics/app/settings.html" target="_blank">docs</a></p>
 </hide>
-
+<snippet id="settings-app">
 <ul>
   <li>
     <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrForegroundColor"></div>
@@ -46,8 +52,13 @@
   </li>
   <li><code>@@Settings.QrDimension</code>: @Settings.QrDimension</li>
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "settings-app", Size = 300 }) 
+</hide-silent>
 
 <hr>
+
 <h3>Site ond Global (across Sites) Settings</h3>
 <hide>
   <p>
@@ -63,14 +74,16 @@
   <p>
     Each installation of 2sxc has predefined settings which you can also read - see <a href="https://r.2sxc.org/settings" target="_blank">docs</a></p>
 </hide>
+<snippet id="settings-system">
 <ul>
   <li><code>@@Settings.Images.Content.Width</code>: @Settings.Images.Content.Width</li>
   <li><code>@@Settings.Images.Content.AspectRatio</code>: @Settings.Images.Content.AspectRatio</li>
 </ul>
-
-
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "settings-system", Size = 150 }) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) 
 </hide>

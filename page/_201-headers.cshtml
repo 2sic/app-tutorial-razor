@@ -14,13 +14,19 @@
   </div>
 </trim>
 
+<snippet id="page-headers">
 @{
   var page = GetService<IPageService>();
   // prefix the current title, description and keywords with additional values
   page.AddToHead("<meta xyz>");
   page.AddMeta("somename", "somevalue");
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "page-headers", Size = 130 }) 
+</hide-silent>
+
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 350 }) 
 </hide>
