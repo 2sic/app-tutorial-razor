@@ -1,47 +1,48 @@
 @using ToSic.Sxc.Services;
 @using System.Linq;
 @inherits Custom.Hybrid.Razor12
-<hide>
 @{
   var hlp = CreateInstance("shared/Helpers.cs");
   var page = GetService<IPageService>();
   page.SetBase(); 
-
-  var wipSection = new {
-    NameId = "wip",
-    Title = "Next Tutorials (Work-In-Progress)",
-    Introduction = "We'll create some more tutorials in 2022, incl. the following",
-    FeatureLogo = App.Path + "/app-icon.png",
-    Tutorials = new[]{
-      new { Title = "UI Formulas" },
-      new { Title = "Linking around in dnn" },
-      new { Title = "Using js/css and image resources in the app folder" },
-      new { Title = "Using app settings and resources" },
-      new { Title = "Image Resizing on the server" },
-      new { Title = "Navigation links" },
-      new { Title = "Leveraging Connect.Koi" },
-      new { Title = "Permission examples" },
-      new { Title = "In-Page Editing experience" },
-      new { Title = "Customizing Search Results" },
-      new { Title = "Work with icon-fonts, font-awesome etc." },
-      new { Title = "More data examples, working with users, SQL-write, PetaPoco etc." },
-      new { Title = "Working with DataSources in all kinds of ways" },
-      new { Title = "Using data from other apps" },
-      new { Title = "Customizing search from data" },
-      new { Title = "Custom dynamic WebApi" },
-    }
-  };
 }
-</hide>
 
 <div class="tutorial-wrapper" @Edit.TagToolbar()>
   @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
   @Html.Raw(Content.Teaser)
 
+  @* Show all the sections - they are in the demo-data of the current view *@
   @foreach (var tutorialSection in AsList(Content.Sections))
   {
     @Html.Partial("_Home-Section.cshtml", new { TutorialSet = tutorialSection })
     <hr>
+  }
+
+  @* Show the other links which are still ideas etc. and don't exist as views *@
+  @{
+    var wipSection = new {
+      NameId = "wip",
+      Title = "Next Tutorials (Work-In-Progress)",
+      Introduction = "We'll create some more tutorials in 2022, incl. the following",
+      FeatureLogo = App.Path + "/app-icon.png",
+      Tutorials = new[]{
+        new { Title = "UI Formulas" },
+        new { Title = "Linking around in dnn" },
+        new { Title = "Using js/css and image resources in the app folder" },
+        new { Title = "Using app settings and resources" },
+        new { Title = "Navigation links" },
+        new { Title = "Leveraging Connect.Koi" },
+        new { Title = "Permission examples" },
+        new { Title = "In-Page Editing experience" },
+        new { Title = "Customizing Search Results" },
+        new { Title = "Work with icon-fonts, font-awesome etc." },
+        new { Title = "More data examples, working with users, SQL-write, PetaPoco etc." },
+        new { Title = "Working with DataSources in all kinds of ways" },
+        new { Title = "Using data from other apps" },
+        new { Title = "Customizing search from data" },
+        new { Title = "Custom dynamic WebApi" },
+      }
+    };
   }
   @Html.Partial("_Home-Section.cshtml", new { TutorialSet = wipSection })
 </div>
