@@ -12,8 +12,8 @@
 <div class="row">
   <img loading="lazy" src="@App.Path/turn-on/assets/turn-on.svg" class="img-responsive col-md-7 mb-2">
   <div class="col-md-5">
-    @Html.Partial("../shared/InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
   </div>
 </div>
 
