@@ -2,7 +2,10 @@
 @inherits Custom.Dnn.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var linker = CreateInstance("../shared/Helpers.cs"); 
+  var code = CreateInstance("_410CodeBehind.cs"); 
+}
 @*
   Tutorial Notes
 
@@ -41,7 +44,7 @@
 <p>This calls the function <code>Hello()</code> from the Code-Behind.</p>
 </trim>
 
-<div>Hello from Code Behind: <strong>@Code.Hello()</strong></div>
+<div>Hello from Code Behind: <strong>@code.Hello()</strong></div>
 
 <hr>
 <h2>Calling a helper from the code-behind</h2>
@@ -49,14 +52,14 @@
 <p>This creates a special alert-div using a Helper called <code>Message</code> from the Code-Behind.</p>
 </trim>
 
-@Code.Message("Message in a special format")
+@code.Message("Message in a special format")
 
 <hide>
 @Html.Partial("../shared/_source-code.cshtml", new { Path }) 
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
-  File = "_410-code-behind.code.cshtml",
+  File = "_410CodeBehind.cs",
   Size = 400
 }) 
 </hide>

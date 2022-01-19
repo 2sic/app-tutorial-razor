@@ -12,18 +12,22 @@
     LinkTitle = "Todo",
     LinkTeaser = ""
   });
-  var featureLogoPath = tutorialSet.FeatureLogo as string;
 
-  if (featureLogoPath != null && featureLogoPath.IndexOf("/") == -1) {
+  var featureLogoFallback = App.Path + "/app-icon.png";
+  var featureLogoPath = tutorialSet.FeatureLogo != "" && tutorialSet.FeatureLogo != null 
+    ? tutorialSet.FeatureLogo 
+    : featureLogoFallback;
+
+  if (featureLogoPath != featureLogoFallback && featureLogoPath.IndexOf("/") == -1) {
     featureLogoPath = App.Path + "/img/assets/" + featureLogoPath;
   }
 }
 
-<div class='tutorial-item'>
+<div class='tutorial-item @(DynamicModel.SubSection == true ? "ms-4 ml-4 mb-2" : "")'>
   <div class='tutorial-title' data-accordion-parent="@tutorialSet.NameId">
     <div class="row">
       <div class="col-auto">
-        <div class="icon-wrapper"><img loading="lazy" class="img-fluid" src="@featureLogoPath"></div>
+        <div class="icon-wrapper"><img loading="lazy" class="img-fluid" src='@featureLogoPath'></div>
       </div>
       <div class="ml-3 col" @Edit.TagToolbar(tutorialSet)>
         <h2 class='co-no-icon'>@Html.Raw(tutorialSet.Title)</h2>
@@ -59,5 +63,10 @@
         @tutLink
       }
     </ol>
+
+    @foreach (var section in AsList(DynamicModel.SubSections)) {
+      @Html.Partial("_Home-Section.cshtml", new { TutorialSet = section, SubSection = true } )
+    }
+
   </div>
 </div>

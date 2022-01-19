@@ -7,36 +7,51 @@
   var viewMdType = hlp.TutViewMetadataType as string;
 
   // Enable Fa5 for icons
-  var page = GetService<IPageService>();  // Service to set titles etc. on the page
+  var page = GetService<IPageService>(); // Service to set titles etc. on the page
   page.Activate("FontAwesome5");
-  
+
   // Fallback for missing metadata
-  var unknownViewMetadata = AsDynamic(new {
+  var unknownViewMetadata = AsDynamic(new
+  {
     LinkTitle = "Todo",
   });
 
   // Get current datasets
-  var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata);
-  var tutorialSection = AsList(
-    App.Data["TutorialSection"])
-      .Where(section => (section.Views as IEnumerable<dynamic>)
-      .Any(view => view.EntityId == currentView.Id)
-    ).FirstOrDefault() ?? null;
+  var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ??
+  unknownViewMetadata);
+  var sortedTutorialSections = (AsList(App.Data["Tutorial"]).First().Sections as IEnumerable<dynamic>).ToList();
+  var tutorialSection = AsList(sortedTutorialSections)
+    .Where(section => (section.Views as IEnumerable<dynamic>)
+      .Any(view => view.EntityId == currentView.Id))
+    .FirstOrDefault() ?? null;
+  var tutorialSectionIndex = sortedTutorialSections.FindIndex(section => section.EntityId == tutorialSection.EntityId);
 }
 
 @if (tutorialSection != null) {
   var viewList = (tutorialSection.Views as IEnumerable<dynamic>).ToList();
   var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
-  var previousTutorial = currentIndex > 0 ? viewList[currentIndex - 1] : null;
-  var nextTutorial = currentIndex < viewList.Count() - 1 ? viewList[currentIndex + 1] : null;
   var homeTarget = "#" + tutorialSection.NameId;
+  var previousTutorial = currentIndex > 0 
+    ? viewList[currentIndex - 1] 
+    : tutorialSectionIndex > 0 
+      ? (sortedTutorialSections[tutorialSectionIndex - 1].Views as IEnumerable<dynamic>).Last() 
+      : null;
+
+  var nextTutorial = currentIndex < viewList.Count() - 1 
+    ? viewList[currentIndex + 1] 
+    : tutorialSectionIndex < sortedTutorialSections.Count() - 1
+      ? (sortedTutorialSections[tutorialSectionIndex + 1].Views as IEnumerable<dynamic>).First() 
+      : null;
 
   <div class="alert alert-dark container-fluid">
     <div class="row justify-content-between">
       <div class="col-4 text-truncate">
         @{
-          var previousTutorialMd = previousTutorial != null ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
-          var previousTutorialTarget = previousTutorialMd != null ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
+          var previousTutorialMd = previousTutorial != null ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as
+          IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+          var previousTutorialTarget = previousTutorialMd != null 
+            ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
+            : homeTarget;
         }
 
         <a href="@Link.To(parameters: previousTutorialTarget)" class="row">
@@ -53,8 +68,11 @@
       </div>
       <div class="col-4 text-end text-right">
         @{
-          var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
-          var nextTutorialTarget = nextTutorialMd != null ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", "")) : homeTarget;
+          var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as
+          IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+          var nextTutorialTarget = nextTutorialMd != null 
+            ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
+            : homeTarget;
         }
         <a href="@Link.To(parameters: nextTutorialTarget)" class="row">
           <div class="col text-truncate">

@@ -1,9 +1,9 @@
-@* Code-Behind files must inherit from RazorCode12 *@
-@inherits ToSic.Sxc.Dnn.RazorComponentCode
-@using ToSic.Razor.Blade;
-@* Functions can just be called by the parent like normal C# functions*@
-@functions {
-  // 2sxclint:disable:must-inherit-hybrid-razor12 (this is for 2sxc-internal quality checks)
+using ToSic.Razor.Blade;
+using System.Linq;
+using System;
+
+public class _410CodeBehind: Custom.Hybrid.Code12
+{
   public string Hello() {
     return "Hello from inner code";
   }

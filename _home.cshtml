@@ -12,9 +12,22 @@
   @Html.Raw(Content.Teaser)
 
   @* Show all the sections - they are in the demo-data of the current view *@
-  @foreach (var tutorialSection in AsList(Content.Sections))
+  @{
+    var group = "";
+    var sections = AsList(Content.Sections as object);
+    var grouped = sections.Select(s => {
+      group = (s.Subsection == true) ? group : s.NameId;
+      return new { Group = group, Section = s };
+    })
+    .GroupBy(g => g.Group);
+  }
+
+  @foreach (var sectionGroup in grouped)
   {
-    @Html.Partial("_Home-Section.cshtml", new { TutorialSet = tutorialSection })
+    @Html.Partial("_Home-Section.cshtml", new { 
+      TutorialSet = sectionGroup.First().Section, 
+      SubSections = sectionGroup.Skip(1).Select(s => { return s.Section; }) 
+    })
     <hr>
   }
 
@@ -24,7 +37,6 @@
       NameId = "wip",
       Title = "Next Tutorials (Work-In-Progress)",
       Introduction = "We'll create some more tutorials in 2022, incl. the following",
-      FeatureLogo = App.Path + "/app-icon.png",
       Tutorials = new[]{
         new { Title = "UI Formulas" },
         new { Title = "Linking around in dnn" },
