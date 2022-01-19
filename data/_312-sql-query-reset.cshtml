@@ -53,7 +53,7 @@
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-current", Size = 100 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-current", Size = 150 }) 
 </hide-silent>
 
 
@@ -67,9 +67,9 @@
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-root", Size = 100 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-root", Size = 150 }) 
 </hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 </hide>
