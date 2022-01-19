@@ -30,6 +30,7 @@
   Get Persons with Auto-Convert
 </button> 
 
+<snippet id="api-data">
 <script>
   function getPersons(moduleContext) {
     $2sxc(moduleContext).webApi.fetchJson('books/persons')
@@ -61,6 +62,11 @@
       });
   }
 </script>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "api-data", Size = 650 }) 
+</hide-silent>
+
 
 <hide>
 @* 2sxclint:disable:no-inline-script *@

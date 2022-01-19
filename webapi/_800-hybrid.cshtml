@@ -27,6 +27,7 @@
   Square 27
 </button> 
 
+<snippet id="webapi-hybrid">
 <script>
   function callBasicHello(moduleContext) {
     $2sxc(moduleContext).webApi.fetchJson('app/auto/api/hybrid/hello')
@@ -38,6 +39,11 @@
       .then(function (results) { alert(results); });
   }
 </script>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "webapi-hybrid", Size = 290 }) 
+</hide-silent>
+
 
 <hide>
 @* 2sxclint:disable:no-inline-script *@

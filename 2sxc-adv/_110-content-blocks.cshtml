@@ -20,20 +20,26 @@
 
 </trim>
 
+<snippet id="content-blocks">
 @{#if NETCOREAPP}
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 @{#else}
   @Html.Partial("_110-content-blocks.dnn.cshtml")
 @{#endif}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-blocks", Size = 150 }) 
+</hide-silent>
+
 
 <hide>
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   File = "_110-content-blocks.dnn.cshtml",
-  Size = 1200,
+  Size = 2300,
   TitlePath = "/api/",
 }) 
 </hide>

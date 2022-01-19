@@ -26,8 +26,14 @@
 <h2>Configurable Color-Picker Input Field</h2>
 <p>
   This example shows two color-picker fields, with different initial configurations. <br>
-  Hit this edit button to have a look: @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringColorPickrPro" })
+  Hit this edit button to have a look: 
 </p>
+<snippet id="tb-colorpicker">
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringColorPickrPro" })
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker", Size = 50 }) 
+</hide-silent>
 
 <hide>
 @Html.Partial("_warning-and-links.cshtml")
@@ -35,14 +41,14 @@
 @Html.Partial("../shared/_source-code.cshtml", new {
   Path,
   File = "../system/field-string-app-color-pickr-pro/index.js",
-  Size = 1000,
+  Size = 2300,
   Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
 })
 
 @Html.Partial("../shared/_source-code.cshtml", new {
   Path,
   File = "../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json",
-  Size = 400,
+  Size = 1300,
   Wrap = true,
   Title = "Source of [App]/system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json"
 })

@@ -31,6 +31,7 @@
 
 <h2>Standard TagToolbar</h2>
 
+<snippet id="tb-standard">
 <div class="alert alert-primary" style="width: 50%;">
   <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" }, settings: new { hover = "left", show = "always" } )>
     Float over this box to get a (+) button. 
@@ -38,9 +39,15 @@
     Instead, you'll see console messages that a custom JS took over the process.
   </div>
 </div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard", Size = 200 }) 
+</hide-silent>
+
 
 <h2>Standard Inline Toolbar</h2>
 
+<snippet id="tb-inline">
 <div class="alert alert-primary" style="width: 50%;">
   <div id='inlineToolbar'>
     @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })
@@ -48,6 +55,11 @@
     Instead, you'll see console messages that a custom JS took over the process.
   </div>
 </div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline", Size = 200 }) 
+</hide-silent>
+
 
 
 <script>
