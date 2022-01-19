@@ -23,7 +23,11 @@
   }
 }
 
-<div class='tutorial-item @(DynamicModel.SubSection == true ? "ms-4 ml-4 mb-2" : "")'>
+@if (DynamicModel.SubSection == true) {
+  <hr class="sub-section">
+}
+
+<div class='tutorial-item @(DynamicModel.SubSection == true ? "sub-section" : "")'>
   <div class='tutorial-title' data-accordion-parent="@tutorialSet.NameId">
     <div class="row">
       <div class="col-auto">
