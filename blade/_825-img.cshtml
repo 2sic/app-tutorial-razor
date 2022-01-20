@@ -27,9 +27,19 @@
   var kaizenFullHd = kaizenFullPath.Replace("small", "large");
 }
 This file is called @kaizenUrl <br>
+<snippet id="blade-img">
 @Tag.Img().Src(kaizenFullPath)
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-img", Size = 40 }) 
+</hide-silent>
 <hide>
+<snippet id="blade-img-pre">
 <pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-img-pre", Size = 40 }) 
+</hide-silent>
 <hr>
 </hide>
 
@@ -38,5 +48,5 @@ And now the same thing with <code>Srcset</code> which allows high-density images
 <hide>
 <pre>@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2).ToString()</pre>
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
 </hide>

@@ -21,15 +21,25 @@
   var small = "überschrift-small.png";
   var large = "überschrift-large.png";
 }
+<snippet id="blade-picture">
 @Tag.Picture(
   Tag.Source().Srcset(path + large).Media("(min-width: 800px)"),
   Tag.Img().Src(path + small)
 )
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-picture", Size = 100 }) 
+</hide-silent>
 <hide>
+<snippet id="blade-picture-pre">
 <pre>@Tag.Picture(
   Tag.Source().Srcset(path + large).Media("(min-width: 800px)"),
   Tag.Img().Src(path + small)
 ).ToString()</pre>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-picture-pre", Size = 120 }) 
+</hide-silent>
 
 <style>
   picture, picture source, picture img {
@@ -37,5 +47,5 @@
   }
 </style>
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 350 }) 
 </hide>

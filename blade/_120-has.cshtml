@@ -69,7 +69,13 @@
 <ul>
   <li>If your string is like Text.Has("&lt;br&gt;") it will be: @Text.Has("<br>")</li>
   <li>If you want to ignore BRs, combine it with @hlp.TutLink("Tags.Br2Nl(...)", "blade220") </li>
-  <li>...resulting in: @Text.Has(Tags.Br2Nl("<br>"))</li>
+  <li>...resulting in:</li>
+  <snippet id="data-br-whitespace">
+    @Text.Has(Tags.Br2Nl("<br>"))
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "data-br-whitespace", Size = 30 }) 
+  </hide-silent>
 </ul>
 
 
@@ -81,5 +87,5 @@
 </style>
 
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 </hide>

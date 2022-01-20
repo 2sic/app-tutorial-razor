@@ -19,6 +19,7 @@
   var cls = "alert alert-";
   cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
 }
+<snippet id="blade-tag-attr">
 <div @Tag.Attr("title", titleWithIssues) 
   @Tag.Attr("class", cls)
   @Tag.Attr("number", 27)>
@@ -28,7 +29,11 @@
   If you mouse-over, you'll also see the tooltips showing stuff which would cause trouble otherwise.
   </trim>
 </div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-tag-attr", Size = 200 }) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
 </hide>

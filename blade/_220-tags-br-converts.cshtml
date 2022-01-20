@@ -17,12 +17,16 @@
   }})
 </trim>
 @using ToSic.Razor.Blade;
+
+<snippet id="tags-nl2br-br2nl-br2space">
 @{
-    var val1 = "This is a text.\nSecond line.\nThird line.";
-    var val1br = Tags.Nl2Br(val1);
-    var val1Back = Tags.Br2Nl(val1br);
-    var val1Space = Tags.Br2Space(val1br);
+  var val1 = "This is a text.\nSecond line.\nThird line.";
+  var val1br = Tags.Nl2Br(val1);
+  var val1Back = Tags.Br2Nl(val1br);
+  var val1Space = Tags.Br2Space(val1br);
 }
+</snippet>
+
 
 <h2>Simple example</h2>
 
@@ -55,6 +59,10 @@
 
 </table>
 
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tags-nl2br-br2nl-br2space", Size = 140 }) 
+</hide-silent>
+
 <hide>
   <style>
     textarea {
@@ -62,5 +70,5 @@
         /* height: 50px; */
     }
   </style>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 </hide>

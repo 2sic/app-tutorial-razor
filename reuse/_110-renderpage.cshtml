@@ -15,9 +15,14 @@
 <hide>
   <p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
 </hide>
+<snippet id="reuse-partial">
 @Html.Partial("_line.cshtml")
 @Html.Partial("_line.cshtml")
 @Html.Partial("_line.cshtml")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-partial", Size = 100 }) 
+</hide-silent>
 
 
 <hr>
@@ -25,12 +30,17 @@
 <hide>
 <p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
 </hide>
+<snippet id="reuse-partial-pass-values">
 @Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
 @Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
 @Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-partial-pass-values", Size = 100 }) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path, 

@@ -28,16 +28,16 @@
   @* meta variables *@
   var metaTitle = sharingMd != null ? Tags.Strip(sharingMd.Title) : Tags.Strip(viewMd.LinkTitle);
   var metaDescription = sharingMd != null ? Tags.Strip(sharingMd.Description) : Tags.Strip(viewMd.LinkTeaser);
-  var metaImageUrl = sharingMd != null ? Link.Image(sharingMd.Image, height: 630, width: 1200, type: "full") : "";
+  var metaImageUrl = sharingMd != null ? sharingMd.Image != "" ? Link.Image(sharingMd.Image, height: 630, width: 1200, type: "full") : "" : "";
+  var metaUrlTarget = Link.To(parameters: CmsContext.Page.Parameters);
+
   var page = GetService<IPageService>();
-  @* var currentUrlPattern = AsDynamic(CmsContext.View).ViewNameInUrl.Replace("/.*", ""); *@
-  @* var target = hlp.GetTargetUrl(currentUrlPattern); *@
 
   // Add open graph meta information
   page.AddOpenGraph("og:type", "article");
   page.AddOpenGraph("og:title", metaTitle);
   page.AddOpenGraph("og:site_name", metaTitle);
-  @* page.AddOpenGraph("og:url", Link.To(parameters: target)); *@
+  page.AddOpenGraph("og:url", metaUrlTarget);
   page.AddOpenGraph("og:description", metaDescription);
   page.AddOpenGraph("og:image", metaImageUrl);
   page.AddOpenGraph("og:image:height", "630");
@@ -49,7 +49,6 @@
   page.AddMeta("twitter:description", metaDescription);
   page.AddMeta("twitter:image", metaImageUrl);
 }
-@AsDynamic(CmsContext.View).ViewNameInUrl
 
 <script type="text/javascript" src="@Settings.AddThisJS"></script>
 <div @Edit.TagToolbar(newConfig) class="mb-2">

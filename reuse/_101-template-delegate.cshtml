@@ -35,6 +35,7 @@
 <hr>
 <h2>Complex Data with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
 <p>if you have multiple values, you need to merge in into one object like this: </p>
+<snippet id="reuse-function">
 @{
   // Simple Hybrid (Dnn/Oqtane) Template Delegate
   Func<dynamic, dynamic> FancyLink = @<li>
@@ -46,6 +47,10 @@
     </strong>
   </li>;
 }
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-function", Size = 220 }) 
+</hide-silent>
 <ul>
   @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
   @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
@@ -55,7 +60,7 @@
 
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 
 
 </hide>
