@@ -4,6 +4,7 @@ public class Helpers: Custom.Hybrid.Code12
 {
   public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";
+  public string TutViewSharingMetadataType = "TutorialViewSharing";
 
   public dynamic Title(string title) {
     // set browser title for SEO
@@ -12,7 +13,7 @@ public class Helpers: Custom.Hybrid.Code12
     return Tag.Custom(
       InitializedPageAssets()
       + AddFeatureLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
-      + Tag.H1(title).Attr(Edit.TagToolbar())
+      + Tag.Div(Tag.H1(title).Attr(Edit.TagToolbar()).Class("col-auto p-0"), Tag.Div().Class("col-auto addthis_inline_share_toolbox")).Class("row")
     );
   }
 
@@ -106,7 +107,7 @@ public class Helpers: Custom.Hybrid.Code12
 
     var bsCheck = CreateInstance("Bootstrap4.cs");
     bsCheck.EnsureBootstrap4();
-    return "<link rel='stylesheet' href='" + @App.Path + "/assets/styles.css' enableoptimizations='true' />";
+    return "<link rel='stylesheet' href='" + App.Path + "/assets/styles.css' enableoptimizations='true' />";
   }
 
   public dynamic ExternalLink(string target, string description) {
