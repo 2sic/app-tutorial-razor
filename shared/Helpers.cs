@@ -66,10 +66,10 @@ public class Helpers: Custom.Hybrid.Code12
     return result;
   }
 
-  public dynamic TutorialViewLink(string label, string target, string description = null, string newText = null, string appendix = null) {
+  public dynamic TutorialViewLink(string label, string target, string description = null, string newText = null, string appendix = null, bool deprecated = false) {
     var result = Tag.Li(
       Tag.Strong(
-        TutLink(label + " ", target),
+        TutLink(label + " ", target).Class(deprecated ? "deprecated" : ""),
         Highlighted(newText),
         appendix
       )

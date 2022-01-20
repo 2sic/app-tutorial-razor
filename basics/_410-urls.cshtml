@@ -17,6 +17,7 @@
 }
 <img loading="lazy" src='@safeUrl' id="demo-logo">
 </snippet>
+
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-safe-url", Size = 150 }) 
 </hide-silent>
@@ -53,5 +54,6 @@
   }
 </style>
 
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500 }) 
 </hide>

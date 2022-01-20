@@ -57,20 +57,21 @@
           ?? unknownViewMetadata;
 
         var tutLink = hlp.TutorialViewLink(
-            viewMd.LinkTitle.Replace("<p>", ""). Replace("</p>", ""),
-            urlPattern,
-            viewMd.LinkTeaser, // "Basics of showing images in HTML and understand JPG vs. PNG vs. WebP.",
-            viewMd.LinkEmphasis
-          );
+          viewMd.LinkTitle.Replace("<p>", ""). Replace("</p>", ""),
+          urlPattern,
+          viewMd.LinkTeaser, // "Basics of showing images in HTML and understand JPG vs. PNG vs. WebP.",
+          viewMd.LinkEmphasis,
+          deprecated: viewMd.Deprecated == true
+        );
         // Metadata with new toolbar services
         tutLink.Attr(Edit.TagToolbar(tlbSvc.Metadata(tutView, viewMdType)));
         @tutLink
       }
     </ol>
-
     @foreach (var section in AsList(DynamicModel.SubSections)) {
       @Html.Partial("_Home-Section.cshtml", new { TutorialSet = section, SubSection = true } )
     }
+
 
   </div>
 </div>

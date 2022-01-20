@@ -59,8 +59,6 @@
 </ol>
 </trim>
 
-
-
 <hide>
 @functions {
   dynamic SubpageLink(string label, string urlparams) {
@@ -71,5 +69,6 @@
   }
 }
 
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 850 }) 
 </hide>

@@ -36,7 +36,8 @@
   Path = App.PhysicalPath + "/json/",
   File = "demo.json",
   Size = 250
-}) 
+})
 
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
 </hide>

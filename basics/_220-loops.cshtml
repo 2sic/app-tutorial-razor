@@ -52,9 +52,7 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-for-index", Size = 130 }) 
 </hide-silent>
-
-
-
 <hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
 </hide>

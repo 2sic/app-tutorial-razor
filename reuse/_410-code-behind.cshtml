@@ -55,8 +55,8 @@
 @code.Message("Message in a special format")
 
 <hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   File = "_410CodeBehind.cs",
