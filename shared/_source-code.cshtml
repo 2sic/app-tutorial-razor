@@ -17,6 +17,9 @@
   var language = "";
   var thingType = (snipId == null ? "file" : "snippet");
 
+  var domAttribute = "source-code-" + CmsContext.Module.Id;
+  var isExpanded = snipId != null || file != null || DynamicModel.IsExpanded == true;
+
   // Wrap all in a try/catch to Prevent the whole page from failing just because this part may have trouble
   try
   {
@@ -68,37 +71,64 @@
   // Low risk stuff outside of try/catch
   var rndId = Guid.NewGuid().ToString();
 
-
+  var aceOptions = new {
+    wrap,
+    language,
+    sourceCodeId = "source" + rndId
+  };
 }
 
 <script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" async="false"></script>
+<style>
+  .code-block .source-code, .fa-chevron-up, 
+  .is-expanded .fa-chevron-down  {
+    display: none;
+  }
+  .is-expanded .fa-chevron-up {
+    display: block;
+  }
+  .code-block .header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .code-block .header img {
+    width: 20px;
+    height: 20px;
+    padding: 5px 4px 4px;
+  }
 
-@if (snipId == null) {
-  <hr>
-  <h2>@title</h2>
-  <p>
-    Below you'll see the source code of the @thingType. Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
-  </p>
-} else {
-  <br>
-  <br>
-}
+  .is-expanded .source-code {
+    display: block;
+  }
+</style>
 
-<pre id='@("source" + rndId)' style="height: @(size + "px"); font-size: 16px">@source</pre>
+<div class='code-block @(isExpanded ? "is-expanded" : "")' @domAttribute>
+  @if (snipId == null) {
+    <div class="header row justify-content-between">
+      <div class="col-auto">
+          <h2>@title</h2>
+          <p>
+            Below you'll see the source code of the @thingType. Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
+          </p>
+      </div>
+      <div class="col-auto">
+        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
+        <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
+        <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
+      </div>
+    </div>
+  } else {
+    <br>
+  }
+  <div class="source-code">
+    <pre id='@("source" + rndId)' style="height: @(size + "px"); font-size: 16px">@source</pre>
+  </div>
+</div>
 
-@* 2sxclint:disable:no-inline-script *@
-<script>
-    var editor = ace.edit('@("source" + rndId)', { 
-      useWrapMode: true,
-      maxLines: 30
-    });
-    editor.setTheme("ace/theme/sqlserver");
-    editor.session.setMode("@language");
-    editor.session.setOptions({
-      wrap: @(wrap ? "true" : "false"),
-    })
-</script>
+@Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, AceOptions = aceOptions })
 
 @functions {
   // Determine the ace9 language of the file

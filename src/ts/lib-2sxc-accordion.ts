@@ -43,7 +43,7 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
     const hash = window.location.hash.replace('#', '');
     const targetHashElem = document.querySelector(`[${options.attrChild}="${hash}"]`);
 
-    console.log(targetHashElem.closest(`:not([${options.attrChild}="${hash}"]) .tutorial-item`))
+    console.log(targetHashElem.closest(`div:not([${options.attrChild}="${hash}"]) .tutorial-item`))
     
     // if target element exists scroll to element and open it
     if(targetHashElem){
