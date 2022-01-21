@@ -35,6 +35,10 @@ a {
           }
         }
       }
+      > .tutorial-group {
+        display: block;
+        height: unset !important;
+      }
     }
   }
   .tutorial-title {
@@ -85,9 +89,5 @@ a {
   }
   .tutorial-group {
     display: none;
-
-    &.is-expanded {
-      display: block;
-    }
   }
 }

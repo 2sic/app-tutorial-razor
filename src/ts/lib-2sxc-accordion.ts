@@ -1,4 +1,5 @@
 import { hide, show, toggle } from 'slidetoggle';
+import { showParentSections } from '.';
 import { AccordionOptions } from './lib-2sxc-accordion-options';
 
 /*
@@ -11,6 +12,8 @@ import { AccordionOptions } from './lib-2sxc-accordion-options';
   The master with the newest / best version must always be the Accordion, the others should then get a fresh copy.
   Because this is shared, all parameters like DOM-IDs etc. must be provided in the Init-call that it can work across apps
 */ 
+
+// THIS FILE HAS MINOR MODIFICATIONS - SEE LINE 57
 
 export function initAccordion({ domId, options } : { domId: string, options: AccordionOptions }) {
   // get navHight for correct scrollposition
@@ -48,7 +51,10 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
     // if target element exists scroll to element and open it
     if(targetHashElem){
       const elemOffsetX = targetHashElem.getBoundingClientRect().top + window.scrollY - navHeight;
-      const targetOpenElem = document.querySelector(`[${options.attrChild}="${hash}"`) as HTMLElement;		
+      const targetOpenElem = document.querySelector(`[${options.attrChild}="${hash}"`) as HTMLElement;
+
+      // ADD FUNCTION THIS AFTER LIBRARY UPDATE:
+      showParentSections(targetOpenElem, options)
 
       targetHashElem.parentElement.classList.add(`${options.classIsExpanded}`);
 
