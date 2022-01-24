@@ -5,7 +5,6 @@
 @using ToSic.Razor.Blade;
 <trim>
 <h2>Working with URL Parameters using Page Parameters</h2>
-</trim>
 <p>
   The following code will use a value from the url querystring. There are various ways to pick it up, but we recommend the cross-platform API which works in Dnn and Oqtane.
 </p>
@@ -21,22 +20,20 @@
   Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
   But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. Below you'll find some links which change the url, so you can see how the output changes:
 </p>
+</trim>
+
 <snippet id="basic-params">
-@functions {
-  dynamic SubpageLink(string label, string urlparams) {
-    return Tag.Li()
-      .Wrap(
-        Tag.A(label).Href(Link.To(parameters: "?basics310=page&" + urlparams))
-      );
-  }
+@{
+  var urlBasic = Link.To(parameters: "?basics310=page&");
+  var urlSorted = Link.To(parameters: "?basics310=page&" + "sort=ascending");
 }
 <ul>
-  @SubpageLink("This page without additional params", "")
-  @SubpageLink("put ?sort=ascending in the url", "sort=ascending")
+  <li><a href="@urlBasic">@urlBasic</a></li>
+  <li><a href="@urlBasic">@urlSorted</a></li>
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-params", Size = 250 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-params", Size = 200 }) 
 </hide-silent>
 <hr>
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>

@@ -19,24 +19,15 @@
 
 <snippet id="basic-number-params">
 @{
-  // this variable is a string, but could be null or empty
+  // This variable is a string, but could be null or empty
   var idAsString = CmsContext.Page.Parameters["id"];
-
-  // this one is better - Text.First ensures that we have a value
-  var idAsStringWithFallback = Text.First(CmsContext.Page.Parameters["id"], "0");
-
-  // let's convert to a real number (int)
-  var id = Int32.Parse(idAsStringWithFallback);
+  // This converts the id parameter to int and takes 0 as fallback
+  var id = Convert.ToInt(CmsContext.Page.Parameters["id"], 0);
 }
 <ul>
   <li>
     <strong>Raw id from URL:</strong> @idAsString <br>
     Equal to string "27": @(idAsString == "27") <br>
-    Equal to number 27: (would throw error) <br>
-  </li>
-  <li>
-    <strong>Safe id from URL:</strong> @idAsStringWithFallback <br>
-    Equal to string "27": @(idAsStringWithFallback == "27") <br>
     Equal to number 27: (would throw error) <br>
   </li>
   <li>
@@ -47,7 +38,7 @@
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-number-params", Size = 550 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-number-params", Size = 400 }) 
 </hide-silent>
 
 

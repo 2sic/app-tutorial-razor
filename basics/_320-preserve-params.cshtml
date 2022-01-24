@@ -1,0 +1,106 @@
+@inherits Custom.Hybrid.Razor12
+<hide>
+@Html.Partial("_header.cshtml")
+<h2>Preserve URL parameters</h2>
+<h3>Create a link to the same page</h3>
+<p>
+  In Razor page URLs are generated using <code>Link.To(...)</code>. 
+  By default calling <code>Link.To()</code> without any parameters returns the base URL of the site. In this case it would be: <code>@Link.To()</code>. 
+</p>
+<p>
+  The key to retrieving the current page URL is to pass the current page parameters. <code>Link.To(parameters: ...)</code> will then construct the URL based on the passed parameters. <br>
+  Current page parameters are found in <code>CmsContext.Page.Parameters</code>.
+</p>
+</hide>
+<snippet id="link-to-current-params">
+  @{
+    var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters);
+  }
+
+  <p>This is the current page URL: <a href="currentPageUrl">@currentPageUrl</a></p>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-current-params", Size = 140 }) 
+</hide-silent>
+
+<hide>
+<h3>Add Parameters</h3>
+<p>
+  Because <code>CmsContext.Page.Parameters</code> follows <a target="blank" href="https://en.wikipedia.org/wiki/Query_string#Structure">the query string convention</a> adding a new parameter isn't too difficult. <br> 
+  To add a new parameter you can use the <code>.Add(key, value)</code> method or add the parameters as string following the convention as for example <code>&name=2sxc</code>.<br>
+</p>
+<hr>
+</hide>
+<p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+<snippet id="link-to-new-params">
+  @{
+    // Example using string
+    var newParamsFromString = CmsContext.Page.Parameters + "&name=2sxc";
+
+    // Page parameters using .Add(...) method
+    var newParamsFromAdd = CmsContext.Page.Parameters.Add("name", "2sxc");
+  }
+
+<hide>
+  <p>See adjusted page parameters: <code>@newParamsFromAdd</code></p>
+  <hr>
+</hide>
+
+  <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
+  <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-new-params", Size = 250 }) 
+</hide-silent>
+
+<hide>
+<h3>Remove Parameters</h3>
+<p>
+  To remove a parameter you can use the <code>.Remove(key)</code> method or modify the string containging parameters.<br>
+</p>
+<hr>
+</hide>
+
+<p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+<snippet id="link-to-remove-params">
+  @{
+    var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
+  }
+
+<hide>
+  <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
+  <hr>
+</hide>
+
+  <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-remove-params", Size = 200 }) 
+</hide-silent>
+
+<hide>
+<h3>Change Parameters</h3>
+<p>
+  To change a parameter you can use the <code>.Set(key, value)</code> method or modify the string containging parameters.<br>
+</p>
+<hr>
+</hide>
+
+<p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+<snippet id="link-to-changed-params">
+  @{
+    var currentParamsChanged = CmsContext.Page.Parameters.Set("basics320", "2sxc");
+  }
+
+<hide>
+  <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
+  <hr>
+</hide>
+
+  <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-changed-params", Size = 200 }) 
+</hide-silent>
+
+<hide>@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) </hide>

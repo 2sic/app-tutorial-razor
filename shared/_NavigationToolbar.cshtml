@@ -19,12 +19,12 @@
   // Get current datasets
   var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ??
   unknownViewMetadata);
-  var sortedTutorialSections = (AsList(App.Data["Tutorial"]).First().Sections as IEnumerable<dynamic>).ToList();
+  var sortedTutorialSections = (AsList(App.Data["Tutorial"]).Last().Sections as IEnumerable<dynamic>).ToList();
   var tutorialSection = AsList(sortedTutorialSections)
     .Where(section => (section.Views as IEnumerable<dynamic>)
       .Any(view => view.EntityId == currentView.Id))
     .FirstOrDefault() ?? null;
-  var tutorialSectionIndex = sortedTutorialSections.FindIndex(section => section.EntityId == tutorialSection.EntityId);
+  var tutorialSectionIndex = tutorialSection != null ? sortedTutorialSections.FindIndex(section => section.EntityId == tutorialSection.EntityId) : 0;
 }
 
 @if (tutorialSection != null) {

@@ -4,11 +4,17 @@
 @{
   var hlp = CreateInstance("shared/Helpers.cs");
   var page = GetService<IPageService>();
+  var tlbSvc = GetService<IToolbarService>();
   page.SetBase(); 
+  var newConfig = tlbSvc
+    .Metadata(CmsContext.View, "TutorialViewSharing")
+    .Settings(hover: "left");
 }
 
-<div class="tutorial-wrapper" @Edit.TagToolbar()>
-  @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
+<div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
+  <div @Edit.TagToolbar(newConfig)>
+    @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
+  </div>
   @Html.Raw(Content.Teaser)
 
   @* Show all the sections - they are in the demo-data of the current view *@
