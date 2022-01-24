@@ -21,6 +21,10 @@ a {
     margin-bottom: 20px;
   }
   .tutorial-item {
+    > .tutorial-group {
+      display: none;
+    }
+    
     &.is-expanded {
       .tutorial-title {
         border: none;
@@ -37,7 +41,6 @@ a {
       }
       > .tutorial-group {
         display: block;
-        height: unset !important;
       }
     }
   }
@@ -86,8 +89,5 @@ a {
       width: 75%;
       color: grey;
     }
-  }
-  .tutorial-group {
-    display: none;
   }
 }

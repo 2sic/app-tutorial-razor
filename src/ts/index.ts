@@ -31,10 +31,11 @@ function initSourceCode({ domAttribute, aceOptions  }: { domAttribute: string, a
 
 export function showParentSections(targetOpenElem: HTMLElement, options: AccordionOptions) {
   let parentSection = targetOpenElem.parentElement.closest(`[${options.attrChild}]`) as HTMLElement;
-  if (parentSection != null) {
-    parentSection.parentElement.classList.add(`${options.classIsExpanded}`);
-    show(parentSection, {})
-  }
+  if (parentSection == null) return
+  parentSection.parentElement.classList.add(`${options.classIsExpanded}`);
+  console.log(parentSection)
+
+  show(parentSection, {})
 }
 
 var winAny = window as any;

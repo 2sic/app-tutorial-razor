@@ -44,31 +44,29 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
   // get hash from url and open specific item
   if(window.location.hash){
     const hash = window.location.hash.replace('#', '');
-    const targetHashElem = document.querySelector(`[${options.attrChild}="${hash}"]`);
-
-    console.log(targetHashElem.closest(`div:not([${options.attrChild}="${hash}"]) .tutorial-item`))
+    const targetHashElem = document.querySelector(`[${options.attrChild}="${hash}"]`) as HTMLElement;
     
     // if target element exists scroll to element and open it
     if(targetHashElem){
+      // ADD THIS FUNCTION AFTER LIBRARY UPDATE:      
+      showParentSections(targetHashElem, options);
+
       const elemOffsetX = targetHashElem.getBoundingClientRect().top + window.scrollY - navHeight;
-      const targetOpenElem = document.querySelector(`[${options.attrChild}="${hash}"`) as HTMLElement;
-
-      // ADD FUNCTION THIS AFTER LIBRARY UPDATE:
-      showParentSections(targetOpenElem, options)
-
       targetHashElem.parentElement.classList.add(`${options.classIsExpanded}`);
 
-      // open accordion
-      show(targetOpenElem, {
-        onAnimationEnd: () => {
-          // scroll to element which should open then
-          window.scrollTo({
-            top: elemOffsetX,
-            left: 0,
-            behavior: 'smooth'
-          });
-        }
-      });
+      setTimeout(() => {
+        // open accordion
+        show(targetHashElem, {
+          onAnimationEnd: () => {
+            // scroll to element which should open then
+            window.scrollTo({
+              top: elemOffsetX,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+        })
+      })
     }
   }
 }
