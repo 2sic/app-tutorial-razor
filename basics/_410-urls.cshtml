@@ -17,15 +17,15 @@
 }
 <img loading="lazy" src='@safeUrl' id="demo-logo">
 </snippet>
+<p>
+  👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
+</p>
 
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-safe-url", Size = 150 }) 
 </hide-silent>
 
 <hide>
-<p>
-  👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
-</p>
 <p>
   Sometimes you have files with unexpected characters - like umlauts or spaces. The best way to encode this is using <code>Tags.SafeUrl(...)</code> from RazorBlade, or <code>Uri.EscapeUriString(...)</code> from .net. 
 </p>

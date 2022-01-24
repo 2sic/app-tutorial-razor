@@ -52,4 +52,7 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "view-url", Size = 250 }) 
 </hide-silent>
-<hide>@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) </hide>
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 })
+</hide>

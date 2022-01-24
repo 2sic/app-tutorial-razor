@@ -13,27 +13,27 @@
         Cross-Platform (Dnn and Oqtane): <code>@@CmsContext.Page.Parameters["id"]</code>
     </li>
     <li>
-        This would just work in Dnn: <code>@@Request.QueryString["id"]</code>
+        This would <em>only</em> work in Dnn: <code>@@Request.QueryString["id"]</code>
     </li>
 </ol>
 <p>
   Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
-  But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. Below you'll find some links which change the url, so you can see how the output changes:
+  But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. 
+</p>
+<h2>Test changing this page URL</h2>
+<p>
+  Below you'll find some links which change the url, so you can see how the output changes:
 </p>
 </trim>
 
 <snippet id="basic-params">
-@{
-  var urlBasic = Link.To(parameters: "?basics310=page&");
-  var urlSorted = Link.To(parameters: "?basics310=page&" + "sort=ascending");
-}
 <ul>
-  <li><a href="@urlBasic">@urlBasic</a></li>
-  <li><a href="@urlBasic">@urlSorted</a></li>
+  <li><a href='@Link.To(parameters: "?basics310=page")'>This page without additional url-parameter</a></li>
+  <li><a href='@Link.To(parameters: "?basics310=page&sort=ascending")'>This page with additional <code>sort=ascending</code></a></li>
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-params", Size = 200 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-params", Size = 100 }) 
 </hide-silent>
 <hr>
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
