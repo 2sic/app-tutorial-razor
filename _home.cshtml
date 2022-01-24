@@ -9,6 +9,8 @@
   var newConfig = tlbSvc
     .Metadata(CmsContext.View, "TutorialViewSharing")
     .Settings(hover: "left");
+
+  @Html.Partial("shared/_OpenGraphHeaders.cshtml")
 }
 
 <div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
