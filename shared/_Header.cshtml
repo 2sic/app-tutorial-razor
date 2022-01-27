@@ -10,16 +10,18 @@
 
   // Page Metadata - will create a toolbar for this
   var viewMdType = hlp.TutViewMetadataType as string;
+  var viewMd = AsList(CmsContext.View.Metadata.OfType(viewMdType) as object).FirstOrDefault();
 
   // Metadata with new toolbar services
   var tlbSvc = GetService<IToolbarService>();
   var newConfig = tlbSvc
     .Metadata(CmsContext.View, viewMdType)
-    .Metadata(CmsContext.View, "TutorialViewSharing")
+    .Metadata(CmsContext.View, "TutorialViewSharing", parameters: "prefill:Title=" + Tags.Strip(viewMd.LinkTitle) + "&prefill:Description=" + Tags.Strip(viewMd.LinkTeaser))
     .Settings(hover: "left");
 
-  @Html.Partial("../shared/_OpenGraphHeaders.cshtml")
+  @Html.Partial("../shared/_OpenGraphHeaders.cshtml");
 }
+
 
 <script type="text/javascript" src="@Settings.AddThisJS"></script>
 <div @Edit.TagToolbar(newConfig) class="mb-2">
