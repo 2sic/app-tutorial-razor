@@ -53,15 +53,13 @@
   This shows / documents features which work, but are not recommended any more:
 </p>
 
-@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")...  *@
-@{#if NETCOREAPP}
+@if(CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-@{#else}
-
+} else {
   <ol>
     @linker.TutorialLink("Split Razor Templates into C#-Code and Template", 
       "reuse410",
       "Now you can split out complicated C# code so designers don't have to worry about it. ",
       "deprecated, Dnn Only")
   </ol>
-@{#endif}
+}

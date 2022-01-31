@@ -24,11 +24,10 @@
     @SubpageLink("Add default set with custom favicon (recommended)", "pngfav")
   </ul>
 </trim>
-@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... and then change HTmlPage to use the IPageService *@
-@{#if NETCOREAPP}
+
+@if(CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-@{#else}
-@{
+} else {
   // use url parameter to decide which icon(s) to show, and default to "set"
   var mode = CmsContext.Page.Parameters["mode"] ?? "set";
 
@@ -50,7 +49,6 @@
     HtmlPage.AddIconSet(iconUrl, favicon: iconUrl);
   }
 }
-@{#endif}
 
 <hide>
 @functions {

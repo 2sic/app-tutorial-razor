@@ -21,12 +21,11 @@
 </trim>
 
 <snippet id="content-blocks">
-@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... *@
-@{#if NETCOREAPP}
+@if(CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-@{#else}
+} else {
   @Html.Partial("_110-content-blocks.dnn.cshtml")
-@{#endif}
+}
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-blocks", Size = 150 }) 

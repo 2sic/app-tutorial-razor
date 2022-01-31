@@ -2,47 +2,33 @@
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
-@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... improve the explanation so it's clear that #if only works in apis but not in razor *@
 <trim>
 <h2>Hybrid Templates using Preprocessor Directives</h2>
 <p>
   Razor is mostly <code>HTML</code> + <code>C#</code>. 
   But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
-  This is where <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> are used. 
+  This is where <code>CmsContext.Platform.Name</code> is used. 
   Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
 </p>
 <p>
-  Using <code>#if</code> you can mark code to only be compiled in .net Core or in Dnn. Here's a simple example.
+  When working with normal <code>.cs</code> files <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> can be used due 
+  to them being compiled by 2sxc. 
+</p>
+<p>
+  Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
 </p>
 </trim>
 
 <hr>
 
 <snippet id="hybrid">
-@{#if NETCOREAPP}
-  <h3>.net Core code = Oqtane 💧</h3>
-  <p>
-    On Oqtane or any .net core system you should see this because <code>#if NETCOREAPP</code> was <code>true</code>. <br>
-
-    Here you can also place code which only works in Oqtane, like: 
-    @* TODO: @2mh - probably move to external file *@
-    Version: @Oqtane.Shared.Constants.Version
-  </p>
-@{#else}
-  <h3>NON .net Core code = Dnn ☢</h3>
-  <p>
-    On Dnn you'll see this because <code>#if NETCOREAPP</code> was <code>false</code>. <br>
-
-    Here you can also place code which only compiles in DNN, like: 
-    @* TODO: @2mh - probably move to external file *@
-    PortalId = @DotNetNuke.Entities.Portals.PortalSettings.Current.PortalId
-  </p>
-@{#endif}
-
+@Html.Partial("_410-compiler-preprocessor.PartInfo." + CmsContext.Platform.Name + ".cshtml")
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "hybrid", Size = 400 }) 
 </hide-silent>
+
+@* 2mh add .cs tutorial for #if NETCOREAPP *@
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")

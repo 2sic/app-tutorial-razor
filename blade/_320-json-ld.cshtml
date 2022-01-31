@@ -15,14 +15,13 @@
     This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
   </div>
 </trim>
-@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... and then change HTmlPage to use the IPageService *@
-@{#if NETCOREAPP}
+
+@if(CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-@{#else}
-@{
-  HtmlPage.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
-}
-@{
+} else {
+  var page = GetService<IPageService>();
+  page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+
   // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
   var jsonLd = new Dictionary<string, object> {
     { "@context", "https://schema.org"},
@@ -36,13 +35,13 @@
     }}
   };
 
-  HtmlPage.AddJsonLd(jsonLd);
+  page.AddJsonLd(jsonLd);
 }
 <p>
   This is the tag you should see in the header: <br>
   @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
 </p>
-@{#endif}
+}
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
