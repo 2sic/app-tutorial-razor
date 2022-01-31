@@ -2,7 +2,7 @@
 <hide>
 @Html.Partial("_header.cshtml")
 </hide>
-
+@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... improve the explanation so it's clear that #if only works in apis but not in razor *@
 <trim>
 <h2>Hybrid Templates using Preprocessor Directives</h2>
 <p>
@@ -25,6 +25,7 @@
     On Oqtane or any .net core system you should see this because <code>#if NETCOREAPP</code> was <code>true</code>. <br>
 
     Here you can also place code which only works in Oqtane, like: 
+    @* TODO: @2mh - probably move to external file *@
     Version: @Oqtane.Shared.Constants.Version
   </p>
 @{#else}
@@ -33,6 +34,7 @@
     On Dnn you'll see this because <code>#if NETCOREAPP</code> was <code>false</code>. <br>
 
     Here you can also place code which only compiles in DNN, like: 
+    @* TODO: @2mh - probably move to external file *@
     PortalId = @DotNetNuke.Entities.Portals.PortalSettings.Current.PortalId
   </p>
 @{#endif}

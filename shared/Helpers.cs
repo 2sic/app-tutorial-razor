@@ -1,5 +1,6 @@
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Services;
+using System.Web;
 public class Helpers: Custom.Hybrid.Code12
 {
   public string TutorialSectionType = "TutorialSection";
@@ -116,5 +117,16 @@ public class Helpers: Custom.Hybrid.Code12
 
   public dynamic LiExtLink(string target, string description) {
     return Tag.Li(ExternalLink(target, description));
+  }
+
+  public string GetFullPath(string filePath) {
+    #if NETCOREAPP
+      // This is the Oqtane implementation - cannot use Server.MapPath
+      var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+      var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
+      return System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
+    #else
+      return HttpContext.Current.Server.MapPath(filePath);
+    #endif
   }
 }

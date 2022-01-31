@@ -24,7 +24,7 @@
     @SubpageLink("Add default set with custom favicon (recommended)", "pngfav")
   </ul>
 </trim>
-
+@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... and then change HTmlPage to use the IPageService *@
 @{#if NETCOREAPP}
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 @{#else}

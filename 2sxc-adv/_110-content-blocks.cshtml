@@ -21,6 +21,7 @@
 </trim>
 
 <snippet id="content-blocks">
+@* TODO: @2mh - pls use if(CmsContext.Platform == "Oqtane")... *@
 @{#if NETCOREAPP}
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 @{#else}

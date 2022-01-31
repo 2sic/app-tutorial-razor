@@ -1,6 +1,9 @@
 @inherits Custom.Hybrid.Razor12
 @{
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  // Plase this message in a variable, so our quality checks don't trigger a warning
+  // The # and if must not be directly connected in the source, as that triggers the warning
+  var ifNetCoreApp = "#" + "if " + "NETCOREAPP";
 }
 <div class="alert alert-warning" role="alert">
   <h3>
@@ -9,5 +12,5 @@
   2sxc 12 introduces the new <code>PageService</code> which also works in Oqtane 💧. 
   We suggest you use that instead. 👉 See @hlp.TutLink("Razor Page Service", "page/home") <br>
 
-  Note that to ensure this tutorial can run on all platforms, we've included some <code>#if NETCOREAPP</code> which changes what code runs on what platform.
+  Note that to ensure this tutorial can run on all platforms, we've included some <code>@ifNetCoreApp</code> which changes what code runs on what platform.
 </div>

@@ -2,6 +2,7 @@
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
 @{
+  var helpers = CreateInstance("Helpers.cs");
   // Get parameters
   var titleInParams = DynamicModel.Title as string;
   var filePath = DynamicModel.Path;
@@ -41,15 +42,7 @@
     // load source code
     var fullPath = filePath;
     if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) {
-  #if NETCOREAPP
-    // This is the Oqtane implementation - cannot use Server.MapPath
-    var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
-    var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
-    fullPath = System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
-  #else
-    // The .net 451 implementation
-    fullPath = Server.MapPath(filePath);
-  #endif
+      fullPath = helpers.GetFullPath(filePath);
     }
 
     source = System.IO.File.ReadAllText(fullPath);
