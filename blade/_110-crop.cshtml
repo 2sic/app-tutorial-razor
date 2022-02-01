@@ -12,7 +12,10 @@
 <p>
     These demos show how to crop text properly, because Razor Blade handles a lot of issues you'll usually have cropping text. 
 </p>
-
+@* TODO: @2mh 
+- find such cases and move the docs to the new entities which show on the side 
+- make sure that if many use the same link, that the data is only created once and re-used
+*@
 @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
   "Text.Crop(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Crop_System_String_System_Int32_",
   "Text.Ellipsis(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Ellipsis_System_String_System_Int32_System_String_"
@@ -21,7 +24,6 @@
 <h2>Example Text</h2>
 Original which visually has @realLength characters:
 
-<snippet id="crop">
 <ul>
     <li>The human view - how it looks for users: <br>
       <code>
@@ -36,11 +38,6 @@ Original which visually has @realLength characters:
       </code>
     </li>
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "crop", Size = 300 }) 
-</hide-silent>
-
 
 
 <h2>Word-Split Problems</h2>
