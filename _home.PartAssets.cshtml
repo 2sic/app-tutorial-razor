@@ -22,6 +22,6 @@
   var jsonOptions = Html.Raw(Convert.Json.ToJson(accordionOptions));
 }
 
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="false">
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true">
 <turnOn turn-on='{ "run": "window.razorTutorial.initAccordion()", "data": { "domId": "@DynamicModel.DomId", "options": @jsonOptions }}'></turnOn>
 <script src="@App.Path/dist/scripts.min.js" data-enableoptimizations="true"></script>

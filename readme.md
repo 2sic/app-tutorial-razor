@@ -45,3 +45,8 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
     * Using the latest & greatest best-practices of 2sxc 12.05
 * v12.11 2021-12
     * Added new tutorials for turnOn
+* v13.01
+    * Enabled data-optimizations
+    * Improved home
+    * Added tutorial navigation
+    * Added Oqtane support
