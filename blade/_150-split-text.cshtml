@@ -1,0 +1,92 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> .After(), .AfterLast(), .Before(), .BeforeLast(), .Between()</h2>
+  <p>
+    These demos show how to split text properly. Scenarios might be:
+  </p>
+</trim>
+
+<trim>
+<h3>Split Text after first key occurence</h3>
+<p>Using <code>Text.After(text, key)</code> only the text after the first found occurence of the <code>key</code> will be shown.</p>
+</trim>
+<snippet id="text-after">
+@{
+  var afterExample = "This won't be shown @ this will be shown";
+}
+
+@Text.After(afterExample, "@")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-after", Size = 140 }) 
+</hide-silent>
+
+<trim>
+<h3>Split Text after last key occurence</h3>
+<p>Using <code>Text.AfterLast(text, key)</code> only the text after the last found occurence of the <code>key</code> will be shown.</p>
+</trim>
+<snippet id="text-after-last">
+@{
+  var afterLastExample = "This won't be shown @ this won't be shown @ this will be shown";
+}
+
+@Text.AfterLast(afterLastExample, "@")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-after-last", Size = 140 }) 
+</hide-silent>
+
+<trim>
+<h3>Split Text before first key occurence</h3>
+<p>Using <code>Text.Before(text, key)</code> only the text before the first found occurence of the <code>key</code> will be shown.</p>
+</trim>
+<snippet id="text-before">
+@{
+  var beforeExample = "This will be shown @ this won't be shown";
+}
+
+@Text.Before(beforeExample, "@")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-before", Size = 140 }) 
+</hide-silent>
+
+<trim>
+<h3>Split Text before last key occurence</h3>
+<p>Using <code>Text.BeforeLast(text, key)</code> only the text before the last found occurence of the <code>key</code> will be shown.</p>
+</trim>
+<snippet id="text-before-last">
+@{
+  var beforeLastExample = "This will be shown @ this will be shown @ this won't be shown";
+}
+
+@Text.BeforeLast(beforeLastExample, "@")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-before-last", Size = 140 }) 
+</hide-silent>
+
+<trim>
+<h3>Split Text between two key ocurrences</h3>
+<p>Using <code>Text.Between(text, key1, key2)</code> only the text between <code>key1</code> and <code>key2</code> will be shown.</p>
+</trim>
+<snippet id="text-between">
+@{
+  var betweenExample = "This won't be shown @ this will be shown # this won't be shown";
+}
+
+@Text.Between(betweenExample, "@", "#")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-between", Size = 140 }) 
+</hide-silent>
+
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1100 }) 
+</hide>
