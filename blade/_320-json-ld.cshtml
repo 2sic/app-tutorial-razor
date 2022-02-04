@@ -37,11 +37,10 @@
   };
 
   page.AddJsonLd(jsonLd);
-}
-<p>
-  This is the tag you should see in the header: <br>
-  @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
-</p>
+  <p>
+    This is the tag you should see in the header: <br>
+    @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
+  </p>
 }
 
 <hide>
