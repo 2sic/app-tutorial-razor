@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -26,13 +27,12 @@
   </ul>
 </trim>
 
-@{#if NETCOREAPP}
+@if (CmsContext.Platform.Name == "Oqtane")
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-@{#else}
-@{
-  HtmlPage.AddBase();
+{ else {
+  var page = GetService<IPageService>();
+  page.AddBase()
 }
-@{#endif}
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
