@@ -50,3 +50,4 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
     * Improved home
     * Added tutorial navigation
     * Added Oqtane support
+    * Added IScrub tutorials
