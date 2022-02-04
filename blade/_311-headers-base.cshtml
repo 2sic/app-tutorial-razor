@@ -19,19 +19,19 @@
   </div>
   <ul>
     <li>
-      <code>HtmlPage.AddBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
+      <code>page.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
     </li>
     <li>
-      <code>HtmlPage.AddBase("/some/page")</code> create the base tag with the specified url. 
+      <code>page.SetBase("/some/page")</code> create the base tag with the specified url. 
     </li>
   </ul>
 </trim>
 
-@if (CmsContext.Platform.Name == "Oqtane")
-  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-{ else {
+@if (CmsContext.Platform.Name == "Oqtane") {
+  Html.Partial("../shared/_MessageOqtaneDisabled.cshtml");
+} else {
   var page = GetService<IPageService>();
-  page.AddBase()
+  page.SetBase();
 }
 
 <hide>
