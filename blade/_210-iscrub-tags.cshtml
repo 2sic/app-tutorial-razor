@@ -1,0 +1,80 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var Scrub = GetService<IScrub>();
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> IScrub.All(...), IScrub.Only(), IScrub.Except()</h2>
+  <p>
+    These demos show how to strip all html from a string. You often need this in combination with @hlp.TutLink("crop or ellipsis", "blade110") to create teasers.
+  </p>
+  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
+    "Iscrub.All(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.IScrub.html#ToSic_Razor_Blade_IScrub_All_System_String_",
+    "Text.Crop(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Crop_System_String_System_Int32_",
+    "Text.Ellipsis(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Ellipsis_System_String_System_Int32_System_String_"
+  }})
+</trim>
+
+@{
+  var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
+  var cropLen = 50;
+}
+
+<h2>Simple example</h2>
+<h3>Original</h3>
+<code>@val1</code>
+
+<div>which if cropped at @cropLen would be really messy</div>
+<code>@val1.Substring(0, cropLen)</code>
+
+<h3>After IScrub.All</h3>
+<snippet id="blade-scrub-all">
+<code>@Scrub.All(val1)</code>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-all", Size = 30 }) 
+</hide-silent>
+
+<h3>Usually you will then combine with crop or ellipsis</h3>
+<snippet id="blade-scrub-all-ellipsis">
+<code>@Html.Raw(Text.Ellipsis(Scrub.All(val1), cropLen))</code>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-all-ellipsis", Size = 30 }) 
+</hide-silent>
+
+<h3>IScrub.Only()</h3>
+<p>Only scrub specified tags using <code>IScrub.Only(source, tag)</code></p>
+<snippet id="blade-scrub-only">
+@{
+  var exampleTagsOnly = "<div><h2><span>The cool title</span></h2></div>"; 
+}
+<div>Scrub one tag: <code>@Scrub.Only(exampleTagsOnly, "div")</code></div>
+<div>Scrub multiple tags: <code>@Scrub.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-only", Size = 150 }) 
+</hide-silent>
+
+<h3>IScrub.Except()</h3>
+<p>Scrub except the specified tags using <code>IScrub.Except(source, tag)</code></p>
+<snippet id="blade-scrub-except">
+@{
+  var exampleTagsExcept = "<div><h2><span>The cool title</span></h2></div>"; 
+}
+<div>Scrub tags except one tag: <code>@Scrub.Except(exampleTagsExcept, "h2")</code></div>
+<div>Scrub tags except multiple tags: <code>@Scrub.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-except", Size = 150 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
+</hide>

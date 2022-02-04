@@ -1,0 +1,63 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var Scrub = GetService<IScrub>();
+}
+</hide>
+<trim>
+  <h2><em>RazorBlade</em> IScrub.Attributes(...), IScrub.Styles(), IScrub.Classes()</h2>
+  <p>These demos show how to scrub attributes of html source.</p>
+</trim>
+
+<trim>
+<h3>Scrub classes</h3>
+<p>Using <code>IScrub.Classes(source)</code> you can scrub all classes.</p>
+</trim>
+<snippet id="scrub-class">
+@{
+  var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
+}
+Scrub all classes from source: <code>@Scrub.Classes(exampleClasses)</code>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-class", Size = 100 }) 
+</hide-silent>
+
+<trim>
+<h3>Scrub attributes</h3>
+<p>Using <code>IScrub.Attributes(source, attributes)</code> you can scrub attributes.</p>
+</trim>
+<snippet id="scrub-attributes">
+@{
+  var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
+}
+<div>Scrub all attributes from source: <code>@Scrub.Attributes(exampleAttributes)</code></div>
+<div>Scrub one attribute from source: <code>@Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
+<div>Scrub some attributes from source: <code>@Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-attributes", Size = 150 }) 
+</hide-silent>
+
+<trim>
+<h3>Scrub styles</h3>
+<p>Using <code>IScrub.Styles(source)</code> you can scrub all styles.</p>
+</trim>
+<snippet id="scrub-styles">
+@{
+  var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
+}
+<div>Scrub all styles from source: <code>@Scrub.Styles(exampleStyle)</code></div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-styles", Size = 150 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
+</hide>
