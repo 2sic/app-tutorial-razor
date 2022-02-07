@@ -2,13 +2,26 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
-<trim>
-  <h2><em>RazorBlade</em> .After(), .AfterLast(), .Before(), .BeforeLast(), .Between()</h2>
-  <p>
-    These demos show how to split text properly. Scenarios might be:
-  </p>
-</trim>
+<div class="row">
+  <div class="col-md-7">
+    <trim>
+      <h2><em>RazorBlade</em> .After(), .AfterLast(), .Before(), .BeforeLast(), .Between()</h2>
+      <p>
+        For this to work please install RazorBlade 3.09 or 2sxc 13.02.
+        These demos show how to split text properly. Scenarios might be:
+      </p>
+    </trim>
+  </div>
+  <div class="col-md-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 
 <trim>
 <h3>Split Text after first key occurence</h3>
@@ -19,7 +32,7 @@
   var afterExample = "This won't be shown @ this will be shown";
 }
 
-@Text.After(afterExample, "@")
+<strong>Result:</strong> @Text.After(afterExample, "@")
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-after", Size = 140 }) 
@@ -34,7 +47,7 @@
   var afterLastExample = "This won't be shown @ this won't be shown @ this will be shown";
 }
 
-@Text.AfterLast(afterLastExample, "@")
+<strong>Result:</strong> @Text.AfterLast(afterLastExample, "@")
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-after-last", Size = 140 }) 
@@ -49,7 +62,7 @@
   var beforeExample = "This will be shown @ this won't be shown";
 }
 
-@Text.Before(beforeExample, "@")
+<strong>Result:</strong> @Text.Before(beforeExample, "@")
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-before", Size = 140 }) 
@@ -64,7 +77,7 @@
   var beforeLastExample = "This will be shown @ this will be shown @ this won't be shown";
 }
 
-@Text.BeforeLast(beforeLastExample, "@")
+<strong>Result:</strong> @Text.BeforeLast(beforeLastExample, "@")
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-before-last", Size = 140 }) 
@@ -72,14 +85,18 @@
 
 <trim>
 <h3>Split Text between two key ocurrences</h3>
-<p>Using <code>Text.Between(text, key1, key2)</code> only the text between <code>key1</code> and <code>key2</code> will be shown.</p>
+<p>
+  Using <code>Text.Between(text, key1, key2, goToEndIfEndNotFound = false)</code> only the text between <code>key1</code> and <code>key2</code> will be shown.
+  With goToEndIfEndNotFound set to true, the text selection will grow till the end if the ending key can't be found.
+</p>
 </trim>
 <snippet id="text-between">
 @{
   var betweenExample = "This won't be shown @ this will be shown # this won't be shown";
 }
 
-@Text.Between(betweenExample, "@", "#")
+<strong>Result:</strong> @Text.Between(betweenExample, "@", "#")
+<br><strong>Result:</strong> @Text.Between(betweenExample, "@", "notInText", true)
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "text-between", Size = 140 }) 

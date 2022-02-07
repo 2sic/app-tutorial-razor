@@ -5,13 +5,33 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs"); 
-  var Scrub = GetService<IScrub>();
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
+<div class="row">
+  <div class="col-md-7">
+    <trim>
+      <h2><em>RazorBlade</em> IScrub.Attributes(...), IScrub.Styles(), IScrub.Classes()</h2>
+      <p>These demos show how to scrub attributes of html source.</p>
+    </trim>
+  </div>
+  <div class="col-md-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
 <trim>
-  <h2><em>RazorBlade</em> IScrub.Attributes(...), IScrub.Styles(), IScrub.Classes()</h2>
-  <p>These demos show how to scrub attributes of html source.</p>
+<h3>Get IScrub service</h3>
 </trim>
+<snippet id="get-scrub">
+@{
+  var scrubSvc = GetService<IScrub>();
+}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "get-scrub", Size = 100 }) 
+</hide-silent>
 
 <trim>
 <h3>Scrub classes</h3>
@@ -21,7 +41,7 @@
 @{
   var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
 }
-Scrub all classes from source: <code>@Scrub.Classes(exampleClasses)</code>
+<div><strong>Scrub all classes from source: </strong><code>@scrubSvc.Classes(exampleClasses)</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-class", Size = 100 }) 
@@ -35,9 +55,9 @@ Scrub all classes from source: <code>@Scrub.Classes(exampleClasses)</code>
 @{
   var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
 }
-<div>Scrub all attributes from source: <code>@Scrub.Attributes(exampleAttributes)</code></div>
-<div>Scrub one attribute from source: <code>@Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
-<div>Scrub some attributes from source: <code>@Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
+<div><strong>Scrub all attributes from source: </strong><code>@scrubSvc.Attributes(exampleAttributes)</code></div>
+<div><strong>Scrub one attribute from source: </strong><code>@scrubSvc.Attributes(exampleAttributes, "remove-me")</code></div>
+<div><strong>Scrub some attributes from source: </strong><code>@scrubSvc.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-attributes", Size = 150 }) 
@@ -51,7 +71,7 @@ Scrub all classes from source: <code>@Scrub.Classes(exampleClasses)</code>
 @{
   var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
 }
-<div>Scrub all styles from source: <code>@Scrub.Styles(exampleStyle)</code></div>
+<div><strong>Scrub all styles from source: </strong><code>@scrubSvc.Styles(exampleStyle)</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-styles", Size = 150 }) 
