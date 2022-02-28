@@ -4,8 +4,9 @@
 @{
   var helpers = CreateInstance("Helpers.cs");
   // Get parameters
-  var filePath = DynamicModel.Path;
+  // var filePath = DynamicModel.Path;
   var result = DynamicModel.Result;
+  var language = DynamicModel.Language ?? "html";
 
   // Prepare variables which are initialized in try/catch
   int size = this.Convert.ToInt(DynamicModel.Size, fallback: 600);
@@ -15,7 +16,8 @@
   var rndId = Guid.NewGuid().ToString();
 
   var aceOptions = new {
-    sourceCodeId = "result" + rndId
+    sourceCodeId = "result" + rndId,
+    language = "ace/mode/" + language,
   };
 }
 
@@ -24,7 +26,7 @@
 
 <style>
   .pre-result {
-    background-color: lightgray;
+    background-color: aliceblue;
   }
 </style>
 
