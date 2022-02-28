@@ -80,7 +80,11 @@
 </snippet>
 <code id="img-srcset-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto", Size = 100 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto", Size = 100 })
+  
+<h6>This generates</h6>
+@{ var srcsetAutoResult = imgSvc.Img(tomatoPicUrl).ToString(); }
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcsetAutoResult, Size = 50 }) 
 </hide-silent>
 
 <h3>Example with Automatic Resize and Special Settings</h3>
@@ -97,6 +101,9 @@
 <code id="img-srcset-auto2-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto2", Size = 100 }) 
+<h6>This generates</h6>
+@{ var srcsetAuto2Result = imgSvc.Img(tomatoPicUrl, settings: flatSettings).ToString(); }
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcsetAuto2Result, Size = 50 }) 
 </hide-silent>
 
 
@@ -112,6 +119,10 @@
 <code id="img-srcset-auto-srcset-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto-srcset", Size = 100 }) 
+
+<h6>This generates</h6>
+@{ var srcsetAutoSrcsetResult = imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcSet: "1600,1200,1000,900,800,700,600,500,400").ToString(); }
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcsetAutoSrcsetResult, Size = 50 })
 </hide-silent>
 
 
@@ -124,6 +135,10 @@
 <code id="img-srcset-auto3-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto3", Size = 100 }) 
+
+<h6>This generates</h6>
+@{ var srcsetAuto3Result = imgSvc.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary").ToString(); }
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcsetAuto3Result, Size = 50 })
 </hide-silent>
 
 
@@ -133,11 +148,14 @@
   var imgControlled = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
   imgControlled.ImgTag.Id("Some-Id").Style("Width: 75%");
 }
-@imgControlled
 </snippet>
 <code id="img-srcset-auto4-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto4", Size = 120 }) 
+
+<h6>This generates</h6>
+@{ var srcsetAuto4Result = imgControlled.ToString(); }
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcsetAuto4Result, Size = 50 })
 </hide-silent>
 
 
@@ -150,7 +168,11 @@
 </snippet>
 <code id="img-srcset-auto5-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto5", Size = 100 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto5", Size = 100 })
+
+<h6>This generates the following SrcSet</h6>
+@{ var srcsetAuto5Result = imgFullControl.SrcSet.ToString(); }
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcsetAuto5Result, Size = 200 })
 </hide-silent>
 
 <script>
