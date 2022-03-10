@@ -121,14 +121,14 @@
   <a href="https://docs.2sxc.org/net-code/images/srcset.html" target="_blank">srcset docs</a>. 
 </p>
 <snippet id="img-srcset-auto-srcset">
-@imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcSet: "1600,1200,1000,900,800,700,600,500,400")
+@imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcset: "1600,1200,1000,900,800,700,600,500,400")
 </snippet>
 <code id="img-srcset-auto-srcset-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto-srcset", Size = 100 }) 
 
 <h6>This generates</h6>
-@{ previewTag = imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcSet: "1600,1200,1000,900,800,700,600,500,400"); }
+@{ previewTag = imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcset: "1600,1200,1000,900,800,700,600,500,400"); }
 @Html.Partial("../shared/_result.cshtml", SrcSetTagPreview(previewTag, 250))
 </hide-silent>
 
@@ -153,7 +153,7 @@
 <snippet id="img-srcset-auto4">
 @{
   var imgControlled = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
-  imgControlled.ImgTag.Id("Some-Id").Style("Width: 75%");
+  imgControlled.Img.Id("Some-Id").Style("Width: 75%");
 }
 </snippet>
 <code id="img-srcset-auto4-label"></code>
@@ -171,14 +171,14 @@
 @{
   var imgFullControl = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
 }
-<img src="@imgFullControl.Url" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+<img src="@imgFullControl.Url" srcset="@imgFullControl.Srcset" title="Hover to see this">
 </snippet>
 <code id="img-srcset-auto5-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto5", Size = 100 })
 
-<h6>This generates the following SrcSet</h6>
-@{ var srcSetPreview = imgFullControl.SrcSet; }
+<h6>This generates the following Srcset</h6>
+@{ var srcSetPreview = imgFullControl.Srcset; }
 @Html.Partial("../shared/_result.cshtml", new { Path, Result = srcSetPreview, Size = 200, Language = "text" })
 </hide-silent>
 

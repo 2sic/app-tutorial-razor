@@ -61,5 +61,5 @@ window.tutQueryParameters = {
       console.log("Get query streams with passing url parameter", data);
       alert('Got all - see console for details. \n \n' + JSON.stringify(data, null, 2));
     });
-  },
+  }
 }

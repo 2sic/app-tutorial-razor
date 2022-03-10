@@ -99,8 +99,8 @@
   var picControlled = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
 }
 <picture>
-  @picControlled.SourceTags
-  @picControlled.ImgTag.Id("some-id").Style("width: 75%").Title("Mouseover this!")
+  @picControlled.Sources
+  @picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!")
 </picture>
 </snippet>
 <br>
@@ -116,7 +116,7 @@
   var picFullControl = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
 }
 <picture>
-  @foreach(var st in picFullControl.SourceTags){
+  @foreach(var st in picFullControl.Sources){
     @st
   }
   <img src="@picFullControl.Url" style="width: 50%" class="border border-primary">
