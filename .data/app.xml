@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.01.00" ExportDate="2022-01-25T09:35:11.0197161+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.03.00" ExportDate="2022-03-11T18:16:28.7455041+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -2437,7 +2437,7 @@
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="13.01.00" Type="String">
+      <Value Key="Version" Value="13.03.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -4901,6 +4901,12 @@
       <Value Key="ContentTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IsHidden" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -4910,19 +4916,25 @@
       <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Location" Value="Portal File System" Type="String">
+      <Value Key="Location" Value="Site" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Name" Value="RB210 Tags.Strip" Type="String">
+      <Value Key="Name" Value="RB210 Iscrub Tags" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Path" Value="blade/_210-tags-strip.cshtml" Type="String">
+      <Value Key="Path" Value="blade/_210-iscrub-tags.cshtml" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PresentationTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="StreamsToPublish" Value="" Type="String">
@@ -4932,6 +4944,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ViewNameInUrl" Value="blade210/.*" Type="String">
@@ -9590,7 +9605,7 @@
       <Value Key="Name" Value="Daniel" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Poems" Value="20" Type="Number">
+      <Value Key="Poems" Value="74" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -13015,7 +13030,7 @@
       <Value Key="FeatureLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Introduction" Value="" Type="String">
+      <Value Key="Introduction" Value="&lt;p&gt;Helpers to get the non-empty string, get parts of a specific string, trim-to-ellipsis and more.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="blade-text" Type="String">
@@ -13027,9 +13042,12 @@
       <Value Key="Title" Value="RazorBlade Examples for Text Manipulations" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Views" Value="58a0d350-a989-471c-a25e-8518cae8f141,670346f8-a2c1-43d7-9e66-e896d922c273,3a8eac33-c701-45bf-b541-55e7473cad13,26370671-974c-4131-8b02-1073a76134d4" Type="Entity" />
+      <Value Key="Views" Value="58a0d350-a989-471c-a25e-8518cae8f141,670346f8-a2c1-43d7-9e66-e896d922c273,3a8eac33-c701-45bf-b541-55e7473cad13,26370671-974c-4131-8b02-1073a76134d4,535d0a69-b8d5-4656-a7be-734d29df4cb9" Type="Entity" />
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="e1c8389e-966a-4afa-97e2-16fd97596b49" KeyGuid="58a0d350-a989-471c-a25e-8518cae8f141">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="For2sxc" Value="10.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13039,7 +13057,7 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="v1.00" Type="String">
+      <Value Key="LinkEmphasis" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Correctly crop text without splitting words or html-characters like &amp;amp;&lt;/p&gt;" Type="String">
@@ -13088,6 +13106,9 @@
       </Value>
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="7c218dc6-4a83-4c45-bcb5-4ad42ab0e4b2" KeyGuid="670346f8-a2c1-43d7-9e66-e896d922c273">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="For2sxc" Value="10.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13097,7 +13118,7 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="v1.00" Type="String">
+      <Value Key="LinkEmphasis" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Check if strings really have something correctly, incl. spaces or even &amp;nbsp; whitespaces.&lt;/p&gt;" Type="String">
@@ -13117,6 +13138,9 @@
       </Value>
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="1b3671bb-6905-4220-8bef-3edbf61b284f" KeyGuid="3a8eac33-c701-45bf-b541-55e7473cad13">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="For2sxc" Value="10.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13126,7 +13150,7 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="v3.00" Type="String">
+      <Value Key="LinkEmphasis" Value="RB 3.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Often you have to check many variables to find the first one to use.&lt;/p&gt;" Type="String">
@@ -13146,6 +13170,9 @@
       </Value>
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="a47ca66d-baae-44f1-b997-dd4de478ee4e" KeyGuid="26370671-974c-4131-8b02-1073a76134d4">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="For2sxc" Value="10.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13155,7 +13182,7 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="v1.00" Type="String">
+      <Value Key="LinkEmphasis" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Very often you need to clean up some text before working with it.&lt;/p&gt;" Type="String">
@@ -13178,7 +13205,7 @@
       <Value Key="FeatureLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Introduction" Value="" Type="String">
+      <Value Key="Introduction" Value="&lt;p&gt;Clean out tags, remove specific attributes, replace &lt;code&gt;&amp;lt;br&amp;gt;&lt;/code&gt; with new-lines etc.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="blade-html-strings" Type="String">
@@ -13187,12 +13214,15 @@
       <Value Key="Subsection" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="RazorBlade Examples for Manipulating Html strings" Type="String">
+      <Value Key="Title" Value="RazorBlade for Manipulating Html Strings" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Views" Value="1b2b356e-c605-47fc-97b8-d1b2b5c93a65,bc7157d4-88f8-42bc-be8f-dff865e1c30f" Type="Entity" />
+      <Value Key="Views" Value="bc7157d4-88f8-42bc-be8f-dff865e1c30f,1b2b356e-c605-47fc-97b8-d1b2b5c93a65,d0052bc8-c308-457e-8095-0349ab9ed9f2" Type="Entity" />
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="6b5ff29f-d41b-4b8f-a26c-69405e0704ce" KeyGuid="1b2b356e-c605-47fc-97b8-d1b2b5c93a65">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="For2sxc" Value="10.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13202,19 +13232,20 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="v1.00" Type="String">
+      <Value Key="LinkEmphasis" Value="RB 3.09 / 2sxc 13.02" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="&lt;p&gt;Remove all html from a string - important for teaser texts and protecting against cross-site-scripting attacks.&lt;/p&gt;" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Remove html from a string - important for teaser texts and protecting against cross-site-scripting attacks.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Tags.Strip() cleans out all HTML tags&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Use Scrub to Remove All or Specific HTML Tags&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Tags.Strip() cleans out all HTML tags" Type="String">
+      <Value Key="Specs" Value="83528659-7381-4b5c-b804-625c40e0e797" Type="Entity" />
+      <Value Key="Title" Value="IScrub.All(), IScrub.Only() and IScrub.Except() clean out HTML tags" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -13222,6 +13253,9 @@
       </Value>
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="25cac8dc-48a4-4f6b-83f7-ec1eeeaccd5e" KeyGuid="bc7157d4-88f8-42bc-be8f-dff865e1c30f">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="For2sxc" Value="10.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13231,13 +13265,13 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="v1.00" Type="String">
+      <Value Key="LinkEmphasis" Value="RB 1.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;A common challenge is showing text as HTML or the other way around&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Convert tags to new-lines or spaces and back&amp;nbsp;&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Convert &lt;code&gt;&amp;lt;br&amp;gt;&lt;/code&gt; tags to new-lines or just spaces - and also the other way around&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -13797,622 +13831,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c0a7e9a1-0a45-4949-9aa3-7244c5077be4" KeyGuid="4c8d2eb4-3bbc-427c-8033-4d32c5488416">
-      <Value Key="Description" Value="Create variables and show using @variableName" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6095" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Variables" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="7e92364a-5abe-4d5e-b388-aa6c979ea8a9" KeyGuid="c7c7cd5b-54c6-4637-a95f-6f8b9018d9ec">
-      <Value Key="Description" Value="if/else and ternary operator (condition ? true : false)" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6096" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Conditions" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="6261f28f-e925-4c90-a111-cdd834acdfb4" KeyGuid="543d8d55-7c17-4dc9-8d06-93b279cf9dfe">
-      <Value Key="Description" Value="Loops using for() and foreach()" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6097" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Loops" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="7ae063bb-0961-4660-8bf7-23370e738b12" KeyGuid="50dc2bd6-fb85-47d8-ab94-c3dd18006988">
-      <Value Key="Description" Value="Working with text URL Parameters like ?sort=ascending&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6098" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="URL Parameters (text)" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="add6f311-553c-4325-b6f2-c81a78e8eadd" KeyGuid="7d9098c6-e446-4950-a805-91bae41deb91">
-      <Value Key="Description" Value="Working with number URL Parameters like ?id=27&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6099" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="URL Parameters (number)" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="92cf941b-fbb0-41ab-9913-706f4f1efdd3" KeyGuid="acb8a374-ff99-4384-8cb1-fcbe7d3744df">
-      <Value Key="Description" Value="Working difficult URLs like images containing umlauts" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6100" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Working with difficult URLs" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="241ce144-97b0-49e3-babe-ee30d22a206a" KeyGuid="cef4cec5-aaa4-42f9-930e-bdf46672a88c">
-      <Value Key="Description" Value="Learn the difference of showing variables with @variable and @Html.Raw(variable), and re-use very simple snippets" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6101" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Work with HTML" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="811884f9-69f5-413d-8577-7722f4539dda" KeyGuid="0907832d-e214-4ac5-a0cb-24f4aacd1625">
-      <Value Key="Description" Value="Show Emojis in your output or use them for showing true/false&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6102" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Using Emojis / Emoticons 👍" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="3f345cda-6993-4777-add4-7786ffa1d91c" KeyGuid="8404dcbc-9616-4b56-97e7-aa66f19585dc">
-      <Value Key="Description" Value="Use compiler Preprocessor Directives to enable Hybrid Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6103" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Advanced Hybrid Use" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c5ccbc19-e5f4-44b4-84b7-a86393d8b438" KeyGuid="16f54771-a79c-45f1-b2c7-71c825c4b000">
-      <Value Key="Description" Value="Place your common templates into Razor files and reuse theme where needed" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Introduction Reuse templates and code" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="d617c2ee-c219-42e7-a5d4-d6707d83a073" KeyGuid="b3c4fa8d-3d72-48db-bf6f-8fb134005256">
-      <Value Key="Description" Value="Reuse Code Snippet with Func&lt;dynamic,object&gt; Template Delegate" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Micro-Helpers (like functions) with Template Delegates" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="916c3ea0-1f81-49fa-bc2b-0bf43e693f4b" KeyGuid="a6b883ca-3e2e-488b-bb7d-95971aaadf6b">
-      <Value Key="Description" Value="Learn how to reuse Shared Templates&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Reuse Razor Components with @Html.Partial and DynamicModel" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="3998d26d-4791-4681-865a-447462fbca11" KeyGuid="e71b1251-cd2d-43eb-bc8d-edddd6358acf">
-      <Value Key="Description" Value="Learn how to create razor helpers are functions that put HTML into the page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Reuse Razor Helpers (mini-templates) with CreateInstance" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="5401b36f-1622-4bdd-947c-ec3de8c77a0a" KeyGuid="29d56734-0a5e-4148-9793-9a8a377d7468">
-      <Value Key="Description" Value="Learn how to use CreateInstance" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Reuse a function library CreateInstance" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="fa7d44fe-d0df-4118-b5c5-ed8cbf4a0202" KeyGuid="3561b6e7-b91f-4659-bbd5-7463503a9952">
-      <Value Key="Description" Value="Use CreateInstance with razor pages as well as WebApi " Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Reuse code with .cs files" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c59535be-1e15-43b9-a9d4-5ab7dcf76580" KeyGuid="95ca0fc4-d538-4d36-9dc1-3b8ac0c2d554">
-      <Value Key="Description" Value="Learn how to split out complicated C# code so designers don't have to worry about it." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Split Razor Templates into C#-Code and Template" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c4fa116a-fb5b-4cef-8277-7ce52bbd3592" KeyGuid="cec29653-d557-4424-bc17-cf3eb3d6cb3f">
-      <Value Key="Description" Value="Get/Set Page Title, Keywords, Description and set meta-tags and more.&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Page Title, Keyword, Description" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="ae5191bd-4bbd-473c-b9a0-f72ba267da47" KeyGuid="2331ffac-b121-4d11-933a-903f706c713e">
-      <Value Key="Description" Value="Add a base tag to the header - which works correctly in DNN. Important for SPA JS applications." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Base tag in header" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="2eeac6aa-ea08-402e-8ccf-3fe7256f464d" KeyGuid="05ac9f51-1dd2-470f-b353-e4664d364f19">
-      <Value Key="Description" Value="Add various combinations of icons to the page header" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Page Icons for Favicon, Apple/Android" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c0f56d46-4d80-4bd5-9517-cffc8e6856f9" KeyGuid="56317b2f-9a0b-4090-b591-8af4bee946b6">
-      <Value Key="Description" Value="Add a base tag to the header - which works correctly in DNN. Important for SPA JS applications." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Meta and other Tags in header" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="0d9a79a8-6d3c-450d-bb04-ef601b6488dc" KeyGuid="6b19476c-419e-4281-95ee-d7f9f141ce9f">
-      <Value Key="Description" Value="Add JSON-LD (Linked Data) headers for Google" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="JSON-LD Headers for SEO" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="a1cbe3bf-672c-4542-b88e-350d4a64669f" KeyGuid="7caae9ad-b272-4476-a257-de25f8d606e1">
-      <Value Key="Description" Value="Add Open-Graph data headers for Facebook, Twitter and other sharing-systems" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Open-Graph headers for Social Media" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="b726527b-a974-4a67-a2df-9aee7e5dd1c4" KeyGuid="7e676da5-46f0-415c-9811-8850e0d37cf0">
-      <Value Key="Description" Value="Every thing is an Entity. Here some basic examples how to show values like Name, Birthday etc. of such an Entity." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Working with Entity (Item) Values" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="1f2754e5-dd58-4d65-90a0-f97a0150db52" KeyGuid="aad3b0af-5cf4-44dc-91be-b4287c5ed013">
-      <Value Key="Description" Value="Show content which was entered for this module" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Visualize current Content" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="e9d916b5-f645-4faa-9e95-112f23cac851" KeyGuid="d889d7b8-12d1-4d0f-820c-363e0705e9d0">
-      <Value Key="Description" Value="Learn how to work with data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Introduction to Data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="93881203-f1bd-4294-a6e0-17a876d1110f" KeyGuid="bc4ce14e-437d-4aa1-8509-5a4105544229">
-      <Value Key="Description" Value="Get any kind of data from the current App.&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Data from the App using App.Data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="a1a8885d-5585-43af-b172-d3410bd1c0ab" KeyGuid="44d945ca-5087-41af-834a-23d0223dc28c">
-      <Value Key="Description" Value="Get data from a prepared query on the App." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Using App.Query" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="598dc17e-2fe5-4000-bff7-e9ef65685e82" KeyGuid="dccdfd1a-a325-4a85-93b1-428f8946c67c">
-      <Value Key="Description" Value="See an example how to use a Query to get Data from a CSV file as data source.&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Use App.Query to get CSV Data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="47c055f5-ee69-4639-ad29-c774992f071c" KeyGuid="aa04a734-05b6-4a58-96f3-1145501a25b2">
-      <Value Key="Description" Value="Get gata from a CSV file - which is configurable." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Use Query to get CSV Data from a File Configured in Settings" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="e767055a-439e-40dd-9d5e-9ee631aa9bc1" KeyGuid="f6c713ca-99d1-405e-9ec1-0d06e6d08f24">
-      <Value Key="Description" Value="Learn how to use App Query to get SQL Data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Use App Query to get SQL Data" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="7dab8609-64a5-497d-92ce-779989e4e2ae" KeyGuid="d4d58ba8-79de-47d6-8b63-272fbed359dc">
-      <Value Key="Description" Value="Learn how to get SQL data from an App.Query with Params" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="SQL data from an App.Query with Params" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="abe34b71-ae6c-4584-bdfb-e8a446d9c8f7" KeyGuid="ad7d05f6-50a8-43d6-81c9-fb805c8dd286">
-      <Value Key="Description" Value="Learn how to use App.Query with Params - Run multiple times" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="App.Query with Params - Run multiple times" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="3c5a07dd-3f68-4a04-8056-a1495ef5d8f2" KeyGuid="5d0daa67-d94c-4b08-8b6c-655dac06f819">
-      <Value Key="Description" Value="Learn how to get SQL data from a SQL query and DataTable&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="SQL data from a SQL query and DataTable" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c5f146fb-1ed3-4244-b614-ae038d77a4b7" KeyGuid="e9620dd0-b32c-49c5-a859-6f250efd5a15">
-      <Value Key="Description" Value="Learn how to get SQL data from a SQL query and DataReader&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="SQL data from a SQL query and DataReader" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="affdf1bd-a58d-4ee0-9541-10705883aa3b" KeyGuid="f0f356f4-e820-43e2-9fa6-468f4d509391">
-      <Value Key="Description" Value="Learn how to get DNN data (pages/tabs) from the DNN TabController" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="DNN data (pages/tabs) from the DNN TabController" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="f507aacf-3f24-408f-9ad6-7b6c469e8f91" KeyGuid="489f9973-ca1b-4771-8d31-201a8a0f6098">
-      <Value Key="Description" Value="Learn how to List-Details with one template and code-only&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="List-Details with one template and code-only" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="17bdfc00-22cd-4ccc-8df9-03e7e1c97af8" KeyGuid="10fb1f40-dcaf-4733-be16-7ee7e62fed5c">
-      <Value Key="Description" Value="Learn how to List-Details with three templates and code-only" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="List-Details with three templates and code-only" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="bfa10957-e3e5-4b4e-b54e-e23bad482732" KeyGuid="589eb5cd-cddd-48c8-aa07-90dd68c96f37">
-      <Value Key="Description" Value="Learn how to List-Details with two templates, automatic view-switching" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="List-Details with two templates, automatic view-switching" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="616ef658-c2b2-4d3f-a3b2-43112eda2dfa" KeyGuid="50744fd8-4572-4dd2-a173-048fcfb6326a">
-      <Value Key="Description" Value="Learn how to List-Details with two templates, automatic view-switching and query" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="List-Details with two templates, automatic view-switching and query" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="863f4b93-9b25-43c7-9aae-f9c6ecd95e4c" KeyGuid="f895a308-1dcb-42e0-b244-2d96b8acc5e6">
-      <Value Key="Description" Value="Learn how to look into a Content-Type" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6104" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Look into a Content-Type" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c99d0ec6-bc2a-4b02-b683-8098e9bf8e33" KeyGuid="44616625-4765-4d09-b695-bd2950a1746c">
-      <Value Key="Description" Value="The following examples show how to use LINQ (Language INtegrated Query) to sort, filter and group data. This is for quick work in your views - for more extensive querying, we recommend the Visual Query Designer." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Introduction to LINQ" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="002909df-be47-46dd-b5b0-a5a9bd74640a" KeyGuid="0efc2f67-908b-437f-a911-fa399b82ec62">
-      <Value Key="Description" Value="Learn how to looking for something with Where(...) and Any(...)&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Basic looking for something with Where(...) and Any(...)" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="055b3b51-d9b4-4ecf-803c-be638d919dc7" KeyGuid="56c27adc-4ae3-4827-bff1-2185ebeb937a">
-      <Value Key="Description" Value="Learn how to Get First() / Last() item in a list&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Get First() / Last() item in a list" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="a2e893ed-1386-467e-b76c-b36fe5c7a4d5" KeyGuid="bc3bb0f3-686e-4d59-9187-21d39f4d7b07">
-      <Value Key="Description" Value="Learn how to Take() / Skip() items in a list" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Take() / Skip() items in a list" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="9ac066e3-8f9c-4873-88ea-6c0c46182767" KeyGuid="15ac27ec-8d19-4fd4-8afe-14775019ba16">
-      <Value Key="Description" Value="Learn how to Count() items in a list" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Count() items in a list" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="68abc1a8-6bdb-408f-b37c-9965fe6773ca" KeyGuid="05d21930-7c24-4e2f-9c75-84b176793d2e">
-      <Value Key="Description" Value="Learn how to implement a basic sorting of lists" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Basic sorting of lists" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="1735c43c-9f83-40c0-8834-6d8d95ab53f6" KeyGuid="1f3fc4bb-89f1-4a8f-bbb0-6ec0f169927e">
-      <Value Key="Description" Value="Learn how to Get Authors of Books (sub-items) to show and for sorting" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Get Authors of Books (sub-items) to show and for sorting" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="889a87a0-d48c-4943-aa3e-4d4d8b98c0b4" KeyGuid="f599d562-3dd7-4537-8c98-09b65506d9b4">
-      <Value Key="Description" Value="Learn how to group books by authors in 3 ways" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Group books by authors in 3 ways" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="cf09fa89-842d-420e-8e84-b5610f573307" KeyGuid="d2622de7-3996-465b-b5a0-f6e6de8dd251">
-      <Value Key="Description" Value="Learn how to access a list in list in list&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Access a list in list in list" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="06267037-e71b-4135-a6d5-9a7848403fd2" KeyGuid="97990de3-3a20-4b67-aacd-789d462eb928">
-      <Value Key="Description" Value="Learn how to go backwards - find Books pointing to Authors with Parents(...)&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Go backwards - find Books pointing to Authors with Parents(...)" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="8e16efa9-10f7-4ce6-82aa-46f9691735d0" KeyGuid="9f097ea2-9d4e-486d-a2d4-a2f43483589e">
-      <Value Key="Description" Value="Learn how to easily work with JSON data.&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6105" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Introduction to JSON" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="c5ac1580-0237-41e7-9cd4-fdd81a9222ab" KeyGuid="a63cb552-97e5-4dbc-8326-a69ad9eabc06">
-      <Value Key="Description" Value="Basics of showing images in HTML and understand JPG vs. PNG vs. WebP." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6106" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Introduction to the &lt;img&gt; Tag and Image formats" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="53b0dffd-07a7-4c7d-bdf7-4cfb586428df" KeyGuid="5c61ad40-4c30-431e-ad6e-940bb2da22e0">
-      <Value Key="Description" Value="Learn to use the built-in Image-Resizer to create perfect images no matter what the editor adds in the CMS.&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6106" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Resize and Crop Images on the Server" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="67f18bb2-cc3e-4b03-9132-442aba49be69" KeyGuid="c8f89222-e354-4337-a178-d3b6bef61537">
-      <Value Key="Description" Value="Store all the resize-parameters in a variable for re-use.&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6106" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Resize using Resize-Settings" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="2a26087f-4ce6-460f-bedf-eac684ebb136" KeyGuid="ba1c37ea-4eab-45c8-abb5-e374f556b60f">
-      <Value Key="Description" Value="Site-wide and App-Wide Presets help to resize with the same settings everywhere.&#xA;&#xA;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6106" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Resize and Crop using Global Presets" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="99e0cab5-3f8b-46f7-b68d-c8da444830c8" KeyGuid="ff4ef8ae-5e04-48d4-97c3-8bb20e045dc7">
-      <Value Key="Description" Value="Merge presets with custom settings." Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="file:6106" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Resize combining Presets with Custom Resize-Settings" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -15019,6 +14437,269 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="535d0a69-b8d5-4656-a7be-734d29df4cb9" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="RB150 Split Text" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="blade/_150-split-text.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="blade150/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="03f93986-317f-4fca-9513-fb9b5e33d756" KeyGuid="535d0a69-b8d5-4656-a7be-734d29df4cb9">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="RB 3.09 / 2sxc 13.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Choose where to split text and retrieve the optimal form&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Razorblade - Text.After(), Text.AfterLast(), Text.Before(), Text.BeforeLast(), Text.Between()&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Specs" Value="122a55b6-a432-4be9-b3dd-ae67ad8404a5" Type="Entity" />
+      <Value Key="Title" Value="Razorblade - Text.After(), Text.AfterLast(), Text.Before(), Text.BeforeLast(), Text.Between()" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="d0052bc8-c308-457e-8095-0349ab9ed9f2" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="RB221 IScrub attributes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="blade/_221-iscrub-attributes.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="blade221/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="888e5fb7-997c-4758-8467-bf4e9c17202b" KeyGuid="d0052bc8-c308-457e-8095-0349ab9ed9f2">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="RB 3.09 / 2sxc 13.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Clean out all kinds of HTML attributes&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Use Scrub to remove Tag-Attributes, Classes, Styles or whatever you need&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Specs" Value="83528659-7381-4b5c-b804-625c40e0e797" Type="Entity" />
+      <Value Key="Title" Value="IScrub.Attributes(), IScrub.Classes() and IScrub.Styles() - clean out HTML attributes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d105e4a7-551f-4885-ad2f-5af867b198d6" AttributeSetName="TutorialRequirement" EntityGUID="92d596fa-b4fe-4cd7-ae71-01f3fcacd560">
+      <Value Key="Link" Value="https://github.com/2sic/razor-blade" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="RazorBlade 3.09" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="387c0a8a-57c5-45ee-8b9e-c21c777b7476">
+      <Value Key="Link" Value="https://razor-blade.net/api/ToSic.Razor.Blade.Text.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Razor-Blade Text-Docs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="6ca1ee69-3ec6-49a8-a3ed-3656b3c910a3">
+      <Value Key="Link" Value="https://docs.2sxc.org/net-code/razor-blade/index.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Razor-Blade Docs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="122a55b6-a432-4be9-b3dd-ae67ad8404a5">
+      <Value Key="Requirements" Value="92d596fa-b4fe-4cd7-ae71-01f3fcacd560,5ab4a4c1-434a-4c14-a95c-b2d0f36e786e" Type="Entity" />
+      <Value Key="Resources" Value="387c0a8a-57c5-45ee-8b9e-c21c777b7476,6ca1ee69-3ec6-49a8-a3ed-3656b3c910a3" Type="Entity" />
+      <Value Key="Title" Value="Blade Text Specs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d105e4a7-551f-4885-ad2f-5af867b198d6" AttributeSetName="TutorialRequirement" EntityGUID="5ab4a4c1-434a-4c14-a95c-b2d0f36e786e">
+      <Value Key="Link" Value="https://github.com/2sic/2sxc/releases" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="2sxc 13.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="83528659-7381-4b5c-b804-625c40e0e797">
+      <Value Key="Requirements" Value="5ab4a4c1-434a-4c14-a95c-b2d0f36e786e,92d596fa-b4fe-4cd7-ae71-01f3fcacd560" Type="Entity" />
+      <Value Key="Resources" Value="6ca1ee69-3ec6-49a8-a3ed-3656b3c910a3,f5be9507-9082-4a98-97a6-546e78ded4e9" Type="Entity" />
+      <Value Key="Title" Value="Blade IScrub Specs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="f5be9507-9082-4a98-97a6-546e78ded4e9">
+      <Value Key="Link" Value="https://razor-blade.net/api/ToSic.Razor.Blade.IScrub.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Razor-Blade IScrub-Docs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="1e60abd8-0e2b-4763-917e-674f2b1eabff" KeyGuid="ba1c37ea-4eab-45c8-abb5-e374f556b60f">
+      <Value Key="Description" Value="Site-wide and App-Wide Presets help to resize with the same settings everywhere." Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:6124" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Resize and Crop using Global Presets" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="2a3a413c-71c9-45b2-bda6-412d279ad3e6" AttributeSetName="TutorialViewSharing" EntityGUID="3cb6ffc2-fd68-446c-b911-dfc041a30db0" KeyGuid="7d4704c9-19b8-4a0d-9bab-a42352e3b850">
+      <Value Key="Description" Value="Professional sites give each screen the best possible picture using  srcset  and  &lt;img&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:6125" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Responsive Server-Side Images (img)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -15043,21 +14724,23 @@
     <File Id="6078" RelativePath="adam\Tutorial-Razor\x06AQj8yfUCD5C6uSuN_Zg\FeatureLogo\toolbar.svg" />
     <File Id="6079" RelativePath="adam\Tutorial-Razor\id7tTTgBqUKSywImugxCKA\FeatureLogo\app-icon.png" />
     <File Id="6081" RelativePath="adam\Tutorial-Razor\X2VFJBl7eEKTXS4Xjd6p2w\FeatureLogo\look-up-system.svg" />
-    <File Id="6095" RelativePath="adam\Tutorial-Razor\oemnwEUKSUmao3JExQd75A\Image\app-icon.png" />
-    <File Id="6096" RelativePath="adam\Tutorial-Razor\SjaSfr5aXk2ziKpsl56oqQ\Image\app-icon.png" />
-    <File Id="6097" RelativePath="adam\Tutorial-Razor\j_JhYiXpkEyhEc3YNKzftA\Image\app-icon.png" />
-    <File Id="6098" RelativePath="adam\Tutorial-Razor\u2PgemEJYEaL9yM3DnOLEg\Image\app-icon.png" />
-    <File Id="6099" RelativePath="adam\Tutorial-Razor\EfPWrTxVJUO28sgaeOjq3Q\Image\app-icon.png" />
-    <File Id="6100" RelativePath="adam\Tutorial-Razor\G5TPkrD7q0GZE3BvTx790w\Image\app-icon.png" />
-    <File Id="6101" RelativePath="adam\Tutorial-Razor\ROEcJLCX40m6vu4w0iogag\Image\app-icon.png" />
-    <File Id="6102" RelativePath="adam\Tutorial-Razor\-YQYgfVpPUGFd3ci9FOd2g\Image\app-icon.png" />
-    <File Id="6103" RelativePath="adam\Tutorial-Razor\2lw0P5Npd0et1HeG_6HZHA\Image\app-icon.png" />
-    <File Id="6104" RelativePath="adam\Tutorial-Razor\GbzMxfTltESEt6hjk9i0OA\Image\app-icon.png" />
-    <File Id="6105" RelativePath="adam\Tutorial-Razor\xg6dySq8Aku2g4CY6b-OMw\Image\look-up-system.svg" />
-    <File Id="6106" RelativePath="adam\Tutorial-Razor\gBWsxTcC50Gc1P3YGpIiqw\Image\image-resizer.svg" />
     <File Id="6107" RelativePath="adam\Tutorial-Razor\iqRLK3fp60eaUqB15AzSaA\FeatureLogo\turn-on.svg" />
     <File Id="6112" RelativePath="adam\Tutorial-Razor\iWKX5ZsIQki8kQ4jhUWZgQ\Image\Razor Tutorial Home v13.jpg" />
+    <File Id="6124" RelativePath="adam\Tutorial-Razor\2KtgHisOY0eRfmdPKx6r_w\Image\Resize and crop with presets.png" />
+    <File Id="6125" RelativePath="adam\Tutorial-Razor\wv-2PGj9bES5Ed_AQaMNsA\Image\responsive images.png" />
+    <File Id="6103" RelativePath="adam\Tutorial-Razor\2lw0P5Npd0et1HeG_6HZHA\Image\app-icon.png" />
     <File Id="5984" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\Per Anhalter.jpg" />
+    <File Id="6099" RelativePath="adam\Tutorial-Razor\EfPWrTxVJUO28sgaeOjq3Q\Image\app-icon.png" />
+    <File Id="6100" RelativePath="adam\Tutorial-Razor\G5TPkrD7q0GZE3BvTx790w\Image\app-icon.png" />
+    <File Id="6106" RelativePath="adam\Tutorial-Razor\gBWsxTcC50Gc1P3YGpIiqw\Image\image-resizer.svg" />
+    <File Id="6104" RelativePath="adam\Tutorial-Razor\GbzMxfTltESEt6hjk9i0OA\Image\app-icon.png" />
+    <File Id="6097" RelativePath="adam\Tutorial-Razor\j_JhYiXpkEyhEc3YNKzftA\Image\app-icon.png" />
+    <File Id="6095" RelativePath="adam\Tutorial-Razor\oemnwEUKSUmao3JExQd75A\Image\app-icon.png" />
+    <File Id="6101" RelativePath="adam\Tutorial-Razor\ROEcJLCX40m6vu4w0iogag\Image\app-icon.png" />
+    <File Id="6096" RelativePath="adam\Tutorial-Razor\SjaSfr5aXk2ziKpsl56oqQ\Image\app-icon.png" />
+    <File Id="6098" RelativePath="adam\Tutorial-Razor\u2PgemEJYEaL9yM3DnOLEg\Image\app-icon.png" />
+    <File Id="6105" RelativePath="adam\Tutorial-Razor\xg6dySq8Aku2g4CY6b-OMw\Image\look-up-system.svg" />
+    <File Id="6102" RelativePath="adam\Tutorial-Razor\-YQYgfVpPUGFd3ci9FOd2g\Image\app-icon.png" />
   </PortalFiles>
   <PortalFolders>
     <Folder Id="13466" RelativePath="adam/Tutorial-Razor/FP6nrGBJZUKPRnldQOMQEQ/CsvFile/" />
@@ -15081,23 +14764,26 @@
     <Folder Id="13620" RelativePath="adam/Tutorial-Razor/x06AQj8yfUCD5C6uSuN_Zg/FeatureLogo/" />
     <Folder Id="13622" RelativePath="adam/Tutorial-Razor/id7tTTgBqUKSywImugxCKA/FeatureLogo/" />
     <Folder Id="13626" RelativePath="adam/Tutorial-Razor/X2VFJBl7eEKTXS4Xjd6p2w/FeatureLogo/" />
-    <Folder Id="13638" RelativePath="adam/Tutorial-Razor/oemnwEUKSUmao3JExQd75A/Image/" />
-    <Folder Id="13640" RelativePath="adam/Tutorial-Razor/SjaSfr5aXk2ziKpsl56oqQ/Image/" />
-    <Folder Id="13642" RelativePath="adam/Tutorial-Razor/j_JhYiXpkEyhEc3YNKzftA/Image/" />
-    <Folder Id="13644" RelativePath="adam/Tutorial-Razor/u2PgemEJYEaL9yM3DnOLEg/Image/" />
-    <Folder Id="13646" RelativePath="adam/Tutorial-Razor/EfPWrTxVJUO28sgaeOjq3Q/Image/" />
-    <Folder Id="13648" RelativePath="adam/Tutorial-Razor/G5TPkrD7q0GZE3BvTx790w/Image/" />
-    <Folder Id="13650" RelativePath="adam/Tutorial-Razor/ROEcJLCX40m6vu4w0iogag/Image/" />
-    <Folder Id="13652" RelativePath="adam/Tutorial-Razor/-YQYgfVpPUGFd3ci9FOd2g/Image/" />
-    <Folder Id="13654" RelativePath="adam/Tutorial-Razor/2lw0P5Npd0et1HeG_6HZHA/Image/" />
-    <Folder Id="13656" RelativePath="adam/Tutorial-Razor/GbzMxfTltESEt6hjk9i0OA/Image/" />
-    <Folder Id="13658" RelativePath="adam/Tutorial-Razor/xg6dySq8Aku2g4CY6b-OMw/Image/" />
-    <Folder Id="13660" RelativePath="adam/Tutorial-Razor/gBWsxTcC50Gc1P3YGpIiqw/Image/" />
     <Folder Id="13662" RelativePath="adam/Tutorial-Razor/iqRLK3fp60eaUqB15AzSaA/FeatureLogo/" />
     <Folder Id="13669" RelativePath="adam/Tutorial-Razor/iWKX5ZsIQki8kQ4jhUWZgQ/Image/" />
+    <Folder Id="13693" RelativePath="adam/Tutorial-Razor/2KtgHisOY0eRfmdPKx6r_w/Image/" />
+    <Folder Id="13695" RelativePath="adam/Tutorial-Razor/wv-2PGj9bES5Ed_AQaMNsA/Image/" />
+    <Folder Id="13654" RelativePath="adam/Tutorial-Razor/2lw0P5Npd0et1HeG_6HZHA/Image/" />
+    <Folder Id="13646" RelativePath="adam/Tutorial-Razor/EfPWrTxVJUO28sgaeOjq3Q/Image/" />
+    <Folder Id="13648" RelativePath="adam/Tutorial-Razor/G5TPkrD7q0GZE3BvTx790w/Image/" />
+    <Folder Id="13660" RelativePath="adam/Tutorial-Razor/gBWsxTcC50Gc1P3YGpIiqw/Image/" />
+    <Folder Id="13656" RelativePath="adam/Tutorial-Razor/GbzMxfTltESEt6hjk9i0OA/Image/" />
+    <Folder Id="13642" RelativePath="adam/Tutorial-Razor/j_JhYiXpkEyhEc3YNKzftA/Image/" />
+    <Folder Id="13638" RelativePath="adam/Tutorial-Razor/oemnwEUKSUmao3JExQd75A/Image/" />
+    <Folder Id="13650" RelativePath="adam/Tutorial-Razor/ROEcJLCX40m6vu4w0iogag/Image/" />
+    <Folder Id="13640" RelativePath="adam/Tutorial-Razor/SjaSfr5aXk2ziKpsl56oqQ/Image/" />
+    <Folder Id="13644" RelativePath="adam/Tutorial-Razor/u2PgemEJYEaL9yM3DnOLEg/Image/" />
+    <Folder Id="13658" RelativePath="adam/Tutorial-Razor/xg6dySq8Aku2g4CY6b-OMw/Image/" />
+    <Folder Id="13652" RelativePath="adam/Tutorial-Razor/-YQYgfVpPUGFd3ci9FOd2g/Image/" />
     <Folder Id="3089" RelativePath="adam/Tutorial-Razor/" />
     <Folder Id="3104" RelativePath="adam/Tutorial-Razor/_EnbtOtUMkyquoNoNkt1fA/" />
     <Folder Id="3106" RelativePath="adam/Tutorial-Razor/22bmCywVk0qU5fr-bOpx7A/" />
+    <Folder Id="13692" RelativePath="adam/Tutorial-Razor/2KtgHisOY0eRfmdPKx6r_w/" />
     <Folder Id="13653" RelativePath="adam/Tutorial-Razor/2lw0P5Npd0et1HeG_6HZHA/" />
     <Folder Id="13609" RelativePath="adam/Tutorial-Razor/5-h-02WsiUmfG7OINaHkdA/" />
     <Folder Id="12749" RelativePath="adam/Tutorial-Razor/6v4UsTVA_Uelntqmn0zE-g/" />
@@ -15156,6 +14842,7 @@
     <Folder Id="13617" RelativePath="adam/Tutorial-Razor/UvhfFLs-FEO1REW5xeFbrw/" />
     <Folder Id="12755" RelativePath="adam/Tutorial-Razor/UZ-sBdIdD0ezU-RmTTZPGQ/" />
     <Folder Id="12756" RelativePath="adam/Tutorial-Razor/UZ-sBdIdD0ezU-RmTTZPGQ/Icon/" />
+    <Folder Id="13694" RelativePath="adam/Tutorial-Razor/wv-2PGj9bES5Ed_AQaMNsA/" />
     <Folder Id="13619" RelativePath="adam/Tutorial-Razor/x06AQj8yfUCD5C6uSuN_Zg/" />
     <Folder Id="13625" RelativePath="adam/Tutorial-Razor/X2VFJBl7eEKTXS4Xjd6p2w/" />
     <Folder Id="13657" RelativePath="adam/Tutorial-Razor/xg6dySq8Aku2g4CY6b-OMw/" />
