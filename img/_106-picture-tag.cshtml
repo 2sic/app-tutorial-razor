@@ -16,7 +16,8 @@
       Path,
       Result = tag.ToString()
         .Replace(">", ">\n")
-        .Replace(",", ",\n"),
+        .Replace(",", ",\n")
+        .Replace(" alt=", "\nalt="),
      Size = size
     };
   }
@@ -105,6 +106,22 @@
 
 <h6>This generates</h6>
 @{ var previewTag = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 250))
+</hide-silent>
+
+
+<hr>
+<h2>Automatically Resized With Custom Alt and Classes</h2>
+
+<snippet id="pic-auto-alt-class">
+@imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
+</snippet>
+<code id="pic-auto-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-alt-class", Size = 100 }) 
+
+<h6>This generates</h6>
+@{ previewTag = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class"); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 250))
 </hide-silent>
 
