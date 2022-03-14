@@ -1,8 +1,5 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Sxc.Services;
-@{
-  var imgSvc = GetService<IImageService>();
-}
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
@@ -81,13 +78,16 @@
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 
 <snippet id="img-srcset-auto">
-@{ var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg"; }
-@* This uses the IImageService created at the top of this file *@
+@{
+  // Get the IImageService to help build responsive image HTML
+  var imgSvc = GetService<IImageService>();
+  var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
+}
 @imgSvc.Img(tomatoPicUrl)
 </snippet>
 <code id="img-srcset-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto", Size = 100 })
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto", Size = 140 })
   
 <h6>This generates</h6>
 @{ var previewTag = imgSvc.Img(tomatoPicUrl); }
@@ -102,6 +102,7 @@
 <snippet id="img-srcset-auto2">
 @{
   var flatSettings = imgSvc.ResizeSettings(Settings.Images.Content, aspectRatio: "8:1");
+  // The following line uses the imgSvc (IImageService) created in the previous example
 }
 @imgSvc.Img(tomatoPicUrl, settings: flatSettings)
 </snippet>
@@ -121,6 +122,7 @@
   <a href="https://docs.2sxc.org/net-code/images/srcset.html" target="_blank">srcset docs</a>. 
 </p>
 <snippet id="img-srcset-auto-srcset">
+@* The following line uses the imgSvc (IImageService) created in the previous example *@
 @imgSvc.Img(tomatoPicUrl, settings: flatSettings, srcset: "1600,1200,1000,900,800,700,600,500,400")
 </snippet>
 <code id="img-srcset-auto-srcset-label"></code>
@@ -136,6 +138,7 @@
 <h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
 
 <snippet id="img-srcset-auto3">
+@* The following line uses the imgSvc (IImageService) created in the previous example *@
 @imgSvc.Img(tomatoPicUrl, settings: flatSettings,
   imgAlt: "SEO Text", imgClass: "border border-primary")
 </snippet>
@@ -153,12 +156,13 @@
 <snippet id="img-srcset-auto4">
 @{
   var imgControlled = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
-  imgControlled.Img.Id("Some-Id").Style("Width: 75%");
 }
-</snippet>
+@* The following line uses the imgSvc (IImageService) created in the previous example *@
+@imgControlled.Img.Id("Some-Id").Style("Width: 75%")
+</snippet><br>
 <code id="img-srcset-auto4-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto4", Size = 120 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto4", Size = 100 }) 
 
 <h6>This generates</h6>
 @{ previewTag = imgControlled; }
@@ -171,6 +175,7 @@
 @{
   var imgFullControl = imgSvc.Img(tomatoPicUrl, settings: flatSettings);
 }
+@* The following line uses the imgSvc (IImageService) created in the previous example *@
 <img src="@imgFullControl.Url" srcset="@imgFullControl.Srcset" title="Hover to see this">
 </snippet>
 <code id="img-srcset-auto5-label"></code>
