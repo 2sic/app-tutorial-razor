@@ -14,7 +14,7 @@ public class Helpers: Custom.Hybrid.Code12
     return Tag.Custom(
       InitializedPageAssets()
       + AddFeatureLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
-      + Tag.Div(Tag.H1(title).Attr(Edit.TagToolbar()).Class("col-auto p-0"), Tag.Div().Class("col-auto addthis_inline_share_toolbox")).Class("row")
+      + Tag.H1(title).Attr(Edit.TagToolbar()).Class("col-auto p-0")
     );
   }
 

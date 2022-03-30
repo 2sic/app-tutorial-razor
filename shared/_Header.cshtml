@@ -22,8 +22,6 @@
   @Html.Partial("../shared/_OpenGraphHeaders.cshtml");
 }
 
-
-<script type="text/javascript" src="@Settings.AddThisJS"></script>
 <div @Edit.TagToolbar(newConfig) class="mb-2">
   @if (DynamicModel.FeatureIconPath != null) {
     @hlp.AddFeatureLogo(DynamicModel.FeatureIconPath, DynamicModel.FeatureLink)
