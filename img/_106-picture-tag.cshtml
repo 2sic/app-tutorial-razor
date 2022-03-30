@@ -98,14 +98,14 @@
 @{
   var imgSvc = GetService<IImageService>();
 }
-@imgSvc.Picture(url: App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
+@imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
 </snippet>
 <code id="pic-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto", Size = 100 }) 
 
 <h6>This generates</h6>
-@{ var previewTag = imgSvc.Picture(url: App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
+@{ var previewTag = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 250))
 </hide-silent>
 
@@ -114,14 +114,14 @@
 <h2>Automatically Resized With Custom Alt and Classes</h2>
 
 <snippet id="pic-auto-alt-class">
-@imgSvc.Picture(url: App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
+@imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
 </snippet>
 <code id="pic-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-alt-class", Size = 100 }) 
 
 <h6>This generates</h6>
-@{ previewTag = imgSvc.Picture(url: App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class"); }
+@{ previewTag = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class"); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 250))
 </hide-silent>
 
@@ -129,7 +129,7 @@
 <h2>Automatically Resized Bits with More Control</h2>
 <snippet id="pic-auto-control1">
 @{
-  var picControlled = imgSvc.Picture(url: App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+  var picControlled = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
 }
 <picture>
   @picControlled.Sources
@@ -150,7 +150,7 @@
 <h2>Automatically Resized Bits with Lots of Control</h2>
 <snippet id="pic-auto-control2">
 @{
-  var picFullControl = imgSvc.Picture(url: App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+  var picFullControl = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
 }
 <picture>
   @foreach(var st in picFullControl.Sources){
