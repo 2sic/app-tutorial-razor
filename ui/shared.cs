@@ -8,8 +8,8 @@ public class Shared {
     // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
     Edit.Enabled = true;
 
+    var page = GetService<ToSic.Sxc.Services.IPageService>();
     // This will tell the edit-UI that we need the JS features
-    Edit.Enable(api: true, forms: true, context: true, styles: true);
-
+    page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
   }
 }
