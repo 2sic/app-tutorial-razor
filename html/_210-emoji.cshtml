@@ -3,13 +3,22 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 <trim>
-  <h2>Working with 😃 Emojis / Emoticons</h2>
-  <div>
-    Emojis or Emoticons are built into all mobile devices and modern desktops. The way they work is that they are actually a very long character code - which automatically works in UTF-8 documents. That is the default in asp.net, so you're good to go. 
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Working with 😃 Emojis / Emoticons</h2>
+    <div>
+      Emojis or Emoticons are built into all mobile devices and modern desktops. The way they work is that they are actually a very long character code - which automatically works in UTF-8 documents. That is the default in asp.net, so you're good to go. 
+    </div>
   </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
   <hr>
   <h2>Just showing Emojis in Source-Code</h2>
   <div>
@@ -37,11 +46,6 @@
 </hide-silent>
 
 <hide>
-<hr>
-<h2>More Information around Emoticons</h2>
-<ol>
-  @hlp.LiExtLink("https://emojipedia.org/", "Emojipedia")
-</ol>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 350 }) 
 </hide>

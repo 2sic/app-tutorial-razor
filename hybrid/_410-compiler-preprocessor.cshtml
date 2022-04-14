@@ -1,21 +1,34 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-<h2>Hybrid Templates using Preprocessor Directives</h2>
-<p>
-  Razor is mostly <code>HTML</code> + <code>C#</code>. 
-  But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
-  This is where <code>CmsContext.Platform.Name</code> is used. 
-  Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
-</p>
-<p>
-  When working with normal <code>.cs</code> files <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> can be used due 
-  to them being compiled by 2sxc. 
-</p>
-<p>
-  Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Hybrid Templates using Preprocessor Directives</h2>
+    <p>
+      Razor is mostly <code>HTML</code> + <code>C#</code>. 
+      But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
+      This is where <code>CmsContext.Platform.Name</code> is used. 
+      Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
+    </p>
+    <p>
+      When working with normal <code>.cs</code> files <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> can be used due 
+      to them being compiled by 2sxc. 
+    </p>
+    <p>
+      Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
 </p>
 </trim>
 

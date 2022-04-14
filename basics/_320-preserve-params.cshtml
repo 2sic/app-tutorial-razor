@@ -1,16 +1,31 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-<h2>Preserve URL parameters</h2>
-<h3>Create a link to the same page</h3>
-<p>
-  In Razor page URLs are generated using <code>Link.To(...)</code>. 
-  By default calling <code>Link.To()</code> without any parameters returns the base URL of the site. In this case it would be: <code>@Link.To()</code>. 
-</p>
-<p>
-  The key to retrieving the current page URL is to pass the current page parameters. <code>Link.To(parameters: ...)</code> will then construct the URL based on the passed parameters. <br>
-  Current page parameters are found in <code>CmsContext.Page.Parameters</code>.
-</p>
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Preserve URL parameters</h2>
+    <h3>Create a link to the same page</h3>
+    <p>
+      In Razor page URLs are generated using <code>Link.To(...)</code>. 
+      By default calling <code>Link.To()</code> without any parameters returns the base URL of the site. In this case it would be: <code>@Link.To()</code>. 
+    </p>
+    <p>
+      The key to retrieving the current page URL is to pass the current page parameters. <code>Link.To(parameters: ...)</code> will then construct the URL based on the passed parameters. <br>
+      Current page parameters are found in <code>CmsContext.Page.Parameters</code>.
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Related, Title = "Related" })
+  </div>
+</div>
+
 <hr>
 <h2>Link to current page with all Parameters</h2>
 </hide>

@@ -1,29 +1,41 @@
+@using ToSic.Razor.Blade;
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
-@using ToSic.Razor.Blade;
 <trim>
-<h2>Working with URL Parameters using Page Parameters</h2>
-<p>
-  The following code will use a value from the url querystring. There are various ways to pick it up, but we recommend the cross-platform API which works in Dnn and Oqtane.
-</p>
-<ol>
-    <li>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Working with URL Parameters using Page Parameters</h2>
+    <p>
+      The following code will use a value from the url querystring. There are various ways to pick it up, but we recommend the cross-platform API which works in Dnn and Oqtane.
+    </p>
+    <ol>
+      <li>
         Cross-Platform (Dnn and Oqtane): <code>@@CmsContext.Page.Parameters["id"]</code>
-    </li>
-    <li>
+      </li>
+      <li>
         This would <em>only</em> work in Dnn: <code>@@Request.QueryString["id"]</code>
-    </li>
-</ol>
-<p>
-  Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
-  But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. 
-</p>
-<h2>Test changing this page URL</h2>
-<p>
-  Below you'll find some links which change the url, so you can see how the output changes:
-</p>
+      </li>
+    </ol>
+    <p>
+      Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
+      But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. 
+    </p>
+    <h2>Test changing this page URL</h2>
+    <p>
+      Below you'll find some links which change the url, so you can see how the output changes:
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 
 <snippet id="basic-params">

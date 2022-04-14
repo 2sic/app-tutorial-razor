@@ -1,29 +1,39 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 @using ToSic.Razor.Blade;
 @using System;
 <trim>
-<h2>Safely Linking URLs with Umlauts and similar</h2>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Safely Linking URLs with Umlauts and similar</h2>
+    <snippet id="basic-safe-url">
+      @{
+        var path = App.Path + "/basics/assets/urls/";
+        var exampleImgName = "göögle plus.png";
+        var resizeParameters = "?w=100";
+        var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
+      }
+      <img loading="lazy" src='@safeUrl' id="demo-logo">
+    </snippet>
+    <p>
+      👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
+    </p>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-safe-url", Size = 170 }) 
+    </hide-silent>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
-
-<snippet id="basic-safe-url">
-@{
-  var path = App.Path + "/basics/assets/urls/";
-  var exampleImgName = "göögle plus.png";
-  var resizeParameters = "?w=100";
-  var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
-}
-<img loading="lazy" src='@safeUrl' id="demo-logo">
-</snippet>
-<p>
-  👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
-</p>
-
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-safe-url", Size = 150 }) 
-</hide-silent>
 
 <hide>
 <p>

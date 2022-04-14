@@ -1,19 +1,31 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 @using ToSic.Razor.Blade;
 <trim>
-<h2>Working with <em>number</em> URL Parameters</h2>
-<p>
-  When you expect a number, you usually need to convert it to an <code>int</code> or similar for further use. Otherwise you'll be comparing numbers with strings. For example <code>if(3 == "3")</code> would return <code>false</code> - which is not what you usually want. <br>
-  Additionally, you usually want to ensure that if no parameter is found, you will have a default value - othertise you may run into errors.
-</p>
-<ul>
-  @SubpageLink("This page without additional params", "")
-  @SubpageLink("put ?id=27 in the url", "id=27")
-</ul>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Working with <em>number</em> URL Parameters</h2>
+    <p>
+      When you expect a number, you usually need to convert it to an <code>int</code> or similar for further use. Otherwise you'll be comparing numbers with strings. For example <code>if(3 == "3")</code> would return <code>false</code> - which is not what you usually want. <br>
+      Additionally, you usually want to ensure that if no parameter is found, you will have a default value - othertise you may run into errors.
+    </p>
+    <ul>
+      @SubpageLink("This page without additional params", "")
+      @SubpageLink("put ?id=27 in the url", "id=27")
+    </ul>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Related, Title = "Related" })
+  </div>
+</div>
 <hr>
 </trim>
 
@@ -40,15 +52,6 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-number-params", Size = 400 }) 
 </hide-silent>
-
-
-<trim>
-<hr>
-<h3>More Links about converting strings to numbers</h3>
-<ol>
-  @hlp.LiExtLink("https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number", "Documentation from MSDN")
-</ol>
-</trim>
 
 <hide>
 @functions {
