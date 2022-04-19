@@ -7,14 +7,22 @@
   var hlp = CreateInstance("../shared/Helpers.cs"); 
   var rzr = CreateInstance("RazorbladeVersion.cs");
   var version = rzr.VersionDouble();
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 
 <trim>
 <img loading="lazy" src="@App.Path/blade/assets/razor-blade-wide.png" width="100%">
-<p>
-  Learn how to use <code>ToSic.Razor.Blade</code> to do really cool stuff. For example, take a html-string, strip the html tags, truncate to 100 characters without splitting word and then show using a standard html-ellipsis. And way more. This uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">ToSic.Razor.Blade</a>. 
-</p>
+<div class="row mb-2">
+  <div class="col-lg-7">
+    <p>
+      Learn how to use <code>ToSic.Razor.Blade</code> to do really cool stuff. For example, take a html-string, strip the html tags, truncate to 100 characters without splitting word and then show using a standard html-ellipsis. And way more. This uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">ToSic.Razor.Blade</a>. 
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 
 <h2>Some notes before we start</h2>
 <p>
@@ -67,20 +75,6 @@
     "The basics of creating html directly from code - with objects for every known HTML5 tag", 
     "enhanced!", rzr.VersionInfo(version, 3.00))
 </ol>
-
-<hr>
-<h2>More Information around <em>RazorBlade</em></h2>
-<ol>
-  @hlp.LiExtLink("https://github.com/DNN-Connect/razor-blade", "RazorBlade Github Repo")
-  @hlp.LiExtLink("https://github.com/DNN-Connect/razor-blade/releases", "RazorBlade download page")
-  <li>Blogs
-    <ul>
-      @hlp.LiExtLink("https://2sxc.org/en/blog/tag/razor-blade", "Blog posts & tutorials on 2sxc.org around RazorBlade")
-    </ul>
-  </li>
-</ol>
-
-
 
 <hr>
 <h2><em>RazorBlade</em> Examples for Modifying DNN Page Headers</h2>
