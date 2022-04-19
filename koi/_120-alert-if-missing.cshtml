@@ -1,19 +1,29 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-<img loading="lazy" src="@App.Path/koi/assets/koi.png?w=400" class="float-right float-end">
-<h2>Show Warning if Bootstrap4 not Included or Unclear</h2>
-<p>
-  In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap4</a> as the preferred CSS framework. And we'll also assume, that you don't want to @linker.TutLink("auto-include it", "koi110"), but instead want to warn the admin, to ensure he can correct the situation. This is what you want to do, when you believe the Admin should optimize the output, and prevent accidentally loading Bootstrap multiple times. 
-</p>
-<p>
-  This page shows how to handle these problems with almost no code. We'll also show what you can do, so only admins see the message. <br>
-  <em>BTW: to see that this works, try switching the theme of this page to one without a <code>koi.json</code> or one with a different css-framework.</em>
-
-</p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Show Warning if Bootstrap4 not Included or Unclear</h2>
+    <p>
+      In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap4</a> as the preferred CSS framework. And we'll also assume, that you don't want to @hlp.TutLink("auto-include it", "koi110"), but instead want to warn the admin, to ensure he can correct the situation. This is what you want to do, when you believe the Admin should optimize the output, and prevent accidentally loading Bootstrap multiple times. 
+    </p>
+    <p>
+      This page shows how to handle these problems with almost no code. We'll also show what you can do, so only admins see the message. <br>
+      <em>BTW: to see that this works, try switching the theme of this page to one without a <code>koi.json</code> or one with a different css-framework.</em>
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    <img loading="lazy" src="@App.Path/koi/assets/koi.png?w=400">
+  </div>
+</div>
 </trim>
 @{
   var bsCheck = CreateInstance("../shared/Bootstrap4.cs");

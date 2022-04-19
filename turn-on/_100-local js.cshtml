@@ -3,25 +3,33 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-  <h2>Activate turnOn and execute basic tasks</h2>
-  <div>This page activates turnOn and executes a JavaScript function using turnOn.</div>
-  <br>
-  In this tutorial you'll learn how to:
-  <ul>
-    <li>
-      Activate turnOn using the PageService
-    </li>
-    <li>
-      Execute a JavaScript function on initial loading
-    </li>
-  </ul>
-  Look at the text below to see the effect. 
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Activate turnOn and execute basic tasks</h2>
+      <div>This page activates turnOn and executes a JavaScript function using turnOn.</div>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Activate turnOn using the PageService
+        </li>
+        <li>
+          Execute a JavaScript function on initial loading
+        </li>
+      </ul>
+      Look at the text below to see the effect. 
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 </trim>
-<hide>
-  <hr>
-</hide>
 
 <div id="turn-on-example">
   turnOn is waiting - this will be replaced within 3 seconds... 😔

@@ -3,24 +3,36 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-  <h2>Await custom conditions through functions</h2>
-  <p>
-    This page waits for a function to return true, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
-    The executed JavaScript then triggers thirdparty library code, which modifies the DOM element in the page that causes an animation.
-  </p>
-  <br>
-  In this tutorial you'll learn how to:
-  <ul>
-    <li>
-      Execute a JavaScript function <b>after</b> a custom condition was met
-    </li>
-  </ul>
-  Look at the element below to see the effect. 
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Await custom conditions through functions</h2>
+      <p>
+        This page waits for a function to return true, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
+        The executed JavaScript then triggers thirdparty library code, which modifies the DOM element in the page that causes an animation.
+      </p>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Execute a JavaScript function <b>after</b> a custom condition was met
+        </li>
+      </ul>
+      Look at the element below to see the effect. 
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 </trim>
 <hide>
-  <hr>
+  <br>
 </hide>
 
 @{
