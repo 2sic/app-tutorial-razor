@@ -3,8 +3,9 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
-  var linker = CreateInstance("../shared/Helpers.cs"); 
-  var code = CreateInstance("_410CodeBehind.cs"); 
+  var linker = CreateInstance("../shared/Helpers.cs");
+  var code = CreateInstance("_410CodeBehind.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(linker.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 @*
   Tutorial Notes

@@ -2,13 +2,22 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-<h2>Basic Example from App.Data</h2>
-<p>
-  The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @linker.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.
-</p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Basic Example from App.Data</h2>
+    <p>The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @hlp.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.</p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 <ul>
   @foreach (var person in AsList(App.Data["Persons"])) {

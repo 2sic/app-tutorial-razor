@@ -1,12 +1,24 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 @Html.Partial("_header.cshtml")
 </hide>
 <trim>
-<h2>List Details using Automatic View-Switching</h2>
-<p>
-  The previous examples showed you how to do things "manually". In this example, the 2sxc-view configuration says that the main view should come when <code>data620</code> is in the url, and that the details view should come, when <code>data620id</code> (for details) is in the url. This automatic view switching makes life easier and code shorter:). 
-</p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>List Details using Automatic View-Switching</h2>
+    <p>
+      The previous examples showed you how to do things "manually". In this example, the 2sxc-view configuration says that the main view should come when <code>data620</code> is in the url, and that the details view should come, when <code>data620id</code> (for details) is in the url. This automatic view switching makes life easier and code shorter:). 
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 
   <h3>List of Persons</h3>

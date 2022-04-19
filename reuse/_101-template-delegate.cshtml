@@ -3,34 +3,44 @@
 @Html.Partial("_header.cshtml")
 @{
   var linker = CreateInstance("../shared/Helpers.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 @{
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
 }
-<trim>
-<h2>Reuse Code Snippet with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
-<p>If you just need a quick simple snippet, Template Delegates are the way to go. 
-  They are very limited so only ideal for simple stuff. More complex stuff should use
-  @linker.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
-</p>
-<div>
-  Note that in the following code <code>item</code> is the thing passed into the function.
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Reuse Code Snippet with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
+    <p>If you just need a quick simple snippet, Template Delegates are the way to go. 
+      They are very limited so only ideal for simple stuff. More complex stuff should use
+      @linker.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
+    </p>
+    <div>
+      Note that in the following code <code>item</code> is the thing passed into the function.
+    </div>
+    @{
+      // Simple Hybrid (Dnn/Oqtane) Template Delegate
+      Func<dynamic, object> BoldLi = @<li>
+        <strong>
+          @Html.Raw(item)
+        </strong>
+      </li>;
+    }
+    <ul>
+      @BoldLi(normalText)
+      @BoldLi(htmlText)
+      @BoldLi("this is just a bold line")
+    </ul>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
 </div>
-@{
-  // Simple Hybrid (Dnn/Oqtane) Template Delegate
-  Func<dynamic, object> BoldLi = @<li>
-    <strong>
-      @Html.Raw(item)
-    </strong>
-  </li>;
-}
-<ul>
-  @BoldLi(normalText)
-  @BoldLi(htmlText)
-  @BoldLi("this is just a bold line")
-</ul>
+<trim>
 
 <hr>
 <h2>Complex Data with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>

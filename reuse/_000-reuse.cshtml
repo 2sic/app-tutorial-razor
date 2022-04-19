@@ -4,32 +4,43 @@
 @{
   // 2sxclint:disable:razor-no-renderpage
   var linker = CreateInstance("../shared/Helpers.cs");
+
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(linker.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 
 <trim>
-<h2>Reuse templates and code</h2>
-<p>
-  This will show you how to place partial templates into separate files, and how to put functions you need in many places in separate files as well. It focuses on: 
-</p>
-<ol>
-  <li>
-    <code>@@Html.Partial(...)</code> to render another page (older versions of 2sxc used <code>@@RenderPage(...)</code>) 
-    - see <a href="https://docs.2sxc.org/net-code/dynamic-code/object-html.html" target="_blank">docs</a>
-  </li>
-  <li>
-    <code>DynamicModel</code> is the object used in sub-pages to receive parameters from the caller 
-    - see <a href="https://docs.2sxc.org/net-code/dynamic-code/object-dynamic-model.html" target="_blank">docs</a>
-  </li>
-  <li>
-     <code>CreateInstance(...)</code> to create objects from .cs files 
-     - see <a href="https://docs.2sxc.org/net-code/dynamic-code/create-instance.html" target="_blank">docs</a>
-  </li>
-  <li>
-     <code>Func&lt;dynamic, dynamic&gt;</code> micro-helpers are ideal for small sub-templates 
-     - see <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0#templated-razor-delegates" target="_blank">docs</a>
-  </li>
-</ol>
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Reuse templates and code</h2>
+    <p>
+      This will show you how to place partial templates into separate files, and how to put functions you need in many places in separate files as well. It focuses on: 
+    </p>
+    <ol>
+      <li>
+        <code>@@Html.Partial(...)</code> to render another page (older versions of 2sxc used <code>@@RenderPage(...)</code>) 
+        - see <a href="https://docs.2sxc.org/net-code/dynamic-code/object-html.html" target="_blank">docs</a>
+      </li>
+      <li>
+        <code>DynamicModel</code> is the object used in sub-pages to receive parameters from the caller 
+        - see <a href="https://docs.2sxc.org/net-code/dynamic-code/object-dynamic-model.html" target="_blank">docs</a>
+      </li>
+      <li>
+        <code>CreateInstance(...)</code> to create objects from .cs files 
+        - see <a href="https://docs.2sxc.org/net-code/dynamic-code/create-instance.html" target="_blank">docs</a>
+      </li>
+      <li>
+        <code>Func&lt;dynamic, dynamic&gt;</code> micro-helpers are ideal for small sub-templates 
+        - see <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0#templated-razor-delegates" target="_blank">docs</a>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+  </div>
+</div>
+
 </trim>
 
 <hr>

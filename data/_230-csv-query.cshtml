@@ -2,20 +2,29 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
-  var linker = CreateInstance("../shared/Helpers.cs");
   var fancybox = CreateInstance("../shared/Fancybox.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 @using ToSic.Razor.Blade;
 @using System.Linq;
 <trim>
-<h2>Example from CSV</h2>
-@fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200, "float-right float-end")
-<p>
-  CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
-  <br>
-  You can read more about the <code>CsvDataSource</code> <a href="https://r.2sxc.org/ds-csv" target="_blank">here</a>.
-</p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Example from CSV</h2>
+    <p>
+      CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
+      <br>
+      You can read more about the <code>CsvDataSource</code> <a href="https://r.2sxc.org/ds-csv" target="_blank">here</a>.
+    </p>
+    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 <snippet id="data-query-csv">
 

@@ -3,15 +3,25 @@
 @Html.Partial("_header.cshtml")
 @{  
   var fancybox = CreateInstance("../shared/Fancybox.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
-@fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-design.png", 400, 200, "float-right float-end")
 </hide>
 <trim>
 
-<h2>List Details using Automatic View-Switching and Query</h2>
-<p>
-  The previous examples showed you how to do auto-switch views. This example makes the code even easier, by telling the details-view to pick up the details-item from a query. You can see the query and how it's configured to the right.
-</p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>List Details using Automatic View-Switching and Query</h2>
+    <p>
+      The previous examples showed you how to do auto-switch views. This example makes the code even easier, by telling the details-view to pick up the details-item from a query. You can see the query and how it's configured to the right.
+    </p>
+    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-design.png", 400, 200)
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 
   <h3>List of Persons</h3>

@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 @{
   var persons = AsList(App.Data["Persons"]);
@@ -14,13 +17,21 @@
   var showDetails = Int32.TryParse(urlId, out id);
 }
 <trim>
-<h2>Basic List Details using Code</h2>
-<p>
-  Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example even has the list & details view in the same file - but usually you don't want that - so check the next examples afterwards. 
-</p>
-<p>
-  Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @linker.TutLink("LINQ Tutorials", "linq").
-</p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Basic List Details using Code</h2>
+    <p>
+      Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example even has the list & details view in the same file - but usually you don't want that - so check the next examples afterwards. 
+    </p>
+    <p>
+      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @hlp.TutLink("LINQ Tutorials", "linq").
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 
 @if(!showDetails) {

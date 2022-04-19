@@ -1,82 +1,91 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
 <h2>Working with Data</h2>
-  <p>
-    If you want to work with <strong>data</strong> (like from a database) instead of <strong>@linker.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:
-  </p>
-  <ul>
-    <li>the current App, using <code>App.Data[...]</code></li>
-    <li>a query in the App, using <code>App.Query[...]</code></li>
-    <li>a SQL database - either through an <code>App.Query</code>, from a <code>DataSource</code> or from a <code>SqlReader</code></li>
-    <li>a CSV file - either through an <code>App.Query</code>, from a <code>DataSource</code> or from your own code</li>
-    <li>DNN objects like the users - either through an <code>App.Query</code>, from a <code>DataSource</code>, from DNN-objects or from your own code</li>
-    <li>a JSON or XML file - usually loaded from your own code</li>
-    <li>a WebService - usually loaded from your own code</li>
-  </ul>
-  <p>
-    Once you have the data, you will usually want to loop-and-show, which is easiest using <code>dynamic</code> objects, so you can just type things like <code>@@Content.FirstName</code> to show the properties. 
-  </p>
+<div class="row">
+  <div class="col-lg-7">
+    <p>If you want to work with <strong>data</strong> (like from a database) instead of <strong>@hlp.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:</p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+<ul>
+  <li>the current App, using <code>App.Data[...]</code></li>
+  <li>a query in the App, using <code>App.Query[...]</code></li>
+  <li>a SQL database - either through an <code>App.Query</code>, from a <code>DataSource</code> or from a <code>SqlReader</code></li>
+  <li>a CSV file - either through an <code>App.Query</code>, from a <code>DataSource</code> or from your own code</li>
+  <li>DNN objects like the users - either through an <code>App.Query</code>, from a <code>DataSource</code>, from DNN-objects or from your own code</li>
+  <li>a JSON or XML file - usually loaded from your own code</li>
+  <li>a WebService - usually loaded from your own code</li>
+</ul>
+<p>
+  Once you have the data, you will usually want to loop-and-show, which is easiest using <code>dynamic</code> objects, so you can just type things like <code>@@Content.FirstName</code> to show the properties. 
+</p>
 </trim>
 
 @* 
 <h2>Data of the current App.Data</h2>
 
 <ol>
-  @linker.TutorialLink("Data from the App using App.Data", "data210")
+  @hlp.TutorialLink("Data from the App using App.Data", "data210")
 </ol>
 
 <hr>
 <h2>Data from App.Query</h2>
 
 <ol>
-  @linker.TutorialLink("Using App.Query", "data220")
-  @linker.TutorialLink("CSV data from an App.Query", "data230")
-  @linker.TutorialLink("CSV data from an App.Query which is configured in Settings", "data231")
-  @linker.TutorialLink("SQL data from an App.Query", "data310")
-  @linker.TutorialLink("SQL data from an App.Query with Params", "data311")
-  @linker.TutorialLink("App.Query with Params - Run multiple times", "data312")
+  @hlp.TutorialLink("Using App.Query", "data220")
+  @hlp.TutorialLink("CSV data from an App.Query", "data230")
+  @hlp.TutorialLink("CSV data from an App.Query which is configured in Settings", "data231")
+  @hlp.TutorialLink("SQL data from an App.Query", "data310")
+  @hlp.TutorialLink("SQL data from an App.Query with Params", "data311")
+  @hlp.TutorialLink("App.Query with Params - Run multiple times", "data312")
 </ol>
 
 <hr>
 <h2>Data from direct SQL</h2>
 
 <ol>
-  @linker.TutorialLink("SQL data from a SQL query and DataTable", "data330")
-  @linker.TutorialLink("SQL data from a SQL query and DataReader", "data331")
+  @hlp.TutorialLink("SQL data from a SQL query and DataTable", "data330")
+  @hlp.TutorialLink("SQL data from a SQL query and DataReader", "data331")
 </ol>
 
 <hr>
 <h2>Data from DNN/DotNetNuke</h2>
 
 <ol>
-  @linker.TutorialLink("DNN data (pages/tabs) from the DNN TabController", "data510")
+  @hlp.TutorialLink("DNN data (pages/tabs) from the DNN TabController", "data510")
 </ol>
 
 <hr>
 <h2>Parent/Child a.k.a. List/Details</h2>
 
 <ol>
-  @linker.TutorialLink("List-Details with one template and code-only", "data610")
-  @linker.TutorialLink("List-Details with three templates and code-only", "data611")
-  @linker.TutorialLink("List-Details with two templates, automatic view-switching", "data620")
-  @linker.TutorialLink("List-Details with two templates, automatic view-switching and query", "data621")
+  @hlp.TutorialLink("List-Details with one template and code-only", "data610")
+  @hlp.TutorialLink("List-Details with three templates and code-only", "data611")
+  @hlp.TutorialLink("List-Details with two templates, automatic view-switching", "data620")
+  @hlp.TutorialLink("List-Details with two templates, automatic view-switching and query", "data621")
 </ol>
 
 <hr>
-<h2>Deep Dive into Content-Types (advanced ⚠) @linker.Highlighted("(new!)")</h2>
+<h2>Deep Dive into Content-Types (advanced ⚠) @hlp.Highlighted("(new!)")</h2>
 
 <ol>
-  @linker.TutorialLink("Look into a Content-Type", "data910", newText: "(new)")
+  @hlp.TutorialLink("Look into a Content-Type", "data910", newText: "(new)")
 </ol>
 
 
 <hr>
 <h2>Future Examples (pending)</h2>
 <ul class="unready">
-  @linker.TutorialLink("SQL data using PetaPoco", "data340")
+  @hlp.TutorialLink("SQL data using PetaPoco", "data340")
 </ul> *@
