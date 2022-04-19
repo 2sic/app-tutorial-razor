@@ -7,6 +7,8 @@
     To reall see the images loading they must have different names in each tutorial.
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 @functions {
   // Special helper to create the config object
@@ -18,16 +20,23 @@
 </hide>
 
 <trim>
-  <h1>Best-Possible Image for Every Screen &amp; Device</h1>
-  <h2>...using <code>img</code> and <code>srcset</code></h2>
-  <p>
-    HTML has a few ways to show an image, and you should know which way is best. Discover: 
-  </p>
-  <ol>
-    <li><code>img</code> for your standard image</li>
-    <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
-  </ol>
-
+  <div class="row">
+    <div class="col-lg-7">
+      <h1>Best-Possible Image for Every Screen &amp; Device</h1>
+      <h2>...using <code>img</code> and <code>srcset</code></h2>
+      <p>
+        HTML has a few ways to show an image, and you should know which way is best. Discover: 
+      </p>
+      <ol>
+        <li><code>img</code> for your standard image</li>
+        <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
+      </ol>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
   <div class="alert alert-info">
     These examples are optimized. 
     The browser will only load new images, if they are larger than the previous one. 

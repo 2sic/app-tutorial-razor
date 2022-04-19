@@ -3,11 +3,20 @@
 
 @{
   var persons = AsList(App.Data["Persons"]);
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
 @Html.Partial("_header.cshtml")
 
-<h2>Simple Where(...) and Any()</h2>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Simple Where(...) and Any()</h2>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 <h3>Where(FirstName == "Terry")</h3>
 <p>This filters the authors to only find Terry.</p>
 <snippet id="linq-where-simple-1">

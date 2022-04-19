@@ -2,6 +2,13 @@
 @using System.Linq;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
+<hide>
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
+</hide>
+
 @{
   var persons = AsList(App.Data["Persons"]);
   var books = AsList(App.Data["Books"]);
@@ -9,7 +16,14 @@
 
 @Html.Partial("_header.cshtml")
 
-<h2>Accessing Authors, a List inside of Books</h2>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Accessing Authors, a List inside of Books</h2>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 
 <h3>Basic Use of List book.Authors</h3>
 <p>This example shows the books, and we want to LINQ on the Authors. We must tell the compiler it's a list, so that LINQ can use <code>Select(...)</code>.</p>

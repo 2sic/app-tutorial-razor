@@ -2,6 +2,13 @@
 @using System.Linq;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
+<hide>
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+  }
+</hide>
+
 @{
   var persons = AsList(App.Data["Persons"]);
   var books = AsList(App.Data["Books"]);
@@ -9,9 +16,16 @@
 
 @Html.Partial("_header.cshtml")
 
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Count()</h2>
+    <p>Count some stuff.</p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 
-<h2>Count()</h2>
-<p>Count some stuff.</p>
 <snippet id="linq-count">
 <ol>
   <li>

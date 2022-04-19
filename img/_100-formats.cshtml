@@ -6,31 +6,41 @@
     To reall see the images loading they must have different names in each tutorial.
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
+
 </hide>
 <trim>
-  <h1>The <code>&lt;img&gt;</code> Tag and Different Image Formats</h1>
-  <p>
-    The <code>&lt;img&gt;</code> tag is used to show Images. 
-    It's important that you know the core image formats:
-  </p>
-  <ul>
-    <li><strong>JPG</strong> <br>
-      <code>.jpg</code> files are ideal for Photos, as they compress natural color gradients very well. 
-      It doesn't support transparancy, which is a problem for various use cases. 
-    </li>
-    <li><strong>PNG</strong> <br>
-      PNG is similar to <strong>GIF</strong> and is perfect for images which have areas with the exactly same color - something that's common in artificial images like Logos, but not in Photos. 
-      It also supports transparencies. Unfortunately the compression isn't so good for photos (see sample below).
-    </li>
-    <li>
-      <strong>WebP</strong> <br>
-      WebP combines and levereges the features of JPG and PNG compression. With WebP you can have lossy compression and an alpha channel. 
-      For the lossy compression which is similar to JPG, WEBP optimizes the process of DCT quantization by using prediction models 
-      and compressing it using <a href="https://en.wikipedia.org/wiki/Arithmetic_coding">Arithmetic encoding</a> instead of Huffman.
-      The alpha channel remains intact by compressing it seperatly using Huffman. 
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-lg-7">
+      <h1>The <code>&lt;img&gt;</code> Tag and Different Image Formats</h1>
+      <p>
+        The <code>&lt;img&gt;</code> tag is used to show Images. 
+        It's important that you know the core image formats:
+      </p>
+      <ul>
+        <li><strong>JPG</strong> <br>
+          <code>.jpg</code> files are ideal for Photos, as they compress natural color gradients very well. 
+          It doesn't support transparancy, which is a problem for various use cases. 
+        </li>
+        <li><strong>PNG</strong> <br>
+          PNG is similar to <strong>GIF</strong> and is perfect for images which have areas with the exactly same color - something that's common in artificial images like Logos, but not in Photos. 
+          It also supports transparencies. Unfortunately the compression isn't so good for photos (see sample below).
+        </li>
+        <li>
+          <strong>WebP</strong> <br>
+          WebP combines and levereges the features of JPG and PNG compression. With WebP you can have lossy compression and an alpha channel. 
+          For the lossy compression which is similar to JPG, WEBP optimizes the process of DCT quantization by using prediction models 
+          and compressing it using <a href="https://en.wikipedia.org/wiki/Arithmetic_coding">Arithmetic encoding</a> instead of Huffman.
+          The alpha channel remains intact by compressing it seperatly using Huffman. 
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 </trim>
 
 <trim>

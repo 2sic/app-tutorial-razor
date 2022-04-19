@@ -4,15 +4,24 @@
 @{
   var imgUrl = App.Path + "/img/assets/demo1.png";
   var imgUrl2 = App.Path + "/img/assets/demo2.png";
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 
 <trim>
-  <h2>Resize with Reusable Settings</h2>
-  <p>
-    If you want to specify resize-rules many times, you will usually want the configuration as a <strong>bundle</strong> to use multiple times. 
-    The following examples show how to do this.
-  </p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Resize with Reusable Settings</h2>
+    <p>
+      If you want to specify resize-rules many times, you will usually want the configuration as a <strong>bundle</strong> to use multiple times. 
+      The following examples show how to do this.
+    </p>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 
   <h3>Basic Bundle of Settings (Height, Width and ResizeMode Crop)</h3>

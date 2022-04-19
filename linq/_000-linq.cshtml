@@ -1,17 +1,27 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
-<p>
-  Learn how to leverage LINQ (Language Integrated Query) of C# to sort, filter, group content-items. This demo uses the following data in app:
-</p>
-<ul>
-  <li><strong>Persons</strong> - various people who are used in the data. A person can also have one or many favorite books. </li>
-  <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
-</ul>
+<div class="row">
+  <div class="col-lg-7">
+    <p>
+      Learn how to leverage LINQ (Language Integrated Query) of C# to sort, filter, group content-items. This demo uses the following data in app:
+    </p>
+    <ul>
+      <li><strong>Persons</strong> - various people who are used in the data. A person can also have one or many favorite books. </li>
+      <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
+    </ul>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 
 <h2>Some notes before we start</h2>
 <p>
@@ -37,24 +47,16 @@
 <h2>LINQ Examples</h2>
 
 <ol>
-  @linker.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
-  @linker.TutorialLink("Get First() / Last() item in a list", "linq106")
-  @linker.TutorialLink("Take() / Skip() items in a list", "linq107")
-  @linker.TutorialLink("Count() items in a list", "linq108")
+  @hlp.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
+  @hlp.TutorialLink("Get First() / Last() item in a list", "linq106")
+  @hlp.TutorialLink("Take() / Skip() items in a list", "linq107")
+  @hlp.TutorialLink("Count() items in a list", "linq108")
 
-  @linker.TutorialLink("Basic sorting of lists", "linq120")
+  @hlp.TutorialLink("Basic sorting of lists", "linq120")
 
-  @linker.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
-  @linker.TutorialLink("Group books by authors in 3 ways", "linq220")
-  @linker.TutorialLink("Access a list in list in list", "linq230")
+  @hlp.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
+  @hlp.TutorialLink("Group books by authors in 3 ways", "linq220")
+  @hlp.TutorialLink("Access a list in list in list", "linq230")
 
-  @linker.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
+  @hlp.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
 </ol> *@
-
-<hr>
-<h2>More Information around LINQ</h2>
-<ol>
-  @linker.LiExtLink("https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/", "LINQ Manual from Microsoft")
-  @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq-guide", "LINQ guide to working with dynamic things in C# in the 2sxc wiki")
-  @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-query-linq", "Using LINQ with 2sxc from the wiki")
-</ol>

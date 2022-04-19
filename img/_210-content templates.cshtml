@@ -4,20 +4,29 @@
 </hide>
 @{
   var imgUrl = App.Path + "/settings/demo.png";
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
 <trim>
-  <h2>Resize using Presets and Global Settings</h2>
-  <p>
-    The following examples use predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
-    We'll use <code>Settings.Images.Content</code> which has the following configuration:
-  </p>
-  <ol>
-    <li>Width: @Settings.Images.Content.Width</li>
-    <li>Height: @Settings.Images.Content.Height</li>
-    <li>AspectRatio: @Settings.Images.Content.AspectRatio</li>
-    <li>Quality: @Settings.Images.Content.Quality</li>
-  </ol>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Resize using Presets and Global Settings</h2>
+    <p>
+      The following examples use predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
+      We'll use <code>Settings.Images.Content</code> which has the following configuration:
+    </p>
+    <ol>
+      <li>Width: @Settings.Images.Content.Width</li>
+      <li>Height: @Settings.Images.Content.Height</li>
+      <li>AspectRatio: @Settings.Images.Content.AspectRatio</li>
+      <li>Quality: @Settings.Images.Content.Quality</li>
+    </ol>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 </trim>
 
 <snippet id="content-settings">
