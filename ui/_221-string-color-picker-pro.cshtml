@@ -3,24 +3,30 @@
 @Html.Partial("_header.cshtml")
 @{
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
-<h2>2sxc Custom Color-Picker Input Field - Configurable</h2>
-<div class="alert alert-info">
-
-<p>
-  Input fields may expect some configuration - like default colors or WebApi endpoints. To enable such a configuration, we need a Content-Type which defines all the fields that can be configured. This can be in the app-data, or it can be stored in a subfolder of the field-extension, to make redestribution easier. <br>
-  This example contains the json-exported content-type in the folder <code>/system/field-string-app-color-pickr-pro/.data/contenttypes/</code> so you could just copy the extension folder to another app and use it from there. 
-</p>
-<p>So in this tutorial you'll learn how to:</p>
-<ul>
-  <li>To see how the UI changes based on field configuration</li>
-  <li>How to access such pre-configured settings with <code>connector.field.settings</code></li>
-  <li>The Content-Type for configuration is included in the extension folder</li>
-</ul>
+<div class="row mb-2">
+  <div class="col-lg-7">
+    <h2>2sxc Custom Color-Picker Input Field - Configurable</h2>
+    <p>
+      Input fields may expect some configuration - like default colors or WebApi endpoints. To enable such a configuration, we need a Content-Type which defines all the fields that can be configured. This can be in the app-data, or it can be stored in a subfolder of the field-extension, to make redestribution easier. <br>
+      This example contains the json-exported content-type in the folder <code>/system/field-string-app-color-pickr-pro/.data/contenttypes/</code> so you could just copy the extension folder to another app and use it from there. 
+    </p>
+    <p>So in this tutorial you'll learn how to:</p>
+    <ul>
+      <li>To see how the UI changes based on field configuration</li>
+      <li>How to access such pre-configured settings with <code>connector.field.settings</code></li>
+      <li>The Content-Type for configuration is included in the extension folder</li>
+    </ul>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
 </div>
 
-<hr>
 </hide>
 
 <h2>Configurable Color-Picker Input Field</h2>

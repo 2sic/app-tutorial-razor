@@ -3,23 +3,31 @@
 @Html.Partial("_header.cshtml")
 @{
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
-<h2>2sxc Custom Color-Picker Input Field</h2>
-<div class="alert alert-info">
-  <p>
-    2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
-    This example shows a color picker using <a href="https://simonwep.github.io/pickr/" target="_blank">Pickr</a>, a cool JS library. 
-  </p>
-  <p>You can learn how to:</p>
-  <ul>
-    <li>Use <code>connector.loadScript(...)</code> to load a js library</li>
-    <li>Use <code>connector.data</code> to get the <code>value</code> and update it</li>
-    <li>How to only update the data if you really change it (so users can cancel the dialog without being asked)</li>
-    <li>How to save <code>null</code> to explicitly not save or reset a value</li>
-    <li>Use <code>disconnectedCallback()</code> to destroy inner objects</li>
-  </ul>
+<div class="row mb-2">
+  <div class="col-lg-7">
+    <h2>2sxc Custom Color-Picker Input Field</h2>
+    <p>
+      2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
+      This example shows a color picker using <a href="https://simonwep.github.io/pickr/" target="_blank">Pickr</a>, a cool JS library. 
+    </p>
+    <p>You can learn how to:</p>
+    <ul>
+      <li>Use <code>connector.loadScript(...)</code> to load a js library</li>
+      <li>Use <code>connector.data</code> to get the <code>value</code> and update it</li>
+      <li>How to only update the data if you really change it (so users can cancel the dialog without being asked)</li>
+      <li>How to save <code>null</code> to explicitly not save or reset a value</li>
+      <li>Use <code>disconnectedCallback()</code> to destroy inner objects</li>
+    </ul>
   </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
 <hr>
 </hide>
 

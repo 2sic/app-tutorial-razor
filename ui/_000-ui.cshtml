@@ -1,29 +1,39 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
 
-<h2>Toolbar Customization</h2>
-@* <div class="alert alert-info">
-  <p>
-    These examples use the simple API provided in 2sxc 11. 
-  </p>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Toolbar Customization</h2>
+    @* <div class="alert alert-info">
+      <p>
+        These examples use the simple API provided in 2sxc 11. 
+      </p>
+    </div>
+    <ol>
+      @hlp.TutorialLink("Customize Toolbars", "ui100", "All kinds of features to customize how the toolbar looks, buttons, colors and more.")
+      @hlp.TutorialLink("Customize Toolbars Workflows", "ui130", "Learn how to work with the client-side workflows to customize when/how buttons behave.", "(new ⭐)")
+      @hlp.TutorialLink("Call Toolbars Commands from JavaScript", "ui160", "Use $2sxc.cms.run to call toolbar commands from your JavaScript", "(new ⭐)")
+    </ol> *@
+    <br>
+    <h4>More Information around Customizing the Edit UX</h4>
+    <ol>
+      @hlp.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html", "2sxc Docs showing how to customize the toolbar")
+      @hlp.LiExtLink("https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html", "2sxc Docs showing specs for customizing the toolbar")
+      @hlp.LiExtLink("https://docs.2sxc.org/specs/js/commands.html", "List of commands (button-names)")
+    </ol>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
 </div>
-<ol>
-  @linker.TutorialLink("Customize Toolbars", "ui100", "All kinds of features to customize how the toolbar looks, buttons, colors and more.")
-  @linker.TutorialLink("Customize Toolbars Workflows", "ui130", "Learn how to work with the client-side workflows to customize when/how buttons behave.", "(new ⭐)")
-  @linker.TutorialLink("Call Toolbars Commands from JavaScript", "ui160", "Use $2sxc.cms.run to call toolbar commands from your JavaScript", "(new ⭐)")
-</ol> *@
-<br>
-<h4>More Information around Customizing the Edit UX</h4>
-<ol>
-  @linker.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html", "2sxc Docs showing how to customize the toolbar")
-  @linker.LiExtLink("https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html", "2sxc Docs showing specs for customizing the toolbar")
-  @linker.LiExtLink("https://docs.2sxc.org/specs/js/commands.html", "List of commands (button-names)")
-</ol>
 
 <hr>
 
@@ -35,18 +45,18 @@
   </p>
 </div>
 <ol>
-  @linker.TutorialLink("Basic HelloWorld Input Field", "ui201", "", "(new)")
-  @linker.TutorialLink("Custom Color Picker using Pickr", "ui211", "", "(new)")
-  @linker.TutorialLink("Configurable Color Picker", "ui221", "", "(new)")
-  @linker.TutorialLink("Custom lightweight WYSIWYG (4 buttons)", "ui241", "", "(new)")
-  @linker.TutorialLink("Custom WYSIWYG with 1 additional button, multi-language", "ui242", "", "(new)")
+  @hlp.TutorialLink("Basic HelloWorld Input Field", "ui201", "", "(new)")
+  @hlp.TutorialLink("Custom Color Picker using Pickr", "ui211", "", "(new)")
+  @hlp.TutorialLink("Configurable Color Picker", "ui221", "", "(new)")
+  @hlp.TutorialLink("Custom lightweight WYSIWYG (4 buttons)", "ui241", "", "(new)")
+  @hlp.TutorialLink("Custom WYSIWYG with 1 additional button, multi-language", "ui242", "", "(new)")
 </ol> *@
 
 <br>
 <h4>More Information around Customizing the Edit UX</h4>
 <ol>
-  @linker.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/input-fields.html", "How-To Docs for Custom Input Fields")
-  @linker.LiExtLink("https://docs.2sxc.org/specs/form/index.html", "Specs for Field Customization")
-  @linker.LiExtLink("https://docs.2sxc.org/specs/form/field-wysiwyg.html", "Specs for WYSIWYG customization")
+  @hlp.LiExtLink("https://docs.2sxc.org/how-to/customize-edit-ux/input-fields.html", "How-To Docs for Custom Input Fields")
+  @hlp.LiExtLink("https://docs.2sxc.org/specs/form/index.html", "Specs for Field Customization")
+  @hlp.LiExtLink("https://docs.2sxc.org/specs/form/field-wysiwyg.html", "Specs for WYSIWYG customization")
 </ol>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
