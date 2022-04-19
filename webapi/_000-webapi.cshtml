@@ -1,34 +1,33 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
-<p>
-  Learn how to create and use <strong>WebApi</strong> to provide data to JavaScript SPA apps. 
-</p>
+  <div class="row">
+    <div class="col-lg-7">
+      <p>
+        Learn how to create and use <strong>WebApi</strong> to provide data to JavaScript SPA apps. 
+      </p>
 
-<h2>Some notes before we start</h2>
-<p>
-  WebApi is not directly razor, as it's not meant to actualy render HTML. It's coded using C# just like razor, 
-  but won't have commands like <code>@@Html.Raw(...)</code>. Since it's the best way to communicate from the server with your JavaScript apps, we've included the basics in this tutorial. 
-</p>
-<p>
-  Our examples use very trivial JavaScript code to call the API and show the results. Your SPA apps will usually be more sophisticated, but that would then be a topic for a JavaScript tutorial. 
-</p>
+      <h2>Some notes before we start</h2>
+      <p>
+        WebApi is not directly razor, as it's not meant to actualy render HTML. It's coded using C# just like razor, 
+        but won't have commands like <code>@@Html.Raw(...)</code>. Since it's the best way to communicate from the server with your JavaScript apps, we've included the basics in this tutorial. 
+      </p>
+      <p>
+        Our examples use very trivial JavaScript code to call the API and show the results. Your SPA apps will usually be more sophisticated, but that would then be a topic for a JavaScript tutorial. 
+      </p>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 </trim>
-
-<hr>
-<h2>More Information around WebApi</h2>
-<ol>
-  @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/dotnet-webapi", "C# Web API in the 2sxc Wiki")
-  <li>For using the JavaScript 
-    <ul>
-      @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/JavaScript-$2sxc", "Include the $2sxc so API paths are automatically resolved.")
-      @linker.LiExtLink("https://github.com/2sic/2sxc/wiki/webapi", "Standard REST endpoints to read/write without creating custom APIs.")
-    </ul>
-  </li>
-</ol>
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")

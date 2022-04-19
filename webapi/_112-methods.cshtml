@@ -6,18 +6,30 @@
 }
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
-<h2>Very basic WebApi Examples</h2>
-<p>
-  In this example, we'll assume your WebApi controller is called <code>Orders</code> (so the file is called <code>OrdersController.cs</code> and has a class called <code>OrdersController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. <br>
-  We'll show various usages of the http methods with the new <code>webApi.fetch(...)</code>
-</p>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Very basic WebApi Examples</h2>
+      <p>
+        In this example, we'll assume your WebApi controller is called <code>Orders</code> (so the file is called <code>OrdersController.cs</code> and has a class called <code>OrdersController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. <br>
+        We'll show various usages of the http methods with the new <code>webApi.fetch(...)</code>
+      </p>
 
-<p>
-  Click to see the result of a WebApi call with the shared code:  
-</p>
+      <p>
+        Click to see the result of a WebApi call with the shared code:  
+      </p>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 </trim>
 
 

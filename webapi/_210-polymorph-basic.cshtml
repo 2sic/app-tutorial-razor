@@ -6,23 +6,35 @@
 }
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
-<h2>WebApi with Polymorph Editions</h2>
-<p>
-  You often need to make changes on a live site (open-heart-surgery) without affecting the users. For this, you should have two copies of the API Controller - one live, and one staging. This is done by doing the following: 
-</p>
-<ol>
-  <li>Place the live, tested controller in <code>/live/api/</code> and make sure your JavaScript accesses this</li>
-  <li>Place a copy in <code>/staging/api/</code> or something similar (you can use other path names as well) and make your development JavaScript access that endpoint</li>
-  <li>Then you can develop without hurting the live output.</li>
-  <li>Once it's stable, you then deploy by copying the new controller to <code>/live/api/</code></li>
-</ol>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>WebApi with Polymorph Editions</h2>
+      <p>
+        You often need to make changes on a live site (open-heart-surgery) without affecting the users. For this, you should have two copies of the API Controller - one live, and one staging. This is done by doing the following: 
+      </p>
+      <ol>
+        <li>Place the live, tested controller in <code>/live/api/</code> and make sure your JavaScript accesses this</li>
+        <li>Place a copy in <code>/staging/api/</code> or something similar (you can use other path names as well) and make your development JavaScript access that endpoint</li>
+        <li>Then you can develop without hurting the live output.</li>
+        <li>Once it's stable, you then deploy by copying the new controller to <code>/live/api/</code></li>
+      </ol>
 
-<p>
-  Click to see the result of the two calls, one to live, one to staging:
-</p>
+      <p>
+        Click to see the result of the two calls, one to live, one to staging:
+      </p>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 </trim>
 <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
   Get Hello from live
