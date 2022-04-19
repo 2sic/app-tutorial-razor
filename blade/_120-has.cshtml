@@ -4,26 +4,31 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
-  <p>
-      These demos show how to really check if a variable has text using Text.Has. This combines checks for...
-  </p>
-  <ul>
-    <li>null</li>
-    <li>empty</li>
-    <li>only html-nbsp</li>
-    <li>only html character #160 (also nbsp)</li>
-    <li>only new-line</li>
-  </ul>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
+      <p>
+        These demos show how to really check if a variable has text using Text.Has. This combines checks for...
+      </p>
+      <ul>
+        <li>null</li>
+        <li>empty</li>
+        <li>only html-nbsp</li>
+        <li>only html character #160 (also nbsp)</li>
+        <li>only new-line</li>
+      </ul>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
 
-  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
-    "Text.Has(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Has_System_Object_System_Boolean_",
-  }})
-
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-success mt-2" role="alert">
     Note that these examples use @hlp.TutLink("functions", "reuse=home"),  @hlp.TutLink("emojis", "html210") and @hlp.TutLink("RazorBlade Fluent API", "blade800") so click on the links if you don't understand that.
   </div>
 </trim>

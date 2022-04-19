@@ -2,23 +2,35 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> <code>Id</code>, <code>Title</code>, <code>Class(...)</code> and <code>Style(...)</code> with SmartJoin</h2>
-  <p>
-    All html attributes can have the properties
-    <code>id</code>,
-    <code>class</code>,
-    <code>style</code> and
-    <code>title</code>. 
-    So <code>Tag</code> objects have quick commands to set these. What makes it magical is that they always return the main object again, so you can chain them like <br>
-    <code>@@Tag.Div().Id("wrapper").Class("alert").Class("alert-primary)</code> <br>
-    <em>Note that some of these, like <code>Id</code> will replace the previous value, while others like <code>Class</code> will add new values to the attribute.</em>
-</p>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> <code>Id</code>, <code>Title</code>, <code>Class(...)</code> and <code>Style(...)</code> with SmartJoin</h2>
+      <p>
+        All html attributes can have the properties
+        <code>id</code>,
+        <code>class</code>,
+        <code>style</code> and
+        <code>title</code>. 
+        So <code>Tag</code> objects have quick commands to set these. What makes it magical is that they always return the main object again, so you can chain them like <br>
+        <code>@@Tag.Div().Id("wrapper").Class("alert").Class("alert-primary)</code> <br>
+        <em>Note that some of these, like <code>Id</code> will replace the previous value, while others like <code>Class</code> will add new values to the attribute.</em>
+      </p>
 
-  <p>
-    Imagine your code will add attributes step by step by using some kind of logic. In situations where you add more classes, they should be appended - like <code>firstClass secondClass</code>. Others should be appended with a special character like <code>;</code> in styles because you want <code>width: 75px; height: 25px</code>. And others should replace the previous value - like <code>id</code> should always only have one value. 
-  </p>
+      <p>
+        Imagine your code will add attributes step by step by using some kind of logic. In situations where you add more classes, they should be appended - like <code>firstClass secondClass</code>. Others should be appended with a special character like <code>;</code> in styles because you want <code>width: 75px; height: 25px</code>. And others should replace the previous value - like <code>id</code> should always only have one value. 
+      </p>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
   <h3>
     RazorBlade Attributes are super-smart...
   </h3>

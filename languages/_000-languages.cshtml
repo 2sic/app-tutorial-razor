@@ -2,22 +2,34 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 
 <trim>
-  
-<h2>Going all Multilanguage / i18n</h2>
-<p>
-  Everything in 2sxc is multi-language right from the start. It's important to understand that every field in 2sxc can be translated or not - and the lookup happens automatically. So the following examples will automatically show the correct value based on the language you're on. 
-</p>
-<p>
-  There are two important types of multi-language:
-</p>
-<ol>
-  <li>Multi-Language Resources - like messages / button labels etc.</li>
-  <li>Multi-Language Content - things the content editor will work with</li>
-</ol>
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Going all Multilanguage / i18n</h2>
+    <p>
+      Everything in 2sxc is multi-language right from the start. It's important to understand that every field in 2sxc can be translated or not - and the lookup happens automatically. So the following examples will automatically show the correct value based on the language you're on. 
+    </p>
+    <p>
+      There are two important types of multi-language:
+    </p>
+    <ol>
+      <li>Multi-Language Resources - like messages / button labels etc.</li>
+      <li>Multi-Language Content - things the content editor will work with</li>
+    </ol>
+  </div>
+  <div class="col-lg-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
 <div class="alert alert-warning">
   If you installed the Tutorial App on your system these examples may not work. 
   That's because Dnn / 2sxc must be have DE and EN activated <em>before</em> installing the tutorial app.

@@ -2,12 +2,24 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Basic Html5 <code>Tag</code> API Introduction <em>v3.0</em></h2>
-  <p>
-    This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
-  </p>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Basic Html5 <code>Tag</code> API Introduction <em>v3.0</em></h2>
+      <p>
+        This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
+      </p>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
   <h3>Basic Principles</h3>
   <ol>
     <li>

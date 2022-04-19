@@ -6,17 +6,24 @@
 @{
   // 2sxclint:disable:no-razorblade-htmlpage
   var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> add Open-Graph Headers</h2>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> add Open-Graph Headers</h2>
+      @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+      <div>
+        This page sets various open-graph headers. 
 
-  @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
-
-  <div>
-    This page sets various open-graph headers. 
-
-    Look at the resulting output-source to see the effect. 
+        Look at the resulting output-source to see the effect. 
+      </div>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
   </div>
 </trim>
 

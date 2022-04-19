@@ -2,20 +2,28 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Fluent Tag API <code>TagStart</code>/<code>TagEnd</code> <em>v3</em></h2>
-  <div>
-    A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Fluent Tag API <code>TagStart</code>/<code>TagEnd</code> <em>v3</em></h2>
+      <div>
+        A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
+      </div>
+      <hr>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
   </div>
-  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
-    ".TagStart", "https://razor-blade.net/api/ToSic.Razor.Markup.TagBase.html#ToSic_Razor_Markup_TagBase_TagStart",
-    ".TagEnd", "https://razor-blade.net/api/ToSic.Razor.Markup.TagBase.html#ToSic_Razor_Markup_TagBase_TagEnd", 
-  }})
-  <hr>
-  <h3>The result</h3>
 </trim>
 
+<h3>The result</h3>
 @{
   var successBox = Tag.Div().Class("alert alert-success");
 }

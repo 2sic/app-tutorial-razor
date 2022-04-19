@@ -2,17 +2,24 @@
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 <trim>
-  <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Picture()</code> with many sources <em>v3</em></h2>
-  <div>
-    <code>picture</code> tags are the future of <code>img</code> tags. But it can be messy to create them, so here goes 😉. 
-    This example will return a small image if your screen is small, a large one otherwise. Try resizing the width of your browser to test. The image will become blurry if the browser is less than 800px wide.
-
-  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
-    "Picture()", "https://razor-blade.net/api/ToSic.Razor.Html5.Picture.html",
-    "Source()", "https://razor-blade.net/api/ToSic.Razor.Html5.Source.html", 
-  }})
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Picture()</code> with many sources <em>v3</em></h2>
+      <div>
+        <code>picture</code> tags are the future of <code>img</code> tags. But it can be messy to create them, so here goes 😉. 
+        This example will return a small image if your screen is small, a large one otherwise. Try resizing the width of your browser to test. The image will become blurry if the browser is less than 800px wide.
+      </div>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
   </div>
 </trim>
 <hr>

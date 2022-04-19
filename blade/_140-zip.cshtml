@@ -1,6 +1,10 @@
 @inherits Custom.Hybrid.Razor12
 <hide>
 @Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
 </hide>
 @using ToSic.Razor.Blade;
 @{
@@ -10,19 +14,25 @@
   };
 }
 <trim>
-  <h2><em>RazorBlade</em> Text.Zip(...) <em>v1.1</em></h2>
-  <p>
-    These demos show how to Zip (clean/compress) text properly, because Razor Blade handles a lot of issues you'll usually have cleaning up text. Scenarios might be:
-  </p>
-  <ul>
-    <li>Multi-line text</li>
-    <li>Cleane-up html, which may have more spaces and line-breaks than expected</li>
-    <li>Just any text pasted from somewhere, which could even contain surprise white-space</li>
-  </ul>
 
-  @Html.Partial("_api-docs.cshtml", new { Links = new string[] { 
-    "Text.Zip(...)", "https://razor-blade.net/api/ToSic.Razor.Blade.Text.html#ToSic_Razor_Blade_Text_Zip_System_String_", 
-  }})
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Text.Zip(...) <em>v1.1</em></h2>
+      <p>
+        These demos show how to Zip (clean/compress) text properly, because Razor Blade handles a lot of issues you'll usually have cleaning up text. Scenarios might be:
+      </p>
+      <ul>
+        <li>Multi-line text</li>
+        <li>Cleane-up html, which may have more spaces and line-breaks than expected</li>
+        <li>Just any text pasted from somewhere, which could even contain surprise white-space</li>
+      </ul>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
+
 
   <h2>Example Text</h2>
   <div>
