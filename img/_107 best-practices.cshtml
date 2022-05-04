@@ -1,0 +1,135 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Sxc.Services;
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  /* Internal remarks for the tutorial developers
+    To really see the images loading they must have different names in each tutorial.
+    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
+  */
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+}
+@functions {
+  // Special helper to create the config object
+  // Will also replace common things in the src-set
+  object PictureTagPreview(object tag, int size) {
+    return new {
+      Path,
+      Result = tag.ToString()
+        .Replace(">", ">\n")
+        .Replace(",", ",\n")
+        .Replace(" alt=", "\nalt="),
+     Size = size
+    };
+  }
+}
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Best practices using the Image Service</h2>
+      <p>Learn about the best practices for using the image service and more.</p>
+    </div>
+    <div class="col-lg-5">
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+    </div>
+  </div>
+</trim>
+
+<h2>Provide the image instead of the URL</h2>
+<p>
+  Previously URLS were passed for creating picture tags. 
+  The new standard is to pass images as an object using the <code>.Field("YourImageProperty")</code> Method.
+  <br>
+  The advantage is, that specified image metadata such as the "CropAnchor" or "alt" text will be included into the generation process. 
+  <br><br>
+  Below you will find an example:
+</p>
+
+<hide>
+  @{
+    var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  }
+</hide>
+<snippet id="image-object">
+@{
+  var imgSvc = GetService<IImageService>();
+
+  var imageUrl = Content.Image; 
+  // Should include crop anchor "bottomleft" and alt text
+  var imageField = Content.Field("Image"); 
+}
+
+<div class="row">
+  <div class="col-md">
+    <p><strong>ImageUrl:</strong></p>
+    @imgSvc.Picture(imageUrl, settings: imgSvc.Settings(width: 400, height: 200))
+  </div>
+  <div class="col-md">
+    <p><strong>ImageField containing CropAnchor and alt text:</strong></p>
+    @imgSvc.Picture(imageField, settings: imgSvc.Settings(width: 400, height: 200))
+  </div>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-object", Size = 400 }) 
+
+<h6>This generates:</h6>
+@{ var previewTag = imgSvc.Picture(imageField); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+</hide-silent>
+
+<br>
+
+<h2>Choose the optimal alt text</h2>
+<p>
+  Now it is possible to define an alt text over the image settings through the 2sxc UI.
+  The picture tag will then apply the alt text automatically, if passed as object.
+  <br>
+  Preferably the alt text specified in those settings has priority over other texts which can be used as fallback.
+  We can create a fallback by using the <code>Text.First</code> Method from Razor Blade. 
+  <br><br>
+  Below you will find an example:
+</p>
+
+<hide>
+  @{
+    Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  }
+</hide>
+<snippet id="image-alt-text">
+@{
+  imgSvc = GetService<IImageService>();
+
+  var fallbackAltText = "Fallback";
+
+  var imageFieldWithAltText = Content.Field("Image"); 
+  var optimalAltText = Text.First(imageFieldWithAltText.Metadata.Description, fallbackAltText);
+}
+<div>
+  <p><strong>Image with optimal alt text (@optimalAltText):</strong></p>
+  @imgSvc.Picture(imageFieldWithAltText, imgAlt: optimalAltText)
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-alt-text", Size = 300 }) 
+
+<h6>This generates:</h6>
+@{ previewTag = imgSvc.Picture(imageField); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+
+  @Html.Partial("../shared/_source-code.cshtml", new { 
+    Path,
+    Size = 1500
+  }) 
+</hide>
