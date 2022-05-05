@@ -20,6 +20,7 @@
       Result = tag.ToString()
         .Replace(">", ">\n")
         .Replace(",", ",\n")
+        .Replace("' ", "' \n")
         .Replace(" alt=", "\nalt="),
      Size = size
     };
@@ -31,7 +32,12 @@
   <div class="row">
     <div class="col-lg-7">
       <h2>Best practices using the Image Service</h2>
-      <p>Learn about the best practices for using the image service and more.</p>
+      <p>Learn about the best practices for using the image service and more. Our goals are:</p>
+      <ol>
+        <li>Make sure every image is perfectly sized as needed</li>
+        <li>Multiple sizes are provided for various use cases</li>
+        <li>Labels and configs made by the editor (for example, setting a priority corner) are respected by the resizer</li>
+      </ol>
     </div>
     <div class="col-lg-5">
       @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
@@ -40,36 +46,30 @@
   </div>
 </trim>
 
-
-<h2>Create image tags out of URLs</h2>
+<h2>Preparation</h2>
 <p>
-  As learned in the previous tutorials the image tag can be created out of URLs.
-  <br><br>
-  Below you will find an example:
+  All the following examples use the <a href="https://docs.2sxc.org/api/dot-net/ToSic.Sxc.Services.IImageService.html" target="_blank">Image Service</a>.
+  So to make this work, something like the following code will be at the beginning of most Razor files:
 </p>
 
-<snippet id="image-url">
-  @{
-    var imgSvc = GetService<IImageService>();
-  }
-
-  <p><strong>Picture from URL:</strong></p>
-  @imgSvc.Img(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
+<snippet id="prepare-image-service">
+@using ToSic.Sxc.Services;
+@{
+  var imgSvc = GetService<IImageService>();
+}
 </snippet>
 <hide-silent> @* Show only this snippet *@
-
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-url", Size = 150 }) 
-
-<h6>This generates:</h6>
-@{ var previewTag = imgSvc.Img(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "prepare-image-service", Size = 100 }) 
 </hide-silent>
 
-
-
-<h2>Create image tags out of image objects</h2>
+<h2>Image object VS URL in <code>img</code> tag</h2>
 <p>
-  Image objects differ from URLS by including additional properties such as an alt text and crop anchor. 
+  As learned in the previous tutorials the <code>img</code> tag can be created out of URLs.
+  The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the description or what part of the picture is important (the Crop-Anchor).
+  <br><br>
+  To get the most out of 2sxc and its image configuration options 
+  it's best to use the image object instead of URLs. By using the image configuration options,
+  the settings can be easily retrieved from the corresponding image.
   <br><br>
   Below you will find an example:
 </p>
@@ -79,89 +79,49 @@
     var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
   }
 </hide>
-<snippet id="image-from-object">
-@{
-  imgSvc = GetService<IImageService>();
-}
+<div class="row">
+  <div class="col-md">
 
-<p><strong>Image from <code>Content.Image</code> containing crop anchor and alt text:</strong></p>
-@imgSvc.Img(Content.Field("Image"))
+    <p><strong>Picture from <code>Content.Image</code>:</strong></p>
+    <snippet id="img-url">
+      @* Picture from Content.Image *@
+      @imgSvc.Img(Content.Image)
+    </snippet>
 
-</snippet>
+  </div>
+  <div class="col-md">
+
+    <p><strong>Picture from <code>Field</code> containing crop anchor and alt text:</strong></p>
+    <snippet id="img-object">
+      @* Picture from Field containing crop anchor and alt text *@
+      @imgSvc.Img(Content.Field("Image"))
+    </snippet>
+
+  </div>
+</div>
+
 <hide-silent> @* Show only this snippet *@
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-from-object", Size = 170 }) 
 
+@{ var previewUrlTag = imgSvc.Img(Content.Image); }
+@{ var previewFieldTag = imgSvc.Img(Content.Field("Image")); }
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-url", Size = 50 }) 
 <h6>This generates:</h6>
-@{ previewTag = imgSvc.Img(Content.Field("Image")); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewUrlTag, 300))
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-object", Size = 50 }) 
+<h6>This generates:</h6>
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewFieldTag, 300))
 </hide-silent>
 
 
 
-
-<h2>Create picture tags out of image URLs</h2>
+<h2>Image object VS URL in <code>picture</code> tag</h2>
 <p>
-  As learned in the previous tutorials the picture tag can be created out of URLs.
+  As learned in the previous tutorials the <code>picture</code> tag can be created out of URLs.
+  The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the description or what part of the picture is important (the Crop-Anchor).
   <br><br>
-  Below you will find an example:
-</p>
-
-<snippet id="picture-url">
-  @{
-    imgSvc = GetService<IImageService>();
-  }
-
-  <p><strong>Picture from URL:</strong></p>
-  @imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
-</snippet>
-<hide-silent> @* Show only this snippet *@
-
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 150 }) 
-
-<h6>This generates:</h6>
-@{ previewTag = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
-</hide-silent>
-
-
-
-
-<h2>Create picture tags out of image objects</h2>
-<p>
-  Image objects differ from URLs by including additional properties such as an alt text and image description. 
-  <br><br>
-  Below you will find an example:
-</p>
-
-<hide>
-  @{
-    Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
-  }
-</hide>
-<snippet id="picture-from-object">
-@{
-  imgSvc = GetService<IImageService>();
-}
-
-<p><strong>Image from <code>Content.Image</code> containing crop anchor and alt text:</strong></p>
-@imgSvc.Picture(Content.Field("Image"))
-
-</snippet>
-<hide-silent> @* Show only this snippet *@
-
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-from-object", Size = 170 }) 
-
-<h6>This generates:</h6>
-@{ previewTag = imgSvc.Picture(Content.Field("Image")); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
-</hide-silent>
-
-
-
-
-<h2>Provide the image object instead of the URL</h2>
-<p>
   To get the most out of 2sxc and its image configuration options 
   it's best to use the image object instead of URLs. By using the image configuration options,
   the settings can be easily retrieved from the corresponding image.
@@ -174,36 +134,41 @@
     Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
   }
 </hide>
-<snippet id="image-object">
-@{
-  imgSvc = GetService<IImageService>();
-}
-
 <div class="row">
   <div class="col-md">
 
     <p><strong>Picture from <code>Content.Image</code>:</strong></p>
-    @imgSvc.Picture(Content.Image)
+    <snippet id="picture-url">
+      @* Picture from Content.Image *@
+      @imgSvc.Picture(Content.Image)
+    </snippet>
 
   </div>
   <div class="col-md">
 
     <p><strong>Picture from <code>Field</code> containing crop anchor and alt text:</strong></p>
-    @imgSvc.Picture(Content.Field("Image"))
+    <snippet id="picture-object">
+      @* Picture from Field containing crop anchor and alt text *@
+      @imgSvc.Picture(Content.Field("Image"))
+    </snippet>
 
   </div>
 </div>
 
-</snippet>
 <hide-silent> @* Show only this snippet *@
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-object", Size = 400 }) 
 
+@{ previewUrlTag = imgSvc.Img(Content.Image); }
+@{ previewFieldTag = imgSvc.Img(Content.Field("Image")); }
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 50 }) 
 <h6>This generates:</h6>
-@{ previewTag = imgSvc.Picture(Content.Field("Image")); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
-</hide-silent>
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewUrlTag, 300))
 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-object", Size = 50 }) 
+<h6>This generates:</h6>
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewFieldTag, 300))
+</hide-silent>
 
 
 
@@ -227,8 +192,6 @@
 </hide>
 <snippet id="image-alt-text">
 @{
-  imgSvc = GetService<IImageService>();
-
   var fallbackAltText = "Fallback";
 
   var imageFieldWithAltText = Content.Field("Image"); 
@@ -241,10 +204,10 @@
 </snippet>
 <hide-silent> @* Show only this snippet *@
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-alt-text", Size = 300 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-alt-text", Size = 250 }) 
 
 <h6>This generates:</h6>
-@{ previewTag = imgSvc.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
+@{ var previewTag = imgSvc.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
 </hide-silent>
 
