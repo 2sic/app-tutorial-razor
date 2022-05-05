@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.10.00" ExportDate="2022-05-05T15:45:14.6298489+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.10.00" ExportDate="2022-05-05T15:54:56.0423202+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -16574,7 +16574,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="db62778f-b817-4b20-9c87-936cd1047f66" AttributeSetName="ImgDemoData" EntityGUID="fcabe4d5-c938-4f9e-baed-975de3e7f0d9">
-      <Value Key="Image" Value="file:6150" Type="Hyperlink">
+      <Value Key="Image" Value="file:6151" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -16710,6 +16710,17 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="10" AssignmentObjectType="CmsObject" AttributeSetStaticName="cb27a0f2-f921-48d0-a3bc-37c0e77b1d0c" AttributeSetName="ImageDecorator" EntityGUID="645b42ed-bda9-4a59-a1fd-7c2b9b50a4c5" Json="True" KeyString="file:6151">
+      <Value Key="CropBehavior" Value="to" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="CropTo" Value="bc" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="This description was retrieved from the image metadata." Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -16738,9 +16749,7 @@
     <File Id="6112" RelativePath="adam\Tutorial-Razor\iWKX5ZsIQki8kQ4jhUWZgQ\Image\Razor Tutorial Home v13.jpg" />
     <File Id="6124" RelativePath="adam\Tutorial-Razor\2KtgHisOY0eRfmdPKx6r_w\Image\Resize and crop with presets.png" />
     <File Id="6125" RelativePath="adam\Tutorial-Razor\wv-2PGj9bES5Ed_AQaMNsA\Image\responsive images.png" />
-    <File Id="6150" RelativePath="adam\Tutorial-Razor\1eSr_DjJnk-67Zdd4-fw2Q\Image\photo-1651590814269-ccf8dee671ae.png" />
-    <File Id="6148" RelativePath="adam\Tutorial-Razor\1eSr_DjJnk-67Zdd4-fw2Q\Image\photo-1651595091690-08de5e75b689.png" />
-    <File Id="6149" RelativePath="adam\Tutorial-Razor\1eSr_DjJnk-67Zdd4-fw2Q\Image\photo-1651604585467-f4496113b923.png" />
+    <File Id="6151" RelativePath="adam\Tutorial-Razor\1eSr_DjJnk-67Zdd4-fw2Q\Image\photo-1651590814269-ccf8dee671ae-min.png" />
     <File Id="6103" RelativePath="adam\Tutorial-Razor\2lw0P5Npd0et1HeG_6HZHA\Image\app-icon.png" />
     <File Id="5984" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\Per Anhalter.jpg" />
     <File Id="6099" RelativePath="adam\Tutorial-Razor\EfPWrTxVJUO28sgaeOjq3Q\Image\app-icon.png" />

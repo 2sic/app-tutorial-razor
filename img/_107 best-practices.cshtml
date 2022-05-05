@@ -62,16 +62,15 @@
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "prepare-image-service", Size = 100 }) 
 </hide-silent>
 
-<h2>Image object VS URL in <code>img</code> tag</h2>
+<h2>Image with URL vs. Field in <code>img</code> tag</h2>
 <p>
   As learned in the previous tutorials the <code>img</code> tag can be created out of URLs.
   The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the description or what part of the picture is important (the Crop-Anchor).
-  <br><br>
+</p>
+<p>
   To get the most out of 2sxc and its image configuration options 
   it's best to use the image object instead of URLs. By using the image configuration options,
   the settings can be easily retrieved from the corresponding image.
-  <br><br>
-  Below you will find an example:
 </p>
 
 <hide>
@@ -102,22 +101,20 @@
 
 <hide-silent> @* Show only this snippet *@
 
-
-@{ var previewUrlTag = imgSvc.Img(Content.Image); }
-@{ var previewFieldTag = imgSvc.Img(Content.Field("Image")); }
-
+<br>
+<h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-url", Size = 50 }) 
-<h6>This generates:</h6>
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewUrlTag, 300))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Img(Content.Image), 200))
 
+<br>
+<h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-object", Size = 50 }) 
-<h6>This generates:</h6>
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewFieldTag, 300))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Img(Content.Field("Image")), 200))
 </hide-silent>
 
 
 
-<h2>Image object VS URL in <code>picture</code> tag</h2>
+<h2>Picture with URL vs. Field in <code>picture</code> tag</h2>
 <p>
   As learned in the previous tutorials the <code>picture</code> tag can be created out of URLs.
   The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the description or what part of the picture is important (the Crop-Anchor).
@@ -157,17 +154,13 @@
 
 <hide-silent> @* Show only this snippet *@
 
-
-@{ previewUrlTag = imgSvc.Img(Content.Image); }
-@{ previewFieldTag = imgSvc.Img(Content.Field("Image")); }
-
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 50 }) 
 <h6>This generates:</h6>
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewUrlTag, 300))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Image), 300))
 
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-object", Size = 50 }) 
 <h6>This generates:</h6>
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewFieldTag, 300))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Field("Image")), 300))
 </hide-silent>
 
 
