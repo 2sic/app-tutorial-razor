@@ -40,12 +40,36 @@
   </div>
 </trim>
 
-<h2>Provide the image instead of the URL</h2>
+
+<h2>Create image tags out of URLs</h2>
 <p>
-  Previously URLS were passed for creating picture tags. 
-  The new standard is to pass images as an object using the <code>.Field("YourImageProperty")</code> Method.
-  <br>
-  The advantage is, that specified image metadata such as the "CropAnchor" or "alt" text will be included into the generation process. 
+  As learned in the previous tutorials the image tag can be created out of URLs.
+  <br><br>
+  Below you will find an example:
+</p>
+
+<snippet id="image-url">
+  @{
+    var imgSvc = GetService<IImageService>();
+  }
+
+  <p><strong>Picture from URL:</strong></p>
+  @imgSvc.Img(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-url", Size = 150 }) 
+
+<h6>This generates:</h6>
+@{ var previewTag = imgSvc.Img(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+</hide-silent>
+
+
+
+<h2>Create image tags out of image objects</h2>
+<p>
+  Image objects differ from URLS by including additional properties such as an alt text and crop anchor. 
   <br><br>
   Below you will find an example:
 </p>
@@ -55,44 +79,143 @@
     var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
   }
 </hide>
+<snippet id="image-from-object">
+@{
+  imgSvc = GetService<IImageService>();
+}
+
+<p><strong>Image from <code>Content.Image</code> containing crop anchor and alt text:</strong></p>
+@imgSvc.Img(Content.Field("Image"))
+
+</snippet>
+<hide-silent> @* Show only this snippet *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-from-object", Size = 170 }) 
+
+<h6>This generates:</h6>
+@{ previewTag = imgSvc.Img(Content.Field("Image")); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+</hide-silent>
+
+
+
+
+<h2>Create picture tags out of image URLs</h2>
+<p>
+  As learned in the previous tutorials the picture tag can be created out of URLs.
+  <br><br>
+  Below you will find an example:
+</p>
+
+<snippet id="picture-url">
+  @{
+    imgSvc = GetService<IImageService>();
+  }
+
+  <p><strong>Picture from URL:</strong></p>
+  @imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 150 }) 
+
+<h6>This generates:</h6>
+@{ previewTag = imgSvc.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+</hide-silent>
+
+
+
+
+<h2>Create picture tags out of image objects</h2>
+<p>
+  Image objects differ from URLs by including additional properties such as an alt text and image description. 
+  <br><br>
+  Below you will find an example:
+</p>
+
+<hide>
+  @{
+    Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  }
+</hide>
+<snippet id="picture-from-object">
+@{
+  imgSvc = GetService<IImageService>();
+}
+
+<p><strong>Image from <code>Content.Image</code> containing crop anchor and alt text:</strong></p>
+@imgSvc.Picture(Content.Field("Image"))
+
+</snippet>
+<hide-silent> @* Show only this snippet *@
+
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-from-object", Size = 170 }) 
+
+<h6>This generates:</h6>
+@{ previewTag = imgSvc.Picture(Content.Field("Image")); }
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+</hide-silent>
+
+
+
+
+<h2>Provide the image object instead of the URL</h2>
+<p>
+  To get the most out of 2sxc and its image configuration options 
+  it's best to use the image object instead of URLs. By using the image configuration options,
+  the settings can be easily retrieved from the corresponding image.
+  <br><br>
+  Below you will find an example:
+</p>
+
+<hide>
+  @{
+    Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  }
+</hide>
 <snippet id="image-object">
 @{
-  var imgSvc = GetService<IImageService>();
-
-  var imageUrl = Content.Image; 
-  // Should include crop anchor "bottomleft" and alt text
-  var imageField = Content.Field("Image"); 
+  imgSvc = GetService<IImageService>();
 }
 
 <div class="row">
   <div class="col-md">
-    <p><strong>ImageUrl:</strong></p>
-    @imgSvc.Picture(imageUrl, settings: imgSvc.Settings(width: 400, height: 200))
+
+    <p><strong>Picture from <code>Content.Image</code>:</strong></p>
+    @imgSvc.Picture(Content.Image)
+
   </div>
   <div class="col-md">
-    <p><strong>ImageField containing CropAnchor and alt text:</strong></p>
-    @imgSvc.Picture(imageField, settings: imgSvc.Settings(width: 400, height: 200))
+
+    <p><strong>Picture from <code>Field</code> containing crop anchor and alt text:</strong></p>
+    @imgSvc.Picture(Content.Field("Image"))
+
   </div>
 </div>
+
 </snippet>
 <hide-silent> @* Show only this snippet *@
 
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-object", Size = 400 }) 
 
 <h6>This generates:</h6>
-@{ var previewTag = imgSvc.Picture(imageField); }
+@{ previewTag = imgSvc.Picture(Content.Field("Image")); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
 </hide-silent>
+
+
+
 
 <br>
 
 <h2>Choose the optimal alt text</h2>
 <p>
-  Now it is possible to define an alt text over the image settings through the 2sxc UI.
-  The picture tag will then apply the alt text automatically, if passed as object.
+  By passing the image object, the picture tag will apply the alt text automatically.
   <br>
-  Preferably the alt text specified in those settings has priority over other texts which can be used as fallback.
-  We can create a fallback by using the <code>Text.First</code> Method from Razor Blade. 
+  Because alt texts are not always defined in the settings, different texts can be set as fallback.2sxc
+  Preferably in that case, the image alt text has priority over other texts.
+  We can create a fallback by using the <code>Text.First(text1, text2)</code> Method from Razor Blade. 
   <br><br>
   Below you will find an example:
 </p>
@@ -121,7 +244,7 @@
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-alt-text", Size = 300 }) 
 
 <h6>This generates:</h6>
-@{ previewTag = imgSvc.Picture(imageField); }
+@{ previewTag = imgSvc.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
 </hide-silent>
 
