@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.10.00" ExportDate="2022-05-05T15:54:56.0423202+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.10.00" ExportDate="2022-05-05T18:14:45.8005066+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -12810,7 +12810,7 @@
       <Value Key="Link" Value="https://github.com/2sic/2sxc/releases" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="2sxc 13.00" Type="String">
+      <Value Key="Title" Value="2sxc 7.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -15941,7 +15941,7 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="b58229eb-d4fc-4027-a0f9-2231ba2d5edd">
       <Value Key="Requirements" Value="9aafe14c-1de5-4f10-9141-e3c7c922faa1" Type="Entity" />
-      <Value Key="Resources" Value="40da4116-e6e4-4de2-a7c3-094590c99b5b,9844735a-b5cc-4ce3-a5fb-93fd840ed72e" Type="Entity" />
+      <Value Key="Resources" Value="40da4116-e6e4-4de2-a7c3-094590c99b5b,447e5f30-75b9-4535-afed-71d2fa937596,a82add96-7018-4a18-ba0f-c7b716acd9a0,9844735a-b5cc-4ce3-a5fb-93fd840ed72e" Type="Entity" />
       <Value Key="Title" Value="ImageService Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16574,7 +16574,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="db62778f-b817-4b20-9c87-936cd1047f66" AttributeSetName="ImgDemoData" EntityGUID="fcabe4d5-c938-4f9e-baed-975de3e7f0d9">
-      <Value Key="Image" Value="file:6151" Type="Hyperlink">
+      <Value Key="Image" Value="file:6152" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -16717,7 +16717,40 @@
       <Value Key="CropTo" Value="bc" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="10" AssignmentObjectType="CmsObject" AttributeSetStaticName="cb27a0f2-f921-48d0-a3bc-37c0e77b1d0c" AttributeSetName="ImageDecorator" EntityGUID="01b34712-f674-43e9-9f25-7ae8720feb9f" Json="True" KeyString="file:6152">
+      <Value Key="CropBehavior" Value="to" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="CropTo" Value="bc" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Description" Value="This description was retrieved from the image metadata." Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="447e5f30-75b9-4535-afed-71d2fa937596">
+      <Value Key="Link" Value="https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="A Cool Guide to Responsive Images" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="a82add96-7018-4a18-ba0f-c7b716acd9a0">
+      <Value Key="Link" Value="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="MDN Guide to Responsive Images" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -16749,7 +16782,7 @@
     <File Id="6112" RelativePath="adam\Tutorial-Razor\iWKX5ZsIQki8kQ4jhUWZgQ\Image\Razor Tutorial Home v13.jpg" />
     <File Id="6124" RelativePath="adam\Tutorial-Razor\2KtgHisOY0eRfmdPKx6r_w\Image\Resize and crop with presets.png" />
     <File Id="6125" RelativePath="adam\Tutorial-Razor\wv-2PGj9bES5Ed_AQaMNsA\Image\responsive images.png" />
-    <File Id="6151" RelativePath="adam\Tutorial-Razor\1eSr_DjJnk-67Zdd4-fw2Q\Image\photo-1651590814269-ccf8dee671ae-min.png" />
+    <File Id="6152" RelativePath="adam\Tutorial-Razor\1eSr_DjJnk-67Zdd4-fw2Q\Image\photo-1651590814269-ccf8dee671ae.jpg" />
     <File Id="6103" RelativePath="adam\Tutorial-Razor\2lw0P5Npd0et1HeG_6HZHA\Image\app-icon.png" />
     <File Id="5984" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\Per Anhalter.jpg" />
     <File Id="6099" RelativePath="adam\Tutorial-Razor\EfPWrTxVJUO28sgaeOjq3Q\Image\app-icon.png" />
