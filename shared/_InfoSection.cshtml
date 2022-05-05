@@ -8,7 +8,7 @@
     <ul class="list-unstyled list-group-item ml-2 ms-2">
       @foreach (var dataEl in DynamicModel.Data) {
         <a href="@dataEl.Link" target="_blank" class="@DynamicModel.TextColor">
-          <li @Edit.TagToolbar(dataEl, toolbar: new [] { "toolbar=empty", "moveup", "movedown", "edit", "remove" })>@dataEl.Title</li>
+          <li @Edit.TagToolbar(dataEl, toolbar: new [] { "toolbar=empty", "edit", "add-existing", "moveup", "movedown", "remove" })>@dataEl.Title</li>
         </a>
       }
     </ul>
