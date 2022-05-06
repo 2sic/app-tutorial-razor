@@ -6,7 +6,6 @@
 @{
   // 2sxclint:disable:no-razorblade-htmlpage
   var hlp = CreateInstance("../shared/Helpers.cs"); 
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 <trim>
@@ -21,10 +20,7 @@
         There are two ways to do this:
       </div>
     </div>
-    <div class="col-lg-5">
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
   <ul>
     <li>

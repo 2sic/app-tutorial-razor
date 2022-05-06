@@ -4,7 +4,6 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 </hide>
 <trim>
@@ -26,10 +25,7 @@
         Imagine your code will add attributes step by step by using some kind of logic. In situations where you add more classes, they should be appended - like <code>firstClass secondClass</code>. Others should be appended with a special character like <code>;</code> in styles because you want <code>width: 75px; height: 25px</code>. And others should replace the previous value - like <code>id</code> should always only have one value. 
       </p>
     </div>
-    <div class="col-lg-5">
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
   <h3>
     RazorBlade Attributes are super-smart...
