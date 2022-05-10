@@ -161,7 +161,7 @@
   @foreach(var st in picFullControl.Sources){
     @st
   }
-  <img src='@picFullControl.Url' style='width: 50%' class='border border-primary'>
+  <img src='@picFullControl.Src' style='width: 50%' class='border border-primary'>
 </picture>
 </snippet>
 <br>
@@ -173,7 +173,7 @@
   @{ 
     previewString = "<picture>  ";
     foreach(var st in picFullControl.Sources) { previewString += st.ToString(); }
-    previewString += "<img src='" + picFullControl.Url + "' style='width: 50%' class='border border-primary'>";
+    previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary'>";
     previewString += "</picture>";
   }
   @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewString, 250))
