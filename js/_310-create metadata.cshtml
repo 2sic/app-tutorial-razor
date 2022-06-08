@@ -2,6 +2,10 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 @using ToSic.Sxc.Services;
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  GetService<IPageService>().Activate("2sxc.JsCore"); 
+}
 <hide>
 @Html.Partial("_header.cshtml")
 @{

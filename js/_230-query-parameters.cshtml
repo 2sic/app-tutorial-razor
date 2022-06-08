@@ -1,6 +1,10 @@
 @using ToSic.Sxc.Services;
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  GetService<IPageService>().Activate("2sxc.JsCore"); 
+}
 <hide>
 @Html.Partial("_header.cshtml")
 @{
