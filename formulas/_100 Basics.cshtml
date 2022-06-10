@@ -2,5 +2,62 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+    Edit.Enabled = true;
+    GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Custom edit forms</h2>
+    <p>We'll show you how customize your 2sxc edit forms using formulas</p>
+    <p>In this tutorial you'll learn how to:</p>
+    <ul>
+      <li>
+        Create new formulas for your content fields
+      </li>
+      <li>
+        Choose the correct target type
+      </li>
+      <li>
+        Add the formula script 
+      </li>
+    </ul>
+    <br>
+  </div>
+  <div class="col-md-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon
+    = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
+<h3>Adding a new formula</h3>
+<p>For this example we'll create a formula, that makes the description field visible, once the title has been set.</p>
+<br>
+<p>First: Navigate to the fields of your content type in 2sxc. Click on the field, that you want to add your formula on.</p>
+<img src="@App.Path/formulas/images/formulas-basic.png" style="width: 650px">
+<p>This should bring up the settings dialog. Scroll down, till you find the "Formulas" section and create a new formula.</p>
+<img src="@App.Path/formulas/images/formulas-section.png" style="width: 500px">
+<p>In the Formulas dialog you can specify the target and the formula.</p>
+<img src="@App.Path/formulas/images/formulas-dialog.png" style="width: 500px">
+<p>Depending on selected target, the formula needs to return a bool, string or number.</p>
+<img src="@App.Path/formulas/images/formulas-targets.png" style="width: 400px">
+<br>
+<br>
+<p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
+<h3>Result</h3>
+<p>Click on the toolbar add button below to try the formula we've added.</p>
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=FormulasBasic" })
+<br>
+<br>
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = "FormulasBasic", FieldName = "Description"})
+<br>
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 440 }) 
 </hide>
