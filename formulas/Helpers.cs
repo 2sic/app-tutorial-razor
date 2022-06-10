@@ -1,8 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 public class Helpers : Custom.Hybrid.Code12 {
-  public dynamic GetFormulas(string contentType, string fieldName) {
-    var contentItem = AsList(App.Data[contentType]).FirstOrDefault();
+  public dynamic GetFormulas(dynamic contentItem, string fieldName) {
     var contentItemType = AsEntity(contentItem).Type;
     var fieldType = AsList(contentItemType.Attributes as object).Where(a => a.Name == fieldName).FirstOrDefault();
     

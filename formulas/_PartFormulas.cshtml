@@ -1,18 +1,20 @@
 @inherits Custom.Hybrid.Razor12
 @{
   var helper = CreateInstance("Helpers.cs");
-  var formulas = helper.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
+  var formulas = helper.GetFormulas(DynamicModel.ContentItem, DynamicModel.FieldName);
 }
 
 <div>
-  <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
+  <h3>Formulas of <code>@(DynamicModel.ContentItem).@DynamicModel.FieldName</code></h3>
   <ul>
     @foreach (var formula in formulas)
     {
       <li>
         <div><strong>@formula.Title</strong></div>
         <div>Target: @formula.Target</div>
-        <div>Formula: @formula.Formula</div>
+        <br>
+        <div>Formula:</div>
+        @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = 150 })
       </li>
     }
   </ul>

@@ -59,7 +59,7 @@
 @Edit.Toolbar(contentItem, toolbar: new [] { "toolbar=empty", "+edit" })
 <br>
 <br>
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = "FormulasBasic", FieldName = "Description"})
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = contentItem, FieldName = "Description"})
 <br>
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
