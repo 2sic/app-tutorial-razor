@@ -6,6 +6,8 @@
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+    var contentItem = AsList(App.Data["FormulasBasic"]).FirstOrDefault();
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
     GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
   }
@@ -13,7 +15,7 @@
 
 <div class="row">
   <div class="col-md-7">
-    <h2>Custom edit forms</h2>
+    <h2>Create Your First Formula</h2>
     <p>We'll show you how customize your 2sxc edit forms using formulas</p>
     <p>In this tutorial you'll learn how to:</p>
     <ul>
@@ -39,20 +41,22 @@
 <h3>Adding a new formula</h3>
 <p>For this example we'll create a formula, that makes the description field visible, once the title has been set.</p>
 <br>
-<p>First: Navigate to the fields of your content type in 2sxc. Click on the field, that you want to add your formula on.</p>
-<img src="@App.Path/formulas/images/formulas-basic.png" style="width: 650px">
-<p>This should bring up the settings dialog. Scroll down, till you find the "Formulas" section and create a new formula.</p>
-<img src="@App.Path/formulas/images/formulas-section.png" style="width: 500px">
-<p>In the Formulas dialog you can specify the target and the formula.</p>
-<img src="@App.Path/formulas/images/formulas-dialog.png" style="width: 500px">
-<p>Depending on selected target, the formula needs to return a bool, string or number.</p>
-<img src="@App.Path/formulas/images/formulas-targets.png" style="width: 400px">
-<br>
+<p>First: Enter the Debug mode by pressing <code>CTRL</code>, <code>Shift</code>, <code>Alt</code> and <code>clicking</code> on a 2sxc dialog.</p>
+<p>Navigate to the items of your content type in 2sxc. Click on a item and press the Formulas button.</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-open.png", 300, 200)
+<p>This should bring up the formulas editor. Select the attribute from the dropdown, on which the formula should be set.</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-attribute.png", 300, 200)
+<p>Select the formula target from the next dropdown. Depending on the chosen attribute available targets can vary due to the content type.</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-target.png", 300, 200)
+<p>Click on edit to make the formula function editable.</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-edit.png", 300, 150)
+<p>Now you can write your formula function and test it by clicking on the run button. You will see a change in the current edit form and the result after running it.</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-run.png", 300, 200)
 <br>
 <p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
 <h3>Result</h3>
 <p>Click on the toolbar add button below to try the formula we've added.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=FormulasBasic" })
+@Edit.Toolbar(contentItem, toolbar: new [] { "toolbar=empty", "+edit" })
 <br>
 <br>
 @Html.Partial("_PartFormulas.cshtml", new { ContentType = "FormulasBasic", FieldName = "Description"})
