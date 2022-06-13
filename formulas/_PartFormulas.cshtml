@@ -5,16 +5,15 @@
 }
 
 <div>
-  <h3>Formulas of <code>@(DynamicModel.ContentItem).@DynamicModel.FieldName</code></h3>
+  <h3>Formulas of <code>@(AsEntity(DynamicModel.ContentItem).Type.Name).@DynamicModel.FieldName</code></h3>
   <ul>
     @foreach (var formula in formulas)
     {
       <li>
-        <div><strong>@formula.Title</strong></div>
-        <div>Target: @formula.Target</div>
-        <br>
-        <div>Formula:</div>
-        @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = 150 })
+        <p><strong>@formula.Title</strong></p>
+        <p class="mb-2">Target: @formula.Target</p>
+        <p class="mb-1"><strong>Formula</strong><p>
+        @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = 100 })
       </li>
     }
   </ul>
