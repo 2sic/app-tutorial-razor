@@ -13,7 +13,7 @@
         <p><strong>@formula.Title</strong></p>
         <p class="mb-2">Target: @formula.Target</p>
         <p class="mb-1"><strong>Formula</strong><p>
-        @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = 100 })
+        @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = DynamicModel.Size ?? 100 })
       </li>
     }
   </ul>

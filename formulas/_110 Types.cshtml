@@ -1,0 +1,80 @@
+@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Many Simple Formulas</h2>
+    <p>We'll show you Examples where formulas can be applied</p>
+    <p>In this tutorial you'll learn how to:</p>
+    <ul>
+      <li>
+        Change field and group visibility
+      </li>
+      <li>
+        Make fields required
+      </li>
+      <li>
+        Make fields disabled
+      </li>
+      <li>
+        Make group summaries in titles
+      </li>
+      <li>
+        Add help text
+      </li>
+    </ul>
+    <br>
+  </div>
+  <div class="col-md-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
+
+@{ var basicItem = AsList(App.Data["FormulasBasic"]).FirstOrDefault(); }
+<h3>Single Field visibility</h3>
+<p>Click on the edit button below to try the field visibility formula.</p>
+@Edit.Toolbar(basicItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = basicItem, FieldName = "Description"})
+@{ var visibleGroupItem = AsList(App.Data["FormulasVisibleGroup"]).FirstOrDefault(); }
+<h3>Group visibility</h3>
+<p>Click on the edit button below to try the group visibility formula.</p>
+@Edit.Toolbar(visibleGroupItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = visibleGroupItem, FieldName = "AdvancedSettings"})
+@{ var requiredItem = AsList(App.Data["FormulasRequired"]).FirstOrDefault(); }
+<h3>Required fields</h3>
+<p>Click on the edit button below to try the required field formula.</p>
+@Edit.Toolbar(requiredItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = requiredItem, FieldName = "Name"})
+@{ var disabledItem = AsList(App.Data["FormulasDisabled"]).FirstOrDefault(); }
+<h3>Disabled fields</h3>
+<p>Click on the edit button below to try the disabled field formula.</p>
+@Edit.Toolbar(disabledItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = disabledItem, FieldName = "ApiKeyV2"})
+@{ var textSummaryItem = AsList(App.Data["FormulasTextSummary"]).FirstOrDefault(); }
+<h3>Group Name - Text summary</h3>
+<p>Click on the edit button below to try the group text summary.</p>
+@Edit.Toolbar(textSummaryItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = textSummaryItem, FieldName = "PersonGroup"})
+@{ var emojiSummaryItem = AsList(App.Data["FormulasEmojiSummary"]).FirstOrDefault(); }
+<h3>Group Name - Emoji summary</h3>
+<p>Click on the edit button below to try the group emoji summary.</p>
+@Edit.Toolbar(emojiSummaryItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = emojiSummaryItem, FieldName = "ProductGroup", Size = 200})
+@{ var helpTextItem = AsList(App.Data["FormulasHelpText"]).FirstOrDefault(); }
+<h3>Helptext</h3>
+<p>Click on the edit button below to try the help text formula.</p>
+@Edit.Toolbar(helpTextItem, toolbar: new [] { "toolbar=empty", "+edit" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentItem = helpTextItem, FieldName = "ProductCode", Size = 200})
