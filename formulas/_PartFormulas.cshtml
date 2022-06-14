@@ -1,11 +1,11 @@
 @inherits Custom.Hybrid.Razor12
 @{
   var helper = CreateInstance("Helpers.cs");
-  var formulas = helper.GetFormulas(DynamicModel.ContentItem, DynamicModel.FieldName);
+  var formulas = helper.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
 }
 
 <div>
-  <h3>Formulas of <code>@(AsEntity(DynamicModel.ContentItem).Type.Name).@DynamicModel.FieldName</code></h3>
+  <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
   <ul>
     @foreach (var formula in formulas)
     {

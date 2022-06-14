@@ -43,38 +43,38 @@
 </div>
 
 
-@{ var basicItem = AsList(App.Data["FormulasBasic"]).FirstOrDefault(); }
+@{ var basicItemType = "FormulasBasic"; }
 <h3>Single Field visibility</h3>
 <p>Click on the edit button below to try the field visibility formula.</p>
-@Edit.Toolbar(basicItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = basicItem, FieldName = "Description"})
-@{ var visibleGroupItem = AsList(App.Data["FormulasVisibleGroup"]).FirstOrDefault(); }
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + basicItemType })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = basicItemType, FieldName = "Description"})
+@{ var visibleGroupItemType = "FormulasVisibleGroup"; }
 <h3>Group visibility</h3>
 <p>Click on the edit button below to try the group visibility formula.</p>
-@Edit.Toolbar(visibleGroupItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = visibleGroupItem, FieldName = "AdvancedSettings"})
-@{ var requiredItem = AsList(App.Data["FormulasRequired"]).FirstOrDefault(); }
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + visibleGroupItemType })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = visibleGroupItemType, FieldName = "AdvancedSettings"})
+@{ var requiredItemType = "FormulasRequired"; }
 <h3>Required fields</h3>
 <p>Click on the edit button below to try the required field formula.</p>
-@Edit.Toolbar(requiredItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = requiredItem, FieldName = "Name"})
-@{ var disabledItem = AsList(App.Data["FormulasDisabled"]).FirstOrDefault(); }
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + requiredItemType })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = requiredItemType, FieldName = "Name"})
+@{ var disabledItemType = "FormulasDisabled"; }
 <h3>Disabled fields</h3>
 <p>Click on the edit button below to try the disabled field formula.</p>
-@Edit.Toolbar(disabledItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = disabledItem, FieldName = "ApiKeyV2"})
-@{ var textSummaryItem = AsList(App.Data["FormulasTextSummary"]).FirstOrDefault(); }
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + disabledItemType })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = disabledItemType, FieldName = "ApiKeyV2"})
+@{ var textSummaryItemType = "FormulasTextSummary"; }
 <h3>Group Name - Text summary</h3>
 <p>Click on the edit button below to try the group text summary.</p>
-@Edit.Toolbar(textSummaryItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = textSummaryItem, FieldName = "PersonGroup"})
-@{ var emojiSummaryItem = AsList(App.Data["FormulasEmojiSummary"]).FirstOrDefault(); }
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + textSummaryItemType })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = textSummaryItemType, FieldName = "PersonGroup"})
+@{ var emojiSummaryItemType = "FormulasEmojiSummary"; }
 <h3>Group Name - Emoji summary</h3>
 <p>Click on the edit button below to try the group emoji summary.</p>
-@Edit.Toolbar(emojiSummaryItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = emojiSummaryItem, FieldName = "ProductGroup", Size = 200})
-@{ var helpTextItem = AsList(App.Data["FormulasHelpText"]).FirstOrDefault(); }
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + emojiSummaryItemType })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = emojiSummaryItemType, FieldName = "ProductGroup", Size = 200})
+@{ var helpTextItemType = "FormulasHelpText"; }
 <h3>Helptext</h3>
 <p>Click on the edit button below to try the help text formula.</p>
-@Edit.Toolbar(helpTextItem, toolbar: new [] { "toolbar=empty", "+edit" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = helpTextItem, FieldName = "ProductCode", Size = 200})
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + helpTextItemType + "&prefill:ProductCode=n0t0k code" })
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = helpTextItemType, FieldName = "ProductCode", Size = 200})
