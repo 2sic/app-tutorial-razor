@@ -6,7 +6,7 @@
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
-    var contentItem = AsList(App.Data["FormulasBasic"]).FirstOrDefault();
+    var contentType = "FormulasBasic";
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
     GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
@@ -55,11 +55,11 @@
 <br>
 <p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
 <h3>Result</h3>
-<p>Click on the edit button below to try the formula we've added.</p>
-@Edit.Toolbar(contentItem, toolbar: new [] { "toolbar=empty", "+edit" })
+<p>Click on the new button below to try the formula we've added.</p>
+@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + contentType })
 <br>
 <br>
-@Html.Partial("_PartFormulas.cshtml", new { ContentItem = contentItem, FieldName = "Description"})
+@Html.Partial("_PartFormulas.cshtml", new { ContentType = contentType, FieldName = "Description"})
 <br>
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
