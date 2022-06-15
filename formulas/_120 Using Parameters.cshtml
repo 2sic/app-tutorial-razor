@@ -1,0 +1,79 @@
+@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Formulas using parameters</h2>
+    <p>We'll show you how to use page parameters with formulas</p>
+    <p>In this tutorial you'll learn how to:</p>
+    <ul>
+      <li>
+        Use emphemeral fields
+      </li>
+      <li>
+        Use data.parameters in your formulas
+      </li>
+    </ul>
+    <br>
+  </div>
+  <div class="col-md-5">
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  </div>
+</div>
+
+<h3>Ephemeral fields explained</h3>
+<p>Sometimes you need fields which controle the Form UI without being real data. Some examples:</p>
+<ul>
+  <li>Toggles which show/hide other fields or field groups</li>
+  <li>Hidden calculations which will consolidate other field values to determine if something else is required</li>
+</ul>
+
+<p>We don't want to save these fields as the data is not relevant, and often the value should be calculated upon opening the form - so it's important that they are reset.</p>
+
+<h3>Create an Ephemeral field</h3>
+<p>An Ephemeral field is just a normal field with an additional configuration.</p>
+<h4>Configure an Epemeral field</h4>
+<p>To configure a field to not save and be temporary / ephemeral, use this setting:</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
+<p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Ephemeral field",
+  Instructions = "VarShowAdvanced is an ephemeral field and thus not saved in the database. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the VarShowAdvanced toggle is active.",
+  ContentType = "FormulasEphemeral",
+  FieldName = "AdvancedGroup"
+})
+
+<h2>Configure edit form UI using parameters</h2>
+<p>In 2sxc v14 we added <code>data.parameters.*</code> which contains all parameters given in the prefill.</p>
+<p>By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This enables a editing experience matching the page context.</p>
+<br>
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Configuration with parameters",
+  Instructions = "VarShowAdvanced is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the passed VarShowAdvanced parameter is true.",
+  ContentType = "FormulasParameters",
+  FieldName = "AdvancedGroup",
+  More = "prefill:VarShowAdvanced=true"
+})
+
+<h4>Passing the parameter prefill</h4>
+<p>See how to pass parameter prefills to the edit-UI. This creates a toolbar with a "new" button.</p>
+<snippet id="formulas-parameter">
+@Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters&prefill:VarShowAdvanced=true"})
+</snippet>
+<code id="formulas-parameter-label"></code>
+<hide-silent> @* Show only this snippet *@
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-parameter", Size = 40 }) 
