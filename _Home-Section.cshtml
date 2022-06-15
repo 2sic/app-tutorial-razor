@@ -23,11 +23,11 @@
   }
 }
 
-@if (DynamicModel.SubSection == true) {
-  <hr class="sub-section">
+@if (DynamicModel.IsSubSection == true) {
+  <hr>
 }
 
-<div class='tutorial-item @(DynamicModel.SubSection == true ? "sub-section" : "")'>
+<div class='tutorial-item (DynamicModel.IsSubSection == true ? "sub-section" : "")'>
   <div class='tutorial-title' data-accordion-parent="@tutorialSet.NameId">
     <div class="row">
       <div class="col-auto">
@@ -68,10 +68,10 @@
         @tutLink
       }
     </ol>
-    @foreach (var section in AsList(DynamicModel.SubSections)) {
-      @Html.Partial("_Home-Section.cshtml", new { TutorialSet = section, SubSection = true } )
-    }
-
-
   </div>
 </div>
+
+@* Show All Sub Sections *@
+@foreach (var section in AsList(DynamicModel.SubSections)) {
+  @Html.Partial("_Home-Section.cshtml", new { TutorialSet = section, IsSubSection = true } )
+}

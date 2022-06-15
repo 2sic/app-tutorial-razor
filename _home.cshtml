@@ -34,9 +34,11 @@
   {
     @Html.Partial("_Home-Section.cshtml", new { 
       TutorialSet = sectionGroup.First().Section, 
+      IsSubSection = false,
       SubSections = sectionGroup.Skip(1).Select(s => { return s.Section; }) 
     })
-    <hr>
+    // Create a thicker line after sub-sections
+    <hr style='height: 4px'>
   }
 
   @* Show the other links which are still ideas etc. and don't exist as views *@
