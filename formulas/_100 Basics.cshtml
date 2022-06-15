@@ -5,6 +5,7 @@
   @Html.Partial("_header.cshtml")
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
+    var fHlp = CreateInstance("Helpers.cs");
     var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
     var contentType = "FormulasBasic";
     var fancybox = CreateInstance("../shared/Fancybox.cs");
@@ -38,26 +39,46 @@
   </div>
 </div>
 
-<h3>Adding a new formula</h3>
+<h3>
+  Brief Demo 
+  @fHlp.DemoToolbar(contentType)
+</h3>
+<p>
+  Click on the (Σ) button above to see the edit-UI with the formula. 
+</p>
+
+<h3>Add a new formula</h3>
 <p>For this example we'll create a formula, that makes the description field visible, once the title has been set.</p>
 <br>
+
 <p>First: Enter the Debug mode by pressing <code>CTRL</code>, <code>Shift</code>, <code>Alt</code> and <code>clicking</code> on a 2sxc dialog.</p>
 <p>Navigate to the items of your content type in 2sxc. Click on a item and press the Formulas button.</p>
 @fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-open.png", 300, 200)
+
 <p>This should bring up the formulas editor. Select the attribute from the dropdown, on which the formula should be set.</p>
 @fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-attribute.png", 300, 200)
+
 <p>Select the formula target from the next dropdown. Depending on the chosen attribute available targets can vary due to the content type.</p>
 @fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-target.png", 300, 200)
+
 <p>Click on edit to make the formula function editable.</p>
 @fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-edit.png", 300, 150)
+
 <p>Now you can write your formula function and test it by clicking on the run button. You will see a change in the current edit form and the result after running it.</p>
 @fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-run.png", 300, 200)
+
 <br>
 <p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
-<h3>Result</h3>
-<p>Click on the new button below to try the formula we've added.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + contentType })
-<br>
+
+<h3>
+  Result
+  @fHlp.DemoToolbar(contentType)
+</h3>
+<p>
+  This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.
+  <br>
+  Click on the (Σ) button above to try the formula we've added.
+</p>
 <br>
 @Html.Partial("_PartFormulas.cshtml", new { ContentType = contentType, FieldName = "Description"})
 <br>

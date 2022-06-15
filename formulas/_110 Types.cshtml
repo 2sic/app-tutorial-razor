@@ -43,38 +43,54 @@
 </div>
 
 
-@{ var basicItemType = "FormulasBasic"; }
-<h3>Single Field visibility</h3>
-<p>Click on the edit button below to try the field visibility formula.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + basicItemType })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = basicItemType, FieldName = "Description"})
-@{ var visibleGroupItemType = "FormulasVisibleGroup"; }
-<h3>Group visibility</h3>
-<p>Click on the edit button below to try the group visibility formula.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + visibleGroupItemType })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = visibleGroupItemType, FieldName = "AdvancedSettings"})
-@{ var requiredItemType = "FormulasRequired"; }
-<h3>Required fields</h3>
-<p>Click on the edit button below to try the required field formula.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + requiredItemType })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = requiredItemType, FieldName = "Name"})
-@{ var disabledItemType = "FormulasDisabled"; }
-<h3>Disabled fields</h3>
-<p>Click on the edit button below to try the disabled field formula.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + disabledItemType })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = disabledItemType, FieldName = "ApiKeyV2"})
-@{ var textSummaryItemType = "FormulasTextSummary"; }
-<h3>Group Name - Text summary</h3>
-<p>Click on the edit button below to try the group text summary.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + textSummaryItemType })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = textSummaryItemType, FieldName = "PersonGroup"})
-@{ var emojiSummaryItemType = "FormulasEmojiSummary"; }
-<h3>Group Name - Emoji summary</h3>
-<p>Click on the edit button below to try the group emoji summary.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + emojiSummaryItemType })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = emojiSummaryItemType, FieldName = "ProductGroup", Size = 200})
-@{ var helpTextItemType = "FormulasHelpText"; }
-<h3>Helptext</h3>
-<p>Click on the edit button below to try the help text formula.</p>
-@Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=" + helpTextItemType + "&prefill:ProductCode=n0t0k code" })
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = helpTextItemType, FieldName = "ProductCode", Size = 200})
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Single Field visibility",
+  Instructions = "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.",
+  ContentType = "FormulasBasic",
+  FieldName = "Description"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Group visibility",
+  Instructions = "This formula determines the visibility of the Advanced settings group. The group becomes visible, when the Advanced toggle is active.",
+  ContentType = "FormulasVisibleGroup",
+  FieldName = "AdvancedSettings"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Required fields",
+  Instructions = "This formula determines wether the Name field is required. It becomes required if the age isn't specified.",
+  ContentType = "FormulasRequired",
+  FieldName = "Name"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Disabled fields",
+  Instructions = "This formula determines wether the ApiKeyV2 field is disabled. It becomes disabled if the UseNewFeatures field is true.",
+  ContentType = "FormulasDisabled",
+  FieldName = "ApiKeyV2"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Group Name - Text summary",
+  Instructions = "This formula changes the Name of the PersonGroup field. The name becomes \"Person - Profile complete\" if all group fields are filled out and \"Person - Profile incomplete\" if not.",
+  ContentType = "FormulasTextSummary",
+  FieldName = "PersonGroup"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Group Name - Emoji summary",
+  Instructions = "This formula changes the Name of the ProductGroup field. The name becomes \"Product ✅\" if all group fields are filled out and \"Product ✏️\" if not.",
+  ContentType = "FormulasEmojiSummary",
+  FieldName = "ProductGroup",
+  Size = 150
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Helptext",
+  Instructions = "This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains \"n0t0k\" the helptext \"This product code is deprecated. Please request a new product code. \" is added, or if it contains spaces the helptext \"Please remove all spaces from your product code.\" is added.",
+  ContentType = "FormulasHelpText",
+  FieldName = "ProductCode",
+  More = "prefill:ProductCode=n0t0k code",
+  Size = 175
+})

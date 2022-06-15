@@ -1,20 +1,28 @@
 @inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
 @{
-  var helper = CreateInstance("Helpers.cs");
-  var formulas = helper.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
+  var fHlp = CreateInstance("Helpers.cs");
+  var formulas = fHlp.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
+
+  var title = DynamicModel.Title;
 }
 
-<div>
-  <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
-  <ul>
-    @foreach (var formula in formulas)
-    {
-      <li>
-        <p><strong>@formula.Title</strong></p>
-        <p class="mb-2">Target: @formula.Target</p>
-        <p class="mb-1"><strong>Formula</strong><p>
-        @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = DynamicModel.Size ?? 100 })
-      </li>
+@if (Text.Has(title)) {
+  <h3>@title @fHlp.DemoToolbar(DynamicModel.ContentType, DynamicModel.More)</h3>
+  <p>
+    @if(Text.Has(DynamicModel.Instructions)) {
+      @DynamicModel.Instructions
+      <br />
     }
-  </ul>
+    <em>Click on the (Σ) button above to see the edit-UI with the formula. </em>
+  </p>
+}
+
+<div class="mb-5">
+  <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
+  @foreach (var formula in formulas)
+  {
+    <p><strong>@formula.Title</strong> (Formula-Target: @formula.Target)</p>
+    @Html.Partial("../shared/_result.cshtml", new { Result = formula.Formula, Language = "javascript", Size = DynamicModel.Size ?? 100 })
+  }
 </div>
