@@ -33,7 +33,6 @@ export function showParentSections(targetOpenElem: HTMLElement, options: Accordi
   let parentSection = targetOpenElem.parentElement.closest(`[${options.attrChild}]`) as HTMLElement;
   if (parentSection == null) return
   parentSection.parentElement.classList.add(`${options.classIsExpanded}`);
-  console.log(parentSection)
 
   show(parentSection, {})
 }

@@ -17,11 +17,11 @@ import { AccordionOptions } from './lib-2sxc-accordion-options';
 
 export function initAccordion({ domId, options } : { domId: string, options: AccordionOptions }) {
   // get navHight for correct scrollposition
-  var nav = (document.getElementsByTagName(options.tagStickyHeader)[0] as HTMLElement);
-  var navHeight = (nav != null ? nav.offsetHeight : 0);
+  let nav = (document.getElementsByTagName(options.tagStickyHeader)[0] as HTMLElement);
+  let navHeight = (nav != null ? nav.offsetHeight : 0);
 
   // attach click to all accordions when loading
-  var accordionOpener = document.querySelectorAll(`[${options.attrParent}]`);
+  let accordionOpener = document.querySelectorAll(`[${options.attrParent}]`);
 
   accordionOpener.forEach((elem: HTMLElement, index) => {	
     elem.addEventListener('click', (event) => {
@@ -51,13 +51,15 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
       // ADD THIS FUNCTION AFTER LIBRARY UPDATE:      
       showParentSections(targetHashElem, options);
 
-      const elemOffsetX = targetHashElem.getBoundingClientRect().top + window.scrollY - navHeight;
-      targetHashElem.parentElement.classList.add(`${options.classIsExpanded}`);
-
+      
       setTimeout(() => {
+        
         // open accordion
         show(targetHashElem, {
           onAnimationEnd: () => {
+            const elemOffsetX = targetHashElem.getBoundingClientRect().top + window.scrollY - navHeight;
+            targetHashElem.parentElement.classList.add(`${options.classIsExpanded}`);
+            
             // scroll to element which should open then
             window.scrollTo({
               top: elemOffsetX,
