@@ -1,12 +1,9 @@
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using System.Linq;
-@inherits Custom.Hybrid.Razor12
 @{
   var hlp = CreateInstance("shared/Helpers.cs");
-  var page = GetService<IPageService>();
-  var tlbSvc = GetService<IToolbarService>();
-  page.SetBase(); 
-  var newConfig = tlbSvc
+  Kit.Page.SetBase();
+  var newConfig = Kit.Toolbar
     .Metadata(CmsContext.View, "TutorialViewSharing")
     .Settings(hover: "left");
 

@@ -1,11 +1,9 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @{
   var tutorialSet = DynamicModel.TutorialSet;
   if (tutorialSet == null) {
     return;
   }
-
-  var tlbSvc = GetService<ToSic.Sxc.Services.IToolbarService>();
   var hlp = CreateInstance("shared/Helpers.cs");
   var viewMdType = hlp.TutViewMetadataType as string;
   var unknownViewMetadata = AsDynamic(new {
@@ -64,7 +62,7 @@
           deprecated: viewMd.Deprecated == true
         );
         // Metadata with new toolbar services
-        tutLink.Attr(Edit.TagToolbar(tlbSvc.Metadata(tutView, viewMdType)));
+        tutLink.Attr(Edit.TagToolbar(Kit.Toolbar.Metadata(tutView, viewMdType)));
         @tutLink
       }
     </ol>

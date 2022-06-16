@@ -1,16 +1,12 @@
-@using ToSic.Sxc.Services;
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 @{
-  // 1. Get Services for Css and Page
-  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
   // Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon
-  var page = GetService<IPageService>();  // Service to set titles etc. on the page
-  page.Activate("FontAwesome5", "turnOn");
+  Kit.Page.Activate("FontAwesome5", "turnOn");
 
   // 2. Include Bootstrap4 if the framework isn't known
-  if (pageCss.IsUnknown) {
-    page.Activate("Bootstrap4");
+  if (Kit.Css.IsUnknown) {
+    Kit.Page.Activate("Bootstrap4");
   }
 
   var accordionOptions = new {
@@ -19,7 +15,7 @@
     attrParent = "data-accordion-parent", // This attribute marks the title tag which will trigger expand/collapse, the value must be same as in the child
     attrChild = "data-accordion-child"    // This attribute contains a key which is used in the #-fragment for navigating to a section
   };
-  var jsonOptions = Html.Raw(Convert.Json.ToJson(accordionOptions));
+  var jsonOptions = Html.Raw(Kit.Convert.Json.ToJson(accordionOptions));
 }
 
 <link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true">

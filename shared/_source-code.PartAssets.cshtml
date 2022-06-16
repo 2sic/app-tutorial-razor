@@ -1,20 +1,15 @@
-@using ToSic.Sxc.Services;
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
+@using ToSic.Razor.Blade
 @{
-  // 1. Get Services for Css and Page
-  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
-  // Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon
-  var page = GetService<IPageService>();  // Service to set titles etc. on the page
-  page.Activate("turnOn");
+  // 1. Activate turnOn
+  Kit.Page.Activate("turnOn");
 
   // 2. Include Bootstrap4 if the framework isn't known
-  if (pageCss.IsUnknown) {
-    page.Activate("Bootstrap4");
+  if (Kit.Css.IsUnknown) {
+    Kit.Page.Activate("Bootstrap4");
   }
 }
 
-@* <link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true"> *@
 <turnOn turn-on='{ 
   "run": "window.razorTutorial.initSourceCode()", 
   "data": { 
