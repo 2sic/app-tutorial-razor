@@ -49,31 +49,46 @@
 @fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
 <p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
 
+
+<h3>Ephemeral field <snippet id="formulas-ephemeral">
+@Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters"})
+</snippet></h3>
+<p>
+  VarShowAdvanced is an ephemeral field and thus not saved in the database. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the VarShowAdvanced toggle is active.
+  <br>
+  <em>Click on the (+) button above to see the edit-UI with the formula. </em>
+</p>
+
+<code id="formulas-ephemeral-label"></code>
+<hide-silent> @* Show only this snippet *@
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-ephemeral", Size = 40 }) 
+
 @Html.Partial("_PartFormulas.cshtml", new {
-  Title = "Ephemeral field",
-  Instructions = "VarShowAdvanced is an ephemeral field and thus not saved in the database. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the VarShowAdvanced toggle is active.",
   ContentType = "FormulasEphemeral",
-  FieldName = "AdvancedGroup"
+  FieldName = "AdvancedGroup",
 })
+
 
 <h2>Configure edit form UI using parameters</h2>
 <p>In 2sxc v14 we added <code>data.parameters.*</code> which contains all parameters given in the prefill.</p>
 <p>By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This enables a editing experience matching the page context.</p>
 <br>
 
-@Html.Partial("_PartFormulas.cshtml", new {
-  Title = "Configuration with parameters",
-  Instructions = "VarShowAdvanced is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the passed VarShowAdvanced parameter is true.",
-  ContentType = "FormulasParameters",
-  FieldName = "AdvancedGroup",
-  More = "prefill:VarShowAdvanced=true"
-})
+<h3>Configuration with parameters <snippet id="formulas-parameter">
+@Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters&prefill:showAdvanced=true"})
+</snippet></h3>
+<p>
+  VarShowAdvanced is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the passed VarShowAdvanced parameter is true.
+  <br>
+  <em>Click on the (+) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
+</p>
 
-<h4>Passing the parameter prefill</h4>
-<p>See how to pass parameter prefills to the edit-UI. This creates a toolbar with a "new" button.</p>
-<snippet id="formulas-parameter">
-@Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters&prefill:VarShowAdvanced=true"})
-</snippet>
 <code id="formulas-parameter-label"></code>
 <hide-silent> @* Show only this snippet *@
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-parameter", Size = 40 }) 
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  ContentType = "FormulasParameters",
+  FieldName = "AdvancedGroup",
+  More = "prefill:showAdvanced=true"
+})
