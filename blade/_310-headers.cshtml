@@ -1,6 +1,5 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -15,6 +14,8 @@
 
       @* TOOD: Ask 2dm if we should remove this section - replaced by Pageservice already *@
       @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+      
+      @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
 
       <div>
         This page sets the title, description, keywords and some manual tags to the header. 
@@ -31,14 +32,13 @@
 } else {
   // Note: this only works because we have @using ToSic.Razor.Blade on top
   // Again note that this only works in DNN and is not recommended any more - see warning
-  var page = GetService<IPageService>();
-  page.SetTitle("Title changed from the razor using Razor Blade! original: ");
-  page.SetDescription("Learn to use Razor Blade");
-  page.SetDescription("Learn to use Razor Blade");
-  page.SetKeywords("Tutorial, Razor, Blade");
-  page.SetKeywords("Tutorial, Razor, Blade");
-  page.AddToHead("<meta xyz>");
-  page.AddMeta("somename", "somevalue");
+  Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
+  Kit.Page.SetDescription("Learn to use Razor Blade");
+  Kit.Page.SetDescription("Learn to use Razor Blade");
+  Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+  Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+  Kit.Page.AddToHead("<meta xyz>");
+  Kit.Page.AddMeta("somename", "somevalue");
 }
 
 <hide>

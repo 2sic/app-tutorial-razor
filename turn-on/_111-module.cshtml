@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
@@ -30,7 +30,7 @@
 <br>
 @{
   // Use the PageService to activate turnOn
-  GetService<IPageService>().Activate("turnOn");
+  Kit.Page.Activate("turnOn");
 
   // Create unique DOM attribute with Module Id
   var uniqueDomAttribute = "turn-on-example-" + CmsContext.Module.Id;

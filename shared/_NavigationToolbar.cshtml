@@ -1,14 +1,12 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using System.Linq;
-@using ToSic.Sxc.Services;
 @{
   var hlp = CreateInstance("Helpers.cs");
   var currentView = CmsContext.View;
   var viewMdType = hlp.TutViewMetadataType as string;
 
   // Enable Fa5 for icons
-  var page = GetService<IPageService>(); // Service to set titles etc. on the page
-  page.Activate("FontAwesome5");
+  Kit.Page.Activate("FontAwesome5");
 
   // Fallback for missing metadata
   var unknownViewMetadata = AsDynamic(new

@@ -1,5 +1,4 @@
-@using ToSic.Sxc.Services;
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 <hide>
 @Html.Partial("_header.cshtml")
 @Html.Partial("_ShortIntro.cshtml")
@@ -25,9 +24,8 @@
 </trim>
 
 @{
-  var pageService = GetService<IPageService>();
-  pageService.Activate("fancybox4");
-  pageService.Activate("fancybox4"); // even if called multiple times, it will only be activated once
+  Kit.Page.Activate("fancybox4");
+  Kit.Page.Activate("fancybox4"); // even if called multiple times, it will only be activated once
 
   var imgUrl = App.Path + "/settings/demo-banner.png";
 }

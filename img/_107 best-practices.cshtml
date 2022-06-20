@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -42,21 +41,7 @@
   </div>
 </trim>
 
-<h2>Preparation</h2>
-<p>
-  All the following examples use the <a href="https://docs.2sxc.org/api/dot-net/ToSic.Sxc.Services.IImageService.html" target="_blank">Image Service</a>.
-  So to make this work, something like the following code will be at the beginning of most Razor files:
-</p>
-
-<snippet id="prepare-image-service">
-@using ToSic.Sxc.Services;
-@{
-  var imgSvc = GetService<IImageService>();
-}
-</snippet>
-<hide-silent> @* Show only this snippet *@
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "prepare-image-service", Size = 100 }) 
-</hide-silent>
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
 
 <h2>Image with URL vs. Field in <code>img</code> tag</h2>
 <p>
@@ -80,7 +65,7 @@
     <p><strong>Picture from <code>Content.Image</code></strong></p>
     <snippet id="img-url">
       @* Picture from Content.Image *@
-      @imgSvc.Img(Content.Image)
+      @Kit.Image.Img(Content.Image)
     </snippet>
 
   </div>
@@ -89,7 +74,7 @@
     <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
     <snippet id="img-object">
       @* Picture from Field containing crop anchor and alt text *@
-      @imgSvc.Img(Content.Field("Image"))
+      @Kit.Image.Img(Content.Field("Image"))
     </snippet>
 
   </div>
@@ -100,12 +85,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-url", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Img(Content.Image), 200))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Img(Content.Image), 200))
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-object", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Img(Content.Field("Image")), 200))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Img(Content.Field("Image")), 200))
 </hide-silent>
 
 
@@ -127,7 +112,7 @@
     <p><strong>Picture from <code>Content.Image</code></strong></p>
     <snippet id="picture-url">
       @* Picture from Content.Image *@
-      @imgSvc.Picture(Content.Image)
+      @Kit.Image.Picture(Content.Image)
     </snippet>
 
   </div>
@@ -136,7 +121,7 @@
     <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
     <snippet id="picture-object">
       @* Picture from Field containing crop anchor and alt text *@
-      @imgSvc.Picture(Content.Field("Image"))
+      @Kit.Image.Picture(Content.Field("Image"))
     </snippet>
 
   </div>
@@ -147,12 +132,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Image), 350))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Image), 350))
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-object", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Field("Image")), 350))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image")), 350))
 </hide-silent>
 
 @*
@@ -173,7 +158,7 @@
     <p><strong>Picture using the factor <code>0.5</code></strong></p>
     <snippet id="picture-factor-05">
       @* Picture using the factor 0.5 *@
-      @imgSvc.Picture(Content.Field("Image"), factor: 0.5)
+      @Kit.Image.Picture(Content.Field("Image"), factor: 0.5)
     </snippet>
 
   </div>
@@ -182,7 +167,7 @@
     <p><strong>Picture using the factor <code>5</code></strong></p>
     <snippet id="picture-factor-5">
       @* Picture using the factor 5 *@
-      @imgSvc.Picture(Content.Field("Image"), factor: 5)
+      @Kit.Image.Picture(Content.Field("Image"), factor: 5)
     </snippet>
 
   </div>
@@ -193,12 +178,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-factor-05", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Field("Image"), factor: 0.5), 350))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image"), factor: 0.5), 350))
 
 <br>
 <h6>Image to the RIGHT (note higher resolution)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-factor-5", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Field("Image"), factor: 5), 350))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image"), factor: 5), 350))
 </hide-silent>
 
 
@@ -219,7 +204,7 @@
     <p><strong>Picture default recipe</strong></p>
     <snippet id="picture-recipe-default">
       @* Picture using the default *@
-      @imgSvc.Picture(Content.Field("Image"))
+      @Kit.Image.Picture(Content.Field("Image"))
     </snippet>
 
   </div>
@@ -227,10 +212,10 @@
     <p><strong>Picture with variants for 2x and 3x of the image size</strong></p>
     <snippet id="picture-recipe-custom">
       @{
-        var customRecipe = imgSvc.Recipe("2*, 3*");
+        var customRecipe = Kit.Image.Recipe("2*, 3*");
       }
       @* Picture using recipe with 2x and 3x variants *@
-      @imgSvc.Picture(Content.Field("Image"), recipe: customRecipe)
+      @Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe)
     </snippet>
 
   </div>
@@ -241,12 +226,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-recipe-default", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Field("Image")), 350))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image")), 350))
 
 <br>
 <h6>Image to the RIGHT (note different variants)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-recipe-custom", Size = 125 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(imgSvc.Picture(Content.Field("Image"), recipe: customRecipe), 350))
+@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe), 350))
 </hide-silent>
 
 
@@ -278,7 +263,7 @@
 <div>
   <p><strong>Image with optimal alt text (@optimalAltText)</strong></p>
   <div style="width: 25%;">
-    @imgSvc.Picture(imageFieldWithAltText, imgAlt: optimalAltText)
+    @Kit.Image.Picture(imageFieldWithAltText, imgAlt: optimalAltText)
   </div>
 </div>
 </snippet>
@@ -287,7 +272,7 @@
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-alt-text", Size = 250 }) 
 
 <h6>This generates:</h6>
-@{ var previewTag = imgSvc.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
+@{ var previewTag = Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
 @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
 </hide-silent>
 

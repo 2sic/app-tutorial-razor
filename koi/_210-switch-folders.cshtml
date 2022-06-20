@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -36,8 +36,7 @@
   2. Then it will load the real cshtml-template from the matching edition-folder
 *@
 @{ 
-  var pageCss = GetService<Connect.Koi.ICss>();
-  var folder = pageCss.Is("bs3") ? "bs3" : "bs4";
+  var folder = Kit.Css.Is("bs3") ? "bs3" : "bs4";
 }
 @Html.Partial(folder + "/_Alert.cshtml")
 

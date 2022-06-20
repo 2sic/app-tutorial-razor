@@ -1,6 +1,5 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -15,6 +14,8 @@
 
       @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
 
+      @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
+      
       <div>
         This page sets the Base tag in the header. Look at the source of this page to see the result. <br>
         There are two ways to do this:
@@ -24,10 +25,10 @@
   </div>
   <ul>
     <li>
-      <code>page.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
+      <code>Kit.Page.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
     </li>
     <li>
-      <code>page.SetBase("/some/page")</code> create the base tag with the specified url. 
+      <code>Kit.Page.SetBase("/some/page")</code> create the base tag with the specified url. 
     </li>
   </ul>
 </trim>
@@ -35,8 +36,7 @@
 @if (CmsContext.Platform.Name == "Oqtane") {
   Html.Partial("../shared/_MessageOqtaneDisabled.cshtml");
 } else {
-  var page = GetService<IPageService>();
-  page.SetBase();
+  Kit.Page.SetBase();
 }
 
 <hide>

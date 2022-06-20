@@ -1,6 +1,5 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{
@@ -14,6 +13,9 @@
       <h2><em>RazorBlade</em> add JSON-LD Headers</h2>
 
       @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
+      @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
+
       <div>
         This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
       </div>
@@ -25,8 +27,7 @@
 @if(CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 } else {
-  var page = GetService<IPageService>();
-  page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+  Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
 
   // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
   var jsonLd = new Dictionary<string, object> {
@@ -41,7 +42,7 @@
     }}
   };
 
-  page.AddJsonLd(jsonLd);
+  Kit.Page.AddJsonLd(jsonLd);
   <p>
     This is the tag you should see in the header: <br>
     @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())

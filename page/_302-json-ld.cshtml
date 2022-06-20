@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -23,11 +22,12 @@
   </div>
 </trim>
 
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+
 <snippet id="page-json-id">
 @{
   // example adding a json-ld as a string
-  var page = GetService<IPageService>();
-  page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+  Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
 }
 @{
   // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
@@ -43,7 +43,7 @@
     }}
   };
 
-  page.AddJsonLd(jsonLd);
+  Kit.Page.AddJsonLd(jsonLd);
 }
 </snippet>
 <hide-silent> @* Show only this snippet *@

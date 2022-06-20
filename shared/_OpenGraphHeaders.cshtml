@@ -1,6 +1,5 @@
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
-@inherits Custom.Hybrid.Razor12
 @{
   var hlp = CreateInstance("Helpers.cs");
   var viewMdType = hlp.TutViewMetadataType as string;
@@ -18,21 +17,19 @@
   var metaImageUrl = sharingMd != null ? sharingMd.Image != "" ? Link.Image(sharingMd.Image, height: 630, width: 1200, type: "full") : "" : "";
   var metaUrlTarget = Link.To(parameters: CmsContext.Page.Parameters);
 
-  var page = GetService<IPageService>();
-
   // Add open graph meta information
-  page.AddOpenGraph("og:type", "article");
-  page.AddOpenGraph("og:title", metaTitle);
-  page.AddOpenGraph("og:site_name", metaTitle);
-  page.AddOpenGraph("og:url", metaUrlTarget);
-  page.AddOpenGraph("og:description", metaDescription);
-  page.AddOpenGraph("og:image", metaImageUrl);
-  page.AddOpenGraph("og:image:height", "630");
-  page.AddOpenGraph("og:image:width", "1200");
+  Kit.Page.AddOpenGraph("og:type", "article");
+  Kit.Page.AddOpenGraph("og:title", metaTitle);
+  Kit.Page.AddOpenGraph("og:site_name", metaTitle);
+  Kit.Page.AddOpenGraph("og:url", metaUrlTarget);
+  Kit.Page.AddOpenGraph("og:description", metaDescription);
+  Kit.Page.AddOpenGraph("og:image", metaImageUrl);
+  Kit.Page.AddOpenGraph("og:image:height", "630");
+  Kit.Page.AddOpenGraph("og:image:width", "1200");
 
   // Add twitter meta information
-  page.AddMeta("twitter:card", "summary_large_image");
-  page.AddMeta("twitter:title", metaTitle);
-  page.AddMeta("twitter:description", metaDescription);
-  page.AddMeta("twitter:image", metaImageUrl);
+  Kit.Page.AddMeta("twitter:card", "summary_large_image");
+  Kit.Page.AddMeta("twitter:title", metaTitle);
+  Kit.Page.AddMeta("twitter:description", metaDescription);
+  Kit.Page.AddMeta("twitter:image", metaImageUrl);
 }

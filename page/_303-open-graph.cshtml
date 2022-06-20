@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 <hide>
@@ -25,13 +25,14 @@
   </div>
 </trim>
 
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+
 <snippet id="page-graph">
 @{
   // note: 'og:' is auto-prefixed if not given in the key
-  var page = GetService<IPageService>();
 
-  page.AddOpenGraph("title", "Demo of OpenGraph headers");
-  page.AddOpenGraph("type", "website");
+  Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
+  Kit.Page.AddOpenGraph("type", "website");
 }
 </snippet>
 <hide-silent> @* Show only this snippet *@

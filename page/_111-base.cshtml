@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -32,10 +31,11 @@
   </div>
 </trim>
 
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+
 <snippet id="page-base">
 @{
-  var page = GetService<IPageService>();
-  page.SetBase();
+  Kit.Page.SetBase();
 }
 </snippet>
 <hide-silent> @* Show only this snippet *@

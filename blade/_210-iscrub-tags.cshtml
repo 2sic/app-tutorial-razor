@@ -1,6 +1,5 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
@@ -28,28 +27,17 @@
   var cropLen = 50;
 }
 
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
+
 <h2>Simple example</h2>
 <h3>Original</h3>
 <code>@val1</code>
-
 <div>which if cropped at @cropLen would be really messy</div>
 <code>@val1.Substring(0, cropLen)</code>
 
-<trim>
-<h3>Get IScrub service</h3>
-</trim>
-<snippet id="get-scrub">
-@{
-  var scrubSvc = GetService<IScrub>();
-}
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "get-scrub", Size = 100 }) 
-</hide-silent>
-
 <h3>After IScrub.All</h3>
 <snippet id="blade-scrub-all">
-<code>@scrubSvc.All(val1)</code>
+<code>@Kit.Scrub.All(val1)</code>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-all", Size = 30 }) 
@@ -57,7 +45,7 @@
 
 <h3>Usually you will then combine with crop or ellipsis</h3>
 <snippet id="blade-scrub-all-ellipsis">
-<code>@Html.Raw(Text.Ellipsis(scrubSvc.All(val1), cropLen))</code>
+<code>@Html.Raw(Text.Ellipsis(Kit.Scrub.All(val1), cropLen))</code>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-all-ellipsis", Size = 30 }) 
@@ -69,8 +57,8 @@
 @{
   var exampleTagsOnly = "<div><h2><span>The cool title</span></h2></div>"; 
 }
-<div><strong>Scrub one tag: </strong><code>@scrubSvc.Only(exampleTagsOnly, "div")</code></div>
-<div><strong>Scrub multiple tags: </strong><code>@scrubSvc.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
+<div><strong>Scrub one tag: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, "div")</code></div>
+<div><strong>Scrub multiple tags: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-only", Size = 150 }) 
@@ -82,8 +70,8 @@
 @{
   var exampleTagsExcept = "<div><h2><span>The cool title</span></h2></div>"; 
 }
-<div><strong>Scrub tags except one tag: </strong><code>@scrubSvc.Except(exampleTagsExcept, "h2")</code></div>
-<div><strong>Scrub tags except multiple tags: </strong><code>@scrubSvc.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
+<div><strong>Scrub tags except one tag: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, "h2")</code></div>
+<div><strong>Scrub tags except multiple tags: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-except", Size = 150 }) 

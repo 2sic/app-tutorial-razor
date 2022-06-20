@@ -1,8 +1,7 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @{
   // Tell the page that we need the 2sxc Js APIs
-  GetService<IPageService>().Activate("2sxc.JsCore"); 
+  Kit.Page.Activate("2sxc.JsCore"); 
 }
 <hide>
 @Html.Partial("_header.cshtml")
@@ -50,7 +49,7 @@
 @* 2sxclint:disable:no-inline-script *@
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500 }) 
 
 @Html.Partial("_MessageHybrid.cshtml")

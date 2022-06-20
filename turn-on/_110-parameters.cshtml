@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -40,7 +39,7 @@
 
 @{
   // Use the PageService to activate turnOn
-  GetService<IPageService>().Activate("turnOn");
+  Kit.Page.Activate("turnOn");
 }
 
 @* Passes the parameters Hello for greeting and World for name in a JSON format and executes the window.turnOnTutorial110.init function *@

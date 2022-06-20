@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -13,6 +12,9 @@
     <div class="col-lg-7">
       <h2><em>RazorBlade</em> add Open-Graph Headers</h2>
       @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
+      @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
+
       <div>
         This page sets various open-graph headers. 
 
@@ -26,10 +28,9 @@
 @if(CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 } else {
-  var page = GetService<IPageService>();
   // note: 'og:' is auto-prefixed if not given in the key
-  page.AddOpenGraph("title", "Demo of OpenGraph headers");
-  page.AddOpenGraph("type", "website");
+  Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
+  Kit.Page.AddOpenGraph("type", "website");
 }
 
 <hide>

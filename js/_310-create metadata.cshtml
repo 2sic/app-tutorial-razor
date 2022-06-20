@@ -1,10 +1,9 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 @using System.Linq;
-@using ToSic.Sxc.Services;
 @{
   // Tell the page that we need the 2sxc Js APIs
-  GetService<IPageService>().Activate("2sxc.JsCore"); 
+  Kit.Page.Activate("2sxc.JsCore"); 
 }
 <hide>
 @Html.Partial("_header.cshtml")
@@ -71,7 +70,7 @@
 </table>
 
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
-@{ GetService<IPageService>().Activate("turnOn"); }
+@{ Kit.Page.Activate("turnOn"); }
 <turnOn turn-on='{ "run": "window.sxcDataTutorial240.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 <script src="@App.Path/js/_310-create metadata.js"></script>
 

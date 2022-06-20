@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -25,12 +24,13 @@
   </div>
 </trim>
 
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+
 <snippet id="page-headers">
 @{
-  var page = GetService<IPageService>();
   // prefix the current title, description and keywords with additional values
-  page.AddToHead("<meta xyz>");
-  page.AddMeta("somename", "somevalue");
+  Kit.Page.AddToHead("<meta xyz>");
+  Kit.Page.AddMeta("somename", "somevalue");
 }
 </snippet>
 <hide-silent> @* Show only this snippet *@

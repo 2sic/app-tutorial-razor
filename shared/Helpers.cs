@@ -1,7 +1,6 @@
 using ToSic.Razor.Blade;
-using ToSic.Sxc.Services;
 using System.Web;
-public class Helpers: Custom.Hybrid.Code12
+public class Helpers: Custom.Hybrid.Code14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 {
   public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";
@@ -9,8 +8,7 @@ public class Helpers: Custom.Hybrid.Code12
 
   public dynamic Title(string title) {
     // set browser title for SEO
-    var page = GetService<IPageService>();
-    page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");
+    Kit.Page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");
     return Tag.Custom(
       InitializedPageAssets()
       + AddFeatureLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
@@ -104,7 +102,7 @@ public class Helpers: Custom.Hybrid.Code12
 
   dynamic InitializedPageAssets() {
     // Tell the page that we need the 2sxc Js APIs
-    GetService<IPageService>().Activate("2sxc.JsCore"); 
+    Kit.Page.Activate("2sxc.JsCore"); 
 
     var bsCheck = CreateInstance("Bootstrap4.cs");
     bsCheck.EnsureBootstrap4();

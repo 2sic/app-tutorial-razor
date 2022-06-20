@@ -1,5 +1,4 @@
-@using ToSic.Sxc.Services;
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
   @Html.Partial("_header.cshtml")
@@ -8,7 +7,7 @@
     var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
-    GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
   }
 </hide>
 

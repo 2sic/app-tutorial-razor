@@ -1,6 +1,5 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using System.Linq;
-@using ToSic.Sxc.Services;
 @using ToSic.Razor.Blade;
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
@@ -13,8 +12,8 @@
   var viewMd = AsList(CmsContext.View.Metadata.OfType(viewMdType) as object).FirstOrDefault();
 
   // Metadata with new toolbar services
-  var tlbSvc = GetService<IToolbarService>();
-  var newConfig = tlbSvc
+
+  var newConfig = Kit.Toolbar
     .Metadata(CmsContext.View, viewMdType)
     .Metadata(CmsContext.View, "TutorialViewSharing", parameters: "prefill:Title=" + Tags.Strip(viewMd.LinkTitle) + "&prefill:Description=" + Tags.Strip(viewMd.LinkTeaser))
     .Settings(hover: "left");

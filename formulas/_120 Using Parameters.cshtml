@@ -1,5 +1,4 @@
-@using ToSic.Sxc.Services;
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
   @Html.Partial("_header.cshtml")
@@ -8,7 +7,7 @@
     var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
-    GetService<IPageService>().Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
   }
 </hide>
 
@@ -74,8 +73,10 @@
 <p>By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This enables a editing experience matching the page context.</p>
 <br>
 
-<h3>Configuration with parameters <snippet id="formulas-parameter">
-@Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters&prefill:showAdvanced=true"})
+<h3>Configuration with parameters <snippet id="formulas-showAdvanced-false">
+showAdvanced:false = @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters&prefill:showAdvanced=false"})
+</snippet><snippet id="formulas-showAdvanced-true">
+showAdvanced:true = @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new?contentType=FormulasParameters&prefill:showAdvanced=true"})
 </snippet></h3>
 <p>
   VarShowAdvanced is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of the Advanced Settings group. The group becomes visible, when the passed VarShowAdvanced parameter is true.
@@ -83,9 +84,10 @@
   <em>Click on the (+) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
 </p>
 
-<code id="formulas-parameter-label"></code>
+<code id="formulas-showAdvanced-label"></code>
 <hide-silent> @* Show only this snippet *@
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-parameter", Size = 40 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced-false", Size = 40 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced-true", Size = 40 }) 
 
 @Html.Partial("_PartFormulas.cshtml", new {
   ContentType = "FormulasParameters",

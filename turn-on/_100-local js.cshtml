@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -36,9 +35,8 @@
 </div>
 
 @{
-  var page = GetService<IPageService>();
   // Use the PageService to activate turnOn
-  page.Activate("turnOn");
+  Kit.Page.Activate("turnOn");
 }
 
 @* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@

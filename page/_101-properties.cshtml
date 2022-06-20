@@ -1,5 +1,4 @@
-@inherits Custom.Hybrid.Razor12
-@using ToSic.Sxc.Services;
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 <hide>
 @Html.Partial("_header.cshtml")
@@ -27,12 +26,13 @@
 
 <snippet id="page-properties">
 
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+
 @{
-  var page = GetService<IPageService>();
   // prefix the current title, description and keywords with additional values
-  page.SetTitle("Title changed from the razor using Razor Blade! original: ");
-  page.SetDescription("Learn to use Razor Blade ");
-  page.SetKeywords("Tutorial, Razor, Blade");
+  Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
+  Kit.Page.SetDescription("Learn to use Razor Blade ");
+  Kit.Page.SetKeywords("Tutorial, Razor, Blade");
 }
 
 </snippet>

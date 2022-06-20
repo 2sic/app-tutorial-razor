@@ -1,9 +1,8 @@
-@using ToSic.Sxc.Services;
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
 @{
   // Tell the page that we need the 2sxc Js APIs
-  GetService<IPageService>().Activate("2sxc.JsCore"); 
+  Kit.Page.Activate("2sxc.JsCore"); 
 }
 <hide>
 @Html.Partial("_header.cshtml")
@@ -53,7 +52,7 @@
 <button id="mod-@CmsContext.Module.Id-streams-params" type="button" class="btn btn-primary">Get Query Streams with parameters</button>
 
 @* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
-@{ GetService<IPageService>().Activate("turnOn"); }
+@{ Kit.Page.Activate("turnOn"); }
 <turnOn turn-on='{ 
   "run": "window.tutQueryParameters.init()", 
   "data": { "moduleId": "@CmsContext.Module.Id", "demoAuthorId": "@demoAuthorId" } }'>

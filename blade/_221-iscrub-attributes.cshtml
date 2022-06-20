@@ -1,6 +1,5 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Services;
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
@@ -21,17 +20,7 @@
   </div>
 </div>
 
-<trim>
-<h3>Get IScrub service</h3>
-</trim>
-<snippet id="get-scrub">
-@{
-  var scrubSvc = GetService<IScrub>();
-}
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "get-scrub", Size = 100 }) 
-</hide-silent>
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
 
 <trim>
 <h3>Scrub classes</h3>
@@ -41,7 +30,7 @@
 @{
   var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
 }
-<div><strong>Scrub all classes from source: </strong><code>@scrubSvc.Classes(exampleClasses)</code></div>
+<div><strong>Scrub all classes from source: </strong><code>@Kit.Scrub.Classes(exampleClasses)</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-class", Size = 100 }) 
@@ -55,9 +44,9 @@
 @{
   var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
 }
-<div><strong>Scrub all attributes from source: </strong><code>@scrubSvc.Attributes(exampleAttributes)</code></div>
-<div><strong>Scrub one attribute from source: </strong><code>@scrubSvc.Attributes(exampleAttributes, "remove-me")</code></div>
-<div><strong>Scrub some attributes from source: </strong><code>@scrubSvc.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
+<div><strong>Scrub all attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes)</code></div>
+<div><strong>Scrub one attribute from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
+<div><strong>Scrub some attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-attributes", Size = 150 }) 
@@ -71,7 +60,7 @@
 @{
   var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
 }
-<div><strong>Scrub all styles from source: </strong><code>@scrubSvc.Styles(exampleStyle)</code></div>
+<div><strong>Scrub all styles from source: </strong><code>@Kit.Scrub.Styles(exampleStyle)</code></div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "scrub-styles", Size = 150 }) 
