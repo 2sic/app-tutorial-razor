@@ -20,9 +20,8 @@
     <h2>Simple Sorting of Persons</h2>
     <h3>OrderBy(EntityId)</h3>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+
 </div>
 <p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
 <snippet id="sort-by-id">

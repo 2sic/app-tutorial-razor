@@ -14,10 +14,7 @@
       <p>These demos show how to scrub attributes of html source.</p>
     </trim>
   </div>
-  <div class="col-md-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })

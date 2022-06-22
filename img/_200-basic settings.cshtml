@@ -23,9 +23,7 @@
       <li>Additional parameters like <code>mode=crop</code> specify how to handle scenarios where the size doesn't match what you need</li>
     </ol>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
   <h2>The Unmodified Image</h2>

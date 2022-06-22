@@ -13,10 +13,7 @@
   <div class="col-lg-7">
     <p>If you want to work with <strong>data</strong> (like from a database) instead of <strong>@hlp.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:</p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 <ul>
   <li>the current App, using <code>App.Data[...]</code></li>

@@ -27,10 +27,7 @@
       So just have a look and discover how simple everything can be 🚀.
     </p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 <br>
 </hide>

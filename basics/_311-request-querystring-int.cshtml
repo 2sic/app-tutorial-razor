@@ -20,11 +20,7 @@
       @SubpageLink("put ?id=27 in the url", "id=27")
     </ul>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Related, Title = "Related" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 <hr>
 </trim>

@@ -24,10 +24,14 @@
       <em>BTW: to see that this works, try switching the theme of this page to one without a <code>koi.json</code> or one with a different css-framework.</em>
     </p>
   </div>
-  <div class="col-lg-5">
+  @* <div class="col-lg-5">
     @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
     @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
     <img loading="lazy" src="@App.Path/koi/assets/koi.png?w=400">
+  </div> *@
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div class="w-100 d-flex justify-content-end">
+    <img loading="lazy" src="@App.Path/koi/assets/koi.png?w=300">
   </div>
 </div>
 

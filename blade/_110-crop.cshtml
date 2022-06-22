@@ -18,10 +18,7 @@
     <h2><em>RazorBlade</em> Text.Crop(...) and Text.Ellipsis(...) <em>v1.1</em></h2>
     <p>These demos show how to crop text properly, because Razor Blade handles a lot of issues you'll usually have cropping text.</p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 <h2>Example Text</h2>

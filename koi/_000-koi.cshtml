@@ -16,9 +16,8 @@
       Learn how to use <code>Connect.Koi</code> to ensure your module/temlate has the right CSS frameworks, to either auto-include otherwise, show messages to the admin or generate different output. This uses <a href="https://connect-koi.net/" target="_blank">Connect.Koi</a>. 
     </p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+
 </div>
 
 <h2>Some notes before we start</h2>

@@ -15,9 +15,7 @@
       Partial templates are <code>cshtml</code> files which you can use multiple times. Typically they will contain something which you need in many places, like a menu or a data-visualizer which gets data as a parameter, and then creates a different table each time. Here's how to use it with <code>Html.Partial(...)</code> (or <code>RenderPage</code> in older versions). 
     </p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
 

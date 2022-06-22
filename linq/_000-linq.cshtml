@@ -18,9 +18,7 @@
       <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
     </ul>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 <h2>Some notes before we start</h2>

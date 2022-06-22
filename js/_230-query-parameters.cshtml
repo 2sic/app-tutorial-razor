@@ -39,10 +39,7 @@
         Note that this sample will run the query <code>AuthorsWithBooks</code>.
       </p>
     </div>
-    <div class="col-md-5">
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
 

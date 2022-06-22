@@ -4,6 +4,10 @@
 }
 
 <div class="col-lg-5">
-  @Html.Partial("_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-  @Html.Partial("_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
+  @* TODO: if empty, ONLY SHOW THIS TO ADMINS *@
+  @Html.Partial("_InfoSection.cshtml", new { Parent = viewMd.Specs, Field = "Requirements", Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
+  @* TODO: if empty, ONLY SHOW THIS TO ADMINS *@
+  @Html.Partial("_InfoSection.cshtml", new { Parent = viewMd.Specs, Field = "Resources", Data = viewMd.Specs.Resources, Title = "Resources" })
+  @* TODO: if empty, ONLY SHOW THIS TO ADMINS *@
+  @Html.Partial("_InfoSection.cshtml", new { Parent = viewMd.Specs, Field = "Related", Data = viewMd.Specs.Related, Title = "Related" })
 </div>

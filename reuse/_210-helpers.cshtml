@@ -36,9 +36,7 @@
       You can also share them by placing them into a separate file (just remember to mark them <code>public</code>). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
     </p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
 
