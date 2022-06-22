@@ -11,19 +11,22 @@
 <trim>
   <div class="row">
     <div class="col-lg-7">
-      <h2>Switch between template files based on Bootstrap Version</h2>
-      <p>
-        In this example, we'll assume you have a Bootstrap3 and a Bootstrap4 template in the folders <code>bs3/_Line.cshtml</code> and the same in <code>bs4/_Line.cshtml</code>. We'll use Koi to load the right template file. 
-      </p>
-
-      <p>
-        You can see in the source-codes that BS3 uses <code>pull-left</code> and another class on the blockquote tag than BS4.
-      </p>
+      <div class="row">
+        <div class="col-lg-8">
+          <h2>Switch between template files based on Bootstrap Version</h2>
+          <p>
+            In this example, we'll assume you have a Bootstrap3 and a Bootstrap4 template in the folders <code>bs3/_Line.cshtml</code> and the same in <code>bs4/_Line.cshtml</code>. We'll use Koi to load the right template file. 
+          </p>
+          <p>
+            You can see in the source-codes that BS3 uses <code>pull-left</code> and another class on the blockquote tag than BS4.
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <img loading="lazy" src="@App.Path/koi/assets/koi.png?w=200">
+        </div>
+      </div>
     </div>
-    <div class="col-lg-5">
-      @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-      <img loading="lazy" src="@App.Path/koi/assets/koi.png?w=400">
-    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
 

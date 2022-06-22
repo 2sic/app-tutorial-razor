@@ -1,25 +1,27 @@
 @inherits Custom.Hybrid.Razor12
 @{
-  // Temp solution till all pages use the _DefaultInfoSection
-  var hasParent = DynamicModel.Parent != null;
-  var contextAttribute = hasParent ? Edit.ContextAttributes(DynamicModel.Parent, field: DynamicModel.Field) : null;
+  var contextAttribute = Edit.ContextAttributes(DynamicModel.Parent, field: DynamicModel.Field);
+  var helpers = CreateInstance("./Helpers.cs");
 }
-@if(DynamicModel.Data.Count > 0 || Request.IsAuthenticated){
-
-  <div class="card" @Edit.TagToolbar(DynamicModel.Data, toolbar: new [] { "toolbar=empty", "new" })>
-    <h6 class="card-header">
-      <i class='fas @(DynamicModel.Icon ?? "fa-info-circle")'></i>
-      <span class="ml-2 ms-2">@DynamicModel.Title</span>
-    </h6>
-    <div class="list-group list-group-flush" @contextAttribute>
-      <ul class="list-unstyled list-group-item ml-2 ms-2">
-        @foreach (var dataEl in DynamicModel.Data) {
+ 
+<div class="card" @Edit.TagToolbar(DynamicModel.Data, toolbar: new [] { "toolbar=empty", "new" })>
+  <h6 class="card-header">
+    <i class='fas @(DynamicModel.Icon ?? "fa-info-circle")'></i>
+    <span class="ml-2 ms-2">@DynamicModel.Title</span>
+  </h6>
+  <div class="list-group list-group-flush" @contextAttribute>
+    <ul class="list-unstyled list-group-item ml-2 ms-2">
+      @foreach (var dataEl in DynamicModel.Data) {
+        if(helpers.GetViewUrl(dataEl) != null && DynamicModel.Field == "Related"){
+          <a href="@Link.To(parameters: helpers.GetViewUrl(dataEl).ViewNameInUrl.Replace(".*", "page"))" target="_blank" class="@DynamicModel.TextColor">
+            <li @Edit.TagToolbar(dataEl, toolbar: new [] { "toolbar=empty", "edit", "add-existing", "moveup", "movedown", "remove" })>@dataEl.Title</li>
+          </a>
+        } else if(DynamicModel.Field == "Requirements" ||DynamicModel.Field == "Resources"){
           <a href="@dataEl.Link" target="_blank" class="@DynamicModel.TextColor">
             <li @Edit.TagToolbar(dataEl, toolbar: new [] { "toolbar=empty", "edit", "add-existing", "moveup", "movedown", "remove" })>@dataEl.Title</li>
           </a>
         }
-      </ul>
-    </div>
+      }
+    </ul>
   </div>
-
-}
+</div>

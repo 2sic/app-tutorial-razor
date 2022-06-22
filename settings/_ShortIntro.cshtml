@@ -14,9 +14,6 @@
       You can read more about the <a href="https://r.2sxc.org/settings" target="_blank">settings in the docs 📕</a>.
     </p>
   </div>
-  <div class="col-lg-5">
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
-    @Html.Partial("../shared/_InfoSection.cshtml", new { Data = viewMd.Specs.Resources, Title = "Resources" })
-  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>

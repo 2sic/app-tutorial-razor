@@ -1,5 +1,7 @@
 using ToSic.Razor.Blade;
 using System.Web;
+using System.Collections.Generic;
+using System.Linq;
 public class Helpers: Custom.Hybrid.Code14<dynamic, ToSic.Sxc.Services.ServiceKit14>
 {
   public string TutorialSectionType = "TutorialSection";
@@ -126,5 +128,14 @@ public class Helpers: Custom.Hybrid.Code14<dynamic, ToSic.Sxc.Services.ServiceKi
     #else
       return HttpContext.Current.Server.MapPath(filePath);
     #endif
+  }
+  
+  public dynamic GetViewUrl(dynamic Data){
+    var ViewList = AsList(App.Data["2SexyContent-Template"] as object);
+    var View = ViewList.FirstOrDefault(view => view.Metadata == Data);
+    if(View != null)
+      return View;
+    else
+      return null;
   }
 }
