@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 
 @{
   var rzr = CreateInstance("RazorbladeVersion.cs");
@@ -13,10 +13,10 @@
   </div>
 } else if(versionOk) {
   <div class="alert alert-primary" role="alert">
-    Your RazorBlade version is @Convert.ForCode(version) - which is what you need for all these tutorials. 
+    Your RazorBlade version is @Kit.Convert.ForCode(version) - which is what you need for all these tutorials. 
   </div>
 } else {
   <div class="alert alert-warning" role="alert">
-    Your RazorBlade version is @Convert.ForCode(version). Only the examples marked like @Html.Raw(rzr.VersionInfo(1.2, 1.2)) will work. The examples marked like @Html.Raw(rzr.VersionInfo(0, 1.2)) will not work unless you  <a href="https://azing.org/dnn-community/r/zbh8JC5T" target="_blank">install a newer version</a>.
+    Your RazorBlade version is @Kit.Convert.ForCode(version). Only the examples marked like @Html.Raw(rzr.VersionInfo(1.2, 1.2)) will work. The examples marked like @Html.Raw(rzr.VersionInfo(0, 1.2)) will not work unless you  <a href="https://azing.org/dnn-community/r/zbh8JC5T" target="_blank">install a newer version</a>.
   </div>
 }

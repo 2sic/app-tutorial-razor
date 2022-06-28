@@ -2,7 +2,7 @@ using ToSic.Razor.Blade;
 using System.Linq;
 using System;
 
-public class _410CodeBehind: Custom.Hybrid.Code12
+public class _410CodeBehind: Custom.Hybrid.Code14
 {
   public string Hello() {
     return "Hello from inner code";

@@ -1,5 +1,5 @@
 
-public class SharedFunctions: Custom.Hybrid.Code12 {
+public class SharedFunctions: Custom.Hybrid.Code14 {
 
   public string SayHello() {
     return "Hello!";

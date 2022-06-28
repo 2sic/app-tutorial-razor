@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using ToSic.Razor.Blade;
-public class Helpers : Custom.Hybrid.Code12 {
+public class Helpers : Custom.Hybrid.Code14 {
   public dynamic GetFormulas(string contentType, string fieldName) {
     var contentItem = AsList(App.Data[contentType]).FirstOrDefault();
     var contentItemType = AsEntity(contentItem).Type;

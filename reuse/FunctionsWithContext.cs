@@ -1,9 +1,9 @@
 // Important notes: 
 // - This class should have the same name as the file it's in
-// - This inherits from Custom.Hybrid.Code12
+// - This inherits from Custom.Hybrid.Code14
 //   which will automatically provide the common objects like App, Dnn etc.
 //   from the current context to use in your code
-public class FunctionsWithContext: Custom.Hybrid.Code12 {
+public class FunctionsWithContext: Custom.Hybrid.Code14 {
 
   public string QrPath(string link) {
         // path to qr-code generator

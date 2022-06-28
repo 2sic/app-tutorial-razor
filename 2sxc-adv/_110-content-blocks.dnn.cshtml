@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using System.Collections;
 @using System.Linq;
 @using DotNetNuke.Entities.Modules;
@@ -41,7 +41,7 @@
   // create a map of all blocks to DNN modules
   var block2ModuleMap = contentBlocks.GroupJoin(allMods, 
     cb => cb.EntityGuid,
-    m => Convert.ToGuid(m.ModuleSettings[SettingsCG]),
+    m => Kit.Convert.ToGuid(m.ModuleSettings[SettingsCG]),
     (cb, m) => new { 
       Block = cb, 
       Modules = m 

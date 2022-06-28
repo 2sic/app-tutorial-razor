@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
 @{
@@ -34,8 +34,8 @@
     var fileInTitle = titlePath + file;
     title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
     var paramSize = DynamicModel.Size;
-    var test = Convert.Json;
-    size = this.Convert.ToInt(paramSize, fallback: 600);
+    var test = Kit.Convert.Json;
+    size = Kit.Convert.ToInt(paramSize, fallback: 600);
 
     language = "ace/mode/" + (DynamicModel.Language ?? FindAce3LanguageName(filePath));
 

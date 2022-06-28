@@ -2,7 +2,7 @@ using ToSic.Razor.Blade;
 using System.Web;
 using System.Collections.Generic;
 using System.Linq;
-public class Helpers: Custom.Hybrid.Code14<dynamic, ToSic.Sxc.Services.ServiceKit14>
+public class Helpers: Custom.Hybrid.Code14
 {
   public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";

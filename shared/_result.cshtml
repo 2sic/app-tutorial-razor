@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
 @{
@@ -9,7 +9,7 @@
   var language = DynamicModel.Language ?? "html";
 
   // Prepare variables which are initialized in try/catch
-  int size = this.Convert.ToInt(DynamicModel.Size, fallback: 600);
+  int size = Kit.Convert.ToInt(DynamicModel.Size, fallback: 600);
   var domAttribute = "result-" + CmsContext.Module.Id;
 
   // Low risk stuff outside of try/catch

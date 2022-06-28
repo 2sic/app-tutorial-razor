@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.IO;
 
-public class RazorBladeVersion: Custom.Hybrid.Code12
+public class RazorBladeVersion: Custom.Hybrid.Code14
 {
 
   public Version GetRazorBladeVersion() {
@@ -18,7 +18,7 @@ public class RazorBladeVersion: Custom.Hybrid.Code12
 
     var major = verInfo.Major;
     var minor = verInfo.Minor;
-    return Convert.ToFloat(major + "." + minor.ToString("D2"));
+    return Kit.Convert.ToFloat(major + "." + minor.ToString("D2"));
   }
 
   public string VersionInfo(double version, double expected) {

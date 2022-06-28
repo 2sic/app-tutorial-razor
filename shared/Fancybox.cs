@@ -1,5 +1,5 @@
 using ToSic.Razor.Blade;
-public class Fancybox: Custom.Hybrid.Code14<dynamic, ToSic.Sxc.Services.ServiceKit14>
+public class Fancybox: Custom.Hybrid.Code14
 {
   // Create an image which opens a larger version in a lighbox
   public dynamic PreviewWithLightbox(string url, int width = 100, int height = 100, string classes = "", string label = null)

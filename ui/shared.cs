@@ -1,7 +1,6 @@
-using ToSic.Sxc.Services;
 // Important notes: 
 // - This class should have the same name as the file it's in
-public class Shared : Custom.Hybrid.Code14<dynamic, ToSic.Sxc.Services.ServiceKit14> 
+public class Shared : Custom.Hybrid.Code14 
 {
 
   public void EnableEditForAnonymous(dynamic Edit) {
