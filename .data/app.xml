@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.07.03" ExportDate="2022-07-05T23:34:00.7912726+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.07.03" ExportDate="2022-07-06T00:52:37.9438981+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -1729,6 +1729,98 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
+    <AttributeSet StaticName="e7f4a60a-eb47-44f2-bc75-cb2f4c3194c1" Name="FormulasValidation" Description="" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Instructions" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0f7123f8-7d35-4373-beb2-a9fd75689928" Json="True" KeyNumber="5218">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-message" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Instructions" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Type in something in the title. Depending on what you type, the formula will show a warning or an error.&amp;nbsp;&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="fdad7ecb-0428-46f8-8126-7c745e863175" Json="True" KeyNumber="5217">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="8e7e6c20-b256-48ab-9516-18200e63b7b8" Type="Entity" />
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Title" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="Type something - upper case will show warnings" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="022461a3-57b6-4726-9e2a-63e4fa887a75" Json="True" KeyNumber="5217">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="72e6d1c8-55b5-48a7-a784-4bc210273f47" Json="True" KeyNumber="5217">
+            <Value Key="InputFontFamily" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
     <AttributeSet StaticName="6169569c-ee07-45f5-b8f1-f627ddc2a15e" Name="FormulasVisibleGroup" Description="" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
         <Attribute StaticName="Advanced" Type="Boolean" IsTitle="true">
@@ -1845,14 +1937,22 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
-    <AttributeSet StaticName="e7f4a60a-eb47-44f2-bc75-cb2f4c3194c1" Name="FormulaValidation" Description="" Scope="Default" AlwaysShareConfiguration="false">
+    <AttributeSet StaticName="ac38c10d-4820-4076-8ca4-2d1f416659fe" Name="FormulasWebApiText" Description="" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
-        <Attribute StaticName="Instructions" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0f7123f8-7d35-4373-beb2-a9fd75689928" Json="True" KeyNumber="5218">
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b2a8f2d1-5f77-4ed8-a79b-9a03dc7e77c9" Json="True" KeyNumber="5440">
+            <Value Key="Formulas" Value="c445fcde-e542-4b8a-ae29-3e4b336ea536,2ca9ea28-8419-4679-b100-7498472108f5" Type="Entity" />
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Start" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f724c858-5855-4772-aa1b-d431843e68bf" Json="True" KeyNumber="5441">
             <Value Key="CustomJavaScript" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
+            <Value Key="DefaultValue" Value="false" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Disabled" Value="False" Type="Boolean">
@@ -1861,13 +1961,14 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="InputType" Value="empty-message" Type="String">
+            <Value Key="Formulas" Value="14eda8b8-32d5-44c3-a070-caf4f29f36f8" Type="Entity" />
+            <Value Key="InputType" Value="boolean-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="Instructions" Type="String">
+            <Value Key="Name" Value="Start" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Notes" Value="&lt;p&gt;Type in something in the title. Depending on what you type, the formula will show a warning or an error.&amp;nbsp;&lt;/p&gt;" Type="String">
+            <Value Key="Notes" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Placeholder" Value="" Type="String">
@@ -1883,13 +1984,16 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
-        </Attribute>
-        <Attribute StaticName="Title" Type="String" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="fdad7ecb-0428-46f8-8126-7c745e863175" Json="True" KeyNumber="5217">
-            <Value Key="Formulas" Value="8e7e6c20-b256-48ab-9516-18200e63b7b8" Type="Entity" />
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="Title" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Boolean" AttributeSetName="@Boolean" EntityGUID="4466a0cc-d28f-475f-8c40-dfc677495310" Json="True" KeyNumber="5441">
+            <Value Key="TitleFalse" Value="Toggle this to start the WebApi" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleIndeterminate" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleTrue" Value="Will now start the WebAPI call, the field should be ready in no time" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
           </Entity>
         </Attribute>
       </Attributes>
@@ -3790,7 +3894,7 @@
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="14.03.00" Type="String">
+      <Value Key="Version" Value="14.07.03" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -18114,7 +18218,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e7f4a60a-eb47-44f2-bc75-cb2f4c3194c1" AttributeSetName="FormulaValidation" EntityGUID="45274780-ae73-4c4a-b610-6205beafb160">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e7f4a60a-eb47-44f2-bc75-cb2f4c3194c1" AttributeSetName="FormulasValidation" EntityGUID="45274780-ae73-4c4a-b610-6205beafb160">
       <Value Key="Title" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -18615,7 +18719,7 @@
       <Value Key="PermissionType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Security Rule" Type="String">
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -19644,6 +19748,210 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="a1e0015e-17cf-4a62-bc6c-bb8eb2cd712e" Json="True" KeyString="ac38c10d-4820-4076-8ca4-2d1f416659fe">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="&lt;p&gt;In this example, the title will initially be blocked..&lt;/p&gt;&#xA;&lt;p&gt;until a WebAPI call gives it a value, then it will be editable.&amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: because this is so fast you wouldn't see it happen. So we don't run the api call till you toggle the start button below.&amp;nbsp;&lt;/em&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="FormulasWebApi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="2ca9ea28-8419-4679-b100-7498472108f5" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // for demo reasons, don't do this till start is toggled.&#xA;  if (!data.Start) return data.value;&#xA;&#xA;  // If it has a value, keep it, don't look for another&#xA;  if (data.value) return data.value;&#xA;&#xA;  // If data had been stored in the cache by the api-call, return it&#xA;  if (context.cache.data) return context.cache.data;&#xA;  &#xA;  // Prevent the API call from running twice&#xA;  if (context.cache.alreadyRun) return data.value;&#xA;  context.cache.alreadyRun = true;&#xA;  // Call the sxc web-api controller from other tutorials&#xA;  context.sxc.webApi.fetchJson('app/auto/api/basic/hello')&#xA;    .then(data =&gt; {&#xA;      console.log('got data', data);// log for demo reasons&#xA;      context.cache.data = data;  // set cache for next formula cycle&#xA;      context.form.runFormulas(); // trigger the next formula cycle&#xA;    });&#xA;  // After starting the web-api call, return the current empty value&#xA;  return data.value;&#xA;}" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="c445fcde-e542-4b8a-ae29-3e4b336ea536" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // Only enable once data has been loaded&#xA;  return !data.Title;&#xA;}" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Disabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Disabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="14eda8b8-32d5-44c3-a070-caf4f29f36f8" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  return data.Start;&#xA;}" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Disabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Disabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="1f553bba-0631-4c38-9812-ab6f1ba93cd1" Json="True" KeyGuid="62e3e780-58a7-4f0a-81dc-4a04c8277650">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="00a5a8cb-737b-4e52-84d6-50808b727129" Json="True" KeyGuid="39ecfecc-6d06-4bcc-9275-e2bea1e2deae">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="ae7e4e37-ebbf-478c-9891-b27db5eabb0f" Json="True" KeyGuid="e7f4a60a-eb47-44f2-bc75-cb2f4c3194c1">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="92b20148-82e3-48bb-acea-c10c2fe3d548" Json="True" KeyGuid="1fe8bbed-f45a-417d-9965-5174abf59da7">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="7f09630f-b220-4cdc-a8ae-b93e8137a586" Json="True" KeyGuid="9721d978-1c70-4cc0-b6d2-3e744f159f83">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="9bde7d78-cf10-451d-be57-c1d3aae6bcda" Json="True" KeyGuid="9bfa3971-c2c0-42ec-9bb1-74f2e2cdbaec">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="053b7521-46d0-4313-acff-a3610e810417" Json="True" KeyGuid="e7df49e3-5fdb-4d90-8512-0305e35cbba3">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="97be11cc-3dd1-4e74-addc-bcf50c141e73" Json="True" KeyGuid="ac38c10d-4820-4076-8ca4-2d1f416659fe">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule - Anon users create Draft" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
