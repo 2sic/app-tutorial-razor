@@ -122,6 +122,7 @@ public class Helpers: Custom.Hybrid.Code14
   public string GetFullPath(string filePath) {
     #if NETCOREAPP
       // This is the Oqtane implementation - cannot use Server.MapPath
+      // 2sxclint:disable:v14-no-getservice
       var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
       var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
       return System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);

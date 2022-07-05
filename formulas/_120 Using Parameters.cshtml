@@ -23,7 +23,7 @@
         Use emphemeral fields
       </li>
       <li>
-        Use data.parameters in your formulas
+        Use <code>data.parameters</code> in your formulas <em>new in v14</em>
       </li>
     </ul>
     <br>
@@ -49,20 +49,23 @@
 <p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
 
 
-<h3>Ephemeral field <snippet id="formulas-ephemeral">
+<h3>Ephemeral field 
+  <snippet id="formulas-ephemeral">
     @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new&icon=" + tbHlp.Icon() + "?contentType=FormulasEphemeral"})
+    @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new&icon=" + tbHlp.Icon() + "?contentType=FormulasEphemeral&prefill:VarShowAdvanced=true"})
   </snippet>
 </h3>
 <p>
-  VarShowAdvanced is an ephemeral field and thus not saved in the database. This formula determines the visibility of
-  the Advanced Settings group. The group becomes visible, when the VarShowAdvanced toggle is active.
+  <code>VarShowAdvanced</code> is an ephemeral field and thus not saved in the database. 
+  This formula determines the visibility of the Advanced Settings group. 
+  The group becomes visible, when the VarShowAdvanced toggle is active.
   <br>
-  <em>Click on the (+) button above to see the edit-UI with the formula. </em>
+  <em>Click on the (Σ) button above to see the edit-UI with the formula. </em>
 </p>
 
 <code id="formulas-ephemeral-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-ephemeral", Size = 40 })
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-ephemeral", Size = 80 })
 
   @Html.Partial("_PartFormulas.cshtml", new {
   ContentType = "FormulasEphemeral",
@@ -78,27 +81,24 @@
 
   <h3>Configuration with parameters</h3>
   <span>
-    <code>prefill:showAdvanced=true</code>:
-  <snippet id="formulas-showAdvanced-true">
-  @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new&icon=" + tbHlp.Icon() + "?contentType=FormulasParameters&prefill:showAdvanced=true"})
-  </snippet>
+<snippet id="formulas-showAdvanced">
+  <code>prefill:showAdvanced=true</code>:
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: "icon=" + tbHlp.Icon(), prefill: "showAdvanced=true").AsTag()
   <br>
-    <code>prefill:showAdvanced=false</code>:
-  <snippet id="formulas-showAdvanced-false">
-  @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new&icon=" + tbHlp.Icon() + "?contentType=FormulasParameters&prefill:showAdvanced=false"})
-  </snippet>
+  <code>prefill:showAdvanced=false</code>:
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: "icon=" + tbHlp.Icon(), prefill: "showAdvanced=false").AsTag()
+</snippet>
   </span>
   <p>
-    VarShowAdvanced is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of
-    the Advanced Settings group. The group becomes visible, when the passed VarShowAdvanced parameter is true.
+    <code>showAdvanced</code> is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of
+    the Advanced Settings group. The group becomes visible, when the passed <code>showAdvanced</code> parameter is true.
     <br>
-    <em>Click on the (+) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
+    <em>Click on the (Σ) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
   </p>
 
   <code id="formulas-showAdvanced-label"></code>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced-true", Size = 40 })
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced-false", Size = 40 })
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced", Size = 120 })
 
     @Html.Partial("_PartFormulas.cshtml", new {
     ContentType = "FormulasParameters",
