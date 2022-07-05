@@ -60,3 +60,11 @@
 
 
 
+@* Errors and Warnings *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Warnings and Errors based on Value",
+  Instructions = "This formula shows a warning if a field has upper case letters, and an error if empty.",
+  ContentType = "FormulasValidation",
+  FieldName = "Title"
+})
+

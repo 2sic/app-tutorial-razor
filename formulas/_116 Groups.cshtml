@@ -39,8 +39,7 @@
   Title = "Group Name - Emoji summary",
   Instructions = "This formula changes the Name of the ProductGroup field. The name becomes \"Product ✅\" if all group fields are filled out and \"Product ✏️\" if not.",
   ContentType = "FormulasEmojiSummary",
-  FieldName = "ProductGroup",
-  Size = 150
+  FieldName = "ProductGroup"
 })
 
 @Html.Partial("_PartFormulas.cshtml", new {
@@ -48,8 +47,7 @@
   Instructions = "This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains \"n0t0k\" the helptext \"This product code is deprecated. Please request a new product code. \" is added, or if it contains spaces the helptext \"Please remove all spaces from your product code.\" is added.",
   ContentType = "FormulasHelpText",
   FieldName = "ProductCode",
-  More = "prefill:ProductCode=n0t0k code",
-  Size = 175
+  More = "prefill:ProductCode=n0t0k code"
 })
 
 
@@ -60,6 +58,5 @@
     + "Normally it would do this based on how complete data in that section is or based on other criterias. "
     + "This is often used to improve initial state of a form based on how much data is already filled in. ",
   ContentType = "FormulasRunAtStart",
-  FieldName = "GroupRandomlyOpen",
-  Size = 200
+  FieldName = "GroupRandomlyOpen"
 })
