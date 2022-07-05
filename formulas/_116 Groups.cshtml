@@ -1,0 +1,65 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Formulas affecting Groups of Fields</h2>
+    <p>We'll show you examples where formulas can be applied to change visibility, collpased, Help Text and more.</p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Group visibility",
+  Instructions = "This formula determines the visibility of the Advanced settings group. The group becomes visible, when the Advanced toggle is active.",
+  ContentType = "FormulasVisibleGroup",
+  FieldName = "AdvancedSettings"
+})
+
+
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Group Name - Text summary",
+  Instructions = "This formula changes the Name of the PersonGroup field. The name becomes \"Person - Profile complete\" if all group fields are filled out and \"Person - Profile incomplete\" if not.",
+  ContentType = "FormulasTextSummary",
+  FieldName = "PersonGroup"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Group Name - Emoji summary",
+  Instructions = "This formula changes the Name of the ProductGroup field. The name becomes \"Product ✅\" if all group fields are filled out and \"Product ✏️\" if not.",
+  ContentType = "FormulasEmojiSummary",
+  FieldName = "ProductGroup",
+  Size = 150
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Helptext",
+  Instructions = "This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains \"n0t0k\" the helptext \"This product code is deprecated. Please request a new product code. \" is added, or if it contains spaces the helptext \"Please remove all spaces from your product code.\" is added.",
+  ContentType = "FormulasHelpText",
+  FieldName = "ProductCode",
+  More = "prefill:ProductCode=n0t0k code",
+  Size = 175
+})
+
+
+@* Run Code Once only *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Run Code Only when Form Opens",
+  Instructions = "This formula determines the initial open/closed state - in this case randomly. "
+    + "Normally it would do this based on how complete data in that section is or based on other criterias. "
+    + "This is often used to improve initial state of a form based on how much data is already filled in. ",
+  ContentType = "FormulasRunAtStart",
+  FieldName = "GroupRandomlyOpen",
+  Size = 200
+})

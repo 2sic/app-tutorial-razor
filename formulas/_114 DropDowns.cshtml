@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Formulas affecting DropDowns Options</h2>
+    <p>These examples show how Formulas can modify the list of available options. </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+
+@* Change Dropdown Values *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Change dropdown options: Country to Offices",
+  Instructions = "This formula changes the values in the second dropdown based on the country picked first. ",
+  ContentType = "FormulasDropdown",
+  FieldName = "Office",
+  Size = 160
+})
+
+@* Change Dropdown Values #2 *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Change dropdown options: Limited or More Options",
+  Instructions = "This formula changes the values in the second dropdown if the user wants more options. ",
+  ContentType = "FormulasDropdownDirections",
+  FieldName = "Options",
+  Size = 160
+})
