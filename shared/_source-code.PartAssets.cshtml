@@ -17,4 +17,4 @@
     "sourceCodeId": "@DynamicModel.SourceCodeId", 
     "aceOptions": @Kit.Convert.Json.ToJson(DynamicModel.AceOptions) 
   }}'></turnOn>
-<script src="@App.Path/dist/scripts.min.js" data-enableoptimizations="true"></script>
+<script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>

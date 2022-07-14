@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @Html.Partial("../shared/_Header.cshtml", new { Title = "Formulas Tutorials", Name = "Formulas", Link = "#formulas", FeatureIconPath = "formulas/assets/formulas.svg", FeatureUrl = "https://docs.2sxc.org/js-code/edit-form/formulas/" })
 @Html.Partial("../shared/_NavigationToolbar.cshtml")
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true">
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
 
 @* disable the quick-e, because it will appear since our settings activates all *@
 <div quick-edit-config='{ "enable": false }'></div>

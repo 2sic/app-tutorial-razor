@@ -10,7 +10,7 @@ using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAnt
 using System.Collections.Generic;
 
 [AllowAnonymous]                          // all commands can be accessed without a login
-public class OrdersController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
+public class OrdersController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
   public List<Order> orders = new List<Order>{
     new Order{ Id = 1, Amount = 10 },

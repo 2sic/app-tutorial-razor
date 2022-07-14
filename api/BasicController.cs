@@ -9,7 +9,7 @@ using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAnt
 #endif
 
 [AllowAnonymous]                          // all commands can be accessed without a login
-public class BasicController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
+public class BasicController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public string Hello()

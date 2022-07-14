@@ -14,7 +14,7 @@ using DotNetNuke.Security;                // DnnRoles for SecurityAccessLevel.An
 [Produces("application/json")]  // Ensures that strings are JSON and have quotes around them in .net 5
 #endif
 [AllowAnonymous]                          // all commands can be accessed without a login
-public class HybridController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
+public class HybridController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
   [AllowAnonymous]                        // Explicitly set for this method
   [HttpGet]                               // [HttpGet] says we're listening to GET requests

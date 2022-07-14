@@ -10,7 +10,7 @@ using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAnt
 
 [AllowAnonymous]                          // all commands can be accessed without a login
 [ValidateAntiForgeryToken]                // protects API from users not on your site (CSRF protection)
-public class SharedCodeController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
+public class SharedCodeController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
 	[HttpGet]
 	[AllowAnonymous]

@@ -1,4 +1,4 @@
 @inherits Custom.Hybrid.Razor14
 @Html.Partial("../shared/_Header.cshtml", new { Title = "JavaScript API Tutorials", Name = "JavaScript", Link = "#js", FeatureIconPath = "js/assets/js-api.svg", FeatureUrl = "https://docs.2sxc.org/js-code/2sxc-api/" })
 @Html.Partial("../shared/_NavigationToolbar.cshtml")
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" data-enableoptimizations="true">
+<link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>

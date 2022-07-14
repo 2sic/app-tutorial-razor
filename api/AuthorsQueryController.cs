@@ -14,7 +14,7 @@ using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 [AllowAnonymous]                          // all commands can be accessed without a login
 [ValidateAntiForgeryToken]                // protects API from users not on your site (CSRF protection)
-public class AuthorsQueryController : Custom.Hybrid.Api12 // see https://r.2sxc.org/CustomWebApi
+public class AuthorsQueryController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public dynamic Get(int authorId)
