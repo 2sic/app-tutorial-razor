@@ -37,11 +37,12 @@
 <hr>
 </hide>
 
-<h2>Standard TagToolbar</h2>
-
-<snippet id="tb-standard">
+<h2>Old syntax: Standard TagToolbar</h2>
+<snippet id="tb-standard-oldsyn">
 <div class="alert alert-primary" style="width: 50%;">
-  <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" }, settings: new { hover = "left", show = "always" } )>
+  <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] 
+    { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" }, settings: new { hover = "left", show = "always" } 
+  )>
     Float over this box to get a (+) button. 
     When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
     Instead, you'll see console messages that a custom JS took over the process.
@@ -49,13 +50,27 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard", Size = 200 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard-oldsyn", Size = 200 }) 
+</hide-silent>
+<h2>New syntax: Standard TagToolbar</h2>
+<snippet id="tb-standard-newsyn">
+@{
+  var standartToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(hover: "left", show: "always");
+}
+<div class="alert alert-primary" style="width: 50%;">
+  <div id='tagWithToolbar2' @standartToolbar>
+    Float over this box to get a (+) button. 
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process.
+  </div>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard-newsyn", Size = 200 }) 
 </hide-silent>
 
-
-<h2>Standard Inline Toolbar</h2>
-
-<snippet id="tb-inline">
+<h2>Old syntax: Standard Inline Toolbar</h2>
+<snippet id="tb-inline-oldsyn">
 <div class="alert alert-primary" style="width: 50%;">
   <div id='inlineToolbar'>
     @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })
@@ -65,9 +80,24 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline", Size = 200 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-newsyn", Size = 200 }) 
 </hide-silent>
-
+<h2>New syntax: Standard Inline Toolbar</h2>
+@{
+  var inlineToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld");
+}
+<snippet id="tb-inline-newsyn">
+<div class="alert alert-primary" style="width: 50%;">
+  <div id='inlineToolbar2'>
+    @inlineToolbar.AsTag()
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process.
+  </div>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-oldsyn", Size = 200 }) 
+</hide-silent>
 
 
 <script>
@@ -103,8 +133,32 @@
     initEvent.stopPropagation();
   });
 
+  // Attach event-listener to the TagToolbar parent, so we can register the workflow when the toolbar is created
+  var parent = document.getElementById('tagWithToolbar2');
+  parent.addEventListener('toolbar-init', (initEvent) => {
+    console.log("Workflow Demo: Tag Toolbar was initialized - event kicked in - will now register");
+    const workflow = initEvent.detail.workflow;
+
+    workflow.add(workflowToLog);
+    workflow.add(workflowToDisableRefresh);
+
+    // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
+    initEvent.stopPropagation();
+  });
+
   // Attach event-listener to the parent of the inline-toolbar, so we can register the workflow when the toolbar is created
   var parent = document.getElementById('inlineToolbar');
+  parent.addEventListener('toolbar-init', (initEvent) => {
+    console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register");
+    const workflow = initEvent.detail.workflow;
+
+    workflow.add(workflowToLog);
+    workflow.add(workflowToDisableRefresh);
+
+    // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
+    initEvent.stopPropagation();
+  }); 
+  var parent = document.getElementById('inlineToolbar2');
   parent.addEventListener('toolbar-init', (initEvent) => {
     console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register");
     const workflow = initEvent.detail.workflow;
