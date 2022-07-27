@@ -1,0 +1,66 @@
+@inherits Custom.Hybrid.Razor14
+
+<hide>
+  @Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Interface ICmsUser</h2>
+      <p>
+        Get information about the user which is currently used by the code.
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<snippet id="ICmsUser-id">
+  <h3>The .Id attribute:</h3>
+  The id of the current user: 
+  <strong>
+    @CmsContext.User.Id
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-id", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsUser-issiteadmin">
+  <h3>The .IsSiteAdmin attribute:</h3>
+  Check if the current user is a site admin (returns a boolean): 
+  <strong>
+    @CmsContext.User.IsSiteAdmin
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-issiteadmin", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsUser-issitedeveloper">
+  <h3>The .IsSiteDeveloper attribute:</h3>
+  Check if the current user is a site developer (returns a boolean): 
+  <strong>
+    @CmsContext.User.IsSiteDeveloper
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-issitedeveloper", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsUser-issystemadmin">
+  <h3>The .IsSystemAdmin attribute:</h3>
+  Check if the current user is a system admin (returns a boolean): 
+  <strong>
+    @CmsContext.User.IsSystemAdmin
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-issystemadmin", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 850 }) 
+</hide>

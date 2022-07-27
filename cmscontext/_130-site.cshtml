@@ -1,0 +1,55 @@
+@inherits Custom.Hybrid.Razor14
+
+<hide>
+  @Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Interface ICmsSite</h2>
+      <p>
+        With this object you can get general informtion about the current site. 
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<snippet id="ICmsSite-id">
+  <h3>The .Id attribute:</h3>
+  The id of the current site (this is the same as <code>PortalId</code> in DNN): 
+  <strong>
+    @CmsContext.Site.Id
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsSite-id", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsSite-url">
+  <h3>The .Url attribute:</h3>
+  The the site url with protocol:
+  <strong>
+    @CmsContext.Site.Url
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsSite-url", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsSite-urlroot">
+  <h3>The .UrlRoot attribute:</h3>
+  The the site url without a protocol:
+  <strong>
+    @CmsContext.Site.UrlRoot
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsSite-urlroot", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 650 }) 
+</hide>

@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+
+<hide>
+  @Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Interface ICmsView</h2>
+      <p>
+        Get information about the view context.
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<snippet id="ICmsView-edition">
+  <h3>The .Edition attribute:</h3>
+  Get information about the edition used (otherwise it returns an empty string): 
+  <strong>
+    @CmsContext.View.Edition
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsView-edition", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsView-id">
+  <h3>The .Id attribute:</h3>
+  Get the id of the view configuration: 
+  <strong>
+    @CmsContext.View.Id
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsView-id", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsView-identifier">
+  <h3>The .Identifier attribute:</h3>
+  An optional identifier which the View configuration can provide. 
+  Use this when you want to use the same template but make minor changes based on the View selected (like change the number of columns). 
+  Usually you will use either this OR the Settings: 
+  <strong>
+    @CmsContext.View.Identifier
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsView-identifier", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsView-name">
+  <h3>The .Name attribute:</h3>
+  Name of the view as configured - note that because of i18n it could be different depending on the language. 
+  To clearly identify a view, use the Identifier or use Settings: 
+  <strong>
+    @CmsContext.View.Name
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsView-name", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
+</hide>

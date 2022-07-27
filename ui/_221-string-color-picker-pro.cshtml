@@ -26,16 +26,28 @@
 
 </hide>
 
-<h2>Configurable Color-Picker Input Field</h2>
+<h2>Old syntax: Configurable Color-Picker Input Field</h2>
 <p>
   This example shows two color-picker fields, with different initial configurations. <br>
   Hit this edit button to have a look: 
 </p>
-<snippet id="tb-colorpicker">
+<snippet id="tb-colorpicker-oldsyn">
 @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringColorPickrPro" })
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker", Size = 50 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-oldsyn", Size = 50 }) 
+</hide-silent>
+
+<h2>New syntax: Configurable Color-Picker Input Field</h2>
+<p>
+  This example shows two color-picker fields, with different initial configurations. <br>
+  Hit this edit button to have a look: 
+</p>
+<snippet id="tb-colorpicker-newsyn">
+@Kit.Toolbar.Empty().New("UiStringColorPickrPro").AsTag()
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-newsyn", Size = 50 }) 
 </hide-silent>
 
 <hide>

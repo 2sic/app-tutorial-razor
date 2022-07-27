@@ -1,0 +1,51 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+
+<hide>
+  @Html.Partial("_header.cshtml")
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Interface ICmsCulture</h2>
+      <p>
+        With this object you can get general information about the culture. 
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<snippet id="ICmsCulture-currentcode">
+  <h3>The .CurrentCode attribute:</h3>
+  The current code culture is: 
+  <strong>
+    @CmsContext.Culture.CurrentCode
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsCulture-currentcode", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsCulture-defaultcode">
+  <h3>The .DefaultCode attribute:</h3>
+  The default culture for the system is: 
+  <strong>
+    @if(Text.Has(CmsContext.Culture.DefaultCode)){
+      @CmsContext.Culture.DefaultCode
+    } else {
+      <p>
+        The system is single language and the response is an empty string.
+      </p>
+    }
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsCulture-defaultcode", Size = 250 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 650 }) 
+</hide>

@@ -10,6 +10,9 @@
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
     Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+
+    var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui:"icon=" + tbHlp.Icon());
+    var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui:"icon=" + tbHlp.Icon(), prefill:"VarShowAdvanced=true");
   }
 </hide>
 
@@ -51,8 +54,8 @@
 
 <h3>Ephemeral field 
   <snippet id="formulas-ephemeral">
-    @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new&icon=" + tbHlp.Icon() + "?contentType=FormulasEphemeral"})
-    @Edit.Toolbar(toolbar: new[] { "toolbar=empty", "+new&icon=" + tbHlp.Icon() + "?contentType=FormulasEphemeral&prefill:VarShowAdvanced=true"})
+    @formulasToolbar.AsTag()
+    @formulasPrefillToolbar.AsTag()
   </snippet>
 </h3>
 <p>

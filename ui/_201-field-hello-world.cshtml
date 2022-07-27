@@ -35,7 +35,8 @@
 <h2>Basic Hello-World Custom Field</h2>
 <p>
   This example shows a dummy-field which doesn't allow editing, but will just show a message. <br>
-  Hit this edit button to have a look: @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" })
+  Hit this edit button to have a look:
+  @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
 </p>
 
 <hide>

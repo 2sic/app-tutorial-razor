@@ -1,0 +1,56 @@
+@inherits Custom.Hybrid.Razor14
+
+<hide>
+  @Html.Partial("_header.cshtml")
+</hide>
+
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Interface ICmsPlatform</h2>
+      <p>
+        With this object you can get general information about the current platform. 
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<snippet id="ICmsPlatform-name">
+  <h3>The .Name attribute:</h3>
+  The current platform name is: 
+  <strong>
+    @CmsContext.Platform.Name
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPlatform-name", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsPlatform-type">
+  <h3>The .Type attribute:</h3>
+  The current platform type is: 
+  <strong>
+    @CmsContext.Platform.Type
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPlatform-type", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsPlatform-version">
+  <h3>The .Version attribute:</h3>
+  The current platform version is: 
+  <strong>
+    @CmsContext.Platform.Version
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPlatform-version", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
+</hide>

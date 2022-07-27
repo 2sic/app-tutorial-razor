@@ -1,0 +1,54 @@
+@inherits Custom.Hybrid.Razor14
+
+<hide>
+  @Html.Partial("_header.cshtml")
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Interface ICmsPage</h2>
+      <p>
+        Get information about the page which is the contxt for the currently running code.
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<snippet id="ICmsPage-id">
+  <h3>The .Id attribute:</h3>
+  The id of the current site is (this is the same as <code>TabId</code> in DNN or <code>Page.PageId</code> in oqtane.): 
+  <strong>
+    @CmsContext.Page.Id
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPage-id", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsPage-allparameters">
+  <h3>Access all parameters with .Parameters:</h3>
+  Use this to get a string which contains all url parameters:
+  <strong>
+    @CmsContext.Page.Parameters.ToString()
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPage-allparameters", Size = 120 }) 
+</hide-silent>
+
+<snippet id="ICmsPage-specificparameter">
+  <h3>Access a specific parameter with .Parameters:</h3>
+  Use this to access the value of a specific url parameter:
+  <strong>
+    @CmsContext.Page.Parameters["c140"]
+  </strong>
+</snippet>
+<hide-silent>
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPage-specificparameter", Size = 120 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size =650 }) 
+</hide>

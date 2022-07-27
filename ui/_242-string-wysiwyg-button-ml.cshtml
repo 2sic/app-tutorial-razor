@@ -26,18 +26,29 @@
 <br>
 </hide>
 
-<h2>String WYSIWYG With Additional Button and Labels</h2>
+<h2>Old syntax: String WYSIWYG With Additional Button and Labels</h2>
 <p>
   This example keeps the default buttons and adds another one, with multi-language labels <br>
   Hit this edit button to have a look: 
 </p>
-<snippet id="tb-wysiwygMl">
+<snippet id="tb-wysiwygMl-oldsyn">
 @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringWysiwygButtonMl" })
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwygMl", Size = 100 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwygMl-oldsyn", Size = 500 }) 
 </hide-silent>
 
+<h2>New syntax: String WYSIWYG With Additional Button and Labels</h2>
+<p>
+  This example keeps the default buttons and adds another one, with multi-language labels <br>
+  Hit this edit button to have a look: 
+</p>
+<snippet id="tb-wysiwygMl-newsyn">
+@Kit.Toolbar.Empty().New("UiStringWysiwygButtonMl")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwygMl-newsyn", Size = 100 }) 
+</hide-silent>
 
 <hide>
 @Html.Partial("_warning-and-links.cshtml")
