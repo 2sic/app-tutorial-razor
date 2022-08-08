@@ -34,7 +34,7 @@
     var fileInTitle = titlePath + file;
     title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
     var paramSize = DynamicModel.Size;
-    var test = Kit.Convert.Json;
+    var test = Kit.Json;
     size = Kit.Convert.ToInt(paramSize, fallback: 600);
 
     language = "ace/mode/" + (DynamicModel.Language ?? FindAce3LanguageName(filePath));

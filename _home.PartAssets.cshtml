@@ -15,7 +15,7 @@
     attrParent = "data-accordion-parent", // This attribute marks the title tag which will trigger expand/collapse, the value must be same as in the child
     attrChild = "data-accordion-child"    // This attribute contains a key which is used in the #-fragment for navigating to a section
   };
-  var jsonOptions = Html.Raw(Kit.Convert.Json.ToJson(accordionOptions));
+  var jsonOptions = Html.Raw(Kit.Json.ToJson(accordionOptions));
 }
 
 <link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
