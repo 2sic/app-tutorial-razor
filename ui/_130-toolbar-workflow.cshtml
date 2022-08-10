@@ -37,21 +37,6 @@
 <hr>
 </hide>
 
-<h2>Old syntax: Standard TagToolbar</h2>
-<snippet id="tb-standard-oldsyn">
-<div class="alert alert-primary" style="width: 50%;">
-  <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] 
-    { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" }, settings: new { hover = "left", show = "always" } 
-  )>
-    Float over this box to get a (+) button. 
-    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
-    Instead, you'll see console messages that a custom JS took over the process.
-  </div>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard-oldsyn", Size = 200 }) 
-</hide-silent>
 <h2>New syntax: Standard TagToolbar</h2>
 <snippet id="tb-standard-newsyn">
 @{
@@ -68,7 +53,35 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard-newsyn", Size = 210 }) 
 </hide-silent>
+<h2>Old syntax: Standard TagToolbar</h2>
+<snippet id="tb-standard-oldsyn">
+<div class="alert alert-primary" style="width: 50%;">
+  <div id='tagWithToolbar1' @Edit.TagToolbar(toolbar: new [] 
+    { "toolbar=empty", "+new?contentType=UiEmptyHelloWorld" }, settings: new { hover = "left", show = "always" } 
+  )>
+    Float over this box to get a (+) button. 
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process.
+  </div>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard-oldsyn", Size = 200 }) 
+</hide-silent>
 
+<h2>New syntax: Standard Inline Toolbar</h2>
+<snippet id="tb-inline-newsyn">
+<div class="alert alert-primary" style="width: 50%;">
+  <div id='inlineToolbar2'>
+    @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process.
+  </div>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-oldsyn", Size = 160 }) 
+</hide-silent>
 <h2>Old syntax: Standard Inline Toolbar</h2>
 <snippet id="tb-inline-oldsyn">
 <div class="alert alert-primary" style="width: 50%;">
@@ -80,23 +93,7 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-newsyn", Size = 200 }) 
-</hide-silent>
-<h2>New syntax: Standard Inline Toolbar</h2>
-@{
-  var inlineToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld");
-}
-<snippet id="tb-inline-newsyn">
-<div class="alert alert-primary" style="width: 50%;">
-  <div id='inlineToolbar2'>
-    @inlineToolbar.AsTag()
-    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
-    Instead, you'll see console messages that a custom JS took over the process.
-  </div>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-oldsyn", Size = 200 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-newsyn", Size = 160 }) 
 </hide-silent>
 
 

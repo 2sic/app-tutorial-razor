@@ -29,25 +29,34 @@
 
 <h2>Initial Setup, No Configuration</h2>
 
-<div class="alert alert-secondary" @Edit.TagToolbar()>
-  <h3>Old syntax:</h3>
-  <h4><code>Edit.TagToolbar()</code> without any Data</h3>
-  <h3>New syntax:</h3>
-  <h4><code>Kit.Toolbar.Default()</code> without any Data</h3>
+<div class="alert alert-secondary" @Kit.Toolbar.Default()>
+  <h3>New syntax</h3>
+  <div><code>@@Kit.Toolbar.Default()</code> without any Data</div>
+  <h3>Old syntax</h3>
+  <div><code>@@Edit.TagToolbar()</code> without any Data</div>
 </div>
 
-<div class="alert alert-secondary" @Edit.TagToolbar(Content)>
-  <h3>Old syntax:</h3>
-  <h4><code>Edit.TagToolbar(Content)</code> with a content-item</h4>
-  <h3>New syntax:</h3>
-  <h4><code>Kit.Toolbar.Default().For(Content)</code> with a content-item</h4>
+<div class="alert alert-secondary" @Kit.Toolbar.Default(Content)>
+  <h3>New syntax</h3>
+  <div><code>@@Kit.Toolbar.Default(Content)</code> with a pre-set content-item</div>
+  <div><code>@@Kit.Toolbar.Default().For(Content)</code> with a content-item which can be set later</div>
+  <h3>Old syntax</h3>
+  <div><code>@@Edit.TagToolbar(Content)</code> with a content-item</div>
 </div>
 
 <hr>
 
 <h2>Add / Remove Buttons</h2>
+<snippet id="tb-add-new-newsyn">
+<div class="alert alert-success" @Kit.Toolbar.Default(Content).Edit().New()>
+  <h3>New syntax: Add two buttons </h3>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-newsyn", Size = 100 }) 
+</hide-silent>
 <snippet id="tb-add-new-oldsyn">
-@* 2sxclint:disable:no-toolbar-color *@
+<hide-silent>@* 2sxclint:disable:no-toolbar-color *@</hide-silent>
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+edit", "+new"})>
   <h3>Old syntax: Add two buttons </h3>
 </div>
@@ -55,39 +64,32 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-add-new-newsyn">
-@{
-  var newButtonsToolbar = Kit.Toolbar.Default().Edit().New();
-}
-<div class="alert alert-secondary" @newButtonsToolbar.For(Content)>
-  <h3>New syntax: Add two buttons </h3>
+
+<snippet id="tb-colors-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
+  <h3>New syntax: Add <code>new</code> button with colors </h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-newsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colors-newsyn", Size = 100 }) 
 </hide-silent>
-
 <snippet id="tb-colors-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&color=pink,black"})>
-
   <h3>Old syntax: Add <code>new</code> button with colors </h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colors-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-colors-newsyn">
-@{
-  var colorButtonToolbar = Kit.Toolbar.Default().New(ui:"color=pink,black");
-}
-<div class="alert alert-secondary" @colorButtonToolbar.For(Content)>
-  <h3>New syntax: Add <code>new</code> button with colors </h3>
+
+<snippet id="tb-position-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default(Content).New(ui: "pos=-0")>
+  <h3>New syntax: Add <code>new</code> at the end of button-list</h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colors-newsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-position-newsyn", Size = 100 }) 
 </hide-silent>
-
 <snippet id="tb-position-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-0"})>
   <h3>Old syntax: Add <code>new</code> at the end of button-list</h3>
@@ -96,18 +98,20 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-position-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-position-newsyn">
+
+<snippet id="tb-more-newsyn">
 @{
-  var positionToolbar = Kit.Toolbar.Default().New(ui:"pos=-0");
+  // todo 2dar: autoAddMore should also accept false and not even add more button 
+  // https://docs.2sxc.org/js-code/toolbars/settings.html
+  var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"false");
 }
-<div class="alert alert-secondary" @positionToolbar.For(Content)>
-  <h3>New syntax: Add <code>new</code> at the end of button-list</h3>
+<div class="alert alert-secondary" @moreButtonToolbar.For(Content)>
+  <h3>New syntax: Remove <code>more</code> button</h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-position-newsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-more-newsyn", Size = 100 }) 
 </hide-silent>
-
 <snippet id="tb-more-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "-more" })>
   <h3>Old syntax: Remove <code>more</code> button</h3>
@@ -116,19 +120,15 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-more-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-more-newsyn">
-@{
-  //todo 2dar: More doesn't appear to have the minus parameter
-  var moreButtonToolbar = Kit.Toolbar.Default();
-}
-<div class="alert alert-secondary" @moreButtonToolbar.For(Content)>
-  <h3>New syntax: Remove <code>more</code> button</h3>
+
+<snippet id="tb-empty-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Empty(Content).Edit()>
+  <h3>New syntax: Use empty toolbar template and add <code>edit</code></h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-more-newsyn", Size = 160 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-empty-newsyn", Size = 100 }) 
 </hide-silent>
-
 <snippet id="tb-empty-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "toolbar=empty", "+edit"})>
   <h3>Old syntax: Use empty toolbar template and add <code>edit</code></h3>
@@ -137,21 +137,18 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-empty-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-empty-newsyn">
-@{
-  var emptyToolbar = Kit.Toolbar.Empty().Edit();
-}
-<div class="alert alert-secondary" @emptyToolbar.For(Content)>
-  <h3>New syntax: Use empty toolbar template and add <code>edit</code></h3>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-empty-newsyn", Size = 100 }) 
-</hide-silent>
 
 <hr>
 
 <h2>Modify a button</h2>
+<snippet id="tb-modify-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default().Edit("-").Edit(ui:"color=red").For(Content)>
+  <h3>New syntax: Edit button is now red</h3>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-modify-newsyn", Size = 100 }) 
+</hide-silent>
 <snippet id="tb-modify-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%edit&color=red"})>
   <h3>Old syntax: Edit button is now red</h3>
@@ -160,29 +157,7 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-modify-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-modify-newsyn">
-@{
-  var modifyButtonToolbar = Kit.Toolbar.Default().Edit("-").Edit(ui:"color=red");
-}
-<div class="alert alert-secondary" @modifyButtonToolbar.For(Content)>
-  <h3>New syntax: Edit button is now red</h3>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-modify-newsyn", Size = 150 }) 
-</hide-silent>
 
-<snippet id="tb-category-oldsyn">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "+new&color=red&title=Blog-Post?contentType=BlogPost",
-  "+new&color=green&title=Category?contentType=Category",
-})>
-  <h3>Old syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-category-oldsyn", Size = 150 }) 
-</hide-silent>
 <snippet id="tb-category-newsyn">
 @{
   var categoryButtonsToolbar = Kit.Toolbar.Default()
@@ -196,7 +171,27 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-category-newsyn", Size = 200 }) 
 </hide-silent>
+<snippet id="tb-category-oldsyn">
+<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "+new&color=red&title=Blog-Post?contentType=BlogPost",
+  "+new&color=green&title=Category?contentType=Category",
+})>
+  <h3>Old syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-category-oldsyn", Size = 150 }) 
+</hide-silent>
 
+<snippet id="tb-delete-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default().Delete().For(Content)>
+  <h3>New syntax: Always show <code>Delete</code></h3>
+  <div>Note that you'll have to hit the ellipsis a few times to see it.</div>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-delete-newsyn", Size = 100 }) 
+</hide-silent>
 <snippet id="tb-delete-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%delete&show=true"})>
   <h3>Old syntax: Always show <code>Delete</code></h3>
@@ -206,23 +201,24 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-delete-oldsyn", Size = 100 }) 
 </hide-silent>
-<snippet id="tb-delete-newsyn">
-@{
-  var deleteToolbar = Kit.Toolbar.Default().Delete();
-}
-<div class="alert alert-secondary" @deleteToolbar.For(Content)>
-  <h3>New syntax: Always show <code>Delete</code></h3>
-  <div>Note that you'll have to hit the ellipsis a few times to see it.</div>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-delete-newsyn", Size = 160 }) 
-</hide-silent>
 
 <hr>
 
 <h2>Button Groups</h2>
-@* todo 2dar find out how to make button groups *@
+<snippet id="tb-add-groups-newsyn">
+@{
+  // todo 2dar: find out how to make button groups
+  var buttonGroupToolbar = Kit.Toolbar.Default()
+    .New("BlogPost",ui:"group=my&color=red&title=Blog-Post")
+    .New("Category", ui:"group=my&color=green&title=Category");
+}
+<div class="alert alert-secondary" @buttonGroupToolbar.For(Content)>
+  <h3>New syntax: Add a button-group just for my buttons</h3>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-groups-newsyn", Size = 200 }) 
+</hide-silent>
 <snippet id="tb-add-groups-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
   "+group=my",
@@ -235,20 +231,21 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-groups-oldsyn", Size = 200 }) 
 </hide-silent>
-<snippet id="tb-add-groups-newsyn">
+
+<snippet id="tb-groups-newsyn">
 @{
-  var buttonGroupToolbar = Kit.Toolbar.Default()
+  var multipleGroupsToolbar = Kit.Toolbar.Default()
+    // todo 2dar: find out how to make button groups
     .New("BlogPost",ui:"group=my&color=red&title=Blog-Post")
     .New("Category", ui:"group=my&color=green&title=Category");
 }
-<div class="alert alert-secondary" @buttonGroupToolbar.For(Content)>
-  <h3>New syntax: Add a button-group just for my buttons</h3>
+<div class="alert alert-secondary" @multipleGroupsToolbar.For(Content)>
+  <h3>New syntax: Add two button-groups</h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-groups-newsyn", Size = 200 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-groups-newsyn", Size = 200 }) 
 </hide-silent>
-
 <snippet id="tb-groups-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
   "+group=my1",
@@ -262,24 +259,19 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-groups-oldsyn", Size = 200 }) 
 </hide-silent>
-<snippet id="tb-groups-newsyn">
-@{
-  var multipleGroupsToolbar = Kit.Toolbar.Default()
-    .New("BlogPost",ui:"group=my&color=red&title=Blog-Post")
-    .New("Category", ui:"group=my&color=green&title=Category");
-}
-<div class="alert alert-secondary" @multipleGroupsToolbar.For(Content)>
-  <h3>New syntax: Add two button-groups</h3>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-groups-newsyn", Size = 200 }) 
-</hide-silent>
 
 <hr>
 
 <h2>Hover Behavior</h2>
 
+<snippet id="tb-hover-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default().Settings(hover:"left").For(Content)>
+  <h3>New syntax: Hover Left</h3>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-newsyn", Size = 100 }) 
+</hide-silent>
 <snippet id="tb-hover-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
   "settings&hover=left",
@@ -288,20 +280,17 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-oldsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-oldsyn", Size = 120 }) 
 </hide-silent>
-<snippet id="tb-hover-newsyn">
-@{
-  var hoverLeftToolbar = Kit.Toolbar.Default().Settings(hover:"left");
-}
-<div class="alert alert-secondary" @hoverLeftToolbar.For(Content)>
-  <h3>New syntax: Hover Left</h3>
+
+<snippet id="tb-hover-autoadd-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default().Settings(autoAddMore: "start",hover: "left").For(Content)>
+  <h3>New syntax: Hover Left and <code>more</code> button to the left</h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-newsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-autoadd-newsyn", Size = 100 }) 
 </hide-silent>
-
 <snippet id="tb-hover-autoadd-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
   "settings&hover=left&autoAddMore=start",
@@ -310,24 +299,21 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-autoadd-oldsyn", Size = 150 }) 
-</hide-silent>
-<snippet id="tb-hover-autoadd-newsyn">
-@{
-  var hoverAutoToolbar = Kit.Toolbar.Default().Settings(autoAddMore: "start",hover: "left");
-}
-<div class="alert alert-secondary" @hoverAutoToolbar.For(Content)>
-  <h3>New syntax: Hover Left and <code>more</code> button to the left</h3>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-autoadd-newsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-hover-autoadd-oldsyn", Size = 120 }) 
 </hide-silent>
 
 <hr>
 
 <h2>Custom JavaScript Code</h2>
 
+<snippet id="tb-custom-js-newsyn">
+<div class="alert alert-secondary" @Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message").For(Content)>
+  <h3>New syntax: Just call <code>showMsg1()</code> </h3>
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-custom-js-newsyn", Size = 150 }) 
+</hide-silent>
 <snippet id="tb-custom-js-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
   "custom&title=Show%20Message?call=showMsg1",
@@ -338,18 +324,18 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-custom-js-oldsyn", Size = 150 }) 
 </hide-silent>
-<snippet id="tb-custom-js-newsyn">
+
+<snippet id="tb-custom-js-params-newsyn">
 @{
-  var customJsButton = Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message");
+  var customJsParamsToolbar = Kit.Toolbar.Default().Code("showMsg2", parameters:"id=42", ui:"title=Show%20Message");
 }
-<div class="alert alert-secondary" @customJsButton.For(Content)>
-  <h3>New syntax: Just call <code>showMsg1()</code> </h3>
+<div class="alert alert-secondary" @customJsParamsToolbar.For(Content)>
+  <h3>New syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-custom-js-newsyn", Size = 150 }) 
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-custom-js-params-newsyn", Size = 150 }) 
 </hide-silent>
-
 <snippet id="tb-custom-js-params-oldsyn">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
   "custom&title=Show%20Message?call=showMsg2&id=42",
@@ -359,17 +345,6 @@
 </snippet>
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-custom-js-params-oldsyn", Size = 150 }) 
-</hide-silent>
-<snippet id="tb-custom-js-params-newsyn">
-@{
-  var customJsParamsToolbar = Kit.Toolbar.Default().Code("showMsg2", parameters:"", ui:"title=Show%20Message");
-}
-<div class="alert alert-secondary" @customJsParamsToolbar.For(Content)>
-  <h3>New syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-custom-js-params-newsyn", Size = 150 }) 
 </hide-silent>
 
 
