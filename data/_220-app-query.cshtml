@@ -40,7 +40,7 @@
     <!-- this li will have class=selected if it's the current one -->
     <li class='@(person == current ? "selected" : "")'>
       <!-- this creates a link to the current tutorial (data220) and author=id -->
-      <a href='@Link.To(parameters: "data220=true&author=" + person.EntityId)'>
+      <a href='@Link.To(parameters: "data220=true&authorId=" + person.EntityId)'>
         @person.FirstName @person.LastName
       </a>
     </li>
