@@ -12,13 +12,20 @@ public class Helpers : Custom.Hybrid.Code14 {
     return AsList(attributeMd.Formulas as object);
   }
 
-  public string Icon() {
-    // taken from https://fonts.google.com/icons?icon.query=func
-    // Base64 encoded with https://base64.guru/converter/encode/image/svg
-    return "svg:PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDgiIHdpZHRoPSI0OCI+PHBhdGggZD0iTTEyIDQwVjM2Ljg1TDI1Ljc1IDI0TDEyIDExLjE1VjhIMzZWMTNIMTkuOEwzMS41NSAyNEwxOS44IDM1SDM2VjQwWiIvPjwvc3ZnPg==";
+  // taken from https://fonts.google.com/icons?icon.query=func
+  const string iconSvg = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"48\" width=\"48\"><path d=\"M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z\"/></svg>";
+
+  public static object UiIcon = new {
+    icon = iconSvg
+  };
+
+  public object Icon() {
+    return UiIcon;
   }
 
+  // public object 
+
   public dynamic DemoToolbar(string contentType, string more = null) {
-    return Kit.Toolbar.Empty().New(contentType, ui:"icon=" + Icon() + (Text.Has(more) ? more : ""));
+    return Kit.Toolbar.Empty().New(contentType, ui: new object[] { UiIcon, more });
   }
 }

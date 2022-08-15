@@ -11,8 +11,8 @@
     Edit.Enabled = true;
     Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
 
-    var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui:"icon=" + tbHlp.Icon());
-    var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui:"icon=" + tbHlp.Icon(), prefill:"VarShowAdvanced=true");
+    var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
+    var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");
   }
 </hide>
 
@@ -86,10 +86,10 @@
   <span>
 <snippet id="formulas-showAdvanced">
   <code>prefill:showAdvanced=true</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters", ui: "icon=" + tbHlp.Icon(), prefill: "showAdvanced=true").AsTag()
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: tbHlp.Icon(), prefill: "showAdvanced=true").AsTag()
   <br>
   <code>prefill:showAdvanced=false</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters", ui: "icon=" + tbHlp.Icon(), prefill: "showAdvanced=false").AsTag()
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: tbHlp.Icon(), prefill: "showAdvanced=false").AsTag()
 </snippet>
   </span>
   <p>

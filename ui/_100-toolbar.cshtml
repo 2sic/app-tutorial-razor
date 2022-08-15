@@ -29,17 +29,22 @@
 
 <h2>Initial Setup, No Configuration</h2>
 
-<div class="alert alert-secondary" @Kit.Toolbar.Default()>
+<div class="alert alert-success" @Kit.Toolbar.Default()>
   <h3>New syntax</h3>
   <div><code>@@Kit.Toolbar.Default()</code> without any Data</div>
+</div>
+<div class="alert alert-secondary" @Kit.Edit.TagToolbar()>
   <h3>Old syntax</h3>
   <div><code>@@Edit.TagToolbar()</code> without any Data</div>
 </div>
 
-<div class="alert alert-secondary" @Kit.Toolbar.Default(Content)>
+<div class="alert alert-success" @Kit.Toolbar.Default(Content)>
   <h3>New syntax</h3>
   <div><code>@@Kit.Toolbar.Default(Content)</code> with a pre-set content-item</div>
   <div><code>@@Kit.Toolbar.Default().For(Content)</code> with a content-item which can be set later</div>
+</div>
+
+<div class="alert alert-secondary" @Edit.TagToolbar(Content)>
   <h3>Old syntax</h3>
   <div><code>@@Edit.TagToolbar(Content)</code> with a content-item</div>
 </div>
@@ -50,23 +55,25 @@
 <snippet id="tb-add-new-newsyn">
 <div class="alert alert-success" @Kit.Toolbar.Default(Content).Edit().New()>
   <h3>New syntax: Add two buttons </h3>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-newsyn", Size = 100 }) 
+  </hide-silent>
 </div>
 </snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-newsyn", Size = 100 }) 
-</hide-silent>
+
 <snippet id="tb-add-new-oldsyn">
 <hide-silent>@* 2sxclint:disable:no-toolbar-color *@</hide-silent>
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+edit", "+new"})>
   <h3>Old syntax: Add two buttons </h3>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-oldsyn", Size = 100 }) 
+  </hide-silent>
 </div>
 </snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-new-oldsyn", Size = 100 }) 
-</hide-silent>
+
 
 <snippet id="tb-colors-newsyn">
-<div class="alert alert-secondary" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
+<div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
   <h3>New syntax: Add <code>new</code> button with colors </h3>
 </div>
 </snippet>
