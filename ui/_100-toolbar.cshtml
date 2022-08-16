@@ -5,7 +5,6 @@
   // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
   var hlp = CreateInstance("../shared/Helpers.cs");
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 <div class="row mb-2">
   <div class="col-lg-7">
@@ -104,9 +103,6 @@
   </hide-silent>
 </div>
 </snippet>
-@* 
-  // todo 2dar: autoAddMore should also accept false and not even add more button 
-  // https://docs.2sxc.org/js-code/toolbars/settings.html *@
 <snippet id="tb-more-newsyn">
 @{
   var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"false");
@@ -239,7 +235,6 @@
 </div>
 </snippet>
 
-    @* // todo 2dar: find out how to make button groups *@
 <snippet id="tb-groups-newsyn">
 @{
   var multipleGroupsToolbar = Kit.Toolbar.Default()

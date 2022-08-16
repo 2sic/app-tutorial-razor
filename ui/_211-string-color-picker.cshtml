@@ -4,7 +4,6 @@
 @{
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
   var hlp = CreateInstance("../shared/Helpers.cs");
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
 <div class="row mb-2">
@@ -57,7 +56,7 @@
 
 
 <hide>
-@Html.Partial("_warning-and-links.cshtml")
+@Html.Partial("_warning.cshtml")
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new {

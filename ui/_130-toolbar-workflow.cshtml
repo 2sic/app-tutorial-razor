@@ -5,7 +5,6 @@
   // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
   var hlp = CreateInstance("../shared/Helpers.cs");
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
 <div class="row mb-2">
@@ -83,7 +82,7 @@
   </div>
   </snippet>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-oldsyn", Size = 160 }) 
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-newsyn", Size = 160 }) 
   </hide-silent>
 </div>
 <div class="alert alert-secondary">
@@ -98,7 +97,7 @@
   </div>
   </snippet>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-newsyn", Size = 160 }) 
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-oldsyn", Size = 160 }) 
   </hide-silent>
 </div>
 

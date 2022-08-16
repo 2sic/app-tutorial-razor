@@ -5,7 +5,6 @@
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var fHlp = CreateInstance("Helpers.cs");
-    var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
     var contentType = "FormulasBasic";
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;

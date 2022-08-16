@@ -3,7 +3,6 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs"); 
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
 

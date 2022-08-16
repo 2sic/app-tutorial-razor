@@ -4,7 +4,6 @@
 @{
   var persons = AsList(App.Data["Persons"]);
   var hlp = CreateInstance("../shared/Helpers.cs");
-  var viewMd = AsDynamic((CmsContext.View.Metadata.OfType(hlp.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault());
 }
 
 @Html.Partial("_header.cshtml")
