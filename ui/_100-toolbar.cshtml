@@ -210,14 +210,13 @@
 <h2>Button Groups</h2>
 <snippet id="tb-add-groups-newsyn">
 @{
-  // todo 2dar: find out how to make button groups
   var buttonGroupToolbar = Kit.Toolbar.Default()
-    .Button("+group=my")
-    .New("BlogPost",ui:"group=my&color=red&title=Blog-Post")
-    .New("Category", ui:"group=my&color=green&title=Category");
+    .Group() // new in v14.07.05
+    .New("BlogPost",ui:"color=red&title=Blog-Post")
+    .New("Category", ui:"color=green&title=Category");
 }
 <div class="alert alert-success" @buttonGroupToolbar.For(Content)>
-  <h3>New syntax: Add a button-group just for my buttons</h3>
+  <h3>New syntax: Add a button-group just for my buttons (v14.07.05+)</h3>
   <hide-silent> @* Show only this snippet *@
     @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-add-groups-newsyn", Size = 220 }) 
   </hide-silent>
@@ -239,10 +238,10 @@
 <snippet id="tb-groups-newsyn">
 @{
   var multipleGroupsToolbar = Kit.Toolbar.Default()
-    .Button("+group=my1")
-    .Button("+group=my2")
-    .New("BlogPost", ui:"group=my1&color=red&title=Blog-Post")
-    .New("Category", ui:"group=my2&color=green&title=Category");
+    .Group()
+    .New("BlogPost", ui:"color=red&title=Blog-Post")
+    .Group()
+    .New("Category", ui:"color=green&title=Category");
 }
 <div class="alert alert-success" @multipleGroupsToolbar.For(Content)>
   <h3>New syntax: Add two button-groups</h3>
