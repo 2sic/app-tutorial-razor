@@ -13,6 +13,7 @@
       Input fields may expect some configuration - like default colors or WebApi endpoints. To enable such a configuration, we need a Content-Type which defines all the fields that can be configured. This can be in the app-data, or it can be stored in a subfolder of the field-extension, to make redestribution easier. <br>
       This example contains the json-exported content-type in the folder <code>/system/field-string-app-color-pickr-pro/.data/contenttypes/</code> so you could just copy the extension folder to another app and use it from there. 
     </p>
+
     <p>So in this tutorial you'll learn how to:</p>
     <ul>
       <li>To see how the UI changes based on field configuration</li>
@@ -23,6 +24,7 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 
+  @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 </hide>
 
 <div class="alert alert-success">

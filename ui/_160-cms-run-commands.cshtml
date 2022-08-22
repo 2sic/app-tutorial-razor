@@ -20,6 +20,7 @@
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
+
 </div>
 
 <div class="alert alert-warning">
@@ -28,6 +29,7 @@
   <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
 </div>
 
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 <hr>
 </hide>
 

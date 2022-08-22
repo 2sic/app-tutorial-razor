@@ -5,7 +5,6 @@
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var tbHlp = CreateInstance("Helpers.cs");
-    IEnumerable<dynamic>).FirstOrDefault());
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
     Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
@@ -32,6 +31,7 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
 <h3>Ephemeral fields explained</h3>
 <p>Sometimes you need fields which controle the Form UI without being real data. Some examples:</p>

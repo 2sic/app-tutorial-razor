@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@*
+  Info: documentation purpose only
+  2sxclint:disable:v14-no-getservice
+*@
+@{
+  var ServiceName = DynamicModel.ServiceName;
+  var Service = DynamicModel.Service;
+}
+@if(Kit.Feature.IsEnabled("PublicEditForm") == false){
+  <div class="alert alert-danger">
+    <h4><i class="fas fa-exclamation-triangle"></i> Important: The feature "Public Use of Edit Form" is disabled</h4>
+    The feature is needed for anonymous users to use the Edit Form. Register your site here https://patrons.2sxc.org/ to get access to the feature.
+  </div>
+}
