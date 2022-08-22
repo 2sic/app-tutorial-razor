@@ -1,5 +1,5 @@
 import { hide, show, toggle } from 'slidetoggle';
-import { showParentSections } from '.';
+import { showParentSections } from './index-ace';
 import { AccordionOptions } from './lib-2sxc-accordion-options';
 
 /*

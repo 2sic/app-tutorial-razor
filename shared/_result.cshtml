@@ -15,14 +15,28 @@
   // Low risk stuff outside of try/catch
   var rndId = Guid.NewGuid().ToString();
 
-  var aceOptions = new {
+  var options = new {
     sourceCodeId = "result" + rndId,
-    language = "ace/mode/" + language,
+    language = "",
   };
+
+  if (Settings.CodeEditor == "Ace")
+  {
+    options.language = "ace/mode/" + language;
+  } else if (Settings.CodeEditor == "Monaco") {
+    options.language = language;
+  }
+  
 }
 
-<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" async="false"></script>
+@if (Settings.CodeEditor == "Ace")
+{
+  <script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" async="false"></script>
+} else if (Settings.CodeEditor == "Monaco") {
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/loader.min.js" integrity="sha512-O9SYDgWAM3bEzit1z6mkFd+dxKUplO/oB8UwYGAkg2Zy/WzDUQ2mYA/ysk3c0CxiXAN4u8T9JeZ0Ahk2Jj/33Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
+
 
 <style>
   .pre-result {
@@ -32,4 +46,4 @@
 
 <pre class="pre-result" id='@("result" + rndId)' style="height: @(size + "px"); font-size: 16px">@result</pre>
 
-@Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, AceOptions = aceOptions })
+@Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, Options = options })

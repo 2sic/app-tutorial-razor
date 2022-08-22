@@ -10,11 +10,32 @@
   }
 }
 
-<turnOn turn-on='{ 
-  "run": "window.razorTutorial.initSourceCode()", 
+@if (Settings.CodeEditor == "Ace")
+{
+  <turnOn turn-on='{ 
+  "run": "window.razorTutorial.initAceSourceCode()", 
   "data": { 
     "domAttribute": "@DynamicModel.DomAttribute", 
     "sourceCodeId": "@DynamicModel.SourceCodeId", 
-    "aceOptions": @Kit.Json.ToJson(DynamicModel.AceOptions) 
+    "options": @Kit.Json.ToJson(DynamicModel.Options) 
   }}'></turnOn>
-<script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>
+  <script src="@App.Path/dist/ace.min.js" @Kit.Page.AssetAttributes()></script>
+} else if (Settings.CodeEditor == "Monaco") {
+  <turnOn turn-on='{ 
+  "await": "window.require",
+  "run": "window.razorTutorial.beforeInitMonacoSourceCode()"
+  }'></turnOn>
+
+  <turnOn turn-on='{ 
+    "await": "window.monaco",
+    "run": "window.razorTutorial.initMonacoSourceCode()", 
+    "data": { 
+      "domAttribute": "@DynamicModel.DomAttribute", 
+      "sourceCodeId": "@DynamicModel.SourceCodeId", 
+      "options": @Kit.Convert.Json.ToJson(DynamicModel.Options),
+      "appPath": "@App.Path"
+    }}'></turnOn>
+  <script src="@App.Path/dist/monaco.min.js" data-enableoptimizations="true"></script>
+}
+
+

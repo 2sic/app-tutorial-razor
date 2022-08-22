@@ -4,11 +4,18 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
     styles: `./src/styles/styles.scss`,      
-    scripts: './src/ts/index.ts'
+    ace: './src/ts/index-ace.ts',
+    monaco: './src/ts/index-monaco.ts',
+    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
+		'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
+		'css.worker': 'monaco-editor/esm/vs/language/css/css.worker',
+		'html.worker': 'monaco-editor/esm/vs/language/html/html.worker',
+		'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -50,7 +57,8 @@ module.exports = {
       filename: '[name].min.css',
     }),
     new WebpackBar(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin(),
+    new HtmlWebPackPlugin(),
   ],
   module: {
     rules: [{
@@ -88,6 +96,14 @@ module.exports = {
           loader: 'ts-loader'
         }
       },
+      {
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader']
+			},
+      {
+				test: /\.ttf$/,
+				use: ['file-loader']
+			},
       {
         test: /\.(png|jpe?g|gif)$/,
         use: [{
