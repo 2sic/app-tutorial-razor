@@ -7,6 +7,7 @@
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
     Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    var sharedExamples = CreateInstance("SharedExamples.cs");
   }
 </hide>
 
@@ -17,6 +18,7 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Fill If Empty *@
 @Html.Partial("_PartFormulas.cshtml", new {
@@ -37,13 +39,11 @@
 <hr>
 <h2>Get Data for a Field from a Web API</h2>
 
-@* Combine Values of Fields *@
-@Html.Partial("_PartFormulas.cshtml", new {
-  Title = "Get value for a field from a WebAPI",
-  Instructions = "This formula is very advanced, and will initialize a fields value (if empty) from a WebAPI call. ",
-  ContentType = "FormulasWebApiText",
-  FieldName = "Title"
-})
+@* Get Value from WebApi *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.ValueFromWebApi())
+
+
+
 
 
 <hr>

@@ -5,8 +5,9 @@
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var fHlp = CreateInstance("Helpers.cs");
-    // Edit.Enabled = true;
-    // Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    Edit.Enabled = true;
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    var sharedExamples = CreateInstance("SharedExamples.cs");
   }
 </hide>
 
@@ -23,8 +24,21 @@
 
 
 
+<h2>Get Data for a Field from a Web API</h2>
+@* Get Value from WebApi *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.ValueFromWebApi())
 
+<hr>
 
+<h2>Get DropDown options from a WebAPI</h2>
+@* Dropdown Values From WebAPI *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApi())
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "FormulasController.cs",
+  Size = 600,
+  TitlePath = "/api/"
+}) 
 
 
 <hide>

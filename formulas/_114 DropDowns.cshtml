@@ -7,6 +7,7 @@
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     Edit.Enabled = true;
     Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    var sharedExamples = CreateInstance("SharedExamples.cs");
   }
 </hide>
 
@@ -17,6 +18,7 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Change Dropdown Values *@
 @Html.Partial("_PartFormulas.cshtml", new {
@@ -33,3 +35,13 @@
   ContentType = "FormulasDropdownDirections",
   FieldName = "Options"
 })
+
+@* Dropdown Values From WebAPI *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApi())
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "FormulasController.cs",
+  Size = 600,
+  TitlePath = "/api/"
+}) 
