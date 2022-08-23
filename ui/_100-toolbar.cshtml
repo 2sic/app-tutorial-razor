@@ -105,7 +105,7 @@
 </snippet>
 <snippet id="tb-more-newsyn">
 @{
-  var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"false");
+  var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"never");
 }
 <div class="alert alert-success" @moreButtonToolbar.For(Content)>
   <h3>New syntax: Remove <code>more</code> button</h3>
