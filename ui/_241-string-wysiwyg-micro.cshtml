@@ -36,26 +36,9 @@
     This example shows a reduced WYSIWYG with only 4 buttons. <br>
     Hit this edit button to have a look: 
   </p>
-  <snippet id="tb-wysiwyg-newsyn">
   @Kit.Toolbar.Empty().New("UiStringWysiwygMicro").AsTag()
-  </snippet>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwyg-newsyn", Size = 50 }) 
-  </hide-silent>
 </div>
-<div class="alert alert-secondary">
-  <h2>Old syntax: String WYSIWYG Micro Custom Input Field</h2>
-  <p>
-    This example shows a reduced WYSIWYG with only 4 buttons. <br>
-    Hit this edit button to have a look: 
-  </p>
-  <snippet id="tb-wysiwyg-oldsyn">
-  @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringWysiwygMicro" })
-  </snippet>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwyg-oldsyn", Size = 50 }) 
-  </hide-silent>
-</div>
+
 
 
 <hide>

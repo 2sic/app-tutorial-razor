@@ -26,31 +26,14 @@
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 </hide>
 <div class="alert alert-success">
-  <h2>New syntax: String Color-Picker Custom Input Field</h2>
+  <h2>String Color-Picker Custom Input Field</h2>
   <p>
     This example shows a real string-field uses Pickr to provide a color picker. <br>
     Hit this edit button to have a look:
   </p>
-  <snippet id="tb-colorpicker-newsyn">
   @Kit.Toolbar.Empty().New("UiStringColorPickr").AsTag()
-  </snippet>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-newsyn", Size = 50 }) 
-  </hide-silent>
 </div>
-<div class="alert alert-secondary">
-  <h2>Old syntax: String Color-Picker Custom Input Field</h2>
-  <p>
-    This example shows a real string-field uses Pickr to provide a color picker. <br>
-    Hit this edit button to have a look:
-  </p>
-  <snippet id="tb-colorpicker-oldsyn">
-  @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringColorPickr" })
-  </snippet>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-oldsyn", Size = 50 }) 
-  </hide-silent>
-</div>
+
 
 
 
