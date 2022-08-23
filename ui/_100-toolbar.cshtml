@@ -3,8 +3,8 @@
 @Html.Partial("_header.cshtml")
 @{
   // IMPORTANT: This must be at the top of the file, so it executes first
-  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
-  var hlp = CreateInstance("../shared/Helpers.cs");
+  var tlbShared = CreateInstance("Shared.cs");
+  tlbShared.EnableEditForAnonymous(Edit);
 }
 <div class="row mb-2">
   <div class="col-lg-7">
@@ -19,12 +19,18 @@
 
 <div class="alert alert-warning">
   Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (&hellip;). <br>
+  The toolbars would usually only appear on hover, but the Tutorial runs in Demo-Mode so you can see them right away. 
+  The old samples still only work on hover. <br>
   Hover over the various boxes to see the result - like this: <br>
   <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
 </div>
 
 <hr>
+@tlbShared.AutoShowAllToolbarsStart()
 </hide>
+
+<div class="sc-element">
+
 
 <h2>Initial Setup, No Configuration</h2>
 
@@ -46,6 +52,8 @@
 <div class="alert alert-secondary" @Edit.TagToolbar(Content)>
   <h3>Old syntax</h3>
   <div><code>@@Edit.TagToolbar(Content)</code> with a content-item</div>
+</div>
+
 </div>
 
 <hr>
@@ -375,4 +383,6 @@
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 3400 }) 
 @* 2sxclint:disable:no-inline-script *@
+
+@tlbShared.AutoShowAllToolbarsEnd()
 </hide>
