@@ -51,3 +51,7 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
     * Added tutorial navigation
     * Added Oqtane support
     * Added IScrub tutorials
+* v14.07.05
+    * Migrated the app to the 14.07 best practices
+    * Changed the toolbar tutorials to also show the new IToolbarBuilder
+    * Added a CmsContext tutorial
