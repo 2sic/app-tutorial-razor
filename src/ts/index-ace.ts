@@ -29,14 +29,6 @@ function initAceSourceCode({ domAttribute, options  }: { domAttribute: string, o
   })
 }
 
-export function showParentSections(targetOpenElem: HTMLElement, options: AccordionOptions) {
-  let parentSection = targetOpenElem.parentElement.closest(`[${options.attrChild}]`) as HTMLElement;
-  if (parentSection == null) return
-  parentSection.parentElement.classList.add(`${options.classIsExpanded}`);
-
-  show(parentSection, {})
-}
-
 var winAny = window as any;
 winAny.razorTutorial ??= {};
 winAny.razorTutorial.initAccordion ??= initAccordion;

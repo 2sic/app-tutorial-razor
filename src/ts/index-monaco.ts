@@ -88,14 +88,6 @@ function createMonaco(element: HTMLElement, value: string, language: string, the
   document.getElementById(sourceCodeId).classList.add("hidden");
 }
 
-export function showParentSections(targetOpenElem: HTMLElement, options: AccordionOptions) {
-  let parentSection = targetOpenElem.parentElement.closest(`[${options.attrChild}]`) as HTMLElement;
-  if (parentSection == null) return
-  parentSection.parentElement.classList.add(`${options.classIsExpanded}`);
-
-  show(parentSection, {})
-}
-
 var winAny = window as any;
 winAny.razorTutorial ??= {};
 winAny.razorTutorial.initAccordion ??= initAccordion;

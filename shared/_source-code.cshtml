@@ -40,9 +40,9 @@
     
     if (Settings.CodeEditor == "Ace")
     {
-      language = "ace/mode/" + (DynamicModel.Language ?? FindAce3LanguageName(filePath));
+      language = "ace/mode/" + (DynamicModel.Language ?? FindLanguageName(filePath));
     } else if (Settings.CodeEditor == "Monaco") {
-      language = DynamicModel.Language ?? FindAce3LanguageName(filePath);
+      language = DynamicModel.Language ?? FindLanguageName(filePath);
     }
 
     // load source code
@@ -135,8 +135,8 @@
 @Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, Options = options })
 
 @functions {
-  // Determine the ace9 language of the file
-  string FindAce3LanguageName(string filePath) {
+  // Determine language of the file
+  string FindLanguageName(string filePath) {
     var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
     switch (extension)
     {

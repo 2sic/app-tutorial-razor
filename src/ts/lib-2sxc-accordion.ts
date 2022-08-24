@@ -1,5 +1,4 @@
 import { hide, show, toggle } from 'slidetoggle';
-import { showParentSections } from './index-ace';
 import { AccordionOptions } from './lib-2sxc-accordion-options';
 
 /*
@@ -71,4 +70,12 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
       })
     }
   }
+}
+
+export function showParentSections(targetOpenElem: HTMLElement, options: AccordionOptions) {
+  let parentSection = targetOpenElem.parentElement.closest(`[${options.attrChild}]`) as HTMLElement;
+  if (parentSection == null) return
+  parentSection.parentElement.classList.add(`${options.classIsExpanded}`);
+
+  show(parentSection, {})
 }
