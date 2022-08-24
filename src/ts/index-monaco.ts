@@ -17,8 +17,7 @@ function beforeInitMonacoSourceCode() {
 }
 
 function initMonacoSourceCode({ domAttribute, options, appPath }: { domAttribute: string, options: { sourceCodeId: string, language: string}, appPath: string }) {
-  var editor: Monaco.editor.IStandaloneCodeEditor;
-  
+
   // @ts-ignore
   self.MonacoEnvironment = {
     getWorkerUrl: function (moduleId: any, label: string) {
@@ -46,40 +45,47 @@ function initMonacoSourceCode({ domAttribute, options, appPath }: { domAttribute
       'editor.background': '#f5f5f5',
     }
   });
-
-  window.monaco.editor.create(document.getElementById(options.sourceCodeId).parentElement, {
-    value: document.getElementById(options.sourceCodeId).innerText,
-    language: options.language, theme: 'razorTutorialTheme', scrollBeyondLastLine: false
-  });
-
-  // document.getElementById(options.sourceCodeId).classList.add("hidden");
+  
 
   // enable collapse
   let codeBlockHeader = document.querySelector(`[${domAttribute}] .header:not(.active)`);
-  if (codeBlockHeader == null) return;
+  if (codeBlockHeader == null || codeBlockHeader.parentElement.querySelector('#' + options.sourceCodeId) == null) 
+  {
+    //for codeblocks that are not collapsable
+    createMonaco(document.getElementById(options.sourceCodeId).parentElement, 
+      document.getElementById(options.sourceCodeId).innerText, 
+      options.language, 'razorTutorialTheme', false, options.sourceCodeId);
+    return;
+  }
 
   let codeBlock = codeBlockHeader.parentElement;
   codeBlockHeader.classList.add("active");
 
+  if(codeBlock.classList.contains("is-expanded")) {
+    //for codeblocks that are collapsable and by default not collapsed
+    createMonaco(document.getElementById(options.sourceCodeId).parentElement, 
+      document.getElementById(options.sourceCodeId).innerText, 
+      options.language, 'razorTutorialTheme', false, options.sourceCodeId);
+  } else {
+    //for codeblocks that are collapsable and by default collapsed
+    codeBlock.classList.toggle("is-expanded");
+    createMonaco(document.getElementById(options.sourceCodeId).parentElement, 
+      document.getElementById(options.sourceCodeId).innerText, 
+      options.language, 'razorTutorialTheme', false, options.sourceCodeId);
+    codeBlock.classList.toggle("is-expanded");
+  }
+
   codeBlockHeader.addEventListener("click", () => {
     toggle((codeBlock.querySelector(".source-code") as HTMLElement), {});
     codeBlock.classList.toggle("is-expanded");
-    if(codeBlock.classList.contains("is-expanded")) {
-      console.log("SDV- is expanded");
-      // editor = window.monaco.editor.create((codeBlock.querySelector(".source-code") as HTMLElement), {
-      //   value: (codeBlock.querySelector(".source-code") as HTMLElement).innerText,
-      //   language: options.language, theme: 'razorTutorialTheme', scrollBeyondLastLine: false
-      // });
-      // window.monaco.editor.getModels().forEach(x => {
-      //   // console.log(x.getValue());
-      //   x.setValue(x.getValue());
-      //   // x.
-      // });
-    } else {
-      console.log("SDV- is not expanded");
-      // window.monaco.editor.getModels().find(x => x.id === editor.getId()).dispose();
-    }
   })
+}
+
+function createMonaco(element: HTMLElement, value: string, language: string, theme: string, scrollBeyondLastLine: boolean, sourceCodeId: string) {
+  window.monaco.editor.create(element, {
+    value: value, language: language, theme: theme, scrollBeyondLastLine: scrollBeyondLastLine
+  });
+  document.getElementById(sourceCodeId).classList.add("hidden");
 }
 
 export function showParentSections(targetOpenElem: HTMLElement, options: AccordionOptions) {
