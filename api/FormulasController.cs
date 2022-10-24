@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;           // .net core [HttpGet] / [HttpPost] et
 using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGet]
 using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
 #endif
+using System.Linq;        // this enables .Select(x => ...)
 using System.Collections.Generic;          // To use the Dictionary
 
 [AllowAnonymous]                          // all commands can be accessed without a login
@@ -23,6 +24,21 @@ public class FormulasController : Custom.Hybrid.Api14 // see https://r.2sxc.org/
     return results;
   }
 
+  // Note: Persons just copied from Books Controller to test functionality
+  [HttpGet]                               // [HttpGet] says we're listening to GET requests
+  public dynamic Persons()
+  {
+    // we could do: return App.Data["Persons"];
+    // but the raw data is difficult to use, so we'll improve it
+
+    // instead we'll create nice objects for our use
+    return AsList(App.Data["Persons"])
+      .ToDictionary(x => x.EntityId.ToString(), p => p.FirstName + " " + p.LastName);
+      // .Select(p => new {
+      //   Id = p.EntityId,
+      //   Name = p.FirstName + " " + p.LastName
+      // });
+  }
 }
 
 // The next line is for 2sxc-internal quality checks, you can ignore this

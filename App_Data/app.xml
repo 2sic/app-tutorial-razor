@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.11.00" ExportDate="2022-10-24T18:16:22.1187811+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.11.00" ExportDate="2022-10-24T18:27:04.1072291+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -1393,6 +1393,18 @@
             <Value Key="EnableTextEntry" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="5be1b99f-a4b2-4af6-a4cc-2eadcc2155c7" Name="FormulasDropDownWebApiData" Description="" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Dropdown" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="67adcd37-c0cc-43b4-9c31-2f97fcce03d0" Json="True" KeyNumber="5468">
+            <Value Key="Formulas" Value="d45e712b-2891-4ad0-8d7d-997bcf70aca7,null" Type="Entity" />
+            <Value Key="InputType" Value="string-dropdown" Type="String" />
+            <Value Key="Name" Value="Dropdown" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
       </Attributes>
@@ -20825,6 +20837,46 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Label" Value="Formulas - Features and User" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="d45e712b-2891-4ad0-8d7d-997bcf70aca7" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // If it has a value, keep it, don't look for another&#xA;  if (data.value) return data.value;&#xA;&#xA;  // If data had been stored in the cache by the api-call, return it&#xA;  if (context.cache.data) return context.cache.data;&#xA;  &#xA;  // Prevent the API call from running twice&#xA;  if (context.cache.alreadyRun) return data.value;&#xA;  context.cache.alreadyRun = true;&#xA;&#xA;  // Call the sxc web-api controller from other tutorials&#xA;  context.sxc.webApi.fetchJson('app/auto/api/formulas/Persons')&#xA;    .then(data =&gt; {&#xA;      console.log('got data', data);// log for demo reasons&#xA;      // The result is a dictionary, so we convert to lines&#xA;      const lines = Object.keys(data)&#xA;        .map(k =&gt; k + &quot;:&quot; + data[k])&#xA;        .join('\n');&#xA;      context.cache.data = lines;  // set cache for next formula cycle&#xA;      context.form.runFormulas(); // trigger the next formula cycle&#xA;    });&#xA;}" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.DropdownValues" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.DropdownValues" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="37e491ad-69a6-4ebc-8887-b33573eeb077" Json="True" KeyString="5be1b99f-a4b2-4af6-a4cc-2eadcc2155c7">
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="&lt;p&gt;This formula will&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;load data from a WebAPI endpoint - which will get Persons from the Entities&lt;/li&gt;&#xA;&lt;li&gt;use the result to provide the found data in the string-dropdown&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Note that the endpoint gives us a JSON like { first: &quot;some first value&quot;, second: &quot;...&quot; } so the JS Formula will convert it into the format expected by the dropdown.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="FormulasDropDownWebApiData" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Link" Value="" Type="Hyperlink">
