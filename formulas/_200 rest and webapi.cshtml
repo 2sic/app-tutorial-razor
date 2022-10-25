@@ -28,20 +28,22 @@
 @* Get Value from WebApi *@
 @Html.Partial("_PartFormulas.cshtml", sharedExamples.ValueFromWebApi())
 
-<hr>
 
-<h2>Get DropDown options from a WebAPI</h2>
 @* Dropdown Values From WebAPI *@
 @Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApi())
+
+@* Dropdown Values From WebAPI App.Data *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApiData())
+
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",
   File = "FormulasController.cs",
-  Size = 600,
+  Size = 800,
   TitlePath = "/api/"
 }) 
 
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 440 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
 </hide>

@@ -29,5 +29,14 @@ public class SharedExamples : Custom.Hybrid.Code14 {
       ContentType = "FormulasDropdownWebApi",
       FieldName = "Dropdown"
     };
-  }  
+  }
+
+  public dynamic DropdownFromWebApiData() {
+    return new {
+      Title = "Get dropdown options from WebAPI accessing App.Data",
+      Instructions = "This is an advanced formula which will call a WebApi to get the possible values in a drop down - from Data in the App. ",
+      ContentType = "FormulasDropdownWebApiData",
+      FieldName = "Dropdown"
+    };
+  }
 }

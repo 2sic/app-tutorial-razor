@@ -39,6 +39,11 @@
 @* Dropdown Values From WebAPI *@
 @Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApi())
 
+@* Dropdown Values From WebAPI App.Data *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApiData())
+
+<hr>
+
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/api/",
   File = "FormulasController.cs",

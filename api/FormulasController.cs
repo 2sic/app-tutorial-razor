@@ -28,16 +28,8 @@ public class FormulasController : Custom.Hybrid.Api14 // see https://r.2sxc.org/
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public dynamic Persons()
   {
-    // we could do: return App.Data["Persons"];
-    // but the raw data is difficult to use, so we'll improve it
-
-    // instead we'll create nice objects for our use
     return AsList(App.Data["Persons"])
       .ToDictionary(x => x.EntityId.ToString(), p => p.FirstName + " " + p.LastName);
-      // .Select(p => new {
-      //   Id = p.EntityId,
-      //   Name = p.FirstName + " " + p.LastName
-      // });
   }
 }
 
