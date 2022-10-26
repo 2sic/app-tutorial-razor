@@ -81,13 +81,13 @@
   </script>
 </snippet>
 <snippet id="jquery">
-  <button type="button" class="btn btn-secondary" onclick="helloJQuery(this)">jQuery Get Hello</button>
+  <button type="button" class="btn btn-secondary" onclick="helloJQueryOld(this)">jQuery Get Hello</button>
   <hide-silent> @* Show only this snippet *@
     @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "jquery", Size = 250 }) 
   </hide-silent>
   <script>
     // jQuery versions (not recommended any more, will not work on pages without jQuery)
-    function helloJQuery(moduleContext) {
+    function helloJQueryOld(moduleContext) {
       $2sxc(moduleContext).webApi.get('app/auto/api/basic/hello')
         .then(function (results) {
           alert("Result using jQuery: " + results);      
