@@ -1,0 +1,78 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+@{
+  // 1. Activate turnOn
+  Kit.Page.Activate("turnOn");
+
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (Kit.Css.IsUnknown) {
+    Kit.Page.Activate("Bootstrap4");
+  }
+}
+
+<!-- todo: document what the script does -->
+<script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>
+
+<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" async="false"></script>
+
+<!-- styles, mainly used for code show/hide -->
+<style>
+  .code-block .source-code, .fa-chevron-up, 
+  .is-expanded .fa-chevron-down  {
+    display: none;
+  }
+  .is-expanded .source-code, 
+  .is-expanded .fa-chevron-up {
+    display: block;
+  }
+  .code-block .header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .code-block .header img {
+    width: 20px;
+    height: 20px;
+    padding: 5px 4px 4px;
+  }
+
+</style>
+
+@* Experimental hide snippet till needed *@
+<style>
+  .reveal-on-h3 h3::after {
+    content: " ➕";
+    font-size: smaller;
+  }
+  .reveal-on-h3.reveal h3::after {
+    content: " ➖";
+    font-size: smaller;
+  }
+  .show-hidden-with-reveal hide-silent {
+    display: none;
+  }
+  .show-hidden-with-reveal.reveal hide-silent {
+    display: block;
+  }
+</style>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    const sections = document.querySelectorAll("snippet.reveal-on-h3");
+    console.log('sections', sections, sections.length);
+
+    sections.forEach((sect) => {
+      const h3 = sect.querySelector("h3");
+      console.log('t', sect, 'h3', h3);
+      h3.addEventListener("click", () => {
+        sect.classList.toggle('reveal');
+      });
+    });
+  });
+
+
+
+</script>

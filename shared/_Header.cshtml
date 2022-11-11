@@ -18,7 +18,7 @@
     .Metadata(CmsContext.View, "TutorialViewSharing", parameters: "prefill:Title=" + Tags.Strip(viewMd.LinkTitle) + "&prefill:Description=" + Tags.Strip(viewMd.LinkTeaser))
     .Settings(hover: "left");
 
-  @Html.Partial("../shared/_OpenGraphHeaders.cshtml");
+  @Html.Partial("_OpenGraphHeaders.cshtml");
 }
 
 <div @Edit.TagToolbar(newConfig) class="mb-2">
@@ -27,3 +27,5 @@
   }
   @hlp.TitleAndBreadcrumb(title, name, topicHomeLink)
 </div>
+
+@Html.Partial("_Header.PartAssets.cshtml")

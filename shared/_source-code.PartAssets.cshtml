@@ -1,14 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
-@{
-  // 1. Activate turnOn
-  Kit.Page.Activate("turnOn");
-
-  // 2. Include Bootstrap4 if the framework isn't known
-  if (Kit.Css.IsUnknown) {
-    Kit.Page.Activate("Bootstrap4");
-  }
-}
 
 <turnOn turn-on='{ 
   "run": "window.razorTutorial.initSourceCode()", 
@@ -17,4 +8,4 @@
     "sourceCodeId": "@DynamicModel.SourceCodeId", 
     "aceOptions": @Kit.Json.ToJson(DynamicModel.AceOptions) 
   }}'></turnOn>
-<script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>
+
