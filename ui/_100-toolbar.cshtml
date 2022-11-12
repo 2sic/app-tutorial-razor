@@ -386,9 +386,10 @@
     To see it in full action, you will need to install the tutorial and test it logged in as Admin.
   </em>
 </p>
+
 <snippet id="tb-data-filter-name" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: "Title=Good Omens")>
-  <h3><code>Data</code> button with string <code>filter</code> </h3>
+  <h3><code>Data</code> button with <em>string</em> <code>filter</code> </h3>
   <p>This will find all books with the title <em>Good Omens</em></p>
   <hide-silent>
     @ShowSnippet("tb-data-filter-name")
@@ -396,7 +397,50 @@
 </div>
 </snippet>
 
+<snippet id="tb-data-filter-name-obj" class="show-hidden-with-reveal reveal-on-h3">
+<div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: new { Title = "Good Omens" })>
+  <h3><code>Data</code> button with <em>object</em> <code>filter</code> </h3>
+  <p>This will find all books with the title <em>Good Omens</em></p>
+  <hide-silent>
+    @ShowSnippet("tb-data-filter-name-obj")
+  </hide-silent>
+</div>
+</snippet>
 
+<snippet id="tb-data-filter-authors-3" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  var firstThreeAuthorIds = AsList(App.Data["Persons"])
+    .Select(author => author.EntityId)
+    .ToArray();
+
+  var toolbarTop3 = Kit.Toolbar.Empty()
+    .Data("Books", filter: new { Authors = firstThreeAuthorIds });
+}
+<div class="alert alert-success" @toolbarTop3>
+  <h3><code>Data</code> buttons returning books which has any of 3 authors</h3>
+  <hide-silent>
+    @ShowSnippet("tb-data-filter-authors-3", 250)
+  </hide-silent>
+</div>
+</snippet>
+
+<snippet id="tb-data-filter-authors-obj" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  var authorsToolbar = Kit.Toolbar.Empty();
+  foreach (var auth in AsList(App.Data["Persons"])) {
+    authorsToolbar = authorsToolbar.Data("Books",
+      ui: new { Title = "Books by " + auth.FirstName + " " + auth.LastName},
+      filter: new { Authors = new int[] { auth.EntityId } }
+    );
+  }
+}
+<div class="alert alert-success" @authorsToolbar>
+  <h3>Many <code>Data</code> buttons each filtering for one related author</h3>
+  <hide-silent>
+    @ShowSnippet("tb-data-filter-authors-obj", 320)
+  </hide-silent>
+</div>
+</snippet>
 
 
 
