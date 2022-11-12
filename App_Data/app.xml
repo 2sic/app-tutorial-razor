@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.11.00" ExportDate="2022-10-25T12:43:25.8868009+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.12.00" ExportDate="2022-11-12T01:35:42.4026269+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -4019,7 +4019,7 @@
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="14.11.00" Type="String">
+      <Value Key="Version" Value="14.12.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -17854,7 +17854,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="28aabbc2-0ae3-40cf-b9a3-7b5d1186512f">
-      <Value Key="Resources" Value="f2cc29d6-89fa-42bf-8ef1-cad74897cfc0,b20965b5-62d0-479b-a06d-0051dc0c2223,3bec7549-c1ab-4735-8529-70bc8eb6c851,6d961d3e-46cc-4e70-ad2d-b7feb1775658,a4ea2153-6b20-47e2-a187-8026fd456757,b9072f99-6c4d-42fd-a869-c78969a0b1fd" Type="Entity" />
+      <Value Key="Resources" Value="f2cc29d6-89fa-42bf-8ef1-cad74897cfc0,b20965b5-62d0-479b-a06d-0051dc0c2223,3bec7549-c1ab-4735-8529-70bc8eb6c851,6d961d3e-46cc-4e70-ad2d-b7feb1775658,a4ea2153-6b20-47e2-a187-8026fd456757,b9072f99-6c4d-42fd-a869-c78969a0b1fd,c7dd75e6-ff68-40c0-8903-99fdcd119a05" Type="Entity" />
       <Value Key="Title" Value="Toolbar Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -20938,6 +20938,34 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="ebe0da22-a3e0-4a50-9bfe-c23e59e5741f" Json="True" KeyGuid="5be1b99f-a4b2-4af6-a4cc-2eadcc2155c7">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="contenttype" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="c7dd75e6-ff68-40c0-8903-99fdcd119a05">
+      <Value Key="Link" Value="https://docs.2sxc.org/net-code/services/toolbar-builder/index.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Toolbar Builder Guide" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
