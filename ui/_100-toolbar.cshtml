@@ -65,7 +65,6 @@
 }
 
 <hr>
-
 <h2>Add / Remove Buttons</h2>
 <snippet id="tb-add-new-newsyn" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-success" @Kit.Toolbar.Default(Content).Edit().New()>
@@ -86,14 +85,26 @@
 </snippet>
 
 
+
 <snippet id="tb-colors-newsyn" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
-  <h3>New syntax: Add <code>new</code> button with colors </h3>
+  <h3>New syntax (string): Add <code>new</code> button with colors </h3>
   <hide-silent>
     @ShowSnippet("tb-colors-newsyn")
   </hide-silent>
 </div>
 </snippet>
+<snippet id="tb-colors-newobj" class="show-hidden-with-reveal reveal-on-h3">
+<div class="alert alert-info" @Kit.Toolbar.Default(Content).New(ui: new {
+  color = "blue,white"
+})>
+  <h3>New syntax (object): Add <code>new</code> button with colors </h3>
+  <hide-silent>
+    @ShowSnippet("tb-colors-newobj")
+  </hide-silent>
+</div>
+</snippet>
+
 <snippet id="tb-colors-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&color=pink,black"})>
   <h3>Old syntax: Add <code>new</code> button with colors </h3>
@@ -156,9 +167,54 @@
 </div>
 </snippet>
 
-<hr>
 
+
+
+<hr>
+<h2>Add Buttons with SVG Icons (v14.08+)</h2>
+<p>
+  We've introduced a new feature to allow custom SVG icons for buttons. 
+</p>
+<snippet id="tb-icon-svg" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  // icon from https://fonts.google.com/icons?icon.query=func
+  var uiWithSvgIcon = new {
+    Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>"
+  };
+}
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiWithSvgIcon)>
+  <h3>New syntax only: Button with SVG Icon </h3>
+  <hide-silent>
+    @ShowSnippet("tb-icon-svg", 220)
+  </hide-silent>
+</div>
+</snippet>
+<snippet id="tb-icon-svg-colors" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  // icon from https://fonts.google.com/icons?icon.query=func
+  var uiSvgIconColored = new {
+    Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>",
+    color = "darkgreen"
+  };
+}
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiSvgIconColored)>
+  <h3>New syntax only: Button with SVG Icon and color </h3>
+  <hide-silent>
+    @ShowSnippet("tb-icon-svg-colors", 220)
+  </hide-silent>
+</div>
+</snippet>
+
+
+
+
+
+
+<hr>
 <h2>Modify a button</h2>
+<p>
+  When we modify a button, we don't add one, but change the look or behavior of an existing button.
+</p>
 <snippet id="tb-modify-newsyn" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-success" @Kit.Toolbar.Default().Edit("-").Edit(ui:"color=red").For(Content)>
   <h3>New syntax: Edit button is now red</h3>
@@ -205,7 +261,7 @@
 <snippet id="tb-delete-newsyn" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-success" @Kit.Toolbar.Default().Delete().For(Content)>
   <h3>New syntax: Always show <code>Delete</code></h3>
-  <div>Note that you'll have to hit the ellipsis a few times to see it.</div>
+  <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
   <hide-silent>
     @ShowSnippet("tb-delete-newsyn", 120) 
   </hide-silent>
@@ -214,15 +270,139 @@
 <snippet id="tb-delete-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%delete&show=true"})>
   <h3>Old syntax: Always show <code>Delete</code></h3>
-  <div>Note that you'll have to hit the ellipsis a few times to see it.</div>
+  <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
   <hide-silent>
     @ShowSnippet("tb-delete-oldsyn", 120) 
   </hide-silent>
 </div>
 </snippet>
 
-<hr>
 
+
+
+<hr>
+<h2>Ways to provide the <code>ui</code>, <code>parameters</code>, <code>prefill</code></h2>
+<p>
+  Most buttons can have a <code>ui</code> and a <code>parameters</code> parameter.
+  Some also have a <code>prefill</code>.
+  In simple cases you will just use a <strong>string</strong> to configure this, 
+  but in more advanced cases it's easier to use an <strong>object</strong>. 
+</p>
+<p>
+  Objects and strings can also be <strong>merged</strong> with other objects and strings.
+
+  A good reason to do this is to prepare a complex ui/parameters/prefill object, 
+  and then use it in a loop where you may want small differences in the buttons of each toolbar.
+</p>
+<p>
+  Note that all the following examples use the <code>ui</code> parameter as it's easy to see the effect.
+  But the behavior is the same for <code>parameters</code> and <code>prefill</code>.
+</p>
+
+<snippet id="tb-ui-string-inline" class="show-hidden-with-reveal reveal-on-h3">
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: "color=orange")>
+  <h3><code>ui</code> as inline string </h3>
+  <hide-silent>
+    @ShowSnippet("tb-ui-string-inline")
+  </hide-silent>
+</div>
+</snippet>
+
+<snippet id="tb-ui-string-reuse" class="show-hidden-with-reveal reveal-on-h3">
+@{  var uiReuse = "color=magenta";  }
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit(ui: uiReuse).New(ui: uiReuse)>
+  <h3><code>ui</code> as string variable for reuse</h3>
+  <hide-silent>
+    @ShowSnippet("tb-ui-string-reuse")
+  </hide-silent>
+</div>
+</snippet>
+
+<snippet id="tb-ui-string-merge" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  var uiShared = "color=magenta&title=Default Title";
+  var uiMerged = new object[] { uiShared, "title=Modified Title" };
+}
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit(ui: uiShared).New(ui: uiMerged)>
+  <h3><code>ui</code> as string for reuse and merge</h3>
+  <p>Mouse over the buttons to see how we use/merge to ui configurations</p>
+  <hide-silent>
+    @ShowSnippet("tb-ui-string-merge")
+  </hide-silent>
+</div>
+</snippet>
+
+
+<snippet id="tb-ui-obj-inline" class="show-hidden-with-reveal reveal-on-h3">
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: new { color = "orange"})>
+  <h3><code>ui</code> as inline object </h3>
+  <hide-silent>
+    @ShowSnippet("tb-ui-obj-inline")
+  </hide-silent>
+</div>
+</snippet>
+
+<snippet id="tb-ui-obj-prepared" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  var uiPrepared = new {
+    Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0z' fill='none'/><path d='M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z'/></svg>",
+    Color = "orange",
+    Title = "This is the prepared object"
+  };
+}
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared)>
+  <h3><code>ui</code> as prepared object </h3>
+  <hide-silent>
+    @ShowSnippet("tb-ui-obj-prepared", 270)
+  </hide-silent>
+</div>
+</snippet>
+
+<snippet id="tb-ui-obj-merged" class="show-hidden-with-reveal reveal-on-h3">
+@{
+  // this uses uiPrepared from the previous example
+  var uiObjMerged = new object[] { uiPrepared, new { Color ="purple"}};
+}
+<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared).New(ui: uiObjMerged)>
+  <h3><code>ui</code> as prepared object merged with other object</h3>
+  <hide-silent>
+    @ShowSnippet("tb-ui-obj-merged", 250)
+  </hide-silent>
+</div>
+</snippet>
+
+
+
+
+<hr>
+<h2>Data Buttons with Filters</h2>
+<p>
+  <code>Data</code> buttons open the management view with a list of items to manage.
+  You will often want to filter what to open - like only open items which have a certain property 
+  or have one of 3 tags. 
+  <br>
+  <em>
+    Important: These samples show how to do it, but it won't work in anonymous mode. 
+    To see it in full action, you will need to install the tutorial and test it logged in as Admin.
+  </em>
+</p>
+<snippet id="tb-data-filter-name" class="show-hidden-with-reveal reveal-on-h3">
+<div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: "Title=Good Omens")>
+  <h3><code>Data</code> button with string <code>filter</code> </h3>
+  <p>This will find all books with the title <em>Good Omens</em></p>
+  <hide-silent>
+    @ShowSnippet("tb-data-filter-name")
+  </hide-silent>
+</div>
+</snippet>
+
+
+
+
+
+
+
+<hr>
 <h2>Button Groups</h2>
 <snippet id="tb-add-groups-newsyn" class="show-hidden-with-reveal reveal-on-h3">
 @{
