@@ -38,7 +38,7 @@
     title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
     var paramSize = DynamicModel.Size;
     var test = Kit.Json;
-    size = Kit.Convert.ToInt(paramSize, fallback: 600);
+    size = Kit.Convert.ToInt(paramSize, fallback: -1);
 
     language = "ace/mode/" + (DynamicModel.Language ?? FindAce3LanguageName(filePath));
 
@@ -58,6 +58,8 @@
       var sourceLines = source.Split('\n').Length;
       size = sourceLines * LineHeightPx + BufferHeightPx;
     }
+
+    if (size < LineHeightPx) { size = 600; }
 
     // trim unnecessary comments
     source = ProcessHideTrimSnippet(source);

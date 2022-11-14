@@ -2,7 +2,6 @@
 <hide>
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
-  hlp.RazorPath = Path;
 }
 
 @Html.Partial("_header.cshtml")
@@ -34,7 +33,7 @@
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(hlp.ShowCodeFile, hlp.Snippet("json-intro")) 
+  @Html.Partial(hlp.ShowCodeFile, new { Path, Snippet = "json-intro" }) 
 </hide-silent>
 
 <snippet id="json-list">
@@ -46,7 +45,7 @@
 </ol>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(hlp.ShowCodeFile, hlp.Snippet("json-list")) 
+  @Html.Partial(hlp.ShowCodeFile, new { Path, Snippet = "json-list" }) 
 </hide-silent>
 
 <snippet id="json-props">
@@ -58,7 +57,7 @@
 </ol>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(hlp.ShowCodeFile, hlp.Snippet("json-props")) 
+  @Html.Partial(hlp.ShowCodeFile, new { Path, Snippet = "json-props" }) 
 </hide-silent>
 
 <hide>
@@ -70,5 +69,5 @@
 })
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 </hide>
