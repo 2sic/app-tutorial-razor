@@ -1,11 +1,8 @@
 @inherits Custom.Hybrid.Razor14
-@{
-  var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/json/demo.json");
-  var thing = AsDynamic(someJson);
-}
 <hide>
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  hlp.RazorPath = Path;
 }
 
 @Html.Partial("_header.cshtml")
@@ -22,6 +19,11 @@
 </hide>
 
 <hr>
+<snippet id="json-intro">
+@{
+  var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/json/demo.json");
+  var thing = AsDynamic(someJson);
+}
 <h3>Show properties and sub-properties - case insensitive</h3>
 <ul>
   <li>Title: @thing.Title</li>
@@ -30,17 +32,37 @@
   <li>Is this a list/array? @thing.IsList </li>
   <li>Are the tags a list? @thing.Tags.IsList </li>
 </ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(hlp.ShowCodeFile, hlp.Snippet("json-intro")) 
+</hide-silent>
 
-<hr>
-<h3>Going through a list</h3>
+<snippet id="json-list">
+<h3>Loop through a list of @thing.Tags.Count tags</h3>
 <ol>
 @foreach(var tag in thing.Tags) {
   <li>@tag</li>
 }
 </ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(hlp.ShowCodeFile, hlp.Snippet("json-list")) 
+</hide-silent>
+
+<snippet id="json-props">
+<h3>Loop through a list of @thing.Count properties</h3>
+<ol>
+@foreach(var prop in thing) {
+  <li><strong>@prop</strong> (@thing[prop].GetType()) = @thing[prop]</li>
+}
+</ol>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(hlp.ShowCodeFile, hlp.Snippet("json-props")) 
+</hide-silent>
 
 <hide>
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(hlp.ShowCodeFile, new { 
   Title = "Demo.json ",
   Path = App.PhysicalPath + "/json/",
   File = "demo.json",
