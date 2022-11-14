@@ -8,6 +8,20 @@ public class Helpers: Custom.Hybrid.Code14
   public string TutViewMetadataType = "TutorialViewMetadata";
   public string TutViewSharingMetadataType = "TutorialViewSharing";
 
+  // Url to show source code, to not repeat in every file
+  // TODO: USE THIS IN ALL FILES
+  public string ShowCodeFile = "../shared/_source-code.cshtml";
+
+  // TODO: JUST LIKE THE JSON samples, make the rest use this too, with auto-size
+  public string RazorPath = "";
+  public object Snippet(string name, int size = -1) {
+    return new {
+      Path = RazorPath,
+      Snippet = name,
+      Size = size // size
+    };
+  }
+
   public dynamic Title(string title) {
     // set browser title for SEO
     Kit.Page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");
