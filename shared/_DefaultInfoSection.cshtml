@@ -7,16 +7,18 @@
   if (viewMd == null || viewMd.Specs == null || viewMd.Specs.Count == 0) {
     return;
   }
+
+  var isAdmin = CmsContext.User.IsSiteAdmin;
 }
 
 <div class="col-lg-5">
-  @if((viewMd.Specs.Requirements.Count > 0 && viewMd.Specs != null) || Request.IsAuthenticated){
+  @if((viewMd.Specs.Requirements.Count > 0 && viewMd.Specs != null) || isAdmin) {
     @Html.Partial("_InfoSection.cshtml", new { Parent = viewMd.Specs, Field = "Requirements", Data = viewMd.Specs.Requirements, Title = "Requirements", Icon = "fa-exclamation-circle" })
   }
-  @if((viewMd.Specs.Resources.Count > 0 && viewMd.Specs != null) || Request.IsAuthenticated){
+  @if((viewMd.Specs.Resources.Count > 0 && viewMd.Specs != null) || isAdmin) {
     @Html.Partial("_InfoSection.cshtml", new { Parent = viewMd.Specs, Field = "Resources", Data = viewMd.Specs.Resources, Title = "Resources" })
   }
-  @if((viewMd.Specs.Related.Count > 0 && viewMd.Specs != null) || Request.IsAuthenticated){
+  @if((viewMd.Specs.Related.Count > 0 && viewMd.Specs != null) || isAdmin) {
     @Html.Partial("_InfoSection.cshtml", new { Parent = viewMd.Specs, Field = "Related", Data = viewMd.Specs.Related, Title = "Related" })
   }
 </div>
