@@ -3,14 +3,17 @@
 @using ToSic.Razor.Blade;
 @{
   var helpers = CreateInstance("Helpers.cs");
+  var sourceCode = CreateInstance("SourceCode.cs");
+
   // Get parameters
-  // var filePath = DynamicModel.Path;
   var result = DynamicModel.Result;
   var language = DynamicModel.Language ?? "html";
 
   // Prepare variables which are initialized in try/catch
-  int size = Kit.Convert.ToInt(DynamicModel.Size, fallback: 600);
   var domAttribute = "result-" + CmsContext.Module.Id;
+
+  result = sourceCode.SourceTrim(result);
+  var size = sourceCode.Size(DynamicModel.Size, result);
 
   // Low risk stuff outside of try/catch
   var rndId = Guid.NewGuid().ToString();

@@ -10,18 +10,13 @@
   var hlp = CreateInstance("../shared/Helpers.cs");
 }
 @functions {
-  // Special helper to create the config object
-  // Will also replace common things in the src-set
-  object PictureTagPreview(object tag, int size) {
-    return new {
-      Path,
-      Result = tag.ToString()
+  // Special helper to better format the html to show
+  string PrepHtml(object tag) {
+    return tag.ToString()
         .Replace(">", ">\n")
         .Replace(",", ",\n")
         .Replace("' ", "' \n")
-        .Replace(" alt=", "\nalt="),
-     Size = size
-    };
+        .Replace(" alt=", "\nalt=");
   }
 }
 </hide>
@@ -85,12 +80,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-url", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Img(Content.Image), 200))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Img(Content.Image)) });
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-object", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Img(Content.Field("Image")), 200))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Img(Content.Field("Image"))) })
 </hide-silent>
 
 
@@ -132,12 +127,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Image), 350))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Image))})
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-object", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image")), 350))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
 </hide-silent>
 
 @*
@@ -178,12 +173,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-factor-05", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image"), factor: 0.5), 350))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 0.5))})
 
 <br>
 <h6>Image to the RIGHT (note higher resolution)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-factor-5", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image"), factor: 5), 350))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 5))})
 </hide-silent>
 
 
@@ -226,12 +221,12 @@
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-recipe-default", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image")), 350))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
 
 <br>
 <h6>Image to the RIGHT (note different variants)</h6>
 @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-recipe-custom", Size = 125 }) 
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe), 350))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))})
 </hide-silent>
 
 
@@ -273,7 +268,7 @@
 
 <h6>This generates:</h6>
 @{ var previewTag = Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 300))
+@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(previewTag)})
 </hide-silent>
 
 <hide>

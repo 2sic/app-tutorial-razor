@@ -2,10 +2,8 @@
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
 @{
-  const int LineHeightPx = 20;
-  const int BufferHeightPx = 0;
-
   var helpers = CreateInstance("Helpers.cs");
+  var sourceCode = CreateInstance("SourceCode.cs");
   // Get parameters
   var titleInParams = DynamicModel.Title as string;
   var filePath = DynamicModel.Path;
@@ -36,11 +34,8 @@
     }
     var fileInTitle = titlePath + file;
     title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
-    var paramSize = DynamicModel.Size;
-    var test = Kit.Json;
-    size = Kit.Convert.ToInt(paramSize, fallback: -1);
 
-    language = "ace/mode/" + (DynamicModel.Language ?? FindAce3LanguageName(filePath));
+    language = "ace/mode/" + (DynamicModel.Language ?? sourceCode.FindAce3LanguageName(filePath));
 
     // load source code
     var fullPath = filePath;
@@ -53,14 +48,6 @@
     // Keep only the snippet if specified
     source = KeepOnlySnippet(source, snipId);
 
-    if (size == -1) {
-      source = source.Trim().TrimEnd(Environment.NewLine.ToCharArray()).Trim();
-      var sourceLines = source.Split('\n').Length;
-      size = sourceLines * LineHeightPx + BufferHeightPx;
-    }
-
-    if (size < LineHeightPx) { size = 600; }
-
     // trim unnecessary comments
     source = ProcessHideTrimSnippet(source);
   }
@@ -71,6 +58,12 @@
       Where was a problem showing the file source for @filePath
     </div>
   }
+
+  // debug
+  source = sourceCode.SourceTrim(source);
+  size = sourceCode.Size(DynamicModel.Size, source);
+  // source = source + "(" + size + ")";
+
 
   // Low risk stuff outside of try/catch
   var rndId = Guid.NewGuid().ToString();
@@ -111,18 +104,6 @@
 @Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, AceOptions = aceOptions })
 
 @functions {
-  // Determine the ace9 language of the file
-  string FindAce3LanguageName(string filePath) {
-    var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
-    switch (extension)
-    {
-      case "cs": return "csharp";
-      case "js": return "javascript";
-      case "json": return "json";
-      default: return "razor";
-    }
-  }
-
   string KeepOnlySnippet(string source, string id) {
     if (string.IsNullOrWhiteSpace(id)) return source;
     // trim unnecessary comments
