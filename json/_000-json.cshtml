@@ -2,6 +2,7 @@
 <hide>
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  var sourceCode = hlp.ShowCodeFile as string; // required, because Oqtane can't use dynamic
 }
 
 @Html.Partial("_header.cshtml")
@@ -33,7 +34,7 @@
 </ul>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(hlp.ShowCodeFile, new { Path, Snippet = "json-intro" }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "json-intro" }) 
 </hide-silent>
 
 <snippet id="json-list">
@@ -45,7 +46,7 @@
 </ol>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(hlp.ShowCodeFile, new { Path, Snippet = "json-list" }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "json-list" }) 
 </hide-silent>
 
 <snippet id="json-props">
@@ -57,11 +58,11 @@
 </ol>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(hlp.ShowCodeFile, new { Path, Snippet = "json-props" }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "json-props" }) 
 </hide-silent>
 
 <hide>
-@Html.Partial(hlp.ShowCodeFile, new { 
+@Html.Partial(sourceCode, new { 
   Title = "Demo.json ",
   Path = App.PhysicalPath + "/json/",
   File = "demo.json",
