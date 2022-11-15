@@ -1,15 +1,19 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-  @Html.Partial("_header.cshtml")
-  @{
-    var hlp = CreateInstance("../shared/Helpers.cs");
-    var fHlp = CreateInstance("Helpers.cs");
-    var contentType = "FormulasBasic";
-    var fancybox = CreateInstance("../shared/Fancybox.cs");
-    Edit.Enabled = true;
-    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
-  }
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+
+  var fHlp = CreateInstance("Helpers.cs");
+  var contentType = "FormulasBasic";
+  var fancybox = CreateInstance("../shared/Fancybox.cs");
+
+// todo: use shared code
+  Edit.Enabled = true;
+  Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+}
 </hide>
 
 <div class="row">
@@ -79,5 +83,5 @@
 <br>
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 440 }) 
+@Html.Partial(sourceCode, new { Path }) 
 </hide>

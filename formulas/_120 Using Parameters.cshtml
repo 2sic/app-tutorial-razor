@@ -1,17 +1,19 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-  @Html.Partial("_header.cshtml")
-  @{
-    var hlp = CreateInstance("../shared/Helpers.cs");
-    var tbHlp = CreateInstance("Helpers.cs");
-    var fancybox = CreateInstance("../shared/Fancybox.cs");
-    Edit.Enabled = true;
-    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 
-    var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
-    var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");
-  }
+  var tbHlp = CreateInstance("Helpers.cs");
+  var fancybox = CreateInstance("../shared/Fancybox.cs");
+  Edit.Enabled = true;
+  Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+
+  var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
+  var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");
+}
 </hide>
 
 <div class="row">
@@ -67,7 +69,7 @@
 
 <code id="formulas-ephemeral-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-ephemeral", Size = 80 })
+  @Html.Partial(sourceCode, new { Path, Snippet = "formulas-ephemeral" })
 
   @Html.Partial("_PartFormulas.cshtml", new {
   ContentType = "FormulasEphemeral",
@@ -100,7 +102,7 @@
 
   <code id="formulas-showAdvanced-label"></code>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced", Size = 120 })
+    @Html.Partial(sourceCode, new { Path, Snippet = "formulas-showAdvanced" })
 
     @Html.Partial("_PartFormulas.cshtml", new {
     ContentType = "FormulasParameters",

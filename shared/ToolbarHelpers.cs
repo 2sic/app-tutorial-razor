@@ -2,7 +2,7 @@ using ToSic.Sxc.Demo;
 
 // Important notes: 
 // - This class should have the same name as the file it's in
-public class Shared : Custom.Hybrid.Code14 
+public class ToolbarHelpers : Custom.Hybrid.Code14 
 {
   public void EnableEditForAnonymous(dynamic Edit) {
     // Special command to ensure that the toolbars appear, even if they are won't work.

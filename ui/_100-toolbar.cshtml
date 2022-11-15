@@ -3,7 +3,7 @@
 @Html.Partial("_header.cshtml")
 @{
   // IMPORTANT: This must be at the top of the file, so it executes first
-  var tlbShared = CreateInstance("Shared.cs");
+  var tlbShared = CreateInstance("../Shared/ToolbarHelpers.cs");
   tlbShared.EnableEditForAnonymous(Edit);
 }
 <div class="row mb-2">
