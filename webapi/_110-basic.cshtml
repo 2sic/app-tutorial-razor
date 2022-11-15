@@ -56,7 +56,7 @@
     // This is the more manual method, in case you don't expect JSON or want more control
     // This uses the full internal syntax `app/auto/api/controller/method`
     function helloFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetch('app/auto/api/basic/hello')
+      $2sxc(moduleContext).webApi.fetchRaw('app/auto/api/basic/hello')
         .then(response => response.json())
         .then(data => alert('Result using quick Fetch: ' + data));
     }
