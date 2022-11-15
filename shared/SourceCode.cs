@@ -11,7 +11,8 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public string SourceTrim(string source) {
     // optimize to remove leading or trailing (but not in the middle)
-    var lines = (source ?? "").Split(Environment.NewLine.ToCharArray()).ToList();
+    var lines = Regex.Split(source ?? "", "\r\n|\r|\n").ToList();
+    // var lines = (source ?? "").Split(Environment.NewLine.ToCharArray()).ToList();
     var result = DropLeadingEmpty(lines);
     result.Reverse();
     result = DropLeadingEmpty(result);

@@ -7,18 +7,19 @@
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+  string resultsCode = hlp.ResultsFile;
 }
 @functions {
   // Special helper to create the config object
   // Will also replace common things in the src-set
-  object PictureTagPreview(object tag, int size) {
+  object PictureTagPreview(object tag) {
     return new {
       Path,
       Result = tag.ToString()
         .Replace(">", ">\n")
         .Replace(",", ",\n")
-        .Replace(" alt=", "\nalt="),
-     Size = size
+        .Replace(" alt=", "\nalt=")
     };
   }
 }
@@ -62,7 +63,7 @@
 <br>
 <code id="demo-picture-formats-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "demo-picture-formats", Size = 120 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "demo-picture-formats" }) 
 </hide-silent>
 
 <trim>
@@ -94,7 +95,7 @@
 </snippet>
 <code id="demo-picture-srcset-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "demo-picture-srcset", Size = 320 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "demo-picture-srcset" }) 
 </hide-silent>
 
 <hr>
@@ -105,11 +106,11 @@
 </snippet>
 <code id="pic-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "pic-auto" }) 
 
 <h6>This generates</h6>
 @{ var previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 250))
+@Html.Partial(resultsCode, PictureTagPreview(previewTag))
 </hide-silent>
 
 
@@ -121,11 +122,11 @@
 </snippet>
 <code id="pic-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-alt-class", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "pic-auto-alt-class" }) 
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class"); }
-@Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewTag, 250))
+@Html.Partial(resultsCode, PictureTagPreview(previewTag))
 </hide-silent>
 
 <hr>
@@ -142,11 +143,11 @@
 <br>
 <code id="pic-auto-control1-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-control1", Size = 160 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "pic-auto-control1" }) 
 
   <h6>This generates</h6>
   @{ var previewString = "<picture>  " + picControlled.Sources.ToString() + "  " + picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!").ToString() + "</picture>"; }
-  @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewString, 250))
+  @Html.Partial(resultsCode, PictureTagPreview(previewString))
 </hide-silent>
 
 <hr>
@@ -165,7 +166,7 @@
 <br>
 <code id="pic-auto-control2-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "pic-auto-control2", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "pic-auto-control2" }) 
 
   <h6>This generates</h6>
   @{ 
@@ -174,7 +175,7 @@
     previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary'>";
     previewString += "</picture>";
   }
-  @Html.Partial("../shared/_result.cshtml", PictureTagPreview(previewString, 250))
+  @Html.Partial(resultsCode, PictureTagPreview(previewString))
 </hide-silent>
 <hide>
 
@@ -188,5 +189,5 @@
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1900 }) 
+@Html.Partial(sourceCode, new { Path, Size = 1900 }) 
 </hide>

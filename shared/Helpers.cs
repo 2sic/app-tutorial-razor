@@ -11,6 +11,7 @@ public class Helpers: Custom.Hybrid.Code14
   // Url to show source code, to not repeat in every file
   // TODO: USE THIS IN ALL FILES
   public string ShowCodeFile = "../shared/_source-code.cshtml";
+  public string ResultsFile = "../shared/_result.cshtml";
 
   public dynamic Title(string title) {
     // set browser title for SEO

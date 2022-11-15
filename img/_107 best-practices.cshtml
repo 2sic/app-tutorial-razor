@@ -8,6 +8,8 @@
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+  string resultsCode = hlp.ResultsFile;
 }
 @functions {
   // Special helper to better format the html to show
@@ -79,13 +81,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-url", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Img(Content.Image)) });
+@Html.Partial(sourceCode, new { Path, Snippet = "img-url" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Img(Content.Image)) });
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-object", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Img(Content.Field("Image"))) })
+@Html.Partial(sourceCode, new { Path, Snippet = "img-object" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Img(Content.Field("Image"))) })
 </hide-silent>
 
 
@@ -126,13 +128,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-url", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Image))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-url" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Image))})
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-object", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-object" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
 </hide-silent>
 
 @*
@@ -172,13 +174,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-factor-05", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 0.5))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-05" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 0.5))})
 
 <br>
 <h6>Image to the RIGHT (note higher resolution)</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-factor-5", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 5))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-5" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 5))})
 </hide-silent>
 
 
@@ -220,13 +222,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-recipe-default", Size = 75 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-default" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
 
 <br>
 <h6>Image to the RIGHT (note different variants)</h6>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "picture-recipe-custom", Size = 125 }) 
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-custom" }) 
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))})
 </hide-silent>
 
 
@@ -264,17 +266,17 @@
 </snippet>
 <hide-silent> @* Show only this snippet *@
 
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "image-alt-text", Size = 250 }) 
+@Html.Partial(sourceCode, new { Path, Snippet = "image-alt-text" }) 
 
 <h6>This generates:</h6>
 @{ var previewTag = Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = PrepHtml(previewTag)})
+@Html.Partial(resultsCode, new { Path, Result = PrepHtml(previewTag)})
 </hide-silent>
 
 <hide>
   @Html.Partial("../shared/_PreCodeFooter.cshtml")
 
-  @Html.Partial("../shared/_source-code.cshtml", new { 
+  @Html.Partial(sourceCode, new { 
     Path,
     Size = 3100
   }) 

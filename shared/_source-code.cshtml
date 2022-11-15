@@ -9,7 +9,7 @@
   var filePath = DynamicModel.Path;
   var file = DynamicModel.File;
   var titlePath = DynamicModel.TitlePath as string;
-  var wrap = DynamicModel.Wrap != null ? (Boolean)DynamicModel.Wrap : false;
+  var wrap = DynamicModel.Wrap == true;
   var snipId = DynamicModel.Snippet as string;
 
   // Prepare variables which are initialized in try/catch

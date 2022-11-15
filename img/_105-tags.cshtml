@@ -8,12 +8,17 @@
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+  string resultsCode = hlp.ResultsFile;
 }
 @functions {
   // Special helper to create the config object
   // Will also replace common things in the src-set
-  object SrcSetTagPreview(object tag, int size) {
-    return new { Path, Result = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n"), Size = size };
+  object SrcSetTagPreview(object tag) {
+    return new {
+      Path,
+      Result = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n")
+    };
   }
 }
 </hide>
@@ -78,7 +83,7 @@
 <code id="img-srcset-label"></code>
 
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset", Size = 160 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" }) 
 </hide-silent>
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
@@ -91,11 +96,11 @@
 </snippet>
 <code id="img-srcset-auto-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto", Size = 140 })
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto" })
   
 <h6>This generates</h6>
 @{ var previewTag = Kit.Image.Img(tomatoPicUrl); }
-@Html.Partial("../shared/_result.cshtml", SrcSetTagPreview(previewTag, 120))
+@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
 </hide-silent>
 
 <h3>Example with Automatic Resize and Special Settings</h3>
@@ -112,10 +117,10 @@
 </snippet>
 <code id="img-srcset-auto2-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto2", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto2" }) 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings); }
-@Html.Partial("../shared/_result.cshtml", SrcSetTagPreview(previewTag, 120))
+@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
 </hide-silent>
 
 
@@ -131,11 +136,11 @@
 </snippet>
 <code id="img-srcset-auto-srcset-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto-srcset", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto-srcset" }) 
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400"); }
-@Html.Partial("../shared/_result.cshtml", SrcSetTagPreview(previewTag, 250))
+@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
 </hide-silent>
 
 
@@ -148,11 +153,11 @@
 </snippet>
 <code id="img-srcset-auto3-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto3", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto3" }) 
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary"); }
-@Html.Partial("../shared/_result.cshtml", SrcSetTagPreview(previewTag, 250))
+@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
 </hide-silent>
 
 
@@ -166,11 +171,11 @@
 </snippet><br>
 <code id="img-srcset-auto4-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto4", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto4" }) 
 
 <h6>This generates</h6>
 @{ previewTag = imgControlled; }
-@Html.Partial("../shared/_result.cshtml", SrcSetTagPreview(previewTag, 250))
+@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
 </hide-silent>
 
 
@@ -184,11 +189,11 @@
 </snippet>
 <code id="img-srcset-auto5-label"></code>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-srcset-auto5", Size = 100 })
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto5" })
 
 <h6>This generates the following Srcset</h6>
 @{ var srcSetPreview = imgFullControl.SrcSet; }
-@Html.Partial("../shared/_result.cshtml", new { Path, Result = srcSetPreview, Size = 200, Language = "text" })
+@Html.Partial(resultsCode, new { Path, Result = srcSetPreview, Language = "text" })
 </hide-silent>
 
 <script>
@@ -208,7 +213,7 @@ Werdenberg: Photo by <a href="https://unsplash.com/@calina?utm_source=unsplash&u
 
 *@
   @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 2450 }) 
+  @Html.Partial(sourceCode, new { Path }) 
 
   <div class="alert alert-info">
     <strong>Credits: </strong>

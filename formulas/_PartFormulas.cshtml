@@ -3,6 +3,8 @@
 @using System.Linq;
 @{
   var fHlp = CreateInstance("Helpers.cs");
+  string resultsCode = hlp.ResultsFile;
+
   var formulas = fHlp.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
 
   var title = DynamicModel.Title;
@@ -23,12 +25,7 @@
   <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
   @foreach (var formula in formulas)
   {
-    // try to auto-calc height
-    var formulaCode = formula.Formula;
-    var lines = formulaCode.Split(new string[] { "\n" }, System.StringSplitOptions.RemoveEmptyEntries).Length;
-    var autoSize = lines * 23;
-    // @lines
     <p><strong>@formula.Title</strong> (Formula-Target: @formula.Target)</p>
-    @Html.Partial("../shared/_result.cshtml", new { Result = formulaCode, Language = "javascript", Size = DynamicModel.Size ?? autoSize })
+    @Html.Partial(resultsCode, new { Result = formula.Formula, Language = "javascript" })
   }
 </div>
