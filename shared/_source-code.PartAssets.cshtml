@@ -1,7 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
 
-<turnOn turn-on='{ 
+<turnOn turn-on='{
+  "await": "window.ace",
   "run": "window.razorTutorial.initSourceCode()", 
   "data": { 
     "domAttribute": "@DynamicModel.DomAttribute", 
