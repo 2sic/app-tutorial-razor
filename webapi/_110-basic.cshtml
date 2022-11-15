@@ -7,6 +7,7 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 </hide>
 
@@ -43,13 +44,13 @@
   }
 </script>
 </snippet><hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-json", Size = 230 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "fetch-json" }) 
 </hide-silent>
 
 <snippet id="fetch">
   <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch", Size = 250 }) 
+    @Html.Partial(sourceCode, new { Path, Snippet = "fetch" }) 
   </hide-silent>
   <script>
     // Fetch using modern Browser APIs
@@ -65,7 +66,7 @@
 <snippet id="fetch-manual">
   <button type="button" class="btn btn-primary" onclick="helloFetchManual(this)">Quick Fetch "Hello"</button>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "fetch-manual", Size = 290 }) 
+    @Html.Partial(sourceCode, new { Path, Snippet = "fetch-manual" }) 
   </hide-silent>
   <script>
     // Manual Fetch call using more code
@@ -83,7 +84,7 @@
 <snippet id="jquery">
   <button type="button" class="btn btn-secondary" onclick="helloJQueryOld(this)">jQuery Get Hello</button>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "jquery", Size = 250 }) 
+    @Html.Partial(sourceCode, new { Path, Snippet = "jquery" }) 
   </hide-silent>
   <script>
     // jQuery versions (not recommended any more, will not work on pages without jQuery)
@@ -99,7 +100,7 @@
   <button type="button" class="btn btn-primary" onclick="squareFetch(this, 7)">Fetch Square 7</button>
   <button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">Fetch Square 27</button>
   <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "square", Size = 200 }) 
+    @Html.Partial(sourceCode, new { Path, Snippet = "square" }) 
   </hide-silent>
   <script>
     function squareFetch(moduleContext, original) {
@@ -113,14 +114,13 @@
 @* 2sxclint:disable:no-inline-script *@
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1500 }) 
+@Html.Partial(sourceCode, new { Path }) 
 
 @Html.Partial("_MessageHybrid.cshtml")
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/api/",
   File = "BasicController.cs",
-  Size = 600,
   TitlePath = "/api/"
 }) 
 </hide>

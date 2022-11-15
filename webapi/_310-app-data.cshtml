@@ -7,6 +7,7 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 </hide>
 
@@ -67,7 +68,7 @@
 </script>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "api-data", Size = 650 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "api-data" }) 
 </hide-silent>
 
 
@@ -76,14 +77,13 @@
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) 
+@Html.Partial(sourceCode, new { Path }) 
 
 @Html.Partial("_MessageHybrid.cshtml")
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/api/",
   File = "BooksController.cs",
-  Size = 1200,
   TitlePath = "/api/"
 }) 
 </hide>

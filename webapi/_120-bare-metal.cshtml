@@ -6,6 +6,7 @@
 <hide>
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 @Html.Partial("_header.cshtml")
 </hide>
@@ -38,7 +39,7 @@
 <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
 <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "show-headers", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "show-headers" }) 
 </hide-silent>
 
 
@@ -53,7 +54,7 @@
 <button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
 <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "show-url", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "show-url" }) 
 </hide-silent>
 
 @*
@@ -84,10 +85,10 @@ TODO: examples with url-parameters object
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
+@Html.Partial(sourceCode, new { Path }) 
 
 @Html.Partial("_MessageHybrid.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/api/",
   File = "VerifiedController.cs",
   TitlePath = "/api/"

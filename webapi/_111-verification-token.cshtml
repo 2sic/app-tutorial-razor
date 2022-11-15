@@ -7,6 +7,7 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 </hide>
 
@@ -25,6 +26,7 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
+<snippet id="fetch">
 <button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">
   Call WebApi
 </button> 
@@ -35,16 +37,20 @@
       .then(data => alert(data));
   }
 </script>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "fetch" }) 
+</hide-silent>
 
 <hide>
 @* 2sxclint:disable:no-inline-script *@
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
+@Html.Partial(sourceCode, new { Path }) 
 
 @Html.Partial("_MessageHybrid.cshtml")
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/api/",
   File = "VerifiedController.cs",
   TitlePath = "/api/"
