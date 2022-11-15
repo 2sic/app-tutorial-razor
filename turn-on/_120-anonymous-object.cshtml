@@ -54,7 +54,7 @@
   "run": "window.turnOnTutorial120.init()", 
   "data": @Html.Raw(Kit.Json.ToJson(exampleObject)) }'></turnOn>
 
-<script src="@App.Path/turn-on/_120-anonymous-object.js"></script>
+<script src="@App.Path/turn-on/_120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")

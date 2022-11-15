@@ -56,7 +56,7 @@
 <script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
 
 @* Include local JavaScript file *@
-<script src="@App.Path/turn-on/_201-multi-file.js"></script>
+<script src="@App.Path/turn-on/_201-await-function.js" @Kit.Page.AssetAttributes()></script>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
@@ -64,6 +64,6 @@
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   Size = 1050,
-  File = "_201-await function.js"
+  File = "_201-await-function.js"
 })
 </hide>

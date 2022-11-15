@@ -39,7 +39,7 @@
 @* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@
 <turnOn turn-on='{ "run": "window.turnOnTutorial100.init()" }'></turnOn>
 
-<script src="@App.Path/turn-on/_100-local js.js"></script>
+<script src="@App.Path/turn-on/_100-local-js.js" @Kit.Page.AssetAttributes()></script>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
@@ -47,6 +47,6 @@
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   Size = 450,
-  File = "_100-local js.js"
+  File = "_100-local-js.js"
 }) 
 </hide>

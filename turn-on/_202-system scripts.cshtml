@@ -56,7 +56,7 @@
   "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
 
 @* Include local JavaScript file *@
-<script src="@App.Path/turn-on/_202-system scripts.js"></script>
+<script src="@App.Path/turn-on/_202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
@@ -64,6 +64,6 @@
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path,
   Size = 300,
-  File = "_202-system scripts.js"
+  File = "_202-system-scripts.js"
 })
 </hide>

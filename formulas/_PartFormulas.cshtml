@@ -2,9 +2,10 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 @{
-  var fHlp = CreateInstance("Helpers.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
   string resultsCode = hlp.ResultsFile;
 
+  var fHlp = CreateInstance("Helpers.cs");
   var formulas = fHlp.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
 
   var title = DynamicModel.Title;

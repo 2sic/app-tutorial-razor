@@ -14,7 +14,7 @@
 
   function ready() {
     // checks if spritejs exists and returns either true or false
-    if (spritejs) return true
+    if (window.spritejs) return true
     return false
   }
 
