@@ -32,6 +32,7 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
+<snippet id="editions">
 <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
   Get Hello from live
 </button> 
@@ -45,6 +46,11 @@
       .then(data => alert(data));
   }
 </script>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "editions" }) 
+</hide-silent>
+
 
 <hide>
 @* 2sxclint:disable:no-inline-script *@

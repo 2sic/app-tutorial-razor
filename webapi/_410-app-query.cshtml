@@ -30,6 +30,7 @@
 @{
   var authorId = AsDynamic(App.Data["Persons"].First()).EntityId;
 }
+<snippet id="get-query">
 <button type="button" class="btn btn-primary" onclick="getAuthor(this, @authorId)">
   Get Author #@authorId
 </button> 
@@ -47,6 +48,10 @@
   }
 
 </script>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "get-query" }) 
+</hide-silent>
 
 <hide>
 @* 2sxclint:disable:no-inline-script *@
