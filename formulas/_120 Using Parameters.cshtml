@@ -8,8 +8,7 @@
 
   var tbHlp = CreateInstance("Helpers.cs");
   var fancybox = CreateInstance("../shared/Fancybox.cs");
-  Edit.Enabled = true;
-  Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
 
   var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
   var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");

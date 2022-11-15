@@ -7,8 +7,8 @@
   string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 
   var fHlp = CreateInstance("Helpers.cs");
-  Edit.Enabled = true;
-  Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
+
   var sharedExamples = CreateInstance("SharedExamples.cs");
 }
 </hide>

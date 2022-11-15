@@ -5,8 +5,7 @@
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var fancybox = CreateInstance("../shared/Fancybox.cs");
-    Edit.Enabled = true;
-    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
   }
 </hide>
 
