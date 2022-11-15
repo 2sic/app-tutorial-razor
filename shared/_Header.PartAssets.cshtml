@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade
 @{
   // 1. Activate turnOn
   Kit.Page.Activate("turnOn");
@@ -58,21 +57,12 @@
   }
 </style>
 
-<script>
+@* 
+  Activate Headings which should reveal snippets on this page
+  Should ideally be in this header, because it ensures it will only be called once per page
+  This should also work in Oqtane
+*@
+<turnOn turn-on='{
+  "run": "window.snippets.initRevealers()"
+}'></turnOn>
 
-  document.addEventListener("DOMContentLoaded", function(event) { 
-    const sections = document.querySelectorAll("snippet.reveal-on-h3");
-    console.log('sections', sections, sections.length);
-
-    sections.forEach((sect) => {
-      const h3 = sect.querySelector("h3");
-      console.log('t', sect, 'h3', h3);
-      h3.addEventListener("click", () => {
-        sect.classList.toggle('reveal');
-      });
-    });
-  });
-
-
-
-</script>
