@@ -12,6 +12,11 @@
 
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
 }
+@functions {
+    dynamic ShowFormula(object specs) {
+      return Html.Partial("_PartFormulas.cshtml", specs);
+    }
+}
 </hide>
 
 <div class="row">
@@ -77,7 +82,7 @@
   Click on the (Σ) button above to try the formula we've added.
 </p>
 <br>
-@Html.Partial("_PartFormulas.cshtml", new { ContentType = contentType, FieldName = "Description"})
+@ShowFormula(new { ContentType = contentType, FieldName = "Description"})
 <br>
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")

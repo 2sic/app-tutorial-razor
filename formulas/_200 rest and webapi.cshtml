@@ -11,6 +11,11 @@
 
   var sharedExamples = CreateInstance("SharedExamples.cs");
 }
+  @functions {
+    dynamic ShowFormula(object specs) {
+      return Html.Partial("_PartFormulas.cshtml", specs);
+    }
+  }
 </hide>
 
 <div class="row">
@@ -28,14 +33,14 @@
 
 <h2>Get Data for a Field from a Web API</h2>
 @* Get Value from WebApi *@
-@Html.Partial("_PartFormulas.cshtml", sharedExamples.ValueFromWebApi())
+@ShowFormula(sharedExamples.ValueFromWebApi())
 
 
 @* Dropdown Values From WebAPI *@
-@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApi())
+@ShowFormula(sharedExamples.DropdownFromWebApi())
 
 @* Dropdown Values From WebAPI App.Data *@
-@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApiData())
+@ShowFormula(sharedExamples.DropdownFromWebApiData())
 
 @Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/api/",

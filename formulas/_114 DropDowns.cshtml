@@ -12,6 +12,11 @@
 
   var sharedExamples = CreateInstance("SharedExamples.cs");
 }
+@functions {
+  dynamic ShowFormula(object specs) {
+    return Html.Partial("_PartFormulas.cshtml", specs);
+  }
+}
 </hide>
 
 <div class="row">
@@ -24,7 +29,7 @@
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Change Dropdown Values *@
-@Html.Partial("_PartFormulas.cshtml", new {
+@ShowFormula(new {
   Title = "Change dropdown options: Country to Offices",
   Instructions = "This formula changes the values in the second dropdown based on the country picked first. ",
   ContentType = "FormulasDropdown",
@@ -32,7 +37,7 @@
 })
 
 @* Change Dropdown Values #2 *@
-@Html.Partial("_PartFormulas.cshtml", new {
+@ShowFormula(new {
   Title = "Change dropdown options: Limited or More Options",
   Instructions = "This formula changes the values in the second dropdown if the user wants more options. ",
   ContentType = "FormulasDropdownDirections",
@@ -40,10 +45,10 @@
 })
 
 @* Dropdown Values From WebAPI *@
-@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApi())
+@ShowFormula(sharedExamples.DropdownFromWebApi())
 
 @* Dropdown Values From WebAPI App.Data *@
-@Html.Partial("_PartFormulas.cshtml", sharedExamples.DropdownFromWebApiData())
+@ShowFormula(sharedExamples.DropdownFromWebApiData())
 
 <hr>
 

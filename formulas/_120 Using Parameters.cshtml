@@ -13,6 +13,11 @@
   var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
   var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");
 }
+  @functions {
+    dynamic ShowFormula(object specs) {
+      return Html.Partial("_PartFormulas.cshtml", specs);
+    }
+  }
 </hide>
 
 <div class="row">
@@ -70,7 +75,7 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial(sourceCode, new { Path, Snippet = "formulas-ephemeral" })
 
-  @Html.Partial("_PartFormulas.cshtml", new {
+  @ShowFormula(new {
   ContentType = "FormulasEphemeral",
   FieldName = "AdvancedGroup",
   })
@@ -103,7 +108,7 @@
   <hide-silent> @* Show only this snippet *@
     @Html.Partial(sourceCode, new { Path, Snippet = "formulas-showAdvanced" })
 
-    @Html.Partial("_PartFormulas.cshtml", new {
+    @ShowFormula(new {
     ContentType = "FormulasParameters",
     FieldName = "AdvancedGroup",
     More = "prefill:showAdvanced=true"
