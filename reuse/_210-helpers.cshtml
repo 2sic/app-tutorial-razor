@@ -4,6 +4,7 @@
 @* 2sxclint:disable:no-old-helper - we mention @helper a few times, so the linter catches that *@
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 </hide>
 
@@ -52,17 +53,17 @@
 @lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-helpers", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-helpers" }) 
 </hide-silent>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { 
   Path,
   Size = 300
 }) 
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/shared/",
   File = "fancybox.cs",
   Size = 400

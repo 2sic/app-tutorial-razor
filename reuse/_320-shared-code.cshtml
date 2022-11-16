@@ -3,6 +3,7 @@
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 <hide>
 @Html.Partial("_header.cshtml")
@@ -37,7 +38,7 @@
 <div>Hello from FunctionsBasic: @lib.SayHello()</div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-createinstance", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance" }) 
 </hide-silent>
 
 <hr>
@@ -54,7 +55,7 @@
 <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-createinstance-pass-values", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance-pass-values" }) 
 </hide-silent>
 
 <hr>
@@ -77,7 +78,7 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-createinstance-2", Size = 150 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance-2" }) 
 </hide-silent>
 
 <hide>
@@ -109,21 +110,21 @@
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1300 })
+@Html.Partial(sourceCode, new { Path })
 
-@Html.Partial("../shared/_source-code.cshtml", new {
+@Html.Partial(sourceCode, new {
   Path,
   File = "FunctionsBasic.cs",
   Size = 400
 })
 
-@Html.Partial("../shared/_source-code.cshtml", new {
+@Html.Partial(sourceCode, new {
   Path,
   File = "FunctionsWithContext.cs",
   Size = 400
 })
 
-@Html.Partial("../shared/_source-code.cshtml", new {
+@Html.Partial(sourceCode, new {
   Path,
   File = "api/SharedCodeController.cs",
   Size = 500,

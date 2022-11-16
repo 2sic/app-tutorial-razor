@@ -1,0 +1,143 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var linker = CreateInstance("../shared/Helpers.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+}
+</hide>
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Reuse Code with <code>@@functions { }</code></h2>
+    <p>
+      Any kind of code to do some work such as figure out a string or calculate something
+      should be placed in a <strong>function</strong>. 
+      In Razor these are put inside a <em>functions</em> block.
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+<trim>
+
+<h3>Basic Example: <code>function</code> returning random number</h3>
+<snippet id="fn-random">
+@functions {
+  // Variable keeping the random number generator
+  private Random generator = new Random(DateTime.Now.Second);
+
+  // Get random number between 0 and 100
+  public int Random100() {
+    return generator.Next(0, 100);
+  }
+}
+<ul>
+  <li>Random number: @Random100()</li>
+  <li>Random number: @Random100()</li>
+  </li>
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "fn-random" }) 
+</hide-silent>
+
+
+
+<h3>Function with Parameters</h3>
+<p>
+  This example passes a parameter into the function. 
+</p>
+
+<snippet id="fnMakeCool">
+  @functions {
+    // Simple string to string delegate
+    string MakeIsCool(string name) {
+      return name + " is cool 😎";
+    }
+  }
+  <ul>
+    <li>@MakeIsCool("iJungleboy")</li>
+    <li>@MakeIsCool("Douglas Adams")</li>
+    </li>
+  </ul>
+  </snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "fnMakeCool" }) 
+</hide-silent>
+
+
+<h3>Second Example: Multiple parameters</h3>
+<p>
+  This example using a <code>string</code> and a <code>bool</code> parameter.
+</p>
+<div class="alert alert-warning">
+  Note also that any HTML we return is not handled as expected. 
+  So we show an example with/without <code>@@Html.Raw</code>
+</div>
+<snippet id="fn-string-html">
+@functions {
+  string MaybeCool(string name, bool isCool) {
+    return isCool ? name + " is <strong>cool 😎</strong>" : name + " is <em>ok 😉</em>";
+  }
+}
+<ul>
+  <li>@MaybeCool("iJungleboy", false)</li>
+  <li>@MaybeCool("Douglas Adams", true)</li>
+  <li>@Html.Raw(MaybeCool("iJungleboy", false))</li>
+  <li>@Html.Raw(MaybeCool("Douglas Adams", true))</li>
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "fn-string-html" }) 
+</hide-silent>
+
+
+<h3>Third Example: Returning HTML</h3>
+<p>
+  This example is similar, but returns a <code>dynamic</code> HTML which is marked to be shown as HTML.
+</p>
+<div class="alert alert-warning">
+  Note this example correctly shows <strong>bold</strong> and <em>emphasis</em>.
+</div>
+<snippet id="fn-html-raw">
+@functions {
+  // Note the return type dynamic and the built-in HTML.Raw
+  dynamic MaybeCoolHtml(string name, bool isCool) {
+    return Html.Raw(isCool ? name + " is <strong>cool 😎</strong>" : name + " is <em>ok 😉</em>");
+  }
+}
+<ul>
+  <li>@MaybeCoolHtml("iJungleboy", false)</li>
+  <li>@MaybeCoolHtml("Douglas Adams", true)</li>
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "fn-html-raw" }) 
+</hide-silent>
+
+
+<hr>
+
+<h2>Better ways to Create HTML</h2>
+<p>
+  The above examples show how you can get things done, 
+  but of course writing HTML directly into a string doesn't look ideal. 
+  We can do better, using:
+</p>
+<ul>
+  <li>
+    @linker.TutLink("Template Delegates", "reuse102")
+  </li>
+  <li>
+    @linker.TutLink("Razor Blade Fluid API", "blade800")
+  </li>
+</ul>
+
+<br>
+<br>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial(sourceCode, new { Path }) 
+</hide>

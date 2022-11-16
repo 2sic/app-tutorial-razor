@@ -3,6 +3,7 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 </hide>
 
@@ -33,13 +34,13 @@
 </div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-createinstance", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance" }) 
 </hide-silent>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { Path }) 
+@Html.Partial(sourceCode, new { 
   Path,
   File = "SharedFunctions.cs",
   Size = 400

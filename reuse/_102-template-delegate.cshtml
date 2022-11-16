@@ -1,0 +1,96 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var linker = CreateInstance("../shared/Helpers.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+}
+</hide>
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>HTML-functions = Code-Snippet with Template Delegates</h2>
+    <p>If you just need a quick simple snippet, Template Delegates are the way to go. 
+      They are very limited so only ideal for simple stuff. More complex stuff should use
+      @linker.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+<trim>
+
+<hr>
+
+<h2>HTML <code>Func&lt;thing, dynamic&gt;</code> Template Delegate</h2>
+<p>
+  Template Delegates allow you to use inline HTML in your function. 
+  To make this possible, a bit of magic happens automatically, 
+  so a limitations is that you cannot use named parameters. 
+  You only get one parameter called <code>item</code>.
+</p>
+
+
+<h3>Basic Example: <code>string</code> generating Html</h3>
+<p>
+  This example using a <code>string</code> parameter.
+  This is why the the first parameter in <code>Func&lt;...</code>
+  is a string.
+</p>
+<div class="alert alert-info">
+  Note that in the following code <code>item</code> is the thing passed into the function.
+</div>
+<snippet id="func-string">
+@{
+  var normalText = "this is text, it doesn't have tags";
+  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<string, dynamic> BoldLi = @<li>
+    <strong>
+      @Html.Raw(item)
+    </strong>
+  </li>;
+}
+<ul>
+  @BoldLi(normalText)
+  @BoldLi(htmlText)
+  @BoldLi("this is just a bold line")
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "func-string" }) 
+</hide-silent>
+
+<h3>Complex Data with <code>Func&lt;dynamic,dynamic&gt;</code> Template Delegate</h3>
+<p>
+  If you have multiple values, you often want to merge in into one object like this:
+</p>
+<snippet id="reuse-function">
+@{
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<dynamic, dynamic> FancyLink = @<li>
+    <strong style="color: @item.Color">
+      @Html.Raw(item.Label)
+      @if(item.AddStar) {
+        <text>🌟</text>
+      }
+    </strong>
+  </li>;
+}
+<ul>
+  @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
+  @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-function" }) 
+</hide-silent>
+
+
+
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial(sourceCode, new { Path }) 
+</hide>

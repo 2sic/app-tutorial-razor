@@ -5,6 +5,7 @@
 @{  
   var linker = CreateInstance("../shared/Helpers.cs");
   var code = CreateInstance("_410CodeBehind.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
 }
 </hide>
 
@@ -48,8 +49,8 @@
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
+@Html.Partial(sourceCode, new { Path }) 
+@Html.Partial(sourceCode, new { 
   Path,
   File = "_410CodeBehind.cs",
   Size = 400
