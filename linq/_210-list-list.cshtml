@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 <hide>
 @{
@@ -22,13 +21,13 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
-<h3>Basic Use of List book.Authors</h3>
+<h3>Basic Use of List <code>book.Authors</code></h3>
 <p>This example shows the books, and we want to LINQ on the Authors. We must tell the compiler it's a list, so that LINQ can use <code>Select(...)</code>.</p>
 <snippet id="list-dynamic">
 <ol>
   @foreach(var book in books) {
     // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
-    var authors = (book.Authors as Dynlist)
+    var authors = AsList(book.Authors as object)
       .Select(a => a.FirstName + " " + a.LastName);
 
     <li><strong>@book.Title</strong>
@@ -43,12 +42,12 @@
 
 <hr>
 
-<h3>OrderBy Amount of Authors</h3>
+<h3>OrderBy and OrderByDescending with Amount of Authors</h3>
 <p>This example shows Z-A ordering, where we count the authors to sort.</p>
 <snippet id="list-advanced">
 <ol>
   @foreach(var book in books.OrderByDescending(p => p.Authors.Count)) {
-    var authors = (book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName);
+    var authors = AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName);
     <li><strong>@book.Title</strong> 
       by @string.Join(",", authors.OrderBy(ln => ln)) (@book.Authors.Count author) 
     </li>

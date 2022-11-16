@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 <hide>
 @{
@@ -26,16 +25,13 @@
 <p>This example first gets book, checks the authors and checks if they have awards with LINQ <code>Any()</code>. </p>
 <snippet id="list-list-list">
 @{
+  // this keeps all books whose authors have awards
   var booksWithAwardedAuthors = books
-    .Where(b => (b.Authors as Dynlist)
-      // this gets all the awards and combines (flattens) the list
-      .SelectMany(a => a.Awards as Dynlist) 
-      .Any()
-    );
+    .Where(b => AsList(b.Authors as object).Any(a => a.Awards.Count > 0));
 }
 <ol>
   @foreach(var book in booksWithAwardedAuthors) {
-    var awards = (book.Authors as Dynlist).SelectMany(a => (a.Awards as Dynlist));
+    var awards = AsList(book.Authors as object).SelectMany(a => AsList(a.Awards as object));
     <li><strong>@book.Title</strong> 
       with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
     </li>
@@ -52,11 +48,7 @@
 <p>And now the opposite list, so all books which don't contain one of the books with authors. It gets the "other" books by filtering the list to exclude the ones it found first. That demonstrates how to use <code>Contains(x as object)</code>. The <code>Contains(...)</code> cannot work with <code>dynamic</code>, so we must tell it it's an object for it to work.</p>
 <snippet id="opposite-list">
 @{
-  var otherBooks = books
-    .Where(b => !(booksWithAwardedAuthors as Dynlist)
-      .Contains(b as object) // note: Contains() on dynamic objects needs 2sxc 9.42+ to work
-    );
-      
+  var otherBooks = books.Where(b => !booksWithAwardedAuthors.Contains(b as object));
 }
 <ol>
   @foreach(var book in otherBooks) {
@@ -75,7 +67,7 @@
 <snippet id="groupby-author">
 @{
   var booksGroupedByAuthorAwards = books
-    .GroupBy(b => ((b.Authors as Dynlist).SelectMany(a => a.Awards as Dynlist).Any()));
+    .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
 }
 <ul>
   @foreach(var group in booksGroupedByAuthorAwards) {

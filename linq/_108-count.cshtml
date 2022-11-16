@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 <hide>
   @{
@@ -8,23 +7,29 @@
   }
 </hide>
 
-@{
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
-}
-
 @Html.Partial("_header.cshtml")
 
 <div class="row">
   <div class="col-lg-7">
-    <h2>Count()</h2>
+    <h2><code>Count()</code> and <code>Count</code></h2>
     <p>Count some stuff.</p>
+    @*
+      note to tutorial designers, in v14 it's still an IEnumerable, not IList, so it needs Count()
+    *@
+    @* <p>
+      All list of items in 2sxc are technically <code>List&lt;...&gt;</code> objects.
+      This means they have the property <code>Count</code> (without brackets<code>()</code>).
+    </p> *@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 
 </div>
 
 <snippet id="linq-count">
+@{
+  var persons = AsList(App.Data["Persons"]);
+  var books = AsList(App.Data["Books"]);
+}
 <ol>
   <li>
     All Persons: @persons.Count()
@@ -33,7 +38,7 @@
     All Books: @books.Count()
   </li>
   <li>
-    Books with Illustrators: @books.Where(b => (b.Illustrators as Dynlist).Count() > 0).Count()
+    Books with Illustrators: @books.Where(b => (b.Illustrators.Count > 0).Count())
   </li>
 </ol>
 </snippet>

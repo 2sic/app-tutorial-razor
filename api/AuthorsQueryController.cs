@@ -8,7 +8,6 @@ using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGe
 using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
 #endif
 using System.Linq;                        // this enables .First() or .Select(x => ...)
-using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 // Tutorial note: This is used in the WebApi demos App.Query
 

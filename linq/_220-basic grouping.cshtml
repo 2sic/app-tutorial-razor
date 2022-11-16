@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 <hide>
 @{
@@ -23,7 +22,7 @@
 
 </div>
 
-<h3>GroupBy Authors - bad example</h3>
+<h3>GroupBy Authors - <em>bad example</em> ⚠️</h3>
 <p>This example will group the books by the <code>Authors</code> property. This example doesn't give us what we want, because authors that exist in sets and alone are grouped separately. </p>
 <snippet id="basic-grouping">
 <ol>
@@ -34,7 +33,7 @@
         @foreach(var book in group) {
           <li>
             <strong>@book.Title</strong> by
-            @string.Join(",",(book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName))
+            @string.Join(",", AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName))
           </li>
         }
       </ul>
@@ -54,7 +53,7 @@
 <ol>
   @{ 
     var booksGroupedByAuthor = books
-      .SelectMany(b => (b.Authors as Dynlist).Select(a => new { Book = b, Author = a }))
+      .SelectMany(b => AsList(b.Authors as object).Select(a => new { Book = b, Author = a }))
       .GroupBy(set => set.Author);
     
     foreach(var group in booksGroupedByAuthor) {
@@ -64,7 +63,7 @@
         @foreach(var set in group) {
           <li>
             <strong>@set.Book.Title</strong> by
-            @string.Join(",",(set.Book.Authors as Dynlist).Select(a => a.FirstName + " " + a.LastName))
+            @string.Join(",", AsList(set.Book.Authors as object).Select(a => a.FirstName + " " + a.LastName))
           </li>
         }
       </ul>
@@ -92,7 +91,7 @@
       @author.FirstName @author.LastName
       <ul>
         @foreach(var book in authorsBooks) {
-          var coAuthors = (book.Authors as Dynlist).Where(a => a != author);
+          var coAuthors = AsList(book.Authors as object).Where(a => a != author);
           <li>
             <strong>@book.Title</strong> 
             @if(coAuthors.Any()) {

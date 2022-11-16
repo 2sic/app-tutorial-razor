@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 <hide>
 @{
@@ -35,7 +34,7 @@
       @author.FirstName @author.LastName
       <ul>
         @foreach(var book in authorsBooks) {
-          var coAuthors = (book.Authors as Dynlist).Where(a => a != author);
+          var coAuthors = AsList(book.Authors as object).Where(a => a != author);
           <li>
             <strong>@book.Title</strong> 
             @if(coAuthors.Any()) {
