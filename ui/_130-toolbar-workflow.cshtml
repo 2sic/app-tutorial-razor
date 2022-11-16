@@ -76,8 +76,18 @@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "main-script", Size = 1000 }) 
 </hide-silent>
 
+@* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
+@{
+  // Use the PageService to activate turnOn
+  Kit.Page.Activate("turnOn");
+}
+<turnOn turn-on='{ "run": "window.toolbarWorkflow.initOnTagToolbar()", "data": "tagWithToolbar" }'></turnOn>
+
+<script src="@App.Path/ui/_130-toolbar-workflow.js" @Kit.Page.AssetAttributes()></script>
+
+
 <snippet id="main-script">
-<script>
+<xscript>
   // This workflow definition will run on every action, just to log what's happening
   const workflowToLog = {
     command: 'all',   // Run on every command/action
@@ -113,7 +123,7 @@
   // Attach event-listener to the parent of the inline-toolbar, so we can register the workflow when the toolbar is created
   var parent = document.getElementById('inlineToolbar');
   parent.addEventListener('toolbar-init', (initEvent) => {
-    console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register");
+    console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register xxx");
     const workflow = initEvent.detail.workflow;
 
     workflow.add(workflowToLog);
@@ -122,7 +132,7 @@
     // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
     initEvent.stopPropagation();
   }); 
-</script>
+</xscript>
 </snippet>
 
 <hide>
