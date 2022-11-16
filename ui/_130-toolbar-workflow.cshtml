@@ -82,12 +82,16 @@
   Kit.Page.Activate("turnOn");
 }
 <turnOn turn-on='{ "run": "window.toolbarWorkflow.initOnTagToolbar()", "data": "tagWithToolbar" }'></turnOn>
-
+<turnOn turn-on='{ "run": "window.toolbarWorkflow.initInlineToolbar()", "data": "inlineToolbar" }'></-turnOn>
 <script src="@App.Path/ui/_130-toolbar-workflow.js" @Kit.Page.AssetAttributes()></script>
 
+<script>
+  console.log("test oqtane - debug! STV");
+</script>
 
 <snippet id="main-script">
-<xscript>
+<script>
+(function () {
   // This workflow definition will run on every action, just to log what's happening
   const workflowToLog = {
     command: 'all',   // Run on every command/action
@@ -131,8 +135,9 @@
 
     // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
     initEvent.stopPropagation();
-  }); 
-</xscript>
+  });
+})/*()*/;
+</script>
 </snippet>
 
 <hide>
