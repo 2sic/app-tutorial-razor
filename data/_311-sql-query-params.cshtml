@@ -18,8 +18,8 @@
     <h2>SQL from a App.Query, setting Params</h2>
     <p>
       The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
-      <code>Select Top 10 * from Files Where PortalId = [Params:PortalId]</code> <br>
-      Here we override the parameter <code>PortalId=1</code>. 
+      <code>Select Top 10 * from Files Where SiteId = [Params:SiteId]</code> <br>
+      Here we override the parameter <code>SiteId=1</code>. 
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
@@ -34,14 +34,14 @@
     <snippet id="sql-query-params">
     @{
       // get the query and set a parameter
-      var query = App.Query["DnnFilesFromSql"];
-      query.Params("PortalId", "0");
+      var query = App.Query["DnnSqlTop10Files"];
+      query.Params("SiteId", "0");
       var rootFiles = AsList(query);
     }
     <ul>
       @foreach(var file in rootFiles) {
         <li>
-          @file.FileName
+          @file.Name
         </li>
       }
     </ul>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.12.01" ExportDate="2022-11-17T23:15:20.9191132+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.12.01" ExportDate="2022-11-17T23:38:34.852634+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -5685,14 +5685,30 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="05781728-750b-478a-b43a-94897e5d05fc" Json="True">
-      <Value Key="AllowEdit" Value="True" Type="Boolean" />
-      <Value Key="Description" Value="Get 10 DNN files from SQL" Type="String" />
-      <Value Key="Name" Value="DnnFilesFromSQL" Type="String" />
-      <Value Key="Params" Value="PortalId=[Portal:PortalId]" Type="String" />
-      <Value Key="StreamsOut" Value="ListContent,Default" Type="String" />
-      <Value Key="StreamWiring" Value="e17ad0b8-ad8f-42ba-9c2d-606f38cae213:Default&gt;Out:Default" Type="String" />
-      <Value Key="TestParameters" Value="[Params:PortalId]=59" Type="String" />
-      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+      <Value Key="AllowEdit" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="Get 10 DNN files from SQL" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="DnnSqlTop10Files" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Params" Value="SiteId=[Site:Id]" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsOut" Value="ListContent,Default" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamWiring" Value="e17ad0b8-ad8f-42ba-9c2d-606f38cae213:Default&gt;Out:Default" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TestParameters" Value="[Site:Id]=59" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e17ad0b8-ad8f-42ba-9c2d-606f38cae213" Json="True" KeyGuid="05781728-750b-478a-b43a-94897e5d05fc">
       <Value Key="Description" Value="Get 10 files from current portal" Type="String" />
@@ -5704,7 +5720,7 @@
       <Value Key="ContentType" Value="DnnFile" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="SelectCommand" Value="Select Top 10 * from Files Where PortalId = [Params:PortalId]" Type="String">
+      <Value Key="SelectCommand" Value="SELECT Top 10 *, FileName as Name&#xA;FROM Files Where PortalId = [Params:SiteId]" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -21238,6 +21254,48 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="e2bbc16b-5907-4563-ba55-d1f1ac90322a" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="Get 10 Oqtane files from SQL" Type="String" />
+      <Value Key="Name" Value="OqtaneSqlTop10Files" Type="String" />
+      <Value Key="Params" Value="SiteId=[Site:Id]" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header" Type="String" />
+      <Value Key="StreamWiring" Value="ede1fe8b-f5e2-4652-a01d-11b983073ffa:Default&gt;Out:Default" Type="String" />
+      <Value Key="TestParameters" Value="[Site:Id]=5" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ede1fe8b-f5e2-4652-a01d-11b983073ffa" Json="True" KeyGuid="e2bbc16b-5907-4563-ba55-d1f1ac90322a">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="SQL Data" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Sql, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 240,&#xD;&#xA;  &quot;Left&quot;: 460&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="c76901b5-0345-4866-9fa3-6208de7f8543" AttributeSetName="ToSic.Eav.DataSources.SqlDataSource" EntityGUID="06af3f57-cd4a-400a-a5a8-fbd3a4588ce1" Json="True" KeyGuid="ede1fe8b-f5e2-4652-a01d-11b983073ffa">
+      <Value Key="ConnectionString" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ConnectionStringName" Value="(default)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ContentType" Value="SqlData" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EntityIdField" Value="FileId" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EntityTitleField" Value="Name" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SelectCommand" Value="SELECT        TOP (10) dbo.Folder.SiteId, dbo.[File].*&#xA;FROM            dbo.[File] INNER JOIN&#xA;                         dbo.Folder ON dbo.[File].FolderId = dbo.Folder.FolderId&#xA;WHERE        (dbo.Folder.SiteId = [Params:SiteId])" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Sql Query" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

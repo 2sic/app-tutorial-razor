@@ -15,11 +15,11 @@
 <trim>
 <div class="row">
   <div class="col-lg-7">
-    <h2>Using an App.Query multiple times</h2>
+    <h2>Run an App.Query multiple times on the same page</h2>
     <p>
       The previous examples showed how to use an <code>App.Query</code>. 
       Now we want to run the query twice, which requires a <code>Reset()</code>. <br/>
-      Note that the parameter <code>PortalId</code> is preset to be <code>[Portal:PortalId]</code>. 
+      Note that the parameter <code>SiteId</code> is preset to be <code>[Site:Id]</code>. 
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
@@ -32,10 +32,10 @@
     <snippet id="sql-query-reset">
     @{
       // get the query and ask for the "Default" results as a dynamic List
-      var query = App.Query["DnnFilesFromSql"];
+      var query = App.Query["DnnSqlTop10Files"];
       var currentFiles = AsList(query);
       query.Reset();
-      query.Params("PortalId", "0");
+      query.Params("SiteId", "0");
       var rootFiles = AsList(query);
     }
     </snippet>

@@ -18,8 +18,8 @@
     <h2>SQL from an App.Query</h2>
     <p>
       The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
-      <code>Select Top 10 * from Files Where PortalId = [Params:PortalId]</code> <br>
-      Note that the parameter <code>PortalId</code> is preset to be <code>[Portal:PortalId]</code>. 
+      <code>Select Top 10 * from Files Where PortalId = [Params:SiteId]</code> <br>
+      Note that the parameter <code>SiteId</code> is preset to be <code>[Site:Id]</code>. 
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
@@ -30,17 +30,17 @@
 <div class="row">
   <div class="col-lg-7">
     <h2>Current Portal</h2>
-    <div>In this example PortalId uses the preset <code>[Portal:PortalId]</code></div>
+    <div>In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code></div>
     <snippet id="sql-query">
     @{
       // Get the query and ask for the "Default" results as a dynamic List
-      var query = App.Query["DnnFilesFromSql"];
+      var query = App.Query["DnnSqlTop10Files"];
       var files = AsList(query);
     }
     <ul>
       @foreach(var file in files) {
         <li>
-          @file.FileName
+          @file.Name
         </li>
       }
     </ul>
