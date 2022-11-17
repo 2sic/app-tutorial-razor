@@ -1,0 +1,41 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+}
+</hide>
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Hybrid Razor - Detect Platform</h2>
+    <p>
+      Razor is mostly <code>HTML</code> + <code>C#</code>. 
+      But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
+      This is where <code>CmsContext.Platform.Name</code> is used. 
+      Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+
+</p>
+</trim>
+
+<hr>
+
+<snippet id="hybrid">
+You are running "@CmsContext.Platform.Name"
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "hybrid" }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial(sourceCode, new { Path }) 
+
+@* 2sxclint:disable:no-dnn-namespaces *@
+
+</hide>

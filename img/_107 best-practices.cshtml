@@ -8,7 +8,7 @@
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
   string resultsCode = hlp.ResultsFile;
 }
 @functions {

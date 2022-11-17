@@ -3,7 +3,7 @@
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
   var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Oqtane can't use dynamic
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 <hide>
 @Html.Partial("_header.cshtml")

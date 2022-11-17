@@ -1,0 +1,49 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+}
+</hide>
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Platform Specific Sub-Razor-Files</h2>
+    <p>
+      In some cases it's just simple to provide different <code>cshtml</code> files for each platform. 
+    </p>
+    <p>
+      Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+
+</p>
+</trim>
+
+<hr>
+
+<snippet id="hybrid">
+@Html.Partial("_102-code-switching.PartInfo." + CmsContext.Platform.Name + ".cshtml")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial(sourceCode, new { Path, Snippet = "hybrid" }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial(sourceCode, new {
+    Title = "Dnn Razor",
+    Path = Path.Replace(".cshtml", ".PartInfo.Dnn.Cshtml")
+  })
+  @Html.Partial(sourceCode, new {
+    Title = "Oqtane Razor",
+    Path = Path.Replace(".cshtml", ".PartInfo.Oqtane.Cshtml")
+  })
+</hide>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial(sourceCode, new { Path }) 
+</hide>

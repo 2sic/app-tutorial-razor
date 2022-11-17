@@ -3,24 +3,33 @@
 @Html.Partial("_header.cshtml")
 @{
   var hlp = CreateInstance("../shared/Helpers.cs"); 
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 </hide>
 <trim>
 <div class="row">
   <div class="col-lg-7">
-    <h2>Hybrid Templates using Preprocessor Directives</h2>
+    <h2>Platform Specific Razor using Preprocessor <code>#if</code></h2>
     <p>
       Razor is mostly <code>HTML</code> + <code>C#</code>. 
       But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
-      This is where <code>CmsContext.Platform.Name</code> is used. 
-      Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
     </p>
     <p>
-      When working with normal <code>.cs</code> files <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> can be used due 
-      to them being compiled by 2sxc. 
+      Preprocessor directives such as <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> 
+      can be used for simple switching of 2-3 lines of code. 
+      This is ideal if for example the <code>Request</code> object has a slightly different signature
+      or if you need to get a list of pages which is different in Dnn and Oqtane.
     </p>
-    <p>
-      Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
+    <div class="alert alert-warning">
+      <h3>
+        Important Limitations when using this
+      </h3>
+      <p>
+        Razor only has limited support for Preprocessor directives. 
+        For example, you cannot conditionally use <code>@@inherits</code> statements. 
+      </p>
+      
+    </div>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
@@ -31,15 +40,19 @@
 <hr>
 
 <snippet id="hybrid">
-@Html.Partial("_410-compiler-preprocessor.PartInfo." + CmsContext.Platform.Name + ".cshtml")
+@{#if NETCOREAPP}
+  This is Oqtane (a .net core app) version: @Oqtane.Shared.Constants.Version
+@{#else}
+  This is DNN (not a .net core app) version: @DotNetNuke.Application.DotNetNukeContext.Current.Application.Version
+@{#endif}
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "hybrid", Size = 50 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "hybrid" }) 
 </hide-silent>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
+@Html.Partial(sourceCode, new { Path }) 
 
 @* 2sxclint:disable:no-dnn-namespaces *@
 
