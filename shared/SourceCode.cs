@@ -12,7 +12,7 @@ public class SourceCode: Custom.Hybrid.Code14
   const int LineHeightPx = 20;
   const int BufferHeightPx = 20; // for footer scrollbar which often appears
 
-  public string SourceTrim(string source) {
+  private string SourceTrim(string source) {
     // optimize to remove leading or trailing (but not in the middle)
     var lines = Regex.Split(source ?? "", "\r\n|\r|\n").ToList();
     var result = DropLeadingEmpty(lines);
@@ -48,7 +48,7 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
   // Auto-calculate Size
-  public int Size(object sizeObj, string source) {
+  private int Size(object sizeObj, string source) {
     var size = Kit.Convert.ToInt(sizeObj, fallback: -1);
     if (size == -1) {
       var sourceLines = source.Split('\n').Length;
@@ -60,7 +60,7 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
   // Determine the ace9 language of the file
-  public string FindAce3LanguageName(string filePath) {
+  private string FindAce3LanguageName(string filePath) {
     var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
     switch (extension)
     {
@@ -95,29 +95,71 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region Show Source Block
 
-  public dynamic ShowSourceWip(dynamic DynamicModel) {
-    // source = SourceTrim(source);
-    // size = Size(DynamicModel.Size, source);
-    // rndId = Guid.NewGuid().ToString();
 
-    // return Tag.RawHtml(
-    //   mainTag,
-    //   TurnOnSource(filePath, DynamicModel.Language, wrap, "source" + rndId)
-    // );
+  public dynamic Snippet(string path, string snippet) {
+    return ShowFileContents(path, null, snippet, expand: true);
+  }
 
+  public dynamic ShowFileContents(string path, string file,
+    string snippet = null, string title = null, string titlePath = null, 
+    bool? expand = null, bool? wrap = null)
+  {
+    try
+    {
+      var specs = GetFileAndProcess(path, file, snippet);
+      path = specs.Path;  // update in case of error
+      title = title ?? "Source Code of " + (specs.File == null
+        ? "this " + specs.Type // "this snippet" vs "this file"
+        : titlePath + specs.File);
+      specs.Expand = expand ?? specs.Expand;
+      specs.Wrap = wrap ?? specs.Wrap;
+      return Tag.RawHtml(
+        SourceBlock(specs, title),
+        TurnOnSource(specs, specs.Path, specs.Wrap)
+      );
+    }
+    catch
+    {
+      return ShowError(path);
+    }
     return null;
+  }
+
+  public SourceInfo GetFileAndProcess(string path, string file, string snippet = null) {
+    var fileInfo = GetFile(path, file);
+    var source = KeepOnlySnippet(fileInfo.Contents, snippet);
+    source = ProcessHideTrimSnippet(source);
+    fileInfo.Processed = SourceTrim(source);
+    fileInfo.Size = Size(null, fileInfo.Processed);
+    var isSnippet = !string.IsNullOrWhiteSpace(snippet);
+    fileInfo.WithIntro = !isSnippet;
+    fileInfo.Type = isSnippet ? "snippet" : "file";
+    fileInfo.DomAttribute = "source-code-" + CmsContext.Module.Id;
+    if (string.IsNullOrEmpty(snippet) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
+    return fileInfo;
+  }
+
+  // private FileInfo Process(FileInfo fileInfo) {
+    
+  // }
+
+  private dynamic ShowError(string path) {
+    return Tag.RawHtml(
+      Tag.H2("Error showing file source"),
+      Tag.Div("Where was a problem showing the file source for " + path).Class("alert alert-warning")
+    );
   }
 
 
 
-  public dynamic SourceBlock(string source, string snipId, string title, string thingType, bool isExpanded, string domAttribute, int size, string rndId) {
+  private dynamic SourceBlock(ShowSourceSpecs specs, string title) {
 
-    return Tag.Div().Class("code-block " + (isExpanded ? "is-expanded" : "")).Attr(domAttribute).Wrap(
-      snipId == null
+    return Tag.Div().Class("code-block " + (specs.Expand ? "is-expanded" : "")).Attr(specs.DomAttribute).Wrap(
+      specs.WithIntro
         ? Tag.Div().Class("header row justify-content-between").Wrap(
             Tag.Div().Class("col-11").Wrap(
               Tag.H2(title),
-              Tag.P("Below you'll see the source code of the " + thingType + @". 
+              Tag.P("Below you'll see the source code of the " + specs.Type + @". 
                   Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
                   <strong>Click to expand the code</strong>")
             ),
@@ -128,32 +170,34 @@ public class SourceCode: Custom.Hybrid.Code14
             )
           ) as ITag
         : Tag.Br(),
-      SourceBlockCode(source, size, rndId)
+      SourceBlockCode(specs)
     );
   }
 
 
-  public ITag ShowResult(string source, string language) {
+  private ITag ShowResult(string source, string language) {
     source = SourceTrim(source);
-    var size = Size(null, source);
-    var rndId = Guid.NewGuid().ToString();
+    var specs = new ShowSourceSpecs() {
+      Processed = source,
+      Size = Size(null, source),
+      Language = language,
+    };
     return Tag.Div().Class("pre-result").Wrap(
-      SourceBlockCode(source, size, rndId),
-      TurnOnSource("", language, false, "source" + rndId)
+      SourceBlockCode(specs),
+      TurnOnSource(specs, "", false)
     );
   }
 
-  public ITag SourceBlockCode(string source, int size, string rndId) {
+  private ITag SourceBlockCode(ShowSourceSpecs specs) {
     return Tag.Div().Class("source-code").Wrap(
-      Tag.Pre(Tags.Encode(source)).Id("source" + rndId).Style("height: " + size + "px; font-size: 16px")
+      Tag.Pre(Tags.Encode(specs.Processed)).Id(specs.RandomId).Style("height: " + specs.Size + "px; font-size: 16px")
     );
   }
 
-  public ITag TurnOnSource(string filePath, string language, bool wrap, string sourceCodeId) {
-    language = "ace/mode/" + (language ?? (Text.Has(filePath)
+  public ITag TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
+    var language = "ace/mode/" + (specs.Language ?? (Text.Has(filePath)
       ? FindAce3LanguageName(filePath)
       : "html"));
-    var domAttribute = "source-code-" + CmsContext.Module.Id;
 
     var turnOnData = new {
       @await = "window.ace",
@@ -161,11 +205,11 @@ public class SourceCode: Custom.Hybrid.Code14
       debug = true,
       data = new {
         test = "now-automated",
-        domAttribute,
+        domAttribute = specs.DomAttribute,
         aceOptions = new {
           wrap,
           language,
-          sourceCodeId
+          sourceCodeId = specs.RandomId
         }
       }
     };
@@ -177,11 +221,10 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region File Processing
 
-  public FileInfo GetFile(string filePath, string file) {
+  public SourceInfo GetFile(string filePath, string file) {
     if (file != null) {
-      if (file.IndexOf(".") == -1) {
+      if (file.IndexOf(".") == -1)
         file = "_" + file + ".cshtml";
-      }
       var lastSlash = filePath.LastIndexOf("/");
       filePath = filePath.Substring(0, lastSlash) + "/" + file;
     }
@@ -189,10 +232,25 @@ public class SourceCode: Custom.Hybrid.Code14
     if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
       fullPath = GetFullPath(filePath);
     var contents = System.IO.File.ReadAllText(fullPath);
-    return new FileInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents };
+    return new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents };
   }
-  
-  public class FileInfo {
+
+  public class ShowSourceSpecs {
+    public ShowSourceSpecs() {
+      RandomId = "source" + Guid.NewGuid().ToString();
+    }
+    public string Processed;
+    public int Size;
+    public string Language;
+    public string Type = "file";
+    public string DomAttribute;
+    public string RandomId;
+    public bool WithIntro;
+    public bool Expand = true;
+    public bool Wrap;
+  }
+
+  public class SourceInfo : ShowSourceSpecs {
     public string File;
     public string Path;
     public string FullPath;

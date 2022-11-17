@@ -5,52 +5,11 @@
   var SourceCodeMaker = CreateInstance("SourceCode.cs");
   // Get parameters
   var titleInParams = DynamicModel.Title as string;
-  var filePath = DynamicModel.Path;
-  var file = DynamicModel.File;
+  // var filePath = DynamicModel.Path;
+  // var file = DynamicModel.File;
   var titlePath = DynamicModel.TitlePath as string;
-  var wrap = DynamicModel.Wrap == true;
-  var snipId = DynamicModel.Snippet as string;
-
-  // Prepare variables which are initialized in try/catch
-  var title = "";
-  var source = "";
-  int size = 0;
-  var thingType = (snipId == null ? "file" : "snippet");
-
-  var domAttribute = "source-code-" + CmsContext.Module.Id;
-  var isExpanded = snipId != null || file != null || DynamicModel.IsExpanded == true;
-
-  // Wrap all in a try/catch to Prevent the whole page from failing just because this part may have trouble
-  try
-  {
-    var fileDetails = SourceCodeMaker.GetFile(filePath, file);
-    file = fileDetails.File;
-    var fileInTitle = titlePath + file;
-    title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
-
-    source = fileDetails.Contents;
-
-    // Keep only the snippet if specified
-    source = SourceCodeMaker.KeepOnlySnippet(source, snipId);
-
-    // trim unnecessary comments
-    source = SourceCodeMaker.ProcessHideTrimSnippet(source);
-  }
-  catch
-  {
-    <h2>Error showing file source</h2>
-    <div class="alert alert-warning">
-      Where was a problem showing the file source for @filePath
-    </div>
-  }
-
-  source = SourceCodeMaker.SourceTrim(source);
-  size = SourceCodeMaker.Size(DynamicModel.Size, source);
-
-  // Low risk stuff outside of try/catch
-  var rndId = Guid.NewGuid().ToString();
+  // var wrap = DynamicModel.Wrap == true;
+  // var snipId = DynamicModel.Snippet as string;
 }
 
-@SourceCodeMaker.SourceBlock(source, snipId, title, thingType, isExpanded, domAttribute, size, rndId)
-
-@SourceCodeMaker.TurnOnSource(filePath, DynamicModel.Language, wrap, "source" + rndId)
+@SourceCodeMaker.ShowFileContents(DynamicModel.Path, DynamicModel.File, DynamicModel.Snippet, titleInParams, titlePath, DynamicModel.IsExpanded, DynamicModel.Wrap)

@@ -72,7 +72,13 @@
 <code id="img-srcset-label"></code>
 
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" }) 
+  @* @2ro @2dg - this is what the new snippen should be like
+    - just this line
+    - the old one is just in for comparison, delete afterwards
+    - anywhere it currently has a "Size" parameter it should be removed
+  *@
+  @hlp.SourceCode.Snippet(Path, "img-srcset")
+  @* @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" })  *@
 </hide-silent>
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
