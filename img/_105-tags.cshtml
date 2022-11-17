@@ -72,10 +72,13 @@
 <code id="img-srcset-label"></code>
 
 <hide-silent> @* Show only this snippet *@
-  @* @2ro @2dg - this is what the new snippen should be like
-    - just this line
+  @* @2ro @2dg 
+    - this is what the new snippen should be like
+    - just this one line
+    - note: only applies to calls with "Snippet = ..." - don't touch others
     - the old one is just in for comparison, delete afterwards
     - anywhere it currently has a "Size" parameter it should be removed
+    - in the end the variable on top "sourceCode" should also be removed
   *@
   @hlp.SourceCode.Snippet(Path, "img-srcset")
   @* @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" })  *@
