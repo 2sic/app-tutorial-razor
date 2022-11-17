@@ -3,7 +3,7 @@
 @using ToSic.Razor.Blade;
 @{
   var helpers = CreateInstance("Helpers.cs");
-  var sourceCode = CreateInstance("SourceCode.cs");
+  var SourceCodeMaker = CreateInstance("SourceCode.cs");
   // Get parameters
   var titleInParams = DynamicModel.Title as string;
   var filePath = DynamicModel.Path;
@@ -16,7 +16,6 @@
   var title = "";
   var source = "";
   int size = 0;
-  var language = "";
   var thingType = (snipId == null ? "file" : "snippet");
 
   var domAttribute = "source-code-" + CmsContext.Module.Id;
@@ -34,8 +33,6 @@
     }
     var fileInTitle = titlePath + file;
     title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
-
-    language = "ace/mode/" + (DynamicModel.Language ?? sourceCode.FindAce3LanguageName(filePath));
 
     // load source code
     var fullPath = filePath;
@@ -60,48 +57,22 @@
   }
 
   // debug
-  source = sourceCode.SourceTrim(source);
-  size = sourceCode.Size(DynamicModel.Size, source);
+  source = SourceCodeMaker.SourceTrim(source);
+  size = SourceCodeMaker.Size(DynamicModel.Size, source);
   // source = source + "(" + size + ")";
 
 
   // Low risk stuff outside of try/catch
   var rndId = Guid.NewGuid().ToString();
-
-  var aceOptions = new {
-    wrap,
-    language,
-    sourceCodeId = "source" + rndId
-  };
 }
 
+@SourceCodeMaker.SourceBlock(source, snipId, title, thingType, isExpanded, domAttribute, size, rndId)
 
-<div class='code-block @(isExpanded ? "is-expanded" : "")' @domAttribute>
-  @if (snipId == null) {
-    <div class="header row justify-content-between">
-      <div class="col-11">
-          <h2>@title</h2>
-          <p>
-            Below you'll see the source code of the @thingType. 
-            Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
-            <strong>Click to expand the code</strong>
-          </p>
-      </div>
-      <div class="col-auto">
-        @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-        <img src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-        <img src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
-      </div>
-    </div>
-  } else {
-    <br>
-  }
-  <div class="source-code">
-    <pre id='@("source" + rndId)' style="height: @(size + "px"); font-size: 16px">@source</pre>
-  </div>
-</div>
+@SourceCodeMaker.TurnOnSource(filePath, DynamicModel.Language, wrap, rndId);
 
-@Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, AceOptions = aceOptions })
+<script>
+  // window.debugTurnOn = true;
+</script>
 
 @functions {
   string KeepOnlySnippet(string source, string id) {
