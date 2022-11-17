@@ -94,8 +94,22 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  public ITag ShowResultJs(string source) {
-    return ShowResult(source, "javascript");
+  public ITag ShowResultJs(string source) { return ShowResult(source, "javascript"); }
+  public ITag ShowResultHtml(string source) { return ShowResult(source, "html"); }
+  public ITag ShowResultText(string source) { return ShowResult(source, "text"); }
+  // Special use case for many picture / image tutorials
+  public ITag ShowResultImg(object tag) {
+    var cleaned = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n");
+    return ShowResultHtml(cleaned);
+  }
+
+  public ITag ShowResultPic(object tag) {
+    var cleaned = tag.ToString()
+        .Replace(">", ">\n")
+        .Replace(",", ",\n")
+        .Replace(" alt=", "\nalt=")
+        .Replace("' ", "' \n");
+    return ShowResultHtml(cleaned);
   }
 
   public ITag ShowResult(string source, string language) {

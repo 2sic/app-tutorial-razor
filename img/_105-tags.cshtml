@@ -9,17 +9,6 @@
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
   string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-  string resultsCode = hlp.ResultsFile;
-}
-@functions {
-  // Special helper to create the config object
-  // Will also replace common things in the src-set
-  object SrcSetTagPreview(object tag) {
-    return new {
-      Path,
-      Result = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n")
-    };
-  }
 }
 </hide>
 
@@ -100,7 +89,7 @@
   
 <h6>This generates</h6>
 @{ var previewTag = Kit.Image.Img(tomatoPicUrl); }
-@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
+@hlp.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 <h3>Example with Automatic Resize and Special Settings</h3>
@@ -120,7 +109,7 @@
   @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto2" }) 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings); }
-@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
+@hlp.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -140,7 +129,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400"); }
-@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
+@hlp.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -157,7 +146,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary"); }
-@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
+@hlp.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -175,7 +164,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = imgControlled; }
-@Html.Partial(resultsCode, SrcSetTagPreview(previewTag))
+@hlp.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -193,7 +182,7 @@
 
 <h6>This generates the following Srcset</h6>
 @{ var srcSetPreview = imgFullControl.SrcSet; }
-@Html.Partial(resultsCode, new { Path, Result = srcSetPreview, Language = "text" })
+@hlp.SourceCode.ShowResultText(srcSetPreview)
 </hide-silent>
 
 <script>

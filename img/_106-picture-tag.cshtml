@@ -8,20 +8,6 @@
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
   string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-  string resultsCode = hlp.ResultsFile;
-}
-@functions {
-  // Special helper to create the config object
-  // Will also replace common things in the src-set
-  object PictureTagPreview(object tag) {
-    return new {
-      Path,
-      Result = tag.ToString()
-        .Replace(">", ">\n")
-        .Replace(",", ",\n")
-        .Replace(" alt=", "\nalt=")
-    };
-  }
 }
 </hide>
 
@@ -110,7 +96,7 @@
 
 <h6>This generates</h6>
 @{ var previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg"); }
-@Html.Partial(resultsCode, PictureTagPreview(previewTag))
+@hlp.SourceCode.ShowResultPic(previewTag)
 </hide-silent>
 
 
@@ -126,7 +112,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class"); }
-@Html.Partial(resultsCode, PictureTagPreview(previewTag))
+@hlp.SourceCode.ShowResultPic(previewTag)
 </hide-silent>
 
 <hr>
@@ -147,7 +133,7 @@
 
   <h6>This generates</h6>
   @{ var previewString = "<picture>  " + picControlled.Sources.ToString() + "  " + picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!").ToString() + "</picture>"; }
-  @Html.Partial(resultsCode, PictureTagPreview(previewString))
+  @hlp.SourceCode.ShowResultPic(previewTag)
 </hide-silent>
 
 <hr>
@@ -175,7 +161,7 @@
     previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary'>";
     previewString += "</picture>";
   }
-  @Html.Partial(resultsCode, PictureTagPreview(previewString))
+  @hlp.SourceCode.ShowResultPic(previewTag)
 </hide-silent>
 <hide>
 

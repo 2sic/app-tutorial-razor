@@ -9,17 +9,6 @@
   */
   var hlp = CreateInstance("../shared/Helpers.cs");
   string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-  string resultsCode = hlp.ResultsFile;
-}
-@functions {
-  // Special helper to better format the html to show
-  string PrepHtml(object tag) {
-    return tag.ToString()
-        .Replace(">", ">\n")
-        .Replace(",", ",\n")
-        .Replace("' ", "' \n")
-        .Replace(" alt=", "\nalt=");
-  }
 }
 </hide>
 
@@ -81,13 +70,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "img-url" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Img(Content.Image)) });
+@Html.Partial(sourceCode, new { Path, Snippet = "img-url" })
+@hlp.SourceCode.ShowResultPic(Kit.Image.Img(Content.Image))
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "img-object" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Img(Content.Field("Image"))) })
+@Html.Partial(sourceCode, new { Path, Snippet = "img-object" })
+@hlp.SourceCode.ShowResultPic(Kit.Image.Img(Content.Field("Image")))
 </hide-silent>
 
 
@@ -128,13 +117,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-url" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Image))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-url" })
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Image))
 
 <br>
 <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-object" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-object" })
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image")))
 </hide-silent>
 
 @*
@@ -174,13 +163,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-05" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 0.5))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-05" })
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), factor: 0.5))
 
 <br>
 <h6>Image to the RIGHT (note higher resolution)</h6>
 @Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-5" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), factor: 5))})
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), factor: 5))
 </hide-silent>
 
 
@@ -222,13 +211,13 @@
 
 <br>
 <h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-default" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image")))})
+@Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-default" })
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image")))
 
 <br>
 <h6>Image to the RIGHT (note different variants)</h6>
 @Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-custom" }) 
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))})
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))
 </hide-silent>
 
 
@@ -269,15 +258,10 @@
 @Html.Partial(sourceCode, new { Path, Snippet = "image-alt-text" }) 
 
 <h6>This generates:</h6>
-@{ var previewTag = Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText); }
-@Html.Partial(resultsCode, new { Path, Result = PrepHtml(previewTag)})
+@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText))
 </hide-silent>
 
 <hide>
   @Html.Partial("../shared/_PreCodeFooter.cshtml")
-
-  @Html.Partial(sourceCode, new { 
-    Path,
-    Size = 3100
-  }) 
+  @Html.Partial(sourceCode, new { Path }) 
 </hide>
