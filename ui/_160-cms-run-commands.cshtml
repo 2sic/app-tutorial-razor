@@ -39,12 +39,14 @@
     When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
     Instead, you'll see console messages that a custom JS took over the process. <br>
 
-    <a href="#" onclick="openAndCancelRefreshAfterwards(this, 'new', { contentType: 'UiEmptyHelloWorld'})">👉 Run open command</a>
+    <a href="#" onclick="openAndCancelRefreshAfterwards(this, event, 'new', { contentType: 'UiEmptyHelloWorld'})">👉 Run open command</a>
 </div>
 
 <script>
 
-  function openAndCancelRefreshAfterwards(tag, action, params) {
+  function openAndCancelRefreshAfterwards(tag, event, action, params) {
+    // Prevent the click from propagating, so the link won't execute href
+    event.preventDefault();
 
     // This workflow step will run on every action, just to log what's happening
     const workflowToLog = {
@@ -70,6 +72,7 @@
         console.log("after run", data);
         return false;
       });
+    
   }
 </script>
 
