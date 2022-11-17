@@ -31,11 +31,14 @@
   <div class="col-lg-7">
     <snippet id="sql-query-reset">
     @{
+      // Use a different query in DNN vs. Oqtane
+      var queryName = CmsContext.Platform.Name == "Dnn" ? "DnnSqlTop10Files" : "OqtaneSqlTop10Files";
       // get the query and ask for the "Default" results as a dynamic List
-      var query = App.Query["DnnSqlTop10Files"];
+      var query = App.Query[queryName];
       var currentFiles = AsList(query);
       query.Reset();
-      query.Params("SiteId", "0");
+      var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
+      query.Params("SiteId", rootPortal.ToString());
       var rootFiles = AsList(query);
     }
     </snippet>
@@ -47,7 +50,7 @@
     <snippet id="sql-query-current">
     <ul>
       @foreach(var file in currentFiles) {
-        <li>@file.FileName</li>
+        <li>@file.Name</li>
       }
     </ul>
     </snippet>
@@ -67,7 +70,7 @@
 <snippet id="sql-query-root">
 <ul>
   @foreach(var file in rootFiles) {
-    <li>@file.FileName</li>
+    <li>@file.Name</li>
   }
 </ul>
 </snippet>

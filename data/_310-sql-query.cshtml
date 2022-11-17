@@ -33,17 +33,19 @@
     <div>In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code></div>
     <snippet id="sql-query">
     @{
+      // Use a different query in DNN vs. Oqtane
+      var queryName = CmsContext.Platform.Name == "Dnn" ? "DnnSqlTop10Files" : "OqtaneSqlTop10Files";
       // Get the query and ask for the "Default" results as a dynamic List
-      var query = App.Query["DnnSqlTop10Files"];
+      var query = App.Query[queryName];
       var files = AsList(query);
     }
-    <ul>
+    <ol>
       @foreach(var file in files) {
         <li>
           @file.Name
         </li>
       }
-    </ul>
+    </ol>
 
     </snippet>
     <hide-silent> @* Show only this snippet *@
