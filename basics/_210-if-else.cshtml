@@ -3,6 +3,7 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs");
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 </hide>
 
@@ -15,31 +16,31 @@
 
 <h3>Basic <code>if</code></h3>
 <snippet id="basic-if">
-@{
-  var aValue = "green";
-}
-@if(aValue == "green") {
-  <span>it's green </span>
-}
+  @{
+    var aValue = "green";
+  }
+  @if(aValue == "green") {
+    <span>it's green </span>
+  }
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-if", Size = 150 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if", Size = 150 }) 
 </hide-silent>
 
 <hr>
 <h3>If-Else</h3>
 <snippet id="basic-if-else">
-@{
-  var val2 = "blue";
-}
-@if(val2 == "green") {
-  <span>it's green </span>
-} else {
-  <span>it's blue</span>
-}
+  @{
+    var val2 = "blue";
+  }
+  @if(val2 == "green") {
+    <span>it's green </span>
+  } else {
+    <span>it's blue</span>
+  }
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-if-else", Size = 180 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if-else", Size = 180 }) 
 </hide-silent>
 
 
@@ -47,31 +48,31 @@
 <h3>Using if-else and <code>&lt;text&gt;</code> tags</h3>
 <p>This is important, if you have an code block like an if, and you don't want a span-tag or similar in the output</p>
 <snippet id="basic-if-else-tags">
-@{
-  var val4 = "orange";
-}
-@if(val4 != "pink") {
-  <text>it's not pink</text>
-}
+  @{
+    var val4 = "orange";
+  }
+  @if(val4 != "pink") {
+    <text>it's not pink</text>
+  }
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-if-else-tags", Size = 150 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if-else-tags", Size = 150 }) 
 </hide-silent>
 
 
 <hr>
 <h3>Quick if-else using Ternary operator <code>? :</code></h3>
 <snippet id="basic-if-else-ternary">
-@{
-  var val3 = "blue";
-}
-@(val3 == "red" ? "it's red" : "it's not red")
+  @{
+    var val3 = "blue";
+  }
+  @(val3 == "red" ? "it's red" : "it's not red")
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-if-else-ternary", Size = 100 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if-else-ternary", Size = 100 }) 
 </hide-silent>
 
 <hide>
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1100 }) 
+@Html.Partial(sourceCode, new { Path, Size = 1100 }) 
 </hide>

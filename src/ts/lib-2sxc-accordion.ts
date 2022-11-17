@@ -23,14 +23,14 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
   // attach click to all accordions when loading
   let accordionOpener = document.querySelectorAll(`[${options.attrParent}]`);
 
-  accordionOpener.forEach((elem: HTMLElement, index) => {	
+  accordionOpener.forEach((elem: HTMLElement, index) => {
     elem.addEventListener('click', (event) => {
       event.preventDefault();
 
       const currentElem = event.currentTarget as HTMLElement;
       const hash = currentElem.dataset.accordionParent;
-      const parent = currentElem.parentElement;	
-      const targetOpenElem = document.querySelector(`[${options.attrChild}="${hash}"`) as HTMLElement;		
+      const parent = currentElem.parentElement;
+      const targetOpenElem = document.querySelector(`[${options.attrChild}="${hash}"`) as HTMLElement;
 
       // add hash to url
       location.hash = hash;

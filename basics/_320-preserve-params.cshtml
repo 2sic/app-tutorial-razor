@@ -3,6 +3,7 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs"); 
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 
 <div class="row">
@@ -32,7 +33,7 @@
   </ol>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-current-params", Size = 140 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-current-params", Size = 140 }) 
 </hide-silent>
 
 <hide>
@@ -62,7 +63,7 @@
   <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-new-params", Size = 250 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-new-params", Size = 250 }) 
 </hide-silent>
 
 <hide>
@@ -87,7 +88,7 @@
   <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-remove-params", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-remove-params", Size = 200 }) 
 </hide-silent>
 
 <hide>
@@ -112,10 +113,10 @@
   <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
 </snippet>
 <hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "link-to-changed-params", Size = 200 }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-changed-params", Size = 200 }) 
 </hide-silent>
 
 <hide>
   @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 })
+  @Html.Partial(sourceCode, new { Path, Size = 1200 })
 </hide>

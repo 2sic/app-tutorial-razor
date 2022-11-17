@@ -17,7 +17,7 @@ public class BasicController : Custom.Hybrid.Api14 // see https://r.2sxc.org/Cus
     return "Hello from the basic controller in /api";
   }
 
-  [HttpGet]				// [HttpGet] says we're listening to GET requests
+  [HttpGet]        // [HttpGet] says we're listening to GET requests
   public int Square(int number)
   {
     return number * number;

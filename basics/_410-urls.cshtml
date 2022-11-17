@@ -3,6 +3,7 @@
 @Html.Partial("_header.cshtml")
 @{  
   var hlp = CreateInstance("../shared/Helpers.cs"); 
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 </hide>
 @using ToSic.Razor.Blade;
@@ -24,7 +25,7 @@
       👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
     </p>
     <hide-silent> @* Show only this snippet *@
-      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-safe-url", Size = 170 }) 
+      @Html.Partial(sourceCode, new { Path, Snippet = "basic-safe-url", Size = 170 }) 
     </hide-silent>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
@@ -61,5 +62,5 @@
 </style>
 
 @Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500 }) 
+@Html.Partial(sourceCode, new { Path, Size = 500 }) 
 </hide>

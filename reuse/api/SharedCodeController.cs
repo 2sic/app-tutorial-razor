@@ -12,13 +12,13 @@ using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAnt
 [ValidateAntiForgeryToken]                // protects API from users not on your site (CSRF protection)
 public class SharedCodeController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
-	[HttpGet]
-	[AllowAnonymous]
-	public string Hello()
-	{
-		var shared = CreateInstance("../FunctionsBasic.cs");
-		return shared.SayHello();
-	}
+  [HttpGet]
+  [AllowAnonymous]
+  public string Hello()
+  {
+    var shared = CreateInstance("../FunctionsBasic.cs");
+    return shared.SayHello();
+  }
 }
 
 // The next line is for 2sxc-internal quality checks, you can ignore this

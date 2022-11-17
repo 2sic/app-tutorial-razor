@@ -17,13 +17,13 @@ public class OrdersController : Custom.Hybrid.Api14 // see https://r.2sxc.org/Cu
     new Order{ Id = 2, Amount = 37 }
   };
 
-  [HttpGet]				// [HttpPost] says we're listening to POST requests
+  [HttpGet]        // [HttpPost] says we're listening to POST requests
   public List<Order> Get()
   {
     return orders;
   }
 
-  [HttpPost]				// [HttpPost] says we're listening to POST requests
+  [HttpPost]        // [HttpPost] says we're listening to POST requests
   public Order Post([FromBody] Order order)
   {
     order.Id = orders[orders.Count - 1].Id + 1;
@@ -31,7 +31,7 @@ public class OrdersController : Custom.Hybrid.Api14 // see https://r.2sxc.org/Cu
     return orders[orders.Count - 1];
   }
 
-  [HttpPut]				// [HttpPut] says we're listening to PUT requests
+  [HttpPut]        // [HttpPut] says we're listening to PUT requests
   public Order Put([FromBody] Order order)
   {
     orders[0].Amount = order.Amount;

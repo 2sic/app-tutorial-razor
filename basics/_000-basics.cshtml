@@ -11,7 +11,10 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
 @Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+}
 </hide>
 <trim>
   <p>

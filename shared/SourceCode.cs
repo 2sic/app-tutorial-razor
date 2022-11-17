@@ -12,11 +12,23 @@ public class SourceCode: Custom.Hybrid.Code14
   public string SourceTrim(string source) {
     // optimize to remove leading or trailing (but not in the middle)
     var lines = Regex.Split(source ?? "", "\r\n|\r|\n").ToList();
-    // var lines = (source ?? "").Split(Environment.NewLine.ToCharArray()).ToList();
     var result = DropLeadingEmpty(lines);
     result.Reverse();
     result = DropLeadingEmpty(result);
     result.Reverse();
+
+    // Count trailing spaces on all code, to see if all have the same indent
+    var indents = result
+      .Where(line => !string.IsNullOrWhiteSpace(line))
+      .Select(line => line.TakeWhile(Char.IsWhiteSpace).Count());
+
+    var minIndent = indents.Min();
+
+    result = result
+      .Select(line => string.IsNullOrWhiteSpace(line) ? line : line.Substring(minIndent))
+      .ToList();
+
+    // result.Add("Debug: indent =" + minIndent);
     return string.Join("\n", result);
   }
 
