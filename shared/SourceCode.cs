@@ -2,8 +2,10 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 
 public class SourceCode: Custom.Hybrid.Code14
 {
@@ -69,11 +71,47 @@ public class SourceCode: Custom.Hybrid.Code14
     }
   }
 
+  #region Special ShowResult helpers
+
+  public ITag ShowResultJs(string source) { return ShowResult(source, "javascript"); }
+  public ITag ShowResultHtml(string source) { return ShowResult(source, "html"); }
+  public ITag ShowResultText(string source) { return ShowResult(source, "text"); }
+  // Special use case for many picture / image tutorials
+  public ITag ShowResultImg(object tag) {
+    var cleaned = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n");
+    return ShowResultHtml(cleaned);
+  }
+
+  public ITag ShowResultPic(object tag) {
+    var cleaned = tag.ToString()
+        .Replace(">", ">\n")
+        .Replace(",", ",\n")
+        .Replace(" alt=", "\nalt=")
+        .Replace("' ", "' \n");
+    return ShowResultHtml(cleaned);
+  }
+
+  #endregion
 
   #region Show Source Block
 
+  public dynamic ShowSourceWip(dynamic DynamicModel) {
+    // source = SourceTrim(source);
+    // size = Size(DynamicModel.Size, source);
+    // rndId = Guid.NewGuid().ToString();
+
+    // return Tag.RawHtml(
+    //   mainTag,
+    //   TurnOnSource(filePath, DynamicModel.Language, wrap, "source" + rndId)
+    // );
+
+    return null;
+  }
+
+
 
   public dynamic SourceBlock(string source, string snipId, string title, string thingType, bool isExpanded, string domAttribute, int size, string rndId) {
+
     return Tag.Div().Class("code-block " + (isExpanded ? "is-expanded" : "")).Attr(domAttribute).Wrap(
       snipId == null
         ? Tag.Div().Class("header row justify-content-between").Wrap(
@@ -94,23 +132,6 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  public ITag ShowResultJs(string source) { return ShowResult(source, "javascript"); }
-  public ITag ShowResultHtml(string source) { return ShowResult(source, "html"); }
-  public ITag ShowResultText(string source) { return ShowResult(source, "text"); }
-  // Special use case for many picture / image tutorials
-  public ITag ShowResultImg(object tag) {
-    var cleaned = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n");
-    return ShowResultHtml(cleaned);
-  }
-
-  public ITag ShowResultPic(object tag) {
-    var cleaned = tag.ToString()
-        .Replace(">", ">\n")
-        .Replace(",", ",\n")
-        .Replace(" alt=", "\nalt=")
-        .Replace("' ", "' \n");
-    return ShowResultHtml(cleaned);
-  }
 
   public ITag ShowResult(string source, string language) {
     source = SourceTrim(source);
@@ -152,5 +173,80 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
 
+  #endregion
+
+  #region File Processing
+
+  public FileInfo GetFile(string filePath, string file) {
+    if (file != null) {
+      if (file.IndexOf(".") == -1) {
+        file = "_" + file + ".cshtml";
+      }
+      var lastSlash = filePath.LastIndexOf("/");
+      filePath = filePath.Substring(0, lastSlash) + "/" + file;
+    }
+    var fullPath = filePath;
+    if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
+      fullPath = GetFullPath(filePath);
+    var contents = System.IO.File.ReadAllText(fullPath);
+    return new FileInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents };
+  }
+  
+  public class FileInfo {
+    public string File;
+    public string Path;
+    public string FullPath;
+    public string Contents;
+  }
+
+  private string GetFullPath(string filePath) {
+    #if NETCOREAPP
+      // This is the Oqtane implementation - cannot use Server.MapPath
+      // 2sxclint:disable:v14-no-getservice
+      var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+      var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
+      return Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
+    #else
+      return HttpContext.Current.Server.MapPath(filePath);
+    #endif
+  }
+
+  #endregion
+
+  #region Source Code Clean-up Helpers
+
+  public string KeepOnlySnippet(string source, string id) {
+    if (string.IsNullOrWhiteSpace(id)) return source;
+    // trim unnecessary comments
+    var patternSnippet = @"(?:<snippet id=""" + id + @"""[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
+    var match = Regex.Match(source, patternSnippet);
+    if (match.Length > 0) {
+      return match.Groups["contents"].Value;
+    }
+    return source;
+  }
+
+  public string ProcessHideTrimSnippet(string source) {
+    // trim unnecessary comments
+    var patternTrim = @"(?:<trim>)([\s\S]*?)(?:</trim>)";
+
+    source = Regex.Replace(source, patternTrim, m => { 
+      var part = Tags.Strip(m.ToString());
+      return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
+    });
+
+    // hide unnecessary parts with comment
+    var patternHide = @"(?:<hide>)([\s\S]*?)(?:</hide>)";
+    source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->");
+
+    // hide unnecessary parts without comment
+    var patternHideSilent = @"(?:<hide-silent>)([\s\S]*?)(?:</hide-silent>)";
+    source = Regex.Replace(source, patternHideSilent, "");
+
+    // remove snippet markers
+    var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";
+    source = Regex.Replace(source, patternSnipStart, "");
+    return source;
+  }
   #endregion
 }

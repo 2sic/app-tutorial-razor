@@ -131,17 +131,17 @@ public class Helpers: Custom.Hybrid.Code14
     return Tag.Li(ExternalLink(target, description));
   }
 
-  public string GetFullPath(string filePath) {
-    #if NETCOREAPP
-      // This is the Oqtane implementation - cannot use Server.MapPath
-      // 2sxclint:disable:v14-no-getservice
-      var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
-      var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
-      return System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
-    #else
-      return HttpContext.Current.Server.MapPath(filePath);
-    #endif
-  }
+  // public string GetFullPath(string filePath) {
+  //   #if NETCOREAPP
+  //     // This is the Oqtane implementation - cannot use Server.MapPath
+  //     // 2sxclint:disable:v14-no-getservice
+  //     var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
+  //     var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
+  //     return System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
+  //   #else
+  //     return HttpContext.Current.Server.MapPath(filePath);
+  //   #endif
+  // }
   
   public dynamic GetViewUrl(dynamic Data){
     var ViewList = AsList(App.Data["2SexyContent-Template"] as object);

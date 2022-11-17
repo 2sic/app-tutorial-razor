@@ -2,7 +2,6 @@
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
 @{
-  var helpers = CreateInstance("Helpers.cs");
   var SourceCodeMaker = CreateInstance("SourceCode.cs");
   // Get parameters
   var titleInParams = DynamicModel.Title as string;
@@ -24,29 +23,18 @@
   // Wrap all in a try/catch to Prevent the whole page from failing just because this part may have trouble
   try
   {
-    if (file != null) {
-      if (file.IndexOf(".") == -1) {
-        file = "_" + file + ".cshtml";
-      }
-      var lastSlash = filePath.LastIndexOf("/");
-      filePath = filePath.Substring(0, lastSlash) + "/" + file;
-    }
+    var fileDetails = SourceCodeMaker.GetFile(filePath, file);
+    file = fileDetails.File;
     var fileInTitle = titlePath + file;
     title = titleInParams ?? "Source Code of " + (file == null ? "this " + thingType : fileInTitle);
 
-    // load source code
-    var fullPath = filePath;
-    if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1) {
-      fullPath = helpers.GetFullPath(filePath);
-    }
-
-    source = System.IO.File.ReadAllText(fullPath);
+    source = fileDetails.Contents;
 
     // Keep only the snippet if specified
-    source = KeepOnlySnippet(source, snipId);
+    source = SourceCodeMaker.KeepOnlySnippet(source, snipId);
 
     // trim unnecessary comments
-    source = ProcessHideTrimSnippet(source);
+    source = SourceCodeMaker.ProcessHideTrimSnippet(source);
   }
   catch
   {
@@ -56,11 +44,8 @@
     </div>
   }
 
-  // debug
   source = SourceCodeMaker.SourceTrim(source);
   size = SourceCodeMaker.Size(DynamicModel.Size, source);
-  // source = source + "(" + size + ")";
-
 
   // Low risk stuff outside of try/catch
   var rndId = Guid.NewGuid().ToString();
@@ -69,43 +54,3 @@
 @SourceCodeMaker.SourceBlock(source, snipId, title, thingType, isExpanded, domAttribute, size, rndId)
 
 @SourceCodeMaker.TurnOnSource(filePath, DynamicModel.Language, wrap, "source" + rndId)
-
-<script>
-  // window.debugTurnOn = true;
-</script>
-
-@functions {
-  string KeepOnlySnippet(string source, string id) {
-    if (string.IsNullOrWhiteSpace(id)) return source;
-    // trim unnecessary comments
-    var patternSnippet = @"(?:<snippet id=""" + id + @"""[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
-    var match = Regex.Match(source, patternSnippet);
-    if (match.Length > 0) {
-      return match.Groups["contents"].Value;
-    }
-    return source;
-  }
-
-  string ProcessHideTrimSnippet(string source) {
-    // trim unnecessary comments
-    var patternTrim = @"(?:<trim>)([\s\S]*?)(?:</trim>)";
-
-    source = Regex.Replace(source, patternTrim, m => { 
-      var part = Tags.Strip(m.ToString());
-      return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
-    });
-
-    // hide unnecessary parts with comment
-    var patternHide = @"(?:<hide>)([\s\S]*?)(?:</hide>)";
-    source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->");
-
-    // hide unnecessary parts without comment
-    var patternHideSilent = @"(?:<hide-silent>)([\s\S]*?)(?:</hide-silent>)";
-    source = Regex.Replace(source, patternHideSilent, "");
-
-    // remove snippet markers
-    var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";
-    source = Regex.Replace(source, patternSnipStart, "");
-    return source;
-  }
-}
