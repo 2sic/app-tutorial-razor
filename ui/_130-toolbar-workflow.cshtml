@@ -85,10 +85,6 @@
 <turnOn turn-on='{ "run": "window.toolbarWorkflow.initInlineToolbar()", "data": "inlineToolbar" }'></-turnOn>
 <script src="@App.Path/ui/_130-toolbar-workflow.js" @Kit.Page.AssetAttributes()></script>
 
-<script>
-  console.log("test oqtane - debug! STV");
-</script>
-
 <snippet id="main-script">
 <script>
 (function () {
@@ -136,7 +132,7 @@
     // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
     initEvent.stopPropagation();
   });
-})/*()*/;
+})();
 </script>
 </snippet>
 
