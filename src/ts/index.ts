@@ -6,7 +6,7 @@ declare let ace: any;
 
 function initSourceCode({ domAttribute, aceOptions  }: { domAttribute: string, aceOptions: { sourceCodeId: string, language: string, wrap: boolean } }) {  
   // debug
-  console.log('args', arguments);
+  // console.log('args', arguments);
 
   // set theme
   let editor = ace.edit(aceOptions.sourceCodeId, { 

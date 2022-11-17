@@ -13,6 +13,14 @@ public class Helpers: Custom.Hybrid.Code14
   public string ShowCodeFile = "../shared/_source-code.cshtml";
   public string ResultsFile = "../shared/_result.cshtml";
 
+  public dynamic SourceCode
+  {
+    get {
+      return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs"));
+    }
+  }
+  private dynamic _sourceCode;
+
   public dynamic Title(string title) {
     // set browser title for SEO
     Kit.Page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");

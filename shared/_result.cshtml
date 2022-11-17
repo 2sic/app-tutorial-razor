@@ -2,34 +2,7 @@
 @using System.Text.RegularExpressions;
 @using ToSic.Razor.Blade;
 @{
-  var helpers = CreateInstance("Helpers.cs");
-  var sourceCode = CreateInstance("SourceCode.cs");
-
-  // Get parameters
-  var result = DynamicModel.Result;
-  var language = DynamicModel.Language ?? "html";
-
-  // Prepare variables which are initialized in try/catch
-  var domAttribute = "result-" + CmsContext.Module.Id;
-
-  result = sourceCode.SourceTrim(result);
-  var size = sourceCode.Size(DynamicModel.Size, result);
-
-  // Low risk stuff outside of try/catch
-  var rndId = Guid.NewGuid().ToString();
-
-  var aceOptions = new {
-    sourceCodeId = "result" + rndId,
-    language = "ace/mode/" + language,
-  };
+  var SourceCodeMaker = CreateInstance("SourceCode.cs");
 }
 
-<style>
-  .pre-result {
-    background-color: aliceblue;
-  }
-</style>
-
-<pre class="pre-result" id='@("result" + rndId)' style='height: @(size + "px"); font-size: 16px'>@result</pre>
-
-@Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, AceOptions = aceOptions })
+@SourceCodeMaker.ShowResult(DynamicModel.Result, DynamicModel.Language)

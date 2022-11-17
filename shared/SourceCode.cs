@@ -90,20 +90,34 @@ public class SourceCode: Custom.Hybrid.Code14
             )
           ) as ITag
         : Tag.Br(),
-      SourceBlockCode(source, snipId, size, rndId)
+      SourceBlockCode(source, size, rndId)
     );
   }
 
-  private ITag SourceBlockCode(string source, string snipId, int size, string rndId) {
+  public ITag ShowResultJs(string source) {
+    return ShowResult(source, "javascript");
+  }
+
+  public ITag ShowResult(string source, string language) {
+    source = SourceTrim(source);
+    var size = Size(null, source);
+    var rndId = Guid.NewGuid().ToString();
+    return Tag.Div().Class("pre-result").Wrap(
+      SourceBlockCode(source, size, rndId),
+      TurnOnSource("", language, false, "source" + rndId)
+    );
+  }
+
+  public ITag SourceBlockCode(string source, int size, string rndId) {
     return Tag.Div().Class("source-code").Wrap(
       Tag.Pre(Tags.Encode(source)).Id("source" + rndId).Style("height: " + size + "px; font-size: 16px")
     );
   }
 
-  public ITag TurnOnSource(string filePath, string language, bool wrap, string rndId) {
-    language = "ace/mode/" + (Text.Has(filePath)
-      ? language ?? FindAce3LanguageName(filePath)
-      : "html");
+  public ITag TurnOnSource(string filePath, string language, bool wrap, string sourceCodeId) {
+    language = "ace/mode/" + (language ?? (Text.Has(filePath)
+      ? FindAce3LanguageName(filePath)
+      : "html"));
     var domAttribute = "source-code-" + CmsContext.Module.Id;
 
     var turnOnData = new {
@@ -116,7 +130,7 @@ public class SourceCode: Custom.Hybrid.Code14
         aceOptions = new {
           wrap,
           language,
-          sourceCodeId = "source" + rndId
+          sourceCodeId
         }
       }
     };

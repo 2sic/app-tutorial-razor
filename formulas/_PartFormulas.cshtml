@@ -3,7 +3,6 @@
 @using System.Linq;
 @{
   var hlp = CreateInstance("../shared/Helpers.cs");
-  string resultsCode = hlp.ResultsFile;
 
   var fHlp = CreateInstance("Helpers.cs");
   var formulas = fHlp.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
@@ -26,7 +25,7 @@
   <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
   @foreach (var formula in formulas)
   {
-    <p><strong>@formula.Title</strong> (Formula-Target: @formula.Target)</p>
-    @Html.Partial(resultsCode, new { Result = formula.Formula, Language = "javascript" })
+    <p><strong>@formula.Title</strong> (Formula-Target: @formula.Target)</p>    
+    @hlp.SourceCode.ShowResultJs(formula.Formula)
   }
 </div>
