@@ -33,8 +33,7 @@
       });
   }
 
-  // 
-  // This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home
+  // This tutorial uses turnOn, see turnOn tutorials
   const sDT = window.sxcDataTutorial240 = window.sxcDataTutorial240 || {};
   sDT.init = sDT.init || init;
   sDT.add = sDT.add || add;

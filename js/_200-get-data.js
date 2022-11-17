@@ -42,8 +42,7 @@
     tr.appendChild(td)
   }
 
-  // This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home
-
+  // This tutorial uses turnOn, see turnOn tutorials
   const sDT = window.sxcDataTutorial200 = window.sxcDataTutorial200 || {};
   sDT.init = sDT.init || init;
 })();

@@ -1,4 +1,4 @@
-// This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home
+// This tutorial uses turnOn, see turnOn tutorials
 // As soon as this variable exists, the page will start the code thanks to turnOn
 window.editPoets = {
   poetsSvc: null,
