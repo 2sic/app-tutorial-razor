@@ -1,17 +1,29 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  /* Internal remarks for the tutorial developers
-    To really see the images loading they must have different names in each tutorial.
-    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
-  */
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
-</hide>
+  @using ToSic.Razor.Blade;
+  @Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{
+    var Sys = CreateInstance("../shared/Helpers.cs").Init(Path);
+  }
+  @{
+    /* Internal remarks for the tutorial developers
+      To reall see the images loading they must have different names in each tutorial.
+      Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
+      */
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
+  @functions {
+    dynamic ShowCurrentSrc(string id)
+    {
+      return Tag.Div().Wrap(
+      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+      Tag.Code().Id(id + "-label")
+      );
+    }
+  }
 
+</hide>
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -20,7 +32,8 @@
       <ol>
         <li>Make sure every image is perfectly sized as needed</li>
         <li>Multiple sizes are provided for various use cases</li>
-        <li>Labels and configs made by the editor (for example, setting a priority corner) are respected by the resizer</li>
+        <li>Labels and configs made by the editor (for example, setting a priority corner) are respected by the resizer
+        </li>
       </ol>
     </div>
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
@@ -32,10 +45,11 @@
 <h2>Image with URL vs. Field in <code>img</code> tag</h2>
 <p>
   As learned in the previous tutorials the <code>img</code> tag can be created out of URLs.
-  The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the description or what part of the picture is important (the Crop-Anchor).
+  The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the
+  description or what part of the picture is important (the Crop-Anchor).
 </p>
 <p>
-  To get the most out of 2sxc and its image configuration options 
+  To get the most out of 2sxc and its image configuration options
   it's best to use the image object instead of URLs. By using the image configuration options,
   the settings can be easily retrieved from the corresponding image.
 </p>
@@ -68,15 +82,15 @@
 
 <hide-silent> @* Show only this snippet *@
 
-<br>
-<h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "img-url" })
-@hlp.SourceCode.ShowResultPic(Kit.Image.Img(Content.Image))
+  <br>
+  <h6>Image to the LEFT - code and generated HTML</h6>
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-url" })
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Img(Content.Image))
 
-<br>
-<h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "img-object" })
-@hlp.SourceCode.ShowResultPic(Kit.Image.Img(Content.Field("Image")))
+  <br>
+  <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-object" })
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Img(Content.Field("Image")))
 </hide-silent>
 
 
@@ -84,10 +98,11 @@
 <h2>Picture with URL vs. Field in <code>picture</code> tag</h2>
 <p>
   As learned in the previous tutorials the <code>picture</code> tag can be created out of URLs.
-  The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the description or what part of the picture is important (the Crop-Anchor).
+  The image service can also be used with Fields. The field will contain the URL as well as additional Metadata like the
+  description or what part of the picture is important (the Crop-Anchor).
 </p>
 <p>
-  To get the most out of 2sxc and its image configuration options 
+  To get the most out of 2sxc and its image configuration options
   it's best to use the image object instead of URLs. By using the image configuration options,
   the settings can be easily retrieved from the corresponding image.
 </p>
@@ -115,15 +130,15 @@
 
 <hide-silent> @* Show only this snippet *@
 
-<br>
-<h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-url" })
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Image))
+  <br>
+  <h6>Image to the LEFT - code and generated HTML</h6>
+  @Html.Partial(sourceCode, new { Path, Snippet = "picture-url" })
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Image))
 
-<br>
-<h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-object" })
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image")))
+  <br>
+  <h6>Image to the RIGHT (note the description and anchor-parameter in the URL)</h6>
+  @Html.Partial(sourceCode, new { Path, Snippet = "picture-object" })
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image")))
 </hide-silent>
 
 @*
@@ -138,48 +153,36 @@
   Below you will find an example:
 </p>
 
+@Sys.SourceCode.ResultStart("img-srcset-auto2", "Generated HTML")
+@ShowCurrentSrc("img-srcset-auto2")
 <div class="row">
   <div class="col-md">
-
     <p><strong>Picture using the factor <code>0.5</code></strong></p>
-    <snippet id="picture-factor-05">
-      @* Picture using the factor 0.5 *@
-      @Kit.Image.Picture(Content.Field("Image"), factor: 0.5)
-    </snippet>
 
+    @Kit.Image.Picture(Content.Field("Image"), factor: 0.5)
   </div>
   <div class="col-md">
-
     <p><strong>Picture using the factor <code>5</code></strong></p>
-    <snippet id="picture-factor-5">
-      @* Picture using the factor 5 *@
-      @Kit.Image.Picture(Content.Field("Image"), factor: 5)
-    </snippet>
 
+    @Kit.Image.Picture(Content.Field("Image"), factor: 5)
   </div>
 </div>
-
-<hide-silent> @* Show only this snippet *@
-
-<br>
-<h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-05" })
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), factor: 0.5))
-
-<br>
-<h6>Image to the RIGHT (note higher resolution)</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-factor-5" }) 
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), factor: 5))
-</hide-silent>
-
-
+@Sys.SourceCode.ResultPrepare()
+@{
+  var previewTag = Kit.Image.Picture(Content.Field("Image"), factor: 0.5);
+  var previewString = Kit.Image.Picture(Content.Field("Image"), factor: 0.5).ToString() +
+  Kit.Image.Picture(Content.Field("Image"), factor: 5).ToString();
+  var resultHtml = Sys.SourceCode.ShowResultImg(previewString);
+}
+@Sys.SourceCode.ResultEnd("img-srcset-auto2", resultHtml)
 
 <h2>Create multiple image variants</h2>
 <p>
   The picture tag contains multiple configurations of images, which are called recipes in our ecosystem.
   The browser then chooses the optimal configuration based on the given srcset.
 
-  Using the <code>.Recipe("")</code> method from the image service, you can easily add more size variants of your images.
+  Using the <code>.Recipe("")</code> method from the image service, you can easily add more size variants of your
+  images.
   <br><br>
   Below you will find an example:
 </p>
@@ -209,15 +212,15 @@
 
 <hide-silent> @* Show only this snippet *@
 
-<br>
-<h6>Image to the LEFT - code and generated HTML</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-default" })
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image")))
+  <br>
+  <h6>Image to the LEFT - code and generated HTML</h6>
+  @Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-default" })
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image")))
 
-<br>
-<h6>Image to the RIGHT (note different variants)</h6>
-@Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-custom" }) 
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))
+  <br>
+  <h6>Image to the RIGHT (note different variants)</h6>
+  @Html.Partial(sourceCode, new { Path, Snippet = "picture-recipe-custom" })
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe))
 </hide-silent>
 
 
@@ -229,7 +232,7 @@
   <br>
   Because alt texts are not always defined in the settings, different texts can be set as fallback.2sxc
   Preferably in that case, the image alt text has priority over other texts.
-  We can create a fallback by using the <code>Text.First(text1, text2)</code> Method from Razor Blade. 
+  We can create a fallback by using the <code>Text.First(text1, text2)</code> Method from Razor Blade.
   <br><br>
   Below you will find an example:
 </p>
@@ -240,28 +243,28 @@
   }
 </hide>
 <snippet id="image-alt-text">
-@{
-  var fallbackAltText = "Fallback";
+  @{
+    var fallbackAltText = "Fallback";
 
-  var imageFieldWithAltText = Content.Field("Image"); 
-  var optimalAltText = Text.First(imageFieldWithAltText.Metadata.Description, fallbackAltText);
-}
-<div>
-  <p><strong>Image with optimal alt text (@optimalAltText)</strong></p>
-  <div style="width: 25%;">
-    @Kit.Image.Picture(imageFieldWithAltText, imgAlt: optimalAltText)
+    var imageFieldWithAltText = Content.Field("Image");
+    var optimalAltText = Text.First(imageFieldWithAltText.Metadata.Description, fallbackAltText);
+  }
+  <div>
+    <p><strong>Image with optimal alt text (@optimalAltText)</strong></p>
+    <div style="width: 25%;">
+      @Kit.Image.Picture(imageFieldWithAltText, imgAlt: optimalAltText)
+    </div>
   </div>
-</div>
 </snippet>
 <hide-silent> @* Show only this snippet *@
 
-@Html.Partial(sourceCode, new { Path, Snippet = "image-alt-text" }) 
+  @Html.Partial(sourceCode, new { Path, Snippet = "image-alt-text" })
 
-<h6>This generates:</h6>
-@hlp.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText))
+  <h6>This generates:</h6>
+  @Sys.SourceCode.ShowResultPic(Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText))
 </hide-silent>
 
 <hide>
   @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial(sourceCode, new { Path }) 
+  @Html.Partial(sourceCode, new { Path })
 </hide>
