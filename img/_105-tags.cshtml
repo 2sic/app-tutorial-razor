@@ -70,15 +70,16 @@
   <h3>Example with Different Files for Each Resolution</h3> 
 </hide>
 
-<snippet id="img-srcset">
-<img class="img-fluid" alt="Image SrcSet Demo"
-  src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
-  srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
-          @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
-          @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
-          @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
-</snippet>
-<code id="img-srcset-label"></code>
+@Sys.SourceCode.SnippetStart("img-srcset")
+  @ShowCurrentSrc("img-srcset-auto")
+  <img class="img-fluid" alt="Image SrcSet Demo"
+    src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
+    srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
+            @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
+            @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
+            @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
+@Sys.SourceCode.SnippetEnd("img-srcset")
+
 
 @* @2ro @2dg 
     - start by renaming the var "hlp" to Sys in every file you work on
@@ -91,11 +92,6 @@
     - anywhere it currently has a "Size" parameter it should be removed
     - in the end the variable on top "sourceCode" should also be removed
 *@
-@Sys.SourceCode.Snippet("img-srcset")
-
-@* <hide-silent>
-  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" }) 
-</hide-silent> *@
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 @Sys.SourceCode.ResultStart("img-srcset-auto", "Generated HTML")
