@@ -8,6 +8,13 @@ public class Helpers: Custom.Hybrid.Code14
   public string TutViewMetadataType = "TutorialViewMetadata";
   public string TutViewSharingMetadataType = "TutorialViewSharing";
 
+  public Helpers Init(string path) {
+    Path = path;
+    return this;
+  }
+
+  public string Path {get;set;}
+
   // Url to show source code, to not repeat in every file
   // TODO: USE THIS IN ALL FILES
   public string ShowCodeFile = "../shared/_source-code.cshtml";
@@ -15,7 +22,7 @@ public class Helpers: Custom.Hybrid.Code14
   public dynamic SourceCode
   {
     get {
-      return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs"));
+      return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(Path));
     }
   }
   private dynamic _sourceCode;

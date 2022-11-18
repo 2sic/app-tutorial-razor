@@ -12,64 +12,13 @@ public class SourceCode: Custom.Hybrid.Code14
   const int LineHeightPx = 20;
   const int BufferHeightPx = 20; // for footer scrollbar which often appears
 
-  private string SourceTrim(string source) {
-    // optimize to remove leading or trailing (but not in the middle)
-    var lines = Regex.Split(source ?? "", "\r\n|\r|\n").ToList();
-    var result = DropLeadingEmpty(lines);
-    result.Reverse();
-    result = DropLeadingEmpty(result);
-    result.Reverse();
-
-    // Count trailing spaces on all code, to see if all have the same indent
-    var indents = result
-      .Where(line => !string.IsNullOrWhiteSpace(line))
-      .Select(line => line.TakeWhile(Char.IsWhiteSpace).Count());
-
-    var minIndent = indents.Min();
-
-    result = result
-      .Select(line => string.IsNullOrWhiteSpace(line) ? line : line.Substring(minIndent))
-      .ToList();
-
-    // result.Add("Debug: indent =" + minIndent);
-    return string.Join("\n", result);
+  public SourceCode Init(string path) {
+    Path = path;
+    return this;
   }
 
-  private List<string> DropLeadingEmpty(List<string> lines) {
-    var dropEmpty = true;
-    return lines.Select(l => {
-      if (!dropEmpty) return l;
-      if (l.Trim() == "") return null;
-      dropEmpty = false;
-      return l;
-    })
-    .Where(l => l != null)
-    .ToList();
-  }
+  public string Path { get; set; }
 
-  // Auto-calculate Size
-  private int Size(object sizeObj, string source) {
-    var size = Kit.Convert.ToInt(sizeObj, fallback: -1);
-    if (size == -1) {
-      var sourceLines = source.Split('\n').Length;
-      size = sourceLines * LineHeightPx + BufferHeightPx;
-    }
-
-    if (size < LineHeightPx) size = 600;
-    return size;
-  }
-
-  // Determine the ace9 language of the file
-  private string FindAce3LanguageName(string filePath) {
-    var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
-    switch (extension)
-    {
-      case "cs": return "csharp";
-      case "js": return "javascript";
-      case "json": return "json";
-      default: return "razor";
-    }
-  }
 
   #region Special ShowResult helpers
 
@@ -93,17 +42,69 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
-  #region Show Source Block
+  #region Snippet
 
-
-  public dynamic Snippet(string path, string snippet) {
-    return ShowFileContents(path, null, snippet, expand: true);
+  // Standalone call
+  public ITag Snippet(string snippet) {
+    return ShowFileContents(null, snippet, expand: true);
   }
 
-  public dynamic ShowFileContents(string path, string file,
+  public ITag SnippetStart(string prefix) {
+    return Tag.RawHtml(
+      AutoSnippetTabs(prefix),
+      Tag.Div().Class("tab-content").Id("myTabContent").TagStart,
+      "\n",
+      "  " + Tag.Div().Class("tab-pane fade show active").Id(prefix + "-home")
+        .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-tab").TagStart
+    );
+  }
+  public ITag SnippetEnd(string prefix) {
+    return Tag.RawHtml(
+      "  </div>",
+      "\n",
+      Tag.Div().Class("tab-pane fade").Id(prefix + "-profile")
+        .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-profile-tab").Wrap(
+          Snippet(prefix)
+        ),
+      "\n",
+      "</div>"
+    );
+  }
+
+  #endregion
+
+  #region Snippet Tabs to select between snippet and source
+
+  public ITag AutoSnippetButton(string prefix, string title, string name, bool selected) {
+    return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
+      .Attr("data-bs-toggle", "tab")
+      .Attr("data-bs-target", "#" + prefix + "-" + name)
+      .Type("button")
+      .Attr("role", "tab")
+      .Attr("aria-controls", prefix + "-" + name)
+      .Attr("aria-selected", selected.ToString().ToLower());
+  }
+
+  public ITag AutoSnippetTabs(string prefix) {
+    return Tag.Ul().Class("nav nav-pills").Attr("role", "tablist").Wrap(
+      Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
+        AutoSnippetButton(prefix, "Output", "home", true)
+      ),
+      Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
+        AutoSnippetButton(prefix, "Source Code", "profile", false)
+      )
+    );
+  }
+
+  #endregion
+
+  #region Show Source Block
+
+  public ITag ShowFileContents(string file,
     string snippet = null, string title = null, string titlePath = null, 
     bool? expand = null, bool? wrap = null)
   {
+    var path = Path;
     try
     {
       var specs = GetFileAndProcess(path, file, snippet);
@@ -124,6 +125,7 @@ public class SourceCode: Custom.Hybrid.Code14
     }
     return null;
   }
+
 
   public SourceInfo GetFileAndProcess(string path, string file, string snippet = null) {
     var fileInfo = GetFile(path, file);
@@ -271,13 +273,19 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
-  #region Source Code Clean-up Helpers
+  #region Private Source Code Clean-up Helpers
 
   public string KeepOnlySnippet(string source, string id) {
     if (string.IsNullOrWhiteSpace(id)) return source;
     // trim unnecessary comments
     var patternSnippet = @"(?:<snippet id=""" + id + @"""[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
     var match = Regex.Match(source, patternSnippet);
+    if (match.Length > 0) {
+      return match.Groups["contents"].Value;
+    }
+    // V2 with Tabs
+    var patternStartEnd = @"(?:@Sys\.SourceCode\.SnippetStart\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.SnippetEnd)";
+    match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
     }
@@ -306,5 +314,65 @@ public class SourceCode: Custom.Hybrid.Code14
     source = Regex.Replace(source, patternSnipStart, "");
     return source;
   }
+
+  private string SourceTrim(string source) {
+    // optimize to remove leading or trailing (but not in the middle)
+    var lines = Regex.Split(source ?? "", "\r\n|\r|\n").ToList();
+    var result = DropLeadingEmpty(lines);
+    result.Reverse();
+    result = DropLeadingEmpty(result);
+    result.Reverse();
+
+    // Count trailing spaces on all code, to see if all have the same indent
+    var indents = result
+      .Where(line => !string.IsNullOrWhiteSpace(line))
+      .Select(line => line.TakeWhile(Char.IsWhiteSpace).Count());
+
+    var minIndent = indents.Min();
+
+    result = result
+      .Select(line => string.IsNullOrWhiteSpace(line) ? line : line.Substring(minIndent))
+      .ToList();
+
+    // result.Add("Debug: indent =" + minIndent);
+    return string.Join("\n", result);
+  }
+
+  private List<string> DropLeadingEmpty(List<string> lines) {
+    var dropEmpty = true;
+    return lines.Select(l => {
+      if (!dropEmpty) return l;
+      if (l.Trim() == "") return null;
+      dropEmpty = false;
+      return l;
+    })
+    .Where(l => l != null)
+    .ToList();
+  }
+
+  // Auto-calculate Size
+  private int Size(object sizeObj, string source) {
+    var size = Kit.Convert.ToInt(sizeObj, fallback: -1);
+    if (size == -1) {
+      var sourceLines = source.Split('\n').Length;
+      size = sourceLines * LineHeightPx + BufferHeightPx;
+    }
+
+    if (size < LineHeightPx) size = 600;
+    return size;
+  }
+
+  // Determine the ace9 language of the file
+  private string FindAce3LanguageName(string filePath) {
+    var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
+    switch (extension)
+    {
+      case "cs": return "csharp";
+      case "js": return "javascript";
+      case "json": return "json";
+      default: return "razor";
+    }
+  }
+
   #endregion
 }

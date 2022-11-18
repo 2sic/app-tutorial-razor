@@ -1,14 +1,14 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
 @Html.Partial("_header.cshtml")
-
+@* Sys must always be an exact copy of this line, so that we could search/replace *@
+@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(Path); }
 @{  
   /* Internal remarks for the tutorial developers
     To reall see the images loading they must have different names in each tutorial.
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 </hide>
 
@@ -71,18 +71,22 @@
 </snippet>
 <code id="img-srcset-label"></code>
 
-<hide-silent> @* Show only this snippet *@
-  @* @2ro @2dg 
-    - this is what the new snippen should be like
+@* @2ro @2dg 
+    - start by renaming the var "hlp" to Sys in every file you work on
+      - then also make sure it always has the .Init(Path) in the initial line
+    - then this below is what the new snippet should be like
     - just this one line
     - note: only applies to calls with "Snippet = ..." - don't touch others
     - the old one is just in for comparison, delete afterwards
+    -   when deleting, also remove the <hide-silent> wrapper if this is hte only thing in it
     - anywhere it currently has a "Size" parameter it should be removed
     - in the end the variable on top "sourceCode" should also be removed
-  *@
-  @hlp.SourceCode.Snippet(Path, "img-srcset")
-  @* @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" })  *@
-</hide-silent>
+*@
+@Sys.SourceCode.Snippet("img-srcset")
+
+@* <hide-silent>
+  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset" }) 
+</hide-silent> *@
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 
@@ -98,7 +102,7 @@
   
 <h6>This generates</h6>
 @{ var previewTag = Kit.Image.Img(tomatoPicUrl); }
-@hlp.SourceCode.ShowResultImg(previewTag)
+@Sys.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 <h3>Example with Automatic Resize and Special Settings</h3>
@@ -118,7 +122,7 @@
   @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto2" }) 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings); }
-@hlp.SourceCode.ShowResultImg(previewTag)
+@Sys.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -138,7 +142,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400"); }
-@hlp.SourceCode.ShowResultImg(previewTag)
+@Sys.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -155,7 +159,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary"); }
-@hlp.SourceCode.ShowResultImg(previewTag)
+@Sys.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -173,7 +177,7 @@
 
 <h6>This generates</h6>
 @{ previewTag = imgControlled; }
-@hlp.SourceCode.ShowResultImg(previewTag)
+@Sys.SourceCode.ShowResultImg(previewTag)
 </hide-silent>
 
 
@@ -191,7 +195,7 @@
 
 <h6>This generates the following Srcset</h6>
 @{ var srcSetPreview = imgFullControl.SrcSet; }
-@hlp.SourceCode.ShowResultText(srcSetPreview)
+@Sys.SourceCode.ShowResultText(srcSetPreview)
 </hide-silent>
 
 <script>
