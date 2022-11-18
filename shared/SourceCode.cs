@@ -324,7 +324,7 @@ public class SourceCode: Custom.Hybrid.Code14
       // 2sxclint:disable:v14-no-getservice
       var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
       var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
-      return Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
+      return System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
     #else
       return HttpContext.Current.Server.MapPath(filePath);
     #endif
