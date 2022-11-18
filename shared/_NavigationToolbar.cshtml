@@ -1,54 +1,81 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+@functions {
+
+  // todo: @2dm
+  // - create class for this
+  // make sure it inits all the values at start as below
+  // then use methods to build stuff
+
+  // todo: get properly: var viewMdType = hlp.TutViewMetadataType as string;
+
+  const string viewMdType = "TutorialViewMetadata";
+
+  // Fallback for missing metadata
+  dynamic DummyViewMd { get { return _dummyViewMd ?? (_dummyViewMd = AsDynamic( new { LinkTitle = "Todo" })); }}
+  dynamic _dummyViewMd = null;
+
+  dynamic Hlp { get { return _hlp ?? (_hlp = CreateInstance("Helpers.cs")); }}
+  dynamic _hlp = null;
+
+  dynamic GetViewMdOrDummy(dynamic tutorial) {
+    return tutorial != null
+      ? AsDynamic((tutorial.Metadata.OfType(viewMdType) as Dynlist).FirstOrDefault() ?? DummyViewMd)
+      : null;
+  }
+
+/*
+  dynamic GetLinkTarget(dynamic tutorial, dynamic md) {
+    return md != null 
+      ? hlp.GetTargetUrl(tutorial.ViewNameInUrl.Replace("/.*", "")) 
+      : homeTarget;
+  }
+  */
+}
 @{
   var hlp = CreateInstance("Helpers.cs");
   var currentView = CmsContext.View;
-  var viewMdType = hlp.TutViewMetadataType as string;
 
   // Enable Fa5 for icons
   Kit.Page.Activate("FontAwesome5");
 
-  // Fallback for missing metadata
-  var unknownViewMetadata = AsDynamic(new
-  {
-    LinkTitle = "Todo",
-  });
-
   // Get current datasets
-  var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ??
-  unknownViewMetadata);
-  var sortedTutorialSections = (AsList(App.Data["Tutorial"]).Last().Sections as IEnumerable<dynamic>).ToList();
+  var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as Dynlist).FirstOrDefault() ??
+  DummyViewMd);
+  var sortedTutorialSections = (AsList(App.Data["Tutorial"]).Last().Sections as Dynlist).ToList();
   var tutorialSection = AsList(sortedTutorialSections)
-    .Where(section => (section.Views as IEnumerable<dynamic>)
+    .Where(section => (section.Views as Dynlist)
       .Any(view => view.EntityId == currentView.Id))
     .FirstOrDefault() ?? null;
   var tutorialSectionIndex = tutorialSection != null ? sortedTutorialSections.FindIndex(section => section.EntityId == tutorialSection.EntityId) : 0;
 }
 
 @if (tutorialSection != null) {
-  var viewList = (tutorialSection.Views as IEnumerable<dynamic>).ToList();
+  var viewList = (tutorialSection.Views as Dynlist).ToList();
   var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
   var homeTarget = "#" + tutorialSection.NameId;
   var previousTutorial = currentIndex > 0 
     ? viewList[currentIndex - 1] 
     : tutorialSectionIndex > 0 
-      ? (sortedTutorialSections[tutorialSectionIndex - 1].Views as IEnumerable<dynamic>).Last() 
+      ? (sortedTutorialSections[tutorialSectionIndex - 1].Views as Dynlist).Last() 
       : null;
 
   var nextTutorial = currentIndex < viewList.Count() - 1 
     ? viewList[currentIndex + 1] 
     : tutorialSectionIndex < sortedTutorialSections.Count() - 1
-      ? (sortedTutorialSections[tutorialSectionIndex + 1].Views as IEnumerable<dynamic>).First() 
+      ? (sortedTutorialSections[tutorialSectionIndex + 1].Views as Dynlist).First() 
       : null;
 
   <div class="alert alert-dark container-fluid">
     <div class="row justify-content-between">
       <div class="col-4 text-truncate">
         @{
-          var previousTutorialMd = previousTutorial != null
-            ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>)
-              .FirstOrDefault() ?? unknownViewMetadata)
-            : null;
+          var previousTutorialMd = GetViewMdOrDummy(previousTutorial);
+           @* previousTutorial != null
+            ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as Dynlist)
+              .FirstOrDefault() ?? DummyViewMd)
+            : null; *@
           var previousTutorialTarget = previousTutorialMd != null 
             ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
             : homeTarget;
@@ -69,8 +96,10 @@
       </div>
       <div class="col-4 text-end text-right">
         @{
-          var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as
-          IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+          var nextTutorialMd = GetViewMdOrDummy(nextTutorial);
+          @* nextTutorial != null
+            ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as Dynlist).FirstOrDefault() ?? DummyViewMd)
+            : null; *@
           var nextTutorialTarget = nextTutorialMd != null 
             ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
             : homeTarget;
@@ -86,4 +115,11 @@
       </div>
     </div>
   </div>
+}
+
+@functions {
+  
+  string RemoveP(string original) {
+    return (original ?? "").Replace("<p>", "").Replace("</p>", "");
+  }
 }
