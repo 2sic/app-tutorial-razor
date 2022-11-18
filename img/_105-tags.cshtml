@@ -15,8 +15,6 @@
   dynamic ShowCurrentSrc(string id) {
     return Tag.Div().Wrap(
       Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-      Tag.Code().Id(id + "query"),
-      Tag.Br(),
       Tag.Code().Id(id + "-label")
     );
   }

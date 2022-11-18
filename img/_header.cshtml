@@ -17,7 +17,10 @@
   function showCurrentSrc(imgId, labelId) {
     const img = getbySelector(imgId);
     console.log(imgId, labelId, img);
-    getbySelector(labelId).innerHTML = 'CurrentSrc:' + img.currentSrc; 
+    let src = img.currentSrc;
+    const lastSlash = src.lastIndexOf('/');
+    src = "..." + src.substring(lastSlash);
+    getbySelector(labelId).innerHTML = 'CurrentSrc:' + src;
   }
   
   function showChangingSrc(sampleId) {
