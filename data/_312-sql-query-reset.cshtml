@@ -31,8 +31,9 @@
   <div class="col-lg-7">
     <snippet id="sql-query-reset">
     @{
-      // Use a different query in DNN vs. Oqtane
-      var queryName = CmsContext.Platform.Name == "Dnn" ? "DnnSqlTop10Files" : "OqtaneSqlTop10Files";
+      // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
+      var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
+
       // get the query and ask for the "Default" results as a dynamic List
       var query = App.Query[queryName];
       var currentFiles = AsList(query);

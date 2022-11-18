@@ -33,8 +33,9 @@
     <div>In this example we will set the PortalId for the SQL query.</div>
     <snippet id="sql-query-params">
     @{
-      // Use a different query in DNN vs. Oqtane
-      var queryName = CmsContext.Platform.Name == "Dnn" ? "DnnSqlTop10Files" : "OqtaneSqlTop10Files";
+      // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
+      var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
+
       // Get the query and set a parameter
       var query = App.Query[queryName];
       var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;

@@ -33,8 +33,9 @@
     <div>In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code></div>
     <snippet id="sql-query">
     @{
-      // Use a different query in DNN vs. Oqtane
-      var queryName = CmsContext.Platform.Name == "Dnn" ? "DnnSqlTop10Files" : "OqtaneSqlTop10Files";
+      // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
+      var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
+
       // Get the query and ask for the "Default" results as a dynamic List
       var query = App.Query[queryName];
       var files = AsList(query);
