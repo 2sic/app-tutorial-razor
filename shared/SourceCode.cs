@@ -111,7 +111,7 @@ public class SourceCode: Custom.Hybrid.Code14
     {
       // Close the tabs / header div section
       html.Add(SnippetStartEnd());
-      foreach(var m in results.Take(results.Count() - 1)) {
+      foreach(var m in results) {
         var name = GetResultName(nameCount);
         html.Add(SnippetMore(prefix, name, m));
       }

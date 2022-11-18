@@ -71,7 +71,7 @@
 </hide>
 
 @Sys.SourceCode.SnippetStart("img-srcset")
-  @ShowCurrentSrc("img-srcset-auto")
+  @ShowCurrentSrc("img-srcset")
   <img class="img-fluid" alt="Image SrcSet Demo"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
     srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
@@ -105,7 +105,7 @@
     var previewTag = Kit.Image.Img(tomatoPicUrl);
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto", resultHtml, previewTag)
+@Sys.SourceCode.ResultEnd("img-srcset-auto", resultHtml)
 
 
 

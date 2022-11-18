@@ -16,11 +16,15 @@
 
   function showCurrentSrc(imgId, labelId) {
     const img = getbySelector(imgId);
-    console.log(imgId, labelId, img);
+    // console.log(imgId, labelId, img);
     let src = img.currentSrc;
     const lastSlash = src.lastIndexOf('/');
     src = "..." + src.substring(lastSlash);
-    getbySelector(labelId).innerHTML = 'CurrentSrc:' + src;
+    const label = getbySelector(labelId);
+    if (label)
+      label.innerHTML = 'CurrentSrc:' + src;
+    else
+      console.warn("Can't find label: " + labelId);
   }
   
   function showChangingSrc(sampleId) {
