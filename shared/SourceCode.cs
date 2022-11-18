@@ -49,26 +49,76 @@ public class SourceCode: Custom.Hybrid.Code14
     return ShowFileContents(null, snippet, expand: true);
   }
 
-  public ITag SnippetStart(string prefix) {
+  private const string ResultTabName = ""; // must match js in img samples
+  private const string SourceTabName = "-source-code";
+  public ITag SnippetStart(string prefix, params string[] names) {
     return Tag.RawHtml(
-      AutoSnippetTabs(prefix),
+      // Tab headers
+      AutoSnippetTabs(prefix, names),
+      // Tab bodies - must open the first one
       Tag.Div().Class("tab-content").Id("myTabContent").TagStart,
       "\n",
-      "  " + Tag.Div().Class("tab-pane fade show active").Id(prefix + "-home")
+      // Open the first tab-body item as the snippet is right after this
+      "  " + Tag.Div().Class("tab-pane fade show active").Id(prefix + ResultTabName)
         .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-tab").TagStart
     );
   }
+
   public ITag SnippetEnd(string prefix) {
+    return SnippetEnd(prefix, true);
+  }
+
+
+  private ITag SnippetStartEnd() {
+    return Tag.RawHtml("  </div>");
+  }
+
+  private ITag SnippetMore(string prefix, string id, object result) {
     return Tag.RawHtml(
-      "  </div>",
       "\n",
-      Tag.Div().Class("tab-pane fade").Id(prefix + "-profile")
-        .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-profile-tab").Wrap(
-          Snippet(prefix)
+      Tag.Div().Class("tab-pane fade").Id(prefix + id)
+        .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + id + "-tab").Wrap(
+          result
         ),
-      "\n",
+      "\n"
+    );
+  }
+  private ITag SnippetEnd(string prefix, bool closeStart) {
+    return Tag.RawHtml(
+      closeStart ? SnippetStartEnd() : Tag.RawHtml(),
+      SnippetMore(prefix, SourceTabName, Snippet(prefix)),
       "</div>"
     );
+  }
+
+  public ITag ResultStart(string prefix, params string[] names) {
+    _lastNames = names;
+    return SnippetStart(prefix, names);
+  }
+  private string[] _lastNames;
+  private string GetResultName(int index) {
+    if (_lastNames == null || !_lastNames.Any()) return "unknown";
+    if (_lastNames.Length < index + 1) return "unknown";
+    return "-" + _lastNames[index].ToLower().Replace(" ", "-");
+  }
+
+  public string ResultPrepare() { return ""; }
+
+  public ITag ResultEnd(string prefix, params object[] results) {
+    var nameCount = 0;
+    var html = Tag.RawHtml();
+    if (results != null && results.Any())
+    {
+      // Close the tabs / header div section
+      html.Add(SnippetStartEnd());
+      foreach(var m in results.Take(results.Count() - 1)) {
+        var name = GetResultName(nameCount);
+        html.Add(SnippetMore(prefix, name, m));
+      }
+    }
+    _lastNames = null;
+    html.Add(SnippetEnd(prefix, false));
+    return html;
   }
 
   #endregion
@@ -78,21 +128,30 @@ public class SourceCode: Custom.Hybrid.Code14
   public ITag AutoSnippetButton(string prefix, string title, string name, bool selected) {
     return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
       .Attr("data-bs-toggle", "tab")
-      .Attr("data-bs-target", "#" + prefix + "-" + name)
+      .Attr("data-bs-target", "#" + prefix + name)
       .Type("button")
       .Attr("role", "tab")
-      .Attr("aria-controls", prefix + "-" + name)
+      .Attr("aria-controls", prefix + name)
       .Attr("aria-selected", selected.ToString().ToLower());
   }
 
-  public ITag AutoSnippetTabs(string prefix) {
-    return Tag.Ul().Class("nav nav-pills").Attr("role", "tablist").Wrap(
-      Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-        AutoSnippetButton(prefix, "Output", "home", true)
-      ),
-      Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-        AutoSnippetButton(prefix, "Source Code", "profile", false)
-      )
+  private ITag AutoSnippetTabs(string prefix, params string[] names) {
+    // First Tab
+    var result = Tag.Ul().Class("nav nav-pills").Attr("role", "tablist").Wrap(
+      Tab(prefix, ResultTabName, "Output", true)
+    );
+    // Optional additional tabs
+    if (names != null && names.Any())
+      foreach(var n in names) 
+        result.Add(Tab(prefix, "-" + n.ToLower().Replace(" ", "-"), n));
+    // final Source tab
+    result.Add(Tab(prefix, SourceTabName, "Source Code"));
+    return result;
+  }
+
+  private ITag Tab(string prefix, string id, string label, bool active = false) {
+    return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
+      AutoSnippetButton(prefix, label, id, active)
     );
   }
 
@@ -283,12 +342,20 @@ public class SourceCode: Custom.Hybrid.Code14
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
     }
-    // V2 with Tabs
-    var patternStartEnd = @"(?:@Sys\.SourceCode\.SnippetStart\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.SnippetEnd)";
+    // V2 with Snippet Tabs
+    var patternStartEnd = @"(?:@Sys\.SourceCode\.SnippetStart\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
     }
+    // V2 with Result Tabs
+    patternStartEnd = @"(?:@Sys\.SourceCode\.ResultStart\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Result)";
+    match = Regex.Match(source, patternStartEnd);
+    if (match.Length > 0) {
+      return match.Groups["contents"].Value;
+    }
+
+
     return source;
   }
 

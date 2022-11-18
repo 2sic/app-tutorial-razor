@@ -10,7 +10,6 @@
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(Path); }
 
 @{  
-  var linker = CreateInstance("../shared/Helpers.cs");
   string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 </hide>

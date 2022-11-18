@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
+@using ToSic.Razor.Blade;
 @Html.Partial("_header.cshtml")
 @* Sys must always be an exact copy of this line, so that we could search/replace *@
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(Path); }
@@ -9,6 +10,16 @@
     Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
   */
   string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+}
+@functions {
+  dynamic ShowCurrentSrc(string id) {
+    return Tag.Div().Wrap(
+      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+      Tag.Code().Id(id + "query"),
+      Tag.Br(),
+      Tag.Code().Id(id + "-label")
+    );
+  }
 }
 </hide>
 
@@ -89,21 +100,20 @@
 </hide-silent> *@
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
+@Sys.SourceCode.ResultStart("img-srcset-auto", "Generated HTML")
+  @ShowCurrentSrc("img-srcset-auto")
+  @{
+    var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
+  }
+  @Kit.Image.Img(tomatoPicUrl)
+@Sys.SourceCode.ResultPrepare()
+  @{
+    var previewTag = Kit.Image.Img(tomatoPicUrl);
+    var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
+  }
+@Sys.SourceCode.ResultEnd("img-srcset-auto", resultHtml, previewTag)
 
-<snippet id="img-srcset-auto">
-@{
-  var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
-}
-@Kit.Image.Img(tomatoPicUrl)
-</snippet>
-<code id="img-srcset-auto-label"></code>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "img-srcset-auto" })
-  
-<h6>This generates</h6>
-@{ var previewTag = Kit.Image.Img(tomatoPicUrl); }
-@Sys.SourceCode.ShowResultImg(previewTag)
-</hide-silent>
+
 
 <h3>Example with Automatic Resize and Special Settings</h3>
 <p>
@@ -199,13 +209,13 @@
 </hide-silent>
 
 <script>
-  showChangingSrc("#img-srcset img", "#img-srcset-label")
-  showChangingSrc('#img-srcset-auto img', '#img-srcset-auto-label');
-  showChangingSrc('#img-srcset-auto-srcset img', '#img-srcset-auto-srcset-label');
-  showChangingSrc('#img-srcset-auto2 img', '#img-srcset-auto2-label');
-  showChangingSrc('#img-srcset-auto3 img', '#img-srcset-auto3-label');
-  showChangingSrc('#img-srcset-auto4 img', '#img-srcset-auto4-label');
-  showChangingSrc('#img-srcset-auto5 img', '#img-srcset-auto5-label');
+  showChangingSrc("img-srcset")
+  showChangingSrc('img-srcset-auto');
+  showChangingSrc('img-srcset-auto-srcset');
+  showChangingSrc('img-srcset-auto2');
+  showChangingSrc('img-srcset-auto3');
+  showChangingSrc('img-srcset-auto4');
+  showChangingSrc('img-srcset-auto5');
 </script>
 
 @* 

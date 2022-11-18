@@ -15,12 +15,15 @@
   function getbySelector(id) { return document.querySelector(id) };
 
   function showCurrentSrc(imgId, labelId) {
-    const img = document.querySelector(imgId);
+    const img = getbySelector(imgId);
+    console.log(imgId, labelId, img);
     getbySelector(labelId).innerHTML = 'CurrentSrc:' + img.currentSrc; 
   }
   
-  function showChangingSrc(imgId, labelId) {
-    showCurrentSrc(imgId, labelId);
-    getbySelector(imgId).onload = function () { showCurrentSrc(imgId, labelId); }
+  function showChangingSrc(sampleId) {
+    const imgSelector = "#" + sampleId + " img";
+    const labelId = "#" + sampleId + "-label";
+    showCurrentSrc(imgSelector, labelId);
+    getbySelector(imgSelector).onload = function () { showCurrentSrc(imgSelector, labelId); }
   }
 </script>
