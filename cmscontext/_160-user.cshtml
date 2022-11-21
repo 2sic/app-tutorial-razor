@@ -1,7 +1,9 @@
 @inherits Custom.Hybrid.Razor14
-
+@using ToSic.Razor.Blade;
 <hide>
-  @Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 <trim>
@@ -16,51 +18,36 @@
   </div>
 </trim>
 
-<snippet id="ICmsUser-id">
-  <h3>The .Id attribute:</h3>
+@Sys.SourceCode.SnippetInlineStart("ICmsUser-id")
+<h3>The .Id attribute:</h3>
   The id of the current user: 
   <strong>
     @CmsContext.User.Id
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-id", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<snippet id="ICmsUser-issiteadmin">
-  <h3>The .IsSiteAdmin attribute:</h3>
+@Sys.SourceCode.SnippetInlineStart("ICmsUser-issiteadmin")
+<h3>The .IsSiteAdmin attribute:</h3>
   Check if the current user is a site admin (returns a boolean): 
   <strong>
     @CmsContext.User.IsSiteAdmin
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-issiteadmin", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<snippet id="ICmsUser-issitedeveloper">
-  <h3>The .IsSiteDeveloper attribute:</h3>
+@Sys.SourceCode.SnippetInlineStart("ICmsUser-issitedeveloper")
+<h3>The .IsSiteDeveloper attribute:</h3>
   Check if the current user is a site developer (returns a boolean): 
   <strong>
     @CmsContext.User.IsSiteDeveloper
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-issitedeveloper", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<snippet id="ICmsUser-issystemadmin">
+@Sys.SourceCode.SnippetInlineStart("ICmsUser-issystemadmin")
   <h3>The .IsSystemAdmin attribute:</h3>
   Check if the current user is a system admin (returns a boolean): 
   <strong>
     @CmsContext.User.IsSystemAdmin
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsUser-issystemadmin", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 850 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

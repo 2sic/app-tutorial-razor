@@ -1,9 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-
+@using ToSic.Razor.Blade;
 <hide>
-  @Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
-
 
 <trim>
   <div class="row">
@@ -17,40 +18,28 @@
   </div>
 </trim>
 
-<snippet id="ICmsPlatform-name">
+@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-name")
   <h3>The .Name attribute:</h3>
   The current platform name is: 
   <strong>
     @CmsContext.Platform.Name
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPlatform-name", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<snippet id="ICmsPlatform-type">
-  <h3>The .Type attribute:</h3>
+@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-type")
+ <h3>The .Type attribute:</h3>
   The current platform type is: 
   <strong>
     @CmsContext.Platform.Type
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPlatform-type", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<snippet id="ICmsPlatform-version">
-  <h3>The .Version attribute:</h3>
+@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-version")
+<h3>The .Version attribute:</h3>
   The current platform version is: 
   <strong>
     @CmsContext.Platform.Version
   </strong>
-</snippet>
-<hide-silent>
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "ICmsPlatform-version", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()
