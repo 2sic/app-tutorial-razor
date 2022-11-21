@@ -378,7 +378,7 @@ public class SourceCode: Custom.Hybrid.Code14
     return source;
   }
 
-  public string ProcessHideTrimSnippet(string source) {
+  private string ProcessHideTrimSnippet(string source) {
     // trim unnecessary comments
     var patternTrim = @"(?:<trim>)([\s\S]*?)(?:</trim>)";
 
@@ -392,13 +392,20 @@ public class SourceCode: Custom.Hybrid.Code14
     source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->");
 
     // hide unnecessary parts without comment
-    var patternHideSilent = @"(?:<hide-silent>)([\s\S]*?)(?:</hide-silent>)";
-    source = Regex.Replace(source, patternHideSilent, "");
+    source = ProcessHideSilent(source, "<hide-silent>", "</hide-silent>");
+    source = ProcessHideSilent(source, @"@Sys\.SourceCode\.ResultPrepare\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
 
     // remove snippet markers
     var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";
     source = Regex.Replace(source, patternSnipStart, "");
     return source;
+  }
+
+  private string ProcessHideSilent(string source, string start, string end, bool captureStart = true, bool captureEnd = true) {
+    var startCapt = captureStart ? ":" : "=";
+    var endCapt = captureEnd ? ":" : "=";
+    var patternHideSilent = @"(?" + startCapt + start + @")([\s\S]*?)(?" + endCapt + (end ?? start) + @")";
+    return Regex.Replace(source, patternHideSilent, "");
   }
 
   private string SourceTrim(string source) {
