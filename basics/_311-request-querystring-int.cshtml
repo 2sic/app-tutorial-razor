@@ -1,12 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
-</hide>
 @using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -25,8 +23,9 @@
 <hr>
 </trim>
 
-<snippet id="basic-number-params">
-  @{
+
+@Sys.SourceCode.SnippetInlineStart("basic-number-params")
+ @{
     // This variable is a string, but could be null or empty
     var idAsString = CmsContext.Page.Parameters["id"];
     // This converts the id parameter to int and takes 0 as fallback
@@ -44,10 +43,8 @@
       Equal to number 27: @(id == 27) <br>
     </li>
   </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-number-params", Size = 400 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <hide>
 @functions {
@@ -59,6 +56,5 @@
   }
 }
 
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path, Size = 850 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+

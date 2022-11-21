@@ -1,35 +1,27 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
-</hide>
 @using ToSic.Razor.Blade;
-@using System;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
 <trim>
 <div class="row">
   <div class="col-lg-7">
     <h2>Safely Linking URLs with Umlauts and similar</h2>
-    <snippet id="basic-safe-url">
-      @{
+@Sys.SourceCode.SnippetInlineStart("basic-safe-url")
+  @{
         var path = App.Path + "/basics/assets/urls/";
         var exampleImgName = "göögle plus.png";
         var resizeParameters = "?w=100";
         var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
       }
-      <img loading="lazy" src='@safeUrl' id="demo-logo">
-    </snippet>
     <p>
       👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
     </p>
-    <hide-silent> @* Show only this snippet *@
-      @Html.Partial(sourceCode, new { Path, Snippet = "basic-safe-url", Size = 170 }) 
-    </hide-silent>
-  </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-</div>
+      <img loading="lazy" src='@safeUrl' id="demo-logo">
+@Sys.SourceCode.SnippetInlineEnd()
+
 </trim>
 
 <hide>
@@ -52,7 +44,6 @@
   </li>
 </ul>
 
-
 <style>
   #demo-logo {
     float: left;
@@ -61,6 +52,4 @@
   }
 </style>
 
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path, Size = 500 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

@@ -1,11 +1,13 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 @{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
-
+</hide>
 
 <div class="row">
   <div class="col-lg-7">
@@ -59,12 +61,5 @@
   <p>Link to view1 <a target="blank" href="@Link.To(parameters: view1Parameters)">@Link.To(parameters: view1Parameters)</a></p>
   <p>Link to view2 <a target="blank" href="@Link.To(parameters: view2Parameters)">@Link.To(parameters: view2Parameters)</a></p>
 </snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "view-url", Size = 250 }) 
-</hide-silent>
 
-
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial(sourceCode, new { Path, Size = 400 })
-</hide>
+@Sys.PageParts.FooterWithSource()

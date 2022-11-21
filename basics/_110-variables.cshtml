@@ -1,10 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
-  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 <div class="row">
@@ -24,44 +22,30 @@
   Name: @firstName
 @Sys.SourceCode.SnippetInlineEnd()
 
-
-
 <hr>
 <h3>Numbers and Dates</h3>
-<snippet id="basic-numbers-dates">
+@Sys.SourceCode.SnippetInlineStart("basic-numbers-dates")
   @{
     var age = 27;
     var birthday = new DateTime(1999, 09, 09);
   }
-
   Age: @age <br>
   Birthday: @birthday <br>
   Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-numbers-dates", Size = 200 }) 
-</hide-silent>
-
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h3>Arrays (lists of things)</h3>
-<snippet id="basic-arrays">
+@Sys.SourceCode.SnippetInlineStart("basic-arrays")
   @{
     var dogs = new string[] { "hound", "dackel", "doggy" };
     birthday = new DateTime(1999, 09, 09);
   }
-
   Age: @age <br>
   Birthday: @birthday <br>
   Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-arrays", Size = 200 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path, Size = 1000 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

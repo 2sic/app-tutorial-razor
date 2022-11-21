@@ -1,11 +1,16 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 @{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
+</hide>
 
+
+<hide>
 <div class="row">
   <div class="col-lg-7">
     <h2>Preserve URL parameters</h2>
@@ -25,16 +30,13 @@
 <hr>
 <h2>Link to current page with all Parameters</h2>
 </hide>
-<snippet id="link-to-current-params">
+@Sys.SourceCode.SnippetInlineStart("link-to-current-params")
   @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
   <ol>
     <li><a href='@Link.To()'>Link to current page without Parameters: @Link.To()</a></li>
     <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
   </ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-current-params", Size = 140 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hide>
 <h3>Add Parameters</h3>
@@ -45,26 +47,21 @@
 <hr>
 </hide>
 <p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
-<snippet id="link-to-new-params">
-  @{
+@Sys.SourceCode.SnippetInlineStart("link-to-new-params")
+ @{
     // Example using string
     var newParamsFromString = CmsContext.Page.Parameters + "&name=2sxc";
 
     // Page parameters using .Add(...) method
     var newParamsFromAdd = CmsContext.Page.Parameters.Add("name", "2sxc");
   }
-
 <hide>
   <p>See adjusted page parameters: <code>@newParamsFromAdd</code></p>
   <hr>
 </hide>
-
   <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
   <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-new-params", Size = 250 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hide>
 <h3>Remove Parameters</h3>
@@ -73,23 +70,18 @@
 </p>
 <hr>
 </hide>
-
 <p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
-<snippet id="link-to-remove-params">
-  @{
+@Sys.SourceCode.SnippetInlineStart("link-to-remove-params")
+   @{
     var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
   }
-
 <hide>
   <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
   <hr>
 </hide>
-
   <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-remove-params", Size = 200 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <hide>
 <h3>Change Parameters</h3>
@@ -100,23 +92,15 @@
 </hide>
 
 <p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
-<snippet id="link-to-changed-params">
-  @{
+@Sys.SourceCode.SnippetInlineStart("link-to-changed-params")
+   @{
     var currentParamsChanged = CmsContext.Page.Parameters.Set("basics320", "2sxc");
   }
-
 <hide>
   <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
   <hr>
 </hide>
-
   <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "link-to-changed-params", Size = 200 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial(sourceCode, new { Path, Size = 1200 })
-</hide>
+@Sys.PageParts.FooterWithSource()

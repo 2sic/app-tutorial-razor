@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
 <div class="row">
@@ -35,20 +33,18 @@
 </div>
 </trim>
 
-<snippet id="basic-params">
-  <ul>
+
+@Sys.SourceCode.SnippetInlineStart("basic-params")
+ <ul>
     <li><a href='@Link.To(parameters: "?basics310=page")'>This page without additional url-parameter</a></li>
     <li><a href='@Link.To(parameters: "?basics310=page&sort=ascending")'>This page with additional <code>sort=ascending</code></a></li>
   </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-params", Size = 100 }) 
-</hide-silent>
-
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
-<snippet id="basic-query-string">
+
+@Sys.SourceCode.SnippetInlineStart("basic-query-string")
   <ul>
     <li>URL contains <code>sort</code> using null-check: 
       @(CmsContext.Page.Parameters["sort"] != null)
@@ -74,11 +70,6 @@
       @sort
     </li>
   </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-query-string", Size = 500 }) 
-</hide-silent>
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path, Size = 1300 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineEnd()
+
+@Sys.PageParts.FooterWithSource()

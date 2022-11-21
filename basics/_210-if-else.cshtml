@@ -1,10 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 <div class="row">
@@ -15,21 +13,18 @@
 </div>
 
 <h3>Basic <code>if</code></h3>
-<snippet id="basic-if">
+@Sys.SourceCode.SnippetInlineStart("basic-if")
   @{
     var aValue = "green";
   }
   @if(aValue == "green") {
     <span>it's green </span>
   }
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if", Size = 150 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h3>If-Else</h3>
-<snippet id="basic-if-else">
+@Sys.SourceCode.SnippetInlineStart("basic-if-else")
   @{
     var val2 = "blue";
   }
@@ -38,41 +33,27 @@
   } else {
     <span>it's blue</span>
   }
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if-else", Size = 180 }) 
-</hide-silent>
-
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h3>Using if-else and <code>&lt;text&gt;</code> tags</h3>
 <p>This is important, if you have an code block like an if, and you don't want a span-tag or similar in the output</p>
-<snippet id="basic-if-else-tags">
+@Sys.SourceCode.SnippetInlineStart("basic-if-else-tags")
   @{
     var val4 = "orange";
   }
   @if(val4 != "pink") {
     <text>it's not pink</text>
   }
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if-else-tags", Size = 150 }) 
-</hide-silent>
-
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h3>Quick if-else using Ternary operator <code>? :</code></h3>
-<snippet id="basic-if-else-ternary">
+@Sys.SourceCode.SnippetInlineStart("basic-if-else-ternary")
   @{
     var val3 = "blue";
   }
   @(val3 == "red" ? "it's red" : "it's not red")
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-if-else-ternary", Size = 100 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path, Size = 1100 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

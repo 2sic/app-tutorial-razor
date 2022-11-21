@@ -1,10 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 @{
   var pets = new string[] { "dog", "cat", "mouse"};
@@ -20,48 +18,37 @@
 </div>
 <h3>Using a <code>foreach</code> - the most common way of looping</h3>
 </trim>
-<snippet id="basic-foreach">
+@Sys.SourceCode.SnippetInlineStart("basic-foreach")
   <ul>
     @foreach(var pet in pets) {
       <li>@pet</li>
     }
   </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-foreach", Size = 130 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
 <trim>
 <hr>
 <h3>Basic <code>for</code></h3>
 </trim>
-<snippet id="basic-for">
-  <ul>
+@Sys.SourceCode.SnippetInlineStart("basic-for")
+ <ul>
     @for(var i = 0; i < pets.Length; i++) {
       <li>@pets[i]</li>
     }
   </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-for", Size = 130 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <trim>
 <hr>
 <h3>Using a <code>for</code> index with two lists (arrays)</h3>
 </trim>
-<snippet id="basic-for-index">
-  <ul>
+@Sys.SourceCode.SnippetInlineStart("basic-for-index")
+ <ul>
     @for(var i = 0; i < pets.Length; i++) {
       <li>@pets[i] - owned by @owners[i]</li>
     }
   </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-for-index", Size = 130 }) 
-</hide-silent>
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path, Size = 800 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineEnd()
+
+@Sys.PageParts.FooterWithSource()
