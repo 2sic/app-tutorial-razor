@@ -2,6 +2,11 @@ using Custom.Hybrid;
 using ToSic.Razor.Blade;
 using System;
 using System.Web;
+#if NETCOREAPP
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.IO;
+using System.Text.Encodings.Web;
+#endif
 
 // Class to generate shared parts on the page
 // Such as navigations etc.
@@ -17,9 +22,23 @@ public class PageParts: Custom.Hybrid.Code14
   public dynamic Sys = null;
   public Razor14 ParentRazor;
 
+  // Dnn / Oqtane implementations of render CSHTML based on the given Razor14 base class
+  public dynamic RenderPartial(string path, object data = null) {
+    #if NETCOREAPP
+    var html = ((ParentRazor as dynamic).Html as IHtmlHelper);
+    var view = (data == null ? html.Partial(path) : html.Partial(path, data));
+    var writer = new StringWriter();
+    var encoder = HtmlEncoder.Create(new TextEncoderSettings());
+    view.WriteTo(writer, encoder);
+    return writer.ToString();
+    #else
+    return ParentRazor.Html.Partial(path, data);
+    #endif
+  }
+
   public dynamic Header(dynamic header = null) {
     var l = Log.Call<dynamic>();
-    var headerPart = header != null ? ParentRazor.Html.Partial("../shared/_Header.cshtml", header) : null;
+    var headerPart = header != null ? RenderPartial("../shared/_Header.cshtml", header) : null;
     return l(null, Tag.RawHtml(
       headerPart,
       NavPrevNext()
@@ -35,7 +54,7 @@ public class PageParts: Custom.Hybrid.Code14
   }
 
   public dynamic NavPrevNext() {
-    return _prevNext ?? (_prevNext = ParentRazor.Html.Partial("../shared/_NavigationToolbar.cshtml"));
+    return _prevNext ?? (_prevNext = RenderPartial("../shared/_NavigationToolbar.cshtml"));
   }
   private dynamic _prevNext;
 
