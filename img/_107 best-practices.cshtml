@@ -76,7 +76,7 @@
     var resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Image));
     var resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Field("Image")));
   }
-@Sys.SourceCode.ResultEnd("ImgDemoData", resultHtmlLeft, resultHtmlRight )
+@Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
 <h2>Picture with URL vs. Field in <code>picture</code> tag</h2>
 <p>
@@ -108,7 +108,7 @@
     resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Image));
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image")));
   }
-@Sys.SourceCode.ResultEnd("PictureDemoData", resultHtmlLeft, resultHtmlRight )
+@Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
 <h2>Apply factor to the <code>picture</code> tag</h2>
 <p>
@@ -134,7 +134,7 @@
     resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 0.5));
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 5));
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto2", resultHtmlLeft, resultHtmlRight )
+@Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
 <h2>Create multiple image variants</h2>
 <p>
@@ -168,7 +168,7 @@
     resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image")));
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe));
   }
-@Sys.SourceCode.ResultEnd("multiple-img", resultHtmlLeft, resultHtmlRight )
+@Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
 
 <h2>Choose the optimal alt text</h2>
@@ -204,6 +204,6 @@
   @{
    var resultHtml = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText));
   }
-@Sys.SourceCode.ResultEnd("optimal-alt-text", resultHtml )
+@Sys.SourceCode.ResultEnd(resultHtml )
 
 @Sys.PageParts.FooterWithSource()

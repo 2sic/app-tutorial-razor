@@ -93,7 +93,7 @@
     var previewTag = Kit.Image.Img(tomatoPicUrl);
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h3>Example with Automatic Resize and Special Settings</h3>
@@ -112,7 +112,7 @@
     previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto2", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h3>Example with Automatic Resize and Special SrcSets</h3>
@@ -130,7 +130,7 @@
     previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400");
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto-srcset", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
@@ -143,7 +143,7 @@
     previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary");
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto3", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h3>Automatic Resize with Detailed Control</h3>
@@ -159,7 +159,7 @@
     previewTag = imgControlled;
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto4", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h3>Automatic Resize with Full Control</h3>
@@ -176,7 +176,7 @@
     var imgTag = Tag.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
     resultHtml = Sys.SourceCode.ShowResultImg(imgTag);
   }
-@Sys.SourceCode.ResultEnd("img-srcset-auto5", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <script>

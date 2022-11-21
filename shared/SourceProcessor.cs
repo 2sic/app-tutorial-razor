@@ -1,17 +1,12 @@
 using ToSic.Razor.Blade;
-using ToSic.Razor.Html5;
-using ToSic.Razor.Markup;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 
+// Private Source Code Clean-up Helpers
 public class SourceProcessor: Custom.Hybrid.Code14
 {
-  #region Private Source Code Clean-up Helpers
-
   public string CleanUpSource(string source, string snippetId) {
     source = KeepOnlySnippet(source, snippetId);
     source = ProcessHideTrimSnippet(source);
@@ -113,6 +108,4 @@ public class SourceProcessor: Custom.Hybrid.Code14
     .Where(l => l != null)
     .ToList();
   }
-
-  #endregion
 }

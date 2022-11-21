@@ -16,12 +16,14 @@ public class SourceCode: Custom.Hybrid.Code14
   public SourceCode Init(string path) {
     Path = path;
     SourceProcessor = CreateInstance("SourceProcessor.cs");
+    BsTabs = CreateInstance("BootstrapTabs.cs");
     return this;
   }
 
   public string Path { get; set; }
 
-  private dynamic SourceProcessor {get; set;}
+  private dynamic SourceProcessor { get; set; }
+  private dynamic BsTabs {get;set;}
 
 
   #region Special ShowResult helpers
@@ -56,19 +58,20 @@ public class SourceCode: Custom.Hybrid.Code14
     var names = titlesAndFiles.Where((n, i) => i % 2 == 0).ToArray();
     var files = titlesAndFiles.Where((n, i) => i % 2 == 1).ToArray();
     if (names.Length != files.Length) throw new ArgumentException("parameters must contain even number of values");
-    var id = "files" + Name2TabId(names.First()) + "-many-files";
-    var contents = TabContentGroup();
+    var prefix = "files" + Name2TabId(names.First()) + "-many-files";
+    var contents = BsTabs.TabContentGroup() as Div;
     for(var i = 0; i < names.Length; i++) {
       contents = contents.Add(
         "\n",
-        TabContent(id, Name2TabId(names[i]), isActive: i == 0).Wrap(
-          ShowFileContents(files[i], withIntro: false, showTitle: true)
+        BsTabs.TabContent(prefix, Name2TabId(names[i]),
+          ShowFileContents(files[i], withIntro: false, showTitle: true),
+          isActive: i == 0
         ),
         "\n"
       );
     }
     var result = Tag.RawHtml(
-      TabList(id, names),
+      BsTabs.TabList(prefix, names) as ITag,
       contents
     );
     return result;
@@ -80,69 +83,60 @@ public class SourceCode: Custom.Hybrid.Code14
   private const string SourceTabName = "Source Code";
   private const string ResultAndSourceTabName = "Output and Source";
 
-  #region Snippet
+  #region Snippet(...) (Standalone)
 
   // Standalone call - just show a snippet
   public ITag Snippet(string snippet) {
     return ShowFileContents(null, snippet, expand: true);
   }
 
-  public ITag SnippetStart(string prefix, params string[] names) {
+  #endregion
+
+  #region Remember current snippet ID
+  private string _snippet;
+  #endregion
+
+  #region SnippetStart() / SnippetEnd() in Tabs
+
+  public ITag SnippetStart(string snippet, params string[] names) {
+    _snippet = snippet;
     return Tag.RawHtml(
-      // Tab headers
-      TabsOutputMoreSource(prefix, names),
-      // Tab bodies - must open the first one
-      TabContentGroup().TagStart,
-      // Open the first tab-body item as the snippet is right after this
-      "  ",
-      TabContent(prefix, Name2TabId(ResultTabName), true).TagStart
+      TabsForSnippet(snippet, names),    // Tab headers
+      BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
+      "  ",                             // Open the first tab-body item as the snippet is right after this
+      BsTabs.TabContentOpen(snippet, Name2TabId(ResultTabName), true)
     );
   }
 
-  public ITag SnippetEnd(string prefix) {
-    return SnippetEnd(prefix, true);
-  }
-  
-
-
-  private ITag TabContentClose() {
-    return Tag.RawHtml("  </div>");
+  public ITag SnippetEnd(string snippet) {
+    return Tag.RawHtml(
+      BsTabs.TabContentClose(),     // Will close if still open
+      BsTabs.TabContent(snippet, Name2TabId(SourceTabName), Snippet(snippet)),
+      BsTabs.TabContentGroupClose() // Will close if still open
+    );
   }
 
-  private ITag TabWithBody(string prefix, string id, object result) {
+  // Tabs for Output, (optional more tabs), Source Code
+  private ITag TabsForSnippet(string prefix, params string[] names) {
+    var tabNames = new List<string>() { ResultTabName };
+    tabNames.AddRange(names);
+    tabNames.Add(SourceTabName);
+    return BsTabs.TabList(prefix, tabNames) as ITag;
+  }
+
+  #endregion
+
+  private object FlexibleResult(object result) {
     // If it's a string such as "file:abc.cshtml" then resolve that first
     if (result is string) {
       var strResult = result as string;
       if (strResult.StartsWith("file:"))
-        result = ShowFileContents(((string)result).Substring(5), withIntro: false, showTitle: true);
+        return ShowFileContents(((string)result).Substring(5), withIntro: false, showTitle: true);
     } 
-
-    return Tag.RawHtml(
-      "\n",
-      TabContent(prefix, id).Wrap(result),
-      "\n"
-    );
+    return result;
   }
 
-  private Div TabContentGroup() {
-    return Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5");
-  }
-
-  private Div TabContent(string prefix, string id, bool isActive = false) {
-    // var id = Name2TabId(name);
-    return Tag.Div()
-        .Class("tab-pane fade " + (isActive ? "show active" : ""))
-        .Id(prefix + id)
-        .Attr("role", "tabpanel")
-        .Attr("aria-labelledby", prefix + id + "-tab");
-  }
-  private ITag SnippetEnd(string prefix, bool closeStart) {
-    return Tag.RawHtml(
-      closeStart ? TabContentClose() : null,
-      TabWithBody(prefix, Name2TabId(SourceTabName), Snippet(prefix)),
-      "</div>"
-    );
-  }
+  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-"); }
 
   #region Snippet Inline and Intro
 
@@ -175,9 +169,11 @@ public class SourceCode: Custom.Hybrid.Code14
       result
     );
   }
+
   #endregion
 
-  #region Snippet Only
+  #region SnippetOnly()
+
   public ITag SnippetOnlyStart(string prefix) {
     return Snippet(prefix);
   }
@@ -187,79 +183,47 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
-  public ITag ResultStart(string prefix, params string[] names) {
-    _lastNames = names;
-    return SnippetStart(prefix, names);
-  }
-  private string[] _lastNames;
-  private string GetResultName(int index) {
-    var l = Log.Call<string>("index:" + index);
-    if (_lastNames == null || !_lastNames.Any()) return l("no names", "unknown");
-    if (_lastNames.Length < index + 1) return l("index to high", "unknown");
-    var name = _lastNames[index];
-    Log.Add("name before optimization: '" + name + "'");
-    return l(name, name);
-  }
+  #region ResultStart() / ResultPrepare() / ResultEnd()
 
-  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-"); }
+  public ITag ResultStart(string snippet, params string[] names) {
+    return SnippetStart(snippet, names);
+  }
 
   public string ResultPrepare() { return ""; }
 
-  public ITag ResultEnd(string prefix, params object[] results) {
-    var l = Log.Call<ITag>("prefix: " + prefix + ", results:" + results.Length);
+  public ITag ResultEnd(params object[] results) {
+    var l = Log.Call<ITag>("prefix: " + _snippet + ", results:" + results.Length);
     var nameCount = 0;
     var html = Tag.RawHtml();
-    // Close the tabs / header div section
-    html.Add(TabContentClose());
+    // Close the tabs / header div section if it hasn't been closed yet
+    html = html.Add(BsTabs.TabContentClose());
     if (results.Any())
     {
       foreach(var m in results) {
-        var name = Name2TabId(GetResultName(nameCount));
+        var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
         Log.Add("tab name:" + name + " (" + nameCount + ")");
-        html.Add(TabWithBody(prefix, name, m));
+        html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
         nameCount++;
       }
     }
-    _lastNames = null;
-    html.Add(SnippetEnd(prefix, false));
+    // _moreTabNames = null;
+    html.Add(SnippetEnd(_snippet));
     return l("resulting Html", html);
   }
 
   #endregion
 
-  #region Snippet Tabs to select between snippet and source
-
-  private ITag TabsOutputMoreSource(string prefix, params string[] names) {
-    var tabNames = new List<string>() { ResultTabName };
-    tabNames.AddRange(names);
-    tabNames.Add(SourceTabName);
-    return TabList(prefix, tabNames);
-  }
-
-  private ITag TabList(string prefix, IEnumerable<string> names) {
-    var tabList = new List<ITag>();
-    foreach(var name in names)
-      tabList.Add(Tab(prefix, name, tabList.Count == 0)); // first entry is active = true
-    return Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(tabList);
-  }
-
-  private ITag Tab(string prefix, string label, bool active = false) {
-    return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-      TabButton(prefix, label, Name2TabId(label), active)
+  #region ResultAndSnippetStart()... - shows both the result and the snippet in the initial tab
+  public ITag ResultAndSnippetStart(string prefix, params string[] names) {
+    return Tag.RawHtml(
+      SnippetStart(prefix, names),
+      Snippet(prefix),
+      BsTabs.TabContentClose()
     );
   }
 
-  private ITag TabButton(string prefix, string title, string name, bool selected) {
-    return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
-      .Attr("data-bs-toggle", "tab")
-      .Attr("data-bs-target", "#" + prefix + name)
-      .Type("button")
-      .Attr("role", "tab")
-      .Attr("aria-controls", prefix + name)
-      .Attr("aria-selected", selected.ToString().ToLower());
-  }
-
   #endregion
+
 
   #region Show Source Block
 

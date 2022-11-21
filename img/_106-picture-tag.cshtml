@@ -110,7 +110,7 @@
     var previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("pic-auto", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h2>Automatically Resized With Custom Alt and Classes</h2>
@@ -124,7 +124,7 @@
         imgClass: "dummy-class");
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd("pic-auto-alt-class", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h2>Automatically Resized Bits with More Control</h2>
@@ -143,7 +143,7 @@
         picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!").ToString() + "</picture>";
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
   }
-@Sys.SourceCode.ResultEnd("pic-auto-control1", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 
 <h2>Automatically Resized Bits with Lots of Control</h2>
@@ -168,7 +168,7 @@
     previewString += "</picture>";
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
   }
-@Sys.SourceCode.ResultEnd("pic-auto-control2", resultHtml)
+@Sys.SourceCode.ResultEnd(resultHtml)
 
 <script>
   // Activate the controls which show the current live src of each picture/image tag
