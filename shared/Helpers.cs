@@ -3,6 +3,7 @@ using ToSic.Razor.Blade;
 using System.Web;
 using System.Collections.Generic;
 using System.Linq;
+
 public class Helpers: Custom.Hybrid.Code14
 {
   public string TutorialSectionType = "TutorialSection";
@@ -10,11 +11,11 @@ public class Helpers: Custom.Hybrid.Code14
   public string TutViewSharingMetadataType = "TutorialViewSharing";
 
   public Helpers Init(Razor14 page) {
-    Page = page;
-    Path = Page.Path;
+    ParentRazor = page;
+    Path = ParentRazor.Path;
     return this;
   }
-  public Razor14 Page;
+  public Razor14 ParentRazor;
 
   public string Path {get;set;}
 
@@ -22,13 +23,11 @@ public class Helpers: Custom.Hybrid.Code14
   // TODO: USE THIS IN ALL FILES
   public string ShowCodeFile = "../shared/_source-code.cshtml";
 
-  public dynamic SourceCode
-  {
-    get {
-      return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(Path));
-    }
-  }
+  public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(Path)); } }
   private dynamic _sourceCode;
+
+  public dynamic PageParts  { get { return _pageParts ?? (_pageParts = CreateInstance("PageParts.cs").Init(this)); } }
+  private dynamic _pageParts;
 
   public dynamic Title(string title) {
     // set browser title for SEO

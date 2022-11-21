@@ -97,14 +97,19 @@ public class SourceCode: Custom.Hybrid.Code14
   }
   private string[] _lastNames;
   private string GetResultName(int index) {
-    if (_lastNames == null || !_lastNames.Any()) return "unknown";
-    if (_lastNames.Length < index + 1) return "unknown";
-    return "-" + _lastNames[index].ToLower().Replace(" ", "-");
+    var l = Log.Call<string>("index:" + index);
+    if (_lastNames == null || !_lastNames.Any()) return l("no names", "unknown");
+    if (_lastNames.Length < index + 1) return l("index to high", "unknown");
+    var name = _lastNames[index];
+    Log.Add("name before optimization: '" + name + "'");
+    var result = "-" + name.ToLower().Replace(" ", "-");
+    return l(result, result);
   }
 
   public string ResultPrepare() { return ""; }
 
   public ITag ResultEnd(string prefix, params object[] results) {
+    var l = Log.Call<ITag>("prefix: " + prefix + ", results:" + results.Length);
     var nameCount = 0;
     var html = Tag.RawHtml();
     if (results != null && results.Any())
@@ -113,12 +118,14 @@ public class SourceCode: Custom.Hybrid.Code14
       html.Add(SnippetStartEnd());
       foreach(var m in results) {
         var name = GetResultName(nameCount);
+        Log.Add("tab name:" + name + " (" + nameCount + ")");
         html.Add(SnippetMore(prefix, name, m));
+        nameCount++;
       }
     }
     _lastNames = null;
     html.Add(SnippetEnd(prefix, false));
-    return html;
+    return l("resulting Html", html);
   }
 
   #endregion
@@ -159,27 +166,40 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region Show Source Block
 
+  public ITag ShowCurrentRazor() {
+    return ShowFileContents("");
+  }
+  public ITag Show(string file) {
+    return ShowFileContents(file);
+  }
+
   public ITag ShowFileContents(string file,
     string snippet = null, string title = null, string titlePath = null, 
     bool? expand = null, bool? wrap = null)
   {
+    var debug = false;
     var path = Path;
+    var errPath = Path;
     try
     {
       var specs = GetFileAndProcess(path, file, snippet);
       path = specs.Path;  // update in case of error
+      errPath = debug ? specs.FullPath : path;
       title = title ?? "Source Code of " + (specs.File == null
         ? "this " + specs.Type // "this snippet" vs "this file"
         : titlePath + specs.File);
       specs.Expand = expand ?? specs.Expand;
       specs.Wrap = wrap ?? specs.Wrap;
       return Tag.RawHtml(
+        debug ? Tag.Div(errPath).Class("alert alert-info") : null,
         SourceBlock(specs, title),
         TurnOnSource(specs, specs.Path, specs.Wrap)
       );
     }
     catch
     {
+      return Tag.Div("Error showing " + errPath).Class("alert alert-warning");
+      // throw;
       return ShowError(path);
     }
     return null;
@@ -199,10 +219,6 @@ public class SourceCode: Custom.Hybrid.Code14
     if (string.IsNullOrEmpty(snippet) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
     return fileInfo;
   }
-
-  // private FileInfo Process(FileInfo fileInfo) {
-    
-  // }
 
   private dynamic ShowError(string path) {
     return Tag.RawHtml(
@@ -283,7 +299,8 @@ public class SourceCode: Custom.Hybrid.Code14
   #region File Processing
 
   public SourceInfo GetFile(string filePath, string file) {
-    if (file != null) {
+    var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
+    if (Text.Has(file)) {
       if (file.IndexOf(".") == -1)
         file = "_" + file + ".cshtml";
       var lastSlash = filePath.LastIndexOf("/");
@@ -293,7 +310,7 @@ public class SourceCode: Custom.Hybrid.Code14
     if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
       fullPath = GetFullPath(filePath);
     var contents = System.IO.File.ReadAllText(fullPath);
-    return new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents };
+    return l("test", new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents });
   }
 
   public class ShowSourceSpecs {
@@ -319,15 +336,17 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
   private string GetFullPath(string filePath) {
+    var l = Log.Call<string>(filePath);
     #if NETCOREAPP
       // This is the Oqtane implementation - cannot use Server.MapPath
       // 2sxclint:disable:v14-no-getservice
       var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
       var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
-      return System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
+      var result = System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
     #else
-      return HttpContext.Current.Server.MapPath(filePath);
+      var result = HttpContext.Current.Server.MapPath(filePath);
     #endif
+    return l(result, result);
   }
 
   #endregion
