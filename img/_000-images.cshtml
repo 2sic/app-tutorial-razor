@@ -10,8 +10,9 @@
 *@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  var hlp = CreateInstance("../shared/Helpers.cs"); }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <p>
@@ -23,10 +24,10 @@
 <h2>Basic Examples</h2>
 
 <ol>
-  @hlp.TutorialLink("Images (img) and Pictures (picture) with Best Practices", "img100", 
+  @Sys.TutorialLink("Images (img) and Pictures (picture) with Best Practices", "img100", 
   "Best ways to use img, picture and also give various sizes / formats for the browser to load")
-  @hlp.TutorialLink("Resize and Crop Images Automatically", "img200")
-  @hlp.TutorialLink("Resize and Crop using Preset Sizes and Configurations", "img210")
+  @Sys.TutorialLink("Resize and Crop Images Automatically", "img200")
+  @Sys.TutorialLink("Resize and Crop using Preset Sizes and Configurations", "img210")
 </ol>
 
 

@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
   @using ToSic.Razor.Blade;
-  @Html.Partial("_header.cshtml")
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{
-    var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
-  }
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
   @{
     /* Internal remarks for the tutorial developers
       To reall see the images loading they must have different names in each tutorial.
@@ -23,6 +21,10 @@
     }
   }
 </hide>
+
+<hide-silent>
+  test 2dm
+</hide-silent>
 
 <trim>
   <div class="row">
@@ -103,7 +105,7 @@
 @Sys.SourceCode.ResultStart("pic-auto", "Generated HTML")
   @ShowCurrentSrc("pic-auto")
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
-  @Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.ResultPrepare()
   @{
     var previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -132,8 +134,8 @@
     var picControlled = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
   }
   <picture>
-  @picControlled.Sources
-  @picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!")
+    @picControlled.Sources
+    @picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!")
   </picture>
 @Sys.SourceCode.ResultPrepare()
   @{
@@ -169,6 +171,7 @@
 @Sys.SourceCode.ResultEnd("pic-auto-control2", resultHtml)
 
 <script>
+  // Activate the controls which show the current live src of each picture/image tag
   showChangingSrc('demo-picture-formats');
   showChangingSrc('demo-picture-srcset');
   showChangingSrc('pic-auto');
@@ -176,7 +179,4 @@
   showChangingSrc('pic-auto-control2');
 </script>
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial(sourceCode, new { Path, Size = 1900 })
-</hide>
+@Sys.PageParts.FooterWithSource()

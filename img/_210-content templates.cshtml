@@ -1,10 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 @{
   var imgUrl = App.Path + "/settings/demo.png";
-  var hlp = CreateInstance("../shared/Helpers.cs");
 }
 
 <trim>
@@ -66,6 +67,4 @@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-3", Size = 85 }) 
 </hide-silent>
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-</hide>
+@Sys.PageParts.FooterWithSource()

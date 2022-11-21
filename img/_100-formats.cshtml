@@ -1,14 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  /* Internal remarks for the tutorial developers
-    To reall see the images loading they must have different names in each tutorial.
-    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
-  */
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <div class="row">
@@ -59,6 +53,5 @@
 <hide-silent> @* Show only this snippet *@
   @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-basic", Size = 120 }) 
 </hide-silent>
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-</hide>
+
+@Sys.PageParts.FooterWithSource()

@@ -56,8 +56,7 @@ public class SourceCode: Custom.Hybrid.Code14
       // Tab headers
       AutoSnippetTabs(prefix, names),
       // Tab bodies - must open the first one
-      Tag.Div().Class("tab-content").Id("myTabContent").TagStart,
-      "\n",
+      Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-4").Id("myTabContent").TagStart,
       // Open the first tab-body item as the snippet is right after this
       "  " + Tag.Div().Class("tab-pane fade show active").Id(prefix + ResultTabName)
         .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-tab").TagStart
@@ -144,7 +143,7 @@ public class SourceCode: Custom.Hybrid.Code14
 
   private ITag AutoSnippetTabs(string prefix, params string[] names) {
     // First Tab
-    var result = Tag.Ul().Class("nav nav-pills").Attr("role", "tablist").Wrap(
+    var result = Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(
       Tab(prefix, ResultTabName, "Output", true)
     );
     // Optional additional tabs

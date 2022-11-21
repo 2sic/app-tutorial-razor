@@ -1,9 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <h2>TODO SEO GOOGLE</h2>

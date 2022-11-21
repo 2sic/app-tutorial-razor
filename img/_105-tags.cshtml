@@ -1,24 +1,24 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@using ToSic.Razor.Blade;
-@Html.Partial("_header.cshtml")
-@* Sys must always be an exact copy of this line, so that we could search/replace *@
-@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-@{  
-  /* Internal remarks for the tutorial developers
-    To reall see the images loading they must have different names in each tutorial.
-    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
-  */
-  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
-@functions {
-  dynamic ShowCurrentSrc(string id) {
-    return Tag.Div().Wrap(
-      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-      Tag.Code().Id(id + "-label")
-    );
+  @using ToSic.Razor.Blade;
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{  
+    /* Internal remarks for the tutorial developers
+      To reall see the images loading they must have different names in each tutorial.
+      Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
+    */
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
   }
-}
+  @functions {
+    dynamic ShowCurrentSrc(string id) {
+      return Tag.Div().Wrap(
+        Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+        Tag.Code().Id(id + "-label")
+      );
+    }
+  }
 </hide>
 
 <trim>
@@ -173,10 +173,9 @@
   @{
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
-
-<snippet>
-<img src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
-</snippet>
+  <snippet>
+  <img src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+  </snippet>
 @Sys.SourceCode.ResultPrepare()
   @{
     previewTag = imgFullControl;
@@ -186,6 +185,7 @@
 
 
 <script>
+  // Activate the controls which show the current live src of each picture/image tag
   showChangingSrc("img-srcset")
   showChangingSrc('img-srcset-auto');
   showChangingSrc('img-srcset-auto-srcset');
@@ -201,9 +201,6 @@ Photo by <a href="https://unsplash.com/@dorianbaumann?utm_source=unsplash&utm_me
 Werdenberg: Photo by <a href="https://unsplash.com/@calina?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Georg Bommeli</a> on <a href="https://unsplash.com/s/photos/buchs-sg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 *@
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial(sourceCode, new { Path }) 
-
   <div class="alert alert-info">
     <strong>Credits: </strong>
     <ol>
@@ -216,3 +213,5 @@ Werdenberg: Photo by <a href="https://unsplash.com/@calina?utm_source=unsplash&u
     </ol>
   </div>
 </hide>
+
+@Sys.PageParts.FooterWithSource()
