@@ -14,7 +14,7 @@
   @functions {
     dynamic ShowCurrentSrc(string id)
     {
-      return Tag.Div().Wrap(
+      return Tag.Div().Class("alert alert-light").Wrap(
       Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
       Tag.Code().Id(id + "-label")
       );
@@ -23,7 +23,7 @@
 
 </hide>
 <trim>
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-lg-7">
       <h2>Best practices using the Image Service</h2>
       <p>Learn about the best practices for using the image service and more. Our goals are:</p>
@@ -62,17 +62,13 @@
   <div class="row">
     <div class="col-md">
       <p><strong>Picture from <code>Content.Image</code></strong></p>
-      <snippet id="img-url">
       @* Picture from Content.Image *@
       @Kit.Image.Img(Content.Image)
-      </snippet>
     </div>
     <div class="col-md">
       <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
-      <snippet id="img-object">
       @* Picture from Field containing crop anchor and alt text *@
       @Kit.Image.Img(Content.Field("Image"))
-      </snippet>
     </div>
   </div>
 @Sys.SourceCode.ResultPrepare()
@@ -81,8 +77,6 @@
     var resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Field("Image")));
   }
 @Sys.SourceCode.ResultEnd("ImgDemoData", resultHtmlLeft, resultHtmlRight )
-
-<br>
 
 <h2>Picture with URL vs. Field in <code>picture</code> tag</h2>
 <p>
@@ -100,17 +94,13 @@
   <div class="row">
     <div class="col-md">
       <p><strong>Picture from <code>Content.Image</code></strong></p>
-      <snippet id="picture-url">
       @* Picture from Content.Image *@
       @Kit.Image.Picture(Content.Image)
-      </snippet>
     </div>
     <div class="col-md">
       <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
-      <snippet id="picture-object">
       @* Picture from Field containing crop anchor and alt text *@
       @Kit.Image.Picture(Content.Field("Image"))
-      </snippet>
     </div>
   </div>
 @Sys.SourceCode.ResultPrepare()
@@ -119,8 +109,6 @@
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image")));
   }
 @Sys.SourceCode.ResultEnd("PictureDemoData", resultHtmlLeft, resultHtmlRight )
-
-<br>
 
 <h2>Apply factor to the <code>picture</code> tag</h2>
 <p>
@@ -148,8 +136,6 @@
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto2", resultHtmlLeft, resultHtmlRight )
 
-<br>
-
 <h2>Create multiple image variants</h2>
 <p>
   The picture tag contains multiple configurations of images, which are called recipes in our ecosystem.
@@ -165,20 +151,16 @@
   <div class="row">
     <div class="col-md">
       <p><strong>Picture default recipe</strong></p>
-      <snippet id="picture-recipe-default">
       @* Picture using the default *@
       @Kit.Image.Picture(Content.Field("Image"))
-      </snippet>
     </div>
     <div class="col-md">
       <p><strong>Picture with variants for 2x and 3x of the image size</strong></p>
-      <snippet id="picture-recipe-custom">
       @{
         var customRecipe = Kit.Image.Recipe("2*, 3*");
       }
       @* Picture using recipe with 2x and 3x variants *@
       @Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe)
-      </snippet>
     </div>
 </div>
 @Sys.SourceCode.ResultPrepare()
@@ -188,7 +170,6 @@
   }
 @Sys.SourceCode.ResultEnd("multiple-img", resultHtmlLeft, resultHtmlRight )
 
-<br>
 
 <h2>Choose the optimal alt text</h2>
 <p>
@@ -224,7 +205,5 @@
    var resultHtml = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText));
   }
 @Sys.SourceCode.ResultEnd("optimal-alt-text", resultHtml )
-
-<br>
 
 @Sys.PageParts.FooterWithSource()

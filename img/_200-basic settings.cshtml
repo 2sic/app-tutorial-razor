@@ -7,7 +7,7 @@
     @functions {
     dynamic ShowCurrentSrc(string id)
     {
-      return Tag.Div().Wrap(
+      return Tag.Div().Class("alert alert-light").Wrap(
       Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
       Tag.Code().Id(id + "-label")
       );
@@ -16,7 +16,7 @@
 </hide>
 
 <trim>
-<div class="row">
+<div class="row mb-4">
   <div class="col-lg-7">
     <h2>Use the ImageResizer for Server-Side Resizing</h2>
     <p>
@@ -58,7 +58,6 @@
     Even better: The parameters can be in a global setting for re-use across all apps and templates. 
   </p>
 
-  <hr>
   <h2>Simple Examples with Parameters</h2>
   <p>
     Look at the source-code below to see how they are made. Note that we're adding a pink border around all <code>img</code> tags to make it easier to see the image bounds. 

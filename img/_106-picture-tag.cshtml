@@ -14,7 +14,7 @@
   @functions {
     dynamic ShowCurrentSrc(string id)
     {
-      return Tag.Div().Wrap(
+      return Tag.Div().Class("alert alert-light").Wrap(
       Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
       Tag.Code().Id(id + "-label")
       );
@@ -27,7 +27,7 @@
 </hide-silent>
 
 <trim>
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-lg-7">
       <h2>Browser-Capabilities <code>picture</code> with different formats</h2>
       <p>
@@ -72,7 +72,7 @@
 @Sys.SourceCode.SnippetEnd("demo-picture-formats")
 
 <trim>
-  <hr>
+  
   <h2>Responsive <code>picture</code> with many resolutions</h2>
   <p>
     The perfect image is often different depending on the screen size.
@@ -99,7 +99,7 @@
   </picture>
 @Sys.SourceCode.SnippetEnd("demo-picture-srcset")
 
-<hr>
+
 <h2>Automatically Resized Files &amp Formats</h2>
 
 @Sys.SourceCode.ResultStart("pic-auto", "Generated HTML")
@@ -112,7 +112,7 @@
   }
 @Sys.SourceCode.ResultEnd("pic-auto", resultHtml)
 
-<hr>
+
 <h2>Automatically Resized With Custom Alt and Classes</h2>
 
 @Sys.SourceCode.ResultStart("pic-auto-alt-class", "Generated HTML")
@@ -126,7 +126,7 @@
   }
 @Sys.SourceCode.ResultEnd("pic-auto-alt-class", resultHtml)
 
-<hr>
+
 <h2>Automatically Resized Bits with More Control</h2>
 @Sys.SourceCode.ResultStart("pic-auto-control1", "Generated HTML")
   @ShowCurrentSrc("pic-auto-control1")
@@ -145,7 +145,7 @@
   }
 @Sys.SourceCode.ResultEnd("pic-auto-control1", resultHtml)
 
-<hr>
+
 <h2>Automatically Resized Bits with Lots of Control</h2>
 
 @Sys.SourceCode.ResultStart("pic-auto-control2", "Generated HTML")

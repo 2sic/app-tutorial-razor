@@ -5,9 +5,11 @@
 
   // 2. Include Bootstrap4 if the framework isn't known
   if (Kit.Css.IsUnknown) {
-    Kit.Page.Activate("Bootstrap4");
+    Kit.Page.Activate("Bootstrap5");
+    <div class="alert alert-warning">This Tutorial uses Bootstrap 5, without Bootstrap 5 there will be display errors</div>
   }
 }
+
 
 @* Script Contains ACE9 init code + Accordion JS *@
 <script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>

@@ -94,24 +94,36 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  #region Snippet Inline
+  #region Snippet Inline and Intro
 
   public ITag SnippetInlineStart(string prefix) {
+    return SnippetInlineInitStart(prefix, Tag.H4("Output"));
+  }
+
+  public ITag SnippetInitStart(string prefix) {
+    return SnippetInlineInitStart(prefix, Tag.RawHtml(
+      Tag.H4("Initial Code"),
+      Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples.")));
+  }
+
+  private ITag SnippetInlineInitStart(string prefix, ITag body) {
     _inlineId = prefix;
     return Tag.RawHtml(
       Tag.Div().Class("alert alert-info").TagStart,
-      Tag.H4("Output")
+      body
     );
   }
   private string _inlineId = null;
 
-  public ITag SnippetInlineEnd() {
-    var result = Text.Has(_inlineId) ? Snippet(_inlineId) : Tag.Div("Error - can't close inline snippet without ...Start first");
+  public ITag SnippetInlineEnd() { return SnippetInlineInitEnd(); }
+  public ITag SnippetInitEnd() { return SnippetInlineInitEnd(); }
+  public ITag SnippetInlineInitEnd() {
+    var result = Text.Has(_inlineId) ? Snippet(_inlineId) : Tag.Div("Error - can't close inline/init snippet without ...Start first");
+    _inlineId = null;
     return Tag.RawHtml(
       "</div>",
-      Text.Has(_inlineId) ? Snippet(_inlineId) : Tag.Div("Error - can't close inline snippet without ...Start first")
+      result
     );
-    _inlineId = null;
   }
   #endregion
 
@@ -205,6 +217,10 @@ public class SourceCode: Custom.Hybrid.Code14
   }
   public ITag Show(string file) {
     return ShowFileContents(file);
+  }
+
+  public ITag ShowFile(string file, string title = null, string titlePath = null) {
+    return ShowFileContents(file, title: title, titlePath: titlePath);
   }
 
   public ITag ShowFileContents(string file,
@@ -396,7 +412,7 @@ public class SourceCode: Custom.Hybrid.Code14
       return match.Groups["contents"].Value;
     }
     // V2 with Snippet Tabs / Inline Tabs
-    var patternStartEnd = @"(?:@Sys\.SourceCode\.Snippet(Inline|Only|Intro)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
+    var patternStartEnd = @"(?:@Sys\.SourceCode\.Snippet(Inline|Only|Init)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;

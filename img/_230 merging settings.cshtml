@@ -11,7 +11,7 @@
   @functions {
     dynamic ShowCurrentSrc(string id)
     {
-      return Tag.Div().Wrap(
+      return Tag.Div().Class("alert alert-light").Wrap(
       Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
       Tag.Code().Id(id + "-label")
       );
@@ -21,7 +21,7 @@
 </hide>
 
 <trim>
-<div class="row">
+<div class="row mb-5">
   <div class="col-lg-7">
     <h2>Merge image settings</h2>
     <p>

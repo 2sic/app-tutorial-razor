@@ -128,7 +128,7 @@ public class Helpers: Custom.Hybrid.Code14
     Kit.Page.Activate("2sxc.JsCore"); 
 
     var bsCheck = CreateInstance("Bootstrap4.cs");
-    bsCheck.EnsureBootstrap4();
+    bsCheck.EnsureBootstrap5();
     return "<link rel='stylesheet' href='" + App.Path + "/assets/styles.css' enableoptimizations='true' />";
   }
 

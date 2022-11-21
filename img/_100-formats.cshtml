@@ -4,10 +4,10 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
- @functions {
+  @functions {
     dynamic ShowCurrentSrc(string id)
     {
-      return Tag.Div().Wrap(
+      return Tag.Div().Class("alert alert-light").Wrap(
       Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
       Tag.Code().Id(id + "-label")
       );
@@ -16,7 +16,7 @@
 
 </hide>
 <trim>
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-lg-7">
       <h1>The <code>&lt;img&gt;</code> Tag and Different Image Formats</h1>
       <p>
@@ -46,7 +46,6 @@
 </trim>
 
 <trim>
-  <hr>
   <h2>Standard <code>img</code> Image</h2>
   <p>
     This is used for showing an image, and we won't go into much detail, because you probably already know this one. 

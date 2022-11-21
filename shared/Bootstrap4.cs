@@ -4,10 +4,10 @@ public class Bootstrap4 : Custom.Hybrid.Code14
 {
   // if the theme framework is not BS4, just activate/load it from the WebResources
   // this solves both the cases where its unknown, or another framework
-  public void EnsureBootstrap4()
+  public void EnsureBootstrap5()
   {
     if(Kit.Css.IsUnknown) {
-      Kit.Page.Activate("Bootstrap4");
+      Kit.Page.Activate("Bootstrap5");
     }
   }
 

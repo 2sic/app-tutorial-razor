@@ -32,7 +32,7 @@ public class PageParts: Custom.Hybrid.Code14
     view.WriteTo(writer, encoder);
     return writer.ToString();
     #else
-    return ParentRazor.Html.Partial(path, data);
+    return (data == null ? ParentRazor.Html.Partial(path) : ParentRazor.Html.Partial(path, data));
     #endif
   }
 
