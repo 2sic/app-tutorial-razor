@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <div class="row">
@@ -20,21 +19,17 @@
   </div>
 </trim>
 
-<snippet id="page-properties">
-
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@{
-  // prefix the current title, description and keywords with additional values
-  Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
-  Kit.Page.SetDescription("Learn to use Razor Blade ");
-  Kit.Page.SetKeywords("Tutorial, Razor, Blade");
-}
+@Sys.SourceCode.SnippetOnlyStart("sample")
+  @{
+    // prefix the current title, description and keywords with additional values
+    Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
+    Kit.Page.SetDescription("Learn to use Razor Blade ");
+    Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+  }
+@Sys.SourceCode.SnippetOnlyEnd()
 
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "page-properties", Size = 200 }) 
-</hide-silent>
 
 
 <hide>
