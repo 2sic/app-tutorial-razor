@@ -172,8 +172,9 @@
   <img src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
 @Sys.SourceCode.ResultPrepare()
   @{
-    previewTag = imgFullControl;
-    resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
+    // regenerate to match sample above
+    var imgTag = Tag.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
+    resultHtml = Sys.SourceCode.ShowResultImg(imgTag);
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto5", resultHtml)
 
