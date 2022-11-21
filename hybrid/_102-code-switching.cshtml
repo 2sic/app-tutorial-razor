@@ -12,28 +12,23 @@
 }
 </hide>
 <trim>
-<div class="row">
-  <div class="col-lg-7">
-    <h2>Platform Specific Sub-Razor-Files</h2>
-    <p>
-      In some cases it's just simple to provide different <code>cshtml</code> files for each platform. 
-    </p>
-    <p>
-      Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
-    </p>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Platform Specific Sub-Razor-Files</h2>
+      <p>
+        In some cases it's just simple to provide different <code>cshtml</code> files for each platform. 
+      </p>
+      <p>
+        Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-</div>
-
-</p>
 </trim>
 
-<hr>
-
-@Sys.SourceCode.ResultStart("hybrid", "Dnn Razor", "Oqtane Razor")
+@Sys.SourceCode.ResultAndSnippetStart("hybrid", "Dnn Razor", "Oqtane Razor")
   @Html.Partial("_CodeSwitching." + CmsContext.Platform.Name + ".cshtml")
 @Sys.SourceCode.ResultEnd("file:_CodeSwitching.Dnn.cshtml", "file:_CodeSwitching.Oqtane.cshtml")
 
-@Sys.SourceCode.ShowManyFiles("Dnn Razor", "_CodeSwitching.Dnn.cshtml", "Oqtane Razor", "_CodeSwitching.Oqtane.cshtml")
 
 @Sys.PageParts.FooterWithSource()

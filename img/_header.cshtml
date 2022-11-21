@@ -28,7 +28,7 @@
   
   function showChangingSrc(sampleId) {
     // note: the `-output` suffix is from the demo-tabs which place the img in a ...-output div
-    const imgSelector = "#" + sampleId + "-output img";
+    const imgSelector = "#" + sampleId + "-default img";
     const labelId = "#" + sampleId + "-label";
     showCurrentSrc(imgSelector, labelId);
     getbySelector(imgSelector).onload = function () { showCurrentSrc(imgSelector, labelId); }

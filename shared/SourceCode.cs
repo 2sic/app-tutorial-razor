@@ -99,9 +99,20 @@ public class SourceCode: Custom.Hybrid.Code14
   #region SnippetStart() / SnippetEnd() in Tabs
 
   public ITag SnippetStart(string snippet, params string[] names) {
+    return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
+    // _snippet = snippet;
+    // return Tag.RawHtml(
+    //   TabsForSnippet(snippet, ResultTabName, SourceTabName, names),    // Tab headers
+    //   BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
+    //   "  ",                             // Open the first tab-body item as the snippet is right after this
+    //   BsTabs.TabContentOpen(snippet, Name2TabId(ResultTabName), true)
+    // );
+  }
+
+  private ITag SnippetStartInner(string snippet, string firstName, string lastName, params string[] names) {
     _snippet = snippet;
     return Tag.RawHtml(
-      TabsForSnippet(snippet, names),    // Tab headers
+      TabsForSnippet(snippet, firstName, lastName, names),    // Tab headers
       BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
       "  ",                             // Open the first tab-body item as the snippet is right after this
       BsTabs.TabContentOpen(snippet, Name2TabId(ResultTabName), true)
@@ -117,10 +128,11 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
   // Tabs for Output, (optional more tabs), Source Code
-  private ITag TabsForSnippet(string prefix, params string[] names) {
-    var tabNames = new List<string>() { ResultTabName };
+  private ITag TabsForSnippet(string prefix, string firstName, string lastName, params string[] names) {
+    var tabNames = new List<string>() { firstName };
     tabNames.AddRange(names);
-    tabNames.Add(SourceTabName);
+    if (Text.Has(lastName))
+      tabNames.Add(lastName);
     return BsTabs.TabList(prefix, tabNames) as ITag;
   }
 
@@ -183,43 +195,40 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
-  #region ResultStart() / ResultPrepare() / ResultEnd()
+  #region ResultStart() | ResultAndSnippetStart() / ResultPrepare() / ResultEnd()
+
+  private bool _resultEndWillPrepend = false;
 
   public ITag ResultStart(string snippet, params string[] names) {
-    return SnippetStart(snippet, names);
+    _resultEndWillPrepend = false;
+    return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
   }
 
-  public string ResultPrepare() { return ""; }
+  public ITag ResultAndSnippetStart(string prefix, params string[] names) {
+    _resultEndWillPrepend = true;
+    return SnippetStartInner(prefix, ResultAndSourceTabName, null, names);
+  }
+
+
+  public string ResultPrepare() { return null; }
 
   public ITag ResultEnd(params object[] results) {
     var l = Log.Call<ITag>("prefix: " + _snippet + ", results:" + results.Length);
     var nameCount = 0;
-    var html = Tag.RawHtml();
     // Close the tabs / header div section if it hasn't been closed yet
+    var html = Tag.RawHtml();
+    if (_resultEndWillPrepend)
+      html = html.Add(Snippet(_snippet));
     html = html.Add(BsTabs.TabContentClose());
-    if (results.Any())
-    {
-      foreach(var m in results) {
-        var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
-        Log.Add("tab name:" + name + " (" + nameCount + ")");
-        html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
-        nameCount++;
-      }
+    // If we have any results, add them here
+    foreach(var m in results) {
+      var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
+      Log.Add("tab name:" + name + " (" + nameCount + ")");
+      html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
+      nameCount++;
     }
-    // _moreTabNames = null;
-    html.Add(SnippetEnd(_snippet));
+    html = html.Add(!_resultEndWillPrepend ? SnippetEnd(_snippet) as object : BsTabs.TabContentGroupClose());
     return l("resulting Html", html);
-  }
-
-  #endregion
-
-  #region ResultAndSnippetStart()... - shows both the result and the snippet in the initial tab
-  public ITag ResultAndSnippetStart(string prefix, params string[] names) {
-    return Tag.RawHtml(
-      SnippetStart(prefix, names),
-      Snippet(prefix),
-      BsTabs.TabContentClose()
-    );
   }
 
   #endregion

@@ -28,12 +28,13 @@ public class BootstrapTabs: Custom.Hybrid.Code14
   }
 
   private ITag TabButton(string prefix, string title, string name, bool selected) {
+    var id = selected ? "-default" : name;
     return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
       .Attr("data-bs-toggle", "tab")
-      .Attr("data-bs-target", "#" + prefix + name)
+      .Attr("data-bs-target", "#" + prefix + id)
       .Type("button")
       .Attr("role", "tab")
-      .Attr("aria-controls", prefix + name)
+      .Attr("aria-controls", prefix + id)
       .Attr("aria-selected", selected.ToString().ToLower());
   }
 
@@ -54,7 +55,7 @@ public class BootstrapTabs: Custom.Hybrid.Code14
   }
 
   private Div TabContentDiv(string prefix, string id, bool isActive = false) {
-    // var id = Name2TabId(name);
+    id = isActive ? "-default" : id;
     return Tag.Div()
         .Class("tab-pane fade " + (isActive ? "show active" : ""))
         .Id(prefix + id)
