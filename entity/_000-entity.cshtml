@@ -1,11 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-</hide>
 @using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
 @using System.Linq;
 
 <h2>Working with Entity (Item) Values</h2>
@@ -44,27 +43,20 @@
   </div>
 </trim>
 
-
 <hr>
 <h3>Show Entity Values</h3>
 
-<snippet id="entity-values">
+@Sys.SourceCode.SnippetInlineStart("entity-values")
 <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" align="right" style="border-radius: 50%">
 <ul>
   <li>Name: @Content.FirstName @Content.LastName</li>
   <li>Birthday: @Content.Birthday.ToString("d")</li>
   <li>Award: @Content.Awards.Name</li>
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "entity-values", Size = 150 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <trim>
 <p>Note that <code>Awards</code> refers to other Entities of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. In other tutorials you'll see how to work with such related Entities if there are more than one.  
 </trim>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-</hide>
+@Sys.PageParts.FooterWithSource()
