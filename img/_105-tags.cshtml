@@ -81,13 +81,6 @@
 @Sys.SourceCode.SnippetEnd("img-srcset")
 
 
-@* TODO: @2ro @2dg 
-    - start by renaming the var "hlp" to Sys in every file you work on
-      - then also make sure it always has the .Init(Path) in the initial line
-    - anywhere it currently has a "Size" parameter it should be removed
-    - in the end the variable on top "sourceCode" should also be removed
-*@
-
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 @Sys.SourceCode.ResultStart("img-srcset-auto", "Generated HTML")
   @ShowCurrentSrc("img-srcset-auto")
@@ -101,6 +94,7 @@
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto", resultHtml)
+
 
 <h3>Example with Automatic Resize and Special Settings</h3>
 <p>
@@ -120,6 +114,7 @@
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto2", resultHtml)
 
+
 <h3>Example with Automatic Resize and Special SrcSets</h3>
 <p>
   The default settings contains a list of default resizes - which is why the examples before just worked. 
@@ -137,6 +132,7 @@
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto-srcset", resultHtml)
 
+
 <h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
 
 @Sys.SourceCode.ResultStart("img-srcset-auto3", "Generated HTML")
@@ -148,6 +144,7 @@
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto3", resultHtml)
+
 
 <h3>Automatic Resize with Detailed Control</h3>
 
@@ -163,6 +160,7 @@
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
 @Sys.SourceCode.ResultEnd("img-srcset-auto4", resultHtml)
+
 
 <h3>Automatic Resize with Full Control</h3>
 

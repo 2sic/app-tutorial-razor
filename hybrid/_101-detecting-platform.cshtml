@@ -1,11 +1,10 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -25,17 +24,12 @@
 
 <hr>
 
-<snippet id="hybrid">
-You are running "@CmsContext.Platform.Name"
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "hybrid" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineStart("hybrid")
+  You are running "@CmsContext.Platform.Name"
+@Sys.SourceCode.SnippetInlineEnd()
+
+@Sys.PageParts.FooterWithSource()
 
 <hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
-
 @* 2sxclint:disable:no-dnn-namespaces *@
-
 </hide>

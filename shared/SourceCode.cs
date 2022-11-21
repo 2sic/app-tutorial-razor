@@ -1,4 +1,5 @@
 using ToSic.Razor.Blade;
+using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,13 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public SourceCode Init(string path) {
     Path = path;
+    SourceProcessor = CreateInstance("SourceProcessor.cs");
     return this;
   }
 
   public string Path { get; set; }
+
+  private dynamic SourceProcessor {get; set;}
 
 
   #region Special ShowResult helpers
@@ -45,24 +49,53 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
+  #region Tabbed Files
+
+  // Use ShowManyFiles("Tab Name", "something.cshtml", "Tab Name", "else.cshtml")
+  public ITag ShowManyFiles(params string[] titlesAndFiles) {
+    var names = titlesAndFiles.Where((n, i) => i % 2 == 0).ToArray();
+    var files = titlesAndFiles.Where((n, i) => i % 2 == 1).ToArray();
+    if (names.Length != files.Length) throw new ArgumentException("parameters must contain even number of values");
+    var id = "files" + Name2TabId(names.First()) + "-many-files";
+    var contents = TabContentGroup();
+    for(var i = 0; i < names.Length; i++) {
+      contents = contents.Add(
+        "\n",
+        TabContent(id, Name2TabId(names[i]), isActive: i == 0).Wrap(
+          ShowFileContents(files[i], withIntro: false, showTitle: true)
+        ),
+        "\n"
+      );
+    }
+    var result = Tag.RawHtml(
+      TabList(id, names),
+      contents
+    );
+    return result;
+  }
+
+  #endregion
+
+  private const string ResultTabName = "Output"; // must match js in img samples, where it becomes "-output"
+  private const string SourceTabName = "Source Code";
+  private const string ResultAndSourceTabName = "Output and Source";
+
   #region Snippet
 
-  // Standalone call
+  // Standalone call - just show a snippet
   public ITag Snippet(string snippet) {
     return ShowFileContents(null, snippet, expand: true);
   }
 
-  private const string ResultTabName = ""; // must match js in img samples
-  private const string SourceTabName = "-source-code";
   public ITag SnippetStart(string prefix, params string[] names) {
     return Tag.RawHtml(
       // Tab headers
-      AutoSnippetTabs(prefix, names),
+      TabsOutputMoreSource(prefix, names),
       // Tab bodies - must open the first one
-      Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5").Id("myTabContent").TagStart,
+      TabContentGroup().TagStart,
       // Open the first tab-body item as the snippet is right after this
-      "  " + Tag.Div().Class("tab-pane fade show active").Id(prefix + ResultTabName)
-        .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-tab").TagStart
+      "  ",
+      TabContent(prefix, Name2TabId(ResultTabName), true).TagStart
     );
   }
 
@@ -72,24 +105,41 @@ public class SourceCode: Custom.Hybrid.Code14
   
 
 
-  private ITag SnippetStartEnd() {
+  private ITag TabContentClose() {
     return Tag.RawHtml("  </div>");
   }
 
-  private ITag SnippetMore(string prefix, string id, object result) {
+  private ITag TabWithBody(string prefix, string id, object result) {
+    // If it's a string such as "file:abc.cshtml" then resolve that first
+    if (result is string) {
+      var strResult = result as string;
+      if (strResult.StartsWith("file:"))
+        result = ShowFileContents(((string)result).Substring(5), withIntro: false, showTitle: true);
+    } 
+
     return Tag.RawHtml(
       "\n",
-      Tag.Div().Class("tab-pane fade").Id(prefix + id)
-        .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + id + "-tab").Wrap(
-          result
-        ),
+      TabContent(prefix, id).Wrap(result),
       "\n"
     );
   }
+
+  private Div TabContentGroup() {
+    return Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5");
+  }
+
+  private Div TabContent(string prefix, string id, bool isActive = false) {
+    // var id = Name2TabId(name);
+    return Tag.Div()
+        .Class("tab-pane fade " + (isActive ? "show active" : ""))
+        .Id(prefix + id)
+        .Attr("role", "tabpanel")
+        .Attr("aria-labelledby", prefix + id + "-tab");
+  }
   private ITag SnippetEnd(string prefix, bool closeStart) {
     return Tag.RawHtml(
-      closeStart ? SnippetStartEnd() : Tag.RawHtml(),
-      SnippetMore(prefix, SourceTabName, Snippet(prefix)),
+      closeStart ? TabContentClose() : null,
+      TabWithBody(prefix, Name2TabId(SourceTabName), Snippet(prefix)),
       "</div>"
     );
   }
@@ -148,9 +198,10 @@ public class SourceCode: Custom.Hybrid.Code14
     if (_lastNames.Length < index + 1) return l("index to high", "unknown");
     var name = _lastNames[index];
     Log.Add("name before optimization: '" + name + "'");
-    var result = "-" + name.ToLower().Replace(" ", "-");
-    return l(result, result);
+    return l(name, name);
   }
+
+  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-"); }
 
   public string ResultPrepare() { return ""; }
 
@@ -158,14 +209,14 @@ public class SourceCode: Custom.Hybrid.Code14
     var l = Log.Call<ITag>("prefix: " + prefix + ", results:" + results.Length);
     var nameCount = 0;
     var html = Tag.RawHtml();
-    if (results != null && results.Any())
+    // Close the tabs / header div section
+    html.Add(TabContentClose());
+    if (results.Any())
     {
-      // Close the tabs / header div section
-      html.Add(SnippetStartEnd());
       foreach(var m in results) {
-        var name = GetResultName(nameCount);
+        var name = Name2TabId(GetResultName(nameCount));
         Log.Add("tab name:" + name + " (" + nameCount + ")");
-        html.Add(SnippetMore(prefix, name, m));
+        html.Add(TabWithBody(prefix, name, m));
         nameCount++;
       }
     }
@@ -178,7 +229,27 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region Snippet Tabs to select between snippet and source
 
-  public ITag AutoSnippetButton(string prefix, string title, string name, bool selected) {
+  private ITag TabsOutputMoreSource(string prefix, params string[] names) {
+    var tabNames = new List<string>() { ResultTabName };
+    tabNames.AddRange(names);
+    tabNames.Add(SourceTabName);
+    return TabList(prefix, tabNames);
+  }
+
+  private ITag TabList(string prefix, IEnumerable<string> names) {
+    var tabList = new List<ITag>();
+    foreach(var name in names)
+      tabList.Add(Tab(prefix, name, tabList.Count == 0)); // first entry is active = true
+    return Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(tabList);
+  }
+
+  private ITag Tab(string prefix, string label, bool active = false) {
+    return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
+      TabButton(prefix, label, Name2TabId(label), active)
+    );
+  }
+
+  private ITag TabButton(string prefix, string title, string name, bool selected) {
     return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
       .Attr("data-bs-toggle", "tab")
       .Attr("data-bs-target", "#" + prefix + name)
@@ -186,26 +257,6 @@ public class SourceCode: Custom.Hybrid.Code14
       .Attr("role", "tab")
       .Attr("aria-controls", prefix + name)
       .Attr("aria-selected", selected.ToString().ToLower());
-  }
-
-  private ITag AutoSnippetTabs(string prefix, params string[] names) {
-    // First Tab
-    var result = Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(
-      Tab(prefix, ResultTabName, "Output", true)
-    );
-    // Optional additional tabs
-    if (names != null && names.Any())
-      foreach(var n in names) 
-        result.Add(Tab(prefix, "-" + n.ToLower().Replace(" ", "-"), n));
-    // final Source tab
-    result.Add(Tab(prefix, SourceTabName, "Source Code"));
-    return result;
-  }
-
-  private ITag Tab(string prefix, string id, string label, bool active = false) {
-    return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-      AutoSnippetButton(prefix, label, id, active)
-    );
   }
 
   #endregion
@@ -225,7 +276,7 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public ITag ShowFileContents(string file,
     string snippet = null, string title = null, string titlePath = null, 
-    bool? expand = null, bool? wrap = null)
+    bool? expand = null, bool? wrap = null, bool? withIntro = null, bool? showTitle = null)
   {
     var debug = false;
     var path = Path;
@@ -240,6 +291,8 @@ public class SourceCode: Custom.Hybrid.Code14
         : "this " + specs.Type); // "this snippet" vs "this file"
       specs.Expand = expand ?? specs.Expand;
       specs.Wrap = wrap ?? specs.Wrap;
+      specs.ShowIntro = withIntro ?? specs.ShowIntro;
+      specs.ShowTitle = showTitle ?? specs.ShowTitle;
       return Tag.RawHtml(
         debug ? Tag.Div(errPath).Class("alert alert-info") : null,
         SourceBlock(specs, title),
@@ -258,12 +311,11 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public SourceInfo GetFileAndProcess(string path, string file, string snippet = null) {
     var fileInfo = GetFile(path, file);
-    var source = KeepOnlySnippet(fileInfo.Contents, snippet);
-    source = ProcessHideTrimSnippet(source);
-    fileInfo.Processed = SourceTrim(source);
+    fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippet);
     fileInfo.Size = Size(null, fileInfo.Processed);
     var isSnippet = !string.IsNullOrWhiteSpace(snippet);
-    fileInfo.WithIntro = !isSnippet;
+    fileInfo.ShowIntro = !isSnippet;
+    fileInfo.ShowTitle = !isSnippet;
     fileInfo.Type = isSnippet ? "snippet" : "file";
     fileInfo.DomAttribute = "source-code-" + CmsContext.Module.Id;
     if (string.IsNullOrEmpty(snippet) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
@@ -282,13 +334,13 @@ public class SourceCode: Custom.Hybrid.Code14
   private dynamic SourceBlock(ShowSourceSpecs specs, string title) {
 
     return Tag.Div().Class("code-block " + (specs.Expand ? "is-expanded" : "")).Attr(specs.DomAttribute).Wrap(
-      specs.WithIntro
+      specs.ShowIntro
         ? Tag.Div().Class("header row justify-content-between").Wrap(
             Tag.Div().Class("col-11").Wrap(
-              Tag.H2(title),
+              Tag.H3(title),
               Tag.P("Below you'll see the source code of the " + specs.Type + @". 
-                  Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
-                  <strong>Click to expand the code</strong>")
+                    Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
+                    <strong>Click to expand the code</strong>")
             ),
             Tag.Div().Class("col-auto").Wrap(
               // Up / Down arrows as SVG - hidden by default, become visible based on CSS 
@@ -296,14 +348,16 @@ public class SourceCode: Custom.Hybrid.Code14
               Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down'>")
             )
           ) as ITag
-        : Tag.Span(),
+        : specs.ShowTitle
+          ? Tag.H3(title) as ITag
+          : Tag.Span(),
       SourceBlockCode(specs)
     );
   }
 
 
   private ITag ShowResult(string source, string language) {
-    source = SourceTrim(source);
+    source = SourceProcessor.SourceTrim(source) as string;
     var specs = new ShowSourceSpecs() {
       Processed = source,
       Size = Size(null, source),
@@ -321,7 +375,7 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  public ITag TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
+  private ITag TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
     var language = "ace/mode/" + (specs.Language ?? (Text.Has(filePath)
       ? FindAce3LanguageName(filePath)
       : "html"));
@@ -373,7 +427,8 @@ public class SourceCode: Custom.Hybrid.Code14
     public string Type = "file";
     public string DomAttribute;
     public string RandomId;
-    public bool WithIntro;
+    public bool ShowIntro;
+    public bool ShowTitle;
     public bool Expand = true;
     public bool Wrap;
   }
@@ -402,101 +457,6 @@ public class SourceCode: Custom.Hybrid.Code14
   #endregion
 
   #region Private Source Code Clean-up Helpers
-
-  public string KeepOnlySnippet(string source, string id) {
-    if (string.IsNullOrWhiteSpace(id)) return source;
-    // trim unnecessary comments
-    var patternSnippet = @"(?:<snippet id=""" + id + @"""[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
-    var match = Regex.Match(source, patternSnippet);
-    if (match.Length > 0) {
-      return match.Groups["contents"].Value;
-    }
-    // V2 with Snippet Tabs / Inline Tabs
-    var patternStartEnd = @"(?:@Sys\.SourceCode\.Snippet(Inline|Only|Init)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
-    match = Regex.Match(source, patternStartEnd);
-    if (match.Length > 0) {
-      return match.Groups["contents"].Value;
-    }
-    // V2 with Result Tabs
-    patternStartEnd = @"(?:@Sys\.SourceCode\.ResultStart\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Result)";
-    match = Regex.Match(source, patternStartEnd);
-    if (match.Length > 0) {
-      return match.Groups["contents"].Value;
-    }
-
-
-    return source;
-  }
-
-  private string ProcessHideTrimSnippet(string source) {
-    // trim unnecessary comments
-    var patternTrim = @"(?:<trim>)([\s\S]*?)(?:</trim>)";
-
-    source = Regex.Replace(source, patternTrim, m => { 
-      var part = Tags.Strip(m.ToString());
-      return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
-    });
-
-    // hide unnecessary parts with comment
-    var patternHide = @"(?:<hide>)([\s\S]*?)(?:</hide>)";
-    source = Regex.Replace(source, patternHide, m => "<!-- unimportant stuff, hidden -->");
-
-    // hide unnecessary parts without comment
-    source = ProcessHideSilent(source, "<hide-silent>", "</hide-silent>");
-    source = ProcessHideSilent(source, @"@Sys\.SourceCode\.ResultPrepare\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
-
-    // remove snippet markers
-    var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";
-    source = Regex.Replace(source, patternSnipStart, "");
-
-    // Remove all @Sys... lines - any whitespace followed by @Sys. till the end of the line
-    var patternSysLines = @"^\s*@Sys\.[A-Z].*?$";
-    var rxSysLines = new Regex(patternSysLines, RegexOptions.Multiline);
-    source = rxSysLines.Replace(source, "");
-    return source;
-  }
-
-  private string ProcessHideSilent(string source, string start, string end, bool captureStart = true, bool captureEnd = true) {
-    var startCapt = captureStart ? ":" : "=";
-    var endCapt = captureEnd ? ":" : "=";
-    var patternHideSilent = @"(?" + startCapt + start + @")([\s\S]*?)(?" + endCapt + (end ?? start) + @")";
-    return Regex.Replace(source, patternHideSilent, "");
-  }
-
-  private string SourceTrim(string source) {
-    // optimize to remove leading or trailing (but not in the middle)
-    var lines = Regex.Split(source ?? "", "\r\n|\r|\n").ToList();
-    var result = DropLeadingEmpty(lines);
-    result.Reverse();
-    result = DropLeadingEmpty(result);
-    result.Reverse();
-
-    // Count trailing spaces on all code, to see if all have the same indent
-    var indents = result
-      .Where(line => !string.IsNullOrWhiteSpace(line))
-      .Select(line => line.TakeWhile(Char.IsWhiteSpace).Count());
-
-    var minIndent = indents.Min();
-
-    result = result
-      .Select(line => string.IsNullOrWhiteSpace(line) ? line : line.Substring(minIndent))
-      .ToList();
-
-    // result.Add("Debug: indent =" + minIndent);
-    return string.Join("\n", result);
-  }
-
-  private List<string> DropLeadingEmpty(List<string> lines) {
-    var dropEmpty = true;
-    return lines.Select(l => {
-      if (!dropEmpty) return l;
-      if (l.Trim() == "") return null;
-      dropEmpty = false;
-      return l;
-    })
-    .Where(l => l != null)
-    .ToList();
-  }
 
   // Auto-calculate Size
   private int Size(object sizeObj, string source) {
