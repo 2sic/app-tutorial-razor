@@ -1,11 +1,23 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
+  @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 @{
   var imgUrl = App.Path + "/settings/demo.png";
 }
+
+  @functions {
+    dynamic ShowCurrentSrc(string id)
+    {
+      return Tag.Div().Wrap(
+      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+      Tag.Code().Id(id + "-label")
+      );
+    }
+  }
+
 </hide>
 
 <trim>
@@ -29,21 +41,18 @@
 
 <h3>Image with merged settings</h3>
 <p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
-<snippet id="merge-settings-1">
-@{
-  var customImageSettings = AsDynamic(new {
-    Height = 100,
-    ResizeMode = "Stretch",
-    Quality = 50
-  });
-  // Merged settings, first one has highes priority
-  var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
-}
 
-<img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 220 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetStart("merge-settings-1")
+  @{
+    var customImageSettings = AsDynamic(new {
+      Height = 100,
+      ResizeMode = "Stretch",
+      Quality = 50
+    });
+    // Merged settings, first one has highes priority
+    var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
+  }
+  <img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
+@Sys.SourceCode.SnippetEnd("merge-settings-1")
 
 @Sys.PageParts.FooterWithSource()

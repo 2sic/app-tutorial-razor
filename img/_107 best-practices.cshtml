@@ -59,7 +59,6 @@
 </hide>
 
 @Sys.SourceCode.ResultStart("ImgDemoData", "Generated HTML Left", "Generated HTML Right")
-  @ShowCurrentSrc("ImgDemoData")
   <div class="row">
     <div class="col-md">
       <p><strong>Picture from <code>Content.Image</code></strong></p>
@@ -98,7 +97,6 @@
 </p>
 
 @Sys.SourceCode.ResultStart("PictureDemoData", "Generated HTML Left", "Generated HTML Right")
-  @ShowCurrentSrc("PictureDemoData")
   <div class="row">
     <div class="col-md">
       <p><strong>Picture from <code>Content.Image</code></strong></p>
@@ -133,7 +131,6 @@
 </p>
 
 @Sys.SourceCode.ResultStart("img-srcset-auto2", "Generated HTML Left", "Generated HTML Right")
-  @ShowCurrentSrc("img-srcset-auto2")
   <div class="row">
     <div class="col-md">
       <p><strong>Picture using the factor <code>0.5</code></strong></p>
@@ -165,7 +162,6 @@
 </p>
 
 @Sys.SourceCode.ResultStart("multiple-img", "Generated HTML Left", "Generated HTML Right")
-  @ShowCurrentSrc("multiple-img")
   <div class="row">
     <div class="col-md">
       <p><strong>Picture default recipe</strong></p>
@@ -212,7 +208,6 @@
 </hide>
 
 @Sys.SourceCode.ResultStart("optimal-alt-text", "Generated HTML")
-  @ShowCurrentSrc("optimal-alt-text")
   @{
     var fallbackAltText = "Fallback";
     var imageFieldWithAltText = Content.Field("Image");
@@ -232,7 +227,4 @@
 
 <br>
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-  @Html.Partial(sourceCode, new { Path })
-</hide>
+@Sys.PageParts.FooterWithSource()

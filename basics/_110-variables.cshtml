@@ -2,8 +2,8 @@
 <hide>
 @Html.Partial("_header.cshtml")
 @{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 }
 </hide>
 
@@ -16,16 +16,13 @@
 
 <h3>Basic set variable and show</h3>
 <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
-<snippet id="basic-set-show">
+@Sys.SourceCode.SnippetInlineStart("basic-set-show")
   @{
     var firstName = "Terry";
   }
 
   Name: @firstName
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "basic-set-show", Size = 120 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
 

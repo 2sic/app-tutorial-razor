@@ -1,12 +1,22 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
+  @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+    var imgUrl = App.Path + "/settings/demo.png";
+  }
+  @functions {
+    dynamic ShowCurrentSrc(string id)
+    {
+      return Tag.Div().Wrap(
+      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+      Tag.Code().Id(id + "-label")
+      );
+    }
+  }
 </hide>
-@{
-  var imgUrl = App.Path + "/settings/demo.png";
-}
 
 <trim>
 <div class="row">
@@ -27,44 +37,30 @@
 </div>
 </trim>
 
-<snippet id="content-settings">
-<h3>Image with Default Content Settings</h3>
+ <h3>Image with Default Content Settings</h3>
 <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
-<img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-settings", Size = 85 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetStart("content-settings")
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
+@Sys.SourceCode.SnippetEnd("content-settings")
 
-<snippet id="content-custom-1">
 <h3>Image with <code>factor</code> <em>1/3rd</em> or <em>0.25</em> the Content Settings</h3>
-<p>
-  This example uses the <code>Settings.Images.Content</code> 
-  settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).
-</p>
-<img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: "1/3")'> - 
-<img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.25)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-1", Size = 175 }) 
-</hide-silent>
+<p>This example uses the <code>Settings.Images.Content</code> 
+  settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).</p>
+@Sys.SourceCode.SnippetStart("content-custom-1")
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: "1/3")'> - 
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.25)'>
+@Sys.SourceCode.SnippetEnd("content-custom-1")
 
-<snippet id="content-custom-2">
 <h3>Image with Settings, Custom Width & Height</h3>
 <p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
-<img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-2", Size = 85 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetStart("content-custom-2")
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
+@Sys.SourceCode.SnippetEnd("content-custom-2")
 
-<snippet id="content-custom-3">
 <h3>Image with Settings, Custom Width & Reset Height</h3>
 <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
-<img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 0)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-custom-3", Size = 85 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetStart("content-custom-3")
+  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
+@Sys.SourceCode.SnippetEnd("content-custom-3")
 
 @Sys.PageParts.FooterWithSource()

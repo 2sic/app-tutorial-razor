@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
+  @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
@@ -7,6 +8,15 @@
   var imgUrl = App.Path + "/img/assets/demo1.png";
   var imgUrl2 = App.Path + "/img/assets/demo2.png";
 }
+@functions {
+    dynamic ShowCurrentSrc(string id)
+    {
+      return Tag.Div().Wrap(
+      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+      Tag.Code().Id(id + "-label")
+      );
+    }
+  }
 </hide>
 
 <trim>
@@ -24,54 +34,48 @@
 
   <h3>Basic Bundle of Settings (Height, Width and ResizeMode Crop)</h3>
   <p>This example uses the configuration as is, to create an image according to following specs</p>
-<snippet id="custom-settings-1">
-@{// Create a configuration bundle as a Dynamic object with these specs
-  var customSize = AsDynamic(new {
-    Height = 100,
-    Width = 500,
-    ResizeMode = "Crop"
-  });
-}
-<img loading="lazy" src='@Link.Image(imgUrl, customSize)'> - 
-<img loading="lazy" src='@Link.Image(imgUrl2, customSize)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-1", Size = 200 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetStart("custom-settings-1")
+  @{// Create a configuration bundle as a Dynamic object with these specs
+    var customSize = AsDynamic(new {
+      Height = 100,
+      Width = 500,
+      ResizeMode = "Crop"
+    });
+  }
+  <img loading="lazy" src='@Link.Image(imgUrl, customSize)'> - 
+  <img loading="lazy" src='@Link.Image(imgUrl2, customSize)'>
+@Sys.SourceCode.SnippetEnd("custom-settings-1")
 
 <h3>Another Example (ResizeMode Stretch)</h3>
 <p>This example uses the configuration as is, to create an image according to following specs</p>
-<snippet id="custom-settings-2">
-@{
-  var customSettingsStreched = AsDynamic(new {
-    Height = 300,
-    Width = 100,
-    ResizeMode = "Stretch"
-  });
-}
-<img loading="lazy" src='@Link.Image(imgUrl, customSettingsStreched)'> - 
-<img loading="lazy" src='@Link.Image(imgUrl2, customSettingsStreched)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-2", Size = 200 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetStart("custom-settings-2")
+  @{
+    var customSettingsStreched = AsDynamic(new {
+      Height = 300,
+      Width = 100,
+      ResizeMode = "Stretch"
+    });
+  }
+  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsStreched)'> - 
+  <img loading="lazy" src='@Link.Image(imgUrl2, customSettingsStreched)'>
+@Sys.SourceCode.SnippetEnd("custom-settings-2")
 
 <h3>Combine Config-Bundle with additional Params</h3>
 <p>This example uses a config-bundle, but also specifies additional parameters in <code>Link.Image(...)</code>.</p>
-<snippet id="custom-settings-3">
-@{
-  var customSettingsMax = AsDynamic(new {
-    Height = 300,
-    Width = 100,
-    ResizeMode = "Max"
-  });
-}
-<img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 1)'> - 
-<img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 10)'> -
-<img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 75)'>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "custom-settings-3", Size = 220 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetStart("custom-settings-3")
+  @{
+    var customSettingsMax = AsDynamic(new {
+      Height = 300,
+      Width = 100,
+      ResizeMode = "Max"
+    });
+  }
+  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 1)'> - 
+  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 10)'> -
+  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 75)'>
+@Sys.SourceCode.SnippetEnd("custom-settings-3")
 
 @Sys.PageParts.FooterWithSource()

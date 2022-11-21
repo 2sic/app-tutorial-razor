@@ -66,6 +66,18 @@ public class SourceCode: Custom.Hybrid.Code14
   public ITag SnippetEnd(string prefix) {
     return SnippetEnd(prefix, true);
   }
+  
+  public ITag SnippetInlineStart(string prefix) {
+    _inlineId = prefix;
+    return Tag.RawHtml();
+  }
+  private string _inlineId = null;
+
+  public ITag SnippetInlineEnd() {
+    if (!Text.Has(_inlineId)) return Tag.Div("Error - can't close inline snippet without ...Start first");
+    return Snippet(_inlineId);
+    _inlineId = null;
+  }
 
 
   private ITag SnippetStartEnd() {
@@ -184,9 +196,9 @@ public class SourceCode: Custom.Hybrid.Code14
       var specs = GetFileAndProcess(path, file, snippet);
       path = specs.Path;  // update in case of error
       errPath = debug ? specs.FullPath : path;
-      title = title ?? "Source Code of " + (specs.File == null
-        ? "this " + specs.Type // "this snippet" vs "this file"
-        : titlePath + specs.File);
+      title = title ?? "Source Code of " + (Text.Has(specs.File)
+        ? titlePath + specs.File
+        : "this " + specs.Type); // "this snippet" vs "this file"
       specs.Expand = expand ?? specs.Expand;
       specs.Wrap = wrap ?? specs.Wrap;
       return Tag.RawHtml(
@@ -245,7 +257,7 @@ public class SourceCode: Custom.Hybrid.Code14
               Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down'>")
             )
           ) as ITag
-        : Tag.Br(),
+        : Tag.Span(),
       SourceBlockCode(specs)
     );
   }
