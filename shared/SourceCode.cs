@@ -398,6 +398,11 @@ public class SourceCode: Custom.Hybrid.Code14
     // remove snippet markers
     var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";
     source = Regex.Replace(source, patternSnipStart, "");
+
+    // Remove all @Sys... lines - any whitespace followed by @Sys. till the end of the line
+    var patternSysLines = @"^\s*@Sys\.[A-Z].*?$";
+    var rxSysLines = new Regex(patternSysLines, RegexOptions.Multiline);
+    source = rxSysLines.Replace(source, "");
     return source;
   }
 
