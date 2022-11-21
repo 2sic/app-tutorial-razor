@@ -5,6 +5,7 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -15,10 +16,10 @@
       </div>
       <ul>
         <li>
-          <code>IPageService.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
+          <code>Kit.Page.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
         </li>
         <li>
-          <code>IPageService.SetBase("/some/page")</code> create the base tag with the specified url. 
+          <code>Kit.Page.SetBase("/some/page")</code> create the base tag with the specified url. 
         </li>
       </ul>
     </div>
@@ -29,9 +30,9 @@
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
 @Sys.SourceCode.SnippetOnlyStart("page-base")
-@{
-  Kit.Page.SetBase();
-}
+  @{
+    Kit.Page.SetBase();
+  }
 @Sys.SourceCode.SnippetOnlyEnd()
 
 @Sys.PageParts.FooterWithSource()

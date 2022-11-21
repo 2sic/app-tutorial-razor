@@ -5,6 +5,7 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -22,11 +23,11 @@
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
 @Sys.SourceCode.SnippetOnlyStart("page-headers")
-@{
-  // prefix the current title, description and keywords with additional values
-  Kit.Page.AddToHead("<meta xyz>");
-  Kit.Page.AddMeta("somename", "somevalue");
-}
+  @{
+    // prefix the current title, description and keywords with additional values
+    Kit.Page.AddToHead("<meta xyz>");
+    Kit.Page.AddMeta("somename", "somevalue");
+  }
 @Sys.SourceCode.SnippetOnlyEnd()
 
 @Sys.PageParts.FooterWithSource()

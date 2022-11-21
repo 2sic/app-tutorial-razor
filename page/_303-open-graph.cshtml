@@ -5,6 +5,7 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -22,12 +23,12 @@
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
 @Sys.SourceCode.SnippetOnlyStart("page-graph")
-@{
-  // note: 'og:' is auto-prefixed if not given in the key
+  @{
+    // note: 'og:' is auto-prefixed if not given in the key
 
-  Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
-  Kit.Page.AddOpenGraph("type", "website");
-}
+    Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
+    Kit.Page.AddOpenGraph("type", "website");
+  }
 @Sys.SourceCode.SnippetOnlyEnd()
 
 @Sys.PageParts.FooterWithSource()

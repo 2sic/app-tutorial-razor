@@ -5,6 +5,7 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -20,26 +21,26 @@
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
 @Sys.SourceCode.SnippetOnlyStart("page-json-id")
-@{
-  // example adding a json-ld as a string
-  Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
-}
-@{
-  // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
-  var jsonLd = new Dictionary<string, object> {
-    { "@context", "https://schema.org"},
-    { "@type", "Organization"},
-    { "url", "http://www.example.com"},
-    { "name", "Unlimited Ball Bearings Corp."},
-    { "contactPoint", new Dictionary<string, object> {
-      {"@type", "ContactPoint"},
-      {"telephone", "+1-401-555-1212"},
-      {"contactType", "Customer service"}
-    }}
-  };
+  @{
+    // example adding a json-ld as a string
+    Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+  }
+  @{
+    // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
+    var jsonLd = new Dictionary<string, object> {
+      { "@context", "https://schema.org"},
+      { "@type", "Organization"},
+      { "url", "http://www.example.com"},
+      { "name", "Unlimited Ball Bearings Corp."},
+      { "contactPoint", new Dictionary<string, object> {
+        {"@type", "ContactPoint"},
+        {"telephone", "+1-401-555-1212"},
+        {"contactType", "Customer service"}
+      }}
+    };
 
-  Kit.Page.AddJsonLd(jsonLd);
-}
+    Kit.Page.AddJsonLd(jsonLd);
+  }
 @Sys.SourceCode.SnippetOnlyEnd()
 
 @Sys.PageParts.FooterWithSource()
