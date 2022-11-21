@@ -27,7 +27,10 @@ public class SourceCode: Custom.Hybrid.Code14
   public ITag ShowResultText(string source) { return ShowResult(source, "text"); }
   // Special use case for many picture / image tutorials
   public ITag ShowResultImg(object tag) {
-    var cleaned = tag.ToString().Replace(" srcset", " \nsrcset").Replace(",", ",\n");
+    var cleaned = tag.ToString()
+      .Replace(">", ">\n")
+      .Replace("' ", "' \n")
+      .Replace(",", ",\n");
     return ShowResultHtml(cleaned);
   }
 
@@ -56,7 +59,7 @@ public class SourceCode: Custom.Hybrid.Code14
       // Tab headers
       AutoSnippetTabs(prefix, names),
       // Tab bodies - must open the first one
-      Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-4").Id("myTabContent").TagStart,
+      Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5").Id("myTabContent").TagStart,
       // Open the first tab-body item as the snippet is right after this
       "  " + Tag.Div().Class("tab-pane fade show active").Id(prefix + ResultTabName)
         .Attr("role", "tabpanel").Attr("aria-labelledby", prefix + "-tab").TagStart
@@ -67,17 +70,6 @@ public class SourceCode: Custom.Hybrid.Code14
     return SnippetEnd(prefix, true);
   }
   
-  public ITag SnippetInlineStart(string prefix) {
-    _inlineId = prefix;
-    return Tag.RawHtml();
-  }
-  private string _inlineId = null;
-
-  public ITag SnippetInlineEnd() {
-    if (!Text.Has(_inlineId)) return Tag.Div("Error - can't close inline snippet without ...Start first");
-    return Snippet(_inlineId);
-    _inlineId = null;
-  }
 
 
   private ITag SnippetStartEnd() {
@@ -101,6 +93,37 @@ public class SourceCode: Custom.Hybrid.Code14
       "</div>"
     );
   }
+
+  #region Snippet Inline
+
+  public ITag SnippetInlineStart(string prefix) {
+    _inlineId = prefix;
+    return Tag.RawHtml(
+      Tag.Div().Class("alert alert-info").TagStart,
+      Tag.H4("Output")
+    );
+  }
+  private string _inlineId = null;
+
+  public ITag SnippetInlineEnd() {
+    var result = Text.Has(_inlineId) ? Snippet(_inlineId) : Tag.Div("Error - can't close inline snippet without ...Start first");
+    return Tag.RawHtml(
+      "</div>",
+      Text.Has(_inlineId) ? Snippet(_inlineId) : Tag.Div("Error - can't close inline snippet without ...Start first")
+    );
+    _inlineId = null;
+  }
+  #endregion
+
+  #region Snippet Only
+  public ITag SnippetOnlyStart(string prefix) {
+    return Snippet(prefix);
+  }
+  public ITag SnippetOnlyEnd() {
+    return null;
+  }
+
+  #endregion
 
   public ITag ResultStart(string prefix, params string[] names) {
     _lastNames = names;
@@ -372,8 +395,8 @@ public class SourceCode: Custom.Hybrid.Code14
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
     }
-    // V2 with Snippet Tabs
-    var patternStartEnd = @"(?:@Sys\.SourceCode\.SnippetStart\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
+    // V2 with Snippet Tabs / Inline Tabs
+    var patternStartEnd = @"(?:@Sys\.SourceCode\.Snippet(Inline|Only|Intro)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
