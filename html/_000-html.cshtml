@@ -18,6 +18,13 @@
 <p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
 </trim>
 
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+     normalText = "this is text, it doesn't have tags";
+     htmlText = "this string <em>has</em> html <strong>tags</strong>";
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
 @Sys.SourceCode.SnippetInlineStart("basic-variable")
 <ul>
   <li>@normalText</li>

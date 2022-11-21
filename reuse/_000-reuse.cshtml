@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  // 2sxclint:disable:razor-no-renderpage
-  var linker = CreateInstance("../shared/Helpers.cs");
-
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 <trim>
@@ -44,11 +42,11 @@
 <h2>Reuse Shared Stuff Examples</h2>
 
 <ol>
-  @linker.TutorialLink("Micro-Helpers (like functions) with Template Delegates", "reuse101")
-  @linker.TutorialLink("Reuse Razor Components with @Html.Partial and DynamicModel", "reuse110")
-  @linker.TutorialLink("Reuse Razor Helpers (mini-templates) with CreateInstance", "reuse210")
-  @linker.TutorialLink("Reuse a function library CreateInstance", "reuse310")
-  @linker.TutorialLink("Reuse code with .cs files", 
+  @Sys.TutorialLink("Micro-Helpers (like functions) with Template Delegates", "reuse101")
+  @Sys.TutorialLink("Reuse Razor Components with @Html.Partial and DynamicModel", "reuse110")
+  @Sys.TutorialLink("Reuse Razor Helpers (mini-templates) with CreateInstance", "reuse210")
+  @Sys.TutorialLink("Reuse a function library CreateInstance", "reuse310")
+  @Sys.TutorialLink("Reuse code with .cs files", 
     "reuse320",
     "CreateInstance is enhanced in 2sxc 10.01 to support .cs files to share code across Razor files and WebApi Controllers.",
     "")
@@ -65,7 +63,7 @@
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 } else {
   <ol>
-    @linker.TutorialLink("Split Razor Templates into C#-Code and Template", 
+    @Sys.TutorialLink("Split Razor Templates into C#-Code and Template", 
       "reuse410",
       "Now you can split out complicated C# code so designers don't have to worry about it. ",
       "deprecated, Dnn Only")

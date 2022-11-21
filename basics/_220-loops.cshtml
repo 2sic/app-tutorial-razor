@@ -4,10 +4,6 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
-@{
-  var pets = new string[] { "dog", "cat", "mouse"};
-  var owners = new string[] { "Daniel", "John", "Markus"};
-}
 
 <trim>
 <div class="row">
@@ -18,6 +14,14 @@
 </div>
 <h3>Using a <code>foreach</code> - the most common way of looping</h3>
 </trim>
+
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    var pets = new string[] { "dog", "cat", "mouse"};
+    var owners = new string[] { "Daniel", "John", "Markus"};
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
 @Sys.SourceCode.SnippetInlineStart("basic-foreach")
   <ul>
     @foreach(var pet in pets) {

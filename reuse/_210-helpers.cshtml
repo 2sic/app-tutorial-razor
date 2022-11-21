@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@* 2sxclint:disable:no-old-helper - we mention @helper a few times, so the linter catches that *@
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @{
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables 
+  }
 </hide>
 
 <trim>
@@ -44,24 +45,18 @@
 <h2>Using Shared Helpers</h2>
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 </trim>
-<snippet id="reuse-helpers">
+@Sys.SourceCode.SnippetInlineStart("reuse-helpers")
 @{
   var lightbox = CreateInstance("../shared/Fancybox.cs");
 }
 @lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
 &nbsp;
 @lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-helpers" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
+
+@Sys.PageParts.FooterWithSource()
 
 <hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { 
-  Path,
-  Size = 300
-}) 
 
 @Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/shared/",

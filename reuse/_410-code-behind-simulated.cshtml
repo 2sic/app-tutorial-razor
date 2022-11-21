@@ -1,17 +1,12 @@
-@* Note that the Code-Behind features requires this @inherits statement *@
 @inherits Custom.Hybrid.Razor14
-
-@* TEMP *@
 @using ToSic.Razor.Blade;
-
 <hide>
-@Html.Partial("_header.cshtml")
-@* Sys must always be an exact copy of this line, so that we could search/replace *@
-@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-
-@{  
-  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @{
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables 
+  }
 </hide>
 
 <trim>
@@ -45,11 +40,9 @@
   @code.Message("Message in a special format")
 @Sys.SourceCode.SnippetEnd("code-behind")
 
-
+@Sys.PageParts.FooterWithSource()
 
 <hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
 @Html.Partial(sourceCode, new { 
   Path,
   File = "CodeBehindSimulated.cs",

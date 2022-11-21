@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var linker = CreateInstance("../shared/Helpers.cs");
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 <div class="row">
@@ -13,7 +11,7 @@
     <h2>HTML-functions = Code-Snippet with Template Delegates</h2>
     <p>If you just need a quick simple snippet, Template Delegates are the way to go. 
       They are very limited so only ideal for simple stuff. More complex stuff should use
-      @linker.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
+      @Sys.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
@@ -40,7 +38,7 @@
 <div class="alert alert-info">
   Note that in the following code <code>item</code> is the thing passed into the function.
 </div>
-<snippet id="func-string">
+@Sys.SourceCode.SnippetInlineStart("func-string")
 @{
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
@@ -57,16 +55,14 @@
   @BoldLi(htmlText)
   @BoldLi("this is just a bold line")
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "func-string" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <h3>Complex Data with <code>Func&lt;dynamic,dynamic&gt;</code> Template Delegate</h3>
 <p>
   If you have multiple values, you often want to merge in into one object like this:
 </p>
-<snippet id="reuse-function">
+@Sys.SourceCode.SnippetInlineStart("reuse-function")
 @{
   // Simple Hybrid (Dnn/Oqtane) Template Delegate
   Func<dynamic, dynamic> FancyLink = @<li>
@@ -82,15 +78,6 @@
   @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
   @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-function" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-
-
-
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

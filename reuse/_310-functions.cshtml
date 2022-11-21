@@ -1,10 +1,12 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @{
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables 
+  }
 </hide>
 
 <trim>
@@ -24,7 +26,8 @@
 <trim>
 <p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
 </trim>
-<snippet id="reuse-createinstance">
+
+@Sys.SourceCode.SnippetInlineStart("reuse-createinstance")
 @{
   var lib = CreateInstance("SharedFunctions.cs");
 }
@@ -32,14 +35,11 @@
 <div>
   <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
 </div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
+
+@Sys.PageParts.FooterWithSource()
 
 <hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
 @Html.Partial(sourceCode, new { 
   Path,
   File = "SharedFunctions.cs",

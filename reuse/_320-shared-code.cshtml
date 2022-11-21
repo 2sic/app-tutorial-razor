@@ -1,12 +1,12 @@
 @inherits Custom.Hybrid.Razor14
-@{
-  // Tell the page that we need the 2sxc Js APIs
-  Kit.Page.Activate("2sxc.JsCore"); 
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @{
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables 
+  }
 </hide>
 
 <trim>
@@ -31,15 +31,12 @@
   This example uses a simple C# class, so the code only has what's in it.
 </p>
 </trim>
-<snippet id="reuse-createinstance">
+@Sys.SourceCode.SnippetInlineStart("reuse-createinstance")
 @{
   var lib = CreateInstance("FunctionsBasic.cs");
 }
 <div>Hello from FunctionsBasic: @lib.SayHello()</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h2>Using a different Class from a library files</h2>
@@ -48,15 +45,12 @@
   The example takes a cs file with shared code, but gets the class <code>Second</code>.
 </p>
 </trim>
-<snippet id="reuse-createinstance-pass-values">
+@Sys.SourceCode.SnippetInlineStart("reuse-createinstance-pass-values")
 @{
   var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
 }
 <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance-pass-values" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h2>Using shared code with context</h2>
@@ -69,17 +63,15 @@
   access variables like <code>App</code>.
 </p>
 </trim>
-<snippet id="reuse-createinstance-2">
+
+@Sys.SourceCode.SnippetInlineStart("reuse-createinstance-pass-values")
 @{
   var powerLib = CreateInstance("FunctionsWithContext.cs");
 }
 <div>
   <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
 </div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-createinstance-2" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hide>
 <hr>
@@ -108,10 +100,9 @@
   }
 </script>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path })
+@Sys.PageParts.FooterWithSource()
 
+<hide>
 @Html.Partial(sourceCode, new {
   Path,
   File = "FunctionsBasic.cs",

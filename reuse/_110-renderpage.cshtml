@@ -1,10 +1,12 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @{
+    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables 
+  }
 </hide>
 
 <trim>
@@ -24,33 +26,26 @@
 <hide>
   <p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
 </hide>
-<snippet id="reuse-partial">
+@Sys.SourceCode.SnippetInlineStart("reuse-partial")
 @Html.Partial("_line.cshtml")
 @Html.Partial("_line.cshtml")
 @Html.Partial("_line.cshtml")
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-partial" }) 
-</hide-silent>
-
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h2>Passing in values</h2>
 <hide>
 <p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
 </hide>
-<snippet id="reuse-partial-pass-values">
+
+@Sys.SourceCode.SnippetInlineStart("reuse-partial-pass-values")
 @Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
 @Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
 @Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "reuse-partial-pass-values" }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
+@Sys.PageParts.FooterWithSource()
 <hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
 
 @Html.Partial(sourceCode, new { 
   Path, 
