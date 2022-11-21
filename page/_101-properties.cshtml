@@ -5,6 +5,7 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -30,9 +31,4 @@
   }
 @Sys.SourceCode.SnippetOnlyEnd()
 
-
-
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

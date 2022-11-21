@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <div class="row">
@@ -27,7 +26,7 @@
   </ul>
 </trim>
 
-<snippet id="page-icons">
+@Sys.SourceCode.SnippetOnlyStart("page-icons")
 @{
   // use url parameter to decide which icon(s) to show, and default to "set"
   var mode = CmsContext.Page.Parameters["mode"];
@@ -39,10 +38,10 @@
   // in your code you would only use one of these
   if(mode == "one") {
     Kit.Page.AddIcon(iconUrl);
-  } 
+  }
   else if (mode == "set") {
     Kit.Page.AddIconSet(iconUrl);
-  } 
+  }
   else if (mode == "nofav") {
     Kit.Page.AddIconSet(iconUrl, favicon: false);
   }
@@ -50,10 +49,7 @@
     Kit.Page.AddIconSet(iconUrl, favicon: iconUrl);
   }
 }
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "page-icons", Size = 450 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetOnlyEnd()
 
 
 <hide>
@@ -69,6 +65,6 @@
     return SubpageLink(label, "page121=page", "mode", value);
   }
 }
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 670 })
 </hide>
+
+@Sys.PageParts.FooterWithSource()

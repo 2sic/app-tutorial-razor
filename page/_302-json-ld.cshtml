@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <div class="row">
@@ -20,7 +19,7 @@
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-<snippet id="page-json-id">
+@Sys.SourceCode.SnippetOnlyStart("page-json-id")
 @{
   // example adding a json-ld as a string
   Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
@@ -41,13 +40,6 @@
 
   Kit.Page.AddJsonLd(jsonLd);
 }
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "page-json-id", Size = 450 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetOnlyEnd()
 
-
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

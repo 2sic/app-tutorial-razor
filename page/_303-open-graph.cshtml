@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
   <div class="row">
@@ -22,19 +21,13 @@
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-<snippet id="page-graph">
+@Sys.SourceCode.SnippetOnlyStart("page-graph")
 @{
   // note: 'og:' is auto-prefixed if not given in the key
 
   Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
   Kit.Page.AddOpenGraph("type", "website");
 }
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "page-graph", Size = 170 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetOnlyEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 450 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()
