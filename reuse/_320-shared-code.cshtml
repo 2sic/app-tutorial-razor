@@ -4,9 +4,6 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
-  @{
-    string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables 
-  }
 </hide>
 
 <trim>
@@ -101,26 +98,6 @@
 </script>
 
 @Sys.PageParts.FooterWithSource()
-
-<hide>
-@Html.Partial(sourceCode, new {
-  Path,
-  File = "FunctionsBasic.cs",
-  Size = 400
-})
-
-@Html.Partial(sourceCode, new {
-  Path,
-  File = "FunctionsWithContext.cs",
-  Size = 400
-})
-
-@Html.Partial(sourceCode, new {
-  Path,
-  File = "api/SharedCodeController.cs",
-  Size = 500,
-  TitlePath = "/reuse/",
-})
-
-@* 2sxclint:disable:no-inline-script *@
-</hide>
+@Sys.SourceCode.ShowFileContents("FunctionsBasic.cs")
+@Sys.SourceCode.ShowFileContents("FunctionsWithContext.cs")
+@Sys.SourceCode.ShowFileContents("api/SharedCodeController.cs")

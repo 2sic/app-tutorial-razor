@@ -18,7 +18,7 @@
 </trim>
 
 @Sys.SourceCode.SnippetInlineStart("ICmsCulture-currentcode")
-<h3>The .CurrentCode attribute:</h3>
+  <h3>The .CurrentCode attribute:</h3>
   The current code culture is: 
   <strong>
     @CmsContext.Culture.CurrentCode
@@ -26,16 +26,15 @@
 @Sys.SourceCode.SnippetInlineEnd()
 
 @Sys.SourceCode.SnippetInlineStart("ICmsCulture-defaultcode")
-<h3>The .DefaultCode attribute:</h3>
+  <h3>The .DefaultCode attribute:</h3>
   The default culture for the system is: 
   <strong>
     @if(Text.Has(CmsContext.Culture.DefaultCode)){
-      @CmsContext.Culture.DefaultCode
+    @CmsContext.Culture.DefaultCode
     } else {
-      <p>
-        The system is single language and the response is an empty string.
-      </p>
-    }
+    <p>
+      The system is single language and the response is an empty string.
+    </p>}
   </strong>
 @Sys.SourceCode.SnippetInlineEnd()
 
