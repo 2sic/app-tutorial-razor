@@ -19,7 +19,7 @@ public class BootstrapTabs: Custom.Hybrid.Code14
   }
 
   // WARNING: DUPLICATE CODE
-  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-"); }
+  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
 
   private ITag Tab(string prefix, string label, bool active = false) {
     return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(

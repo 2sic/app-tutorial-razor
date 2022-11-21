@@ -24,7 +24,7 @@
 <p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("reuse-createinstance")
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of SharedFunctions.cs")
 @{
   var lib = CreateInstance("SharedFunctions.cs");
 }
@@ -32,8 +32,7 @@
 <div>
   <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
 </div>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:SharedFunctions.cs")
 
 @Sys.PageParts.FooterWithSource()
 
-@Sys.SourceCode.ShowFile("SharedFunctions.cs")

@@ -6,6 +6,8 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
+@* TODO: @2dk - remove unnecesary HRs, correct indentations *@
+
 <trim>
   <div class="row">
     <div class="col-lg-7">
@@ -28,12 +30,12 @@
   This example uses a simple C# class, so the code only has what's in it.
 </p>
 </trim>
-@Sys.SourceCode.SnippetInlineStart("reuse-createinstance")
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of FunctionsBasic.cs")
 @{
   var lib = CreateInstance("FunctionsBasic.cs");
 }
 <div>Hello from FunctionsBasic: @lib.SayHello()</div>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:FunctionsBasic.cs")
 
 <hr>
 <h2>Using a different Class from a library files</h2>
@@ -42,12 +44,12 @@
   The example takes a cs file with shared code, but gets the class <code>Second</code>.
 </p>
 </trim>
-@Sys.SourceCode.SnippetInlineStart("reuse-createinstance-pass-values")
+@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of FunctionsBasic.cs")
 @{
   var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
 }
 <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:FunctionsBasic.cs")
 
 <hr>
 <h2>Using shared code with context</h2>
@@ -61,14 +63,14 @@
 </p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("reuse-createinstance-pass-values")
+@Sys.SourceCode.ResultAndSnippetStart("demo3", "Source of FunctionsWithContext.cs")
 @{
   var powerLib = CreateInstance("FunctionsWithContext.cs");
 }
 <div>
   <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
 </div>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:FunctionsWithContext.cs")
 
 <hide>
 <hr>
@@ -79,25 +81,24 @@
 </p>
 </hide>
 
-<blockquote>
-  Click to see the result of a WebApi call with the shared code:
-  <button type="button" class="btn btn-primary" onclick="callApiWithSharedCode(this)">
-    Call WebApi
-  </button>
-</blockquote>
+@Sys.SourceCode.ResultAndSnippetStart("demo4", "Source of ApiController", "Source of FunctionsBasic.cs")
+  <p>
+    Click to see the result of a WebApi call with the shared code:
+    <button type="button" class="btn btn-primary" onclick="callApiWithSharedCode(this)">
+      Call WebApi
+    </button>
+  </p>
 
-<script>
-  function callApiWithSharedCode(context) {
-    $2sxc(context).webApi.fetchJson('app/auto/reuse/api/sharedcode/hello')
-      .then(function (results) {
-        console.log(results);
-        alert(results);
-      });
-    return false;
-  }
-</script>
+  <script>
+    function callApiWithSharedCode(context) {
+      $2sxc(context).webApi.fetchJson('app/auto/reuse/api/sharedcode/hello')
+        .then(function (results) {
+          console.log(results);
+          alert(results);
+        });
+      return false;
+    }
+  </script>
+@Sys.SourceCode.ResultEnd("file:api/SharedCodeController.cs", "file:FunctionsBasic.cs")
 
 @Sys.PageParts.FooterWithSource()
-@Sys.SourceCode.ShowFile("FunctionsBasic.cs")
-@Sys.SourceCode.ShowFile("FunctionsWithContext.cs")
-@Sys.SourceCode.ShowFile("api/SharedCodeController.cs", "/reuse/")

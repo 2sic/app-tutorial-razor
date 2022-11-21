@@ -7,35 +7,32 @@
 </hide>
 
 <trim>
-<h2>Code-Behind Strategy in Razor Templates</h2>
-<p>
-  Code-Behind is a concept where you place the code file separately from the razor file itself. 
-  This helps you place large chunks of logic in another file. 
+  <h2>Code-Behind Strategy in Razor Templates</h2>
+  <p>
+    Code-Behind is a concept where you place the code file separately from the razor file itself. 
+    This helps you place large chunks of logic in another file. 
 
-  2sxc had a built-in feature in v11 but it couldn't be transferred to Oqtane 💧, so it was deprecated in v12.
-</p>
-<p>
-  But you can still use this strategy if you need it. Just create a <code>SomeCode.cs</code> file and use that. 
-</p>
+    2sxc had a built-in feature in v11 but it couldn't be transferred to Oqtane 💧, so it was deprecated in v12.
+  </p>
+  <p>
+    But you can still use this strategy if you need it. Just create a <code>SomeCode.cs</code> file and use that. 
+  </p>
+
+  <h2>Calling a function from the simulated Code-Behind</h2>
+  <p>This two examples do the following: </p>
+  <ul>
+    <li>Call the function <code>Hello()</code></li>
+    <li>This creates a special alert-div using a Helper called <code>Message(...)</code></li>
+  </ul>
 </trim>
 
-<hr>
-<h2>Calling a function from the simulated Code-Behind</h2>
-<trim>
-<p>This two examples do the following: </p>
-<ul>
-  <li>Call the function <code>Hello()</code></li>
-  <li>This creates a special alert-div using a Helper called <code>Message(...)</code></li>
-</ul>
-</trim>
-@Sys.SourceCode.SnippetStart("code-behind")
+@Sys.SourceCode.ResultAndSnippetStart("code-behind", "Source of CodeBehindSimulated.cs")
   @{
     var code = CreateInstance("CodeBehindSimulated.cs");
   }
   <div>Hello from Code Behind: <strong>@code.Hello()</strong></div>
 
   @code.Message("Message in a special format")
-@Sys.SourceCode.SnippetEnd("code-behind")
+@Sys.SourceCode.ResultEnd("file:CodeBehindSimulated.cs")
 
 @Sys.PageParts.FooterWithSource()
-@Sys.SourceCode.ShowFile("CodeBehindSimulated.cs")

@@ -100,13 +100,6 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public ITag SnippetStart(string snippet, params string[] names) {
     return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
-    // _snippet = snippet;
-    // return Tag.RawHtml(
-    //   TabsForSnippet(snippet, ResultTabName, SourceTabName, names),    // Tab headers
-    //   BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
-    //   "  ",                             // Open the first tab-body item as the snippet is right after this
-    //   BsTabs.TabContentOpen(snippet, Name2TabId(ResultTabName), true)
-    // );
   }
 
   private ITag SnippetStartInner(string snippet, string firstName, string lastName, params string[] names) {
@@ -148,7 +141,7 @@ public class SourceCode: Custom.Hybrid.Code14
     return result;
   }
 
-  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-"); }
+  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
 
   #region Snippet Inline and Intro
 
@@ -206,7 +199,11 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public ITag ResultAndSnippetStart(string prefix, params string[] names) {
     _resultEndWillPrepend = true;
-    return SnippetStartInner(prefix, ResultAndSourceTabName, null, names);
+    return Tag.RawHtml(
+      SnippetStartInner(prefix, ResultAndSourceTabName, null, names),
+      Tag.Div().Class("alert alert-info").TagStart,
+      Tag.H4("Output")
+    );
   }
 
 
@@ -218,7 +215,7 @@ public class SourceCode: Custom.Hybrid.Code14
     // Close the tabs / header div section if it hasn't been closed yet
     var html = Tag.RawHtml();
     if (_resultEndWillPrepend)
-      html = html.Add(Snippet(_snippet));
+      html = html.Add("</div>", Snippet(_snippet));
     html = html.Add(BsTabs.TabContentClose());
     // If we have any results, add them here
     foreach(var m in results) {

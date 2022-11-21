@@ -18,29 +18,23 @@
 </div>
 </trim>
 
-<hr>
 <h3>Just render the same, external file into here</h3>
-<hide>
-  <p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
-</hide>
-@Sys.SourceCode.SnippetInlineStart("reuse-partial")
-@Html.Partial("_line.cshtml")
-@Html.Partial("_line.cshtml")
-@Html.Partial("_line.cshtml")
-@Sys.SourceCode.SnippetInlineEnd()
+<p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
 
-<hr>
-<h2>Passing in values</h2>
-<hide>
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of _line.cshtml")
+@Html.Partial("_line.cshtml")
+@Html.Partial("_line.cshtml")
+@Html.Partial("_line.cshtml")
+@Sys.SourceCode.ResultEnd("file:_line.cshtml")
+
+<h3>Passing in values</h3>
 <p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
-</hide>
 
-@Sys.SourceCode.SnippetInlineStart("reuse-partial-pass-values")
+
+@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of _box.cshtml")
 @Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
 @Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
 @Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:_box.cshtml")
 
 @Sys.PageParts.FooterWithSource()
-@Sys.SourceCode.ShowFile("line")
-@Sys.SourceCode.ShowFile("box")
