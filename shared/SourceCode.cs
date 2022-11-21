@@ -219,8 +219,8 @@ public class SourceCode: Custom.Hybrid.Code14
     return ShowFileContents(file);
   }
 
-  public ITag ShowFile(string file, string title = null, string titlePath = null) {
-    return ShowFileContents(file, title: title, titlePath: titlePath);
+  public ITag ShowFile(string file, string titlePath = null) {
+    return ShowFileContents(file, titlePath: titlePath);
   }
 
   public ITag ShowFileContents(string file,
