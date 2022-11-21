@@ -1,9 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 @{
   var normalText = "this is text, it doesn't have tags";
@@ -19,29 +18,24 @@
 <p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
 </trim>
 
-<snippet id="basic-variable">
+@Sys.SourceCode.SnippetInlineStart("basic-variable")
 <ul>
   <li>@normalText</li>
   <li>@htmlText</li>
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-variable", Size = 100 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <trim>
 <hr>
 <h2>Encode using <code>@@Html.Raw(...)</code> </h2>
 </trim>
-<snippet id="basic-variable-raw">
+
+@Sys.SourceCode.SnippetInlineStart("basic-variable-raw")
 <ul>
   <li>@Html.Raw(normalText)</li>
   <li>@Html.Raw(htmlText)</li>
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-variable-raw", Size = 100 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <hr>
 <h2>Add "uncontrolled" html using <code>@@:...</code></h2>
@@ -49,7 +43,8 @@
   Sometimes you need to conditionally add tags, in which case Razor cannot verify that open/close of tags is correct.
   This would normally throw an error. so you need <code>@@:</code>. 
 </p>
-<snippet id="basic-variable-uncontrolled">
+
+@Sys.SourceCode.SnippetInlineStart("basic-variable-uncontrolled")
 <div>
   @{ var makeBold = new System.Random().NextDouble() > 0.5; }
   @if (makeBold) { 
@@ -60,12 +55,6 @@
     @:</strong>
   }
 </div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-variable-uncontrolled", Size = 250 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

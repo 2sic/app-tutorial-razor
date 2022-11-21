@@ -1,9 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 <trim>
 <div class="row">
@@ -28,21 +27,14 @@
   </div>
 </trim>
 
-<snippet id="basic-emoji">
+@Sys.SourceCode.SnippetInlineStart("basic-emoji")
 @functions {
   string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
 }
-
 <ul>
   <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
   <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
 </ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-emoji", Size = 200 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 350 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()
