@@ -6,7 +6,7 @@
   var dataElToolbar = Kit.Toolbar.Empty().Edit().AddExisting().MoveUp().MoveDown().Remove();
 }
  
-<div class="card"  @dataToolbar.For(DynamicModel.Data)>
+<div class="card mb-4"  @dataToolbar.For(DynamicModel.Data)>
   <h6 class="card-header">
     <i class='fas @(DynamicModel.Icon ?? "fa-info-circle")'></i>
     <span class="ml-2 ms-2">@DynamicModel.Title</span>
