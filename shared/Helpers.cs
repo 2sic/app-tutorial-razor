@@ -1,3 +1,4 @@
+using Custom.Hybrid;
 using ToSic.Razor.Blade;
 using System.Web;
 using System.Collections.Generic;
@@ -8,10 +9,12 @@ public class Helpers: Custom.Hybrid.Code14
   public string TutViewMetadataType = "TutorialViewMetadata";
   public string TutViewSharingMetadataType = "TutorialViewSharing";
 
-  public Helpers Init(string path) {
-    Path = path;
+  public Helpers Init(Razor14 page) {
+    Page = page;
+    Path = Page.Path;
     return this;
   }
+  public Razor14 Page;
 
   public string Path {get;set;}
 

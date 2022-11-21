@@ -4,7 +4,7 @@
   @Html.Partial("_header.cshtml")
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{
-    var Sys = CreateInstance("../shared/Helpers.cs").Init(Path);
+    var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
   }
   @{
     /* Internal remarks for the tutorial developers
