@@ -1,41 +1,37 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@Html.Partial("_ShortIntro.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
-<hr>
 
 <trim>
-<h2>Use PageService.Activate to enable Features and Load JS/CSS</h2>
-<p>
-  2sxc 12.04 helps with many advanced challenges like these:
-</p>
-<ol>
-  <li>Make sure that certain scripts are only loaded once (like jQuery or FancyBox)</li>
-  <li>Make sure that all apps use the same version of these scripts</li>
-  <li>Starting things in the right order</li>
-</ol>
+  <h2>Use PageService.Activate to enable Features and Load JS/CSS</h2>
+  <p>
+    2sxc 12.04 helps with many advanced challenges like these:
+  </p>
+  <ol>
+    <li>Make sure that certain scripts are only loaded once (like jQuery or FancyBox)</li>
+    <li>Make sure that all apps use the same version of these scripts</li>
+    <li>Starting things in the right order</li>
+  </ol>
 
-<h2>Simple Example</h2>
-<p>
-  The following example will tell the page that <code>fancybox4</code> is required - which will automatically apply a lightbox to the image below. <br>
-  It uses the <code>WebResources</code> as configured in the Settings. By default, fancybox4 is already defined, but you can overide this or create your own WebResource definitions.
-</p>
+  <h2>Simple Example</h2>
+  <p>
+    The following example will tell the page that <code>fancybox4</code> is required - which will automatically apply a lightbox to the image below. <br>
+    It uses the <code>WebResources</code> as configured in the Settings. By default, fancybox4 is already defined, but you can overide this or create your own WebResource definitions.
+  </p>
 </trim>
+@Sys.SourceCode.SnippetInlineStart("stack")
+  @{
+    Kit.Page.Activate("fancybox4");
+    Kit.Page.Activate("fancybox4"); // even if called multiple times, it will only be activated once
+    var imgUrl = App.Path + "/settings/demo-banner.png";
+  }
+  <a data-fancybox='gallery' href="@imgUrl">
+    <img loading="lazy" src="@Link.Image(imgUrl, width: 200, height: 200)">
+  </a>
+@Sys.SourceCode.SnippetInlineEnd()
 
-@{
-  Kit.Page.Activate("fancybox4");
-  Kit.Page.Activate("fancybox4"); // even if called multiple times, it will only be activated once
-
-  var imgUrl = App.Path + "/settings/demo-banner.png";
-}
-
-<a data-fancybox='gallery' href="@imgUrl">
-  <img loading="lazy" src="@Link.Image(imgUrl, width: 200, height: 200)">
-</a>
-
-
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400, isExpanded=true }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

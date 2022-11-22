@@ -1,9 +1,13 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
 </hide>
 <trim>
 <div class="row">
@@ -18,17 +22,19 @@
 </trim>
 
   <h3>List of Persons</h3>
-<ul>
-  @foreach(var person in AsList(App.Data["Persons"])) {
-    <li>
-      <a href='@Link.To(parameters: "data620id=" + person.EntityId )'>
-        @person.FirstName @person.LastName
-      </a>
-    </li>
-  }
-</ul>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400, isExpanded=true }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("list-detail-2")
+  <ul>
+    @foreach(var person in AsList(App.Data["Persons"])) {
+      <li>
+        <a href='@Link.To(parameters: "data620id=" + person.EntityId )'>
+          @person.FirstName @person.LastName
+        </a>
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+
+@Sys.PageParts.FooterWithSource()

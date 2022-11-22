@@ -18,7 +18,4 @@
 <h3>Details of @Content.FirstName @Content.LastName</h3>
 <a href='@Link.To(parameters: "data621=true")'>back to list</a>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

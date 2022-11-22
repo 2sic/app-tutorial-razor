@@ -1,3 +1,2 @@
 @inherits Custom.Hybrid.Razor14
-@Html.Partial("../shared/_Header.cshtml", new { Title = "Language Tutorials", Name = "Languages / i18n", Link = "#languages", FeatureIconPath = "languages/assets/multi-language.svg", FeatureUrl = "https://2sxc.org/en/discover/multiple-languages/" })
-@Html.Partial("../shared/_NavigationToolbar.cshtml")
+@DynamicModel.Sys.PageParts.Header(new { Title = "Language Tutorials", Name = "Languages / i18n", Link = "#languages", FeatureIconPath = "languages/assets/multi-language.svg", FeatureUrl = "https://2sxc.org/en/discover/multiple-languages/" })

@@ -1,33 +1,36 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
     <h2>Basic Example from App.Data</h2>
-    <p>The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @hlp.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.</p>
+    <p>The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @Sys.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.</p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-<ul>
-  @foreach (var person in AsList(App.Data["Persons"])) {
-    <li>
-      @if (Text.Has(person.Mugshot)) {
-        <img loading="lazy" src='@Link.Image(person.Mugshot, width: 50, height: 50, resizeMode: "crop")' width="50px" style="border-radius: 50%">
-      }
-      @person.FirstName  @person.LastName
-    </li>
-  }
-</ul>
+
+@Sys.SourceCode.SnippetInlineStart("basic-example")
+  <ul>
+    @foreach (var person in AsList(App.Data["Persons"])) {
+      <li>
+        @if (Text.Has(person.Mugshot)) {
+          <img loading="lazy" src='@Link.Image(person.Mugshot, width: 50, height: 50, resizeMode: "crop")' width="50px" style="border-radius: 50%">
+        }
+        @person.FirstName  @person.LastName
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400, isExpanded=true }) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+

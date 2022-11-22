@@ -1,34 +1,39 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
+
 
 <trim>
 <h2>Working with Data</h2>
 <div class="row">
   <div class="col-lg-7">
-    <p>If you want to work with <strong>data</strong> (like from a database) instead of <strong>@hlp.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:</p>
+    <p>If you want to work with <strong>data</strong> (like from a database) instead of <strong>@Sys.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:</p>
+
+    <ul>
+      <li>the current App, using <code>App.Data[...]</code></li>
+      <li>a query in the App, using <code>App.Query[...]</code></li>
+      <li>a SQL database - either through an <code>App.Query</code>, from a <code>DataSource</code> or from a <code>SqlReader</code></li>
+      <li>a CSV file - either through an <code>App.Query</code>, from a <code>DataSource</code> or from your own code</li>
+      <li>DNN objects like the users - either through an <code>App.Query</code>, from a <code>DataSource</code>, from DNN-objects or from your own code</li>
+      <li>a JSON or XML file - usually loaded from your own code</li>
+      <li>a WebService - usually loaded from your own code</li>
+    </ul>
+    <p>
+      Once you have the data, you will usually want to loop-and-show, which is easiest using <code>dynamic</code> objects, so you can just type things like <code>@@Content.FirstName</code> to show the properties. 
+    </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<ul>
-  <li>the current App, using <code>App.Data[...]</code></li>
-  <li>a query in the App, using <code>App.Query[...]</code></li>
-  <li>a SQL database - either through an <code>App.Query</code>, from a <code>DataSource</code> or from a <code>SqlReader</code></li>
-  <li>a CSV file - either through an <code>App.Query</code>, from a <code>DataSource</code> or from your own code</li>
-  <li>DNN objects like the users - either through an <code>App.Query</code>, from a <code>DataSource</code>, from DNN-objects or from your own code</li>
-  <li>a JSON or XML file - usually loaded from your own code</li>
-  <li>a WebService - usually loaded from your own code</li>
-</ul>
-<p>
-  Once you have the data, you will usually want to loop-and-show, which is easiest using <code>dynamic</code> objects, so you can just type things like <code>@@Content.FirstName</code> to show the properties. 
-</p>
+
 </trim>
 
 @* 
+TODO: 2dm - darf das weg?
 <h2>Data of the current App.Data</h2>
 
 <ol>

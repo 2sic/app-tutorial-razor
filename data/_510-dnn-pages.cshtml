@@ -1,15 +1,19 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using System.Collections.Generic;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-@*
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
+  @*
   Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
   2sxclint:disable:no-dnn-namespaces
 *@
 </hide>
-@using System.Collections.Generic;
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -22,31 +26,31 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-@{#if NETCOREAPP}
-  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-@{#else}
-<snippet id="dnn-pages">
-@{
-  // get the pages
-  var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
-  var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
-}
-<ul>
-  @foreach(DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
-    <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
-      <a href="@dnnPage.FullUrl" target="_blank">
-        @dnnPage.TabName (#@dnnPage.TabID)
-      </a>
-    </li>
-  }
-</ul>
-</snippet>
-@{#endif}
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "dnn-pages", Size = 300 }) 
-</hide-silent>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("dnn-pages-1")
+  @{#if NETCOREAPP}
+    @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+  @{#else}
+@Sys.SourceCode.SnippetInlineEnd()
+
+  
+@Sys.SourceCode.SnippetInlineStart("dnn-pages-2")
+  @{
+    // get the pages
+    var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
+    var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
+  }
+  <ul>
+    @foreach(DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
+      <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
+        <a href="@dnnPage.FullUrl" target="_blank">
+          @dnnPage.TabName (#@dnnPage.TabID)
+        </a>
+      </li>
+    }
+  </ul>
+  @{#endif}
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()e>

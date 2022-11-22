@@ -1,16 +1,13 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
-@{
-  // check if we have a url-parameter called "id" with a value
-  int id;
-  // showdetails will be true, if urlId had a number
-  var showDetails = Int32.TryParse(CmsContext.Page.Parameters["id"], out id);
-}
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -19,31 +16,26 @@
       Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example splits the list/details templates into 3 files, which is easier to manage. File 1 choses what should happen, file 2 contains the list, and file 3 the details. 
     </p>
     <p>
-      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @hlp.TutLink("LINQ Tutorials", "linq").
+      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @Sys.TutLink("LINQ Tutorials", "linq").
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-@if(!showDetails) {
-  @Html.Partial("_611-list.cshtml")
-} else {
-  @Html.Partial("_611-details.cshtml", new { Id = id })
-}
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
+@Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of List.cshtml", "Source of Details.cshtml" )
+  @{
+    // check if we have a url-parameter called "id" with a value
+    int id;
+    // showdetails will be true, if urlId had a number
+    var showDetails = Int32.TryParse(CmsContext.Page.Parameters["id"], out id);
+  }
+  @if(!showDetails) {
+    @Html.Partial("_611-list.cshtml")
+  } else {
+    @Html.Partial("_611-details.cshtml", new { Id = id })
+  }
+@Sys.SourceCode.ResultEnd("file:611-list", "file:611-details" )
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  File = "611-list",
-  Size = 300, 
-}) 
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  File = "611-details",
-  Size = 300, 
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

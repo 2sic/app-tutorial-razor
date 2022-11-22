@@ -1,13 +1,14 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-</hide>
 @using ToSic.Razor.Blade;
 @using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
+</hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -21,50 +22,37 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-<snippet id="data-query-csv">
 
-@{
-  // get the query
-  var query = App.Query["ProductsFromCSV"];
+@Sys.SourceCode.ResultAndSnippetStart("data-query-csv", "Source-code products.csv.txt")
+  @{
+    // get the query
+    var query = App.Query["ProductsFromCSV"];
 
-  // get the data from the query
-  var products = AsList(query);
+    // get the data from the query
+    var products = AsList(query);
 
-  // get the current author (if available) from the stream Current
-  var current = AsList(query["Current"]).FirstOrDefault();
-}
-<ul>
-  @foreach(var product in products) {
-    <!-- this li will have class=selected if it's the current one -->
-    <li class='@(product == current ? "selected" : "")'>
-      <!-- this creates a link to the current tutorial (data220) and product=id -->
-      <a href='@Link.To(parameters: "data230=true&product=" + product.EntityId)'>
-        @product.Name (#@product.Id)
-      </a>
-      @if(current == product) {
-        <br>
-        <em>
-          @current.Description 
-          (<a href="@product.Link" target="_blank">find out more</a>)
-        </em>
-      }
-    </li>
+    // get the current author (if available) from the stream Current
+    var current = AsList(query["Current"]).FirstOrDefault();
   }
-</ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "data-query-csv", Size = 600 }) 
-</hide-silent>
-<hide>
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  File = "assets/products.csv.txt",
-  Size = 200, 
-  Type = "csv"
-}) 
-</hide>
+  <ul>
+    @foreach(var product in products) {
+      <!-- this li will have class=selected if it's the current one -->
+      <li class='@(product == current ? "selected" : "")'>
+        <!-- this creates a link to the current tutorial (data220) and product=id -->
+        <a href='@Link.To(parameters: "data230=true&product=" + product.EntityId)'>
+          @product.Name (#@product.Id)
+        </a>
+        @if(current == product) {
+          <br>
+          <em>
+            @current.Description 
+            (<a href="@product.Link" target="_blank">find out more</a>)
+          </em>
+        }
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:assets/products.csv.txt")
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()

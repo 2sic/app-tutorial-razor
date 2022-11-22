@@ -1,17 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-  var width = 200;
-  var height = 200;
-
-  // TODO: doesn't work in Oqtane
-}
-</hide>
 @using ToSic.Razor.Blade;
 @using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+    var width = 200;
+    var height = 200;
+  }
+</hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -24,40 +24,38 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<hr>
 
 </trim>
 <div class="row">
   <div class="col-lg-7">
-    <snippet id="sql-query-reset">
-    @{
-      // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-      var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-      // get the query and ask for the "Default" results as a dynamic List
-      var query = App.Query[queryName];
-      var currentFiles = AsList(query);
-      query.Reset();
-      var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
-      query.Params("SiteId", rootPortal.ToString());
-      var rootFiles = AsList(query);
-    }
-    </snippet>
-    <hide-silent> @* Show only this snippet *@
-      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-reset", Size = 200 }) 
-    </hide-silent>
+@Sys.SourceCode.SnippetInlineStart("sql-query-reset")
+  @{
+    // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
+    var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-    <h2>files from the current Portal</h2>
-    <snippet id="sql-query-current">
-    <ul>
-      @foreach(var file in currentFiles) {
-        <li>@file.Name</li>
-      }
-    </ul>
-    </snippet>
-    <hide-silent> @* Show only this snippet *@
-      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-current", Size = 150 }) 
-    </hide-silent>
+    // get the query and ask for the "Default" results as a dynamic List
+    var query = App.Query[queryName];
+    var currentFiles = AsList(query);
+    query.Reset();
+    var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
+    query.Params("SiteId", rootPortal.ToString());
+    var rootFiles = AsList(query);
+  }
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+<h2>files from the current Portal</h2>
+
+@Sys.SourceCode.SnippetInlineStart("sql-query-reset")
+  <ul>
+   @foreach(var file in currentFiles) {
+    <li>@file.Name</li>
+  }
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
   </div>
   <div class="col-lg-5">
     @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") 
@@ -66,20 +64,15 @@
   </div>
 </div>
 
-<hr>
 <h2>Files from the root portal</h2>
-<snippet id="sql-query-root">
-<ul>
-  @foreach(var file in rootFiles) {
+
+@Sys.SourceCode.SnippetInlineStart("sql-query-reset")
+  <ul>
+   @foreach(var file in rootFiles) {
     <li>@file.Name</li>
   }
-</ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-root", Size = 150 }) 
-</hide-silent>
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()

@@ -1,15 +1,17 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@Html.Partial("_ShortIntro.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("_ShortIntro.cshtml")
 </hide>
-<hr>
 
 <trim>
-<h2>Global/Site/App/View Settings</h2>
-<p>
-  Settings can easily be read using the <code>Settings</code> object. It combines all the settings in the system to match what the code needs. 
-</p>
+  <h2>Global/Site/App/View Settings</h2>
+  <p>
+    Settings can easily be read using the <code>Settings</code> object. It combines all the settings in the system to match what the code needs. 
+  </p>
 </trim>
 
 <hr>
@@ -17,47 +19,37 @@
 <hide>
   <p>The following settings were configured on this View - see <a href="https://docs.2sxc.org/basics/app/views/settings.html" target="_blank">docs</a></p>
 </hide>
-<snippet id="settings-view">
-<ul>
-  <li>
-    <div style="width: 20px; height: 20px; float: left; background-color: @Settings.PrimaryColor"></div>
-    &nbsp; <code>@@Settings.PrimaryColor</code>: @Settings.PrimaryColor 
-  </li>
-  <li>
-    <div style="width: 20px; height: 20px; float: left; background-color: @Settings.SecondaryColor"></div>
-    &nbsp; <code>@@Settings.SecondaryColor</code>: @Settings.SecondaryColor
-  </li>
-  <li><code>@@Settings.Tiles</code> (for example to configure images side-by-side): @Settings.Tiles</li>
-</ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "settings-view", Size = 300 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineStart("settings-view")
+  <ul>
+    <li>
+      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.PrimaryColor"></div>
+      &nbsp; <code>@@Settings.PrimaryColor</code>: @Settings.PrimaryColor 
+    </li>
+    <li>
+      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.SecondaryColor"></div>
+      &nbsp; <code>@@Settings.SecondaryColor</code>: @Settings.SecondaryColor
+    </li>
+    <li><code>@@Settings.Tiles</code> (for example to configure images side-by-side): @Settings.Tiles</li>
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
 
-
-<hr>
 <h3>App Settings</h3>
 <hide>
   <p>The following settings were configured on this App - see <a href="https://docs.2sxc.org/basics/app/settings.html" target="_blank">docs</a></p>
 </hide>
-<snippet id="settings-app">
-<ul>
-  <li>
-    <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrForegroundColor"></div>
-    &nbsp; <code>@@Settings.QrForegroundColor</code>: @Settings.QrForegroundColor 
-  </li>
-  <li>
-    <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrBackgroundColor"></div>
-    &nbsp; <code>@@Settings.QrBackgroundColor</code>: @Settings.QrBackgroundColor
-  </li>
-  <li><code>@@Settings.QrDimension</code>: @Settings.QrDimension</li>
-</ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "settings-app", Size = 300 }) 
-</hide-silent>
-
-<hr>
+@Sys.SourceCode.SnippetInlineStart("settings-app")
+  <ul>
+    <li>
+      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrForegroundColor"></div>
+      &nbsp; <code>@@Settings.QrForegroundColor</code>: @Settings.QrForegroundColor 
+    </li>
+    <li>
+      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrBackgroundColor"></div>
+      &nbsp; <code>@@Settings.QrBackgroundColor</code>: @Settings.QrBackgroundColor
+    </li>
+    <li><code>@@Settings.QrDimension</code>: @Settings.QrDimension</li>
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
 
 <h3>Site ond Global (across Sites) Settings</h3>
 <hide>
@@ -68,23 +60,16 @@
   </p>
 </hide>
 
-<hr>
 <h3>Predefined System Settings</h3>
 <hide>
   <p>
     Each installation of 2sxc has predefined settings which you can also read - see <a href="https://r.2sxc.org/settings" target="_blank">docs</a></p>
 </hide>
-<snippet id="settings-system">
-<ul>
-  <li><code>@@Settings.Images.Content.Width</code>: @Settings.Images.Content.Width</li>
-  <li><code>@@Settings.Images.Content.AspectRatio</code>: @Settings.Images.Content.AspectRatio</li>
-</ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "settings-system", Size = 150 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineStart("settings-system")
+  <ul>
+    <li><code>@@Settings.Images.Content.Width</code>: @Settings.Images.Content.Width</li>
+    <li><code>@@Settings.Images.Content.AspectRatio</code>: @Settings.Images.Content.AspectRatio</li>
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

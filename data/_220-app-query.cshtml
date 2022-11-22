@@ -1,13 +1,14 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-}
-</hide>
 @using ToSic.Razor.Blade;
 @using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
+</hide>
+
+
 <trim>
   <div class="row">
   <div class="col-lg-7">   
@@ -20,52 +21,47 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-<snippet id="data-query">
-@{
-  // get the query
-  var query = App.Query["AuthorsWithBooks"];
 
-  // get all authors from the stream Authors in the query
-  var allAuthors = AsList(query["Authors"]);
+@Sys.SourceCode.SnippetInlineStart("data-query")
+  @{
+    // get the query
+    var query = App.Query["AuthorsWithBooks"];
 
-  // get the current author (if available) from the stream Current
-  var current = AsDynamic(query["Current"].FirstOrDefault());
+    // get all authors from the stream Authors in the query
+    var allAuthors = AsList(query["Authors"]);
 
-  // get the books of the current author (if available) from stream CurrentBook
-  var books = AsList(query["CurrentBooks"]);
-}
-<ul>
-  @foreach(var person in allAuthors) {
-    <!-- this li will have class=selected if it's the current one -->
-    <li class='@(person == current ? "selected" : "")'>
-      <!-- this creates a link to the current tutorial (data220) and author=id -->
-      <a href='@Link.To(parameters: "data220=true&authorId=" + person.EntityId)'>
-        @person.FirstName @person.LastName
-      </a>
-    </li>
+    // get the current author (if available) from the stream Current
+    var current = AsDynamic(query["Current"].FirstOrDefault());
+
+    // get the books of the current author (if available) from stream CurrentBook
+    var books = AsList(query["CurrentBooks"]);
   }
-</ul>
-
-@if(current != null) {
-  if(Text.Has(current.Mugshot)) {
-    <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right float-end">
-  }
-  <h3>Current Author: @current.FirstName @current.LastName</h3>
-  <strong>Books</strong>
-  <ol>
-    @foreach(var book in books) {
-      <li>@book.Title</li>
+  <ul>
+    @foreach(var person in allAuthors) {
+      <!-- this li will have class=selected if it's the current one -->
+      <li class='@(person == current ? "selected" : "")'>
+        <!-- this creates a link to the current tutorial (data220) and author=id -->
+        <a href='@Link.To(parameters: "data220=true&authorId=" + person.EntityId)'>
+          @person.FirstName @person.LastName
+        </a>
+      </li>
     }
-  </ol>
-} else {
-  <h3>No author selected - click on an author above</h3>
-}
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "data-query", Size = 800 }) 
-</hide-silent>
+  </ul>
+  @if(current != null) {
+    if(Text.Has(current.Mugshot)) {
+      <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right float-end">
+    }
+    <h3>Current Author: @current.FirstName @current.LastName</h3>
+    <strong>Books</strong>
+    <ol>
+      @foreach(var book in books) {
+        <li>@book.Title</li>
+      }
+    </ol>
+  } else {
+    <h3>No author selected - click on an author above</h3>
+  }
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()

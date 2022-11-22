@@ -1,20 +1,13 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
-@{
-  var persons = AsList(App.Data["Persons"]);
 
-  // check if we have a url-parameter called "id" with a value
-  // if we do, switch on showDetails and filter the persons to only one
-  var urlId = CmsContext.Page.Parameters["id"];
-  int id;
-  // showdetails will be true, if urlId had a number
-  var showDetails = Int32.TryParse(urlId, out id);
-}
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -23,33 +16,47 @@
       Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example even has the list & details view in the same file - but usually you don't want that - so check the next examples afterwards. 
     </p>
     <p>
-      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @hlp.TutLink("LINQ Tutorials", "linq").
+      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @Sys.TutLink("LINQ Tutorials", "linq").
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
 
-@if(!showDetails) {
-  <h3>List of Persons</h3>
-<ul>
-  @foreach(var person in persons) {
-    <li>
-      <a href='@Link.To(parameters: "data610=true&id=" + person.EntityId )'>
-        @person.FirstName @person.LastName
-      </a>
-    </li>
-  }
-</ul>
-} else {
-  // find the person with this Id using LINQ
-  var person = persons.First(p => p.EntityId == id);
-  <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
-  <h3>Details of @person.FirstName @person.LastName</h3>
-  <a href='@Link.To(parameters: "data610=true")'>back to list</a>
-}
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    var persons = AsList(App.Data["Persons"]);
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700, isExpanded=true }) 
-</hide>
+    // check if we have a url-parameter called "id" with a value
+    // if we do, switch on showDetails and filter the persons to only one
+    var urlId = CmsContext.Page.Parameters["id"];
+    int id;
+    // showdetails will be true, if urlId had a number
+    var showDetails = Int32.TryParse(urlId, out id);
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("sql-read")
+  @if(!showDetails) {
+    <h3>List of Persons</h3>
+  <ul>
+    @foreach(var person in persons) {
+      <li>
+        <a href='@Link.To(parameters: "data610=true&id=" + person.EntityId )'>
+          @person.FirstName @person.LastName
+        </a>
+      </li>
+    }
+  </ul>
+  } else {
+    // find the person with this Id using LINQ
+    var person = persons.First(p => p.EntityId == id);
+    <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
+    <h3>Details of @person.FirstName @person.LastName</h3>
+    <a href='@Link.To(parameters: "data610=true")'>back to list</a>
+  }
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

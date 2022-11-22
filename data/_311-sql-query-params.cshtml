@@ -1,17 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-  var width = 200;
-  var height = 200;
-
-  // TODO: doesn't work in Oqtane
-}
-</hide>
 @using ToSic.Razor.Blade;
 @using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+    var width = 200;
+    var height = 200;
+  }
+</hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -24,35 +24,33 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<hr>
 
 </trim>
 <div class="row">
   <div class="col-lg-7">
     <h2>Root Portal</h2>
     <div>In this example we will set the PortalId for the SQL query.</div>
-    <snippet id="sql-query-params">
-    @{
-      // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-      var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-      // Get the query and set a parameter
-      var query = App.Query[queryName];
-      var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
-      query.Params("SiteId", rootPortal.ToString());
-      var rootFiles = AsList(query);
-    }
-    <ol>
-      @foreach(var file in rootFiles) {
-        <li>
-          @file.Name
-        </li>
-      }
-    </ol>
-    </snippet>
-    <hide-silent> @* Show only this snippet *@
-      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-params", Size = 300 }) 
-    </hide-silent>
+@Sys.SourceCode.SnippetInlineStart("sql-query-params")
+  @{
+    // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
+    var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
+
+    // Get the query and set a parameter
+    var query = App.Query[queryName];
+    var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
+    query.Params("SiteId", rootPortal.ToString());
+    var rootFiles = AsList(query);
+  }
+  <ol>
+    @foreach(var file in rootFiles) {
+    <li>
+     @file.Name
+    </li>
+  }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
   </div>
   <div class="col-lg-5">
     @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") 
@@ -62,7 +60,4 @@
 </div>
 
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

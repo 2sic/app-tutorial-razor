@@ -1,16 +1,19 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@*
-// TODO: doesn't work in Oqtane
-*@
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-</hide>
+@using ToSic.Razor.Blade;
+@using System.Linq;
 @using System.Configuration
 @using System.Data
 @using System.Data.SqlClient
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+    var width = 200;
+    var height = 200;
+  }
+</hide>
+
 
 <trim>
 <div class="row">
@@ -23,44 +26,37 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-<snippet id="sql-datareader">
-@{
-  // load the sql connection name from Web.Config
-  // the default connection string for DNN is SiteSqlServer
-  var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
 
-  var con = new SqlConnection(conString);
-  con.Open();
+@Sys.SourceCode.SnippetInlineStart("sql-datareader")
+  @{
+    // load the sql connection name from Web.Config
+    // the default connection string for DNN is SiteSqlServer
+    var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
 
-  // You should always write parameters using the @-syntaxt,
-  // and never write them directly into the SQL using string-concatenation
-  // to protect yourself from SQL injection attacks
-  var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
-  command.Parameters.Add("@PortalId", CmsContext.Site.Id);
-  var myReader = command.ExecuteReader();
-}
+    var con = new SqlConnection(conString);
+    con.Open();
 
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-datareader", Size = 350 }) 
-</hide-silent>
-
-<snippet id="sql-read">
-<ol>
-  @while (myReader.Read())
-  {
-    <li>@myReader["FileName"]</li>
+    // You should always write parameters using the @-syntaxt,
+    // and never write them directly into the SQL using string-concatenation
+    // to protect yourself from SQL injection attacks
+    var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
+    command.Parameters.Add("@PortalId", CmsContext.Site.Id);
+    var myReader = command.ExecuteReader();
   }
-</ol>
-@{
-  myReader.Close();
-}
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-read", Size = 200 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 850 }) 
-</hide>
+
+@Sys.SourceCode.SnippetInlineStart("sql-read")
+  <ol>
+    @while (myReader.Read())
+    {
+      <li>@myReader["FileName"]</li>
+    }
+  </ol>
+  @{
+    myReader.Close();
+  }
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

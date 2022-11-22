@@ -2,16 +2,16 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-  var width = 200;
-  var height = 200;
-
-  // TODO: doesn't work in Oqtane
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+    var width = 200;
+    var height = 200;
+  }
 </hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -24,34 +24,33 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<hr>
+
 
 </trim>
 <div class="row">
   <div class="col-lg-7">
     <h2>Current Portal</h2>
     <div>In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code></div>
-    <snippet id="sql-query">
-    @{
-      // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-      var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-      // Get the query and ask for the "Default" results as a dynamic List
-      var query = App.Query[queryName];
-      var files = AsList(query);
-    }
-    <ol>
-      @foreach(var file in files) {
-        <li>
-          @file.Name
-        </li>
-      }
-    </ol>
+@Sys.SourceCode.SnippetInlineStart("sql-query")
+  @{
+    // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
+    var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-    </snippet>
-    <hide-silent> @* Show only this snippet *@
-      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query", Size = 300 }) 
-    </hide-silent>
+    // Get the query and ask for the "Default" results as a dynamic List
+    var query = App.Query[queryName];
+    var files = AsList(query);
+  }
+  <ol>
+    @foreach(var file in files) {
+    <li>
+      @file.Name
+    </li>
+  }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
   </div>
   <div class="col-lg-5">
     @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") 
@@ -60,7 +59,4 @@
   </div>
 </div>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 750 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

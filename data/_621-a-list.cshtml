@@ -1,11 +1,13 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
 </hide>
+
 <trim>
 
 <div class="row">
@@ -20,7 +22,9 @@
 </div>
 </trim>
 
-  <h3>List of Persons</h3>
+<h3>List of Persons</h3>
+
+@Sys.SourceCode.SnippetInlineStart("list-detail-3")
 <ul>
   @foreach(var person in AsList(App.Data["Persons"])) {
     <li>
@@ -30,8 +34,7 @@
     </li>
   }
 </ul>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400, isExpanded=true }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()
