@@ -127,7 +127,7 @@ public class Helpers: Custom.Hybrid.Code14
     // Tell the page that we need the 2sxc Js APIs
     Kit.Page.Activate("2sxc.JsCore"); 
 
-    var bsCheck = CreateInstance("Bootstrap4.cs");
+    var bsCheck = CreateInstance("Bootstrap5.cs");
     bsCheck.EnsureBootstrap5();
     return "<link rel='stylesheet' href='" + App.Path + "/assets/styles.css' enableoptimizations='true' />";
   }

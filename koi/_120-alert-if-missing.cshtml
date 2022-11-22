@@ -28,7 +28,7 @@
 </div>
 </trim>
 @{
-  var bsCheck = CreateInstance("../shared/Bootstrap4.cs");
+  var bsCheck = CreateInstance("../shared/Bootstrap5.cs");
   bsCheck.EnsureBootstrap5();
 }
 @bsCheck.WarnAboutMissingOrUnknownBootstrap()
@@ -38,7 +38,7 @@
 
 @Html.Partial("../shared/_source-code.cshtml", new { 
   Path = App.PhysicalPath + "/shared/",
-  File = "Bootstrap4.cs",
+  File = "Bootstrap5.cs",
   Size = 600
 }) 
 </hide>

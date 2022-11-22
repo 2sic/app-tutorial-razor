@@ -39,6 +39,39 @@
     padding: 5px 4px 4px;
   }
 
+  .tab-pane .alert.alert-info + .code-block {
+    margin-bottom: 0 !important;
+  }
+
+  .alert.alert-info + .code-block {
+    margin-bottom: 3rem !important;
+  }
+
+  .alert.alert-info + .code-block .source-code {
+    border: 1px solid #E8E1D6;
+  }
+
+  @* .alert.alert-info + .code-block::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-top: 1.5rem;
+    background-color: #E8E1D6;
+  } *@
+
+  .code-block .source-code pre,
+  .pre-result .source-code pre {
+    margin-bottom: 0;
+  }
+
+  h3 + ol,
+  h3 + ul,
+  p + ol,
+  p + ul {
+    margin-bottom: 1.5rem;
+  }
+
 </style>
 
 @* Experimental hide snippet till needed *@
