@@ -42,7 +42,7 @@
     </thead>
   </trim>
   <tbody>
-     @foreach(var poet in AsList(App.Data["PoetsToEdit"])) {
+     @foreach (var poet in AsList(App.Data["PoetsToEdit"])) {
       <tr>
         <td>@poet.Name</td>
         <td>@poet.BirthDate.ToShortDateString()</td>

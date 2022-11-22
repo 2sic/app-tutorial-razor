@@ -28,7 +28,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("linq-take")
   <ol>
-    @foreach(var person in persons.Take(3)) {
+    @foreach (var person in persons.Take(3)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
@@ -40,7 +40,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("linq-skip")
   <ol>
-    @foreach(var person in persons.Skip(3)) {
+    @foreach (var person in persons.Skip(3)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
@@ -52,7 +52,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("linq-take-skip")
   <ol>
-    @foreach(var person in persons.Skip(3).Take(2)) {
+    @foreach (var person in persons.Skip(3).Take(2)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>

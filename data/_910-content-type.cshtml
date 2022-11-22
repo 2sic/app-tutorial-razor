@@ -27,12 +27,12 @@
 
 @Sys.SourceCode.SnippetInitStart("intro")
   @{
-      var type = AsEntity(Content).Type;
-      var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
-      var sexAttr = attributes.First(t => t.Name == "Sex");
-      // Check the metadata for the DropdownValues in the type @string-dropdown
-      var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
-    }
+    var type = AsEntity(Content).Type;
+    var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
+    var sexAttr = attributes.First(t => t.Name == "Sex");
+    // Check the metadata for the DropdownValues in the type @string-dropdown
+    var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
+  }
 @Sys.SourceCode.SnippetInitEnd()
 
 
@@ -63,7 +63,7 @@
 
 @Sys.SourceCode.ResultStart("content-type-attributes")
   <ul>
-      @foreach(var attr in type.Attributes) {
+      @foreach (var attr in type.Attributes) {
       <li>
         @* This will get the label from the metadata entity *@
         @(attr.Metadata.GetBestValue<string>("Name", "@All"))

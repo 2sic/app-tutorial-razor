@@ -40,7 +40,7 @@
     var urlParams = CmsContext.Page.Parameters;
   }
   <ul>
-    @foreach(var person in allAuthors) {
+    @foreach (var person in allAuthors) {
       <!-- this li will have class=selected if it's the current one -->
       <li class='@(person == current ? "selected" : "")'>
         <!-- this creates a link to the current page and author=id -->
@@ -50,14 +50,14 @@
       </li>
     }
   </ul>
-  @if(current != null) {
+  @if (current != null) {
     if(Text.Has(current.Mugshot)) {
       <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right float-end">
     }
     <h3>Current Author: @current.FirstName @current.LastName</h3>
     <strong>Books</strong>
     <ol>
-      @foreach(var book in books) {
+      @foreach (var book in books) {
         <li>@book.Title</li>
       }
     </ol>

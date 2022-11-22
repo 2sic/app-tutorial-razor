@@ -39,14 +39,14 @@
     var urlParams = CmsContext.Page.Parameters;
   }
   <ul>
-    @foreach(var product in products) {
+    @foreach (var product in products) {
       <!-- this li will have class=selected if it's the current one -->
       <li class='@(product == current ? "selected" : "")'>
         <!-- this creates a link to the current page and product=id -->
         <a href='@Link.To(parameters: urlParams.Set("product", product.EntityId.ToString()))'>
           @product.Name (#@product.Id)
         </a>
-        @if(current == product) {
+        @if (current == product) {
           <br>
           <em>
             @current.Description 

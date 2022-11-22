@@ -7,7 +7,7 @@
 
 <a href='@Link.To()'>Tutorial Home</a>
 
-@if(!string.IsNullOrEmpty(topicHome)) {
+@if (!string.IsNullOrEmpty(topicHome)) {
   <text> › </text>
   <a href="@Link.To(parameters: topicUrl)">@topicHome</a>
 }

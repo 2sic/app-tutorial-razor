@@ -42,9 +42,9 @@
 
 @Sys.SourceCode.SnippetInlineStart("content-assigned-items")
   <ul>
-  @foreach(var person in AsList(Data)) {
+  @foreach (var person in AsList(Data)) {
     <li>
-      @if(Text.Has(person.Mugshot)) {
+      @if (Text.Has(person.Mugshot)) {
         <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" class="rounded-circle">
       }
       @person.FirstName @person.LastName
@@ -64,13 +64,13 @@
 
 @Sys.SourceCode.SnippetInlineStart("content-sub-items")
   <ul>
-  @foreach(var person in AsList(Data)) {
+  @foreach (var person in AsList(Data)) {
     <li>
-      @if(Text.Has(person.Mugshot)) {
+      @if (Text.Has(person.Mugshot)) {
         <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
       }
       @person.FirstName @person.LastName
-      @if(person.Awards.Count > 0 ) {
+      @if (person.Awards.Count > 0 ) {
         // we just want the award names - to understand this, look at the LINQ tutorial
         var awardNames = AsList(person.Awards as object).Select(a => a.Name);
         <span>

@@ -37,7 +37,7 @@
   @if (!Text.Has(urlId)) {
     <h3>List of Persons</h3>
     <ul>
-      @foreach(var person in persons) {
+      @foreach (var person in persons) {
         <li>
           <a href='@Link.To(parameters: urlParams.Set("id", person.EntityId.ToString()))'>
             @person.FirstName @person.LastName

@@ -40,7 +40,7 @@
   }
 
   <ul>
-    @foreach(DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
+    @foreach (DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
       <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
         <a href="@dnnPage.FullUrl" target="_blank">
           @dnnPage.TabName (#@dnnPage.TabID)

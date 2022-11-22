@@ -32,7 +32,7 @@
       .Where(b => AsList(b.Authors as object).Any(a => a.Awards.Count > 0));
   }
   <ol>
-    @foreach(var book in booksWithAwardedAuthors) {
+    @foreach (var book in booksWithAwardedAuthors) {
       var awards = AsList(book.Authors as object).SelectMany(a => AsList(a.Awards as object));
       <li><strong>@book.Title</strong> 
         with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
@@ -50,7 +50,7 @@
     var otherBooks = books.Where(b => !booksWithAwardedAuthors.Contains(b as object));
   }
   <ol>
-    @foreach(var book in otherBooks) {
+    @foreach (var book in otherBooks) {
       <li><strong>@book.Title</strong></li>
     }
   </ol>
@@ -66,11 +66,11 @@
       .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
   }
   <ul>
-    @foreach(var group in booksGroupedByAuthorAwards) {
+    @foreach (var group in booksGroupedByAuthorAwards) {
       <li>
         Authors with Awards: @group.Key
         <ul>
-          @foreach(var book in group) {
+          @foreach (var book in group) {
             <li>
               @book.Title
             </li>

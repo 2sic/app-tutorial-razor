@@ -26,7 +26,7 @@
 <p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
 @Sys.SourceCode.SnippetInlineStart("sort-by-id")
   <ol>
-    @foreach(var person in persons.OrderBy(p => p.EntityId)) {
+    @foreach (var person in persons.OrderBy(p => p.EntityId)) {
       <li>@person.FirstName @person.LastName (#@person.EntityId)</li>
     }
   </ol>
@@ -37,7 +37,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("sort-by-property")
   <ol>
-    @foreach(var person in persons.OrderBy(p => p.FirstName)) {
+    @foreach (var person in persons.OrderBy(p => p.FirstName)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
@@ -49,7 +49,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("sort-by-property")
   <ol>
-    @foreach(var person in persons.OrderByDescending(p => p.Birthday)) {
+    @foreach (var person in persons.OrderByDescending(p => p.Birthday)) {
       <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
     }
   </ol>

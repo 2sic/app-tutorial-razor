@@ -28,11 +28,11 @@
 
 @Sys.SourceCode.SnippetInlineStart("basic-grouping")
   <ol>
-    @foreach(var group in books.GroupBy(b => b.Authors)) {
+    @foreach (var group in books.GroupBy(b => b.Authors)) {
       <li>
         Group
         <ul>
-          @foreach(var book in group) {
+          @foreach (var book in group) {
             <li>
               <strong>@book.Title</strong> by
               @string.Join(",", AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName))
@@ -59,7 +59,7 @@
       <li>
         Author: @group.Key.FirstName @group.Key.LastName
         <ul>
-          @foreach(var set in group) {
+          @foreach (var set in group) {
             <li>
               <strong>@set.Book.Title</strong> by
               @string.Join(",", AsList(set.Book.Authors as object).Select(a => a.FirstName + " " + a.LastName))
@@ -78,7 +78,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("grouping-by-parents")
   <ol>
-    @foreach(var author in persons) {
+    @foreach (var author in persons) {
       // this line would work, if Books only had people in the Authors. 
       // but it doesn't, there are also illustrators, which is why we use the second example instead
       var peoplesBooks = author.Parents("Books");
@@ -87,11 +87,11 @@
       <li>
         @author.FirstName @author.LastName
         <ul>
-          @foreach(var book in authorsBooks) {
+          @foreach (var book in authorsBooks) {
             var coAuthors = AsList(book.Authors as object).Where(a => a != author);
             <li>
               <strong>@book.Title</strong> 
-              @if(coAuthors.Any()) {
+              @if (coAuthors.Any()) {
                 <span>co-authored by 
                   @string.Join(",", coAuthors.Select(a => a.FirstName + " " + a.LastName))
                 </span>

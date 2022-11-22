@@ -42,12 +42,12 @@
     </tr>
   </thead>
   <tbody>
-    @foreach(var poet in AsList(App.Data["Poets"])) {
+    @foreach (var poet in AsList(App.Data["Poets"])) {
       var membershipMd = AsList(poet.Metadata.OfType("DeadPoetSocietyMembership") as object);
       <tr>
         <td>@poet.Name</td>
         <td>
-          @if(membershipMd.Any()) {
+          @if (membershipMd.Any()) {
             foreach (var membership in membershipMd) {
               <span>
                 @membership.MembershipNumber

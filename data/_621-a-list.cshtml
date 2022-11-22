@@ -26,7 +26,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of Details.cshtml" )
 <ul>
-  @foreach(var person in AsList(App.Data["Persons"])) {
+  @foreach (var person in AsList(App.Data["Persons"])) {
     <li>
       <a href='@Link.To(parameters: "data621id=" + person.EntityId )'>
         @person.FirstName @person.LastName

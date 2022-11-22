@@ -27,7 +27,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("linq-where-simple-1")
   <ol>
-    @foreach(var person in persons.Where(p => p.FirstName == "Terry")) {
+    @foreach (var person in persons.Where(p => p.FirstName == "Terry")) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
@@ -39,7 +39,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("linq-where-simple-2")
   <ol>
-    @foreach(var person in persons.Where(p => p.FirstName.Length > 5)) {
+    @foreach (var person in persons.Where(p => p.FirstName.Length > 5)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>

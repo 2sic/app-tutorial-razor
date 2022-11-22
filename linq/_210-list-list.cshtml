@@ -27,7 +27,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("list-dynamic")
   <ol>
-    @foreach(var book in books) {
+    @foreach (var book in books) {
       // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
       var authors = AsList(book.Authors as object)
         .Select(a => a.FirstName + " " + a.LastName);
@@ -45,7 +45,7 @@
 
 @Sys.SourceCode.SnippetInlineStart("list-advanced")
   <ol>
-    @foreach(var book in books.OrderByDescending(p => p.Authors.Count)) {
+    @foreach (var book in books.OrderByDescending(p => p.Authors.Count)) {
       var authors = AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName);
       <li><strong>@book.Title</strong> 
         by @string.Join(",", authors.OrderBy(ln => ln)) (@book.Authors.Count author) 

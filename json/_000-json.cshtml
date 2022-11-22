@@ -40,7 +40,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("json-list",  "Source of demo.json")
   <ol>
-  @foreach(var tag in thing.Tags) {
+  @foreach (var tag in thing.Tags) {
     <li>@tag</li>
   }
   </ol>
@@ -51,7 +51,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("json-probs",  "Source of demo.json")
   <ol>
-  @foreach(var prop in thing) {
+  @foreach (var prop in thing) {
     <li><strong>@prop</strong> (@thing[prop].GetType()) = @thing[prop]</li>
   }
   </ol>

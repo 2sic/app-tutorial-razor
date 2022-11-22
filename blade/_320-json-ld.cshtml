@@ -24,7 +24,7 @@
   </div>
 </trim>
 
-@if(CmsContext.Platform.Name == "Oqtane") {
+@if (CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 } else {
   Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");

@@ -33,7 +33,7 @@
   </div>
 </trim>
 
-@if(CmsContext.Platform.Name == "Oqtane") {
+@if (CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 } else {
   // use url parameter to decide which icon(s) to show, and default to "set"

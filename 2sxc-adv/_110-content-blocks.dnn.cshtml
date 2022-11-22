@@ -79,14 +79,14 @@
 
 <h2>Views</h2>
 
-@foreach(var set in viewsWithBlocks) {
+@foreach (var set in viewsWithBlocks) {
   <h3>View @set.View.Name</h3>
   if(set.Blocks != null) {
     <div>
       Used in @set.Blocks.Count() blocks and @set.ModsCount modules
     </div>
       <ol>
-      @foreach(var blockSet in set.Blocks) {
+      @foreach (var blockSet in set.Blocks) {
         <li>
           Block: @blockSet.Block.EntityGuid (@blockSet.Block.EntityId) 
           in @blockSet.Modules.Count() modules: @string.Join(",", blockSet.Modules.Select(m => m.ModuleID))

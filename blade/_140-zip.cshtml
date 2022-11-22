@@ -35,7 +35,7 @@
     The example texts which have invisible problem characters:
   </div>
   <ol>
-    @foreach(var s in samples) {
+    @foreach (var s in samples) {
       <li>
         <code>@Html.Raw(ShowHiddenCharacters(s))</code>
       </li>
@@ -55,7 +55,7 @@
     <th>Zip Length</th>
   </tr>
   <!-- the real code -->
-  @foreach(var s in samples) {
+  @foreach (var s in samples) {
   <tr>
     <td>@s </td>
     <td  class="table-warning" style="white-space: pre-wrap;">@s</td>
