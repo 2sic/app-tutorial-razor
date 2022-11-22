@@ -7,7 +7,7 @@
 </hide>
 
 
-<div class="row">
+<div class="row mb-5">
   <div class="col-lg-7">
     <h2>Reuse Code with <code>@@functions { }</code></h2>
     <p>
@@ -23,20 +23,19 @@
 <h3>Basic Example: <code>function</code> returning random number</h3>
 
 @Sys.SourceCode.SnippetInlineStart("fn-random")
- @functions {
-  // Variable keeping the random number generator
-  private Random generator = new Random(DateTime.Now.Second);
+  @functions {
+    // Variable keeping the random number generator
+    private Random generator = new Random(DateTime.Now.Second);
 
-  // Get random number between 0 and 100
-  public int Random100() {
-    return generator.Next(0, 100);
+    // Get random number between 0 and 100
+    public int Random100() {
+      return generator.Next(0, 100);
+    }
   }
-}
-<ul>
-  <li>Random number: @Random100()</li>
-  <li>Random number: @Random100()</li>
-  </li>
-</ul>
+  <ul>
+    <li>Random number: @Random100()</li>
+    <li>Random number: @Random100()</li>
+  </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
 
@@ -53,7 +52,6 @@
   <ul>
     <li>@MakeIsCool("iJungleboy")</li>
     <li>@MakeIsCool("Douglas Adams")</li>
-    </li>
   </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
