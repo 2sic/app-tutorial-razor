@@ -23,7 +23,7 @@
 
   <h3>List of Persons</h3>
 
-@Sys.SourceCode.SnippetInlineStart("list-detail-2")
+@Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of Details.cshtml" )
   <ul>
     @foreach(var person in AsList(App.Data["Persons"])) {
       <li>
@@ -33,8 +33,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
-
+@Sys.SourceCode.ResultEnd("file:620-b-details" )
 
 
 @Sys.PageParts.FooterWithSource()

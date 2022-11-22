@@ -24,7 +24,7 @@
 
 <h3>List of Persons</h3>
 
-@Sys.SourceCode.SnippetInlineStart("list-detail-3")
+@Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of Details.cshtml" )
 <ul>
   @foreach(var person in AsList(App.Data["Persons"])) {
     <li>
@@ -34,7 +34,7 @@
     </li>
   }
 </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:621-b-details" )
 
 
 @Sys.PageParts.FooterWithSource()

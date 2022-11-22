@@ -1,6 +1,10 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@* @Html.Partial("_header.cshtml") *@
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 @{  
   var fancybox = CreateInstance("../shared/Fancybox.cs");
 }
@@ -17,5 +21,6 @@
 <img loading="lazy" src="@Content.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
 <h3>Details of @Content.FirstName @Content.LastName</h3>
 <a href='@Link.To(parameters: "data621=true")'>back to list</a>
-
+<br>
+<br>
 @Sys.PageParts.FooterWithSource()
