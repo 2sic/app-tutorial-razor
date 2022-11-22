@@ -4,27 +4,28 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
-<trim>
-<div class="row">
-  <div class="col-lg-7">
-    <h2>Working with 😃 Emojis / Emoticons</h2>
-    <div>
-      Emojis or Emoticons are built into all mobile devices and modern desktops. The way they work is that they are actually a very long character code - which automatically works in UTF-8 documents. That is the default in asp.net, so you're good to go. 
-    </div>
-  </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-</div>
 
-  <hr>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Working with 😃 Emojis / Emoticons</h2>
+      <p>
+        Emojis or Emoticons are built into all mobile devices and modern desktops. The way they work is that they are actually a very long character code - which automatically works in UTF-8 documents. That is the default in asp.net, so you're good to go. 
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+
   <h2>Just showing Emojis in Source-Code</h2>
-  <div>
+  <p>
     Check out 🙈 🙉 🙊 ☔ 🎄 - I just pasted these into the source code from <a href="https://emojipedia.org/" target="_blank">emojipedia</a>
-  </div>
-  <hr>
+  </p>
+
   <h2>Showing Emojis instead of true/false</h2>
-  <div>
+  <p>
     Below you'll see a helper I created called Boolmoji - it will show a @Boolmoji(true) or @Boolmoji(false) instead of boolean values.
-  </div>
+  </p>
 </trim>
 
 @Sys.SourceCode.SnippetInlineStart("basic-emoji")
@@ -36,5 +37,6 @@
   <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
 </ul>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

@@ -6,6 +6,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -22,19 +23,20 @@
 <p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
 
 @Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of _line.cshtml")
-@Html.Partial("_line.cshtml")
-@Html.Partial("_line.cshtml")
-@Html.Partial("_line.cshtml")
+  @Html.Partial("_line.cshtml")
+  @Html.Partial("_line.cshtml")
+  @Html.Partial("_line.cshtml")
 @Sys.SourceCode.ResultEnd("file:_line.cshtml")
+
 
 <h3>Passing in values</h3>
 <p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
 
-
 @Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of _box.cshtml")
-@Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
-@Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
-@Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
+  @Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
+  @Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
+  @Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
 @Sys.SourceCode.ResultEnd("file:_box.cshtml")
+
 
 @Sys.PageParts.FooterWithSource()

@@ -6,6 +6,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
+
 @* TODO: @2dk - remove unnecesary HRs, correct indentations *@
 
 <trim>
@@ -22,7 +23,6 @@
   </div>
 </trim>
 
-<hr>
 <h2>Using shared library of simple functions</h2>
 <trim>
 <p>
@@ -30,28 +30,30 @@
   This example uses a simple C# class, so the code only has what's in it.
 </p>
 </trim>
+
 @Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of FunctionsBasic.cs")
-@{
-  var lib = CreateInstance("FunctionsBasic.cs");
-}
-<div>Hello from FunctionsBasic: @lib.SayHello()</div>
+  @{
+    var lib = CreateInstance("FunctionsBasic.cs");
+  }
+  <div>Hello from FunctionsBasic: @lib.SayHello()</div>
 @Sys.SourceCode.ResultEnd("file:FunctionsBasic.cs")
 
-<hr>
+
 <h2>Using a different Class from a library files</h2>
 <trim>
 <p>
   The example takes a cs file with shared code, but gets the class <code>Second</code>.
 </p>
 </trim>
+
 @Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of FunctionsBasic.cs")
-@{
-  var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
-}
-<div>Hello from FunctionsBasic: @lib2.SayHello()</div>
+  @{
+    var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
+  }
+  <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
 @Sys.SourceCode.ResultEnd("file:FunctionsBasic.cs")
 
-<hr>
+
 <h2>Using shared code with context</h2>
 <trim>
 <p>
@@ -64,22 +66,23 @@
 </trim>
 
 @Sys.SourceCode.ResultAndSnippetStart("demo3", "Source of FunctionsWithContext.cs")
-@{
-  var powerLib = CreateInstance("FunctionsWithContext.cs");
-}
-<div>
-  <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
-</div>
+  @{
+    var powerLib = CreateInstance("FunctionsWithContext.cs");
+  }
+  <div>
+    <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
+  </div>
 @Sys.SourceCode.ResultEnd("file:FunctionsWithContext.cs")
 
+
 <hide>
-<hr>
 <h2>Using shared libraries in WebApi Controllers</h2>
 <p>
   The mechanism above also works in WebApi Controllers (if you have 2sxc 10.01+).
   Note that specifically in WebApi you can only use <code>CreateInstance(...)</code> for <code>.cs</code> files.
 </p>
 </hide>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("demo4", "Source of ApiController", "Source of FunctionsBasic.cs")
   <p>
@@ -100,5 +103,6 @@
     }
   </script>
 @Sys.SourceCode.ResultEnd("file:api/SharedCodeController.cs", "file:FunctionsBasic.cs")
+
 
 @Sys.PageParts.FooterWithSource()

@@ -5,6 +5,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <div class="row">
   <div class="col-lg-7">
     <h2>Using if and if-else</h2>
@@ -13,6 +14,7 @@
 </div>
 
 <h3>Basic <code>if</code></h3>
+
 @Sys.SourceCode.SnippetInlineStart("basic-if")
   @{
     var aValue = "green";
@@ -22,8 +24,9 @@
   }
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h3>If-Else</h3>
+
 @Sys.SourceCode.SnippetInlineStart("basic-if-else")
   @{
     var val2 = "blue";
@@ -35,9 +38,10 @@
   }
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h3>Using if-else and <code>&lt;text&gt;</code> tags</h3>
 <p>This is important, if you have an code block like an if, and you don't want a span-tag or similar in the output</p>
+
 @Sys.SourceCode.SnippetInlineStart("basic-if-else-tags")
   @{
     var val4 = "orange";
@@ -47,13 +51,15 @@
   }
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h3>Quick if-else using Ternary operator <code>? :</code></h3>
+
 @Sys.SourceCode.SnippetInlineStart("basic-if-else-ternary")
   @{
     var val3 = "blue";
   }
   @(val3 == "red" ? "it's red" : "it's not red")
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

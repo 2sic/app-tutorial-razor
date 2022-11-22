@@ -5,6 +5,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <div class="row">
   <div class="col-lg-7">
     <h2>Create and Show Variables</h2>
@@ -14,6 +15,7 @@
 
 <h3>Basic set variable and show</h3>
 <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
+
 @Sys.SourceCode.SnippetInlineStart("basic-set-show")
   @{
     var firstName = "Terry";
@@ -22,8 +24,9 @@
   Name: @firstName
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h3>Numbers and Dates</h3>
+
 @Sys.SourceCode.SnippetInlineStart("basic-numbers-dates")
   @{
     var age = 27;
@@ -35,8 +38,9 @@
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h3>Arrays (lists of things)</h3>
+
 @Sys.SourceCode.SnippetInlineStart("basic-arrays")
   @{
     var dogs = new string[] { "hound", "dackel", "doggy" };
@@ -47,5 +51,6 @@
   Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

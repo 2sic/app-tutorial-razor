@@ -6,6 +6,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
+
 <trim>
 
 <div class="row">
@@ -38,17 +39,18 @@
 </div>
 </trim>
 
-<hr>
 <h2>Using Shared Helpers</h2>
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 </trim>
+
 @Sys.SourceCode.ResultAndSnippetStart("reuse-helpers", "Source of fancybox.cs")
-@{
-  var lightbox = CreateInstance("../shared/Fancybox.cs");
-}
-@lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
-&nbsp;
-@lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
+  @{
+    var lightbox = CreateInstance("../shared/Fancybox.cs");
+  }
+  @lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
+  &nbsp;
+  @lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
 @Sys.SourceCode.ResultEnd("file:../shared/fancybox.cs")
+
 
 @Sys.PageParts.FooterWithSource()

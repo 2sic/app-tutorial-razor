@@ -6,6 +6,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <div class="row">
   <div class="col-lg-7">
     <h2>Switch to view by URL</h2>
@@ -46,17 +47,17 @@
 </p>
 </hide>
 
-<snippet id="view-url">
+@Sys.SourceCode.SnippetInlineStart("view-url")
   @{
-    // Name of route view1 using query string conventions
-    var view1Parameters = "view1=page";
+      // Name of route view1 using query string conventions
+      var view1Parameters = "view1=page";
 
-    // Name of route view2 using query string conventions
-    var view2Parameters = "view2=hello";
-  }
-
+      // Name of route view2 using query string conventions
+      var view2Parameters = "view2=hello";
+    }
   <p>Link to view1 <a target="blank" href="@Link.To(parameters: view1Parameters)">@Link.To(parameters: view1Parameters)</a></p>
   <p>Link to view2 <a target="blank" href="@Link.To(parameters: view2Parameters)">@Link.To(parameters: view2Parameters)</a></p>
-</snippet>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

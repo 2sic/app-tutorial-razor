@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
-@using System.Linq;
+
 
 <h2>Working with Entity (Item) Values</h2>
 <trim>
@@ -43,17 +44,17 @@
   </div>
 </trim>
 
-<hr>
 <h3>Show Entity Values</h3>
 
 @Sys.SourceCode.SnippetInlineStart("entity-values")
-<img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" align="right" style="border-radius: 50%">
-<ul>
-  <li>Name: @Content.FirstName @Content.LastName</li>
-  <li>Birthday: @Content.Birthday.ToString("d")</li>
-  <li>Award: @Content.Awards.Name</li>
-</ul>
+  <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" class="rounded-circle">
+  <ul>
+    <li>Name: @Content.FirstName @Content.LastName</li>
+    <li>Birthday: @Content.Birthday.ToString("d")</li>
+    <li>Award: @Content.Awards.Name</li>
+  </ul>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 <trim>
 <p>Note that <code>Awards</code> refers to other Entities of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. In other tutorials you'll see how to work with such related Entities if there are more than one.  

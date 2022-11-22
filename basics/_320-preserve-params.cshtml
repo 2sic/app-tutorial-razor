@@ -24,9 +24,9 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
-<hr>
 <h2>Link to current page with all Parameters</h2>
 </hide>
+
 @Sys.SourceCode.SnippetInlineStart("link-to-current-params")
   @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
   <ol>
@@ -35,15 +35,17 @@
   </ol>
 @Sys.SourceCode.SnippetInlineEnd()
 
+
 <hide>
 <h3>Add Parameters</h3>
 <p>
   Because <code>CmsContext.Page.Parameters</code> follows <a target="blank" href="https://en.wikipedia.org/wiki/Query_string#Structure">the query string convention</a> adding a new parameter isn't too difficult. <br> 
   To add a new parameter you can use the <code>.Add(key, value)</code> method or add the parameters as string following the convention as for example <code>&name=2sxc</code>.<br>
 </p>
-<hr>
+
 </hide>
 <p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+
 @Sys.SourceCode.SnippetInlineStart("link-to-new-params")
  @{
     // Example using string
@@ -60,23 +62,24 @@
   <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
 @Sys.SourceCode.SnippetInlineEnd()
 
+
 <hide>
 <h3>Remove Parameters</h3>
 <p>
   To remove a parameter you can use the <code>.Remove(key)</code> method or modify the string containing parameters.<br>
 </p>
-<hr>
 </hide>
 <p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+
 @Sys.SourceCode.SnippetInlineStart("link-to-remove-params")
-   @{
+  @{
     var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
   }
-<hide>
+  <hide>
   <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
-  <hr>
-</hide>
+  </hide>
   <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
+
 @Sys.SourceCode.SnippetInlineEnd()
 
 
@@ -89,15 +92,17 @@
 </hide>
 
 <p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+
 @Sys.SourceCode.SnippetInlineStart("link-to-changed-params")
-   @{
+  @{
     var currentParamsChanged = CmsContext.Page.Parameters.Set("basics320", "2sxc");
   }
-<hide>
+  <hide>
   <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
   <hr>
-</hide>
+  </hide>
   <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

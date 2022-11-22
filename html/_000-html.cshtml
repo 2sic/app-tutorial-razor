@@ -4,6 +4,8 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 @{
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
@@ -25,6 +27,7 @@
   }
 @Sys.SourceCode.SnippetInitEnd()
 
+
 @Sys.SourceCode.SnippetInlineStart("basic-variable")
 <ul>
   <li>@normalText</li>
@@ -32,8 +35,8 @@
 </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
+
 <trim>
-<hr>
 <h2>Encode using <code>@@Html.Raw(...)</code> </h2>
 </trim>
 
@@ -44,7 +47,7 @@
 </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h2>Add "uncontrolled" html using <code>@@:...</code></h2>
 <p>
   Sometimes you need to conditionally add tags, in which case Razor cannot verify that open/close of tags is correct.
@@ -63,5 +66,6 @@
   }
 </div>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

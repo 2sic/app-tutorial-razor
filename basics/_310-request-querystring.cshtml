@@ -5,6 +5,8 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -33,7 +35,6 @@
 </div>
 </trim>
 
-
 @Sys.SourceCode.SnippetInlineStart("basic-params")
  <ul>
     <li><a href='@Link.To(parameters: "?basics310=page")'>This page without additional url-parameter</a></li>
@@ -41,7 +42,7 @@
   </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
 
 @Sys.SourceCode.SnippetInlineStart("basic-query-string")
@@ -71,5 +72,6 @@
     </li>
   </ul>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

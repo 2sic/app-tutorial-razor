@@ -5,6 +5,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
@@ -22,6 +23,7 @@
   }
 @Sys.SourceCode.SnippetInitEnd()
 
+
 @Sys.SourceCode.SnippetInlineStart("basic-foreach")
   <ul>
     @foreach(var pet in pets) {
@@ -32,9 +34,9 @@
 
 
 <trim>
-<hr>
 <h3>Basic <code>for</code></h3>
 </trim>
+
 @Sys.SourceCode.SnippetInlineStart("basic-for")
  <ul>
     @for(var i = 0; i < pets.Length; i++) {
@@ -44,9 +46,9 @@
 @Sys.SourceCode.SnippetInlineEnd()
 
 <trim>
-<hr>
 <h3>Using a <code>for</code> index with two lists (arrays)</h3>
 </trim>
+
 @Sys.SourceCode.SnippetInlineStart("basic-for-index")
  <ul>
     @for(var i = 0; i < pets.Length; i++) {
@@ -54,5 +56,6 @@
     }
   </ul>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

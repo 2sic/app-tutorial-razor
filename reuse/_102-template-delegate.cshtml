@@ -6,19 +6,18 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <div class="row">
   <div class="col-lg-7">
     <h2>HTML-functions = Code-Snippet with Template Delegates</h2>
     <p>If you just need a quick simple snippet, Template Delegates are the way to go. 
-      They are very limited so only ideal for simple stuff. More complex stuff should use
-      @Sys.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
+    They are very limited so only ideal for simple stuff. More complex stuff should use
+    @Sys.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
     </p>
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 <trim>
-
-<hr>
 
 <h2>HTML <code>Func&lt;thing, dynamic&gt;</code> Template Delegate</h2>
 <p>
@@ -27,7 +26,6 @@
   so a limitations is that you cannot use named parameters. 
   You only get one parameter called <code>item</code>.
 </p>
-
 
 <h3>Basic Example: <code>string</code> generating Html</h3>
 <p>
@@ -38,23 +36,24 @@
 <div class="alert alert-info">
   Note that in the following code <code>item</code> is the thing passed into the function.
 </div>
-@Sys.SourceCode.SnippetInlineStart("func-string")
-@{
-  var normalText = "this is text, it doesn't have tags";
-  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
 
-  // Simple Hybrid (Dnn/Oqtane) Template Delegate
-  Func<string, dynamic> BoldLi = @<li>
-    <strong>
-      @Html.Raw(item)
-    </strong>
-  </li>;
-}
-<ul>
-  @BoldLi(normalText)
-  @BoldLi(htmlText)
-  @BoldLi("this is just a bold line")
-</ul>
+@Sys.SourceCode.SnippetInlineStart("func-string")
+  @{
+    var normalText = "this is text, it doesn't have tags";
+    var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+
+    // Simple Hybrid (Dnn/Oqtane) Template Delegate
+    Func<string, dynamic> BoldLi = @<li>
+      <strong>
+        @Html.Raw(item)
+      </strong>
+    </li>;
+  }
+  <ul>
+    @BoldLi(normalText)
+    @BoldLi(htmlText)
+    @BoldLi("this is just a bold line")
+  </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
 
@@ -62,22 +61,24 @@
 <p>
   If you have multiple values, you often want to merge in into one object like this:
 </p>
+
 @Sys.SourceCode.SnippetInlineStart("reuse-function")
-@{
-  // Simple Hybrid (Dnn/Oqtane) Template Delegate
-  Func<dynamic, dynamic> FancyLink = @<li>
-    <strong style="color: @item.Color">
-      @Html.Raw(item.Label)
-      @if(item.AddStar) {
-        <text>🌟</text>
-      }
-    </strong>
-  </li>;
-}
-<ul>
-  @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
-  @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
-</ul>
+  @{
+    // Simple Hybrid (Dnn/Oqtane) Template Delegate
+    Func<dynamic, dynamic> FancyLink = @<li>
+      <strong style="color: @item.Color">
+          @Html.Raw(item.Label)
+            @if(item.AddStar) {
+              <text>🌟</text>
+            }
+      </strong>
+    </li>;
+  }
+  <ul>
+    @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
+    @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
+  </ul>
 @Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()

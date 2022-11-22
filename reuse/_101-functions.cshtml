@@ -6,6 +6,7 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <div class="row">
   <div class="col-lg-7">
     <h2>Reuse Code with <code>@@functions { }</code></h2>
@@ -20,6 +21,7 @@
 <trim>
 
 <h3>Basic Example: <code>function</code> returning random number</h3>
+
 @Sys.SourceCode.SnippetInlineStart("fn-random")
  @functions {
   // Variable keeping the random number generator
@@ -37,10 +39,10 @@
 </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
+
 <h3>Function with Parameters</h3>
-<p>
-  This example passes a parameter into the function. 
-</p>
+<p>This example passes a parameter into the function.</p>
+
 @Sys.SourceCode.SnippetInlineStart("fnMakeCool")
   @functions {
     // Simple string to string delegate
@@ -55,6 +57,7 @@
   </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
+
 <h3>Second Example: Multiple parameters</h3>
 <p>
   This example using a <code>string</code> and a <code>bool</code> parameter.
@@ -63,6 +66,7 @@
   Note also that any HTML we return is not handled as expected. 
   So we show an example with/without <code>@@Html.Raw</code>
 </div>
+
 @Sys.SourceCode.SnippetInlineStart("fn-string-html")
  @functions {
   string MaybeCool(string name, bool isCool) {
@@ -77,6 +81,7 @@
 </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
+
 <h3>Third Example: Returning HTML</h3>
 <p>
   This example is similar, but returns a <code>dynamic</code> HTML which is marked to be shown as HTML.
@@ -84,6 +89,7 @@
 <div class="alert alert-warning">
   Note this example correctly shows <strong>bold</strong> and <em>emphasis</em>.
 </div>
+
 @Sys.SourceCode.SnippetInlineStart("fn-html-raw")
  @functions {
   // Note the return type dynamic and the built-in HTML.Raw
@@ -97,7 +103,6 @@
 </ul>
 @Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
 
 <h2>Better ways to Create HTML</h2>
 <p>
@@ -113,8 +118,5 @@
     @Sys.TutLink("Razor Blade Fluid API", "blade800")
   </li>
 </ul>
-
-<br>
-<br>
 
 @Sys.PageParts.FooterWithSource()

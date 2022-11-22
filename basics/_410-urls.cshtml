@@ -5,24 +5,29 @@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
 <div class="row">
   <div class="col-lg-7">
     <h2>Safely Linking URLs with Umlauts and similar</h2>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+
 @Sys.SourceCode.SnippetInlineStart("basic-safe-url")
   @{
-        var path = App.Path + "/basics/assets/urls/";
-        var exampleImgName = "göögle plus.png";
-        var resizeParameters = "?w=100";
-        var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
-      }
-    <p>
-      👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
-    </p>
-      <img loading="lazy" src='@safeUrl' id="demo-logo">
+    var path = App.Path + "/basics/assets/urls/";
+    var exampleImgName = "göögle plus.png";
+    var resizeParameters = "?w=100";
+    var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
+  }
+  <p>
+    👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
+  </p>
+  <img loading="lazy" src='@safeUrl' id="demo-logo">
 @Sys.SourceCode.SnippetInlineEnd()
-
-</trim>
 
 <hide>
 <p>
@@ -46,7 +51,6 @@
 
 <style>
   #demo-logo {
-    float: left;
     width: 50px;
     padding-right: 20px;
   }
