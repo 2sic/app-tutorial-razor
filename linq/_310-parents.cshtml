@@ -1,18 +1,12 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 @using System.Linq;
-
 <hide>
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
 
-@{
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
-}
-
-@Html.Partial("_header.cshtml")
 
 <div class="row">
   <div class="col-lg-7">
@@ -21,36 +15,42 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<trim>
-</trim>
-<ol>
-  @foreach(var author in persons) {
-    // this line would work, if Books only had people in the Authors. 
-    // but it doesn't, there are also illustrators, which is why we use the second example instead
-    var peoplesBooks = author.Parents("Books");
-    var authorsBooks = author.Parents("Books", "Authors");
 
-    <li>
-      @author.FirstName @author.LastName
-      <ul>
-        @foreach(var book in authorsBooks) {
-          var coAuthors = AsList(book.Authors as object).Where(a => a != author);
-          <li>
-            <strong>@book.Title</strong> 
-            @if(coAuthors.Any()) {
-              <span>co-authored by 
-                @string.Join(",", coAuthors.Select(a => a.FirstName + " " + a.LastName))
-              </span>
-            }
-          </li>
-        }
-      </ul>
-    </li>
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    var persons = AsList(App.Data["Persons"]);
+    var books = AsList(App.Data["Books"]);
   }
-</ol>
+@Sys.SourceCode.SnippetInitEnd()
 
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800, isExpanded=true }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("list-list-books")
+  <ol>
+    @foreach(var author in persons) {
+      // this line would work, if Books only had people in the Authors. 
+      // but it doesn't, there are also illustrators, which is why we use the second example instead
+      var peoplesBooks = author.Parents("Books");
+      var authorsBooks = author.Parents("Books", "Authors");
+
+      <li>
+        @author.FirstName @author.LastName
+        <ul>
+          @foreach(var book in authorsBooks) {
+            var coAuthors = AsList(book.Authors as object).Where(a => a != author);
+            <li>
+              <strong>@book.Title</strong> 
+              @if(coAuthors.Any()) {
+                <span>co-authored by 
+                  @string.Join(",", coAuthors.Select(a => a.FirstName + " " + a.LastName))
+                </span>
+              }
+            </li>
+          }
+        </ul>
+      </li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

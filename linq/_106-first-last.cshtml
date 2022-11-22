@@ -1,12 +1,15 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 @using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @{
+    var persons = AsList(App.Data["Persons"]);
+  }
+</hide>
 
-@{
-  var persons = AsList(App.Data["Persons"]);
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-
-@Html.Partial("_header.cshtml")
 
 <div class="row">
   <div class="col-lg-7">
@@ -16,21 +19,16 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
-<snippet id="linq-first-last">
-<ol>
-  <li>
-    First: @persons.First().FirstName
-  </li>
-  <li>
-    Last: @persons.Last().FirstName
-  </li>
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "linq-first-last", Size = 200 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineStart("linq-first-last")
+  <ol>
+    <li>
+      First: @persons.First().FirstName
+    </li>
+    <li>
+      Last: @persons.Last().FirstName
+    </li>
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()

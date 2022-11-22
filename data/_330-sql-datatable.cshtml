@@ -28,24 +28,24 @@
 
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("sql-datatable")
+@Sys.SourceCode.SnippetInitStart("intro")
   @{
-    // load the sql connection name from Web.Config
-    // the default connection string for DNN is SiteSqlServer
-    var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
+      // load the sql connection name from Web.Config
+      // the default connection string for DNN is SiteSqlServer
+      var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
 
-    // You should always write parameters using the @-syntaxt,
-    // and never write them directly into the SQL using string-concatenation
-    // to protect yourself from SQL injection attacks
-    const string sqlCommand = "Select Top 10 * from Files Where PortalId = @PortalId";
+      // You should always write parameters using the @-syntaxt,
+      // and never write them directly into the SQL using string-concatenation
+      // to protect yourself from SQL injection attacks
+      const string sqlCommand = "Select Top 10 * from Files Where PortalId = @PortalId";
 
-    // create an adapter object, tell it what to do, and load results into fileTable
-    var adapter = new SqlDataAdapter(sqlCommand, conString);
-    adapter.SelectCommand.Parameters.AddWithValue("@PortalId", CmsContext.Site.Id);
-    var fileTable = new DataTable();
-    adapter.Fill(fileTable);
-  }
-@Sys.SourceCode.SnippetInlineEnd()
+      // create an adapter object, tell it what to do, and load results into fileTable
+      var adapter = new SqlDataAdapter(sqlCommand, conString);
+      adapter.SelectCommand.Parameters.AddWithValue("@PortalId", CmsContext.Site.Id);
+      var fileTable = new DataTable();
+      adapter.Fill(fileTable);
+    }
+@Sys.SourceCode.SnippetInitEnd()
 
 
 @Sys.SourceCode.SnippetInlineStart("sql-rows")

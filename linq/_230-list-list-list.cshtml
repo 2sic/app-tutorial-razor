@@ -1,18 +1,12 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 @using System.Linq;
-
 <hide>
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
 
-@{
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
-}
-
-@Html.Partial("_header.cshtml")
 
 <div class="row">
   <div class="col-lg-7">
@@ -21,74 +15,71 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    var persons = AsList(App.Data["Persons"]);
+    var books = AsList(App.Data["Books"]);
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
 <h3>Show only books of Awarded Authors #1</h3>
 <p>This example first gets book, checks the authors and checks if they have awards with LINQ <code>Any()</code>. </p>
-<snippet id="list-list-list">
-@{
-  // this keeps all books whose authors have awards
-  var booksWithAwardedAuthors = books
-    .Where(b => AsList(b.Authors as object).Any(a => a.Awards.Count > 0));
-}
-<ol>
-  @foreach(var book in booksWithAwardedAuthors) {
-    var awards = AsList(book.Authors as object).SelectMany(a => AsList(a.Awards as object));
-    <li><strong>@book.Title</strong> 
-      with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
-    </li>
+
+@Sys.SourceCode.SnippetInlineStart("list-list-list")
+  @{
+    // this keeps all books whose authors have awards
+    var booksWithAwardedAuthors = books
+      .Where(b => AsList(b.Authors as object).Any(a => a.Awards.Count > 0));
   }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "list-list-list", Size = 400 }) 
-</hide-silent>
-<hr>
+  <ol>
+    @foreach(var book in booksWithAwardedAuthors) {
+      var awards = AsList(book.Authors as object).SelectMany(a => AsList(a.Awards as object));
+      <li><strong>@book.Title</strong> 
+        with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
+      </li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
 <h3>Now the list of books NOT in that list</h3>
 <p>And now the opposite list, so all books which don't contain one of the books with authors. It gets the "other" books by filtering the list to exclude the ones it found first. That demonstrates how to use <code>Contains(x as object)</code>. The <code>Contains(...)</code> cannot work with <code>dynamic</code>, so we must tell it it's an object for it to work.</p>
-<snippet id="opposite-list">
-@{
-  var otherBooks = books.Where(b => !booksWithAwardedAuthors.Contains(b as object));
-}
-<ol>
-  @foreach(var book in otherBooks) {
-    <li><strong>@book.Title</strong></li>
-  }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "opposite-list", Size = 300 }) 
-</hide-silent>
 
-<hr>
+@Sys.SourceCode.SnippetInlineStart("opposite-list")
+  @{
+    var otherBooks = books.Where(b => !booksWithAwardedAuthors.Contains(b as object));
+  }
+  <ol>
+    @foreach(var book in otherBooks) {
+      <li><strong>@book.Title</strong></li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <h3>Now the same using GroupBy</h3>
 <p>Now let's do the same, but using <code>GroupBy</code> to group by awarded authors and not-awarded authors:</p>
-<snippet id="groupby-author">
-@{
-  var booksGroupedByAuthorAwards = books
-    .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
-}
-<ul>
-  @foreach(var group in booksGroupedByAuthorAwards) {
-    <li>
-      Authors with Awards: @group.Key
-      <ul>
-        @foreach(var book in group) {
-          <li>
-            @book.Title
-          </li>
-        }
-      </ul>
-    </li>
-  }
-</ul>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "groupby-author", Size = 400 }) 
-</hide-silent>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1600 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("groupby-author")
+  @{
+    var booksGroupedByAuthorAwards = books
+      .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
+  }
+  <ul>
+    @foreach(var group in booksGroupedByAuthorAwards) {
+      <li>
+        Authors with Awards: @group.Key
+        <ul>
+          @foreach(var book in group) {
+            <li>
+              @book.Title
+            </li>
+          }
+        </ul>
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

@@ -29,8 +29,9 @@
 <div class="row">
   <div class="col-lg-7">
 
-@Sys.SourceCode.SnippetInlineStart("sql-query-reset")
-  @{
+
+@Sys.SourceCode.SnippetInitStart("intro")
+ @{
     // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
@@ -42,7 +43,7 @@
     query.Params("SiteId", rootPortal.ToString());
     var rootFiles = AsList(query);
   }
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.SnippetInitEnd()
 
 
 <h2>files from the current Portal</h2>

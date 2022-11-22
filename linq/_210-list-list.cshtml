@@ -1,18 +1,11 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 @using System.Linq;
-
 <hide>
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
-
-@{
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
-}
-
-@Html.Partial("_header.cshtml")
 
 <div class="row">
   <div class="col-lg-7">
@@ -21,45 +14,45 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    var persons = AsList(App.Data["Persons"]);
+    var books = AsList(App.Data["Books"]);
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
+
 <h3>Basic Use of List <code>book.Authors</code></h3>
 <p>This example shows the books, and we want to LINQ on the Authors. We must tell the compiler it's a list, so that LINQ can use <code>Select(...)</code>.</p>
-<snippet id="list-dynamic">
-<ol>
-  @foreach(var book in books) {
-    // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
-    var authors = AsList(book.Authors as object)
-      .Select(a => a.FirstName + " " + a.LastName);
 
-    <li><strong>@book.Title</strong>
-      by @string.Join(", ", authors.OrderBy(ln => ln)) 
-    </li>
-  }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "list-dynamic", Size = 300 }) 
-</hide-silent>
+@Sys.SourceCode.SnippetInlineStart("list-dynamic")
+  <ol>
+    @foreach(var book in books) {
+      // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
+      var authors = AsList(book.Authors as object)
+        .Select(a => a.FirstName + " " + a.LastName);
 
-<hr>
+      <li><strong>@book.Title</strong>
+        by @string.Join(", ", authors.OrderBy(ln => ln)) 
+      </li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <h3>OrderBy and OrderByDescending with Amount of Authors</h3>
 <p>This example shows Z-A ordering, where we count the authors to sort.</p>
-<snippet id="list-advanced">
-<ol>
-  @foreach(var book in books.OrderByDescending(p => p.Authors.Count)) {
-    var authors = AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName);
-    <li><strong>@book.Title</strong> 
-      by @string.Join(",", authors.OrderBy(ln => ln)) (@book.Authors.Count author) 
-    </li>
-  }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "list-advanced", Size = 200 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetInlineStart("list-advanced")
+  <ol>
+    @foreach(var book in books.OrderByDescending(p => p.Authors.Count)) {
+      var authors = AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName);
+      <li><strong>@book.Title</strong> 
+        by @string.Join(",", authors.OrderBy(ln => ln)) (@book.Authors.Count author) 
+      </li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

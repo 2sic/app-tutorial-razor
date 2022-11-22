@@ -1,3 +1,2 @@
 @inherits Custom.Hybrid.Razor14
-@Html.Partial("../shared/_Header.cshtml", new { Title = "LINQ Tutorials", Name = "LINQ", Link = "#linq" })
-@Html.Partial("../shared/_NavigationToolbar.cshtml")
+@DynamicModel.Sys.PageParts.Header(new { Title = "LINQ Tutorials", Name = "LINQ", Link = "#linq"})

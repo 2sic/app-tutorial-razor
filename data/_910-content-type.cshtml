@@ -25,15 +25,15 @@
 
 <h3>Content-Type Information</h3>
 
-@Sys.SourceCode.SnippetInlineStart("content-type-information")
+@Sys.SourceCode.SnippetInitStart("intro")
   @{
-    var type = AsEntity(Content).Type;
-    var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
-    var sexAttr = attributes.First(t => t.Name == "Sex");
-    // Check the metadata for the DropdownValues in the type @string-dropdown
-    var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
-  }
-@Sys.SourceCode.SnippetInlineEnd()
+      var type = AsEntity(Content).Type;
+      var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
+      var sexAttr = attributes.First(t => t.Name == "Sex");
+      // Check the metadata for the DropdownValues in the type @string-dropdown
+      var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
+    }
+@Sys.SourceCode.SnippetInitEnd()
 
 
 @Sys.SourceCode.SnippetInlineStart("content-types")

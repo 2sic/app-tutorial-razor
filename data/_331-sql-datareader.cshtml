@@ -27,7 +27,8 @@
 </div>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("sql-datareader")
+
+@Sys.SourceCode.SnippetInlineStart("sql-read")
   @{
     // load the sql connection name from Web.Config
     // the default connection string for DNN is SiteSqlServer
@@ -43,10 +44,6 @@
     command.Parameters.Add("@PortalId", CmsContext.Site.Id);
     var myReader = command.ExecuteReader();
   }
-@Sys.SourceCode.SnippetInlineEnd()
-
-
-@Sys.SourceCode.SnippetInlineStart("sql-read")
   <ol>
     @while (myReader.Read())
     {

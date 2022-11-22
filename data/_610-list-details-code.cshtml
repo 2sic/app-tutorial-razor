@@ -23,7 +23,7 @@
 </div>
 </trim>
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@Sys.SourceCode.SnippetInlineStart("sql-read")
   @{
     var persons = AsList(App.Data["Persons"]);
 
@@ -34,10 +34,6 @@
     // showdetails will be true, if urlId had a number
     var showDetails = Int32.TryParse(urlId, out id);
   }
-@Sys.SourceCode.SnippetInitEnd()
-
-
-@Sys.SourceCode.SnippetInlineStart("sql-read")
   @if(!showDetails) {
     <h3>List of Persons</h3>
   <ul>

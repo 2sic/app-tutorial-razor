@@ -1,17 +1,11 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 @using System.Linq;
-
 <hide>
-  @{
-    var hlp = CreateInstance("../shared/Helpers.cs");
-  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
-
-@{
-  var persons = AsList(App.Data["Persons"]);
-}
-
-@Html.Partial("_header.cshtml")
 
 
 <div class="row">
@@ -21,49 +15,46 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    var persons = AsList(App.Data["Persons"]);
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
+
 </div>
 <p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
-<snippet id="sort-by-id">
-<ol>
-  @foreach(var person in persons.OrderBy(p => p.EntityId)) {
-    <li>@person.FirstName @person.LastName (#@person.EntityId)</li>
-  }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sort-by-id", Size = 120 }) 
-</hide-silent>
 
+@Sys.SourceCode.SnippetInlineStart("sort-by-id")
+  <ol>
+    @foreach(var person in persons.OrderBy(p => p.EntityId)) {
+      <li>@person.FirstName @person.LastName (#@person.EntityId)</li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
 <h3>OrderBy(FirstName)</h3>
 <p>This example shows A-Z ordering by a property which exists only on Person-entities. This is simple with <code>dynamic</code> objects</p>
-<snippet id="sort-by-property">
-<ol>
-  @foreach(var person in persons.OrderBy(p => p.FirstName)) {
-    <li>@person.FirstName @person.LastName</li>
-  }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sort-by-property", Size = 120 }) 
-</hide-silent>
 
-<hr>
+@Sys.SourceCode.SnippetInlineStart("sort-by-property")
+  <ol>
+    @foreach(var person in persons.OrderBy(p => p.FirstName)) {
+      <li>@person.FirstName @person.LastName</li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
 <h3>OrderByDescending(Birthday)</h3>
 <p>This example shows Z-A ordering by a property.</p>
-<snippet id="sorty-descending">
-<ol>
-  @foreach(var person in persons.OrderByDescending(p => p.Birthday)) {
-    <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
-  }
-</ol>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sorty-descending", Size = 140 }) 
-</hide-silent>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("sort-by-property")
+  <ol>
+    @foreach(var person in persons.OrderByDescending(p => p.Birthday)) {
+      <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
+    }
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()
