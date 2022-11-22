@@ -21,6 +21,16 @@
       <code>Select Top 10 * from Files Where SiteId = [Params:SiteId]</code> <br>
       Here we override the parameter <code>SiteId=1</code>. 
     </p>
+
+  <div class="row">
+    <div class="col-4">@fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") </div>
+    <div class="col-4">@fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", width, height, "float-left", label: "Query Configuration with Params and Test-Values")</div>
+    <div class="col-4">@fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", width, height, "float-left", label: "SQL Query using Params")
+  </div>
+  
+  </div>
+
+
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
@@ -51,13 +61,5 @@
   </ol>
 @Sys.SourceCode.SnippetInlineEnd()
 
-  </div>
-  <div class="col-lg-5">
-    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") 
-    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", width, height, "float-left", label: "Query Configuration with Params and Test-Values")
-    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", width, height, "float-left", label: "SQL Query using Params")
-  </div>
-</div>
-
-
 @Sys.PageParts.FooterWithSource()
+
