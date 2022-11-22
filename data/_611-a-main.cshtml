@@ -25,12 +25,10 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of List.cshtml", "Source of Details.cshtml" )
   @{
-    // check if we have a url-parameter called "id" with a value
-    int id;
-    // showdetails will be true, if urlId had a number
-    var showDetails = Int32.TryParse(CmsContext.Page.Parameters["id"], out id);
+    // check if we have a url-parameter called "id" with a value - defaults to 0 if not found
+    int id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
   }
-  @if(!showDetails) {
+  @if (id == 0) {
     @Html.Partial("_611-list.cshtml")
   } else {
     @Html.Partial("_611-details.cshtml", new { Id = id })

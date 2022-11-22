@@ -5,7 +5,8 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+  @{
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
     var width = 200;
     var height = 200;
   }
@@ -35,24 +36,25 @@
 </div>
 
 </trim>
-<div class="row">
-  <div>
-    <h2>Root Portal</h2>
-    <div>In this example we will set the PortalId for the SQL query.</div>
+
+<h3>Root Portal</h3>
+<p>In this example we will set the PortalId for the SQL query.</p>
 
 @Sys.SourceCode.SnippetInlineStart("sql-query-params")
   @{
     // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-    // Get the query and set a parameter
+    // Get the query
     var query = App.Query[queryName];
+
+    // ...and set a parameter
+    // This must happen before we access the query to get data
     var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
     query.Params("SiteId", rootPortal.ToString());
-    var rootFiles = AsList(query);
   }
   <ol>
-    @foreach(var file in rootFiles) {
+    @foreach(var file in AsList(query)) {
     <li>
      @file.Name
     </li>

@@ -8,9 +8,10 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
   @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
   @*
-  Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
-  2sxclint:disable:no-dnn-namespaces
-*@
+    Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
+    2sxclint:disable:no-dnn-namespaces
+  *@
+  @* @2dm TODO Oqtane *@
 </hide>
 
 
@@ -51,4 +52,4 @@
 
 @{#endif}
 
-@Sys.PageParts.FooterWithSource()e>
+@Sys.PageParts.FooterWithSource()

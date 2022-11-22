@@ -5,7 +5,8 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+  @{
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
     var width = 200;
     var height = 200;
   }
@@ -33,8 +34,6 @@
 </div>
 
 </trim>
-<div class="row">
-  <div>
 
 
 @Sys.SourceCode.SnippetInitStart("intro")
@@ -43,8 +42,11 @@
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
     // get the query and ask for the "Default" results as a dynamic List
+    // This case doesn't set parameters, so we're using the defaults (current site)
     var query = App.Query[queryName];
     var currentFiles = AsList(query);
+
+    // Reset the query, so we can use again with other parameters
     query.Reset();
     var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
     query.Params("SiteId", rootPortal.ToString());
@@ -53,7 +55,7 @@
 @Sys.SourceCode.SnippetInitEnd()
 
 
-<h2>files from the current Portal</h2>
+<h3>Files from the current Portal</h3>
 
 @Sys.SourceCode.SnippetInlineStart("sql-query-reset")
   <ul>
@@ -66,7 +68,7 @@
   </div>
 </div>
 
-<h2>Files from the root portal</h2>
+<h3>Files from the root portal</h2>
 
 @Sys.SourceCode.SnippetInlineStart("sql-query-reset")
   <ul>

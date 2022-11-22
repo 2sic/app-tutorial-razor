@@ -8,10 +8,12 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+  @{
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
     var width = 200;
     var height = 200;
   }
+  @* @2dm TODO Oqtane *@
 </hide>
 
 
@@ -58,9 +60,7 @@
 @Sys.SourceCode.SnippetInlineEnd()
 
 
-<trim>
-<h2>The top 10 files found in this portal with reverse sorting</h2>
-</trim>
+<h3>The top 10 files found in this portal with reverse sorting</h3>
 
 @Sys.SourceCode.SnippetInlineStart("sql-reverse")
   @{

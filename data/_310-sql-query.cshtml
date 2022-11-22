@@ -5,7 +5,8 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{ var fancybox = CreateInstance("../shared/Fancybox.cs");
+  @{
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
     var width = 200;
     var height = 200;
   }
@@ -31,13 +32,12 @@
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-
-
 </trim>
-<div class="row">
-  <div>
-    <h2>Current Portal</h2>
-    <div>In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code></div>
+
+<h3>Current Portal</h3>
+<p>
+  In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code>
+</p>
 
 @Sys.SourceCode.SnippetInlineStart("sql-query")
   @{
