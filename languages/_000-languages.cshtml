@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@using System.Linq;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
+
 
 <trim>
 
@@ -53,21 +54,27 @@
   The editor can edit anything and choose which field to translate. In the following example, only one book is translated - and even the cover-image is translated. 
 </p>
 
-<ul>
-  @foreach (var book in AsList(App.Data["Books"])) {
-    <li>
-      <div style="overflow: auto">
-        @if (Text.Has(book.Cover)) {
-          <img loading="lazy" src='@Link.Image(book.Cover, width: 200, height: 300, resizeMode: "crop", scaleMode: "both")' align="left" style="padding-right: 20px;">
-        }
-        <h3>@book.Title</h3> <br>
-        @Html.Raw(book.Teaser)
-      </div>
-    </li>
+@Sys.SourceCode.SnippetStart("Multilanguage")
+  @{
+    var flatSettings = Kit.Image.Settings(width: 200, height: 300, resizeMode: "crop", scaleMode: "both");
   }
-</ul>
+  <ul>
+    @foreach (var book in AsList(App.Data["Books"])) {
+      <li class="mb-4">
+        <div style="overflow: auto">
+          @if (Text.Has(book.Cover)) {
+            @Kit.Image.Img(book.Cover, settings: flatSettings, imgClass: "float-start pe-4")
+          }
+          <h3>@book.Title</h3> <br>
+          @Html.Raw(book.Teaser)
+        </div>
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd("Multilanguage")
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()
+
+
+
