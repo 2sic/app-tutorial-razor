@@ -29,51 +29,50 @@
   </div>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("fetch-get")
- <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
- <script>
-    function getOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/get')
+@Sys.SourceCode.ResultAndSnippetStart("fetch-get", "Source of WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
+  <script>
+      function getOrdersFetch(moduleContext) {
+        $2sxc(moduleContext).webApi.fetchJson('orders/get')
+          .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+      }
+  </script>
+@Sys.SourceCode.ResultEnd("file:../api/OrdersController.cs")
+
+@Html.Partial("_MessageHybrid.cshtml") 
+
+@Sys.SourceCode.ResultAndSnippetStart("fetch-post", "Source of the WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
+  <script>
+    function postOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
         .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
     }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
+  </script>
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
-@Sys.SourceCode.SnippetInlineStart("fetch-post")
- <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
- <script>
-   function postOrdersFetch(moduleContext) {
-     $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
-       .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-   }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("fetch-put", "Source of the WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
+  <script>
+    function putOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
+        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+    }
+  </script>
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
-@Sys.SourceCode.SnippetInlineStart("fetch-put")
- <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
- <script>
-   function putOrdersFetch(moduleContext) {
-     $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
-       .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-   }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("fetch-delete", "Source of the WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
+  <script>
+    function deleteOrdersFetch(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
+        .then(data => alert('Delete executed'));
+    }
+  </script>
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
-@Sys.SourceCode.SnippetInlineStart("fetch-delete")
- <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
- <script>
-  function deleteOrdersFetch(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
-       .then(data => alert('Delete executed'));
-   }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
-
-
-@* @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" }) *@
 @Sys.PageParts.FooterWithSource()
-@Html.Partial("_MessageHybrid.cshtml") 
-@Sys.SourceCode.ShowFile("../api/OrdersController.cs")
+

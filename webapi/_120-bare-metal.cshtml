@@ -36,47 +36,43 @@
   </p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("demo-1")
- <button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
- <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
- <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
- <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
- <script>
- function showHeaders(moduleContext, optionalVerb) {
-   var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
-   alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
-     + JSON.stringify(headers, null, 2));
- }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo-1", "Source of WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
+  <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
+  <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
+  <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
+  <script>
+  function showHeaders(moduleContext, optionalVerb) {
+    var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
+    alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
+      + JSON.stringify(headers, null, 2));
+  }
+  </script>
+@Sys.SourceCode.ResultEnd("file:../api/VerifiedController.cs")
+
+@Html.Partial("_MessageHybrid.cshtml") 
 
 
-<trim>
-  <h3>URL</h3>
-  <p>
-    Resolve URLs to endpoints and similar
-  </p>
-</trim>
+<h3>URL</h3>
+<p>
+  Resolve URLs to endpoints and similar
+</p>
 
-@Sys.SourceCode.SnippetInlineStart("demo-2")
- <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
- <button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
- <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
- <script>
- function showUrl(moduleContext, url) {
-   var finalUrl = $2sxc(moduleContext).webApi.url(url);
-   alert('These is the full url for "' + url + '":\n' + finalUrl);
- }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo-2", "Source of WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
+  <button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
+  <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
+  <script>
+  function showUrl(moduleContext, url) {
+    var finalUrl = $2sxc(moduleContext).webApi.url(url);
+    alert('These is the full url for "' + url + '":\n' + finalUrl);
+  }
+  </script>
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
 @*
-TODO: examples with url-parameters object
+TODO: @2dm examples with url-parameters object
 *@
 
-
-@* @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" }) *@
 @Sys.PageParts.FooterWithSource()
-@Html.Partial("_MessageHybrid.cshtml") 
-@Sys.SourceCode.ShowFile("../api/VerifiedController.cs")

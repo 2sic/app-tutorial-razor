@@ -36,18 +36,18 @@
 </trim>
 
 @Sys.SourceCode.ResultAndSnippetStart("editions", "Source of Live_api", "Source of Dev_api")
- <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
-   Get Hello from live
- </button> 
- <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
-   Get Hello from dev
- </button> 
-  <script>
-   function callBasicHello(moduleContext, edition) {
-    $2sxc(moduleContext).webApi.fetchJson('app/auto/' + edition + '/api/demo/hello')
-      .then(data => alert(data));
-   }
- </script>
+  <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
+    Get Hello from live
+  </button> 
+  <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
+    Get Hello from dev
+  </button> 
+    <script>
+    function callBasicHello(moduleContext, edition) {
+      $2sxc(moduleContext).webApi.fetchJson('app/auto/' + edition + '/api/demo/hello')
+        .then(data => alert(data));
+    }
+  </script>
 @Sys.SourceCode.ResultEnd("file:../live/api/DemoController.cs", "file:../dev/api/DemoController.cs")
 
 

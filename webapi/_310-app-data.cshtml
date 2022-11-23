@@ -26,44 +26,44 @@
 
 
 @Sys.SourceCode.ResultAndSnippetStart("demo-1", "Source of api_BooksController")
- <button type="button" class="btn btn-primary" onclick="getPersons(this)">
-  Get Persons Custom
- </button> 
- <button type="button" class="btn btn-primary" onclick="getBooks(this)">
-  Get Books Custom
- </button> 
- <button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
-  Get Persons with Auto-Convert
- </button> 
- <script>
-  function getPersons(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('books/persons')
-      .then(function(data) {
-        alert('Found ' + data.length + ' persons. \n'
-          + 'The first one is "' + data[0].FirstName + ' ' + data[0].LastName + '"\n\n'
-          + 'The raw JSON: \n' + JSON.stringify(data)
-        );
-      });
-  }
-  function getBooks(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('books/books')
-      .then(function(results) {
-        alert('Found ' + results.length + ' books. \n'
-          + 'The first one is "' + results[0].Title + '"\n\n'
-          + 'The raw JSON: \n' + JSON.stringify(results)
+  <button type="button" class="btn btn-primary" onclick="getPersons(this)">
+    Get Persons Custom
+  </button> 
+  <button type="button" class="btn btn-primary" onclick="getBooks(this)">
+    Get Books Custom
+  </button> 
+  <button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
+    Get Persons with Auto-Convert
+  </button> 
+  <script>
+    function getPersons(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('books/persons')
+        .then(function(data) {
+          alert('Found ' + data.length + ' persons. \n'
+            + 'The first one is "' + data[0].FirstName + ' ' + data[0].LastName + '"\n\n'
+            + 'The raw JSON: \n' + JSON.stringify(data)
           );
-      });
-  }
-  function getPersonsAuto(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
-      .then(function(results) {
-        alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
-          + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
-          + 'The raw JSON: \n' + JSON.stringify(results)
-        );
-      });
-  }
- </script>
+        });
+    }
+    function getBooks(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('books/books')
+        .then(function(results) {
+          alert('Found ' + results.length + ' books. \n'
+            + 'The first one is "' + results[0].Title + '"\n\n'
+            + 'The raw JSON: \n' + JSON.stringify(results)
+            );
+        });
+    }
+    function getPersonsAuto(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
+        .then(function(results) {
+          alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
+            + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
+            + 'The raw JSON: \n' + JSON.stringify(results)
+          );
+        });
+    }
+  </script>
 @Sys.SourceCode.ResultEnd("file:../api/BooksController.cs")
 
 

@@ -30,24 +30,24 @@
 </trim>
 
 @Sys.SourceCode.ResultAndSnippetStart("get-query", "Source of api_AuthorsQueryController")
- @{
-  var authorId = AsDynamic(App.Data["Persons"].First()).EntityId;
- }
- <button type="button" class="btn btn-primary" onclick="getAuthor(this, @authorId)">
-   Get Author #@authorId
- </button> 
- <script>
-   function getAuthor(moduleContext, authorId) {
-     $2sxc(moduleContext).webApi.fetchJson('authorsquery/get?authorId=' + authorId)
-       .then(function (author) {
-         alert('Found author: '
-           + author.FirstName + ' ' + author.LastName 
-           + ' (with ' + author.Books.length + ' books) \n\n'
-           + 'The raw JSON: \n' + JSON.stringify(author)
-          );
-      });    
-    }
- </script>
+  @{
+    var authorId = AsDynamic(App.Data["Persons"].First()).EntityId;
+  }
+  <button type="button" class="btn btn-primary" onclick="getAuthor(this, @authorId)">
+    Get Author #@authorId
+  </button> 
+  <script>
+    function getAuthor(moduleContext, authorId) {
+      $2sxc(moduleContext).webApi.fetchJson('authorsquery/get?authorId=' + authorId)
+        .then(function (author) {
+          alert('Found author: '
+            + author.FirstName + ' ' + author.LastName 
+            + ' (with ' + author.Books.length + ' books) \n\n'
+            + 'The raw JSON: \n' + JSON.stringify(author)
+            );
+        });    
+      }
+  </script>
 @Sys.SourceCode.ResultEnd("file:../api/AuthorsQueryController.cs")
 
 

@@ -30,7 +30,7 @@
   </div>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("fetch-json")
+@Sys.SourceCode.ResultAndSnippetStart("fetch-json", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>
   <script>
     // Fetch using modern Browser Fetch-promises, with auto-get Json
@@ -41,25 +41,28 @@
         .then(data => alert('Result using quick Fetch JSON: ' + data));
     }
   </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("file:../api/BasicController.cs")
 
 
-@Sys.SourceCode.SnippetInlineStart("fetch")
- <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
- <script>
-    // Fetch using modern Browser APIs
-    // This is the more manual method, in case you don't expect JSON or want more control
-    // This uses the full internal syntax `app/auto/api/controller/method`
-    function helloFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchRaw('app/auto/api/basic/hello')
-        .then(response => response.json())
-        .then(data => alert('Result using quick Fetch: ' + data));
-    }
- </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Html.Partial("_MessageHybrid.cshtml") 
 
 
-@Sys.SourceCode.SnippetInlineStart("fetch-manual")
+@Sys.SourceCode.ResultAndSnippetStart("fetch", "Source of the WebApi Controller")
+  <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
+  <script>
+      // Fetch using modern Browser APIs
+      // This is the more manual method, in case you don't expect JSON or want more control
+      // This uses the full internal syntax `app/auto/api/controller/method`
+      function helloFetch(moduleContext) {
+        $2sxc(moduleContext).webApi.fetchRaw('app/auto/api/basic/hello')
+          .then(response => response.json())
+          .then(data => alert('Result using quick Fetch: ' + data));
+      }
+  </script>
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
+
+
+@Sys.SourceCode.ResultAndSnippetStart("fetch-manual", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="helloFetchManual(this)">Quick Fetch "Hello"</button>
     <script>
     // Manual Fetch call using more code
@@ -73,10 +76,10 @@
           .then(data => alert('Result using manual Fetch: ' + data));
     }
   </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
-@Sys.SourceCode.SnippetInlineStart("jquery")
+@Sys.SourceCode.ResultAndSnippetStart("jquery", "Source of the WebApi Controller")
   <button type="button" class="btn btn-secondary" onclick="helloJQueryOld(this)">jQuery Get Hello</button>
     <script>
     // jQuery versions (not recommended any more, will not work on pages without jQuery)
@@ -87,10 +90,10 @@
         });
     }
   </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
-@Sys.SourceCode.SnippetInlineStart("square")
+@Sys.SourceCode.ResultAndSnippetStart("square", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="squareFetch(this, 7)">Fetch Square 7</button>
     <button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">Fetch Square 27</button>
     <script>
@@ -99,9 +102,7 @@
           .then(data => alert('The square of ' + original + '= ' + data));
       }
   </script>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
 @Sys.PageParts.FooterWithSource()
-@Html.Partial("_MessageHybrid.cshtml") 
-@Sys.SourceCode.ShowFile("../api/BasicController.cs")
