@@ -20,14 +20,16 @@
 </trim>
 
 <h3>The result</h3>
-@{
-  var successBox = Tag.Div().Class("alert alert-success");
-}
 
+@Sys.SourceCode.SnippetInlineStart("demo-1")
+  @{
+    var successBox = Tag.Div().Class("alert alert-success");
+  }
+  @successBox.TagStart
+    This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
+    because it may be easier for you that way.
+  @successBox.TagEnd
+@Sys.SourceCode.SnippetInlineEnd()
 
-@successBox.TagStart
-  This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
-  because it may be easier for you that way.
-@successBox.TagEnd
 
 @Sys.PageParts.FooterWithSource()

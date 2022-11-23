@@ -20,6 +20,25 @@
   </div>
 </trim>
 
-@Tag.Custom("app-root")
+@* todo @2dg  first create a sample where a heading is from a variable *@
+
+<h3>Fist create a sample where a heading is from a variable</h3>
+
+@Sys.SourceCode.SnippetInlineStart("demo-1")
+@{
+  var headingType = "h3";
+}
+@Tag.Custom(headingType).Wrap("This is a title")
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@* @2dg use show-result and manually show what the result would be *@
+@* <app-root></app-root> *@
+
+
+@Sys.SourceCode.SnippetInlineStart("demo-2")
+@Tag.Custom("em").Wrap("this is a italic text")
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 @Sys.PageParts.FooterWithSource()
