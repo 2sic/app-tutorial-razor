@@ -34,27 +34,28 @@
 </div>
 </trim>
 
-<hr>
 <h2>Multi-Language (i18n) Resources</h2>
 <p>
   These are configured in the <a href="https://docs.2sxc.org/basics/app/resources.html" target="_blank">App Resources</a> 
   or in the <a href="https://docs.2sxc.org/basics/configuration/index.html" target="_blank">global resources</a>. 
 </p>
 
-<ol>
-  <li>The Greeting Text: <br>
-    @Html.Raw(Resources.Greeting)
-  </li>
-  <li>A button: <button type="button">@Resources.ButtonOrder</button> </li>
-</ol>
+@Sys.SourceCode.SnippetInlineStart("multilanguage-1")
+  <ol>
+    <li>The Greeting Text: <br>
+      @Html.Raw(Resources.Greeting)
+    </li>
+    <li>A button: <button type="button">@Resources.ButtonOrder</button> </li>
+  </ol>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hr>
+
 <h2>Multi-Language (i18n) Content</h2>
 <p>
   The editor can edit anything and choose which field to translate. In the following example, only one book is translated - and even the cover-image is translated. 
 </p>
 
-@Sys.SourceCode.SnippetStart("Multilanguage")
+@Sys.SourceCode.SnippetStart("multilanguage-2")
   @{
     var flatSettings = Kit.Image.Settings(width: 200, height: 300, resizeMode: "crop", scaleMode: "both");
   }
@@ -71,7 +72,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.SnippetEnd("Multilanguage")
+@Sys.SourceCode.SnippetEnd("multilanguage-2")
 
 
 @Sys.PageParts.FooterWithSource()

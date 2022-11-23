@@ -1,14 +1,16 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
 @using System.Diagnostics;
 @using System.IO;
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
   var rzr = CreateInstance("RazorbladeVersion.cs");
   var version = rzr.VersionDouble();
 }
 </hide>
+
 
 <trim>
 <img loading="lazy" src="@App.Path/blade/assets/razor-blade-wide.png" width="100%">
@@ -24,46 +26,45 @@
 @Html.Partial("_razorblade-version-info.cshtml", new { Expected =  3.00 } )
 </trim>
 
-<hr>
 <h2><em>RazorBlade</em> Basic API to Generate Safe Attributes</h2>
 
 <ol>
-  @hlp.TutorialLink("Safe Html5 Attributes from code", "blade810",
+  @Sys.TutorialLink("Safe Html5 Attributes from code", "blade810",
     "Working with attributes in your code to stay error-free",
     "new!", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("Json Html5 Attributes from code", "blade811",
+  @Sys.TutorialLink("Json Html5 Attributes from code", "blade811",
     "Working with attributes in your code to stay error-free",
     "new!", rzr.VersionInfo(version, 3.00))
 </ol>
 
-<hr>
+
 <h2><em>RazorBlade</em> Fluent Html5 API</h2>
 <div>
   <em>RazorBlade</em> 3 contains over 130 objects with hundreds of properties so you can quickly generate Html5 tags correctly and safely.
 </div>
 <ol>
-  @hlp.TutorialLink("Introduction to the Fluid Html5 API with 130+ objects like Img, Table etc.", "blade820",
+  @Sys.TutorialLink("Introduction to the Fluid Html5 API with 130+ objects like Img, Table etc.", "blade820",
     "The basics of creating html directly from code",
     "new!", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("Common Attributes (Id, Title, Class, Style) with SmartJoin", "blade822",
+  @Sys.TutorialLink("Common Attributes (Id, Title, Class, Style) with SmartJoin", "blade822",
     "Some attributes can be added, others replace the previous content. The attributes are super smart 💡",
     "new!", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("Images with Unsafe URLs (Umlauts etc.)", "blade825img",
+  @Sys.TutorialLink("Images with Unsafe URLs (Umlauts etc.)", "blade825img",
     "The API automatically fixes unsafe URLs like Umlauts, japanese characters etc. - SuperSmart 😎",
     "new!", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("Picture Tags for various sizes / resolutions", "blade825picture",
+  @Sys.TutorialLink("Picture Tags for various sizes / resolutions", "blade825picture",
     "Here's an example how to easily generate picture tags, which are the future of Images",
     "new!", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("Start and End Tags", "blade828",
+  @Sys.TutorialLink("Start and End Tags", "blade828",
     "In some cases you may want to just get the start or end-tag.",
     "new!", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("Create custom (non Html5) tags", "blade829",
+  @Sys.TutorialLink("Create custom (non Html5) tags", "blade829",
     "Working with tags in your code to stay error-free and do amazing stuff",
     "new!", rzr.VersionInfo(version, 3.00))
 </ol>

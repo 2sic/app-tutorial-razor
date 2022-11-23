@@ -1,12 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  // 2sxclint:disable:no-razorblade-htmlpage
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -23,6 +23,8 @@
     </div>
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
+
+@Sys.SourceCode.SnippetInlineStart("base-tag")
   <ul>
     <li>
       <code>Kit.Page.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
@@ -31,6 +33,9 @@
       <code>Kit.Page.SetBase("/some/page")</code> create the base tag with the specified url. 
     </li>
   </ul>
+@Sys.SourceCode.SnippetInlineEnd()
+
+  
 </trim>
 
 @if (CmsContext.Platform.Name == "Oqtane") {
@@ -39,7 +44,4 @@
   Kit.Page.SetBase();
 }
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 300, isExpanded=true }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

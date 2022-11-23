@@ -1,23 +1,23 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 
 <trim>
 <div class="row mb-5">
   <div class="col-lg-7">
     <div class="row">
       <div class="col-lg-8">
-        <h2>Auto-Include Bootstrap4 If Not Already Included</h2>
+        <h2>Auto-Include Bootstrap5 If Not Already Included</h2>
         <p>
-          In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap4</a> as the preferred CSS framework. Note that this works for other frameworks as well, with minor modifications. But if it's used on any page, you may have one of the following situations: 
+          In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap5</a> as the preferred CSS framework. Note that this works for other frameworks as well, with minor modifications. But if it's used on any page, you may have one of the following situations: 
         </p>
         <ul>
-          <li>Bootstrap4 could already be included - so you shouldn't do anything</li>
-          <li>A different CSS framework is included - so you should include Bootstrap4 automatically</li>
+          <li>Bootstrap5 could already be included - so you shouldn't do anything</li>
+          <li>A different CSS framework is included - so you should include Bootstrap5 automatically</li>
           <li>The current CSS framework can't be detected, so to be safe, you should include Bootstrap 4 as well, until the theme is updated to broadcast what it's using</li>
         </ul>
         <p>
@@ -41,11 +41,5 @@
 }
 
 
-<hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 300 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path = App.PhysicalPath + "/shared/",
-  File = "Bootstrap5.cs",
-  Size = 600
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+@Sys.SourceCode.ShowFile("../shared/Bootstrap5.cs")

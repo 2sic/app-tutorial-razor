@@ -1,11 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 
 <trim>
   <div class="row mb-5">
@@ -42,20 +42,7 @@
 }
 @Html.Partial(folder + "/_Alert.cshtml")
 
-<hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500 }) 
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Title = "Bootstrap3 template in /bs3/",
-  Path = App.PhysicalPath + "/koi/bs3/",
-  File = "Alert",
-  Size = 200
-}) 
-
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Title = "Bootstrap4 template in /bs4/",
-  Path = App.PhysicalPath + "/koi/bs4/",
-  File = "Alert",
-  Size = 200
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+@Sys.SourceCode.ShowFile("bs3/_Alert.cshtml")
+@Sys.SourceCode.ShowFile("bs4/_Alert.cshtml")

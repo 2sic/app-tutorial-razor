@@ -1,10 +1,11 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -16,52 +17,85 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-@using ToSic.Razor.Blade;
-
-<snippet id="tags-nl2br-br2nl-br2space">
-@{
-  var val1 = "This is a text.\nSecond line.\nThird line.";
-  var val1br = Tags.Nl2Br(val1);
-  var val1Back = Tags.Br2Nl(val1br);
-  var val1Space = Tags.Br2Space(val1br);
-}
-</snippet>
 
 
 <h2>Simple example</h2>
 
-<table class="table table-hover">
-  <tr>
-    <th class="w-25">This is...</th>
-    <th class="w-33">Shown as plain text</th>
-    <th class="w-33">Shown as HTML</th>
-  </tr>
-  <tr>
-    <td>Original</td>
-    <td><textarea rows="4">@val1</textarea></td>
-    <td>@val1</td>
-  </tr>
-  <tr>
-    <td>Converting with Tags.Nl2Br(...)</td>
-    <td><textarea rows="4">@val1br</textarea></td>
-    <td>@Html.Raw(val1br)</td>
-  </tr>
-  <tr>
-    <td>Convert the br back with Tags.Br2Nl</td>
-    <td><textarea rows="4">@val1Back</textarea></td>
-    <td>@val1Back</td>
-  </tr>
-  <tr>
-    <td>Cleaning BR as Space with Tags.Br2Space</td>
-    <td><textarea rows="4">@val1Space</textarea></td>
-    <td>@val1Space</td>
-  </tr>
+@* @Sys.SourceCode.SnippetInlineStart("table-line")
+ @{
+    var val1 = "This is a text.\nSecond line.\nThird line.";
+    var val1br = Tags.Nl2Br(val1);
+    var val1Back = Tags.Br2Nl(val1br);
+    var val1Space = Tags.Br2Space(val1br);
+  }
+  <table class="table table-hover">
+    <tr>
+      <th class="w-25">This is...</th>
+      <th class="w-33">Shown as plain text</th>
+      <th class="w-33">Shown as HTML</th>
+    </tr>
+    <tr>
+      <td>Original</td>
+      <td><textarea rows="4">@val1</textarea></td>
+      <td>@val1</td>
+    </tr>
+    <tr>
+      <td>Converting with Tags.Nl2Br(...)</td>
+      <td><textarea rows="4">@val1br</textarea></td>
+      <td>@Html.Raw(val1br)</td>
+    </tr>
+    <tr>
+      <td>Convert the br back with Tags.Br2Nl</td>
+      <td><textarea rows="4">@val1Back</textarea></td>
+      <td>@val1Back</td>
+    </tr>
+    <tr>
+      <td>Cleaning BR as Space with Tags.Br2Space</td>
+      <td><textarea rows="4">@val1Space</textarea></td>
+      <td>@val1Space</td>
+    </tr>
 
-</table>
+  </table>
+@Sys.SourceCode.SnippetInlineEnd() *@
 
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tags-nl2br-br2nl-br2space", Size = 140 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetStart("table-line")
+  @{
+    var val1 = "This is a text.\nSecond line.\nThird line.";
+    var val1br = Tags.Nl2Br(val1);
+    var val1Back = Tags.Br2Nl(val1br);
+    var val1Space = Tags.Br2Space(val1br);
+  }
+  <table class="table table-hover">
+    <tr>
+      <th class="w-25">This is...</th>
+      <th class="w-33">Shown as plain text</th>
+      <th class="w-33">Shown as HTML</th>
+    </tr>
+    <tr>
+      <td>Original</td>
+      <td><textarea rows="4">@val1</textarea></td>
+      <td>@val1</td>
+    </tr>
+    <tr>
+      <td>Converting with Tags.Nl2Br(...)</td>
+      <td><textarea rows="4">@val1br</textarea></td>
+      <td>@Html.Raw(val1br)</td>
+    </tr>
+    <tr>
+      <td>Convert the br back with Tags.Br2Nl</td>
+      <td><textarea rows="4">@val1Back</textarea></td>
+      <td>@val1Back</td>
+    </tr>
+    <tr>
+      <td>Cleaning BR as Space with Tags.Br2Space</td>
+      <td><textarea rows="4">@val1Space</textarea></td>
+      <td>@val1Space</td>
+    </tr>
+
+  </table>
+@Sys.SourceCode.SnippetEnd("table-line")
+
 
 <hide>
   <style>
@@ -70,6 +104,6 @@
         /* height: 50px; */
     }
   </style>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
 </hide>
+
+@Sys.PageParts.FooterWithSource()

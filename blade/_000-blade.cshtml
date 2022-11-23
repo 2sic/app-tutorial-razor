@@ -1,14 +1,16 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
 @using System.Diagnostics;
 @using System.IO;
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
   var rzr = CreateInstance("RazorbladeVersion.cs");
   var version = rzr.VersionDouble();
 }
 </hide>
+
 
 <trim>
 <img loading="lazy" src="@App.Path/blade/assets/razor-blade-wide.png" width="100%">
@@ -28,74 +30,69 @@
 @Html.Partial("_razorblade-version-info.cshtml", new { Expected =  3.00 } )
 </trim>
 
-<hr>
 <h2><em>RazorBlade</em> Examples for Text Manipulations</h2>
 
 <ol>
-  @hlp.TutorialLink("RazorBlade - Text.Crop() and Text.Ellipsis()", "blade110", 
+  @Sys.TutorialLink("RazorBlade - Text.Crop() and Text.Ellipsis()", "blade110", 
   "Correctly crop text without splitting words or html-characters like &amp;", 
   "", rzr.VersionInfo(version, 1.0))
 
-  @hlp.TutorialLink("RazorBlade - Text.Has() tells you if something really has content", "blade120", 
+  @Sys.TutorialLink("RazorBlade - Text.Has() tells you if something really has content", "blade120", 
   "Check if strings really have something correctly, incl. spaces or even &nbsp; whitespaces. ", 
   "", rzr.VersionInfo(version, 1.0))
 
-  @hlp.TutorialLink("RazorBlade - Text.First() lets you pick a value from many variables", "blade130", 
+  @Sys.TutorialLink("RazorBlade - Text.First() lets you pick a value from many variables", "blade130", 
   "Often you have to check many variables to find the first one to use.", 
   "", rzr.VersionInfo(version, 3.0))
 
-  @hlp.TutorialLink("RazorBlade - Text.Zip() lets you shrink all spaces, tabs, enters together", "blade140", 
+  @Sys.TutorialLink("RazorBlade - Text.Zip() lets you shrink all spaces, tabs, enters together", "blade140", 
   "Very often you need to clean up some text before working with it.", 
   "", rzr.VersionInfo(version, 1.0))
 </ol>
 
-<hr>
 <h2><em>RazorBlade</em> Examples for Manipulating Html strings</h2>
 
 <ol>
-  @hlp.TutorialLink("Tags.Strip() cleans out all HTML tags", "blade210", 
+  @Sys.TutorialLink("Tags.Strip() cleans out all HTML tags", "blade210", 
   "Remove all html from a string - important for teaser texts and protecting against cross-site-scripting attacks.", 
   "", rzr.VersionInfo(version, 1.0))
 
-  @hlp.TutorialLink("Convert <br> tags to new-lines or spaces and back", "blade220", 
+  @Sys.TutorialLink("Convert <br> tags to new-lines or spaces and back", "blade220", 
   "A common challenge is showing text as HTML or the other way around", 
   "", rzr.VersionInfo(version, 1.0))
 </ol>
 
 
-
-<hr>
 <h2><em>RazorBlade</em> Fluent Html and Html5 Tag API for creating HTML using code</h2>
 
 <ol>
-  @hlp.TutorialLink("Tutorials for the Html5 Tag API", "blade800", 
+  @Sys.TutorialLink("Tutorials for the Html5 Tag API", "blade800", 
     "The basics of creating html directly from code - with objects for every known HTML5 tag", 
     "enhanced!", rzr.VersionInfo(version, 3.00))
 </ol>
 
-<hr>
 <h2><em>RazorBlade</em> Examples for Modifying DNN Page Headers</h2>
 
 @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
 
 <ol>
-  @hlp.TutorialLink("Page Title, Keyword, Description", "blade310", 
+  @Sys.TutorialLink("Page Title, Keyword, Description", "blade310", 
   "Get/Set Page Title, Keywords, Description and set meta-tags and more.", 
   "", rzr.VersionInfo(version, 1.01))
 
-  @hlp.TutorialLink("Base tag in header", "blade311", 
+  @Sys.TutorialLink("Base tag in header", "blade311", 
   "Add a base tag to the header - which works correctly in DNN. Important for SPA JS applications.", 
   "", rzr.VersionInfo(version, 3.00))
 
-  @hlp.TutorialLink("JSON-LD Headers for SEO", "blade320", 
+  @Sys.TutorialLink("JSON-LD Headers for SEO", "blade320", 
   "Add JSON-LD (Linked Data) headers for Google", 
   "", rzr.VersionInfo(version, 1.01))
 
-  @hlp.TutorialLink("Open-Graph headers for Social Media", "blade330", 
+  @Sys.TutorialLink("Open-Graph headers for Social Media", "blade330", 
   "Add Open-Graph data headers for Facebook, Twitter and other sharing-systems", 
   "", rzr.VersionInfo(version, 1.01))
 
-  @hlp.TutorialLink("Page Icons for Favicon, Apple/Android", "blade340/page/mode/set", 
+  @Sys.TutorialLink("Page Icons for Favicon, Apple/Android", "blade340/page/mode/set", 
   "Add various combinations of icons to the page header", 
   "", rzr.VersionInfo(version, 2.01))
 

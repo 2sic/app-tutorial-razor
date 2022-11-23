@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -19,30 +20,27 @@
 </trim>
 
 <trim>
-<hr>
+
 <h2>Creating Simple Attributes</h2>
 </trim>
+
 @{
   var titleWithIssues = "I said \"check this out!\" \n\n even 'different quotes' and line breaks work!";
   var cls = "alert alert-";
   cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
 }
-<snippet id="blade-tag-attr">
-<div @Tag.Attr("title", titleWithIssues) 
-  @Tag.Attr("class", cls)
-  @Tag.Attr("number", 27)>
-  <trim>
-  This is a simple demo showing how to add the <code>title</code> and <code>class</code> attribute using code. <br>
-  It switches between warning/primary depending of the second being odd or even. Refresh the page to see the difference. <br>
-  If you mouse-over, you'll also see the tooltips showing stuff which would cause trouble otherwise.
-  </trim>
-</div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-tag-attr", Size = 200 }) 
-</hide-silent>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("blade-tag-attr")
+  <div @Tag.Attr("title", titleWithIssues) 
+    @Tag.Attr("class", cls)
+    @Tag.Attr("number", 27)>
+    <trim>
+    This is a simple demo showing how to add the <code>title</code> and <code>class</code> attribute using code. <br>
+    It switches between warning/primary depending of the second being odd or even. Refresh the page to see the difference. <br>
+    If you mouse-over, you'll also see the tooltips showing stuff which would cause trouble otherwise.
+    </trim>
+  </div>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

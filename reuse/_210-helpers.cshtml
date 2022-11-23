@@ -6,42 +6,36 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
+@Html.Partial("../shared/_DefaultInfoSectionFloating.cshtml")
 
-<trim>
-
-<div class="row mb-5">
-  <div class="col-lg-7">
-    <h2>Reuse Shared Razor Helpers</h2>
-    <p>
-      There are multiple ways to create shared Razor helpers:
-    </p>
-    <ul>
-      <li>
-        public functions returning html <br>
-        ⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅
-      </li>
-      <li>
-        the <code>@@helper</code> command <br>
-        👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔
-      </li>
-    </ul>
-    <p>
-      Razor helpers are functions that put HTML into the page. You can create them using either <br>
-      <code>@@functions { dynamic helpername() { ... } }</code> <br>
-      or <br>
-      <code>@@helper helpername() { ... } </code>
-    </p>
-    <p>
-      You can also share them by placing them into a separate file (just remember to mark them <code>public</code>). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
-    </p>
-  </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+<div class="clearfix">
+  <h2>Reuse Shared Razor Helpers</h2>
+  <p>
+    There are multiple ways to create shared Razor helpers:
+  </p>
+  <ul>
+    <li>
+      public functions returning html <br>
+      ⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅
+    </li>
+    <li>
+      the <code>@@helper</code> command <br>
+      👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔
+    </li>
+  </ul>
+  <p>
+    Razor helpers are functions that put HTML into the page. You can create them using either <br>
+    <code>@@functions { dynamic helpername() { ... } }</code> <br>
+    or <br>
+    <code>@@helper helpername() { ... } </code>
+  </p>
+  <p>
+    You can also share them by placing them into a separate file (just remember to mark them <code>public</code>). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
+  </p>
 </div>
-</trim>
 
 <h2>Using Shared Helpers</h2>
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
-</trim>
 
 @Sys.SourceCode.ResultAndSnippetStart("reuse-helpers", "Source of fancybox.cs")
   @{

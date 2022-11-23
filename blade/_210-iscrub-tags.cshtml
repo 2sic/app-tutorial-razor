@@ -1,17 +1,18 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <div class="row">
   <div class="col-md-7">
     <trim>
       <h2><em>RazorBlade</em> IScrub.All(...), IScrub.Only(), IScrub.Except()</h2>
       <p>
-        These demos show how to strip all html from a string. You often need this in combination with @hlp.TutLink("crop or ellipsis", "blade110") to create teasers.
+        These demos show how to strip all html from a string. You often need this in combination with @Sys.TutLink("crop or ellipsis", "blade110") to create teasers.
       </p>
     </trim>
   </div>
@@ -32,48 +33,41 @@
 <code>@val1.Substring(0, cropLen)</code>
 
 <h3>After IScrub.All</h3>
-<snippet id="blade-scrub-all">
-<code>@Kit.Scrub.All(val1)</code>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-all", Size = 30 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetInlineStart("blade-scrub-all")
+  <code>@Kit.Scrub.All(val1)</code>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <h3>Usually you will then combine with crop or ellipsis</h3>
-<snippet id="blade-scrub-all-ellipsis">
-<code>@Html.Raw(Text.Ellipsis(Kit.Scrub.All(val1), cropLen))</code>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-all-ellipsis", Size = 30 }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetInlineStart("blade-scrub-all-ellipsis")
+  <code>@Html.Raw(Text.Ellipsis(Kit.Scrub.All(val1), cropLen))</code>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <h3>IScrub.Only()</h3>
 <p>Only scrub specified tags using <code>IScrub.Only(source, tag)</code></p>
-<snippet id="blade-scrub-only">
-@{
+
+@Sys.SourceCode.SnippetInlineStart("blade-scrub-only")
+  @{
   var exampleTagsOnly = "<div><h2><span>The cool title</span></h2></div>"; 
-}
-<div><strong>Scrub one tag: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, "div")</code></div>
-<div><strong>Scrub multiple tags: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-only", Size = 150 }) 
-</hide-silent>
+  }
+  <div><strong>Scrub one tag: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, "div")</code></div>
+  <div><strong>Scrub multiple tags: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 <h3>IScrub.Except()</h3>
 <p>Scrub except the specified tags using <code>IScrub.Except(source, tag)</code></p>
-<snippet id="blade-scrub-except">
-@{
-  var exampleTagsExcept = "<div><h2><span>The cool title</span></h2></div>"; 
-}
-<div><strong>Scrub tags except one tag: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, "h2")</code></div>
-<div><strong>Scrub tags except multiple tags: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-scrub-except", Size = 150 }) 
-</hide-silent>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("blade-scrub-except")
+  @{
+    var exampleTagsExcept = "<div><h2><span>The cool title</span></h2></div>"; 
+  }
+  <div><strong>Scrub tags except one tag: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, "h2")</code></div>
+  <div><strong>Scrub tags except multiple tags: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

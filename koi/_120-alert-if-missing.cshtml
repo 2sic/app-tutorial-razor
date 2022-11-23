@@ -1,18 +1,19 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
 <div class="row mb-5">
   <div class="col-lg-7">
     <div class="row">
       <div class="col-lg-8">
-        <h2>Show Warning if Bootstrap4 not Included or Unclear</h2>
+        <h2>Show Warning if Bootstrap5 not Included or Unclear</h2>
         <p>
-          In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap4</a> as the preferred CSS framework. And we'll also assume, that you don't want to @hlp.TutLink("auto-include it", "koi110"), but instead want to warn the admin, to ensure he can correct the situation. This is what you want to do, when you believe the Admin should optimize the output, and prevent accidentally loading Bootstrap multiple times. 
+          In this example, we'll assume your template needs <a href="https://getbootstrap.com/" target="_blank">Bootstrap5</a> as the preferred CSS framework. And we'll also assume, that you don't want to @Sys.TutLink("auto-include it", "koi110"), but instead want to warn the admin, to ensure he can correct the situation. This is what you want to do, when you believe the Admin should optimize the output, and prevent accidentally loading Bootstrap multiple times. 
         </p>
         <p>
           This page shows how to handle these problems with almost no code. We'll also show what you can do, so only admins see the message. <br>
@@ -33,12 +34,6 @@
 }
 @bsCheck.WarnAboutMissingOrUnknownBootstrap()
 
-<hide>
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 250 }) 
 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path = App.PhysicalPath + "/shared/",
-  File = "Bootstrap5.cs",
-  Size = 600
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+@Sys.SourceCode.ShowFile("../shared/Bootstrap5.cs")

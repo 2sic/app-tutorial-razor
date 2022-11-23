@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -32,25 +33,25 @@
   </h3>
 </trim>
 
-<ol>
-  <li>
-    <code>@@Tag.Div().Id("original").Id("replaced")</code>
-    will get you 
-    <code>@Tag.Div().Id("original").Id("replaced").ToString()</code>
-  </li>
-  <li>
-    <code>@@Tag.Div().Class("original").Class("replaced")</code>
-    will get you 
-    <code>@Tag.Div().Class("original").Class("replaced").ToString()</code>
-  </li>
-  <li>
-    <code>@@Tag.Div().Style("width: 75px").Style("height: 100px")</code>
-    will get you 
-    <code>@Tag.Div().Style("width: 75px").Style("height: 100px").ToString()</code>
-  </li>
-</ol>
-  
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500, isExpanded=true }) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("tag-attr")
+ <ol>
+    <li>
+      <code>@@Tag.Div().Id("original").Id("replaced")</code>
+      will get you 
+      <code>@Tag.Div().Id("original").Id("replaced").ToString()</code>
+    </li>
+    <li>
+      <code>@@Tag.Div().Class("original").Class("replaced")</code>
+      will get you 
+      <code>@Tag.Div().Class("original").Class("replaced").ToString()</code>
+    </li>
+    <li>
+      <code>@@Tag.Div().Style("width: 75px").Style("height: 100px")</code>
+      will get you 
+      <code>@Tag.Div().Style("width: 75px").Style("height: 100px").ToString()</code>
+    </li>
+ </ol>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()

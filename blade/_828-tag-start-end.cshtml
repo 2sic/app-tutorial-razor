@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -13,7 +14,6 @@
       <div>
         A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
       </div>
-      <hr>
     </div>
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
@@ -23,12 +23,11 @@
 @{
   var successBox = Tag.Div().Class("alert alert-success");
 }
+
+
 @successBox.TagStart
   This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
   because it may be easier for you that way.
 @successBox.TagEnd
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 300, isExpanded=true }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -19,24 +20,24 @@
 </trim>
 
 <trim>
-<hr>
+
 <h2>Creating Attributes Containing JSON</h2>
 </trim>
-@{
-  // this is the object we want in the data-attribute
-  var myObj = new { 
-    Name = "razor", 
-    Description="This isn't your normal text - it has \n line breaks and apostrophes"
-  };
-}
-<div class="alert alert-secondary" @Tag.Attr("data-my", myObj)>
-  <trim>
-  This div has an attribute created using an object, because we wanted json. If you look at the source, youll find <code>@Tag.Attr("data-my", myObj)</code>
-  </trim>
-</div>
+
+@Sys.SourceCode.SnippetInlineStart("tag-attribute-json")
+  @{
+    // this is the object we want in the data-attribute
+    var myObj = new { 
+      Name = "razor", 
+      Description="This isn't your normal text - it has \n line breaks and apostrophes"
+    };
+  }
+  <div class="alert alert-secondary" @Tag.Attr("data-my", myObj)>
+    <trim>
+    This div has an attribute created using an object, because we wanted json. If you look at the source, youll find <code>@Tag.Attr("data-my", myObj)</code>
+    </trim>
+  </div>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400, isExpanded=true }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

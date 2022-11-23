@@ -1,17 +1,18 @@
 @inherits Custom.Hybrid.Razor14
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
-</hide>
 @using ToSic.Razor.Blade;
-@{
-  var samples = new string[] {
-    "This        contains multi-spaces and \t\t\t tabs",
-    "This has \n  \n line-breaks"
-  };
-}
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+    var samples = new string[] {
+      "This        contains multi-spaces and \t\t\t tabs",
+      "This has \n  \n line-breaks"
+    };
+  }
+</hide>
+
+
 <trim>
 
   <div class="row mb-5">
@@ -45,7 +46,14 @@
 
 <h2>Correct and incorrect Character Counts</h2>
 
-<table class="table table-hover" width="100%">
+@Sys.SourceCode.SnippetStart("character")
+  @{
+     samples = new string[] {
+      "This        contains multi-spaces and \t\t\t tabs",
+      "This has \n  \n line-breaks"
+    };
+  }
+ <table class="table table-hover" width="100%">
   <!-- table header -->
   <tr>
     <th>Html output hides the problems</th>
@@ -63,8 +71,10 @@
     <td class="table-success" style="white-space: pre-wrap;">@Text.Zip(s)</td>
     <td>@Text.Zip(s).Length</td>
   </tr>
-  }
-</table>
+   }
+  </table>
+@Sys.SourceCode.SnippetEnd("character")
+
 
 <hide>
 @functions{
@@ -75,6 +85,6 @@
       .Replace("\t", "↦");
   }
 }
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 750 }) 
 </hide>
+
+@Sys.PageParts.FooterWithSource()

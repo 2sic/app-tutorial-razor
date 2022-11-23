@@ -1,11 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -19,35 +20,34 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-<hr>
-@{
-  // demo of path with umlauts and japanese characters
-  var kaizenUrl = "überschrift-small.png?name=改善";
-  var path = App.Path + "/blade/assets/tag-img/";
-  var kaizenFullPath =  path + kaizenUrl;
-  var kaizenFullHd = kaizenFullPath.Replace("small", "large");
-}
+
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+    // demo of path with umlauts and japanese characters
+    var kaizenUrl = "überschrift-small.png?name=改善";
+    var path = App.Path + "/blade/assets/tag-img/";
+    var kaizenFullPath =  path + kaizenUrl;
+    var kaizenFullHd = kaizenFullPath.Replace("small", "large");
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
+
 This file is called @kaizenUrl <br>
-<snippet id="blade-img">
-@Tag.Img().Src(kaizenFullPath)
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-img", Size = 40 }) 
-</hide-silent>
-<hide>
-<snippet id="blade-img-pre">
-<pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-img-pre", Size = 40 }) 
-</hide-silent>
-<hr>
-</hide>
+
+@Sys.SourceCode.SnippetInlineStart("blade-img")
+  @Tag.Img().Src(kaizenFullPath)
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("blade-img-pre")
+ <pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
+@Sys.SourceCode.SnippetInlineEnd()
 
 And now the same thing with <code>Srcset</code> which allows high-density images: <br>
-@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
-<hide>
-<pre>@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2).ToString()</pre>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-</hide>
+
+@Sys.SourceCode.SnippetInlineStart("blade-img-p")
+ @Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.PageParts.FooterWithSource()
