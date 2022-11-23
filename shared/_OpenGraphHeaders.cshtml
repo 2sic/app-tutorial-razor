@@ -5,11 +5,19 @@
   var viewMdType = hlp.TutViewMetadataType as string;
   var md = CmsContext.View.Metadata;
 
+  if (md == null) {
+    return;
+  }
+
   @* Adding Metadata for Opengraph sharing *@
 
   var viewSharingMdType = hlp.TutViewSharingMetadataType as string;
   var viewMd = AsList(md.OfType(viewMdType) as object).FirstOrDefault();
   var sharingMd = AsList(md.OfType(viewSharingMdType) as object).FirstOrDefault();
+
+  if (viewMd == null || sharingMd == null) {
+    return;
+  }
 
   @* meta variables *@
   var metaTitle = sharingMd != null ? Tags.Strip(sharingMd.Title) : Tags.Strip(viewMd.LinkTitle);

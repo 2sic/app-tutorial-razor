@@ -12,10 +12,12 @@
   var viewMd = AsList(CmsContext.View.Metadata.OfType(viewMdType) as object).FirstOrDefault();
 
   // Metadata with new toolbar services
+  var mdTitle = viewMd != null ? viewMd.Title : title ?? "";
+  var teaser = viewMd != null ? viewMd.LinkTeaser : "";
 
   var newConfig = Kit.Toolbar
     .Metadata(CmsContext.View, viewMdType)
-    .Metadata(CmsContext.View, "TutorialViewSharing", parameters: "prefill:Title=" + Tags.Strip(viewMd.LinkTitle) + "&prefill:Description=" + Tags.Strip(viewMd.LinkTeaser))
+    .Metadata(CmsContext.View, "TutorialViewSharing", parameters: "prefill:Title=" + Tags.Strip(mdTitle) + "&prefill:Description=" + Tags.Strip(teaser))
     .Settings(hover: "left");
 
   @Html.Partial("_OpenGraphHeaders.cshtml");

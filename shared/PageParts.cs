@@ -24,16 +24,24 @@ public class PageParts: Custom.Hybrid.Code14
 
   // Dnn / Oqtane implementations of render CSHTML based on the given Razor14 base class
   public dynamic RenderPartial(string path, object data = null) {
-    #if NETCOREAPP
-    var html = ((ParentRazor as dynamic).Html as IHtmlHelper);
-    var view = (data == null ? html.Partial(path) : html.Partial(path, data));
-    var writer = new StringWriter();
-    var encoder = HtmlEncoder.Create(new TextEncoderSettings());
-    view.WriteTo(writer, encoder);
-    return writer.ToString();
-    #else
-    return (data == null ? ParentRazor.Html.Partial(path) : ParentRazor.Html.Partial(path, data));
-    #endif
+    var l = Log.Call<dynamic>();
+    try {
+      #if NETCOREAPP
+        var html = ((ParentRazor as dynamic).Html as IHtmlHelper);
+        var view = (data == null ? html.Partial(path) : html.Partial(path, data));
+        var writer = new StringWriter();
+        var encoder = HtmlEncoder.Create(new TextEncoderSettings());
+        view.WriteTo(writer, encoder);
+        return l("ok oqtane", writer.ToString());
+      #else
+        var result = (data == null ? ParentRazor.Html.Partial(path) : ParentRazor.Html.Partial(path, data));
+        return l("ok dnn", result);
+      #endif
+    }
+    catch
+    {
+      return l("error", "");
+    }
   }
 
   public dynamic Header(dynamic header = null) {

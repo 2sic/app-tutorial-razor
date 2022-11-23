@@ -4,14 +4,14 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @* @Html.Partial("_header.cshtml", new { Sys = Sys })  *@
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
   @{  
     var fancybox = CreateInstance("../shared/Fancybox.cs");
   }
   @fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-configure-automatic-switching.png", 400, 200, "float-right float-end")
 </hide>
 <trim>
-<h2>Details using Automatic View-Switching</h2>
+<h2>Details using Automatic View-Switching x</h2>
 <p>
   You now see the details page. It was automatically shown, because the url contains <code>data620id</code>. Of course usually you would just go for <code>id</code> or <code>authorId</code> or something, but we needed a longer term, because this tutorial has so many views :). The image to the right shows where this configuration applied. 
 </p>
