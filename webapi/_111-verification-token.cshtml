@@ -1,15 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
+
 
 <trim>
   <div class="row mb-5">
@@ -26,33 +28,19 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-<snippet id="fetch">
-<button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">
-  Call WebApi
-</button> 
 
-<script>
-  function apiWithVerification(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('verified/hello')
-      .then(data => alert(data));
-  }
-</script>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "fetch" }) 
-</hide-silent>
+@Sys.SourceCode.ResultAndSnippetStart("fetch", "Source of api_VerifiedController")
+  <button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">
+    Call WebApi
+  </button> 
+  <script>
+    function apiWithVerification(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('verified/hello')
+        .then(data => alert(data));
+    }
+  </script>
+@Sys.SourceCode.ResultEnd("file:../api/VerifiedController.cs")
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
 
-@Html.Partial("_MessageHybrid.cshtml")
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "VerifiedController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@* @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" }) *@
+@Sys.PageParts.FooterWithSource()

@@ -1,14 +1,15 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
 
 <trim>
@@ -28,68 +29,51 @@
   </div>
 </trim>
 
-
-<snippet id="fetch-get">
-  <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "fetch-get" }) 
-  </hide-silent>
-  <script>
+@Sys.SourceCode.SnippetInlineStart("fetch-get")
+ <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
+ <script>
     function getOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/get')
         .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
     }
-  </script>
-  </snippet>
-<snippet id="fetch-post">
-  <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "fetch-post" }) 
-  </hide-silent>
-  <script>
-    function postOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
-        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-    }
-  </script>
-</snippet>
-<snippet id="fetch-put">
-  <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "fetch-put" }) 
-  </hide-silent>
-  <script>
-    function putOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
-        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-    }
-  </script>
-</snippet>
-<snippet id="fetch-delete">
-  <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "fetch-delete" }) 
-  </hide-silent>
-  <script>
-    function deleteOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
-        .then(data => alert('Delete executed'));
-    }
-  </script>
-</snippet>
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
 
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
+@Sys.SourceCode.SnippetInlineStart("fetch-post")
+ <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
+ <script>
+   function postOrdersFetch(moduleContext) {
+     $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
+       .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+   }
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
 
-@Html.Partial("_MessageHybrid.cshtml")
 
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "OrdersController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@Sys.SourceCode.SnippetInlineStart("fetch-put")
+ <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
+ <script>
+   function putOrdersFetch(moduleContext) {
+     $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
+       .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
+   }
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("fetch-delete")
+ <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
+ <script>
+  function deleteOrdersFetch(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
+       .then(data => alert('Delete executed'));
+   }
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@* @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" }) *@
+@Sys.PageParts.FooterWithSource()
+@Html.Partial("_MessageHybrid.cshtml") 
+@Sys.SourceCode.ShowFile("../api/OrdersController.cs")

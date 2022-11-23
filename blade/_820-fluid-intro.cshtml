@@ -89,32 +89,41 @@
 
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("example-1-2")
- @* this will place an HR in the page - not very useful, but just for a first example *@
+@Sys.SourceCode.SnippetInlineStart("example-1")
+  @* this will place an HR in the page - not very useful, but just for a first example *@
   @Tag.H3("Example 1: This title was code-generated")
 
   @* now let's create a bootstrap-style box *@
   @Tag.Div("This div was coded").Class("alert alert-warning")
 
   @Tag.Div(
-    Tag.H4("Example2: This h4 title is inside the div"),
+    Tag.H4("Example 2a: This h4 title is inside the div"),
     "and this text in the div ",
     Tag.Em("follows the title")
   ).Class("alert alert-warning")
+
+  @* Same example as 2a, but written in a more fluid way *@
+  @Tag.Div().Class("alert alert-warning").Wrap(
+    Tag.H4("Example 2b: This h4 title is inside the div"),
+    "and this text in the div ",
+    Tag.Em("follows the title")
+  )
+
 @Sys.SourceCode.SnippetInlineEnd()
 
-
-<trim>
+<h3>Same example, but with other setup</h3>
+<p>
+  The following example creates the same div as before, but is written in a more fluid style.
+</p>
 
 <h3>Example 3: Using <code>Tag.Div</code></h3>
-
-</trim>
 
 @Sys.SourceCode.SnippetInlineStart("example-3")
   @(Tag.Div("This is the intro. ", 
         Tag.B("I hope you like it"), 
         Tag.I(" otherwise it's ok too"), 
-        " 😉")
+        " 😉"
+        )
         .Id("wrapper")
         .Class("alert")
         .Class("alert-dark"))

@@ -1,11 +1,12 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -27,43 +28,38 @@
   </div> 
 </trim>
 <hide>
-  <br>
 </hide>
 
-@{
-  // Use the PageService to activate turnOn and a system script
-  Kit.Page.Activate("turnOn", "fancybox4");
-  
-  // Create unique DOM attribute with Module Id
-  var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
-}
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of system-scripts-js")
+  @{
+    // Use the PageService to activate turnOn and a system script
+    Kit.Page.Activate("turnOn", "fancybox4");
+    
+    // Create unique DOM attribute with Module Id
+    var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
+  }
 
 
-@* Inject attribute into DIV, to make it accessible for query *@
-<a @uniqueDomAttrubute href='https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' data-caption="System script used here">
-    <img loading="lazy" class="img-fluid" src='https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80'/>
-</a>
+  @* Inject attribute into DIV, to make it accessible for query *@
+  <a @uniqueDomAttrubute href='https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' data-caption="System script used here">
+      <img loading="lazy" class="img-fluid" src='https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80'/>
+  </a>
 
-@* 
-  Wait for the system script to load, 
-  then execute the window.turnOnTutorial202.init function 
-  and pass the domAttribute as JSON 
-*@
+  @* 
+    Wait for the system script to load, 
+    then execute the window.turnOnTutorial202.init function 
+    and pass the domAttribute as JSON 
+  *@
 
-<turnOn turn-on='{
-  "await": ["window.Fancybox"], 
-  "run": "window.turnOnTutorial202.init()", 
-  "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+  <turnOn turn-on='{
+    "await": ["window.Fancybox"], 
+    "run": "window.turnOnTutorial202.init()", 
+    "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
 
-@* Include local JavaScript file *@
-<script src="@App.Path/turn-on/_202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
+  @* Include local JavaScript file *@
+  <script src="@App.Path/turn-on/_202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:_202-system-scripts.js")
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 750 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 300,
-  File = "_202-system-scripts.js"
-})
-</hide>
+
+@Sys.PageParts.FooterWithSource()
+

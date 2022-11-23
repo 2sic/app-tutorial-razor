@@ -1,15 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
+
 
 <trim>
   <div class="row mb-5">
@@ -26,6 +28,8 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
+
+@Sys.SourceCode.ResultAndSnippetStart("webapi-hybrid", "Source of api_HybridController")
 <button type="button" class="btn btn-primary" onclick="callBasicHello(this)">
   Get Hello
 </button> 
@@ -33,9 +37,7 @@
   Square 7
 </button> <button type="button" class="btn btn-primary" onclick="callSquare(this, 27)">
   Square 27
-</button> 
-
-<snippet id="webapi-hybrid">
+</button>
 <script>
   function callBasicHello(moduleContext) {
     $2sxc(moduleContext).webApi.fetchJson('app/auto/api/hybrid/hello')
@@ -47,23 +49,7 @@
       .then(function (results) { alert(results); });
   }
 </script>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "webapi-hybrid" }) 
-</hide-silent>
+@Sys.SourceCode.ResultEnd("file:../api/HybridController.cs")
 
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
-
-@Html.Partial("_MessageHybrid.cshtml")
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "HybridController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

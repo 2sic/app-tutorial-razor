@@ -1,11 +1,12 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -27,41 +28,34 @@
   </div>
 </trim>
 
-<br>
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of anonymous-js")
+    @* Inject attribute into DIV, to make it accessible for query *@
+  <div id="turn-on-example">
+    turnOn hasn't started yet.
+  </div>
 
-@* Inject attribute into DIV, to make it accessible for query *@
-<div id="turn-on-example">
-  turnOn hasn't started yet.
-</div>
+  @{
+    // Use the PageService to activate turnOn
+    Kit.Page.Activate("turnOn");
+    
+    // Create an anonymous object and define example settings 
+    var exampleObject = new {
+      domId = "turn-on-example",
+      style = new {
+        backgroundColor = "mediumpurple",
+        height = 100,
+        width = 400
+      }
+    };
+  }
 
-@{
-  // Use the PageService to activate turnOn
-  Kit.Page.Activate("turnOn");
-  
-  // Create an anonymous object and define example settings 
-  var exampleObject = new {
-    domId = "turn-on-example",
-    style = new {
-      backgroundColor = "mediumpurple",
-      height = 100,
-      width = 400
-    }
-  };
-}
+  @* Passes the exampleObject as parameter in a JSON format and executes the window.turnOnTutorial120.init function *@
+  <turnOn turn-on='{ 
+    "run": "window.turnOnTutorial120.init()", 
+    "data": @Html.Raw(Kit.Json.ToJson(exampleObject)) }'></turnOn>
 
-@* Passes the exampleObject as parameter in a JSON format and executes the window.turnOnTutorial120.init function *@
-<turnOn turn-on='{ 
-  "run": "window.turnOnTutorial120.init()", 
-  "data": @Html.Raw(Kit.Json.ToJson(exampleObject)) }'></turnOn>
+  <script src="@App.Path/turn-on/_120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:_120-anonymous-object.js")
 
-<script src="@App.Path/turn-on/_120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 750 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 425,
-  File = "_120-anonymous-object.js"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

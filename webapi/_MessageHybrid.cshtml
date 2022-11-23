@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{
-  var hlp = CreateInstance("../shared/Helpers.cs"); 
+  var Sys = CreateInstance("../shared/Helpers.cs"); 
   // Plase this message in a variable, so our quality checks don't trigger a warning
   // The # and if must not be directly connected in the source, as that triggers the warning
   var ifNetStandard = "#" + "if " + "NETCOREAPP";
@@ -13,5 +13,5 @@
   Because of this, the Api Controller have special conditional statements like <code>@ifNetStandard</code> which uses different namespaces in .net core and .net Framework. 
   <br>
   If you only target Dnn <em>or</em> Oqtane, you can remove the lines you don't need.  
-  See @hlp.TutLink("See how to use #" + "if", "hybrid410/page")
+  See @Sys.TutLink("See how to use #" + "if", "hybrid410/page")
 </div>

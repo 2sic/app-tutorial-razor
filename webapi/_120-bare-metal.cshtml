@@ -1,15 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
-@Html.Partial("_header.cshtml")
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
+
 
 <trim>
   <div class="row mb-5">
@@ -28,69 +30,53 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 
-  <hr>
   <h3>Headers</h3>
   <p>
     This will show you the headers which will probably be needed for a request:
   </p>
 </trim>
-<button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
-<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
-<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
-<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "show-headers" }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetInlineStart("demo-1")
+ <button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
+ <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
+ <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
+ <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
+ <script>
+ function showHeaders(moduleContext, optionalVerb) {
+   var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
+   alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
+     + JSON.stringify(headers, null, 2));
+ }
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
 
 
 <trim>
-  <hr>
   <h3>URL</h3>
   <p>
     Resolve URLs to endpoints and similar
   </p>
 </trim>
-<button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
-<button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
-<button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "show-url" }) 
-</hide-silent>
+
+@Sys.SourceCode.SnippetInlineStart("demo-2")
+ <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
+ <button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
+ <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
+ <script>
+ function showUrl(moduleContext, url) {
+   var finalUrl = $2sxc(moduleContext).webApi.url(url);
+   alert('These is the full url for "' + url + '":\n' + finalUrl);
+ }
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
+
 
 @*
 TODO: examples with url-parameters object
 *@
 
-<snippet id="show-headers">
-<script>
-  function showHeaders(moduleContext, optionalVerb) {
-    var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
-    alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
-      + JSON.stringify(headers, null, 2));
-  }
-</script>
-</snippet>
-<snippet id="show-url">
-<script>
-  function showUrl(moduleContext, url) {
-    var finalUrl = $2sxc(moduleContext).webApi.url(url);
-    alert('These is the full url for "' + url + '":\n' + finalUrl);
-  }
-</script>
-</snippet>
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
-
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
-
-@Html.Partial("_MessageHybrid.cshtml")
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "VerifiedController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@* @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" }) *@
+@Sys.PageParts.FooterWithSource()
+@Html.Partial("_MessageHybrid.cshtml") 
+@Sys.SourceCode.ShowFile("../api/VerifiedController.cs")

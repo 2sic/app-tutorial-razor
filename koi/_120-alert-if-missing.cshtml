@@ -28,12 +28,15 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 </trim>
-@{
-  var bsCheck = CreateInstance("../shared/Bootstrap5.cs");
-  bsCheck.EnsureBootstrap5();
-}
-@bsCheck.WarnAboutMissingOrUnknownBootstrap()
+
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of Bootstrap5.cs")
+  @{
+    var bsCheck = CreateInstance("../shared/Bootstrap5.cs");
+    bsCheck.EnsureBootstrap5();
+  }
+  @bsCheck.WarnAboutMissingOrUnknownBootstrap()
+@Sys.SourceCode.ResultEnd("file:../shared/Bootstrap5.cs")
 
 
 @Sys.PageParts.FooterWithSource()
-@Sys.SourceCode.ShowFile("../shared/Bootstrap5.cs")
+@* @Sys.SourceCode.ShowFile("../shared/Bootstrap5.cs") *@

@@ -1,11 +1,12 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -26,31 +27,26 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-<br>
-@{
-  // Use the PageService to activate turnOn
-  Kit.Page.Activate("turnOn");
 
-  // Create unique DOM attribute with Module Id
-  var uniqueDomAttribute = "turn-on-example-" + CmsContext.Module.Id;
-}
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of module-js")
+  @{
+    // Use the PageService to activate turnOn
+    Kit.Page.Activate("turnOn");
 
-@* Inject attribute into DIV, to make it accessible for query *@
-<div @uniqueDomAttribute>
-  turnOn hasn't passed any parameters.
-</div>
+    // Create unique DOM attribute with Module Id
+    var uniqueDomAttribute = "turn-on-example-" + CmsContext.Module.Id;
+  }
 
-@* Passes the parameter domAttribute in a JSON format and executes the window.turnOnTutorial111.init function *@
-<turnOn turn-on='{ "run": "window.turnOnTutorial111.init()", "data": { "domAttribute": "@uniqueDomAttribute" } }'></turnOn>
+  @* Inject attribute into DIV, to make it accessible for query *@
+  <div @uniqueDomAttribute>
+    turnOn hasn't passed any parameters.
+  </div>
 
-<script src="@App.Path/turn-on/_111-module.js" @Kit.Page.AssetAttributes()></script>
+  @* Passes the parameter domAttribute in a JSON format and executes the window.turnOnTutorial111.init function *@
+  <turnOn turn-on='{ "run": "window.turnOnTutorial111.init()", "data": { "domAttribute": "@uniqueDomAttribute" } }'></turnOn>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 540 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 325,
-  File = "_111-module.js"
-}) 
-</hide>
+  <script src="@App.Path/turn-on/_111-module.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:_111-module.js")
+
+
+@Sys.PageParts.FooterWithSource()

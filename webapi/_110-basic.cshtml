@@ -1,14 +1,11 @@
 @inherits Custom.Hybrid.Razor14
-@{
-  // Tell the page that we need the 2sxc Js APIs
-  Kit.Page.Activate("2sxc.JsCore"); 
-}
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
 
 <trim>
@@ -32,27 +29,24 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-<snippet id="fetch-json">
-<button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>
-<script>
-  // Fetch using modern Browser Fetch-promises, with auto-get Json
-  // This is the recommended method if you expect JSON, because it's simpler
-  // This also uses the shortest API syntax `controller/method`
-  function helloFetchJson(moduleContext) {
-    $2sxc(moduleContext).webApi.fetchJson('basic/hello')
-      .then(data => alert('Result using quick Fetch JSON: ' + data));
-  }
-</script>
-</snippet><hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "fetch-json" }) 
-</hide-silent>
 
-<snippet id="fetch">
-  <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "fetch" }) 
-  </hide-silent>
+@Sys.SourceCode.SnippetInlineStart("fetch-json")
+  <button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>
   <script>
+    // Fetch using modern Browser Fetch-promises, with auto-get Json
+    // This is the recommended method if you expect JSON, because it's simpler
+    // This also uses the shortest API syntax `controller/method`
+    function helloFetchJson(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('basic/hello')
+        .then(data => alert('Result using quick Fetch JSON: ' + data));
+    }
+  </script>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("fetch")
+ <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
+ <script>
     // Fetch using modern Browser APIs
     // This is the more manual method, in case you don't expect JSON or want more control
     // This uses the full internal syntax `app/auto/api/controller/method`
@@ -61,14 +55,13 @@
         .then(response => response.json())
         .then(data => alert('Result using quick Fetch: ' + data));
     }
-  </script>
-</snippet>
-<snippet id="fetch-manual">
+ </script>
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("fetch-manual")
   <button type="button" class="btn btn-primary" onclick="helloFetchManual(this)">Quick Fetch "Hello"</button>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "fetch-manual" }) 
-  </hide-silent>
-  <script>
+    <script>
     // Manual Fetch call using more code
     // This is the most manual method, but shows how it actually works internally
     function helloFetchManual(moduleContext) {
@@ -80,13 +73,12 @@
           .then(data => alert('Result using manual Fetch: ' + data));
     }
   </script>
-</snippet>
-<snippet id="jquery">
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("jquery")
   <button type="button" class="btn btn-secondary" onclick="helloJQueryOld(this)">jQuery Get Hello</button>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "jquery" }) 
-  </hide-silent>
-  <script>
+    <script>
     // jQuery versions (not recommended any more, will not work on pages without jQuery)
     function helloJQueryOld(moduleContext) {
       $2sxc(moduleContext).webApi.get('app/auto/api/basic/hello')
@@ -95,32 +87,21 @@
         });
     }
   </script>
-</snippet>
-<snippet id="square">
+@Sys.SourceCode.SnippetInlineEnd()
+
+
+@Sys.SourceCode.SnippetInlineStart("square")
   <button type="button" class="btn btn-primary" onclick="squareFetch(this, 7)">Fetch Square 7</button>
-  <button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">Fetch Square 27</button>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "square" }) 
-  </hide-silent>
-  <script>
-    function squareFetch(moduleContext, original) {
-      $2sxc(moduleContext).webApi.fetchJson('basic/square?number=' + original)
-        .then(data => alert('The square of ' + original + '= ' + data));
-    }
-</script>
-</snippet>
+    <button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">Fetch Square 27</button>
+    <script>
+      function squareFetch(moduleContext, original) {
+        $2sxc(moduleContext).webApi.fetchJson('basic/square?number=' + original)
+          .then(data => alert('The square of ' + original + '= ' + data));
+      }
+  </script>
+@Sys.SourceCode.SnippetInlineEnd()
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
 
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
-
-@Html.Partial("_MessageHybrid.cshtml")
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "BasicController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+@Html.Partial("_MessageHybrid.cshtml") 
+@Sys.SourceCode.ShowFile("../api/BasicController.cs")

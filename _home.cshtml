@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
 @{
-  var hlp = CreateInstance("shared/Helpers.cs");
+  var Sys = CreateInstance("shared/Helpers.cs");
   Kit.Page.SetBase();
   var newConfig = Kit.Toolbar
     .Metadata(CmsContext.View, "TutorialViewSharing")
@@ -12,7 +12,7 @@
 
 <div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
   <div @Edit.TagToolbar(newConfig)>
-    @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
+    @Sys.Title(Content.Title + " (" + App.Configuration.Version + ")")
   </div>
   @Html.Raw(Content.Teaser)
 

@@ -1,15 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
+
 
 <trim>
   <div class="row mb-5">
@@ -32,44 +34,22 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-<snippet id="editions">
-<button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
-  Get Hello from live
-</button> 
-<button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
-  Get Hello from dev
-</button> 
 
-<script>
-  function callBasicHello(moduleContext, edition) {
+@Sys.SourceCode.ResultAndSnippetStart("editions", "Source of Live_api", "Source of Dev_api")
+ <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
+   Get Hello from live
+ </button> 
+ <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
+   Get Hello from dev
+ </button> 
+  <script>
+   function callBasicHello(moduleContext, edition) {
     $2sxc(moduleContext).webApi.fetchJson('app/auto/' + edition + '/api/demo/hello')
       .then(data => alert(data));
-  }
-</script>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "editions" }) 
-</hide-silent>
+   }
+ </script>
+@Sys.SourceCode.ResultEnd("file:../live/api/DemoController.cs", "file:../dev/api/DemoController.cs")
 
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
 
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
-
-@Html.Partial("_MessageHybrid.cshtml")
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/live/api/",
-  File = "DemoController.cs",
-  TitlePath = "/live/api/"
-}) 
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/dev/api/",
-  File = "DemoController.cs",
-  TitlePath = "/dev/api/"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

@@ -1,11 +1,12 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -30,40 +31,35 @@
   <br>
 </hide>
 
-@{
-  // Use the PageService to activate turnOn
-  Kit.Page.Activate("turnOn");
-  
-  // Create unique DOM attribute with Module Id
-  var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
-}
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of await-function-js")
+  @{
+    // Use the PageService to activate turnOn
+    Kit.Page.Activate("turnOn");
+    
+    // Create unique DOM attribute with Module Id
+    var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
+  }
 
-@* Inject attribute into DIV, to make it accessible for query *@
-<div @uniqueDomAttrubute></div>
+  @* Inject attribute into DIV, to make it accessible for query *@
+  <div @uniqueDomAttrubute></div>
 
-@* 
-  Wait for function to return true, 
-  then execute the window.turnOnTutorial201.init function 
-  and pass the domAttribute as JSON 
-*@
+  @* 
+    Wait for function to return true, 
+    then execute the window.turnOnTutorial201.init function 
+    and pass the domAttribute as JSON 
+  *@
 
-<turnOn turn-on='{ 
-  "await": "window.turnOnTutorial201.ready()", 
-  "run": "window.turnOnTutorial201.init()", 
-  "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+  <turnOn turn-on='{ 
+    "await": "window.turnOnTutorial201.ready()", 
+    "run": "window.turnOnTutorial201.init()", 
+    "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
 
-@* Include thirdparty library from CDN *@
-<script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
+  @* Include thirdparty library from CDN *@
+  <script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
 
-@* Include local JavaScript file *@
-<script src="@App.Path/turn-on/_201-await-function.js" @Kit.Page.AssetAttributes()></script>
+  @* Include local JavaScript file *@
+  <script src="@App.Path/turn-on/_201-await-function.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:_201-await-function.js")
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 1050,
-  File = "_201-await-function.js"
-})
-</hide>
+
+@Sys.PageParts.FooterWithSource()

@@ -1,14 +1,15 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
 
 <trim>
@@ -22,20 +23,19 @@
     @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 </trim>
-<button type="button" class="btn btn-primary" onclick="getPersons(this)">
+
+
+@Sys.SourceCode.ResultAndSnippetStart("demo-1", "Source of api_BooksController")
+ <button type="button" class="btn btn-primary" onclick="getPersons(this)">
   Get Persons Custom
-</button> 
-
-<button type="button" class="btn btn-primary" onclick="getBooks(this)">
+ </button> 
+ <button type="button" class="btn btn-primary" onclick="getBooks(this)">
   Get Books Custom
-</button> 
-
-<button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
+ </button> 
+ <button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
   Get Persons with Auto-Convert
-</button> 
-
-<snippet id="api-data">
-<script>
+ </button> 
+ <script>
   function getPersons(moduleContext) {
     $2sxc(moduleContext).webApi.fetchJson('books/persons')
       .then(function(data) {
@@ -45,7 +45,6 @@
         );
       });
   }
-
   function getBooks(moduleContext) {
     $2sxc(moduleContext).webApi.fetchJson('books/books')
       .then(function(results) {
@@ -55,7 +54,6 @@
           );
       });
   }
-
   function getPersonsAuto(moduleContext) {
     $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
       .then(function(results) {
@@ -65,25 +63,8 @@
         );
       });
   }
-</script>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "api-data" }) 
-</hide-silent>
+ </script>
+@Sys.SourceCode.ResultEnd("file:../api/BooksController.cs")
 
 
-<hide>
-@* 2sxclint:disable:no-inline-script *@
-
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
-
-@Html.Partial("_MessageHybrid.cshtml")
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "BooksController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

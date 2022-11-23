@@ -1,15 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-@{
+<hide>
+  @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
-}
-<hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
+  }
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+      string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  }
 </hide>
+
 
 <trim>
   <div class="row mb-5">
@@ -27,44 +29,26 @@
   </div>
 </trim>
 
-@{
+@Sys.SourceCode.ResultAndSnippetStart("get-query", "Source of api_AuthorsQueryController")
+ @{
   var authorId = AsDynamic(App.Data["Persons"].First()).EntityId;
-}
-<snippet id="get-query">
-<button type="button" class="btn btn-primary" onclick="getAuthor(this, @authorId)">
-  Get Author #@authorId
-</button> 
+ }
+ <button type="button" class="btn btn-primary" onclick="getAuthor(this, @authorId)">
+   Get Author #@authorId
+ </button> 
+ <script>
+   function getAuthor(moduleContext, authorId) {
+     $2sxc(moduleContext).webApi.fetchJson('authorsquery/get?authorId=' + authorId)
+       .then(function (author) {
+         alert('Found author: '
+           + author.FirstName + ' ' + author.LastName 
+           + ' (with ' + author.Books.length + ' books) \n\n'
+           + 'The raw JSON: \n' + JSON.stringify(author)
+          );
+      });    
+    }
+ </script>
+@Sys.SourceCode.ResultEnd("file:../api/AuthorsQueryController.cs")
 
-<script>
-  function getAuthor(moduleContext, authorId) {
-    $2sxc(moduleContext).webApi.fetchJson('authorsquery/get?authorId=' + authorId)
-      .then(function (author) {
-        alert('Found author: '
-          + author.FirstName + ' ' + author.LastName 
-          + ' (with ' + author.Books.length + ' books) \n\n'
-          + 'The raw JSON: \n' + JSON.stringify(author)
-        );
-      });
-  }
 
-</script>
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "get-query" }) 
-</hide-silent>
-
-<hide>
-@* 2sxclint:disable:no-inline-script *@
-
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-@Html.Partial(sourceCode, new { Path }) 
-
-@Html.Partial("_MessageHybrid.cshtml")
-
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "AuthorsQueryController.cs",
-  TitlePath = "/api/"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

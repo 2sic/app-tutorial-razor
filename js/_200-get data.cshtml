@@ -1,15 +1,16 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
 }
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row">
     <div class="col-md-7">
@@ -38,32 +39,27 @@
   </div>
 </trim>
 
-<table id="example-content" class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Birthdate</th>
-      <th>Poems</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of get-data.js")
+  <table id="example-content" class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthdate</th>
+        <th>Poems</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{
+    // Use the PageService to activate turnOn
+    Kit.Page.Activate("turnOn");
+  }
+  <turnOn turn-on='{ "run": "window.sxcDataTutorial200.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 
-@* This tutorial uses turnOn, see turnOn tutorials *@
-@{
-  // Use the PageService to activate turnOn
-  Kit.Page.Activate("turnOn");
-}
-<turnOn turn-on='{ "run": "window.sxcDataTutorial200.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+  <script src="@App.Path/js/_200-get-data.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:_200-get-data.js")
 
-<script src="@App.Path/js/_200-get-data.js" @Kit.Page.AssetAttributes()></script>
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 550 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 1000,
-  File = "_200-get-data.js"
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()
+

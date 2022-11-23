@@ -1,10 +1,9 @@
 @using ToSic.Razor.Blade;
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{  
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 <trim>
@@ -19,35 +18,32 @@
 </p>
 
 
-<hr>
 <h2>Examples of using turnOn</h2>
 
 <ol>
-  @hlp.TutorialLink("Basic turnOn usage and activation", 
+  @Sys.TutorialLink("Basic turnOn usage and activation", 
     "turn-on100",
     "Activate turn-on and execute local JavaScript functions")
-  @hlp.TutorialLink("Passing parameters with turnOn", 
+  @Sys.TutorialLink("Passing parameters with turnOn", 
     "turn-on110",
     "Pass parameters to JavaScript functions with turnOn")
-  @hlp.TutorialLink("Passing module parameters with turnOn", 
+  @Sys.TutorialLink("Passing module parameters with turnOn", 
     "turn-on111",
     "Pass module parameters to JavaScript functions with turnOn")
-  @hlp.TutorialLink("Passing anonymous objects as parameters with turnOn", 
+  @Sys.TutorialLink("Passing anonymous objects as parameters with turnOn", 
     "turn-on120",
     "Pass anonymous object to JavaScript functions with turnOn")
-  @hlp.TutorialLink("Wait for multiple scripts", 
+  @Sys.TutorialLink("Wait for multiple scripts", 
     "turn-on200",
     "Await a library before executing JavaScript functions")
-  @hlp.TutorialLink("Await custom conditions through functions", 
+  @Sys.TutorialLink("Await custom conditions through functions", 
     "turn-on201",
     "Await custom conditions before executing JavaScript functions")
-  @hlp.TutorialLink("Await system scripts", 
+  @Sys.TutorialLink("Await system scripts", 
     "turn-on202",
     "Await a system script before executing JavaScript functions")
 </ol>
 
 </trim>
 
-<hide>
-  @Html.Partial("../shared/_PreCodeFooter.cshtml")
-</hide>
+@Sys.PageParts.FooterWithSource()

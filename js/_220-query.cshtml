@@ -1,15 +1,16 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 @{
   // Tell the page that we need the 2sxc Js APIs
   Kit.Page.Activate("2sxc.JsCore"); 
 }
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row">
     <div class="col-md-7">
@@ -43,22 +44,18 @@
   </div>
 </trim>
 
-<button id="mod-@CmsContext.Module.Id-load-all" type="button" class="btn btn-primary">Get entire Query</button>
-<button id="mod-@CmsContext.Module.Id-author" type="button" class="btn btn-primary">Get Stream <code>Author</code></button>
-<button id="mod-@CmsContext.Module.Id-streams" type="button" class="btn btn-primary">Get Streams <code>Author</code> and <code>Books</code></button>
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of query.js")
+  <button id="mod-@CmsContext.Module.Id-load-all" type="button" class="btn btn-primary">Get entire Query</button>
+  <button id="mod-@CmsContext.Module.Id-author" type="button" class="btn btn-primary">Get Stream <code>Author</code></button>
+  <button id="mod-@CmsContext.Module.Id-streams" type="button" class="btn btn-primary">Get Streams <code>Author</code> and <code>Books</code></button>
 
-@* This tutorial uses turnOn, see turnOn tutorials *@
-@{ Kit.Page.Activate("turnOn"); }
-<turnOn turn-on='{ "run": "window.tutQuery.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+  @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{ Kit.Page.Activate("turnOn"); }
+  <turnOn turn-on='{ "run": "window.tutQuery.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 
-<script src="@App.Path/js/_220-query.js"></script>
+  <script src="@App.Path/js/_220-query.js"></script>
+@Sys.SourceCode.ResultEnd("file:_220-query.js")
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 750,
-  File = "_220-query.js"
-}) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()
+

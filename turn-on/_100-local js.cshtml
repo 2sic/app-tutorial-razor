@@ -1,11 +1,12 @@
-@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-}
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
+
+
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">
@@ -27,26 +28,21 @@
   </div>
 </trim>
 
-<div id="turn-on-example">
-  turnOn is waiting - this will be replaced within 3 seconds... 😔
-</div>
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of local-js")
+  <div id="turn-on-example">
+    turnOn is waiting - this will be replaced within 3 seconds... 😔
+  </div>
 
-@{
-  // Use the PageService to activate turnOn
-  Kit.Page.Activate("turnOn");
-}
+  @{
+    // Use the PageService to activate turnOn
+    Kit.Page.Activate("turnOn");
+  }
 
-@* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@
-<turnOn turn-on='{ "run": "window.turnOnTutorial100.init()" }'></turnOn>
+  @* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@
+  <turnOn turn-on='{ "run": "window.turnOnTutorial100.init()" }'></turnOn>
 
-<script src="@App.Path/turn-on/_100-local-js.js" @Kit.Page.AssetAttributes()></script>
+  <script src="@App.Path/turn-on/_100-local-js.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:_100-local-js.js")
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 440 }) 
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  Size = 450,
-  File = "_100-local-js.js"
-}) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()
