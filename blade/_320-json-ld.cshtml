@@ -24,30 +24,34 @@
   </div>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("json")
-  @if (CmsContext.Platform.Name == "Oqtane") {
-    @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-  } else {
-    Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
-    // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
-    var jsonLd = new Dictionary<string, object> {
-      { "@context", "https://schema.org"},
-      { "@type", "Organization"},
-      { "url", "http://www.example.com"},
-      { "name", "Unlimited Ball Bearings Corp."},
-      { "contactPoint", new Dictionary<string, object> {
-        {"@type", "ContactPoint"},
-        {"telephone", "+1-401-555-1212"},
-        {"contactType", "Customer service"}
-      }}
-    };
-    Kit.Page.AddJsonLd(jsonLd);
-    <p>
-      This is the tag you should see in the header: <br>
-      @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
-    </p>
-  }
-@Sys.SourceCode.SnippetInlineEnd()
+@if (CmsContext.Platform.Name == "Oqtane") {
+  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+} else {
+  <text>
+    @Sys.SourceCode.ResultStart("json")
+      @{
+        Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
+        // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
+        var jsonLd = new Dictionary<string, object> {
+          { "@context", "https://schema.org"},
+          { "@type", "Organization"},
+          { "url", "http://www.example.com"},
+          { "name", "Unlimited Ball Bearings Corp."},
+          { "contactPoint", new Dictionary<string, object> {
+            {"@type", "ContactPoint"},
+            {"telephone", "+1-401-555-1212"},
+            {"contactType", "Customer service"}
+          }}
+        };
+        Kit.Page.AddJsonLd(jsonLd);
+      }
+    @Sys.SourceCode.ResultPrepare()
+      <code>
+        @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
+      </code>
+    @Sys.SourceCode.ResultEnd()
+  </text>
+}
 
 
 @Sys.PageParts.FooterWithSource()

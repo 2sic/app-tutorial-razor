@@ -36,26 +36,35 @@
 @if (CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
 } else {
-  // use url parameter to decide which icon(s) to show, and default to "set"
-  var mode = CmsContext.Page.Parameters["mode"] ?? "set";
+  <text>
+    @Sys.SourceCode.ResultStart("json")
+    @{
+      // use url parameter to decide which icon(s) to show, and default to "set"
+      var mode = CmsContext.Page.Parameters["mode"] ?? "set";
 
-  // the icon we want to use for this page is this png file
-  var iconUrl = App.Path + "/blade/assets/razor-blade-icon.png";
+      // the icon we want to use for this page is this png file
+      var iconUrl = App.Path + "/blade/assets/razor-blade-icon.png";
 
-  // now add the headers depending on the demo you picked
-  // in your code you would only use one of these
-  if(mode == "one") {
-    Kit.Page.AddIcon(iconUrl);
-  } 
-  else if (mode == "set") {
-    Kit.Page.AddIconSet(iconUrl);
-  } 
-  else if (mode == "nofav") {
-    Kit.Page.AddIconSet(iconUrl, favicon: false);
-  }
-  else if (mode == "pngfav") {
-    Kit.Page.AddIconSet(iconUrl, favicon: iconUrl);
-  }
+      // now add the headers depending on the demo you picked
+      // in your code you would only use one of these
+      if(mode == "one") {
+        Kit.Page.AddIcon(iconUrl);
+      } 
+      else if (mode == "set") {
+        Kit.Page.AddIconSet(iconUrl);
+      } 
+      else if (mode == "nofav") {
+        Kit.Page.AddIconSet(iconUrl, favicon: false);
+      }
+      else if (mode == "pngfav") {
+        Kit.Page.AddIconSet(iconUrl, favicon: iconUrl);
+      }
+    }
+    @Sys.SourceCode.ResultPrepare()
+    The result is invisible, check the html headers in the source of this page.
+    @Sys.SourceCode.ResultEnd()
+  </text>
+
 }
 
 <hide>
