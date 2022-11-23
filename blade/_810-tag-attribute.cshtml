@@ -24,13 +24,12 @@
 <h2>Creating Simple Attributes</h2>
 </trim>
 
-@{
-  var titleWithIssues = "I said \"check this out!\" \n\n even 'different quotes' and line breaks work!";
-  var cls = "alert alert-";
-  cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
-}
-
 @Sys.SourceCode.SnippetInlineStart("blade-tag-attr")
+  @{
+    var titleWithIssues = "I said \"check this out!\" \n\n even 'different quotes' and line breaks work!";
+    var cls = "alert alert-";
+    cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
+  }
   <div @Tag.Attr("title", titleWithIssues) 
     @Tag.Attr("class", cls)
     @Tag.Attr("number", 27)>
