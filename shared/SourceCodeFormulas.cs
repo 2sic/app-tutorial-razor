@@ -32,8 +32,9 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
     public string ContentType;
     public string Field;
     public string Parameters;
-
     public bool ShowSnippet = false;
+    // The configuration entity, if any, to allow toolbars
+    public dynamic Entity;
   }
 
   public FormulaSpecs Specs(string sampleId) {
@@ -43,7 +44,10 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
     // return null;
     if (found == null) return Specs(sampleId + " not found", "", "", "", "");
     var specs = Specs(found.Title, found.Instructions, found.ContentType, found.Field);
+    specs.Entity = found;
     specs.TitleInResults = found.TitleInResults; Text.First(found.TitleInResults, "Try it: ");
+    if (Text.Has(found.Parameters)) specs.Parameters = found.Parameters;
+    if (found.ShowSnippet != null) specs.ShowSnippet = found.ShowSnippet == true;
     return specs;
   }
 
@@ -79,23 +83,25 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
 
   public ITag Header(object specsRaw) {
     var specs = specsRaw as FormulaSpecs;
-    return Text.Has(specs.Title) ? Tag.H3(specs.Title) : null;
+    if (!Text.Has(specs.Title)) return null;
+    var title = Tag.H3(specs.Title);
+    if (specs.Entity != null)
+      title = title.Attr(Kit.Toolbar.Empty(specs.Entity).Edit());
+    return title;
   }
 
   public ITag Intro(object specsRaw) {
     var specs = specsRaw as FormulaSpecs;
     var wrapper = Tag.RawHtml();
 
-    // if (!Text.Has(specs.Title)) return null;
-    wrapper = wrapper.Add(
-      Tag.H3(
-        Text.Has(specs.TitleInResults) ? specs.TitleInResults + " " : Text.First(specs.TitleInResults, "Try it: "),
-          DemoToolbar(specs, null, specs.Parameters).AsTag()
-        )
-    );
-    if (Text.Has(specs.Instructions)) {
+    wrapper = wrapper.Add(Tag.H3(
+      Text.Has(specs.TitleInResults) ? specs.TitleInResults + " " : Text.First(specs.TitleInResults, "Try it: "),
+      DemoToolbar(specs, null, specs.Parameters).AsTag()
+    ));
+    
+    if (Text.Has(specs.Instructions))
       wrapper = wrapper.Add(specs.Instructions, Tag.Br());
-    }
+
     wrapper = wrapper.Add(Tag.Em("Click on the (Σ) button above to see the edit-UI with the formula. "));
     return wrapper;
   }

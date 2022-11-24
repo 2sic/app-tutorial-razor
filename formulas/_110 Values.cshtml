@@ -22,55 +22,24 @@
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
-@* Fill If Empty *@
-@{
-  var specs = Sys.SourceCode.Formulas.Specs(
-    title: "Set the Value if it's empty",
-    instructions: "This formula sets the value of a field if it's empty. As long as it's not empty, the user can type anything he/she wants. ",
-    contentType: "FormulasIfEmpty",
-    field: "Title"
-  );
-}
-@Sys.SourceCode.FormulaShow(specs)
+@* Fill Field If Empty *@
+@Sys.SourceCode.FormulaShow("value-set-if-empty")
 
 
 @* Combine Values of Fields *@
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Generate a Field Combining Others",
-  instructions: "This formula combines the values of 3 fields into a URL Slug. ",
-  contentType: "FormulasCombineValues",
-  field: "UrlKey"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("value-combine")
 
 @* Get Value from WebApi *@
-<h2>Get Data for a Field from a Web API</h2>
 @Sys.SourceCode.FormulaShow("ValueFromWebApi")
 
 
 
-
-
-<hr>
 <h2>Date Examples</h2>
 
 @* Date Examples #1 *@
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Date - Prefill but leave editable",
-  instructions: "This formula sets the initial value to the current date (if the field is empty). You can try it by deleting the value, once you leave the field it's updated again. ",
-  contentType: "FormulasDates",
-  field: "RightNow"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("value-date-prefill")
 
 @* Date Examples #2 *@
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Date - Calculate value",
-  instructions: "This formula sets the third field to the current date/time + an offset the user can choose in a dropdown. "
-    + "Note that since we do some calculations, we must make sure the result is time-zone cleaned. ",
-  contentType: "FormulasDates",
-  field: "PublishWhen"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("value-date-calculate")
 
 @Sys.PageParts.FooterWithSource()

@@ -38,41 +38,18 @@
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
-@{ var specs = Sys.SourceCode.Formulas.Specs(
-  title: "Single Field visibility",
-  instructions: "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.",
-  contentType: "FormulasBasic",
-  field: "Description"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+
+@Sys.SourceCode.FormulaShow("fieldsettings-visible")
 
 
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Required fields",
-  instructions: "This formula determines wether the Name field is required. It becomes required if the age isn't specified.",
-  contentType: "FormulasRequired",
-  field: "Name"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("fieldsettings-required")
 
 
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Disabled fields",
-  instructions: "This formula determines wether the ApiKeyV2 field is disabled. It becomes disabled if the UseNewFeatures field is true.",
-  contentType: "FormulasDisabled",
-  field: "ApiKeyV2"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("fieldsettings-disabled")
 
 
 
 @* Errors and Warnings *@
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Warnings and Errors based on Value",
-  instructions: "This formula shows a warning if a field has upper case letters, and an error if empty.",
-  contentType: "FormulasValidation",
-  field: "Title"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("fieldsettings-warning")
 
 @Sys.PageParts.FooterWithSource()

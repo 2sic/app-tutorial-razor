@@ -55,13 +55,7 @@
 
 <h3>Ephemeral field </h3>
 @{
-  var specs = Sys.SourceCode.Formulas.Specs(
-    title: "Ephemeral Fields",
-    instructions: null,
-    contentType: "FormulasEphemeral",
-    field: "AdvancedGroup"
-  );
-  specs.ShowSnippet = true;
+  var specs = Sys.SourceCode.Formulas.Specs("parameters-ephemeral");
 }
 @Sys.SourceCode.FormulaStart("formulas-ephemeral", specs)
   Button which doesn't tell the form anything:
@@ -118,14 +112,8 @@
 
 
 
-@{ specs = Sys.SourceCode.Formulas.Specs(
-title: "Example without Ephemeral field (new v14)",
-instructions: "If you just need a parameter and don't expect the user to toggle it, you can use <code>data.parameters</code>. You can still pass it in using prefill, but don't need to create a field.",
-contentType: "FormulasParameters",
-field: "AdvancedGroup",
-parameters: "prefill:showAdvanced=true"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+
+@Sys.SourceCode.FormulaShow("parameters-basic")
 
 
 

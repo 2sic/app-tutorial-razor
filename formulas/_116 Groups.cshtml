@@ -28,45 +28,20 @@
   contentType: "FormulasVisibleGroup",
   field: "AdvancedSettings"
 );}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("group-visible")
 
 
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Group Name - Text summary",
-  instructions: "This formula changes the Name of the PersonGroup field. The name becomes \"Person - Profile complete\" if all group fields are filled out and \"Person - Profile incomplete\" if not.",
-  contentType: "FormulasTextSummary",
-  field: "PersonGroup"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+
+@Sys.SourceCode.FormulaShow("group-name")
 
 
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Group Name - Emoji summary",
-  instructions: "This formula changes the Name of the ProductGroup field. The name becomes \"Product ✅\" if all group fields are filled out and \"Product ✏️\" if not.",
-  contentType: "FormulasEmojiSummary",
-  field: "ProductGroup"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("group-name-emoji")
 
 
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Helptext",
-  instructions: "This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains \"n0t0k\" the helptext \"This product code is deprecated. Please request a new product code. \" is added, or if it contains spaces the helptext \"Please remove all spaces from your product code.\" is added.",
-  contentType: "FormulasHelpText",
-  field: "ProductCode",
-  parameters: "prefill:ProductCode=n0t0k code"
-);}
-@Sys.SourceCode.FormulaShow(specs)
+@Sys.SourceCode.FormulaShow("group-helptext") 
 
 
-@* Run Code Once only *@
-@{ specs = Sys.SourceCode.Formulas.Specs(
-  title: "Run Code Only when Form Opens",
-  instructions: "This formula determines the initial open/closed state - in this case randomly. "
-    + "Normally it would do this based on how complete data in that section is or based on other criterias. "
-    + "This is often used to improve initial state of a form based on how much data is already filled in. ",
-  contentType: "FormulasRunAtStart",
-  field: "GroupRandomlyOpen"
-);}
+@Sys.SourceCode.FormulaShow("group-run-once") 
+
 
 @Sys.PageParts.FooterWithSource()
