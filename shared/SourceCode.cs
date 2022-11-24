@@ -112,10 +112,10 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  public ITag SnippetEnd(string snippet) {
+  public ITag SnippetEnd() {
     return Tag.RawHtml(
       BsTabs.TabContentClose(),     // Will close if still open
-      BsTabs.TabContent(snippet, Name2TabId(SourceTabName), Snippet(snippet)),
+      BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet)),
       BsTabs.TabContentGroupClose() // Will close if still open
     );
   }
@@ -191,6 +191,7 @@ public class SourceCode: Custom.Hybrid.Code14
   #region ResultStart() | ResultAndSnippetStart() / ResultPrepare() / ResultEnd()
 
   private bool _resultEndWillPrepend = false;
+  private bool _resultEndClosesReveal = false;
 
   public ITag ResultStart(string snippet, params string[] names) {
     _resultEndWillPrepend = false;
@@ -206,6 +207,16 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
+  public ITag ResultAndExpandStart(string prefix, params string[] names) {
+    _resultEndWillPrepend = true;
+    _resultEndClosesReveal = true;
+    return Tag.RawHtml(
+      SnippetStartInner(prefix, ResultAndSourceTabName, null, names),
+      Tag.Div().Class("alert alert-info").TagStart,
+      Tag.H4("Output"),
+      Tag.Div().Class("show-hidden-with-reveal reveal-on-h3")
+    );
+  }
 
   public string ResultPrepare() { return null; }
 
@@ -214,6 +225,10 @@ public class SourceCode: Custom.Hybrid.Code14
     var nameCount = 0;
     // Close the tabs / header div section if it hasn't been closed yet
     var html = Tag.RawHtml();
+    if (_resultEndClosesReveal) {
+      html = html.Add("</div>");
+      _resultEndClosesReveal = false;
+    }
     if (_resultEndWillPrepend)
       html = html.Add("</div>", Snippet(_snippet));
     html = html.Add(BsTabs.TabContentClose());
@@ -224,7 +239,7 @@ public class SourceCode: Custom.Hybrid.Code14
       html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
       nameCount++;
     }
-    html = html.Add(!_resultEndWillPrepend ? SnippetEnd(_snippet) as object : BsTabs.TabContentGroupClose());
+    html = html.Add(!_resultEndWillPrepend ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
     return l("resulting Html", html);
   }
 

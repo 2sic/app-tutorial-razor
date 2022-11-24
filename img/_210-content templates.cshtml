@@ -41,7 +41,7 @@
 <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
 @Sys.SourceCode.SnippetStart("content-settings")
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
-@Sys.SourceCode.SnippetEnd("content-settings")
+@Sys.SourceCode.SnippetEnd()
 
 <h3>Image with <code>factor</code> <em>1/3rd</em> or <em>0.25</em> the Content Settings</h3>
 <p>This example uses the <code>Settings.Images.Content</code> 
@@ -49,18 +49,18 @@
 @Sys.SourceCode.SnippetStart("content-custom-1")
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: "1/3")'> - 
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.25)'>
-@Sys.SourceCode.SnippetEnd("content-custom-1")
+@Sys.SourceCode.SnippetEnd()
 
 <h3>Image with Settings, Custom Width & Height</h3>
 <p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
 @Sys.SourceCode.SnippetStart("content-custom-2")
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@Sys.SourceCode.SnippetEnd("content-custom-2")
+@Sys.SourceCode.SnippetEnd()
 
 <h3>Image with Settings, Custom Width & Reset Height</h3>
 <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
 @Sys.SourceCode.SnippetStart("content-custom-3")
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@Sys.SourceCode.SnippetEnd("content-custom-3")
+@Sys.SourceCode.SnippetEnd()
 
 @Sys.PageParts.FooterWithSource()

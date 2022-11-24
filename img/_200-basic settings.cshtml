@@ -45,7 +45,7 @@
   }
   @* <img loading="lazy" src='@imgUrl'> <-- don't do this *@
   <img loading="lazy" src='@Link.Image(imgUrl)'>
-@Sys.SourceCode.SnippetEnd("img-default")
+@Sys.SourceCode.SnippetEnd()
 
 <trim>
   <h2>The <code>Link.Image(...)</code> Helper</h2>
@@ -64,32 +64,38 @@
   </p>
 </trim>
 
+
 <h3>Resize to 200px Width</h3>
 @Sys.SourceCode.SnippetStart("size-1")
   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200)'>
-@Sys.SourceCode.SnippetEnd("size-1")
+@Sys.SourceCode.SnippetEnd()
+
 
 <h3>Height: 150px</h3>
 @Sys.SourceCode.SnippetStart("size-3")
   <img loading="lazy" src='@Link.Image(url: imgUrl, height: 150)'>
-@Sys.SourceCode.SnippetEnd("size-3")
+@Sys.SourceCode.SnippetEnd()
+
 
 <h3>Width: 200px, Height 150px</h3>
 @Sys.SourceCode.SnippetStart("size-4")
   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, height: 150)'>
-@Sys.SourceCode.SnippetEnd("size-4")
+@Sys.SourceCode.SnippetEnd()
+
+
 
 <h2>Resize and Change Format to JPG</h2>
 
 <h3>200px, jpg</h3>
 @Sys.SourceCode.SnippetStart("resize-format-1")
    <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg")'>
-@Sys.SourceCode.SnippetEnd("resize-format-1")
+@Sys.SourceCode.SnippetEnd()
+
 
 <h3>200px, jpg, 15% quality only</h3>
 @Sys.SourceCode.SnippetStart("resize-format-2")
   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg", quality: 15)'>
-@Sys.SourceCode.SnippetEnd("resize-format-2")
+@Sys.SourceCode.SnippetEnd()
 
 <h2>Resize Modes</h2>
 <p>
@@ -99,17 +105,19 @@
 <h3>Resize mode <code>crop</code></h3>
 @Sys.SourceCode.SnippetStart("resize-mode-1")
   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
-@Sys.SourceCode.SnippetEnd("resize-mode-1")
+@Sys.SourceCode.SnippetEnd()
+
 
 <h3>Resize Mode <code>max</code></h3>
 @Sys.SourceCode.SnippetStart("resize-mode-2")
   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "max")'>
-@Sys.SourceCode.SnippetEnd("resize-mode-2")
+@Sys.SourceCode.SnippetEnd()
+
 
 <h3>Resize Mode <code>stretch</code></h3>
 @Sys.SourceCode.SnippetStart("resize-mode-3")
   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "stretch")'>
-@Sys.SourceCode.SnippetEnd("resize-mode-3")
+@Sys.SourceCode.SnippetEnd()
 
 <p>Other modes not demonstrated here, see <a href="https://imageresizing.net/docs/v4/reference" target="_blank">Image Resizer docs</a>.</p>
 

@@ -32,17 +32,11 @@
   <strong>Result:</strong> @Text.After(afterExample, "@")
 @Sys.SourceCode.SnippetInlineEnd()
 
-@* @Sys.SourceCode.SnippetStart("text-after")
-  @{
-    var afterExample = "This won't be shown @ this will be shown";
-  }
-  <strong>Result:</strong> @Text.After(afterExample, "@")
-@Sys.SourceCode.SnippetEnd("text-after") *@
 
-<trim>
 <h3>Split Text after last key occurence</h3>
-<p>Using <code>Text.AfterLast(text, key)</code> only the text after the last found occurence of the <code>key</code> will be shown.</p>
-</trim>
+<p>
+  Using <code>Text.AfterLast(text, key)</code> only the text after the last found occurence of the <code>key</code> will be shown.
+</p>
 
 @Sys.SourceCode.SnippetInlineStart("text-after-last")
  @{
@@ -51,18 +45,9 @@
   <strong>Result:</strong> @Text.AfterLast(afterLastExample, "@")
 @Sys.SourceCode.SnippetInlineEnd()
 
-@* @Sys.SourceCode.SnippetStart("text-after-last")
-  @{
-    var afterLastExample = "This won't be shown @ this won't be shown @ this will be shown";
-  }
-  <strong>Result:</strong> @Text.AfterLast(afterLastExample, "@")
-@Sys.SourceCode.SnippetEnd("text-after-last") *@
 
-
-<trim>
 <h3>Split Text before first key occurence</h3>
 <p>Using <code>Text.Before(text, key)</code> only the text before the first found occurence of the <code>key</code> will be shown.</p>
-</trim>
 
 @Sys.SourceCode.SnippetInlineStart("text-before")
   @{
@@ -71,18 +56,9 @@
   <strong>Result:</strong> @Text.Before(beforeExample, "@")
 @Sys.SourceCode.SnippetInlineEnd()
 
-@* @Sys.SourceCode.SnippetStart("text-before")
-@{
-  var beforeExample = "This will be shown @ this won't be shown";
-}
-<strong>Result:</strong> @Text.Before(beforeExample, "@")
-@Sys.SourceCode.SnippetEnd("text-before") *@
 
-
-<trim>
 <h3>Split Text before last key occurence</h3>
 <p>Using <code>Text.BeforeLast(text, key)</code> only the text before the last found occurence of the <code>key</code> will be shown.</p>
-</trim>
 
 @Sys.SourceCode.SnippetInlineStart("text-before-last")
   @{
@@ -91,21 +67,13 @@
   <strong>Result:</strong> @Text.BeforeLast(beforeLastExample, "@")
 @Sys.SourceCode.SnippetInlineEnd()
 
-@* @Sys.SourceCode.SnippetStart("text-before-last")
-@{
-  var beforeLastExample = "This will be shown @ this will be shown @ this won't be shown";
-}
-<strong>Result:</strong> @Text.BeforeLast(beforeLastExample, "@")
-@Sys.SourceCode.SnippetEnd("text-before-last") *@
 
 
-<trim>
 <h3>Split Text between two key ocurrences</h3>
 <p>
   Using <code>Text.Between(text, key1, key2, goToEndIfEndNotFound = false)</code> only the text between <code>key1</code> and <code>key2</code> will be shown.
   With goToEndIfEndNotFound set to true, the text selection will grow till the end if the ending key can't be found.
 </p>
-</trim>
 
 @Sys.SourceCode.SnippetInlineStart("text-between")
   @{
@@ -115,14 +83,6 @@
   <br><strong>Result:</strong> @Text.Between(betweenExample, "@", "notInText", true)
 @Sys.SourceCode.SnippetInlineEnd()
 
-@* 
-@Sys.SourceCode.SnippetStart("text-between")
-@{
-  var betweenExample = "This won't be shown @ this will be shown # this won't be shown";
-}
-<strong>Result:</strong> @Text.Between(betweenExample, "@", "#")
-<br><strong>Result:</strong> @Text.Between(betweenExample, "@", "notInText", true)
-@Sys.SourceCode.SnippetEnd("text-between") *@
 
 
 @Sys.PageParts.FooterWithSource()

@@ -45,7 +45,7 @@
   }
   <img loading="lazy" src='@Link.Image(imgUrl, customSize)'> - 
   <img loading="lazy" src='@Link.Image(imgUrl2, customSize)'>
-@Sys.SourceCode.SnippetEnd("custom-settings-1")
+@Sys.SourceCode.SnippetEnd()
 
 <h3>Another Example (ResizeMode Stretch)</h3>
 <p>This example uses the configuration as is, to create an image according to following specs</p>
@@ -60,7 +60,7 @@
   }
   <img loading="lazy" src='@Link.Image(imgUrl, customSettingsStreched)'> - 
   <img loading="lazy" src='@Link.Image(imgUrl2, customSettingsStreched)'>
-@Sys.SourceCode.SnippetEnd("custom-settings-2")
+@Sys.SourceCode.SnippetEnd()
 
 <h3>Combine Config-Bundle with additional Params</h3>
 <p>This example uses a config-bundle, but also specifies additional parameters in <code>Link.Image(...)</code>.</p>
@@ -76,6 +76,6 @@
   <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 1)'> - 
   <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 10)'> -
   <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 75)'>
-@Sys.SourceCode.SnippetEnd("custom-settings-3")
+@Sys.SourceCode.SnippetEnd()
 
 @Sys.PageParts.FooterWithSource()
