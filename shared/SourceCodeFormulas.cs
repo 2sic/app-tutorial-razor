@@ -24,7 +24,10 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
   #region Predefined Samples
 
   public class FormulaSpecs {
+    // The main title, which should be shown as H3
     public string Title;
+    // The title to show in the results box, if any
+    public string TitleInResults;
     public string Instructions;
     public string ContentType;
     public string Field;
@@ -38,9 +41,10 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
 
     var found = list.FirstOrDefault(s => string.Equals(s.TutorialId, sampleId, StringComparison.InvariantCultureIgnoreCase));
     // return null;
-    return found != null
-      ? Specs(found.Title, found.Instructions, found.ContentType, found.Field)
-      : Specs(sampleId + " not found", "", "", "", "");
+    if (found == null) return Specs(sampleId + " not found", "", "", "", "");
+    var specs = Specs(found.Title, found.Instructions, found.ContentType, found.Field);
+    specs.TitleInResults = found.TitleInResults; Text.First(found.TitleInResults, "Try it: ");
+    return specs;
   }
 
   public FormulaSpecs Specs(string contentType, string field) {
@@ -73,17 +77,26 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
     );
   }
 
+  public ITag Header(object specsRaw) {
+    var specs = specsRaw as FormulaSpecs;
+    return Text.Has(specs.Title) ? Tag.H3(specs.Title) : null;
+  }
+
   public ITag Intro(object specsRaw) {
     var specs = specsRaw as FormulaSpecs;
+    var wrapper = Tag.RawHtml();
 
-    if (!Text.Has(specs.Title)) return null;
-    var wrapper = Tag.RawHtml(
-      Tag.H3(specs.Title + " ", DemoToolbar(specs, null, specs.Parameters).AsTag())
+    // if (!Text.Has(specs.Title)) return null;
+    wrapper = wrapper.Add(
+      Tag.H3(
+        Text.Has(specs.TitleInResults) ? specs.TitleInResults + " " : Text.First(specs.TitleInResults, "Try it: "),
+          DemoToolbar(specs, null, specs.Parameters).AsTag()
+        )
     );
     if (Text.Has(specs.Instructions)) {
-      wrapper.Add(specs.Instructions, Tag.Br());
+      wrapper = wrapper.Add(specs.Instructions, Tag.Br());
     }
-    wrapper.Add(Tag.Em("Click on the (Σ) button above to see the edit-UI with the formula. "));
+    wrapper = wrapper.Add(Tag.Em("Click on the (Σ) button above to see the edit-UI with the formula. "));
     return wrapper;
   }
 

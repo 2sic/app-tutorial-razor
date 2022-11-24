@@ -198,8 +198,9 @@ public class SourceCode: Custom.Hybrid.Code14
   public ITag FormulaShow(object specs) {
     // If we got a name, look it up in the examples
     if (specs is string) specs = Formulas.Specs(specs as string);
-    
+
     var result = Tag.RawHtml(
+      Formulas.Header(specs),
       FormulaStart("formula-" + Guid.NewGuid().ToString(), specs),
       Formulas.Intro(specs),
       FormulaEnd()
