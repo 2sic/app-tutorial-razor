@@ -42,10 +42,10 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of toolbar-workflow.js")
   @{
-      var standartToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(show: "always");
+      var standardToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(show: "always");
     }
   <div class="alert alert-primary" style="width: 100%;">
-    <div id='tagWithToolbar' @standartToolbar>
+    <div id='tagWithToolbar' @standardToolbar>
       Float over this box to get a (+) button. 
       When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
       Instead, you'll see console messages that a custom JS took over the process.
@@ -79,4 +79,14 @@
   </div>
 </hide>
 
+
+@* This tutorial uses turnOn, see turnOn tutorials *@
+@Kit.Page.Activate("turnOn");
+<turnOn turn-on='{ "run": "window.toolbarWorkflow.initOnTagToolbar()", "data": "tagWithToolbar" }'></turnOn>
+<turnOn turn-on='{ "run": "window.toolbarWorkflow.initInlineToolbar()", "data": "inlineToolbar" }'></-turnOn>
+<script src="@App.Path/ui/_130-toolbar-workflow.js" @Kit.Page.AssetAttributes()></script>
+
+
+
+@* 2sxclint:disable:no-inline-script *@
 @Sys.PageParts.FooterWithSource()
