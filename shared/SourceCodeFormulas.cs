@@ -33,6 +33,16 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
     public bool ShowSnippet = false;
   }
 
+  public FormulaSpecs Specs(string sampleId) {
+    var list = AsList(App.Data["TutFormulaSample"]);
+
+    var found = list.FirstOrDefault(s => string.Equals(s.TutorialId, sampleId, StringComparison.InvariantCultureIgnoreCase));
+    // return null;
+    return found != null
+      ? Specs(found.Title, found.Instructions, found.ContentType, found.Field)
+      : Specs(sampleId + " not found", "", "", "", "");
+  }
+
   public FormulaSpecs Specs(string contentType, string field) {
     return Specs(null, null, contentType, field, null);
   }

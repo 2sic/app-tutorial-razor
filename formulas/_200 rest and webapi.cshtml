@@ -11,14 +11,7 @@
   string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
 
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-
-  var sharedExamples = CreateInstance("SharedExamples.cs");
 }
-  @functions {
-    dynamic ShowFormula(object specs) {
-      return Html.Partial("_PartFormulas.cshtml", specs);
-    }
-  }
 </hide>
 
 <div class="row">
@@ -33,17 +26,18 @@
 </div>
 
 
-
-<h2>Get Data for a Field from a Web API</h2>
 @* Get Value from WebApi *@
-@ShowFormula(sharedExamples.ValueFromWebApi())
+<h2>Get Data for a Field from a Web API</h2>
+@Sys.SourceCode.FormulaShow("ValueFromWebApi")
 
 
 @* Dropdown Values From WebAPI *@
-@ShowFormula(sharedExamples.DropdownFromWebApi())
+@Sys.SourceCode.FormulaShow("DropdownFromWebApi")
+
 
 @* Dropdown Values From WebAPI App.Data *@
-@ShowFormula(sharedExamples.DropdownFromWebApiData())
+@Sys.SourceCode.FormulaShow("DropdownFromWebApiData")
+
 
 @Html.Partial(sourceCode, new { 
   Path = App.PhysicalPath + "/api/",

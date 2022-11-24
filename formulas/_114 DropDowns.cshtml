@@ -13,13 +13,6 @@
   var fancybox = CreateInstance("../shared/Fancybox.cs");
 
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-
-  var sharedExamples = CreateInstance("SharedExamples.cs");
-}
-@functions {
-  dynamic ShowFormula(object specs) {
-    return Html.Partial("_PartFormulas.cshtml", specs);
-  }
 }
 </hide>
 
@@ -51,10 +44,10 @@
 @Sys.SourceCode.FormulaShow(specs)
 
 @* Dropdown Values From WebAPI *@
-@ShowFormula(sharedExamples.DropdownFromWebApi())
+@Sys.SourceCode.FormulaShow("DropdownFromWebApi")
 
 @* Dropdown Values From WebAPI App.Data *@
-@ShowFormula(sharedExamples.DropdownFromWebApiData())
+@Sys.SourceCode.FormulaShow("DropdownFromWebApiData")
 
 <hr>
 

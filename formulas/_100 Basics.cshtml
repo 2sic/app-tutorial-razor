@@ -8,12 +8,8 @@
 
 <hide>
 @{
-  var contentType = "FormulasBasic";
   var fancybox = CreateInstance("../shared/Fancybox.cs");
-
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-
-  var testSpecs = Sys.SourceCode.Formulas.Specs("Result", "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.", contentType, "Description");
 }
 </hide>
 
@@ -39,15 +35,13 @@
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
-<h3>
-  Brief Demo 
-  @Sys.SourceCode.Formulas.DemoToolbar(testSpecs).AsTag()
-</h3>
-<p>
-  Click on the (Σ) button above to see the edit-UI with the formula. 
-</p>
 
-<h3>Add a new formula</h3>
+<h3>Brief Demo</h3>
+@Sys.SourceCode.FormulaShow("basic-intro")
+
+
+
+<h3>Howw to Add a New Formula</h3>
 <p>For this example we'll create a formula, that makes the description field visible, once the title has been set.</p>
 <br>
 
@@ -70,7 +64,5 @@
 <br>
 <p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
 
-
-@Sys.SourceCode.FormulaShow(testSpecs)
 
 @Sys.PageParts.FooterWithSource()

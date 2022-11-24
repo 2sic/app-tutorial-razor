@@ -9,15 +9,7 @@
 <hide>
   @{
     var fancybox = CreateInstance("../shared/Fancybox.cs");
-
     CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-
-    var sharedExamples = CreateInstance("SharedExamples.cs");
-  }
-  @functions {
-    dynamic ShowFormula(object specs) {
-      return Html.Partial("_PartFormulas.cshtml", specs);
-    }
   }
 </hide>
 
@@ -51,11 +43,9 @@
 );}
 @Sys.SourceCode.FormulaShow(specs)
 
-<hr>
-<h2>Get Data for a Field from a Web API</h2>
-
 @* Get Value from WebApi *@
-@ShowFormula(sharedExamples.ValueFromWebApi())
+<h2>Get Data for a Field from a Web API</h2>
+@Sys.SourceCode.FormulaShow("ValueFromWebApi")
 
 
 
