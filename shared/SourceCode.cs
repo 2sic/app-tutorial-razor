@@ -197,7 +197,7 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public ITag FormulaShow(object specs) {
     var result = Tag.RawHtml(
-      FormulaStart("dummy", specs),
+      FormulaStart("formula-" + Guid.NewGuid().ToString(), specs),
       Formulas.Intro(specs),
       FormulaEnd()
     );
@@ -206,12 +206,15 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public ITag FormulaStart(string snippet, object specs = null) {
     _formulaSpecs = specs;
-    return SnippetStartInner(snippet, ResultTabName, "Formula");
+    var showSource = Formulas.ShowSnippet(specs);
+    return showSource
+      ? SnippetStartInner(snippet, ResultTabName, SourceTabName, "Formula")
+      : SnippetStartInner(snippet, ResultTabName, "Formula");
   }
-  // TODO: replace all ResultPrepare with Invisible() in the code files
-  public string Invisible() { return ResultPrepare(); }
   public ITag FormulaEnd(params object[] results) {
-    var result = _formulaSpecs != null ? ResultEndInner(false, Formulas.Show(_formulaSpecs, false)) : ResultEndInner(false, results);
+    var result = _formulaSpecs != null
+      ? ResultEndInner(Formulas.ShowSnippet(_formulaSpecs), Formulas.Show(_formulaSpecs, false))
+      : ResultEndInner(false, results);
     return result;
   }
 
@@ -248,6 +251,9 @@ public class SourceCode: Custom.Hybrid.Code14
   //   );
   // }
 
+
+  // TODO: replace all ResultPrepare with Invisible() in the code files
+  public string Invisible() { return ResultPrepare(); }
   public string ResultPrepare() { return null; }
 
   public ITag ResultEnd(params object[] results) { return ResultEndInner(true, results); }

@@ -73,20 +73,4 @@
 
 @Sys.SourceCode.FormulaShow(testSpecs)
 
-<hr>
-
-@Sys.SourceCode.FormulaStart("demo", testSpecs)
-  <h3>
-    Result
-    @Sys.SourceCode.Formulas.DemoToolbar(testSpecs).AsTag()
-  </h3>
-@Sys.SourceCode.Invisible()
-  <p>
-    This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.
-    <br>
-    Click on the (Σ) button above to try the formula we've added.
-  </p>
-@Sys.SourceCode.FormulaEnd()
-
-
 @Sys.PageParts.FooterWithSource()

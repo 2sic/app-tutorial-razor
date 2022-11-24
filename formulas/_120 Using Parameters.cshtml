@@ -12,15 +12,7 @@
 
   var fancybox = CreateInstance("../shared/Fancybox.cs");
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-
-  var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon());
-  var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon(), prefill:"VarShowAdvanced=true");
 }
-  @functions {
-    dynamic ShowFormula(object specs) {
-      return Html.Partial("_PartFormulas.cshtml", specs);
-    }
-  }
 </hide>
 
 <div class="row">
@@ -60,12 +52,27 @@
 <p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
 
 
-<h3>Ephemeral field 
-  <snippet id="formulas-ephemeral">
-    @formulasToolbar.AsTag()
-    @formulasPrefillToolbar.AsTag()
-  </snippet>
-</h3>
+
+<h3>Ephemeral field </h3>
+@{
+  var specs = Sys.SourceCode.Formulas.Specs(
+    title: "Ephemeral Fields",
+    instructions: null,
+    contentType: "FormulasEphemeral",
+    field: "AdvancedGroup"
+  );
+  specs.ShowSnippet = true;
+}
+@Sys.SourceCode.FormulaStart("formulas-ephemeral", specs)
+  Button which doesn't tell the form anything:
+  @Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon()).AsTag()
+  <br>
+  Button which will tell the form to show advanced:
+  @Kit.Toolbar.Empty().New("FormulasEphemeral",
+    ui: Sys.SourceCode.Formulas.Icon(),
+    prefill:"VarShowAdvanced=true"
+  ).AsTag()
+@Sys.SourceCode.Invisible()
 <p>
   <code>VarShowAdvanced</code> is an ephemeral field and thus not saved in the database. 
   This formula determines the visibility of the Advanced Settings group. 
@@ -73,48 +80,53 @@
   <br>
   <em>Click on the (Σ) button above to see the edit-UI with the formula. </em>
 </p>
-
-<code id="formulas-ephemeral-label"></code>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial(sourceCode, new { Path, Snippet = "formulas-ephemeral" })
-
-  @ShowFormula(new {
-  ContentType = "FormulasEphemeral",
-  FieldName = "AdvancedGroup",
-  })
+@Sys.SourceCode.FormulaEnd()
 
 
-  <h2>Configure edit form UI using parameters</h2>
-  <p>In 2sxc v14 we added <code>data.parameters.*</code> which contains all parameters given in the prefill.</p>
-  <p>By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This
-    enables a editing experience matching the page context.</p>
-  <br>
 
-  <h3>Configuration with parameters</h3>
-  <span>
-<snippet id="formulas-showAdvanced">
+<h3>Configure edit form UI using parameters</h3>
+<p>
+  In 2sxc v14 we added <code>data.parameters.*</code> which contains all parameters given in the prefill.
+</p>
+<p>
+  By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This
+  enables a editing experience matching the page context.
+</p>
+
+
+@Sys.SourceCode.FormulaStart("formulas-showAdvanced", specs)
   <code>prefill:showAdvanced=true</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters", ui: Sys.SourceCode.Formulas.Icon(), prefill: "showAdvanced=true").AsTag()
+  @Kit.Toolbar.Empty().New("FormulasParameters",
+    ui: Sys.SourceCode.Formulas.Icon(),
+    prefill: "showAdvanced=true"
+  ).AsTag()
   <br>
   <code>prefill:showAdvanced=false</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters", ui: Sys.SourceCode.Formulas.Icon(), prefill: "showAdvanced=false").AsTag()
-</snippet>
-  </span>
+  @Kit.Toolbar.Empty().New("FormulasParameters",
+    ui: Sys.SourceCode.Formulas.Icon(),
+    prefill: "showAdvanced=false"
+  ).AsTag()
+@Sys.SourceCode.Invisible()
   <p>
-    <code>showAdvanced</code> is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of
-    the Advanced Settings group. The group becomes visible, when the passed <code>showAdvanced</code> parameter is true.
+    <code>showAdvanced</code> is a parameter, that was passed with the toolbar prefill.
+    This formula determines the visibility of the Advanced Settings group.
+    The group becomes visible, when the passed <code>showAdvanced</code> parameter is true.
     <br>
     <em>Click on the (Σ) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
   </p>
+@Sys.SourceCode.FormulaEnd()
 
-  <code id="formulas-showAdvanced-label"></code>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial(sourceCode, new { Path, Snippet = "formulas-showAdvanced" })
 
-    @ShowFormula(new {
-    ContentType = "FormulasParameters",
-    FieldName = "AdvancedGroup",
-    More = "prefill:showAdvanced=true"
-    })
+
+@{ specs = Sys.SourceCode.Formulas.Specs(
+title: "Example without Ephemeral field (new v14)",
+instructions: "If you just need a parameter and don't expect the user to toggle it, you can use <code>data.parameters</code>. You can still pass it in using prefill, but don't need to create a field.",
+contentType: "FormulasParameters",
+field: "AdvancedGroup",
+parameters: "prefill:showAdvanced=true"
+);}
+@Sys.SourceCode.FormulaShow(specs)
+
+
 
 @Sys.PageParts.FooterWithSource()

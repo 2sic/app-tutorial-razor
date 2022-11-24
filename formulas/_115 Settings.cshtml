@@ -8,15 +8,8 @@
 
 <hide>
   @{
-    var hlp = CreateInstance("../shared/Helpers.cs");
     var fancybox = CreateInstance("../shared/Fancybox.cs");
-
     CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-  }
-  @functions {
-    dynamic ShowFormula(object specs) {
-      return Html.Partial("_PartFormulas.cshtml", specs);
-    }
   }
 </hide>
 
@@ -45,36 +38,41 @@
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
-@ShowFormula(new {
-  Title = "Single Field visibility",
-  Instructions = "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.",
-  ContentType = "FormulasBasic",
-  FieldName = "Description"
-})
+@{ var specs = Sys.SourceCode.Formulas.Specs(
+  title: "Single Field visibility",
+  instructions: "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.",
+  contentType: "FormulasBasic",
+  field: "Description"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 
-@ShowFormula(new {
-  Title = "Required fields",
-  Instructions = "This formula determines wether the Name field is required. It becomes required if the age isn't specified.",
-  ContentType = "FormulasRequired",
-  FieldName = "Name"
-})
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Required fields",
+  instructions: "This formula determines wether the Name field is required. It becomes required if the age isn't specified.",
+  contentType: "FormulasRequired",
+  field: "Name"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
-@ShowFormula(new {
-  Title = "Disabled fields",
-  Instructions = "This formula determines wether the ApiKeyV2 field is disabled. It becomes disabled if the UseNewFeatures field is true.",
-  ContentType = "FormulasDisabled",
-  FieldName = "ApiKeyV2"
-})
+
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Disabled fields",
+  instructions: "This formula determines wether the ApiKeyV2 field is disabled. It becomes disabled if the UseNewFeatures field is true.",
+  contentType: "FormulasDisabled",
+  field: "ApiKeyV2"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 
 
 @* Errors and Warnings *@
-@ShowFormula(new {
-  Title = "Warnings and Errors based on Value",
-  Instructions = "This formula shows a warning if a field has upper case letters, and an error if empty.",
-  ContentType = "FormulasValidation",
-  FieldName = "Title"
-})
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Warnings and Errors based on Value",
+  instructions: "This formula shows a warning if a field has upper case letters, and an error if empty.",
+  contentType: "FormulasValidation",
+  field: "Title"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 @Sys.PageParts.FooterWithSource()

@@ -8,14 +8,8 @@
 
 <hide>
   @{
-    var hlp = CreateInstance("../shared/Helpers.cs");
     var fancybox = CreateInstance("../shared/Fancybox.cs");
     CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-  }
-  @functions {
-    dynamic ShowFormula(object specs) {
-      return Html.Partial("_PartFormulas.cshtml", specs);
-    }
   }
 </hide>
 
@@ -28,46 +22,51 @@
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
-@ShowFormula(new {
-  Title = "Group visibility",
-  Instructions = "This formula determines the visibility of the Advanced settings group. The group becomes visible, when the Advanced toggle is active.",
-  ContentType = "FormulasVisibleGroup",
-  FieldName = "AdvancedSettings"
-})
+@{ var specs = Sys.SourceCode.Formulas.Specs(
+  title: "Group visibility",
+  instructions: "This formula determines the visibility of the Advanced settings group. The group becomes visible, when the Advanced toggle is active.",
+  contentType: "FormulasVisibleGroup",
+  field: "AdvancedSettings"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Group Name - Text summary",
+  instructions: "This formula changes the Name of the PersonGroup field. The name becomes \"Person - Profile complete\" if all group fields are filled out and \"Person - Profile incomplete\" if not.",
+  contentType: "FormulasTextSummary",
+  field: "PersonGroup"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
-@ShowFormula(new {
-  Title = "Group Name - Text summary",
-  Instructions = "This formula changes the Name of the PersonGroup field. The name becomes \"Person - Profile complete\" if all group fields are filled out and \"Person - Profile incomplete\" if not.",
-  ContentType = "FormulasTextSummary",
-  FieldName = "PersonGroup"
-})
 
-@ShowFormula(new {
-  Title = "Group Name - Emoji summary",
-  Instructions = "This formula changes the Name of the ProductGroup field. The name becomes \"Product ✅\" if all group fields are filled out and \"Product ✏️\" if not.",
-  ContentType = "FormulasEmojiSummary",
-  FieldName = "ProductGroup"
-})
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Group Name - Emoji summary",
+  instructions: "This formula changes the Name of the ProductGroup field. The name becomes \"Product ✅\" if all group fields are filled out and \"Product ✏️\" if not.",
+  contentType: "FormulasEmojiSummary",
+  field: "ProductGroup"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
-@ShowFormula(new {
-  Title = "Helptext",
-  Instructions = "This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains \"n0t0k\" the helptext \"This product code is deprecated. Please request a new product code. \" is added, or if it contains spaces the helptext \"Please remove all spaces from your product code.\" is added.",
-  ContentType = "FormulasHelpText",
-  FieldName = "ProductCode",
-  More = "prefill:ProductCode=n0t0k code"
-})
+
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Helptext",
+  instructions: "This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains \"n0t0k\" the helptext \"This product code is deprecated. Please request a new product code. \" is added, or if it contains spaces the helptext \"Please remove all spaces from your product code.\" is added.",
+  contentType: "FormulasHelpText",
+  field: "ProductCode",
+  parameters: "prefill:ProductCode=n0t0k code"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 
 @* Run Code Once only *@
-@ShowFormula(new {
-  Title = "Run Code Only when Form Opens",
-  Instructions = "This formula determines the initial open/closed state - in this case randomly. "
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Run Code Only when Form Opens",
+  instructions: "This formula determines the initial open/closed state - in this case randomly. "
     + "Normally it would do this based on how complete data in that section is or based on other criterias. "
     + "This is often used to improve initial state of a form based on how much data is already filled in. ",
-  ContentType = "FormulasRunAtStart",
-  FieldName = "GroupRandomlyOpen"
-})
+  contentType: "FormulasRunAtStart",
+  field: "GroupRandomlyOpen"
+);}
 
 @Sys.PageParts.FooterWithSource()

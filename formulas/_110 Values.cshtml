@@ -8,7 +8,6 @@
 
 <hide>
   @{
-    var hlp = CreateInstance("../shared/Helpers.cs");
     var fancybox = CreateInstance("../shared/Fancybox.cs");
 
     CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
@@ -40,16 +39,17 @@
     field: "Title"
   );
 }
-@Sys.SourceCode.Formulas.Show(specs)
+@Sys.SourceCode.FormulaShow(specs)
 
 
 @* Combine Values of Fields *@
-@ShowFormula(new {
-  Title = "Generate a Field Combining Others",
-  Instructions = "This formula combines the values of 3 fields into a URL Slug. ",
-  ContentType = "FormulasCombineValues",
-  FieldName = "UrlKey"
-})
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Generate a Field Combining Others",
+  instructions: "This formula combines the values of 3 fields into a URL Slug. ",
+  contentType: "FormulasCombineValues",
+  field: "UrlKey"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 <hr>
 <h2>Get Data for a Field from a Web API</h2>
@@ -65,20 +65,22 @@
 <h2>Date Examples</h2>
 
 @* Date Examples #1 *@
-@ShowFormula(new {
-  Title = "Date - Prefill but leave editable",
-  Instructions = "This formula sets the initial value to the current date (if the field is empty). You can try it by deleting the value, once you leave the field it's updated again. ",
-  ContentType = "FormulasDates",
-  FieldName = "RightNow"
-})
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Date - Prefill but leave editable",
+  instructions: "This formula sets the initial value to the current date (if the field is empty). You can try it by deleting the value, once you leave the field it's updated again. ",
+  contentType: "FormulasDates",
+  field: "RightNow"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 @* Date Examples #2 *@
-@ShowFormula(new {
-  Title = "Date - Calculate value",
-  Instructions = "This formula sets the third field to the current date/time + an offset the user can choose in a dropdown. "
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Date - Calculate value",
+  instructions: "This formula sets the third field to the current date/time + an offset the user can choose in a dropdown. "
     + "Note that since we do some calculations, we must make sure the result is time-zone cleaned. ",
-  ContentType = "FormulasDates",
-  FieldName = "PublishWhen"
-})
+  contentType: "FormulasDates",
+  field: "PublishWhen"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 @Sys.PageParts.FooterWithSource()

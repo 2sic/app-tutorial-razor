@@ -29,6 +29,8 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
     public string ContentType;
     public string Field;
     public string Parameters;
+
+    public bool ShowSnippet = false;
   }
 
   public FormulaSpecs Specs(string contentType, string field) {
@@ -44,6 +46,11 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
       Field = field,
       Parameters = parameters
     };
+  }
+
+  public bool ShowSnippet(object specsRaw) {
+    var specs = specsRaw as FormulaSpecs;
+    return specs == null ? false : specs.ShowSnippet;
   }
 
   #endregion

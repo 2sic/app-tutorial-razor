@@ -33,20 +33,22 @@
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Change Dropdown Values *@
-@ShowFormula(new {
-  Title = "Change dropdown options: Country to Offices",
-  Instructions = "This formula changes the values in the second dropdown based on the country picked first. ",
-  ContentType = "FormulasDropdown",
-  FieldName = "Office"
-})
+@{ var specs = Sys.SourceCode.Formulas.Specs(
+  title: "Change dropdown options: Country to Offices",
+  instructions: "This formula changes the values in the second dropdown based on the country picked first. ",
+  contentType: "FormulasDropdown",
+  field: "Office"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 @* Change Dropdown Values #2 *@
-@ShowFormula(new {
-  Title = "Change dropdown options: Limited or More Options",
-  Instructions = "This formula changes the values in the second dropdown if the user wants more options. ",
-  ContentType = "FormulasDropdownDirections",
-  FieldName = "Options"
-})
+@{ specs = Sys.SourceCode.Formulas.Specs(
+  title: "Change dropdown options: Limited or More Options",
+  instructions: "This formula changes the values in the second dropdown if the user wants more options. ",
+  contentType: "FormulasDropdownDirections",
+  field: "Options"
+);}
+@Sys.SourceCode.FormulaShow(specs)
 
 @* Dropdown Values From WebAPI *@
 @ShowFormula(sharedExamples.DropdownFromWebApi())
@@ -60,6 +62,6 @@
   Path = App.PhysicalPath + "/api/",
   File = "FormulasController.cs",
   TitlePath = "/api/"
-}) 
+})
 
 @Sys.PageParts.FooterWithSource()
