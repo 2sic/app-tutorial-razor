@@ -19,10 +19,7 @@ public class Helpers: Custom.Hybrid.Code14
 
   public string Path {get;set;}
 
-  // Url to show source code, to not repeat in every file
-  public string ShowCodeFile = "../shared/_source-code.cshtml";
-
-  public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(Path)); } }
+  public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(this, Path)); } }
   private dynamic _sourceCode;
 
   public dynamic PageParts { get { return _pageParts ?? (_pageParts = CreateInstance("PageParts.cs").Init(this)); } }
@@ -30,6 +27,9 @@ public class Helpers: Custom.Hybrid.Code14
 
   public dynamic Fancybox { get { return _fancybox ?? (_fancybox = CreateInstance("Fancybox.cs")); } }
   private dynamic _fancybox;
+
+  public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = CreateInstance("ToolbarHelpers.cs")).Init(this); } }
+  private dynamic _tlbHelpers;
 
   public dynamic Title(string title) {
     // set browser title for SEO

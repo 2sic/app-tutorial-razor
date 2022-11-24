@@ -13,7 +13,8 @@ using System.Text.Encodings.Web;
 // Should itself not have much code, it's more central API to access everyhing
 public class PageParts: Custom.Hybrid.Code14
 {
-
+  #region Init / Dependencies
+  
   public PageParts Init(dynamic sys) {
     Sys = sys;
     ParentRazor = Sys.ParentRazor;
@@ -21,6 +22,8 @@ public class PageParts: Custom.Hybrid.Code14
   }
   public dynamic Sys = null;
   public Razor14 ParentRazor;
+
+  #endregion
 
   // Dnn / Oqtane implementations of render CSHTML based on the given Razor14 base class
   public dynamic RenderPartial(string path, object data = null) {

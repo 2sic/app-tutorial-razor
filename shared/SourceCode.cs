@@ -13,17 +13,24 @@ public class SourceCode: Custom.Hybrid.Code14
   const int LineHeightPx = 20;
   const int BufferHeightPx = 20; // for footer scrollbar which often appears
 
-  public SourceCode Init(string path) {
+  #region Init / Dependencies
+  public SourceCode Init(dynamic sys, string path) {
+    Sys = sys;
     Path = path;
     SourceProcessor = CreateInstance("SourceProcessor.cs");
     BsTabs = CreateInstance("BootstrapTabs.cs");
     return this;
   }
 
+  public dynamic Sys {get;set;}
   public string Path { get; set; }
-
   private dynamic SourceProcessor { get; set; }
   private dynamic BsTabs {get;set;}
+
+  public dynamic Formulas { get { return _formulas ?? (_formulas = CreateInstance("SourceCodeFormulas.cs")).Init(this); } }
+  private dynamic _formulas;
+
+  #endregion
 
 
   #region Special ShowResult helpers
@@ -190,8 +197,6 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region Formulas and FormulaStart() 
 
-  public dynamic Formulas { get { return _formulas ?? (_formulas = CreateInstance("SourceCodeFormulas.cs")).Init(this); } }
-  private dynamic _formulas;
 
   private object _formulaSpecs;
 
@@ -209,7 +214,12 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
   public ITag FormulaStart(string snippet, object specs = null) {
+    // Remember for future close
     _formulaSpecs = specs;
+
+    // Activate toolbar for anonymous so it will always work in demo-mode
+    Sys.ToolbarHelpers.EnableEditForAll();
+
     var showSource = Formulas.ShowSnippet(specs);
     return showSource
       ? SnippetStartInner(snippet, ResultTabName, SourceTabName, "Formula")

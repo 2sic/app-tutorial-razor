@@ -1,9 +1,27 @@
+using Custom.Hybrid;
 using ToSic.Sxc.Demo;
 
 // Important notes: 
 // - This class should have the same name as the file it's in
 public class ToolbarHelpers : Custom.Hybrid.Code14 
 {
+  #region Init / Dependencies
+  
+  public ToolbarHelpers Init(dynamic sys) {
+    Sys = sys;
+    ParentRazor = Sys.ParentRazor;
+    return this;
+  }
+  public dynamic Sys = null;
+  public Razor14 ParentRazor;
+
+  #endregion
+
+  // Todo: replace the EnableEditForAnonymous with this everywhere and make it private
+  public void EnableEditForAll() {
+    EnableEditForAnonymous(ParentRazor.Edit);
+  }
+
   public void EnableEditForAnonymous(dynamic Edit) {
     // Special command to ensure that the toolbars appear, even if they are won't work.
     // This is NOT an official API, and may change any time.
