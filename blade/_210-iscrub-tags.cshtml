@@ -4,6 +4,10 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
+    @{
+    var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
+    var cropLen = 50;
+  }
 </hide>
 
 
@@ -19,10 +23,6 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
-@{
-  var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
-  var cropLen = 50;
-}
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
 
@@ -31,6 +31,14 @@
 <code>@val1</code>
 <div>which if cropped at @cropLen would be really messy</div>
 <code>@val1.Substring(0, cropLen)</code>
+
+@Sys.SourceCode.SnippetInitStart("intro")
+  @{
+     val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
+     cropLen = 50;
+  }
+@Sys.SourceCode.SnippetInitEnd()
+
 
 <h3>After IScrub.All</h3>
 

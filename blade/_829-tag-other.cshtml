@@ -25,10 +25,10 @@
 <h3>Fist create a sample where a heading is from a variable</h3>
 
 @Sys.SourceCode.SnippetInlineStart("demo-1")
-@{
-  var headingType = "h3";
-}
-@Tag.Custom(headingType).Wrap("This is a title")
+  @{
+    var headingType = "h3";
+  }
+  @Tag.Custom(headingType).Wrap("This is a title")
 @Sys.SourceCode.SnippetInlineEnd()
 
 
@@ -37,7 +37,7 @@
 
 
 @Sys.SourceCode.SnippetInlineStart("demo-2")
-@Tag.Custom("em").Wrap("this is a italic text")
+  @Tag.Custom("em").Wrap("this is a italic text")
 @Sys.SourceCode.SnippetInlineEnd()
 
 

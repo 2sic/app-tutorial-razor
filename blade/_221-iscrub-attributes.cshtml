@@ -25,10 +25,10 @@
 </trim>
 
 @Sys.SourceCode.SnippetInlineStart("scrub-class")
- @{
-   var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
- }
- <div><strong>Scrub all classes from source: </strong><code>@Kit.Scrub.Classes(exampleClasses)</code></div>
+  @{
+    var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
+  }
+  <div><strong>Scrub all classes from source: </strong><code>@Kit.Scrub.Classes(exampleClasses)</code></div>
 @Sys.SourceCode.SnippetInlineEnd()
 
 
@@ -38,12 +38,12 @@
 </trim>
 
 @Sys.SourceCode.SnippetInlineStart("scrub-attributes")
- @{
-    var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
-  }
- <div><strong>Scrub all attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes)</code></div>
- <div><strong>Scrub one attribute from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
- <div><strong>Scrub some attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
+  @{
+      var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
+    }
+  <div><strong>Scrub all attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes)</code></div>
+  <div><strong>Scrub one attribute from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
+  <div><strong>Scrub some attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
 @Sys.SourceCode.SnippetInlineEnd()
 
 
@@ -53,10 +53,10 @@
 </trim>
 
 @Sys.SourceCode.SnippetInlineStart("scrub-styles")
- @{
-   var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
- }
- <div><strong>Scrub all styles from source: </strong><code>@Kit.Scrub.Styles(exampleStyle)</code></div>
+  @{
+    var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
+  }
+  <div><strong>Scrub all styles from source: </strong><code>@Kit.Scrub.Styles(exampleStyle)</code></div>
 @Sys.SourceCode.SnippetInlineEnd()
 
 
