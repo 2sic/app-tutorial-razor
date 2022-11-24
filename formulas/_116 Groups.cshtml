@@ -1,7 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-  @Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
+
+<hide>
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var fancybox = CreateInstance("../shared/Fancybox.cs");
@@ -64,3 +69,5 @@
   ContentType = "FormulasRunAtStart",
   FieldName = "GroupRandomlyOpen"
 })
+
+@Sys.PageParts.FooterWithSource()

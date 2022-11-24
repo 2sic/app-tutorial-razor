@@ -23,13 +23,13 @@ public class SourceProcessor: Custom.Hybrid.Code14
       return match.Groups["contents"].Value;
     }
     // V2 with Snippet Tabs / Inline Tabs
-    var patternStartEnd = @"(?:@Sys\.SourceCode\.Snippet(Inline|Only|Init)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Snippet)";
+    var patternStartEnd = @"(?:@Sys\.SourceCode\.(Snippet|Formula)(Inline|Only|Init)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Snippet|Invisible\())";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
     }
     // V2 with Result Tabs - for ResultStart(...) and ResultAndSnippetStart
-    patternStartEnd = @"(?:@Sys\.SourceCode\.Result[a-zA-Z]*Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.Result)";
+    patternStartEnd = @"(?:@Sys\.SourceCode\.Result[a-zA-Z]*Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Result|Invisible))";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;

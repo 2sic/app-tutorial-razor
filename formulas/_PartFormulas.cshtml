@@ -2,30 +2,10 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 @{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-
-  var fHlp = CreateInstance("Helpers.cs");
-  var formulas = fHlp.GetFormulas(DynamicModel.ContentType, DynamicModel.FieldName);
-
-  var title = DynamicModel.Title;
+  var Sys = CreateInstance("../shared/Helpers.cs");
+  var specs = Sys.SourceCode.Formulas.Specs(DynamicModel.Title, DynamicModel.Instructions, DynamicModel.ContentType, DynamicModel.FieldName, DynamicModel.More);
 }
 
-@if (Text.Has(title)) {
-  <h3>@title @fHlp.DemoToolbar(DynamicModel.ContentType, DynamicModel.More).AsTag()</h3>
-  <p>
-    @if (Text.Has(DynamicModel.Instructions)) {
-      @DynamicModel.Instructions
-      <br />
-    }
-    <em>Click on the (Σ) button above to see the edit-UI with the formula. </em>
-  </p>
-}
+@Sys.SourceCode.Formulas.Show(specs);
+@* DynamicModel.Title, DynamicModel.Instructions, DynamicModel.ContentType, DynamicModel.FieldName, DynamicModel.More) *@
 
-<div class="mb-5">
-  <h3>Formulas of <code>@(DynamicModel.ContentType).@DynamicModel.FieldName</code></h3>
-  @foreach (var formula in formulas)
-  {
-    <p><strong>@formula.Title</strong> (Formula-Target: @formula.Target)</p>    
-    @hlp.SourceCode.ShowResultJs(formula.Formula)
-  }
-</div>

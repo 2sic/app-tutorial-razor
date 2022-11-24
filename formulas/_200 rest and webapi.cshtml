@@ -1,12 +1,15 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
 
-  var fHlp = CreateInstance("Helpers.cs");
+<hide>
+@{
+  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
 
   var sharedExamples = CreateInstance("SharedExamples.cs");
@@ -49,7 +52,4 @@
 }) 
 
 
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
-</hide>
+@Sys.PageParts.FooterWithSource()

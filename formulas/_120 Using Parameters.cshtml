@@ -1,17 +1,20 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
 
-  var tbHlp = CreateInstance("Helpers.cs");
+<hide>
+@{
+  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+
   var fancybox = CreateInstance("../shared/Fancybox.cs");
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
 
-  var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
-  var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");
+  var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon());
+  var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon(), prefill:"VarShowAdvanced=true");
 }
   @functions {
     dynamic ShowFormula(object specs) {
@@ -91,10 +94,10 @@
   <span>
 <snippet id="formulas-showAdvanced">
   <code>prefill:showAdvanced=true</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters", ui: tbHlp.Icon(), prefill: "showAdvanced=true").AsTag()
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: Sys.SourceCode.Formulas.Icon(), prefill: "showAdvanced=true").AsTag()
   <br>
   <code>prefill:showAdvanced=false</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters", ui: tbHlp.Icon(), prefill: "showAdvanced=false").AsTag()
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: Sys.SourceCode.Formulas.Icon(), prefill: "showAdvanced=false").AsTag()
 </snippet>
   </span>
   <p>
@@ -113,3 +116,5 @@
     FieldName = "AdvancedGroup",
     More = "prefill:showAdvanced=true"
     })
+
+@Sys.PageParts.FooterWithSource()

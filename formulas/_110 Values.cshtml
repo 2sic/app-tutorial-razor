@@ -1,7 +1,12 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-  @Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
+
+<hide>
   @{
     var hlp = CreateInstance("../shared/Helpers.cs");
     var fancybox = CreateInstance("../shared/Fancybox.cs");
@@ -27,12 +32,16 @@
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Fill If Empty *@
-@ShowFormula(new {
-  Title = "Set the Value if it's empty",
-  Instructions = "This formula sets the value of a field if it's empty. As long as it's not empty, the user can type anything he/she wants. ",
-  ContentType = "FormulasIfEmpty",
-  FieldName = "Title"
-})
+@{
+  var specs = Sys.SourceCode.Formulas.Specs(
+    title: "Set the Value if it's empty",
+    instructions: "This formula sets the value of a field if it's empty. As long as it's not empty, the user can type anything he/she wants. ",
+    contentType: "FormulasIfEmpty",
+    field: "Title"
+  );
+}
+@Sys.SourceCode.Formulas.Show(specs)
+
 
 @* Combine Values of Fields *@
 @ShowFormula(new {
@@ -71,3 +80,5 @@
   ContentType = "FormulasDates",
   FieldName = "PublishWhen"
 })
+
+@Sys.PageParts.FooterWithSource()

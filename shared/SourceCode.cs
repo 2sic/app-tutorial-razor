@@ -188,6 +188,35 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
+  #region Formulas and FormulaStart() 
+
+  public dynamic Formulas { get { return _formulas ?? (_formulas = CreateInstance("SourceCodeFormulas.cs")).Init(this); } }
+  private dynamic _formulas;
+
+  private object _formulaSpecs;
+
+  public ITag FormulaShow(object specs) {
+    var result = Tag.RawHtml(
+      FormulaStart("dummy", specs),
+      Formulas.Intro(specs),
+      FormulaEnd()
+    );
+    return result;
+  }
+
+  public ITag FormulaStart(string snippet, object specs = null) {
+    _formulaSpecs = specs;
+    return SnippetStartInner(snippet, ResultTabName, "Formula");
+  }
+  // TODO: replace all ResultPrepare with Invisible() in the code files
+  public string Invisible() { return ResultPrepare(); }
+  public ITag FormulaEnd(params object[] results) {
+    var result = _formulaSpecs != null ? ResultEndInner(false, Formulas.Show(_formulaSpecs, false)) : ResultEndInner(false, results);
+    return result;
+  }
+
+  #endregion
+
   #region ResultStart() | ResultAndSnippetStart() / ResultPrepare() / ResultEnd()
 
   private bool _resultEndWillPrepend = false;
@@ -207,20 +236,23 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  public ITag ResultAndExpandStart(string prefix, params string[] names) {
-    _resultEndWillPrepend = true;
-    _resultEndClosesReveal = true;
-    return Tag.RawHtml(
-      SnippetStartInner(prefix, ResultAndSourceTabName, null, names),
-      Tag.Div().Class("alert alert-info").TagStart,
-      Tag.H4("Output"),
-      Tag.Div().Class("show-hidden-with-reveal reveal-on-h3")
-    );
-  }
+// 2dm wip, probably not used
+  // public ITag ResultAndExpandStart(string prefix, params string[] names) {
+  //   _resultEndWillPrepend = true;
+  //   _resultEndClosesReveal = true;
+  //   return Tag.RawHtml(
+  //     SnippetStartInner(prefix, ResultAndSourceTabName, null, names),
+  //     Tag.Div().Class("alert alert-info").TagStart,
+  //     Tag.H4("Output"),
+  //     Tag.Div().Class("show-hidden-with-reveal reveal-on-h3")
+  //   );
+  // }
 
   public string ResultPrepare() { return null; }
 
-  public ITag ResultEnd(params object[] results) {
+  public ITag ResultEnd(params object[] results) { return ResultEndInner(true, results); }
+
+  private ITag ResultEndInner(bool showSnippet, params object[] results) {
     var l = Log.Call<ITag>("prefix: " + _snippet + ", results:" + results.Length);
     var nameCount = 0;
     // Close the tabs / header div section if it hasn't been closed yet
@@ -229,7 +261,7 @@ public class SourceCode: Custom.Hybrid.Code14
       html = html.Add("</div>");
       _resultEndClosesReveal = false;
     }
-    if (_resultEndWillPrepend)
+    if (showSnippet && _resultEndWillPrepend)
       html = html.Add("</div>", Snippet(_snippet));
     html = html.Add(BsTabs.TabContentClose());
     // If we have any results, add them here
@@ -239,9 +271,10 @@ public class SourceCode: Custom.Hybrid.Code14
       html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
       nameCount++;
     }
-    html = html.Add(!_resultEndWillPrepend ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
+    html = html.Add(showSnippet && !_resultEndWillPrepend ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
     return l("resulting Html", html);
   }
+
 
   #endregion
 
@@ -286,8 +319,8 @@ public class SourceCode: Custom.Hybrid.Code14
     }
     catch
     {
+      throw;
       return Tag.Div("Error showing " + errPath).Class("alert alert-warning");
-      // throw;
       return ShowError(path);
     }
     return null;

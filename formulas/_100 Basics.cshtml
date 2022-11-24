@@ -1,21 +1,19 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 <hide>
-@Html.Partial("_header.cshtml")
-@{
-  var hlp = CreateInstance("../shared/Helpers.cs");
-  string sourceCode = hlp.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
 
-  var fHlp = CreateInstance("Helpers.cs");
+<hide>
+@{
   var contentType = "FormulasBasic";
   var fancybox = CreateInstance("../shared/Fancybox.cs");
 
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
-@functions {
-    dynamic ShowFormula(object specs) {
-      return Html.Partial("_PartFormulas.cshtml", specs);
-    }
+
+  var testSpecs = Sys.SourceCode.Formulas.Specs("Result", "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.", contentType, "Description");
 }
 </hide>
 
@@ -43,7 +41,7 @@
 
 <h3>
   Brief Demo 
-  @fHlp.DemoToolbar(contentType).AsTag()
+  @Sys.SourceCode.Formulas.DemoToolbar(testSpecs).AsTag()
 </h3>
 <p>
   Click on the (Σ) button above to see the edit-UI with the formula. 
@@ -72,19 +70,23 @@
 <br>
 <p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
 
-<h3>
-  Result
-  @fHlp.DemoToolbar(contentType).AsTag()
-</h3>
-<p>
-  This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.
-  <br>
-  Click on the (Σ) button above to try the formula we've added.
-</p>
-<br>
-@ShowFormula(new { ContentType = contentType, FieldName = "Description"})
-<br>
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial(sourceCode, new { Path }) 
-</hide>
+
+@Sys.SourceCode.FormulaShow(testSpecs)
+
+<hr>
+
+@Sys.SourceCode.FormulaStart("demo", testSpecs)
+  <h3>
+    Result
+    @Sys.SourceCode.Formulas.DemoToolbar(testSpecs).AsTag()
+  </h3>
+@Sys.SourceCode.Invisible()
+  <p>
+    This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.
+    <br>
+    Click on the (Σ) button above to try the formula we've added.
+  </p>
+@Sys.SourceCode.FormulaEnd()
+
+
+@Sys.PageParts.FooterWithSource()
