@@ -18,7 +18,7 @@
         <ul>
           <li>Bootstrap5 could already be included - so you shouldn't do anything</li>
           <li>A different CSS framework is included - so you should include Bootstrap5 automatically</li>
-          <li>The current CSS framework can't be detected, so to be safe, you should include Bootstrap 4 as well, until the theme is updated to broadcast what it's using</li>
+          <li>The current CSS framework can't be detected, so to be safe, you should include Bootstrap 5 as well, until the theme is updated to broadcast what it's using</li>
         </ul>
         <p>
           This page shows how to handle these problems with almost no code. Note that we've place the code in a separate file and use a helper to achieve this, as this allows us to re-use the code in multiple templates. <br>
@@ -41,6 +41,8 @@
     var bsCheck = CreateInstance("../shared/Bootstrap5.cs");  
     bsCheck.EnsureBootstrap5();
   }
+@Sys.SourceCode.ResultPrepare()
+  The result is invisible.
 @Sys.SourceCode.ResultEnd("file:../shared/Bootstrap5.cs")
 
 

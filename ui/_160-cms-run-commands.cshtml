@@ -1,10 +1,14 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
   // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
+  }
+</hide>
+
 
 <div class="row mb-5">
   <div class="col-lg-7">
@@ -29,52 +33,20 @@
 </div>
 
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
-<hr>
 </hide>
 
 <h2>Simple Setup, Custom Link</h2>
 
-<div class="alert alert-primary" style="width: 50%;">
-    The following command will open an edit dialog. 
-    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
-    Instead, you'll see console messages that a custom JS took over the process. <br>
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of cms_run_commands.js")
+  <div class="alert alert-primary" style="width: 50%;">
+      The following command will open an edit dialog. 
+      When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+      Instead, you'll see console messages that a custom JS took over the process. <br>
 
-    <a href="#" onclick="openAndCancelRefreshAfterwards(this, event, 'new', { contentType: 'UiEmptyHelloWorld'})">👉 Run open command</a>
-</div>
+      <a href="#" onclick="openAndCancelRefreshAfterwards(this, event, 'new', { contentType: 'UiEmptyHelloWorld'})">👉 Run open command</a>
+  </div>
+@Sys.SourceCode.ResultEnd("file:_160-cms-run-commands.js")
 
-<script>
-
-  function openAndCancelRefreshAfterwards(tag, event, action, params) {
-    // Prevent the click from propagating, so the link won't execute href
-    event.preventDefault();
-
-    // This workflow step will run on every action, just to log what's happening
-    const workflowToLog = {
-      command: 'all',   // Run on every command/action
-      phase: 'all',     // Run before and after
-      code: (wfArgs) => {
-        console.log("Toolbar asked to to something - here are the details.", wfArgs);
-      }
-    }
-
-    // This is the workflow step we will register to stop page refresh
-    const workflowToDisableRefresh = {
-      command: 'refresh',   // The command name it's for
-      phase: 'before',      // The workflow-step should run before the command is executed
-      code: (wfArgs) => {   // The code which should be run
-        console.log('Toolbar asked to refresh, will return false to stop it. These are the arguments we got.', wfArgs);
-        return false;       // Return false to stop this command from happening
-      }
-    };
-
-    $2sxc(tag).cms.run({ action: action, params: params, workflows: [workflowToLog, workflowToDisableRefresh]})
-      .then(function(data) {
-        console.log("after run", data);
-        return false;
-      });
-    
-  }
-</script>
 
 <hide>
   <hr>
@@ -86,8 +58,5 @@
     <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.
   </div>
 </hide>
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900, isExpanded=true }) 
-@* 2sxclint:disable:no-inline-script *@
-</hide>
+
+@Sys.PageParts.FooterWithSource()

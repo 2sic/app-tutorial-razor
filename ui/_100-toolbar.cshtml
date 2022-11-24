@@ -1,11 +1,19 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+</hide>
+<hide>
+
+  
 @{
   // IMPORTANT: This must be at the top of the file, so it executes first
   var tlbShared = CreateInstance("../Shared/ToolbarHelpers.cs");
   tlbShared.EnableEditForAnonymous(Edit);
 }
+
+
 <div class="row mb-5">
   <div class="col-lg-7">
     <h2>2sxc Toolbar Customization</h2>
@@ -25,7 +33,6 @@
   <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
 </div>
 
-<hr>
 @tlbShared.AutoShowAllToolbarsStart()
 </hide>
 
@@ -64,223 +71,156 @@
   }
 }
 
-<hr>
+
+
+@* TODO: @2dk - do like this - always combine two to three samples (which go together), with enter (empty line) in between *@
 <h2>Add / Remove Buttons</h2>
-<snippet id="tb-add-new-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default(Content).Edit().New()>
-  <h3>New syntax: Add two buttons </h3>
-  <hide-silent>
-    @ShowSnippet("tb-add-new-newsyn");
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo1")
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).Edit().New()>
+    <h3>New syntax: Add two buttons </h3>
+  </div>
 
-<snippet id="tb-add-new-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+edit", "+new"})>
-  <h3>Old syntax: Add two buttons </h3>
-  <hide-silent>
-    @ShowSnippet("tb-add-new-oldsyn")
-  </hide-silent>
-</div>
-</snippet>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+edit", "+new"})>
+    <h3>Old syntax: Add two buttons </h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
+@Sys.SourceCode.ResultStart("demo2")
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
+    <h3>New syntax (string): Add <code>new</code> button with colors </h3>
+  </div>
 
-<snippet id="tb-colors-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
-  <h3>New syntax (string): Add <code>new</code> button with colors </h3>
-  <hide-silent>
-    @ShowSnippet("tb-colors-newsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-colors-newobj" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-info" @Kit.Toolbar.Default(Content).New(ui: new {
-  color = "blue,white"
-})>
-  <h3>New syntax (object): Add <code>new</code> button with colors </h3>
-  <hide-silent>
-    @ShowSnippet("tb-colors-newobj")
-  </hide-silent>
-</div>
-</snippet>
+  <div class="alert alert-info" @Kit.Toolbar.Default(Content).New(ui: new {
+    color = "blue,white"
+  })>
+    <h3>New syntax (object): Add <code>new</code> button with colors </h3>
+  </div>
 
-<snippet id="tb-colors-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&color=pink,black"})>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&color=pink,black"})>
   <h3>Old syntax: Add <code>new</code> button with colors </h3>
-  <hide-silent>
-    @ShowSnippet("tb-colors-oldsyn")
-  </hide-silent>
-</div>
-</snippet>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
-<snippet id="tb-position-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui: "pos=-0")>
-  <h3>New syntax: Add <code>new</code> at the end of button-list</h3>
-  <hide-silent>
-    @ShowSnippet("tb-position-newsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-position-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-0"})>
-  <h3>Old syntax: Add <code>new</code> at the end of button-list</h3>
-  <hide-silent>
-    @ShowSnippet("tb-position-oldsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-more-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"never");
-}
-<div class="alert alert-success" @moreButtonToolbar.For(Content)>
-  <h3>New syntax: Remove <code>more</code> button</h3>
-  <hide-silent>
-    @ShowSnippet("tb-more-newsyn", 160) 
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-more-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "-more" })>
-  <h3>Old syntax: Remove <code>more</code> button</h3>
-  <hide-silent>
-    @ShowSnippet("tb-more-oldsyn")
-  </hide-silent>
-</div>
-</snippet>
 
-<snippet id="tb-empty-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit()>
-  <h3>New syntax: Use empty toolbar template and add <code>edit</code></h3>
-  <hide-silent>
-    @ShowSnippet("tb-empty-newsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-empty-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "toolbar=empty", "+edit"})>
-  <h3>Old syntax: Use empty toolbar template and add <code>edit</code></h3>
-  <hide-silent>
-    @ShowSnippet("tb-empty-oldsyn")
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo3")
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui: "pos=-0")>
+    <h3>New syntax: Add <code>new</code> at the end of button-list</h3>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-0"})>
+    <h3>Old syntax: Add <code>new</code> at the end of button-list</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+@Sys.SourceCode.ResultStart("demo4")
+  @{
+    var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"never");
+  }
+  <div class="alert alert-success" @moreButtonToolbar.For(Content)>
+    <h3>New syntax: Remove <code>more</code> button</h3>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "-more" })>
+    <h3>Old syntax: Remove <code>more</code> button</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+@Sys.SourceCode.ResultStart("demo5")
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit()>
+    <h3>New syntax: Use empty toolbar template and add <code>edit</code></h3>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "toolbar=empty", "+edit"})>
+    <h3>Old syntax: Use empty toolbar template and add <code>edit</code></h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 
 
-<hr>
 <h2>Add Buttons with SVG Icons (v14.08+)</h2>
 <p>
   We've introduced a new feature to allow custom SVG icons for buttons. 
 </p>
-<snippet id="tb-icon-svg" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  // icon from https://fonts.google.com/icons?icon.query=func
-  var uiWithSvgIcon = new {
-    Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>"
-  };
-}
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiWithSvgIcon)>
-  <h3>New syntax only: Button with SVG Icon </h3>
-  <hide-silent>
-    @ShowSnippet("tb-icon-svg", 220)
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-icon-svg-colors" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  // icon from https://fonts.google.com/icons?icon.query=func
-  var uiSvgIconColored = new {
-    Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>",
-    color = "darkgreen"
-  };
-}
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiSvgIconColored)>
-  <h3>New syntax only: Button with SVG Icon and color </h3>
-  <hide-silent>
-    @ShowSnippet("tb-icon-svg-colors", 220)
-  </hide-silent>
-</div>
-</snippet>
+
+@Sys.SourceCode.ResultStart("demo6")
+  @{
+    // icon from https://fonts.google.com/icons?icon.query=func
+    var uiWithSvgIcon = new {
+      Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>"
+    };
+  }
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiWithSvgIcon)>
+    <h3>New syntax only: Button with SVG Icon </h3>
+  </div>
+
+  @{
+    // icon from https://fonts.google.com/icons?icon.query=func
+    var uiSvgIconColored = new {
+      Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>",
+      color = "darkgreen"
+    };
+  }
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiSvgIconColored)>
+    <h3>New syntax only: Button with SVG Icon and color </h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 
 
-
-
-<hr>
 <h2>Modify a button</h2>
 <p>
   When we modify a button, we don't add one, but change the look or behavior of an existing button.
 </p>
-<snippet id="tb-modify-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default().Edit("-").Edit(ui:"color=red").For(Content)>
-  <h3>New syntax: Edit button is now red</h3>
-  <hide-silent>
-    @ShowSnippet("tb-modify-newsyn")
-  </hide-silent>
-</div>
-</snippet>
 
-<snippet id="tb-modify-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%edit&color=red"})>
-  <h3>Old syntax: Edit button is now red</h3>
-  <hide-silent>
-    @ShowSnippet("tb-modify-oldsyn")
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo7")
+  <div class="alert alert-success" @Kit.Toolbar.Default().Edit("-").Edit(ui:"color=red").For(Content)>
+    <h3>New syntax: Edit button is now red</h3>
+  </div>
 
-<snippet id="tb-category-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var categoryButtonsToolbar = Kit.Toolbar.Default()
-    .New("BlogPost", ui:"color=red&title=Blog-Post")
-    .New("Category", ui:"color=green&title=Category");
-}
-<div class="alert alert-success" @categoryButtonsToolbar.For(Content)>
-  <h3>New syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
-  <hide-silent>
-    @ShowSnippet("tb-category-newsyn", 200) 
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-category-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "+new&color=red&title=Blog-Post?contentType=BlogPost",
-  "+new&color=green&title=Category?contentType=Category",
-})>
-  <h3>Old syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
-<hide-silent>
-  @ShowSnippet("tb-category-oldsyn", 170) 
-</hide-silent>
-</div>
-</snippet>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%edit&color=red"})>
+    <h3>Old syntax: Edit button is now red</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
-<snippet id="tb-delete-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default().Delete().For(Content)>
+@Sys.SourceCode.ResultStart("demo8")
+  @{
+    var categoryButtonsToolbar = Kit.Toolbar.Default()
+      .New("BlogPost", ui:"color=red&title=Blog-Post")
+      .New("Category", ui:"color=green&title=Category");
+  }
+  <div class="alert alert-success" @categoryButtonsToolbar.For(Content)>
+    <h3>New syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "+new&color=red&title=Blog-Post?contentType=BlogPost",
+    "+new&color=green&title=Category?contentType=Category",
+  })>
+    <h3>Old syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+@Sys.SourceCode.ResultStart("demo9")
+  <div class="alert alert-success" @Kit.Toolbar.Default().Delete().For(Content)>
   <h3>New syntax: Always show <code>Delete</code></h3>
-  <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
-  <hide-silent>
-    @ShowSnippet("tb-delete-newsyn", 120) 
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-delete-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%delete&show=true"})>
-  <h3>Old syntax: Always show <code>Delete</code></h3>
-  <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
-  <hide-silent>
-    @ShowSnippet("tb-delete-oldsyn", 120) 
-  </hide-silent>
-</div>
-</snippet>
+    <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%delete&show=true"})>
+    <h3>Old syntax: Always show <code>Delete</code></h3>
+    <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 
 
-<hr>
 <h2>Ways to provide the <code>ui</code>, <code>parameters</code>, <code>prefill</code></h2>
 <p>
   Most buttons can have a <code>ui</code> and a <code>parameters</code> parameter.
@@ -299,82 +239,55 @@
   But the behavior is the same for <code>parameters</code> and <code>prefill</code>.
 </p>
 
-<snippet id="tb-ui-string-inline" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: "color=orange")>
-  <h3><code>ui</code> as inline string </h3>
-  <hide-silent>
-    @ShowSnippet("tb-ui-string-inline")
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo10")
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: "color=orange")>
+    <h3><code>ui</code> as inline string </h3>
+  </div>
 
-<snippet id="tb-ui-string-reuse" class="show-hidden-with-reveal reveal-on-h3">
-@{  var uiReuse = "color=magenta";  }
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit(ui: uiReuse).New(ui: uiReuse)>
-  <h3><code>ui</code> as string variable for reuse</h3>
-  <hide-silent>
-    @ShowSnippet("tb-ui-string-reuse")
-  </hide-silent>
-</div>
-</snippet>
+  @{  var uiReuse = "color=magenta";  }
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit(ui: uiReuse).New(ui: uiReuse)>
+    <h3><code>ui</code> as string variable for reuse</h3>
+  </div>
 
-<snippet id="tb-ui-string-merge" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var uiShared = "color=magenta&title=Default Title";
-  var uiMerged = new object[] { uiShared, "title=Modified Title" };
-}
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit(ui: uiShared).New(ui: uiMerged)>
-  <h3><code>ui</code> as string for reuse and merge</h3>
-  <p>Mouse over the buttons to see how we use/merge to ui configurations</p>
-  <hide-silent>
-    @ShowSnippet("tb-ui-string-merge")
-  </hide-silent>
-</div>
-</snippet>
+  @{
+    var uiShared = "color=magenta&title=Default Title";
+    var uiMerged = new object[] { uiShared, "title=Modified Title" };
+  }
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit(ui: uiShared).New(ui: uiMerged)>
+    <h3><code>ui</code> as string for reuse and merge</h3>
+    <p>Mouse over the buttons to see how we use/merge to ui configurations</p>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
-<snippet id="tb-ui-obj-inline" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: new { color = "orange"})>
-  <h3><code>ui</code> as inline object </h3>
-  <hide-silent>
-    @ShowSnippet("tb-ui-obj-inline")
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo11")
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: new { color = "orange"})>
+    <h3><code>ui</code> as inline object </h3>
+  </div>
 
-<snippet id="tb-ui-obj-prepared" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var uiPrepared = new {
-    Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0z' fill='none'/><path d='M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z'/></svg>",
-    Color = "orange",
-    Title = "This is the prepared object"
-  };
-}
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared)>
-  <h3><code>ui</code> as prepared object </h3>
-  <hide-silent>
-    @ShowSnippet("tb-ui-obj-prepared", 270)
-  </hide-silent>
-</div>
-</snippet>
+  @{
+    var uiPrepared = new {
+      Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#000000'><path d='M0 0h24v24H0z' fill='none'/><path d='M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z'/></svg>",
+      Color = "orange",
+      Title = "This is the prepared object"
+    };
+  }
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared)>
+    <h3><code>ui</code> as prepared object </h3>
+  </div>
 
-<snippet id="tb-ui-obj-merged" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  // this uses uiPrepared from the previous example
-  var uiObjMerged = new object[] { uiPrepared, new { Color ="purple"}};
-}
-<div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared).New(ui: uiObjMerged)>
-  <h3><code>ui</code> as prepared object merged with other object</h3>
-  <hide-silent>
-    @ShowSnippet("tb-ui-obj-merged", 250)
-  </hide-silent>
-</div>
-</snippet>
+  @{
+    // this uses uiPrepared from the previous example
+    var uiObjMerged = new object[] { uiPrepared, new { Color ="purple"}};
+  }
+  <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared).New(ui: uiObjMerged)>
+    <h3><code>ui</code> as prepared object merged with other object</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 
 
-<hr>
 <h2>Data Buttons with Filters</h2>
 <p>
   <code>Data</code> buttons open the management view with a list of items to manage.
@@ -387,209 +300,157 @@
   </em>
 </p>
 
-<snippet id="tb-data-filter-name" class="show-hidden-with-reveal reveal-on-h3">
+@Sys.SourceCode.ResultStart("demo12")
 <div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: "Title=Good Omens")>
   <h3><code>Data</code> button with <em>string</em> <code>filter</code> </h3>
   <p>This will find all books with the title <em>Good Omens</em></p>
-  <hide-silent>
-    @ShowSnippet("tb-data-filter-name")
-  </hide-silent>
 </div>
-</snippet>
 
-<snippet id="tb-data-filter-name-obj" class="show-hidden-with-reveal reveal-on-h3">
 <div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: new { Title = "Good Omens" })>
   <h3><code>Data</code> button with <em>object</em> <code>filter</code> </h3>
   <p>This will find all books with the title <em>Good Omens</em></p>
-  <hide-silent>
-    @ShowSnippet("tb-data-filter-name-obj")
-  </hide-silent>
 </div>
-</snippet>
+@Sys.SourceCode.ResultEnd()
 
-<snippet id="tb-data-filter-authors-3" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var firstThreeAuthorIds = AsList(App.Data["Persons"])
-    .Select(author => author.EntityId)
-    .ToArray();
 
-  var toolbarTop3 = Kit.Toolbar.Empty()
-    .Data("Books", filter: new { Authors = firstThreeAuthorIds });
-}
-<div class="alert alert-success" @toolbarTop3>
-  <h3><code>Data</code> buttons returning books which has any of 3 authors</h3>
-  <hide-silent>
-    @ShowSnippet("tb-data-filter-authors-3", 250)
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo13")
+  @{
+    var firstThreeAuthorIds = AsList(App.Data["Persons"])
+      .Select(author => author.EntityId)
+      .ToArray();
 
-<snippet id="tb-data-filter-authors-obj" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var authorsToolbar = Kit.Toolbar.Empty();
-  foreach (var auth in AsList(App.Data["Persons"])) {
-    authorsToolbar = authorsToolbar.Data("Books",
-      ui: new { Title = "Books by " + auth.FirstName + " " + auth.LastName},
-      filter: new { Authors = new int[] { auth.EntityId } }
-    );
+    var toolbarTop3 = Kit.Toolbar.Empty()
+      .Data("Books", filter: new { Authors = firstThreeAuthorIds });
   }
-}
-<div class="alert alert-success" @authorsToolbar>
-  <h3>Many <code>Data</code> buttons each filtering for one related author</h3>
-  <hide-silent>
-    @ShowSnippet("tb-data-filter-authors-obj", 320)
-  </hide-silent>
-</div>
-</snippet>
+  <div class="alert alert-success" @toolbarTop3>
+    <h3><code>Data</code> buttons returning books which has any of 3 authors</h3>
+  </div>
+
+  @{
+    var authorsToolbar = Kit.Toolbar.Empty();
+    foreach (var auth in AsList(App.Data["Persons"])) {
+      authorsToolbar = authorsToolbar.Data("Books",
+        ui: new { Title = "Books by " + auth.FirstName + " " + auth.LastName},
+        filter: new { Authors = new int[] { auth.EntityId } }
+      );
+    }
+  }
+  <div class="alert alert-success" @authorsToolbar>
+    <h3>Many <code>Data</code> buttons each filtering for one related author</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 
 
-
-<hr>
 <h2>Button Groups</h2>
-<snippet id="tb-add-groups-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var buttonGroupToolbar = Kit.Toolbar.Default()
-    .Group() // new in v14.07.05
-    .New("BlogPost",ui:"color=red&title=Blog-Post")
-    .New("Category", ui:"color=green&title=Category");
-}
-<div class="alert alert-success" @buttonGroupToolbar.For(Content)>
-  <h3>New syntax: Add a button-group just for my buttons (v14.07.05+)</h3>
-  <hide-silent>
-    @ShowSnippet("tb-add-groups-newsyn", 220) 
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-add-groups-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "+group=my",
-  "+new&group=my&color=red&title=Blog-Post?contentType=BlogPost",
-  "+new&group=my&color=green&title=Category?contentType=Category",
-})>
-  <h3>Old syntax: Add a button-group just for my buttons</h3>
-  <hide-silent>
-    @ShowSnippet("tb-add-groups-oldsyn", 200) 
-  </hide-silent>
-</div>
-</snippet>
 
-<snippet id="tb-groups-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var multipleGroupsToolbar = Kit.Toolbar.Default()
-    .Group()
-    .New("BlogPost", ui:"color=red&title=Blog-Post")
-    .Group()
-    .New("Category", ui:"color=green&title=Category");
-}
-<div class="alert alert-success" @multipleGroupsToolbar.For(Content)>
-  <h3>New syntax: Add two button-groups</h3>
-  <hide-silent>
-    @ShowSnippet("tb-groups-newsyn", 240) 
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-groups-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "+group=my1",
-  "+new&group=my1&color=red&title=Blog-Post?contentType=BlogPost",
-  "+group=my2",
-  "+new&group=my2&color=green&title=Category?contentType=Category",
-})>
-  <h3>Old syntax: Add two button-groups</h3>
-  <hide-silent>
-    @ShowSnippet("tb-groups-oldsyn", 200) 
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo14")
+  @{
+    var buttonGroupToolbar = Kit.Toolbar.Default()
+      .Group() // new in v14.07.05
+      .New("BlogPost",ui:"color=red&title=Blog-Post")
+      .New("Category", ui:"color=green&title=Category");
+  }
+  <div class="alert alert-success" @buttonGroupToolbar.For(Content)>
+    <h3>New syntax: Add a button-group just for my buttons (v14.07.05+)</h3>
+  </div>
 
-<hr>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "+group=my",
+    "+new&group=my&color=red&title=Blog-Post?contentType=BlogPost",
+    "+new&group=my&color=green&title=Category?contentType=Category",
+  })>
+    <h3>Old syntax: Add a button-group just for my buttons</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+@Sys.SourceCode.ResultStart("demo15")
+  @{
+    var multipleGroupsToolbar = Kit.Toolbar.Default()
+      .Group()
+      .New("BlogPost", ui:"color=red&title=Blog-Post")
+      .Group()
+      .New("Category", ui:"color=green&title=Category");
+  }
+  <div class="alert alert-success" @multipleGroupsToolbar.For(Content)>
+    <h3>New syntax: Add two button-groups</h3>
+  </div>
+
+  <snippet id="tb-groups-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "+group=my1",
+    "+new&group=my1&color=red&title=Blog-Post?contentType=BlogPost",
+    "+group=my2",
+    "+new&group=my2&color=green&title=Category?contentType=Category",
+  })>
+    <h3>Old syntax: Add two button-groups</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+
 
 <h2>Hover Behavior</h2>
 
-<snippet id="tb-hover-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default(Content).Settings(hover:"left")>
-  <h3>New syntax: Hover Left</h3>
-  <hide-silent>
-    @ShowSnippet("tb-hover-newsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-hover-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "settings&hover=left",
-})>
-  <h3>Old syntax: Hover Left</h3>
-  <hide-silent>
-    @ShowSnippet("tb-hover-oldsyn", 140) 
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo16")
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).Settings(hover:"left")>
+    <h3>New syntax: Hover Left</h3>
+  </div>
 
-<snippet id="tb-hover-autoadd-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default(Content).Settings(autoAddMore: "end", hover: "left")>
-  <h3>New syntax: Hover Left and <code>more</code> button to the right</h3>
-  <hide-silent>
-    @ShowSnippet("tb-hover-autoadd-newsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-hover-autoadd-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "settings&hover=left&autoAddMore=end",
-})>
-  <h3>Old syntax: Hover Left and <code>more</code> button to the right</h3>
-  <hide-silent>
-    @ShowSnippet("tb-hover-autoadd-oldsyn", 140) 
-  </hide-silent>
-</div>
-</snippet>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "settings&hover=left",
+  })>
+    <h3>Old syntax: Hover Left</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
-<hr>
+
+@Sys.SourceCode.ResultStart("demo17")
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).Settings(autoAddMore: "end", hover: "left")>
+    <h3>New syntax: Hover Left and <code>more</code> button to the right</h3>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "settings&hover=left&autoAddMore=end",
+  })>
+    <h3>Old syntax: Hover Left and <code>more</code> button to the right</h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+
 
 <h2>Custom JavaScript Code</h2>
 
-<snippet id="tb-custom-js-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-success" @Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message").For(Content)>
-  <h3>New syntax: Just call <code>showMsg1()</code> </h3>
-  <hide-silent>
-    @ShowSnippet("tb-custom-js-newsyn")
-  </hide-silent>
-</div>
-</snippet>
-<snippet id="tb-custom-js-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "custom&title=Show%20Message?call=showMsg1",
-})>
-  <h3>Old syntax: Just call <code>showMsg1()</code> </h3>
-  <hide-silent>
-    @ShowSnippet("tb-custom-js-oldsyn", 140) 
-  </hide-silent>
-</div>
-</snippet>
+@Sys.SourceCode.ResultStart("demo18")
+  <div class="alert alert-success" @Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message").For(Content)>
+    <h3>New syntax: Just call <code>showMsg1()</code> </h3>
+  </div>
 
-<snippet id="tb-custom-js-params-newsyn" class="show-hidden-with-reveal reveal-on-h3">
-@{
-  var customJsParamsToolbar = Kit.Toolbar.Default().Code("showMsg2", parameters:"id=42", ui:"title=Show%20Message");
-}
-<div class="alert alert-success" @customJsParamsToolbar.For(Content)>
-  <h3>New syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
-<hide-silent>
-  @ShowSnippet("tb-custom-js-params-newsyn", 160) 
-</hide-silent>
-</div>
-</snippet>
-<snippet id="tb-custom-js-params-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
-<div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
-  "custom&title=Show%20Message?call=showMsg2&id=42",
-})>
-  <h3>Old syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
-<hide-silent>
-  @ShowSnippet("tb-custom-js-params-oldsyn", 150) 
-</hide-silent>
-</div>
-</snippet>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "custom&title=Show%20Message?call=showMsg1",
+  })>
+    <h3>Old syntax: Just call <code>showMsg1()</code> </h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
+
+
+@Sys.SourceCode.ResultStart("demo19")
+  @{
+    var customJsParamsToolbar = Kit.Toolbar.Default().Code("showMsg2", parameters:"id=42", ui:"title=Show%20Message");
+  }
+  <div class="alert alert-success" @customJsParamsToolbar.For(Content)>
+    <h3>New syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
+  </div>
+
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
+    "custom&title=Show%20Message?call=showMsg2&id=42",
+  })>
+    <h3>Old syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 <script>
@@ -602,7 +463,7 @@
   }
 </script>
 
-<hr>
+
 <h2>More Stuff</h2>
 <div>
   You can do much more - like change icons, call call-parameters etc. 
@@ -612,9 +473,9 @@
 </div>
 
 <hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 3400 }) 
 @* 2sxclint:disable:no-inline-script *@
 
-@tlbShared.AutoShowAllToolbarsEnd()
+@* @tlbShared.AutoShowAllToolbarsEnd() *@
 </hide>
+
+@Sys.PageParts.FooterWithSource()

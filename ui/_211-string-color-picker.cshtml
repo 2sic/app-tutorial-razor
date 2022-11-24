@@ -1,9 +1,14 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+  // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
+  }
+</hide>
+
 
 <div class="row mb-5">
   <div class="col-lg-7">
@@ -27,23 +32,17 @@
 </hide>
 <div class="alert alert-success">
   <h2>String Color-Picker Custom Input Field</h2>
+
+
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of string_app_color_pickrs.js")
   <p>
     This example shows a real string-field uses Pickr to provide a color picker. <br>
     Hit this edit button to have a look:
   </p>
   @Kit.Toolbar.Empty().New("UiStringColorPickr").AsTag()
+@Sys.SourceCode.ResultEnd("file:../system/field-string-app-color-pickr/index.js")
 </div>
 
 
-
-
-<hide>
 @Html.Partial("_warning.cshtml")
-
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new {
-  Path,
-  File = "../system/field-string-app-color-pickr/index.js",
-  Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
-})
-</hide>
+@Sys.PageParts.FooterWithSource()

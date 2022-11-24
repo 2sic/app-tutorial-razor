@@ -1,10 +1,14 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
   // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
+  }
+</hide>
+
 
 <div class="row mb-5">
   <div class="col-lg-7">
@@ -33,14 +37,16 @@
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 
-<hr>
+
 </hide>
 <div class="alert alert-success">
+
   <h2>Standard TagToolbar</h2>
-  <snippet id="tb-standard-newsyn">
+
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of toolbar-workflow.js")
   @{
-    var standartToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(show: "always");
-  }
+      var standartToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(show: "always");
+    }
   <div class="alert alert-primary" style="width: 100%;">
     <div id='tagWithToolbar' @standartToolbar>
       Float over this box to get a (+) button. 
@@ -48,96 +54,25 @@
       Instead, you'll see console messages that a custom JS took over the process.
     </div>
   </div>
-  </snippet>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-standard-newsyn", Size = 210 }) 
-  </hide-silent>
-</div>
+@Sys.SourceCode.ResultEnd("file:_130-toolbar-workflow.js")
 
 
 <div class="alert alert-success">
   <h2>Standard Inline Toolbar</h2>
-  <snippet id="tb-inline-newsyn">
+
+@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of toolbar-workflow.js")
   <div class="alert alert-primary" style="width: 100%;">
-    <div id='inlineToolbar'>
-      @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
-      When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
-      Instead, you'll see console messages that a custom JS took over the process.
+      <div id='inlineToolbar'>
+        @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
+        When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+        Instead, you'll see console messages that a custom JS took over the process.
+      </div>
     </div>
-  </div>
-  </snippet>
-  <hide-silent> @* Show only this snippet *@
-    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-inline-newsyn", Size = 160 }) 
-  </hide-silent>
-</div>
 
-<h2>The JavaScript which Registers the Workflows</h2>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "main-script", Size = 1000 }) 
-</hide-silent>
+@Sys.SourceCode.ResultEnd("file:_130-toolbar-workflow.js")
 
-@* This tutorial uses turnOn, see turnOn tutorials *@
-@{
-  // Use the PageService to activate turnOn
-  Kit.Page.Activate("turnOn");
-}
-<turnOn turn-on='{ "run": "window.toolbarWorkflow.initOnTagToolbar()", "data": "tagWithToolbar" }'></turnOn>
-<turnOn turn-on='{ "run": "window.toolbarWorkflow.initInlineToolbar()", "data": "inlineToolbar" }'></-turnOn>
-<script src="@App.Path/ui/_130-toolbar-workflow.js" @Kit.Page.AssetAttributes()></script>
-
-<snippet id="main-script">
-<script>
-(function () {
-  // This workflow definition will run on every action, just to log what's happening
-  const workflowToLog = {
-    command: 'all',   // Run on every command/action
-    phase: 'all',     // Run before and after
-    code: (wfArgs) => {
-      console.log("Toolbar asked to to something - here are the details.", wfArgs);
-    }
-  }
-
-  // This is the workflow definition we will register to stop page refresh
-  const workflowToDisableRefresh = {
-    command: 'refresh',   // The command name it's for
-    phase: 'before',      // The workflow-step should run before the command is executed
-    code: (wfArgs) => {   // The code which should be run
-      console.log('Toolbar asked to refresh, will return false to stop it. These are the arguments we got.', wfArgs);
-      return false;       // Return false to stop this command from happening
-    }
-  };
-
-  // Attach event-listener to the TagToolbar parent, so we can register the workflow when the toolbar is created
-  var parent = document.getElementById('tagWithToolbar');
-  parent.addEventListener('toolbar-init', (initEvent) => {
-    console.log("Workflow Demo: Tag Toolbar was initialized - event kicked in - will now register");
-    const workflow = initEvent.detail.workflow;
-
-    workflow.add(workflowToLog);
-    workflow.add(workflowToDisableRefresh);
-
-    // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
-    initEvent.stopPropagation();
-  });
-
-  // Attach event-listener to the parent of the inline-toolbar, so we can register the workflow when the toolbar is created
-  var parent = document.getElementById('inlineToolbar');
-  parent.addEventListener('toolbar-init', (initEvent) => {
-    console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register xxx");
-    const workflow = initEvent.detail.workflow;
-
-    workflow.add(workflowToLog);
-    workflow.add(workflowToDisableRefresh);
-
-    // Stop the event here, otherwise parent elements which have an event listener would get triggered as well
-    initEvent.stopPropagation();
-  });
-})();
-</script>
-</snippet>
 
 <hide>
-  <hr>
   <h2>More Stuff</h2>
   <div>
     You can do much more - like change icons, call call-parameters etc. 
@@ -146,8 +81,5 @@
     <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.
   </div>
 </hide>
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1600 }) 
-@* 2sxclint:disable:no-inline-script *@
-</hide>
+
+@Sys.PageParts.FooterWithSource()

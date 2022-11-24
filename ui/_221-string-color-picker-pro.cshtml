@@ -1,9 +1,14 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-@Html.Partial("_header.cshtml")
-@{
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{
+  // IMPORTANT: This must be at the top of the file, so it executes first
   CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
+  }
+</hide>
+
 
 <div class="row mb-5">
   <div class="col-lg-7">
@@ -28,30 +33,16 @@
 
 <div class="alert alert-success">
   <h2>Configurable Color-Picker Input Field</h2>
+
+@Sys.SourceCode.ResultAndSnippetStart("demo4", "Source of string_app_color_pickrs.js", "Source of string_app_color_pickrs.json")
   <p>
     This example shows two color-picker fields, with different initial configurations. <br>
     Hit this edit button to have a look: 
   </p>
   @Kit.Toolbar.Empty().New("UiStringColorPickrPro").AsTag()
+@Sys.SourceCode.ResultEnd("file:../system/field-string-app-color-pickr/index.js", "file:../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json")
 </div>
 
 
-
-<hide>
 @Html.Partial("_warning.cshtml")
-
-@Html.Partial("../shared/_source-code.cshtml", new {
-  Path,
-  File = "../system/field-string-app-color-pickr-pro/index.js",
-  Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
-})
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new {
-  Path,
-  File = "../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json",
-  Size = 1300,
-  Wrap = true,
-  Title = "Source of [App]/system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json"
-})
-
-</hide>
+@Sys.PageParts.FooterWithSource()
