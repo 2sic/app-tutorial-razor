@@ -5,7 +5,6 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
 </hide>
 
 
@@ -18,7 +17,7 @@
       can be uploaded again and again in the App-Settings UI. So the path isn't hard-coded.  
       <br>
     </p>
-    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
+    @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>

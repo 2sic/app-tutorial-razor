@@ -5,10 +5,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-@{  
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-}
-@fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-configuration.png", 400, 200, "float-right float-end")
+  @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-configuration.png", 400, 200, "float-right float-end")
 </hide>
 <trim>
 

@@ -4,14 +4,9 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @* @Sys.ToolbarHelpers.EnableEditForAll(); *@
 </hide>
 
-<hide>
-  @{
-    var fancybox = CreateInstance("../shared/Fancybox.cs");
-    CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-  }
-</hide>
 
 <div class="row">
   <div class="col-md-7">
@@ -29,7 +24,6 @@
   field: "AdvancedSettings"
 );}
 @Sys.SourceCode.FormulaShow("group-visible")
-
 
 
 @Sys.SourceCode.FormulaShow("group-name")

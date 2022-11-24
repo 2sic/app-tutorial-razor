@@ -5,7 +5,6 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
 </hide>
 
 
@@ -17,7 +16,7 @@
       CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
       <br>
     </p>
-    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
+    @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>

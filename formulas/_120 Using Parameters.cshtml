@@ -4,16 +4,9 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @* @Sys.ToolbarHelpers.EnableEditForAll(); *@
 </hide>
 
-<hide>
-@{
-  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-  CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
-</hide>
 
 <div class="row">
   <div class="col-md-7">
@@ -48,7 +41,7 @@
 <p>An Ephemeral field is just a normal field with an additional configuration.</p>
 <h4>Configure an Epemeral field</h4>
 <p>To configure a field to not save and be temporary / ephemeral, use this setting:</p>
-@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
+@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
 <p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
 
 

@@ -5,7 +5,6 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{  var fancybox = CreateInstance("../shared/Fancybox.cs");}
 </hide>
 
 <trim>
@@ -16,7 +15,7 @@
     <p>
       The previous examples showed you how to do auto-switch views. This example makes the code even easier, by telling the details-view to pick up the details-item from a query. You can see the query and how it's configured to the right.
     </p>
-    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-design.png", 400, 200)
+    @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-design.png", 400, 200)
   </div>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>

@@ -5,11 +5,6 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
-  @{
-    var fancybox = CreateInstance("../shared/Fancybox.cs");
-    var width = 200;
-    var height = 200;
-  }
 </hide>
 
 
@@ -24,9 +19,9 @@
     </p>
 
   <div class="row">
-    <div class="col-4">@fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") </div>
-    <div class="col-4">@fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", width, height, "float-left", label: "Query Configuration with Params and Test-Values")</div>
-    <div class="col-4">@fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", width, height, "float-left", label: "SQL Query using Params")
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", 200, 200, "float-left", label: "Query Tree") </div>
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", 200, 200, "float-left", label: "Query Configuration with Params and Test-Values")</div>
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", 200, 200, "float-left", label: "SQL Query using Params")
   </div>
 
   </div>

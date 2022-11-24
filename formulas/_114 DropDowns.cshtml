@@ -4,17 +4,9 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @* @Sys.ToolbarHelpers.EnableEditForAll(); *@
 </hide>
 
-<hide>
-@{
-  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-
-  var fancybox = CreateInstance("../shared/Fancybox.cs");
-
-  CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-}
-</hide>
 
 <div class="row">
   <div class="col-md-7">
@@ -39,10 +31,6 @@
 
 <hr>
 
-@Html.Partial(sourceCode, new { 
-  Path = App.PhysicalPath + "/api/",
-  File = "FormulasController.cs",
-  TitlePath = "/api/"
-})
+@Sys.SourceCode.ShowFileContents("../api/FormulasController.cs")
 
 @Sys.PageParts.FooterWithSource()
