@@ -14,7 +14,7 @@ public class Bootstrap5 : Custom.Hybrid.Code14
   // show warning for admin if koi.json is missing
   public dynamic WarnAboutMissingOrUnknownBootstrap() {
     if (Kit.Css.IsUnknown && CmsContext.User.IsSiteAdmin) {
-      return Tag.Div().Class("dnnFormMessage dnnFormWarning").Wrap(
+      return Tag.Div().Class("alert alert-warning").Wrap(
         Connect.Koi.Messages.CssInformationMissing,
         Tag.Br(),
         Connect.Koi.Messages.OnlyAdminsSeeThis
