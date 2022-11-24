@@ -31,6 +31,9 @@ public class Helpers: Custom.Hybrid.Code14
   public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = CreateInstance("ToolbarHelpers.cs")).Init(this); } }
   private dynamic _tlbHelpers;
 
+  public dynamic InfoSection { get { return _infs ?? (_infs = CreateInstance("InfoSection.cs")).Init(this); } }
+  private dynamic _infs;
+
   public dynamic Title(string title) {
     // set browser title for SEO
     Kit.Page.SetTitle(title + " DNN / 2sxc Razor Tutorials ");
