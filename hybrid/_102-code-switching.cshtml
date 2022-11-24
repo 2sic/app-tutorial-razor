@@ -5,12 +5,6 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
-
-<hide>
-@{
-  string sourceCode = Sys.ShowCodeFile; // must be typed, because Html.Partial on Oqtane can't use dynamic variables
-}
-</hide>
 <trim>
   <div class="row mb-5">
     <div class="col-lg-7">

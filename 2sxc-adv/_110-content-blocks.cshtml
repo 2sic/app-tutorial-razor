@@ -2,44 +2,25 @@
 @using System.Collections;
 @using System.Linq;
 <hide>
-@*
-  Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
-  2sxclint:disable:no-dnn-namespaces
-*@
-@Html.Partial("_header.cshtml")
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
 <h2>Query Content-Blocks</h2>
 <p>
   In this example, we'll see what content-blocks are in the system, and where they are in use. 
 </p>
-<p>
+<div class="alert alert-info">
   You are on portal <strong>@CmsContext.Site.Id</strong> - this sample has hard-wired IDs for portal 59 (our dev-environment) and 24 (the tutorials on 2sxc.org). If one of these is detected, it will show the stats for a portal we know on that system, otherwise from the current app - which won't show much, since this tutorial app doesn't have many content-blocks. 
-</p>
+</div>
 
-</trim>
+@Sys.SourceCode.ResultStart("demo", "Full DNN Code")
+  @if (CmsContext.Platform.Name == "Oqtane") {
+    @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+  } else {
+    @Html.Partial("_110-content-blocks.dnn.cshtml")
+  }
+@Sys.SourceCode.ResultEnd("file:_110-content-blocks.dnn.cshtml")
 
-<snippet id="content-blocks">
-@if (CmsContext.Platform.Name == "Oqtane") {
-  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
-} else {
-  @Html.Partial("_110-content-blocks.dnn.cshtml")
-}
-</snippet>
-<hide-silent> @* Show only this snippet *@
-  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "content-blocks", Size = 150 }) 
-</hide-silent>
-
-
-<hide>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
-
-@Html.Partial("../shared/_source-code.cshtml", new { 
-  Path,
-  File = "_110-content-blocks.dnn.cshtml",
-  Size = 2300,
-  TitlePath = "/api/",
-}) 
-</hide>
+@Sys.PageParts.FooterWithSource()

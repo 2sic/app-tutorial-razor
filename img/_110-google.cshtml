@@ -46,7 +46,6 @@
 </figure>
 
 
-<hide>
   @* Photo by <a href="https://unsplash.com/@dorianbaumann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dorian Baumann</a> on <a href="https://unsplash.com/s/photos/aescher?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
   Werdenberg: Photo by <a href="https://unsplash.com/@calina?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Georg Bommeli</a> on <a href="https://unsplash.com/s/photos/buchs-sg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -56,6 +55,5 @@
   jelly fish Photo by <a href="https://unsplash.com/@kkkaran?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Karan Karnik</a> on <a href="https://unsplash.com/s/photos/sea-life?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
   *@
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
-@Html.Partial("../shared/_source-code.cshtml", new { Path }) 
-</hide>
+
+@Sys.PageParts.FooterWithSource()

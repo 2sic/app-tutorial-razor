@@ -63,15 +63,6 @@
 
 </div>
 
-@* TODO - EXPERIMENTAL, must make Oqtane compatible *@
-@functions {
-  public dynamic ShowSnippet(string name, int size = 100)
-  {
-    return Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = name, Size = size });
-  }
-}
-
-
 
 @* TODO: @2dk - do like this - always combine two to three samples (which go together), with enter (empty line) in between *@
 <h2>Add / Remove Buttons</h2>
