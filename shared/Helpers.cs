@@ -20,14 +20,16 @@ public class Helpers: Custom.Hybrid.Code14
   public string Path {get;set;}
 
   // Url to show source code, to not repeat in every file
-  // TODO: USE THIS IN ALL FILES
   public string ShowCodeFile = "../shared/_source-code.cshtml";
 
   public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(Path)); } }
   private dynamic _sourceCode;
 
-  public dynamic PageParts  { get { return _pageParts ?? (_pageParts = CreateInstance("PageParts.cs").Init(this)); } }
+  public dynamic PageParts { get { return _pageParts ?? (_pageParts = CreateInstance("PageParts.cs").Init(this)); } }
   private dynamic _pageParts;
+
+  public dynamic Fancybox { get { return _fancybox ?? (_fancybox = CreateInstance("Fancybox.cs")); } }
+  private dynamic _fancybox;
 
   public dynamic Title(string title) {
     // set browser title for SEO
