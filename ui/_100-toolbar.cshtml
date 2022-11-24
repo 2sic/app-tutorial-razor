@@ -3,16 +3,9 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
+
 </hide>
-<hide>
-
-  
-@{
-  // IMPORTANT: This must be at the top of the file, so it executes first
-  var tlbShared = CreateInstance("../Shared/ToolbarHelpers.cs");
-  tlbShared.EnableEditForAnonymous(Edit);
-}
-
 
 <div class="row mb-5">
   <div class="col-lg-7">
@@ -33,10 +26,7 @@
   <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
 </div>
 
-@tlbShared.AutoShowAllToolbarsStart()
-</hide>
-
-<div class="sc-element">
+@Sys.ToolbarHelpers.AutoShowAllToolbarsStart()
 
 
 <h2>Initial Setup, No Configuration</h2>
@@ -61,7 +51,6 @@
   <div><code>@@Edit.TagToolbar(Content)</code> with a content-item</div>
 </div>
 
-</div>
 
 
 @* TODO: @2dk - do like this - always combine two to three samples (which go together), with enter (empty line) in between *@
@@ -463,10 +452,6 @@
   <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.
 </div>
 
-<hide>
 @* 2sxclint:disable:no-inline-script *@
-
-@* @tlbShared.AutoShowAllToolbarsEnd() *@
-</hide>
 
 @Sys.PageParts.FooterWithSource()

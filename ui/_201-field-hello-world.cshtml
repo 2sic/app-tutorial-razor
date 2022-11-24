@@ -3,10 +3,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("_header.cshtml", new { Sys = Sys })
-  @{
-  // IMPORTANT: This must be at the top of the file, so it executes first
-  CreateInstance("../Shared/ToolbarHelpers.cs").EnableEditForAnonymous(Edit);
-  }
+  @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 </hide>
 
 
