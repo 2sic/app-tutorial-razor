@@ -56,6 +56,12 @@ public class PageParts: Custom.Hybrid.Code14
     ));
   }
 
+  public dynamic InfoWrapper() { return Tag.Attr("class", "row mb-5");}
+
+  public dynamic InfoIntro() { return Tag.Attr("class", "col-lg-7");}
+  
+  public dynamic InfoBoxWrapper() { return Tag.Attr("class", "col-lg-5 order-1");}
+
   public dynamic FooterWithSource() {
     var l = Log.Call<dynamic>();
     return l("test", Tag.RawHtml(

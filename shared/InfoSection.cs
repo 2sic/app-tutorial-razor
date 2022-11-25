@@ -1,6 +1,6 @@
 // using Custom.Hybrid;
-// using ToSic.Razor.Blade;
-
+using ToSic.Razor.Blade;
+using ToSic.Razor.Markup;
 // Class to generate shared parts on the page
 // Such as navigations etc.
 // Should itself not have much code, it's more central API to access everyhing
@@ -22,4 +22,7 @@ public class InfoSection: Custom.Hybrid.Code14
     return CreateInstance("InfoSectionPart.cs").Init(Sys, parent, field);
   }
 
+  public dynamic Wrapper() { return Tag.Attr("class", "row");}
+
+  public dynamic Intro() { return Tag.Attr("class", "col-lg-7");}
 }

@@ -5,13 +5,16 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-@Html.Partial("../shared/_DefaultInfoSectionFloating.cshtml")
 
-<div class="">
-  <h2>Create and Show Variables</h2>
+<div class="row">
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 
-  <h3>Basic set variable and show</h3>
-  <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
+  <div class="col-lg-7">
+    <h2>Create and Show Variables</h2>
+
+    <h3>Basic set variable and show</h3>
+    <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
+  </div>
 </div>
 
 @Sys.SourceCode.SnippetInlineStart("basic-set-show")
