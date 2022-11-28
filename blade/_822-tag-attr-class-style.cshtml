@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>RazorBlade</em> <code>Id</code>, <code>Title</code>, <code>Class(...)</code> and <code>Style(...)</code> with SmartJoin</h2>
       <p>
         All html attributes can have these Properties
@@ -40,12 +40,11 @@
         </p>
       </div>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
   <h3>
     RazorBlade Attributes are super-smart...
   </h3>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("tag-attr")
  <ol>

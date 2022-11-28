@@ -6,10 +6,10 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Toolbar Customization</h2>
 
     <br>
@@ -20,7 +20,6 @@
       @Sys.LiExtLink("https://docs.2sxc.org/specs/js/commands.html", "List of commands (button-names)")
     </ol>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 
 <hr>

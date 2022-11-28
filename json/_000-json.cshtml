@@ -8,16 +8,16 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Working with JSON Data</h2>
     <p>
       JSON data can be tricky. The easiest way is to convert it to a dynamic object using <code>AsDynamic(string)</code>. Then you can easily use it in your code. 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</hide>
+
 
 <h3>Show properties and sub-properties - case insensitive</h3>
 

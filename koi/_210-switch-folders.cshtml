@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <div class="row">
         <div class="col-lg-8">
           <h2>Switch between template files based on Bootstrap Version</h2>
@@ -25,9 +25,7 @@
         </div>
       </div>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
 
 
 @Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of bs3_Alert.cshtml", "Source of bs4_Alert.cshtml")

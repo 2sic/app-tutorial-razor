@@ -10,9 +10,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Bare Metal WebAPI Commands (v12.10+)</h2>
       <p>
         In some cases you want to have more control over the API calls, but still need 2sxc to help you get the right headers and urls. 
@@ -24,7 +24,6 @@
         but there are other ways as well if you prefer working the the Module Id.
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 
   <h3>Headers</h3>

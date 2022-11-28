@@ -19,11 +19,12 @@
       );
     }
   }
-
 </hide>
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Best practices using the Image Service</h2>
       <p>Learn about the best practices for using the image service and more. Our goals are:</p>
       <ol>
@@ -33,9 +34,8 @@
         </li>
       </ol>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
 

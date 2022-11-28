@@ -6,17 +6,17 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Interface ICmsView</h2>
       <p>
         Get information about the view context.
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("ICmsView-edition")
   <h3>The .Edition attribute:</h3>

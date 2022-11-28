@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row">
-  <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <trim>
       <h2><em>RazorBlade</em> .After(), .AfterLast(), .Before(), .BeforeLast(), .Between()</h2>
       <p>
@@ -17,7 +18,6 @@
       </p>
     </trim>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 <trim>

@@ -7,14 +7,14 @@
 </hide>
 
 
-<div class="row">
-  <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <trim>
       <h2><em>RazorBlade</em> IScrub.Attributes(...), IScrub.Styles(), IScrub.Classes()</h2>
       <p>These demos show how to scrub attributes of html source.</p>
     </trim>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })

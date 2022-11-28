@@ -8,18 +8,17 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-  <div class="col-lg-7">   
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>  
     <h2>Example from App.Query</h2>
     <p>
       Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar (<a href="https://2sxc.org/en/Learn/Visual-Query-Designer" target="_blank">more</a>). These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the <code>Current</code> stream as well as the <code>CurrentBooks</code> of that author. 
     </p>
     @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-authors-with-books.png", 400, 200)
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("data-query")
   @{

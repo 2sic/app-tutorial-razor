@@ -20,9 +20,10 @@
   }
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h1>Best-Possible Image for Every Screen &amp; Device</h1>
       <h2>...using <code>img</code> and <code>srcset</code></h2>
       <p>
@@ -33,7 +34,6 @@
         <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
       </ol>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
   <div class="alert alert-info">
     These examples are optimized. 
@@ -51,8 +51,6 @@
     To really get the hang of this, best check out <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">the MDN docs</a>.
   </p>
 
-
-</trim>
 
 <hide>
   <h3>What you need to know about <code>srcset</code></h3>

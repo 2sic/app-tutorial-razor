@@ -10,9 +10,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>WebApi with Polymorph Editions</h2>
       <p>
         You often need to make changes on a live site (open-heart-surgery) without affecting the users. For this, you should have two copies of the API Controller - one live, and one staging. This is done by doing the following: 
@@ -28,9 +28,8 @@
         Click to see the result of the two calls, one to live, one to staging:
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("editions", "Source of Live_api", "Source of Dev_api")
   <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">

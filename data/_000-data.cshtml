@@ -8,10 +8,10 @@
 </hide>
 
 
-<trim>
 <h2>Working with Data</h2>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <p>If you want to work with <strong>data</strong> (like from a database) instead of <strong>@Sys.TutLink("content", "content")</strong> (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:</p>
 
     <ul>
@@ -27,10 +27,8 @@
       Once you have the data, you will usually want to loop-and-show, which is easiest using <code>dynamic</code> objects, so you can just type things like <code>@@Content.FirstName</code> to show the properties. 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
-</trim>
 
 @* 
 TODO: 2dm - darf das weg?

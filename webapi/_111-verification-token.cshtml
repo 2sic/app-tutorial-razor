@@ -10,9 +10,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>More secure Basic WebApi Example</h2>
       <p>
         In this example, we'll ensure that calls to your API only come from users who are visiting your website. This is to protect agains <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">CSRF</a> attacks, where another website gets your users to interact with your API. That could be dangerous, because maybe your API has things only a logged in user should see - and without the CSRF protection, the other website could get access to that because the user is logged in. 
@@ -22,9 +22,8 @@
         Click to see the result of a WebApi call with the shared code:  
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch", "Source of api_VerifiedController")
   <button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">

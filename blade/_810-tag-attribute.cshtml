@@ -7,17 +7,16 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>RazorBlade</em> Safe Attributes API @@Tag.Attr <em>v3</em></h2>
       <div>
         Here we'll go through some examples using <code>@@Tag.Attr(...)</code>
       </div>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 <trim>
 

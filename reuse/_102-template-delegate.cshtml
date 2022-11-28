@@ -7,17 +7,17 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>HTML-functions = Code-Snippet with Template Delegates</h2>
     <p>If you just need a quick simple snippet, Template Delegates are the way to go. 
     They are very limited so only ideal for simple stuff. More complex stuff should use
     @Sys.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<trim>
+
 
 <h2>HTML <code>Func&lt;thing, dynamic&gt;</code> Template Delegate</h2>
 <p>

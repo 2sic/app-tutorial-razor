@@ -10,9 +10,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Hybrid (Dnn / Oqtane) WebApi Examples</h2>
       <p>
         This is an advanced implementation of the basic examples before. It uses <code>@("#" + "if")</code> statements to ensure that the same code can run in Dnn and Oqtane. 
@@ -22,9 +22,8 @@
         Click to see the result of a WebApi call with the shared code:  
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("webapi-hybrid", "Source of api_HybridController")
   <button type="button" class="btn btn-primary" onclick="callBasicHello(this)">

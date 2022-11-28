@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>IPageService</em> to Set Headers / Meta etc.</h2>
       <div>
         This page sets the title, description, keywords and some manual tags to the header. 
@@ -17,9 +17,8 @@
         Look at the resulting output-source to see the effect. 
       </div>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 

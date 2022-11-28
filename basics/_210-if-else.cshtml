@@ -6,12 +6,13 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Using if and if-else</h2>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
+
 
 <h3>Basic <code>if</code></h3>
 

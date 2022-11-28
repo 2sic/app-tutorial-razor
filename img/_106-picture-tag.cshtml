@@ -25,18 +25,18 @@
   test 2dm
 </hide-silent>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Browser-Capabilities <code>picture</code> with different formats</h2>
       <p>
         The perfect image depends on browser capabilities.
         The following example will get modern browsers a webp image (which is smaller/faster) and normal browsers a jpg.
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
 

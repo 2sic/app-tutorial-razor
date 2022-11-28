@@ -8,10 +8,9 @@
 </hide>
 
 
-<trim>
-
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Going all Multilanguage / i18n</h2>
     <p>
       Everything in 2sxc is multi-language right from the start. It's important to understand that every field in 2sxc can be translated or not - and the lookup happens automatically. So the following examples will automatically show the correct value based on the language you're on. 
@@ -24,7 +23,6 @@
       <li>Multi-Language Content - things the content editor will work with</li>
     </ol>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 <div class="alert alert-warning">
@@ -32,7 +30,7 @@
   That's because Dnn / 2sxc must be have DE and EN activated <em>before</em> installing the tutorial app.
   Otherwise it will only import the EN data and not import the DE data.
 </div>
-</trim>
+
 
 <h2>Multi-Language (i18n) Resources</h2>
 <p>

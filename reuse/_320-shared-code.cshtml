@@ -9,9 +9,10 @@
 
 @* TODO: @2dk - remove unnecesary HRs, correct indentations *@
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Reuse code with .cs files (new in 2sxc 10.01)</h2>
       <p>
         Starting with 2sxc 10.01 <code>CreateInstance()</code> can also be used with .cs files,
@@ -19,9 +20,8 @@
         This allows you to create shared code which can be used in Razor and WebApi controllers.
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 <h2>Using shared library of simple functions</h2>
 <trim>

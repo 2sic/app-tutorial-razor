@@ -6,10 +6,9 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
-
+@* 2dg: neue info section part *@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-  
   <div @Sys.PageParts.InfoIntro()>
     <h2>Reuse Shared Razor Helpers</h2>
     <p>
@@ -36,6 +35,7 @@
     </p>
   </div>
 </div>
+@* 2dg: neue info section part *@
 
 <h2>Using Shared Helpers</h2>
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>

@@ -12,9 +12,9 @@
 </hide>
 
 
-<trim>
-  <div class="row">
-    <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Use the sxc data API to create metadata</h2>
       <p>This page uses the sxc data API to create metadata in the backend.</p>
       <br>
@@ -30,9 +30,7 @@
       <br>
       Look at the content below to see the effect. 
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
 
 
 @Sys.SourceCode.ResultStart("turn-on-demo", "Source of create-metadata.js")

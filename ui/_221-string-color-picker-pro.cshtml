@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc Custom Color-Picker Input Field - Configurable</h2>
     <p>
       Input fields may expect some configuration - like default colors or WebApi endpoints. To enable such a configuration, we need a Content-Type which defines all the fields that can be configured. This can be in the app-data, or it can be stored in a subfolder of the field-extension, to make redestribution easier. <br>
@@ -22,7 +23,6 @@
       <li>The Content-Type for configuration is included in the extension folder</li>
     </ul>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 
   @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")

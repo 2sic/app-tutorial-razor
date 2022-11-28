@@ -7,10 +7,9 @@
 </hide>
 
 
-<trim>
-
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Reuse templates and code</h2>
     <p>
       This will show you how to place partial templates into separate files, and how to put functions you need in many places in separate files as well. It focuses on: 
@@ -34,10 +33,7 @@
       </li>
     </ol>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-
-</trim>
 
 
 <h2>Reuse Shared Stuff Examples</h2>

@@ -5,9 +5,9 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <p>
         Learn how to create and use <strong>WebApi</strong> to provide data to JavaScript SPA apps. 
       </p>
@@ -21,8 +21,7 @@
         Our examples use very trivial JavaScript code to call the API and show the results. Your SPA apps will usually be more sophisticated, but that would then be a topic for a JavaScript tutorial. 
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.PageParts.FooterWithSource()

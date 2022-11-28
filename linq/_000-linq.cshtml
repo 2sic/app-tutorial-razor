@@ -7,9 +7,10 @@
 </hide>
 @using System.Linq;
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <p>
       Learn how to leverage LINQ (Language Integrated Query) of C# to sort, filter, group content-items. This demo uses the following data in app:
     </p>
@@ -18,7 +19,6 @@
       <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
     </ul>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 <h2>Some notes before we start</h2>
@@ -44,7 +44,6 @@
     The <code>as object</code> part necessary because of limitations in Razor. 
   </li>
 </ul>
-</trim>
 @* 
 <hr>
 <h2>LINQ Examples</h2>

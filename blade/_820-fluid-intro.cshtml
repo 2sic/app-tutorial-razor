@@ -7,15 +7,14 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>RazorBlade</em> Basic Html5 <code>Tag</code> API Introduction <em>v3.0</em></h2>
       <p>
         This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
   <h3>Basic Principles</h3>
 

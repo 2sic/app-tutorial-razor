@@ -7,15 +7,15 @@
 </hide>
 
 
-<div class="row">
-  <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Formulas using WebAPI and REST calls</h2>
     <p>
       Formulas can retrieve data from WebAPIs and REST. 
       We have various examples of this on other pages, so this page will just repeat the examples from those page. 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 

@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row">
-  <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Formulas using parameters</h2>
     <p>We'll show you how to use page parameters with formulas</p>
     <p>In this tutorial you'll learn how to:</p>
@@ -22,7 +23,6 @@
     </ul>
     <br>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 

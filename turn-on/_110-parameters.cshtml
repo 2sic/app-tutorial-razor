@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Pass function parameters with turnOn</h2>
       <p>In this page turnOn passes parameters to a JavaScript function. The passed parameters then get deconstructed and used for DOM manipulation.</p>
       <br>
@@ -24,11 +24,8 @@
       </ul>
       Look at the text below to see the effect. 
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
-<hide>
-</hide>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of parameters-js")
   <div id="turn-on-example">

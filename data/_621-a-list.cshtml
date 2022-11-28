@@ -7,19 +7,18 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys }) 
 </hide>
 
-<trim>
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>List Details using Automatic View-Switching and Query</h2>
     <p>
       The previous examples showed you how to do auto-switch views. This example makes the code even easier, by telling the details-view to pick up the details-item from a query. You can see the query and how it's configured to the right.
     </p>
     @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-design.png", 400, 200)
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 <h3>List of Persons</h3>
 

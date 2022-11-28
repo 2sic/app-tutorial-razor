@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Pass function the Module Id as parameter with turnOn</h2>
       <p>This page creates a unique DOM attribute and sets it on a div. turnOn then passes this attribute to a JavaScript function, which identifies the element with a queryselector and performs DOM manipulations.</p>
       <br>
@@ -24,9 +24,8 @@
       </ul>
       Look at the text below to see the effect. 
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of module-js")
   @{

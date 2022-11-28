@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Await custom conditions through functions</h2>
       <p>
         This page waits for a function to return true, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
@@ -24,9 +24,7 @@
       </ul>
       Look at the element below to see the effect. 
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
 
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of await-function-js")

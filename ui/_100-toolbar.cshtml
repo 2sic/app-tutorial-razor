@@ -7,15 +7,15 @@
 
 </hide>
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc Toolbar Customization</h2>
     <div>
       Since you can do so many things customizing the toolbar, we created a bunch of small examples for you. Note that we are basically providing a list of commands how the toolbar should be modified. You should also 
       <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">read the docs</a> to learn more about this. 
     </div>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 
 <div class="alert alert-warning">

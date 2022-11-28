@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Working with URL Parameters using Page Parameters</h2>
     <p>
       The following code will use a value from the url querystring. There are various ways to pick it up, but we recommend the cross-platform API which works in Dnn and Oqtane.
@@ -31,9 +31,8 @@
       Below you'll find some links which change the url, so you can see how the output changes:
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("basic-params")
  <ul>

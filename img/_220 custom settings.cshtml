@@ -19,18 +19,18 @@
   }
 </hide>
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Resize with Reusable Settings</h2>
     <p>
       If you want to specify resize-rules many times, you will usually want the configuration as a <strong>bundle</strong> to use multiple times. 
       The following examples show how to do this.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
   <h3>Basic Bundle of Settings (Height, Width and ResizeMode Crop)</h3>
   <p>This example uses the configuration as is, to create an image according to following specs</p>

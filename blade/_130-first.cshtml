@@ -7,17 +7,16 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2><em>RazorBlade</em> Text.First(...) <em>v3</em></h2>
     <p>
       These demos show how to get the first <em>real</em> text of a series of values. Basically it will ignore nulls, empty texts, space-strings and even combinations containing empty lines, html-nbsps and more. Internally it uses @Sys.TutLink("Text.Has(...)", "blade120/page").
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInitStart("intro")
   @{

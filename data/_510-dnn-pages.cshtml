@@ -14,18 +14,17 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Example from DNN Data</h2>
     <p>
       DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. 
       Please note that the DNN API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @{#if NETCOREAPP}
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")

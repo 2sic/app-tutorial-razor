@@ -8,11 +8,12 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Simple Sorting of Persons</h2>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+
 
 @Sys.SourceCode.SnippetInitStart("intro")
   @{

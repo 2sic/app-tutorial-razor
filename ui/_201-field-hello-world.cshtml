@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc Custom Input Fields (11.02+)</h2>
     <p>
       2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
@@ -26,7 +27,6 @@
       So just have a look and discover how simple everything can be 🚀.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 <br>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")

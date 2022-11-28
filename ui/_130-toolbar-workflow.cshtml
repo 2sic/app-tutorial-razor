@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc UI - Toolbar Workflows</h2>
     <p>
       Toolbars will automatically do things like open a dialog or refresh the page when the dialog closes. 
@@ -24,7 +25,6 @@
       <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">toolbar docs</a> to learn more about this. 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 <div class="alert alert-warning">

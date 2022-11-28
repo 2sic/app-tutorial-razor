@@ -6,17 +6,17 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Interface ICmsCulture</h2>
       <p>
         With this object you can get general information about the culture. 
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("ICmsCulture-currentcode")
   <h3>The .CurrentCode attribute:</h3>

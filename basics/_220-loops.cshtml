@@ -6,15 +6,14 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Loops - <code>for</code> and <code>foreach</code></h2>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 <h3>Using a <code>foreach</code> - the most common way of looping</h3>
-</trim>
+
 
 @Sys.SourceCode.SnippetInitStart("intro")
   @{

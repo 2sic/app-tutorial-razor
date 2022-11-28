@@ -10,15 +10,16 @@
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
 }
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h3>Show a variable</h3>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 <p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
-</trim>
+
 
 @Sys.SourceCode.SnippetInitStart("intro")
   @{

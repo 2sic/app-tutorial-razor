@@ -11,13 +11,14 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h3>Simple First() and Last()</h3>
     <p>This filters the authors with long first names.</p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
+
 
 @Sys.SourceCode.SnippetInlineStart("linq-first-last")
   <ol>

@@ -10,18 +10,16 @@
 </hide>
 
 
-<trim>
-
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Look at the Content-Type of something</h2>
     <p>
       In some advanced cases you want to find out information about a specific content-type.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 <h3>Content-Type Information</h3>
 

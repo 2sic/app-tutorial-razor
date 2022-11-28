@@ -9,17 +9,16 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>App.Data WebApi Examples</h2>
       <p>In this example, we'll get app-data from the WebApi.</p>
 
       <p>Click to see the result of a WebApi call with the shared code:</p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 
 @Sys.SourceCode.ResultAndSnippetStart("demo-1", "Source of api_BooksController")

@@ -20,9 +20,10 @@
 
 </hide>
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Merge image settings</h2>
     <p>
       The following examples merge custom settings with predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
@@ -35,9 +36,8 @@
       <li>Quality: @Settings.Images.Content.Quality</li>
     </ol>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 <h3>Image with merged settings</h3>
 <p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>

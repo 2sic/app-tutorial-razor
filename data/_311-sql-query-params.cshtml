@@ -8,9 +8,9 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>SQL from a App.Query, setting Params</h2>
     <p>
       The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
@@ -27,10 +27,8 @@
   </div>
 
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
-</trim>
 
 <h3>Root Portal</h3>
 <p>In this example we will set the PortalId for the SQL query.</p>

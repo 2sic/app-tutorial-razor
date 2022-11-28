@@ -7,13 +7,12 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>IPageService</em> AddIcon to Html Headers</h2>
       <p>This page sets various icon headers according to best practices. </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
   @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
   <div>
@@ -26,7 +25,7 @@
     @SubpageLink("Add default set without favicon", "nofav")
     @SubpageLink("Add default set with custom favicon (recommended)", "pngfav")
   </ul>
-</trim>
+
 
 @Sys.SourceCode.SnippetOnlyStart("page-icons")
   @{

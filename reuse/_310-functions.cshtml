@@ -7,17 +7,16 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Reuse functions</h2>
       <p>
         When you need a function in many places, it's best to put it into an own <code>cshtml</code> file and access it using <code>CreateInstance</code>. 
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 <h2>Using shared library of functions</h2>
 <trim>

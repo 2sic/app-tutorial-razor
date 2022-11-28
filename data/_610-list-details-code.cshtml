@@ -8,9 +8,9 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Basic List Details using Code</h2>
     <p>
       Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example even has the list & details view in the same file - but usually you don't want that - so check the next examples afterwards. 
@@ -19,9 +19,8 @@
       Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @Sys.TutLink("LINQ Tutorials", "linq").
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("sql-read")
   @{

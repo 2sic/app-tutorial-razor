@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc Custom WYSIWYG with Additional Button</h2>
     <p>
       This example show how we customize more of TinyMCE. 
@@ -21,7 +22,6 @@
       <li>Run code when the editor is running <code>init</code> to add button defininiots</li>
     </ul>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 <br>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")

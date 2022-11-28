@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc UI - cms.run commands</h2>
     <p>
       In some cases you need to call a CMS command without using the toolbar - like in SPAs and in situations where a normal HTML button should call edit. 
@@ -19,9 +20,8 @@
       <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">toolbar docs</a> to learn more about this. 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
-
 </div>
+
 
 <div class="alert alert-warning">
   Important: Usually only editors see these toolbars - so saving won't work. 

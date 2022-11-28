@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>RazorBlade</em> AddIcon to Html Headers</h2>
 
       @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
@@ -29,9 +29,8 @@
         @SubpageLink("Add default set with custom favicon (recommended)", "pngfav")
       </ul>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @if (CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")

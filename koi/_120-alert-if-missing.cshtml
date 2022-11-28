@@ -6,9 +6,9 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <div class="row">
       <div class="col-lg-8">
         <h2>Show Warning if Bootstrap5 not Included or Unclear</h2>
@@ -25,9 +25,8 @@
       </div>
     </div>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of Bootstrap5.cs")
   @{

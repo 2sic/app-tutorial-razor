@@ -8,8 +8,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2><code>Count()</code> and <code>Count</code></h2>
     <p>Count some stuff.</p>
     @*
@@ -20,9 +21,8 @@
       This means they have the property <code>Count</code> (without brackets<code>()</code>).
     </p> *@
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-
 </div>
+
 
 @Sys.SourceCode.SnippetInlineStart("linq-count")
   @{

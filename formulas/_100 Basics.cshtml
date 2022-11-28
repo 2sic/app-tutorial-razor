@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row">
-  <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Create Your First Formula</h2>
     <p>We'll show you how customize your 2sxc edit forms using formulas</p>
     <p>In this tutorial you'll learn how to:</p>
@@ -25,7 +26,6 @@
     </ul>
     <br>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 

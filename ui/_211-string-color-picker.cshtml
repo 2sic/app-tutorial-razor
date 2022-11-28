@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc Custom Color-Picker Input Field</h2>
     <p>
       2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
@@ -23,7 +24,6 @@
       <li>Use <code>disconnectedCallback()</code> to destroy inner objects</li>
     </ul>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 </hide>

@@ -5,9 +5,10 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Platform Specific Sub-Razor-Files</h2>
       <p>
         In some cases it's just simple to provide different <code>cshtml</code> files for each platform. 
@@ -16,9 +17,8 @@
         Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("hybrid", "Dnn Razor", "Oqtane Razor")
   @Html.Partial("_CodeSwitching." + CmsContext.Platform.Name + ".cshtml")

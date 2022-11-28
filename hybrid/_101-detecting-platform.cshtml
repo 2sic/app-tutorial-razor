@@ -5,9 +5,9 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Hybrid Razor - Detect Platform</h2>
     <p>
       Razor is mostly <code>HTML</code> + <code>C#</code>. 
@@ -16,11 +16,9 @@
       Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 </p>
-</trim>
 
 <hr>
 

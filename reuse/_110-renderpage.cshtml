@@ -7,17 +7,17 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Reuse Shared Templates</h2>
     <p>
       Partial templates are <code>cshtml</code> files which you can use multiple times. Typically they will contain something which you need in many places, like a menu or a data-visualizer which gets data as a parameter, and then creates a different table each time. Here's how to use it with <code>Html.Partial(...)</code> (or <code>RenderPage</code> in older versions). 
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 <h3>Just render the same, external file into here</h3>
 <p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>

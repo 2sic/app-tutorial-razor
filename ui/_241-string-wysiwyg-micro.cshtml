@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc Custom Micro-WYSIWYG Input Field</h2>
     <p>
       Creating an own WYSIWYG would be super difficult. 
@@ -27,7 +28,6 @@
       <li>Use <code>configureOptions</code> to set a different toolbar</li>
     </ol>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
 </div>
 <br>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")

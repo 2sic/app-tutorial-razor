@@ -5,9 +5,9 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })  
 </hide>
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Platform Specific Razor using Preprocessor <code>#if</code></h2>
     <p>
       Razor is mostly <code>HTML</code> + <code>C#</code>. 
@@ -27,14 +27,11 @@
         Razor only has limited support for Preprocessor directives. 
         For example, you cannot conditionally use <code>@@inherits</code> statements. 
       </p>
-      
     </div>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 
 </p>
-</trim>
 
 <hr>
 

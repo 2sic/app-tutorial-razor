@@ -7,9 +7,9 @@
 </hide>
 
 
-<hide>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Preserve URL parameters</h2>
     <h3>Create a link to the same page</h3>
     <p>
@@ -21,11 +21,9 @@
       Current page parameters are found in <code>CmsContext.Page.Parameters</code>.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-
 <h2>Link to current page with all Parameters</h2>
-</hide>
+
 
 @Sys.SourceCode.SnippetInlineStart("link-to-current-params")
   @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }

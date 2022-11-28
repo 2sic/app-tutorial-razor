@@ -10,9 +10,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>App.Query WebApi Examples</h2>
       <p>
         In this example, we'll get app-data from the WebApi which runs a query with a parameter. 
@@ -22,9 +22,8 @@
         Click to see the result of a WebApi call with the shared code:  
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("get-query", "Source of api_AuthorsQueryController")
   @{

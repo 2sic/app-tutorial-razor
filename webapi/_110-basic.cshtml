@@ -5,9 +5,9 @@
   @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Very basic WebApi Examples</h2>
       <p>
         In this example, we'll assume your WebApi controller is called <code>Basic</code> (so the file is called <code>BasicController.cs</code> and has a class called <code>BasicController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. <br>
@@ -23,9 +23,8 @@
         Click to see the result of a WebApi call with the shared code:  
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-json", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>

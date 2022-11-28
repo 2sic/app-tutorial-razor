@@ -8,9 +8,9 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Example from CSV</h2>
     <p>
       CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
@@ -18,9 +18,8 @@
     </p>
     @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("data-query-csv", "Source-code products.csv.txt")
   @{

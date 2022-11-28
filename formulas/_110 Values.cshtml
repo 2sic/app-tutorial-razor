@@ -7,12 +7,12 @@
 </hide>
 
 
-<div class="row">
-  <div class="col-md-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Formulas affecting Values</h2>
     <p>We'll show you examples where formulas can be applied to set the Value in many ways. </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
 

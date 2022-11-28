@@ -7,9 +7,10 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2><em>RazorBlade</em> add JSON-LD Headers</h2>
 
       @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
@@ -20,9 +21,8 @@
         This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
       </div>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
+
 
 @if (CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")

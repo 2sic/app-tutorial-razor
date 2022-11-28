@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Working with <em>number</em> URL Parameters</h2>
     <p>
       When you expect a number, you usually need to convert it to an <code>int</code> or similar for further use. Otherwise you'll be comparing numbers with strings. For example <code>if(3 == "3")</code> would return <code>false</code> - which is not what you usually want. <br>
@@ -20,9 +20,8 @@
       @SubpageLink("put ?id=27 in the url", "id=27")
     </ul>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
+
 
 @Sys.SourceCode.SnippetInlineStart("basic-number-params")
  @{

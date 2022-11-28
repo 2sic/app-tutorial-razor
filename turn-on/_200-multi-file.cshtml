@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Await libraries, before executing functions with turnOn</h2>
       <p>
         This page waits for a thirdparty library to finish loading, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
@@ -27,11 +27,8 @@
       </ul>
       Look at the element below to see the effect. 
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
-</trim>
-<hide>
-</hide>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of multi-file-js")
   @{

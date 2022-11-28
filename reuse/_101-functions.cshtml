@@ -7,8 +7,9 @@
 </hide>
 
 
-<div class="row mb-5">
-  <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Reuse Code with <code>@@functions { }</code></h2>
     <p>
       Any kind of code to do some work such as figure out a string or calculate something
@@ -16,9 +17,8 @@
       In Razor these are put inside a <em>functions</em> block.
     </p>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-<trim>
+
 
 <h3>Basic Example: <code>function</code> returning random number</h3>
 

@@ -7,9 +7,9 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Activate turnOn and execute basic tasks</h2>
       <div>This page activates turnOn and executes a JavaScript function using turnOn.</div>
       <br>
@@ -24,9 +24,8 @@
       </ul>
       Look at the text below to see the effect. 
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
   </div>
-</trim>
+
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of local-js")
   <div id="turn-on-example">

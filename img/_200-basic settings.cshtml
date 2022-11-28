@@ -15,9 +15,10 @@
   }
 </hide>
 
-<trim>
-<div class="row mb-4">
-  <div class="col-lg-7">
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Use the ImageResizer for Server-Side Resizing</h2>
     <p>
       2sxc comes with a built-in image resizer. 
@@ -31,9 +32,7 @@
       <li>Additional parameters like <code>mode=crop</code> specify how to handle scenarios where the size doesn't match what you need</li>
     </ol>
   </div>
-  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
 </div>
-</trim>
 <h2>The Unmodified Image</h2>
 <p>
   For starters - this is the image we'll resize later on:

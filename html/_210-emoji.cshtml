@@ -6,15 +6,14 @@
 </hide>
 
 
-<trim>
-  <div class="row mb-5">
-    <div class="col-lg-7">
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
       <h2>Working with 😃 Emojis / Emoticons</h2>
       <p>
         Emojis or Emoticons are built into all mobile devices and modern desktops. The way they work is that they are actually a very long character code - which automatically works in UTF-8 documents. That is the default in asp.net, so you're good to go. 
       </p>
     </div>
-    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   </div>
 
   <h2>Just showing Emojis in Source-Code</h2>

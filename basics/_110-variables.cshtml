@@ -6,16 +6,17 @@
 </hide>
 
 
-<div class="row">
+@* 2dg: neue info section part *@
+<div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-
-  <div class="col-lg-7">
+  <div @Sys.PageParts.InfoIntro()>
     <h2>Create and Show Variables</h2>
 
     <h3>Basic set variable and show</h3>
     <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
   </div>
 </div>
+@* 2dg: neue info section part *@
 
 @Sys.SourceCode.SnippetInlineStart("basic-set-show")
   @{
