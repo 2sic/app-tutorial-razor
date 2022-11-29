@@ -292,7 +292,7 @@ public class SourceCode: Custom.Hybrid.Code14
       nameCount++;
     }
     html = html.Add(showSnippet && !_resultEndWillPrepend ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
-    return l("resulting Html", html);
+    return /* l("resulting Html", */ html; //);
   }
 
 
@@ -452,7 +452,7 @@ public class SourceCode: Custom.Hybrid.Code14
     if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
       fullPath = GetFullPath(filePath);
     var contents = System.IO.File.ReadAllText(fullPath);
-    return l("test", new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents });
+    return /* l("test", */ new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents }; //);
   }
 
   public class ShowSourceSpecs {
@@ -489,7 +489,7 @@ public class SourceCode: Custom.Hybrid.Code14
     #else
       var result = HttpContext.Current.Server.MapPath(filePath);
     #endif
-    return l(result, result);
+    return result; // l(result, result);
   }
 
   #endregion

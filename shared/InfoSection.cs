@@ -21,8 +21,4 @@ public class InfoSection: Custom.Hybrid.Code14
   public dynamic Part(dynamic parent, string field) {
     return CreateInstance("InfoSectionPart.cs").Init(Sys, parent, field);
   }
-
-  public dynamic Wrapper() { return Tag.Attr("class", "row");}
-
-  public dynamic Intro() { return Tag.Attr("class", "col-lg-7");}
 }

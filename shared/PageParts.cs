@@ -35,25 +35,25 @@ public class PageParts: Custom.Hybrid.Code14
         var writer = new StringWriter();
         var encoder = HtmlEncoder.Create(new TextEncoderSettings());
         view.WriteTo(writer, encoder);
-        return l("ok oqtane", writer.ToString());
+        return writer.ToString(); // l("ok oqtane", writer.ToString());
       #else
         var result = (data == null ? ParentRazor.Html.Partial(path) : ParentRazor.Html.Partial(path, data));
-        return l("ok dnn", result);
+        return result; // l("ok dnn", result);
       #endif
     }
     catch
     {
-      return l("error", "");
+      return "";// l("error", "");
     }
   }
 
   public dynamic Header(dynamic header = null) {
     var l = Log.Call<dynamic>();
     var headerPart = header != null ? RenderPartial("../shared/_Header.cshtml", header) : null;
-    return l(null, Tag.RawHtml(
+    return /* l(null, */ Tag.RawHtml(
       headerPart,
       NavPrevNext()
-    ));
+    ); // );
   }
 
   public dynamic InfoWrapper() { return Tag.Attr("class", "row mb-5");}
@@ -64,10 +64,10 @@ public class PageParts: Custom.Hybrid.Code14
 
   public dynamic FooterWithSource() {
     var l = Log.Call<dynamic>();
-    return l("test", Tag.RawHtml(
+    return /* l("test", */ Tag.RawHtml(
       NavPrevNext(),
       Sys.SourceCode.ShowCurrentRazor()
-    ));
+    ); //);
   }
 
   public dynamic NavPrevNext() {
