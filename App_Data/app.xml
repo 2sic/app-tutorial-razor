@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.12.01" ExportDate="2022-11-21T23:34:27.3352715+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.12.03" ExportDate="2023-01-12T20:59:16.4226369+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -2560,6 +2560,213 @@
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="565623a4-fa85-4482-8cc4-241c591d7ab5" Json="True" KeyNumber="5039">
             <Value Key="InputType" Value="number-default" Type="String" />
             <Value Key="Name" Value="Poems" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" Name="TutFormulaSample" Description="" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="TutorialId" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7edec00d-2af1-4d42-a876-337d8f16aa53" Json="True" KeyNumber="5475">
+            <Value Key="InputType" Value="string-url-path" Type="String" />
+            <Value Key="Name" Value="TutorialId" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Title" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="98226fe2-11ef-4b73-8e52-da28065ab8b2" Json="True" KeyNumber="5476">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="TitleInResults" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="452ef172-a1b8-4a21-aa1b-4e15e8d1fbcb" Json="True" KeyNumber="5480">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="TitleInResults" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Instructions" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f6d6acc0-8c30-4793-939f-a6a7e2031941" Json="True" KeyNumber="5477">
+            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
+            <Value Key="Name" Value="Instructions" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="ContentType" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1eae5ac7-f08d-49db-8e89-d453f810d199" Json="True" KeyNumber="5478">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-dropdown-query" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Content Type" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="9e79cc2e-10b7-461b-8ae5-a6e558a9d841" Json="True" KeyNumber="5478">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown-query" AttributeSetName="@string-dropdown-query" EntityGUID="bb430f6e-c98c-4950-81cf-36e1f8f7adca" Json="True" KeyNumber="5478">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Label" Value="Name" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Query" Value="Eav.Queries.Global.ContentTypes" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Separator" Value="," Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="StreamName" Value="Default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="UrlParameters" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Value" Value="Name" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Field" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a9f357d1-e88b-4c6b-95d5-39ba9a6ec7f2" Json="True" KeyNumber="5479">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-dropdown-query" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Field" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="9d18a660-f32e-4e91-bc75-c9f334976ef2" Json="True" KeyNumber="5479">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown-query" AttributeSetName="@string-dropdown-query" EntityGUID="1288f382-fe27-45ca-9dc1-6fadb74f3131" Json="True" KeyNumber="5479">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Label" Value="Name" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Query" Value="Eav.Queries.Global.Attributes" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Separator" Value="," Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="StreamName" Value="Default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="UrlParameters" Value="ContentTypeName=[ContentType]" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Value" Value="Name" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="GroupAdvanced" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f936af18-3d90-48ba-bb8f-8b0c889a5aa2" Json="True" KeyNumber="5482">
+            <Value Key="InputType" Value="empty-default" Type="String" />
+            <Value Key="Name" Value="GroupAdvanced" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Parameters" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f2a6fc97-4829-44ac-9e2c-2ed3e13f4972" Json="True" KeyNumber="5481">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Parameters" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="ShowSnippet" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="a406ba19-4b67-4bd6-b221-a1a13c79a5b0" Json="True" KeyNumber="5483">
+            <Value Key="InputType" Value="boolean-default" Type="String" />
+            <Value Key="Name" Value="ShowSnippet" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
@@ -11064,17 +11271,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="f0b00ff2-198c-4264-8d01-622f9985ebfd">
-      <Value Key="BirthDate" Value="1949-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="Daniel" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Poems" Value="74" Type="Number">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="fbde3cae-c068-4288-b9c1-61dee644a9e4">
       <Value Key="BirthDate" Value="2021-01-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -11082,7 +11278,7 @@
       <Value Key="Name" Value="SuperPoet 814" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Poems" Value="90" Type="Number">
+      <Value Key="Poems" Value="64" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -11177,7 +11373,7 @@
       <Value Key="Name" Value="SuperPoet 426" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Poems" Value="979" Type="Number">
+      <Value Key="Poems" Value="58" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -11188,7 +11384,7 @@
       <Value Key="Name" Value="SuperPoet 602" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Poems" Value="38" Type="Number">
+      <Value Key="Poems" Value="23" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -15327,14 +15523,14 @@
       <Value Key="LinkTeaser" Value="&lt;p&gt;Working with tags in your code to stay error-free and do amazing stuff&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Create custom (non Html5) tags&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Create custom (non Html5) tags or Tags whose name stems from a variable&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="52c6ced7-3f5e-4599-9a66-b3f36fea72d0" Type="Entity" />
-      <Value Key="Title" Value="Create custom (non Html5) tags" Type="String">
+      <Value Key="Title" Value="Create Tags with variable Tag Name" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -15557,17 +15753,17 @@
       <Value Key="LinkEmphasis" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="&lt;p&gt;Automatically add the Bootstrap4 CSS package from a CDN, if the current theme does not include Bootstrap4 already, but skip it if it's already included.&lt;/p&gt;" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Automatically add the Bootstrap5 CSS package from a CDN, if the current theme does not include Bootstrap5 already, but skip it if it's already included.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Koi - Auto-Add Bootstrap4 if missing&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Koi - Auto-Add Bootstrap5 if missing&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="a5b6b6ef-89bc-48c8-a332-6558977c2b9e" Type="Entity" />
-      <Value Key="Title" Value="Koi - Auto-Add Bootstrap4 if missing" Type="String">
+      <Value Key="Title" Value="Koi - Auto-Add Bootstrap5 if missing" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -15590,17 +15786,17 @@
       <Value Key="LinkEmphasis" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="&lt;p&gt;Automatically add the Bootstrap4 CSS package from a CDN (same as above), but also show a warning to admins that this happened.&lt;/p&gt;" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Automatically add the Bootstrap5 CSS package from a CDN (same as above), but also show a warning to admins that this happened.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Koi - Auto-Add Bootstrap4 but inform Admin&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Koi - Auto-Add Bootstrap5 but inform Admin&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="a5b6b6ef-89bc-48c8-a332-6558977c2b9e" Type="Entity" />
-      <Value Key="Title" Value="Koi - Auto-Add Bootstrap4 but inform Admin" Type="String">
+      <Value Key="Title" Value="Koi - Auto-Add Bootstrap5 but inform Admin" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -15925,7 +16121,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" AttributeSetName="Tutorial" EntityGUID="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa">
-      <Value Key="Sections" Value="64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,2aa08895-dc7d-4f37-b8db-f9997b92a406,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,df11c290-8098-4978-87f9-1efc3aaac8ef,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,b71c0e1a-d6c1-441a-95fb-72e7f85381cb,b451f1b7-0349-448b-ba66-fb359c62bd75,1d1ce984-c750-43d3-ab5e-988f579977aa,34850014-5b9a-4b15-b6e8-7b095b4fb036,c9d06c64-eec2-4d23-a3d0-850ba0e87844,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
+      <Value Key="Sections" Value="64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,2aa08895-dc7d-4f37-b8db-f9997b92a406,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,df11c290-8098-4978-87f9-1efc3aaac8ef,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,b71c0e1a-d6c1-441a-95fb-72e7f85381cb,b451f1b7-0349-448b-ba66-fb359c62bd75,1d1ce984-c750-43d3-ab5e-988f579977aa,c9d06c64-eec2-4d23-a3d0-850ba0e87844,34850014-5b9a-4b15-b6e8-7b095b4fb036,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
       <Value Key="Teaser" Value="&lt;p&gt;Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21354,6 +21550,473 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Files from Oqtane" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5d80444c-6a29-4603-949a-29d977c0e459" AttributeSetName="PoetsToEdit" EntityGUID="33c358f8-e90e-467f-832e-d135664abdc6">
+      <Value Key="BirthDate" Value="2021-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="SuperPoet 31" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Poems" Value="97" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="57f34a5a-9bb9-48a9-8c90-3cd430bbf2b3">
+      <Value Key="ContentType" Value="FormulasWebApiText" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Title" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula is very advanced, and will initialize a fields value (if empty) from a WebAPI call.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Get value for a field from a WebAPI" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="valuefromwebapi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="ab308baa-f68b-4984-9a1f-eeda80832b8f">
+      <Value Key="ContentType" Value="FormulasDropdownWebApi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Dropdown" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This is an advanced formula which will call a WebApi to get the possible values in a drop down.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Get dropdown options from WebAPI" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="dropdownfromwebapi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="0de0a16f-b4ff-4d79-93ca-87d36a368986">
+      <Value Key="ContentType" Value="FormulasDropDownWebApiData" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Dropdown" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This is an advanced formula which will call a WebApi to get the possible values in a drop down - from Data in the App.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Get dropdown options from WebAPI accessing App.Data" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="dropdownfromwebapidata" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="d6b1a877-8b34-467e-9ffb-385a06b8c59a">
+      <Value Key="ContentType" Value="FormulasBasic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Description" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Brief Demo" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="basic-intro" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="afca8020-9370-4ea7-b57c-0e8866ee8b38">
+      <Value Key="ContentType" Value="FormulasIfEmpty" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Title" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula sets the value of a field if it's empty. As long as it's not empty, the user can type anything he/she wants.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Set the Value if it's empty" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="value-set-if-empty" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="af676eed-53c0-480a-91d5-28e7db26e0ec">
+      <Value Key="ContentType" Value="FormulasCombineValues" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="UrlKey" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula combines the values of 3 fields into a URL Slug.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Generate a Field Combining Others" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="value-combine" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="4a4c7d1a-5593-40c6-8571-36384aa32a07">
+      <Value Key="ContentType" Value="FormulasDates" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="RightNow" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula sets the initial value to the current date (if the field is empty). You can try it by deleting the value, once you leave the field it's updated again.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Date - Prefill but leave editable" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="value-date-prefill" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="bf74bd4e-fa69-481b-b015-131d95978290">
+      <Value Key="ContentType" Value="FormulasDates" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="PublishWhen" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula sets the third field to the current date/time + an offset the user can choose in a dropdown.&amp;nbsp;&lt;br /&gt;Note that since we do some calculations, we must make sure the result is time-zone cleaned.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Date - Calculate value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="value-date-calculate" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="c792222c-5773-4400-ba1a-4a222c95139b">
+      <Value Key="ContentType" Value="FormulasDropdown" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Office" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula changes the values in the second dropdown based on the country picked first.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Change dropdown options: Country to Offices" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="dropdown-country-office" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="4c7ff0a2-e6d4-45d7-991c-6bbd10e44fa3">
+      <Value Key="ContentType" Value="FormulasDropdownDirections" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Options" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula changes the values in the second dropdown if the user wants more options.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Change dropdown options: Limited or More Options" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="dropdown-expand-options" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="d0c495b9-47f9-4244-a815-02ca766d6515">
+      <Value Key="ContentType" Value="FormulasBasic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Description" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Single Field visibility" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="fieldsettings-visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="ef2d2936-29a8-4479-8d3c-2aaf323f9337">
+      <Value Key="ContentType" Value="FormulasRequired" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Name" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula determines wether the Name field is required. It becomes required if the age isn't specified.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Required fields" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="fieldsettings-required" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="f3467549-fea5-40c4-9024-7ec08e447480">
+      <Value Key="ContentType" Value="FormulasDisabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="ApiKeyV2" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula determines wether the ApiKeyV2 field is disabled. It becomes disabled if the UseNewFeatures field is true.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Disabled fields" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="fieldsettings-disabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="4b8e9e77-8a86-44fc-8815-1b738bf2c32c">
+      <Value Key="ContentType" Value="FormulasValidation" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="Title" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula shows a warning if a field has upper case letters, and an error if empty.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Warnings and Errors based on Value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="fieldsettings-warning" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="c7676123-0d47-4990-a722-bfa59109fa9f">
+      <Value Key="ContentType" Value="FormulasVisibleGroup" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="AdvancedSettings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula determines the visibility of the Advanced settings group. The group becomes visible, when the Advanced toggle is active.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Group visibility" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="group-visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="be1c8f77-d6a5-4c71-8927-4ee724dbd64c">
+      <Value Key="ContentType" Value="FormulasTextSummary" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="PersonGroup" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula changes the Name of the PersonGroup field. The name becomes &lt;strong&gt;Person - Profile complete&lt;/strong&gt; if all group fields are filled out and &lt;strong&gt;Person - Profile incomplete&lt;/strong&gt;&amp;nbsp;if not.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Group Name - Text summary" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="group-name" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="0bec6f91-b06b-4f66-91c1-c5f96f96bc59">
+      <Value Key="ContentType" Value="FormulasHelpText" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="ProductCode" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula adds a help text based on the ProductCode Field text. If the ProductCode field contains &lt;strong&gt;n0t0k&lt;/strong&gt; the helptext gets this added: &lt;em&gt;This product code is deprecated. Please request a new product code.&lt;/em&gt;&amp;nbsp; If it contains &lt;strong&gt;spaces&lt;/strong&gt; the helptext gets this added: &lt;em&gt;Please remove all spaces from your product code&lt;/em&gt;.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="prefill:ProductCode=n0t0k code" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Helptext" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="group-helptext" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="d81c6036-7947-44b7-bd56-30fe2eac6b72">
+      <Value Key="ContentType" Value="FormulasEmojiSummary" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="ProductGroup" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula changes the Name of the ProductGroup field. The name becomes &quot;Product ✅&quot; if all group fields are filled out and &quot;Product ✏️&quot; if not.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Group Name - Emoji summary" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="group-name-emoji" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="a1b9897e-bf4c-411d-b944-6cdb61d435d2" AttributeSetName="FormulasEmojiSummary" EntityGUID="54294816-90c1-4758-a1c5-fda0716f8b69">
+      <Value Key="Name" Value="aoeu" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Pricing" Value="" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="cb718488-5d12-4001-8b34-f3f92d375742">
+      <Value Key="ContentType" Value="FormulasRunAtStart" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="GroupRandomlyOpen" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula determines the initial open/closed state - in this case randomly.&amp;nbsp;Normally it would do this based on how complete data in that section is or based on other criterias.&lt;/p&gt;&#xA;&lt;p&gt;This is often used to improve initial state of a form based on how much data is already filled in.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Run Code Only when Form Opens" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="group-run-once" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="778c80d2-b222-4156-a800-ff31d952a925">
+      <Value Key="ContentType" Value="FormulasEphemeral" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="AdvancedGroup" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This example uses an ephemeral field which is prefilled from the open-button.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Ephemeral Fields" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="parameters-ephemeral" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="bd8e62c5-e13c-461d-aebd-62407da51e24">
+      <Value Key="ContentType" Value="FormulasParameters" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="AdvancedGroup" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;If you just need a parameter and don't expect the user to toggle it, you can use &lt;code&gt;data.parameters&lt;/code&gt;. You can still pass it in using prefill, but don't need to create a field.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="prefill:showAdvanced=true" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Example without Ephemeral field (new v14)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="parameters-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d105e4a7-551f-4885-ad2f-5af867b198d6" AttributeSetName="TutorialRequirement" EntityGUID="3ed8f935-214a-467f-8d88-158d2a7fbb13">
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="test req" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d105e4a7-551f-4885-ad2f-5af867b198d6" AttributeSetName="TutorialRequirement" EntityGUID="e513276f-b9db-40ed-b016-3ace585a713b">
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="test 2" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
