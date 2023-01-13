@@ -67,7 +67,7 @@
 </hide>
 
 @Sys.SourceCode.SnippetStart("img-srcset")
-  @ShowCurrentSrc("img-srcset")
+  <hide-silent>@ShowCurrentSrc("img-srcset")</hide-silent>
   <img class="img-fluid" alt="Image SrcSet Demo"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
     srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
@@ -79,7 +79,7 @@
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 @Sys.SourceCode.ResultStart("img-srcset-auto", "Generated HTML")
-  @ShowCurrentSrc("img-srcset-auto")
+  <hide-silent>@ShowCurrentSrc("img-srcset-auto")</hide-silent>
   @{
     var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
   }
@@ -98,7 +98,7 @@
   To achieve this, we must create <code>ResizeSettings</code> for this. It will be based on the default <code>Content</code> settings.
 </p>
 @Sys.SourceCode.ResultStart("img-srcset-auto2", "Generated HTML")
-  @ShowCurrentSrc("img-srcset-auto2")
+  <hide-silent>@ShowCurrentSrc("img-srcset-auto2")</hide-silent>
   @{
     var flatSettings = Kit.Image.Settings(Settings.Images.Content, aspectRatio: "8:1");
   }
@@ -119,7 +119,7 @@
 </p>
 
 @Sys.SourceCode.ResultStart("img-srcset-auto-srcset", "Generated HTML")
-  @ShowCurrentSrc("img-srcset-auto-srcset")
+  <hide-silent>@ShowCurrentSrc("img-srcset-auto-srcset")</hide-silent>
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400")
 @Sys.SourceCode.ResultPrepare()
   @{
@@ -132,7 +132,7 @@
 <h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
 
 @Sys.SourceCode.ResultStart("img-srcset-auto3", "Generated HTML")
-  @ShowCurrentSrc("img-srcset-auto3")
+  <hide-silent>@ShowCurrentSrc("img-srcset-auto3")</hide-silent>
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary")
 @Sys.SourceCode.ResultPrepare()
   @{
@@ -145,7 +145,7 @@
 <h3>Automatic Resize with Detailed Control</h3>
 
 @Sys.SourceCode.ResultStart("img-srcset-auto4", "Generated HTML")
-  @ShowCurrentSrc("img-srcset-auto4")
+  <hide-silent>@ShowCurrentSrc("img-srcset-auto4")</hide-silent>
   @{
     var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
@@ -161,7 +161,7 @@
 <h3>Automatic Resize with Full Control</h3>
 
 @Sys.SourceCode.ResultStart("img-srcset-auto5", "Generated HTML")
-  @ShowCurrentSrc("img-srcset-auto5")
+  <hide-silent>@ShowCurrentSrc("img-srcset-auto5")</hide-silent>
   @{
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }

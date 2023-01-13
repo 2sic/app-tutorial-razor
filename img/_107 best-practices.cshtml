@@ -10,15 +10,6 @@
       Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
       */
   }
-  @functions {
-    dynamic ShowCurrentSrc(string id)
-    {
-      return Tag.Div().Class("alert alert-light").Wrap(
-      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-      Tag.Code().Id(id + "-label")
-      );
-    }
-  }
 </hide>
 
 

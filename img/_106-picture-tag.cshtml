@@ -62,7 +62,7 @@
 </hide>
 
 @Sys.SourceCode.SnippetStart("demo-picture-formats")
-  @ShowCurrentSrc("demo-picture-formats")
+  <hide-silent>@ShowCurrentSrc("demo-picture-formats")</hide-silent>
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
     <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
@@ -82,7 +82,7 @@
 
 
 @Sys.SourceCode.SnippetStart("demo-picture-srcset")
-  @ShowCurrentSrc("demo-picture-srcset")
+  <hide-silent>@ShowCurrentSrc("demo-picture-srcset")</hide-silent>
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-img-srcset-2000.webp 2000w,
           @App.Path/img/assets/koi-img-srcset-1000.webp 1000w,
@@ -102,7 +102,7 @@
 <h2>Automatically Resized Files &amp Formats</h2>
 
 @Sys.SourceCode.ResultStart("pic-auto", "Generated HTML")
-  @ShowCurrentSrc("pic-auto")
+  <hide-silent>@ShowCurrentSrc("pic-auto")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
 @Sys.SourceCode.ResultPrepare()
   @{
@@ -115,7 +115,7 @@
 <h2>Automatically Resized With Custom Alt and Classes</h2>
 
 @Sys.SourceCode.ResultStart("pic-auto-alt-class", "Generated HTML")
-  @ShowCurrentSrc("pic-auto-alt-class")
+  <hide-silent>@ShowCurrentSrc("pic-auto-alt-class")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
 @Sys.SourceCode.ResultPrepare()
   @{
@@ -128,7 +128,7 @@
 
 <h2>Automatically Resized Bits with More Control</h2>
 @Sys.SourceCode.ResultStart("pic-auto-control1", "Generated HTML")
-  @ShowCurrentSrc("pic-auto-control1")
+  <hide-silent>@ShowCurrentSrc("pic-auto-control1")</hide-silent>
   @{
     var picControlled = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
   }
@@ -148,7 +148,7 @@
 <h2>Automatically Resized Bits with Lots of Control</h2>
 
 @Sys.SourceCode.ResultStart("pic-auto-control2", "Generated HTML")
-  @ShowCurrentSrc("pic-auto-control2")
+  <hide-silent>@ShowCurrentSrc("pic-auto-control2")</hide-silent>
   @{
     var picFullControl = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
   }
