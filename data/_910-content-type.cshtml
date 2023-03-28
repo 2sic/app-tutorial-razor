@@ -6,7 +6,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @Html.Partial("_header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -65,7 +65,7 @@
       <li>
         @* This will get the label from the metadata entity *@
         @(attr.Metadata.GetBestValue<string>("Name", "@All"))
-        (@attr.Name, <code>@attr.Type</code> = typeId @((int)attr.ControlledType))
+        (@attr.Name, <code>@attr.Type</code> = typeId @((int)attr.Type))
       </li>
     }
   </ul>
