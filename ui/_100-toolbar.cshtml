@@ -65,11 +65,15 @@
 
 
 @Sys.SourceCode.ResultStart("demo2")
+  <div class="alert alert-info" @Kit.Toolbar.Default().New(tweak: b=>b.Color("pink,black")).For(Content)>
+    <h3>New syntax (tweak): Add <code>new</code> button with colors </h3>
+  </div>
+  
   <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
     <h3>New syntax (string): Add <code>new</code> button with colors </h3>
   </div>
 
-  <div class="alert alert-info" @Kit.Toolbar.Default(Content).New(ui: new {
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui: new {
     color = "blue,white"
   })>
     <h3>New syntax (object): Add <code>new</code> button with colors </h3>
@@ -82,11 +86,14 @@
 
 
 @Sys.SourceCode.ResultStart("demo3")
-  <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui: "pos=-0")>
+  <div class="alert alert-info" @Kit.Toolbar.Default().New(tweak: b=>b.Position(-1)).For(Content)>
+    <h3>New <em>tweak</em> syntax: Add <code>new</code> at the end of button-list</h3>
+  </div>
+  <div class="alert alert-success" @Kit.Toolbar.Default(Content).New(ui: "pos=-1")>
     <h3>New syntax: Add <code>new</code> at the end of button-list</h3>
   </div>
 
-  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-0"})>
+  <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-1"})>
     <h3>Old syntax: Add <code>new</code> at the end of button-list</h3>
   </div>
 @Sys.SourceCode.ResultEnd()
@@ -127,18 +134,29 @@
 @Sys.SourceCode.ResultStart("demo6")
   @{
     // icon from https://fonts.google.com/icons?icon.query=func
+    var svgIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>";
+  }
+  <div class="alert alert-info" @Kit.Toolbar.Empty().New(tweak: b=>b.Icon(svgIcon)).For(Content)>
+    <h3>New syntax (tweak): Button with SVG Icon </h3>
+  </div>
+
+  <div class="alert alert-info" @Kit.Toolbar.Empty().New(tweak: b=>b.Icon(svgIcon).Color("darkgreen")).For(Content)>
+    <h3>New syntax only: Button with SVG Icon and color </h3>
+  </div>
+
+  @{
     var uiWithSvgIcon = new {
-      Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>"
+      Icon = svgIcon
     };
   }
   <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiWithSvgIcon)>
-    <h3>New syntax only: Button with SVG Icon </h3>
+    <h3>New syntax (tweak): Button with SVG Icon </h3>
   </div>
 
   @{
     // icon from https://fonts.google.com/icons?icon.query=func
     var uiSvgIconColored = new {
-      Icon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>",
+      Icon = svgIcon,
       color = "darkgreen"
     };
   }
@@ -148,6 +166,23 @@
 @Sys.SourceCode.ResultEnd()
 
 
+<h2>Add Info-Button with Note (v15.08+)</h2>
+<p>
+  We've introduced a new feature to allow add notes to buttons - which we'll demo with the new info button.
+  Mouse over it to see the effect.
+</p>
+
+@Sys.SourceCode.ResultStart("demo-info")
+  @{
+    var toolbarWithInfoAndNotes = Kit.Toolbar.Empty()
+      .Info(link: "https://www.2sxc.org/", tweak: b=>b.Note("This is a post-it info. Click to visit 2sxc.org", background: "yellow"))
+      .New(tweak: b=>b.Note("This is a cool note"))
+      .For(Content); 
+  }
+  <div class="alert alert-info" @toolbarWithInfoAndNotes>
+    <h3>New syntax (tweak): Button with SVG Icon </h3>
+  </div>
+@Sys.SourceCode.ResultEnd()
 
 
 <h2>Modify a button</h2>
@@ -156,6 +191,10 @@
 </p>
 
 @Sys.SourceCode.ResultStart("demo7")
+  <div class="alert alert-info" @Kit.Toolbar.Default().Edit("-").Edit(tweak: b=>b.Color("red")).For(Content)>
+    <h3>New syntax (tweak): Edit button is now red</h3>
+  </div>
+
   <div class="alert alert-success" @Kit.Toolbar.Default().Edit("-").Edit(ui:"color=red").For(Content)>
     <h3>New syntax: Edit button is now red</h3>
   </div>
@@ -167,6 +206,15 @@
 
 @Sys.SourceCode.ResultStart("demo8")
   @{
+    var categoryButtonsTweak = Kit.Toolbar.Default()
+      .New("BlogPost", tweak: b=>b.Color("red").Tooltip("Blog-Post"))
+      .New("Category", tweak: b=>b.Color("green").Tooltip("Category"));
+  }
+  <div class="alert alert-info" @categoryButtonsTweak.For(Content)>
+    <h3>New syntax (tweak): New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+  </div>
+
+  @{
     var categoryButtonsToolbar = Kit.Toolbar.Default()
       .New("BlogPost", ui:"color=red&title=Blog-Post")
       .New("Category", ui:"color=green&title=Category");
@@ -174,7 +222,6 @@
   <div class="alert alert-success" @categoryButtonsToolbar.For(Content)>
     <h3>New syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
   </div>
-
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
     "+new&color=red&title=Blog-Post?contentType=BlogPost",
     "+new&color=green&title=Category?contentType=Category",
@@ -279,15 +326,20 @@
 </p>
 
 @Sys.SourceCode.ResultStart("demo12")
-<div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: "Title=Good Omens")>
-  <h3><code>Data</code> button with <em>string</em> <code>filter</code> </h3>
-  <p>This will find all books with the title <em>Good Omens</em></p>
-</div>
+  <div class="alert alert-info" @Kit.Toolbar.Empty().Data("Books", tweak: b=>b.Filter("Title", "Good Omens"))>
+    <h3><code>Data</code> button with <em>string</em> <code>filter</code> (tweak) </h3>
+    <p>This will find all books with the title <em>Good Omens</em></p>
+  </div>
 
-<div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: new { Title = "Good Omens" })>
-  <h3><code>Data</code> button with <em>object</em> <code>filter</code> </h3>
-  <p>This will find all books with the title <em>Good Omens</em></p>
-</div>
+  <div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: "Title=Good Omens")>
+    <h3><code>Data</code> button with <em>string</em> <code>filter</code> </h3>
+    <p>This will find all books with the title <em>Good Omens</em></p>
+  </div>
+
+  <div class="alert alert-success" @Kit.Toolbar.Empty().Data("Books", filter: new { Title = "Good Omens" })>
+    <h3><code>Data</code> button with <em>object</em> <code>filter</code> </h3>
+    <p>This will find all books with the title <em>Good Omens</em></p>
+  </div>
 @Sys.SourceCode.ResultEnd()
 
 
