@@ -1,0 +1,75 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
+<h2>Custom Dynamic DataSources - Query With Configuration</h2>
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <p>
+      TODO
+      list of anonymous...
+    </p>
+
+  </div>
+</div>
+
+<trim>
+  <h2>todo</h2>
+  <p>
+    This is a 10-line super-simple example of a DataSource called <code>Basic101</code>.
+    It will only return a single item with the answer to the meaning of life 😉.
+    Afterwards we'll explain in more detail what's happening.
+  </p>
+</trim>
+
+@Sys.SourceCode.ResultStart("custom-101", "Basic101.cs")
+  @{
+    // Create the Dynamic DataSource with the name "Basic101"
+    var basic101 = Kit.Data.GetSource(name: "Basic101");
+  }
+  <h3>List of Data in the CSV DataSource (@basic101.List.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(basic101)) {
+      <li>
+        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101.cs")
+
+
+<trim>
+  <h2>How Custom Dynamic DataSources Work</h2>
+  <p>
+    This is the same sample as before, but with a lot more explanations.
+    Here's what's happening:
+  </p>
+  <ol>
+    <li>Using <code>Kit.Data.GetSource(name: "...")</code> we retrieve the DataSource using the <em>name</em></li>
+    <li>The name references a file with the same name <code>Basics101.cs</code> located in the <code>DataSources</code> folder of the current App.</li>
+    <li>The rest of the magic is explained in the source code of the DataSource - see below.</li>
+  </ol>
+</trim>
+
+@Sys.SourceCode.ResultStart("custom-101c", "Basic101Commented.cs")
+  @{
+    // Create the Dynamic DataSource with the name "Basic101Commented"
+    var basic101c = Kit.Data.GetSource(name: "Basic101Commented");
+  }
+  <h3>List of Data in the CSV DataSource (@basic101c.List.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(basic101c)) {
+      <li>
+        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101Commented.cs")

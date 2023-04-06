@@ -1,0 +1,101 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
+<h2>Data Sources Tutorial - Basic Use</h2>
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <p>
+      To get started, let's look at some samples to just use a DataSource.
+      Then we'll connect two data sources, so that the data from the first serves as input for the second.
+    </p>
+
+  </div>
+</div>
+
+<trim>
+  
+  <h2>First Sample: Use Csv DataSource</h2>
+  <p>
+    Use <code>Kit.Data.GetSource&lt;Csv&gt;</code> to create a DataSource reading CSV data.
+    This sample shows how to:
+  </p>
+  <ol>
+    <li>Get a <code>Csv</code> DataSource from <code>ToSic.Eav.DataSources</code></li>
+    <li>When creating the source, also provide settings for <code>FilePath</code> and <code>Delimiter</code></li>
+    <li>Loop through the items</li>
+  </ol>
+</trim>
+
+@Sys.SourceCode.ResultStart("data-source-basics-csv", "products.csv")
+  @{
+    // Create the data source and provide configuration in the options
+    var products = Kit.Data.GetSource<Csv>(options: new {
+      FilePath = App.RelativePath + "/data-sources/assets/products.csv.txt",
+      Delimiter = ";",
+    });
+  }
+  <h3>List of Data in the CSV DataSource (@products.List.Count())</h3>
+  <ul>
+    @foreach (var product in AsList(products)) {
+      <li>
+        @product.Name (@product.Description)
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:assets/products.csv.txt")
+
+
+
+<trim>
+  
+  <h2>Get Started with <code>Kit.Data</code></h2>
+  <p>
+    Use <code>Kit.Data.GetAppSource</code> and <code>Kit.Data.GetSource&lt;T&gt;</code> to create data sources.
+    This sample shows how to:
+  </p>
+  <ol>
+    <li>First get all the data from the current App using <code>GetAppSource()</code></li>
+    <li>Then get a <code>EntityTypeFilter</code> from <code>ToSic.Eav.DataSources</code></li>
+    <li>When creating the filter, also <code>attach</code> the initial app DataSource...</li>
+    <li>...and give the filter the parameter <code>TypeName = "Books"</code></li>
+    <li>Count the data in both DataSources</li>
+    <li>Loop through the final items in the filter DataSource</li>
+  </ol>
+</trim>
+
+@Sys.SourceCode.SnippetStart("demo-basic-type-filter")
+  @{
+    // First get the root data source - the App with all data
+    // Since we're in a Razor file it picks the current App based on the context
+    var appDs = Kit.Data.GetAppSource();
+
+    // Now create a Type-Filter and tell it to only keep Books
+    // * attach: Attach the App containing everything
+    // * options: Set the TypeName of the filter to only keep Books
+    var books = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs, options: new { TypeName = "Books" });
+  }
+  <h3>Statistics</h3>
+  <ul>
+    <li>App Item Count (unfiltered): @appDs.List.Count()</li>
+    <li>Books Item Count (filtered): @books.List.Count()</li>
+  </ul>
+
+  <h3>List of Persons from the DataSource</h3>
+  <ul>
+    @foreach (var book in AsList(books)) {
+      <li>
+        @book.Title
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+

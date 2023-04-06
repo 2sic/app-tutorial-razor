@@ -1,0 +1,28 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
+<h2>Data Sources Tutorial</h2>
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <p>
+      
+      TODO: 
+
+    </p>
+
+    <ul>
+      <li>TODO</li>
+    </ul>
+    <p>
+      TODO
+    </p>
+  </div>
+</div>
