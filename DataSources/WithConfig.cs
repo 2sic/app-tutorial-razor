@@ -1,23 +1,32 @@
-using System.Collections.Generic;
 using System.Linq;
+using ToSic.Eav.DataSource; // This namespace is for the [Configuration] attribute
 
-public class WithConfig : Custom.DataSource.DataSource15
+public class WithConfig : Custom.DataSource.DataSource16
 {
   public WithConfig(MyServices services) : base(services, "My.Magic")
   {
     ProvideOut(() => {
-      var newItem = {
-        Id = 27,
-        Title = "Hello from ListMultiStream",
-        FavoriteNumber = 42,
-      };
-      return Enumerable.Repeat(newItem, AmountOfItems).ToList();
+      var result = Enumerable.Range(1, AmountOfItems).Select(i => new {
+        Title = "Hello from WithConfig #" + i,
+        FavoriteColor,
+      });
+      return result;
     });
   }
 
-  [Configuration(Fallback = 3)]
-  public int AmountOfItems { get { return Configuration.GetThis(3); } }
+  // This attribute [Configuration] creates a configuration "FavoriteColor"
+  // In this example [Configuration] already knows about the fallback.
+  // * The property getter calls Configuration.GetThis()
+  // * GetThis() will automatically use the property name "FavoriteColor" to look up the config
+  // * Calling an empty GetThis() will always return a string,
+  //   so it's ideal for string-properties where the Fallback was specified before
+  [Configuration(Fallback = "magenta")]
+  public string FavoriteColor { get { return Configuration.GetThis(); } }
 
-  [Configuration(Fallback = 42)]
-  public int FavoriteNumber { get { return Configuration.GetThis(42); } }
+  // This attribute [Configuration] creates configuration "AmountOfItems"
+  // * The property getter calls Configuration.GetThis()
+  // * GetThis() will automatically use the property name "AmountOfItems" to look up the config
+  //   and will use the default value of 1 if it was not specified
+  [Configuration]
+  public int AmountOfItems { get { return Configuration.GetThis(1); } }
 }

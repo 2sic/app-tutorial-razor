@@ -1,6 +1,6 @@
 // 1.1 The class must have the same name as the file
-// 1.2 It must inherit from Custom.DataSource.DataSource15 
-public class Basic101Commented : Custom.DataSource.DataSource15
+// 1.2 It must inherit from Custom.DataSource.DataSource16 
+public class Basic101Commented : Custom.DataSource.DataSource16
 {
   // 2.1 The constructor must have the same name as the class
   // 2.2 It must also have a parameter of type MyServices
@@ -14,8 +14,8 @@ public class Basic101Commented : Custom.DataSource.DataSource15
     // 3.4 The object can be anonymous, as shown here
     ProvideOut(() => new {
       // Our object has a Title property with a hello-message
+      // and another property with the answer to life, the universe and everything
       Title = "Hello from Basic101-Commented",
-      // And another property with the answer to life, the universe and everything
       TheAnswer = 42,
     });
   }

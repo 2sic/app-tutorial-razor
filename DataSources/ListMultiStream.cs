@@ -1,7 +1,7 @@
 // This sample uses Enumerable.Repeat, which needs this namespace
 using System.Linq;
 
-public class ListMultiStream : Custom.DataSource.DataSource15
+public class ListMultiStream : Custom.DataSource.DataSource16
 {
   public ListMultiStream(MyServices services) : base(services)
   {
