@@ -14,62 +14,80 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <p>
-      TODO
-      list of anonymous...
+      Dynamic DataSources can also be used in Queries.
+      The following examples show how to use them.
     </p>
+
+  <div class="row">
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/app-data-sources.jpg", 200, 100, "float-left", label: "Dynamic DataSources in Visual Query")</div>
+  </div>
 
   </div>
 </div>
 
 <trim>
-  <h2>todo</h2>
+  <h2>Query using Authors and KeepOdd</h2>
   <p>
-    This is a 10-line super-simple example of a DataSource called <code>Basic101</code>.
-    It will only return a single item with the answer to the meaning of life 😉.
-    Afterwards we'll explain in more detail what's happening.
+    The following query will simply combine the two DataSources.
+    The first will provide the authors.
+    The second will apply the KeepOdd filters.
   </p>
 </trim>
-
-@Sys.SourceCode.ResultStart("custom-101", "Basic101.cs")
+@Sys.SourceCode.ResultStart("custom-101", "Authors.cs", "KeepOdd.cs")
+  <div class="row">
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/use-in-visual-query.jpg", 200, 100, "float-right float-end", label: "Simple Query", figure: false)</div>
+  </div>
   @{
-    // Create the Dynamic DataSource with the name "Basic101"
-    var basic101 = Kit.Data.GetSource(name: "Basic101");
+    var queryOddAuthors = App.Query["DynamicDataSourceKeepOdd"];
   }
-  <h3>List of Data in the CSV DataSource (@basic101.List.Count())</h3>
+  <h3>Data in the Query (@queryOddAuthors.List.Count())</h3>
   <ul>
-    @foreach (var item in AsList(basic101)) {
+    @foreach (var item in AsList(queryOddAuthors)) {
       <li>
-        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+        <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101.cs")
+@Sys.SourceCode.ResultEnd("file:../DataSources/Authors.cs", "file:../DataSources/KeepOdd.cs")
 
 
 <trim>
-  <h2>How Custom Dynamic DataSources Work</h2>
+  <h2>Query with Configuration</h2>
   <p>
-    This is the same sample as before, but with a lot more explanations.
-    Here's what's happening:
+    DataSources which have <code>[Configuration]</code> attributes can also support full visual configuration.
+    The system looks for a content type with the same name as the DataSource + <em>Configuration</em>.
+    In this case, it's looking for a Content Type <code>WithConfigConfiguration</code>.
   </p>
-  <ol>
-    <li>Using <code>Kit.Data.GetSource(name: "...")</code> we retrieve the DataSource using the <em>name</em></li>
-    <li>The name references a file with the same name <code>Basics101.cs</code> located in the <code>DataSources</code> folder of the current App.</li>
-    <li>The rest of the magic is explained in the source code of the DataSource - see below.</li>
-  </ol>
 </trim>
-
-@Sys.SourceCode.ResultStart("custom-101c", "Basic101Commented.cs")
+@Sys.SourceCode.ResultStart("withConfig", "WithConfig.cs")
+  <div class="row">
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/configure-in-visual-query1.jpg", 200, 100, "float-left", label: "Configured Query", figure: false)</div>
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/configure-in-visual-query2.jpg", 200, 100, "float-left", label: "Edit Configuration", figure: false)</div>
+  </div>
   @{
-    // Create the Dynamic DataSource with the name "Basic101Commented"
-    var basic101c = Kit.Data.GetSource(name: "Basic101Commented");
+    var queryWithConfig = App.Query["DynamicDataSourceWithConfig"];
   }
-  <h3>List of Data in the CSV DataSource (@basic101c.List.Count())</h3>
+  <h3>Data in the Query (@queryWithConfig.List.Count())</h3>
   <ul>
-    @foreach (var item in AsList(basic101c)) {
+    @foreach (var item in AsList(queryWithConfig)) {
       <li>
-        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+        <strong>@item.Title</strong> - Favorite Color: @item.FavoriteColor
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101Commented.cs")
+@Sys.SourceCode.ResultEnd("file:../DataSources/WithConfig.cs")
+
+
+<trim>
+  <h2>Visual Query Customizations</h2>
+  <p>
+    Many aspects such as the <em>Icon</em>, <em>Name</em> etc. have automatic defaults.
+    But you can configure them as you need using the <code>[VisualQuery]</code> attribute.
+  </p>
+
+</trim>
+@Sys.SourceCode.ResultStart("customized", "VisualQueryCustomized.cs")
+  <div class="row">
+    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/visual-query-attribute.jpg", 200, 200, "float-left", label: "Customized with VisualQuery Attribute", figure: false)</div>
+  </div>
+@Sys.SourceCode.ResultEnd("file:../DataSources/VisualQueryCustomized.cs")

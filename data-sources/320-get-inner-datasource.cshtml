@@ -14,62 +14,32 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <p>
-      TODO
-      list of anonymous...
+      DataSources can also get other DataSources.
+      For example, a DataSource could get data from the App directly to process them.
     </p>
 
   </div>
 </div>
 
 <trim>
-  <h2>todo</h2>
+  <h2>Retrieve all the Authors</h2>
   <p>
-    This is a 10-line super-simple example of a DataSource called <code>Basic101</code>.
-    It will only return a single item with the answer to the meaning of life 😉.
-    Afterwards we'll explain in more detail what's happening.
+    The <code>Authors</code> DataSource demonstrates how to get all App data
+    and then filter it using an inner <code>EntityTypeFilter</code> DataSource.
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "Basic101.cs")
+@Sys.SourceCode.ResultStart("custom-101", "Authors.cs")
   @{
     // Create the Dynamic DataSource with the name "Basic101"
-    var basic101 = Kit.Data.GetSource(name: "Basic101");
+    var authors = Kit.Data.GetSource(name: "Authors");
   }
-  <h3>List of Data in the CSV DataSource (@basic101.List.Count())</h3>
+  <h3>Items in the DataSource (@authors.List.Count())</h3>
   <ul>
-    @foreach (var item in AsList(basic101)) {
+    @foreach (var item in AsList(authors)) {
       <li>
-        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+        <strong>@item.EntityTitle</strong>
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101.cs")
-
-
-<trim>
-  <h2>How Custom Dynamic DataSources Work</h2>
-  <p>
-    This is the same sample as before, but with a lot more explanations.
-    Here's what's happening:
-  </p>
-  <ol>
-    <li>Using <code>Kit.Data.GetSource(name: "...")</code> we retrieve the DataSource using the <em>name</em></li>
-    <li>The name references a file with the same name <code>Basics101.cs</code> located in the <code>DataSources</code> folder of the current App.</li>
-    <li>The rest of the magic is explained in the source code of the DataSource - see below.</li>
-  </ol>
-</trim>
-
-@Sys.SourceCode.ResultStart("custom-101c", "Basic101Commented.cs")
-  @{
-    // Create the Dynamic DataSource with the name "Basic101Commented"
-    var basic101c = Kit.Data.GetSource(name: "Basic101Commented");
-  }
-  <h3>List of Data in the CSV DataSource (@basic101c.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(basic101c)) {
-      <li>
-        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
-      </li>
-    }
-  </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101Commented.cs")
+@Sys.SourceCode.ResultEnd("file:../DataSources/Authors.cs")
