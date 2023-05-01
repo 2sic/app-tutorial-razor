@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="15.09.00" ExportDate="2023-04-07T12:49:30.6015006+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.00.00" ExportDate="2023-05-01T20:09:26.6930281+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -4191,6 +4191,24 @@
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="d339fa91-e153-442b-8fb7-e8ed9b68199e" Name="WithConfigConfiguration" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="AmountOfItems" Type="Number" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="d9f50529-4e12-4d8e-bbd9-cdc6e6fbdadd" Json="True" KeyNumber="5626">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="AmountOfItems" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="FavoriteColor" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7a802887-c49a-41a8-9a3d-310a7594b01f" Json="True" KeyNumber="5627">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="FavoriteColor" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
       </Attributes>
@@ -13004,7 +13022,7 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="(new!)" Type="String">
+      <Value Key="LinkEmphasis" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Working difficult URLs like images containing umlauts&lt;/p&gt;" Type="String">
@@ -14544,7 +14562,7 @@
       <Value Key="Subsection" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Basics: Re-Use Code and Templates Across Files" Type="String">
+      <Value Key="Title" Value="Basics: Reuse Code and Templates Across Files" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Views" Value="16f54771-a79c-45f1-b2c7-71c825c4b000,9a6b08b0-32fd-4f0b-912d-aa886fcc60a0,b3c4fa8d-3d72-48db-bf6f-8fb134005256,a6b883ca-3e2e-488b-bb7d-95971aaadf6b,e71b1251-cd2d-43eb-bc8d-edddd6358acf,29d56734-0a5e-4148-9793-9a8a377d7468,3561b6e7-b91f-4659-bbd5-7463503a9952,de829333-615e-4ba2-892e-86dfcb184a9a" Type="Entity" />
@@ -14943,7 +14961,7 @@
       <Value Key="Subsection" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Data: Linq" Type="String">
+      <Value Key="Title" Value="Data: LINQ (Language Integrated Query)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Views" Value="44616625-4765-4d09-b695-bd2950a1746c,0efc2f67-908b-437f-a911-fa399b82ec62,56c27adc-4ae3-4827-bff1-2185ebeb937a,bc3bb0f3-686e-4d59-9187-21d39f4d7b07,15ac27ec-8d19-4fd4-8afe-14775019ba16,05d21930-7c24-4e2f-9c75-84b176793d2e,1f3fc4bb-89f1-4a8f-bbb0-6ec0f169927e,f599d562-3dd7-4537-8c98-09b65506d9b4,d2622de7-3996-465b-b5a0-f6e6de8dd251,97990de3-3a20-4b67-aacd-789d462eb928" Type="Entity" />
@@ -14952,7 +14970,7 @@
       <Value Key="FeatureLogo" Value="file:6081" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Introduction" Value="&lt;div&gt;&#xA;&lt;div&gt;Easily work with JSON data.&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+      <Value Key="Introduction" Value="&lt;p&gt;Easily work with JSON data.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="json" Type="String">
@@ -14961,7 +14979,7 @@
       <Value Key="Subsection" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Data: Json" Type="String">
+      <Value Key="Title" Value="Data: JSON" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Views" Value="9f097ea2-9d4e-486d-a2d4-a2f43483589e" Type="Entity" />
@@ -22038,10 +22056,10 @@
       <Value Key="Subsection" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Data: Use or Create DataSource objects in Code" Type="String">
+      <Value Key="Title" Value="Data: Use DataSources in Code &amp; Create Custom Dynamic DataSources" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Views" Value="2485c021-8b0e-44c5-912f-fd8be6eb78cd,1f983048-f264-4e9b-92d3-08e35e504973,99e65b56-cd9f-4ee4-9656-b52200b098dd,088af356-eefa-4037-bb38-57ec13a674e0,a8ee0504-daeb-4c2a-9431-788b87b772fc,7a08a845-114a-4af0-a168-f6457c13883f,64201f55-4b9d-474d-b42c-4d33cd192655,e3338422-886a-4c2d-940e-9bd520072cf3,49e19593-e454-4571-9959-5d2ce054c335,3f089163-be69-4fc2-bddd-9d9c13c3a764,928f45ef-270d-4d0f-8893-b5e5fce81c4d,c8847208-0377-4378-914b-f86b9b9ba1cb,c18fa734-8fbd-40d7-bc82-d5a54c48e953" Type="Entity" />
+      <Value Key="Views" Value="2485c021-8b0e-44c5-912f-fd8be6eb78cd,1f983048-f264-4e9b-92d3-08e35e504973,99e65b56-cd9f-4ee4-9656-b52200b098dd,088af356-eefa-4037-bb38-57ec13a674e0,a8ee0504-daeb-4c2a-9431-788b87b772fc,7a08a845-114a-4af0-a168-f6457c13883f,64201f55-4b9d-474d-b42c-4d33cd192655,49e19593-e454-4571-9959-5d2ce054c335,3f089163-be69-4fc2-bddd-9d9c13c3a764,c18fa734-8fbd-40d7-bc82-d5a54c48e953" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="2485c021-8b0e-44c5-912f-fd8be6eb78cd" Json="True">
       <Value Key="ContentTypeStaticName" Value="" Type="String">
@@ -22259,10 +22277,10 @@
       <Value Key="LinkEmphasis" Value="new 15.08" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Create custom, dynamic data sources directly in the App folder, without compiling to a DLL.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Lists&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Dynamic DataSources - Basics&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -22291,10 +22309,10 @@
       <Value Key="LinkEmphasis" Value="new 15.08" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Use Kit.Data.GetSource() and more to get DataSource objects and work with them.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Introduction&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Get DataSources in Code - Introduction&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -22531,62 +22549,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="e3338422-886a-4c2d-940e-9bd520072cf3" Json="True">
-      <Value Key="ContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Icon" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identifier" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IsHidden" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Location" Value="Site" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="DS310 Data Sources - Process In - Error" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Path" Value="data-sources/310-process-in-error.cshtml" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PublishData" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingStreams" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsToPublish" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Type" Value="C# Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="UseForList" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewController" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewNameInUrl" Value="data-sources310/.*" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="49e19593-e454-4571-9959-5d2ce054c335" Json="True">
       <Value Key="ContentTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -22699,118 +22661,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="928f45ef-270d-4d0f-8893-b5e5fce81c4d" Json="True">
-      <Value Key="ContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Icon" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identifier" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IsHidden" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Location" Value="Site" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="DS410 Data Sources - Custom in Query - Advanced" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Path" Value="data-sources/410-custom-in-query-advanced.cshtml" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PublishData" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingStreams" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsToPublish" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Type" Value="C# Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="UseForList" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewController" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewNameInUrl" Value="data-sources410/.*" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="c8847208-0377-4378-914b-f86b9b9ba1cb" Json="True">
-      <Value Key="ContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Icon" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identifier" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IsHidden" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Location" Value="Site" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="DS420 Data Sources - Custom in Query - Configuration" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Path" Value="data-sources/420-custom-in-query-config.cshtml" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PublishData" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingStreams" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsToPublish" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Type" Value="C# Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="UseForList" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewController" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewNameInUrl" Value="data-sources420/.*" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="c18fa734-8fbd-40d7-bc82-d5a54c48e953" Json="True">
       <Value Key="ContentTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -22886,7 +22736,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Lists&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Return Lists of Items&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -22918,7 +22768,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Configuration&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Configuration of DataSources&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -22950,7 +22800,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Multiple Lists/Streams&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Provide Multiple Lists/Streams&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -22982,39 +22832,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Process In (attached) Data&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="7ec4f48a-007a-4990-8961-988eedeb9125" KeyGuid="e3338422-886a-4c2d-940e-9bd520072cf3">
-      <Value Key="Deprecated" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="For2sxc" Value="10.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForDnn" Value="07.04.02" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForOqtane" Value="03.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Handle Errors on Missing In&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Process In (attached) Data&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -23046,7 +22864,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Get Data From Other DataSources&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Use Data from other DataSources&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -23078,71 +22896,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Use in Visual Query&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="0150b2af-b155-467e-bc53-26992a2b0b45" KeyGuid="928f45ef-270d-4d0f-8893-b5e5fce81c4d">
-      <Value Key="Deprecated" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="For2sxc" Value="10.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForDnn" Value="07.04.02" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForOqtane" Value="03.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Use in Query with In from Query&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="fc225b30-1cc2-4ccf-b474-2a336300301f" KeyGuid="c8847208-0377-4378-914b-f86b9b9ba1cb">
-      <Value Key="Deprecated" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="For2sxc" Value="10.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForDnn" Value="07.04.02" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForOqtane" Value="03.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Query with Configuration&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Use in Visual Query&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -23174,7 +22928,7 @@
       <Value Key="LinkTeaser" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Custom Dynamic DataSources - Factory Options&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Conversion Factory Options&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -23184,6 +22938,83 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="3627642b-fa93-4368-8ac3-bcffe7dd2ef4" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="DynamicDataSourceKeepOdd" Type="String" />
+      <Value Key="Params" Value="" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header" Type="String" />
+      <Value Key="StreamWiring" Value="ce97b0ec-36c3-4144-bce6-94cc42cead55:Default&gt;Out:Default&#xD;&#xA;f11be210-4e64-4f38-9930-05e79e458b7d:Default&gt;ce97b0ec-36c3-4144-bce6-94cc42cead55:Default" Type="String" />
+      <Value Key="TestParameters" Value="" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ce97b0ec-36c3-4144-bce6-94cc42cead55" Json="True" KeyGuid="3627642b-fa93-4368-8ac3-bcffe7dd2ef4">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="KeepOdd" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="KeepOdd" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 180,&#xD;&#xA;  &quot;Left&quot;: 420&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="f11be210-4e64-4f38-9930-05e79e458b7d" Json="True" KeyGuid="3627642b-fa93-4368-8ac3-bcffe7dd2ef4">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Authors" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="Authors" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 340,&#xD;&#xA;  &quot;Left&quot;: 420&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="e3052cf3-a3a7-499d-a3fc-a70f0acd7101" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="DynamicDataSourceWithConfig" Type="String" />
+      <Value Key="Params" Value="" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header" Type="String" />
+      <Value Key="StreamWiring" Value="dcbb58ec-1094-47df-a413-0f4840b9892a:Default&gt;Out:Default" Type="String" />
+      <Value Key="TestParameters" Value="" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="dcbb58ec-1094-47df-a413-0f4840b9892a" Json="True" KeyGuid="e3052cf3-a3a7-499d-a3fc-a70f0acd7101">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="WithConfig" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="WithConfig" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 180,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="d339fa91-e153-442b-8fb7-e8ed9b68199e" AttributeSetName="WithConfigConfiguration" EntityGUID="42432ed6-e29e-470b-aa59-c6a9fe54e8ff" KeyGuid="dcbb58ec-1094-47df-a413-0f4840b9892a">
+      <Value Key="AmountOfItems" Value="7" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="FavoriteColor" Value="burgundy" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="18a0488a-1387-4783-8162-5223e93cb00d" Json="True" KeyString="d339fa91-e153-442b-8fb7-e8ed9b68199e">
+      <Value Key="AdditionalSettings" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="&lt;p&gt;Configure a&amp;nbsp;&lt;strong&gt;WithConfig&lt;/strong&gt; DataSource.&lt;/p&gt;&#xA;&lt;p&gt;Note that the content-Type was auto-assigned, as it has the same name +&amp;nbsp;&lt;em&gt;Configuration.&lt;/em&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="WithConfigConfiguration" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

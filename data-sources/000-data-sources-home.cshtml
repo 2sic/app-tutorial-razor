@@ -13,16 +13,22 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <p>
-      
-      TODO: 
-
+      <strong>DataSources</strong> are the magic backbone of 2sxc.
+      They can get data, filter it, sort it, and more.
+      In many cases you will simply use the DataSources provided by 2sxc and the EAV system, but you can do even more.
+      Specifically:
     </p>
 
     <ul>
-      <li>TODO</li>
+      <li>
+        You can use the IDataService in your C# code to get DataSource Objects. 
+        A common scenario is when you need to configure the parameters in ways that are not possible in the UI.
+      </li>
+      <li>
+        You can create your own DataSources in C# and use them in your code and in Visual Query.
+        This is a bit more advanced, but very powerful.
+        Common scenarios are DataSources which do things or retrieve data which the built-in DataSources don't do.
+      </li>
     </ul>
-    <p>
-      TODO
-    </p>
   </div>
 </div>

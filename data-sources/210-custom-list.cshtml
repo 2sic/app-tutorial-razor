@@ -14,17 +14,19 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <p>
-      TODO
-      list of anonymous...
+      The previous example just returned one item/entity.
+      But of course you can also return a list of items.
+      This is the more common case.
+      Our sample basically will just return data it generated, but your code will usually get data from elsewhere and provide it as a list.
     </p>
 
   </div>
 </div>
 
 <trim>
-  <h2>todo</h2>
+  <h2>Basic List</h2>
   <p>
-    TODO
+    Return a list of items numbered 1...5 with random Guid identifier.
   </p>
 </trim>
 

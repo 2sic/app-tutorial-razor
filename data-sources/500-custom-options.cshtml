@@ -14,62 +14,49 @@
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <p>
-      TODO
-      list of anonymous...
+      In the previous examples, the custom DataSources simply returned anonymous objects. 
+      This is great, but sometimes you need more control.
+      Some examples: 
+      For example, 
     </p>
-
+    <ul>
+      <li>
+        All the data has the same Content Type Name <code>unspecified</code>.
+        This would prevent you from filtering the data by Content Type Name when you're using multiple dynamic sources. 
+      </li>
+      <li>
+        By default, all data with ID 0 (zero) would get an automatic ID assigned - counting up from one. 
+        But in rare cases, an ID 0 is really expected. 
+      </li>
+      <li>
+        The title field name is <code>Title</code> by default. 
+        But in some cases you would prefer <code>Name</code> or something else.
+      </li>
+    </ul>
+    <p>
+      To handle all this, you can use special FactoryOptions which configure how the data is converted to a real <code>IEntity</code>.
+    </p>
   </div>
 </div>
 
 <trim>
-  <h2>todo</h2>
+  <h2>Convert with Custom DataFactoryOptions</h2>
   <p>
-    This is a 10-line super-simple example of a DataSource called <code>Basic101</code>.
-    It will only return a single item with the answer to the meaning of life 😉.
-    Afterwards we'll explain in more detail what's happening.
+    This example will change how the automatic ID is generated, what the ContentTypeName is, and which field to use for the EntityTitle.
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "Basic101.cs")
+@Sys.SourceCode.ResultStart("custom-101", "FactoryOptions.cs")
   @{
-    // Create the Dynamic DataSource with the name "Basic101"
-    var basic101 = Kit.Data.GetSource(name: "Basic101");
+    var dsWithOptions = Kit.Data.GetSource(name: "FactoryOptions");
   }
-  <h3>List of Data in the CSV DataSource (@basic101.List.Count())</h3>
+  <h3>Data in the DataSource (@dsWithOptions.List.Count())</h3>
   <ul>
-    @foreach (var item in AsList(basic101)) {
+    @foreach (var item in AsList(dsWithOptions)) {
       <li>
-        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+        <strong>@item.EntityTitle</strong> (id: @item.EntityId, type: @item.EntityType)
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101.cs")
+@Sys.SourceCode.ResultEnd("file:../DataSources/FactoryOptions.cs")
 
-
-<trim>
-  <h2>How Custom Dynamic DataSources Work</h2>
-  <p>
-    This is the same sample as before, but with a lot more explanations.
-    Here's what's happening:
-  </p>
-  <ol>
-    <li>Using <code>Kit.Data.GetSource(name: "...")</code> we retrieve the DataSource using the <em>name</em></li>
-    <li>The name references a file with the same name <code>Basics101.cs</code> located in the <code>DataSources</code> folder of the current App.</li>
-    <li>The rest of the magic is explained in the source code of the DataSource - see below.</li>
-  </ol>
-</trim>
-
-@Sys.SourceCode.ResultStart("custom-101c", "Basic101Commented.cs")
-  @{
-    // Create the Dynamic DataSource with the name "Basic101Commented"
-    var basic101c = Kit.Data.GetSource(name: "Basic101Commented");
-  }
-  <h3>List of Data in the CSV DataSource (@basic101c.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(basic101c)) {
-      <li>
-        <strong>@item.Title</strong> - the Answer: @item.TheAnswer
-      </li>
-    }
-  </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101Commented.cs")
