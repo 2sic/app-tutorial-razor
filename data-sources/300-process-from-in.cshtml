@@ -9,7 +9,7 @@
 </hide>
 
 
-<h2>Custom Dynamic DataSources - Process Attached Data</h2>
+<h2>Custom Dynamic DataSources - Process In-Data</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
@@ -30,18 +30,51 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "KeepOdd.cs")
+@Sys.SourceCode.ResultStart("keepOdd", "KeepOdd.cs")
   @{
+    // Get the stream of all authors
     var authors = App.Data["Persons"];
-    // Create the Dynamic DataSource with the name "KeepOdd"
+    // Create the Dynamic DataSource "KeepOdd" and attach the authors to it
     var keepOdd = Kit.Data.GetSource(name: "KeepOdd", attach: authors);
   }
-  <h3>List of Data in the CSV DataSource (@keepOdd.List.Count())</h3>
+  <h3>Data from the KeepOdd DataSource (@keepOdd.List.Count())</h3>
   <ul>
     @foreach (var item in AsList(keepOdd)) {
       <li>
-        <strong>@item.EntityTitle</strong> - the Answer: @item.TheAnswer
+        <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
       </li>
     }
   </ul>
 @Sys.SourceCode.ResultEnd("file:../DataSources/KeepOdd.cs")
+
+<trim>
+  <h2>Error Handling if No In</h2>
+  <p>
+    If your DataSource requires attached data (<code>In</code>) you may get hard-to-debug errors.
+    Because of this, the sample also has error handling for this. 
+    The following code uses the <code>KeepOdd</code> but <em>forgets</em> to attach the in.
+  </p>
+</trim>
+
+@Sys.SourceCode.ResultStart("keepOdd-errors", "KeepOdd.cs")
+  @{
+    // Create the Dynamic DataSource "KeepOdd" and forget to attach the In
+    keepOdd = Kit.Data.GetSource(name: "KeepOdd");
+  }
+  <h3>Data from the KeepOdd DataSource (@keepOdd.List.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(keepOdd)) {
+      <li>
+        <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
+        <br>
+        <strong>Message: </strong>
+        @item.Message
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:../DataSources/KeepOdd.cs")
+<trim>
+  <p>
+    Important: Note that the DataSource also has code to handle errors if the In was not attached.
+  </p>
+</trim>
