@@ -21,7 +21,7 @@
         Use <code>data.parameters</code> in your formulas <em>new in v14</em>
       </li>
     </ul>
-    <br>
+    @Html.Partial("./Part NowUsingV2.cshtml")
   </div>
 </div>
 @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
@@ -79,6 +79,9 @@
   enables a editing experience matching the page context.
 </p>
 
+@{
+  specs = Sys.SourceCode.Formulas.Specs("parameters-basic");
+}
 
 @Sys.SourceCode.FormulaStart("formulas-showAdvanced", specs)
   <code>prefill:showAdvanced=true</code>:
