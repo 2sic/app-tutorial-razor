@@ -4,6 +4,8 @@
   if (tutorialSet == null) {
     return;
   }
+
+
   var Sys = CreateInstance("shared/Helpers.cs");
   var viewMdType = Sys.TutViewMetadataType as string;
   var unknownViewMetadata = AsDynamic(new {
@@ -19,6 +21,14 @@
   if (featureLogoPath != featureLogoFallback && featureLogoPath.IndexOf("/") == -1) {
     featureLogoPath = App.Path + "/img/assets/" + featureLogoPath;
   }
+}
+
+@if (tutorialSet.GroupHeading == true) {
+  <div @Edit.TagToolbar(tutorialSet)>
+    <br>
+    <h2>@tutorialSet.Title</h2>
+  </div>
+  return;
 }
 
 @if (DynamicModel.IsSubSection == true) {
