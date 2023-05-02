@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.00.00" ExportDate="2023-05-02T15:48:12.8637727+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.00.00" ExportDate="2023-05-02T22:50:59.0770823+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -2858,6 +2858,17 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
+    <AttributeSet StaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" Name="TutorialCategory" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7cd46dac-e71b-4162-b702-3e946e5ddfc0" Json="True" KeyNumber="5629">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
     <AttributeSet StaticName="d105e4a7-551f-4885-ad2f-5af867b198d6" Name="TutorialRequirement" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
         <Attribute StaticName="Title" Type="String" IsTitle="true">
@@ -3007,6 +3018,84 @@
             <Value Key="InputType" Value="string-default" Type="String" />
             <Value Key="Name" Value="Title" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Category" Type="Entity" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="453d5468-7f8d-443d-a0db-ded27cacc8ea" Json="True" KeyNumber="5630">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="entity-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Category" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="10a0e7d9-24d6-426d-bd5d-b92fbf621462" Json="True" KeyNumber="5630">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableDelete" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EntityType" Value="TutorialCategory" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Label" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="MoreFields" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Prefill" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
           </Entity>
         </Attribute>
         <Attribute StaticName="Subsection" Type="Boolean" IsTitle="false">
@@ -11789,6 +11878,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="64438582-e47f-4f4c-92c9-c2fb908ee0a2">
+      <Value Key="Category" Value="1ba2d738-c7c3-4d15-8687-1618c02349b1" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6070" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -11807,6 +11897,7 @@
       <Value Key="Views" Value="4c8d2eb4-3bbc-427c-8033-4d32c5488416,c7c7cd5b-54c6-4637-a95f-6f8b9018d9ec,543d8d55-7c17-4dc9-8d06-93b279cf9dfe,cef4cec5-aaa4-42f9-930e-bdf46672a88c,0907832d-e214-4ac5-a0cb-24f4aacd1625" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="ff7cf66b-c411-40fb-a437-652bf66b5dac">
+      <Value Key="Category" Value="93a4b633-321e-486e-bead-685af948eabc" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6071" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -11814,6 +11905,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="content" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Subsection" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Show Content and Data Entities on a Page" Type="String">
@@ -11852,6 +11946,7 @@
       <Value Key="Views" Value="fa8d63cc-351f-487b-921a-3144d09ea1b0,509fcb68-d845-479d-899b-e85344da6e2a,32749249-49c6-486d-b6d6-946175c02806" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="f4814196-1f75-4517-a637-99f1fc0f6f65">
+      <Value Key="Category" Value="cc780a6e-b538-45d8-afc1-26b8af6fe593" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6074" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -11888,6 +11983,7 @@
       <Value Key="Views" Value="475dc563-3ed9-4a94-bce5-1f4b86acaa7b,8955c581-af64-4b6a-91b7-7117e70f6c9f,b0ff0b04-eb9f-4916-857e-15dfc06d40a6,261465bc-fa75-4a63-819c-be12e0b50618" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="563b1165-c4a7-4f30-abc1-ebff878b7707">
+      <Value Key="Category" Value="30294fa8-f452-4dde-aaeb-bd2f34e704f9" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6076" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -11921,6 +12017,7 @@
       <Value Key="Views" Value="cad92946-4f82-4bf5-90bc-5117f12ba6ca,bdba0f55-6863-4f9d-8d12-3ade94a03043,5f72e76a-fae2-4f8a-9642-cef0492bf32b,101b0a9c-fff1-41b8-acf5-e189b8238566,fb5e0c42-04de-4408-93f8-dd5002637680,59a93cf7-5eff-4601-8878-d05ce71b4737,a5fcefdc-6112-4d3c-b409-f1c87cd2adee,177605bd-aa60-440d-bc1f-a71089233d9a,f830eb22-76a0-4403-9fbe-7f3a5fa82d74" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="42804ec7-323f-407d-83e4-2eae4ae37f66">
+      <Value Key="Category" Value="90b29d75-ddda-41ac-998f-e9997d7775e0" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6078" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15830,6 +15927,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="2aa08895-dc7d-4f37-b8db-f9997b92a406">
+      <Value Key="Category" Value="c4689e63-d1d9-4fa9-82d6-356abc255f65" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6081" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16097,7 +16195,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" AttributeSetName="Tutorial" EntityGUID="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa">
-      <Value Key="Sections" Value="64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,2aa08895-dc7d-4f37-b8db-f9997b92a406,1e4bb8ba-62f2-434b-bc8f-b9c7869053af,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,090041ff-e961-4eaf-b06a-ef47525d2739,80ea5703-b2ab-44d5-958e-7b48ef67488c,8533e0f4-523b-4cd5-9d07-d749aa291ade,df11c290-8098-4978-87f9-1efc3aaac8ef,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,b71c0e1a-d6c1-441a-95fb-72e7f85381cb,b451f1b7-0349-448b-ba66-fb359c62bd75,1d1ce984-c750-43d3-ab5e-988f579977aa,c9d06c64-eec2-4d23-a3d0-850ba0e87844,34850014-5b9a-4b15-b6e8-7b095b4fb036,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
+      <Value Key="Sections" Value="64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,df11c290-8098-4978-87f9-1efc3aaac8ef,2aa08895-dc7d-4f37-b8db-f9997b92a406,1e4bb8ba-62f2-434b-bc8f-b9c7869053af,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,090041ff-e961-4eaf-b06a-ef47525d2739,80ea5703-b2ab-44d5-958e-7b48ef67488c,8533e0f4-523b-4cd5-9d07-d749aa291ade,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,b71c0e1a-d6c1-441a-95fb-72e7f85381cb,b451f1b7-0349-448b-ba66-fb359c62bd75,1d1ce984-c750-43d3-ab5e-988f579977aa,c9d06c64-eec2-4d23-a3d0-850ba0e87844,34850014-5b9a-4b15-b6e8-7b095b4fb036,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
       <Value Key="Teaser" Value="&lt;p&gt;Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -18313,7 +18411,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  if (!data.FilterMainOptions) return data.default;&#xA;  const lines = data.default.split('\n');&#xA;  // only keep lines with 1 code like l,r,t etc.&#xA;  const onlyMain = lines.filter(v =&gt; v.indexOf(':') == 1);&#xA;  return onlyMain.join('\n');&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  if (!data.FilterMainOptions) return data.default;&#xA;  const lines = data.default.split('\n');&#xA;  // only keep lines with 1 code like l,r,t etc.&#xA;  const onlyMain = lines.filter(v =&gt; v.indexOf(':') == 1);&#xA;  return onlyMain.join('\n');&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.DropdownValues" Type="String">
@@ -18332,7 +18430,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  const t = data.Title;&#xA;  console.log('Title at start', t);&#xA;  &#xA;  // Check if empty&#xA;  if (t == null || (/^\s*$/).test(t))&#xA;    return { severity: 'error', message: 'this needs real text'};&#xA;  // Show warning if not all lower case&#xA;  if (data.Title.toLowerCase() !== data.Title)&#xA;    return { severity: &quot;warning&quot;, message: &quot;we suggest to use lower case only.&quot;}&#xA;  return data.value;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  const t = data.Title;&#xA;  console.log('Title at start', t);&#xA;  &#xA;  // Check if empty&#xA;  if (t == null || (/^\s*$/).test(t))&#xA;    return {&#xA;      value: { severity: 'error', message: 'this needs real text'}&#xA;    };&#xA;  // Show warning if not all lower case&#xA;  if (data.Title.toLowerCase() !== data.Title)&#xA;    return { value: { severity: &quot;warning&quot;, message: &quot;we suggest to use lower case only.&quot;} };&#xA;  return data.value;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Validation" Type="String">
@@ -18453,7 +18551,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="v1(data, context) {&#xA;  // Show the field when the title isn't empty any more&#xA;  return data.Title != &quot;&quot;;&#xA;}" Type="String">
+      <Value Key="Formula" Value="// Show the field when the title isn't empty any more&#xA;v2((data) =&gt; {&#xA;  return data.Title != &quot;&quot;;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Notes" Value="" Type="String">
@@ -18690,7 +18788,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  return data.Advanced == true;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  return data.Advanced == true;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Visible" Type="String">
@@ -18758,7 +18856,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // If we don't have an age, make the name required&#xA;  var ok = !data.Age;&#xA;  return ok;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  // If we don't have an age, make the name required&#xA;  var ok = !data.Age;&#xA;  return ok;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Required" Type="String">
@@ -18832,7 +18930,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  return data.UseNewFeatures == true;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  return data.UseNewFeatures == true;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Notes" Value="" Type="String">
@@ -18900,7 +18998,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  if (data.Firstname != &quot;&quot; &amp;&amp; data.Lastname != &quot;&quot; &amp;&amp; data.Address != &quot;&quot;)&#xA;    return &quot;Person - Profile complete&quot;;&#xA;  return &quot;Person - Profile incomplete&quot;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  if (data.Firstname != &quot;&quot; &amp;&amp; data.Lastname != &quot;&quot; &amp;&amp; data.Address != &quot;&quot;)&#xA;    return &quot;Person - Profile complete&quot;;&#xA;  return &quot;Person - Profile incomplete&quot;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Name" Type="String">
@@ -18968,7 +19066,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  if (data.Name != &quot;&quot; &amp;&amp; data.Pricing != null) {&#xA;    return &quot;Product ✅&quot;;&#xA;  }&#xA;  return &quot;Product ✏️&quot;;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  if (data.Name != &quot;&quot; &amp;&amp; data.Pricing != null) {&#xA;    return &quot;Product ✅&quot;;&#xA;  }&#xA;  return &quot;Product ✏️&quot;;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Name" Type="String">
@@ -19021,7 +19119,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  const isDeprecated = data.ProductCode.includes(&quot;n0t0k&quot;);&#xA;  const hasSpaces = data.ProductCode.includes(&quot; &quot;);&#xA;  &#xA;  return (isDeprecated ? &quot;This product code is deprecated. Please request a new product code. &quot; : &quot;&quot;) &#xA;  + (hasSpaces ? &quot;Please remove all spaces from your product code.&quot; : &quot;&quot;);&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  const isDeprecated = data.ProductCode.includes(&quot;n0t0k&quot;);&#xA;  const hasSpaces = data.ProductCode.includes(&quot; &quot;);&#xA;  &#xA;  return (isDeprecated ? &quot;This product code is deprecated. Please request a new product code. &quot; : &quot;&quot;) &#xA;  + (hasSpaces ? &quot;Please remove all spaces from your product code.&quot; : &quot;&quot;);&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Notes" Value="" Type="String">
@@ -19151,7 +19249,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  return data.VarShowAdvanced == true;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  return data.VarShowAdvanced == true;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Visible" Type="String">
@@ -19253,7 +19351,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  if (!data.parameters || data.parameters.showAdvanced == null)&#xA;    return false;&#xA;  return data.parameters.showAdvanced == &quot;true&quot;;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  if (!data.parameters || data.parameters.showAdvanced == null)&#xA;    return false;&#xA;  return data.parameters.showAdvanced == &quot;true&quot;;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Visible" Type="String">
@@ -19365,7 +19463,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // On second+ runs, leave value as is&#xA;  if (context.cache.alreadyRun) return data.value;&#xA;  context.cache.alreadyRun = true;&#xA;&#xA;  // Get random true/false&#xA;  var random = Math.random() &lt; 0.5;&#xA;  return random;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2(() =&gt; {&#xA;  console.log('Formula to set Collapsed ran - will only run once.');&#xA;&#xA;  // Get random true/false&#xA;  var random = Math.random() &lt; 0.5;&#xA;  return { value: random, stop: true };&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Collapsed" Type="String">
@@ -19405,7 +19503,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  return !data.Country;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  return !data.Country;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Disabled" Type="String">
@@ -19419,7 +19517,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // Start with the default list, as it could have changed&#xA;  const lines = data.default.match(/[^\r\n]+/g);&#xA;  &#xA;  // Filter and join again&#xA;  const keep = lines.filter(l =&gt; l.startsWith(data.Country));&#xA;  return keep.join('\n');&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  // Start with the default list, as it could have changed&#xA;  const lines = data.default.match(/[^\r\n]+/g);&#xA;  &#xA;  // Filter and join again&#xA;  const keep = lines.filter(l =&gt; l.startsWith(data.Country));&#xA;  return keep.join('\n');&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.DropdownValues" Type="String">
@@ -19459,7 +19557,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // don't change if already has a value&#xA;  if (data.value) return data.value;&#xA;&#xA;  return new Date();&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  // don't change if already has a value&#xA;  if (data.value) return data.value;&#xA;  // if it's empty, get the current date/time&#xA;  return new Date();&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Value" Type="String">
@@ -19473,7 +19571,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  const now = new Date();&#xA;  const add = data.PublishIn || 0;&#xA;  const offset = -now.getTimezoneOffset() / 60;&#xA;  return now.setHours(now.getHours() + add + offset);&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  const now = new Date();&#xA;  const add = data.PublishIn || 0;&#xA;  const offset = -now.getTimezoneOffset() / 60;&#xA;  return now.setHours(now.getHours() + add + offset);&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Value" Type="String">
@@ -19539,7 +19637,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  if (data.value) return data.value;&#xA;  return &quot;This field should never be empty&quot;;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  if (data.value) return data.value;&#xA;  return &quot;This field should never be empty&quot;;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Value" Type="String">
@@ -19579,7 +19677,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  const prefix = (data.Country + '-' + data.Language).toLowerCase();&#xA;  const titleSlug = data.Title.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');&#xA;  return prefix + &quot;-&quot; + titleSlug;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  const prefix = (data.Country + '-' + data.Language).toLowerCase();&#xA;  const titleSlug = data.Title.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');&#xA;  return prefix + &quot;-&quot; + titleSlug;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Value" Type="String">
@@ -19886,7 +19984,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // for demo reasons, don't do this till start is toggled.&#xA;  if (!data.Start) return data.value;&#xA;&#xA;  // If it has a value, keep it, don't look for another&#xA;  if (data.value) return data.value;&#xA;&#xA;  // If data had been stored in the cache by the api-call, return it&#xA;  if (context.cache.data) return context.cache.data;&#xA;  &#xA;  // Prevent the API call from running twice&#xA;  if (context.cache.alreadyRun) return data.value;&#xA;  context.cache.alreadyRun = true;&#xA;  // Call the sxc web-api controller from other tutorials&#xA;  context.sxc.webApi.fetchJson('app/auto/api/basic/hello')&#xA;    .then(data =&gt; {&#xA;      console.log('got data', data);// log for demo reasons&#xA;      context.cache.data = data;  // set cache for next formula cycle&#xA;      context.form.runFormulas(); // trigger the next formula cycle&#xA;    });&#xA;  // After starting the web-api call, return the current empty value&#xA;  return data.value;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  // for demo reasons, don't do this till start is toggled.&#xA;  if (!data.Start) return data.value;&#xA;  &#xA;  // Call the sxc web-api controller from other tutorials&#xA;  return context.sxc.webApi.fetchJson('app/auto/api/basic/hello')&#xA;    .then(data =&gt; {&#xA;      console.log('got data', data); // log for demo reasons&#xA;      return data; // Use the result as the new value&#xA;    });&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Value" Type="String">
@@ -19900,7 +19998,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // Only enable once data has been loaded&#xA;  return !data.Title;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  // Only enable once data has been loaded&#xA;  return !data.Title;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Disabled" Type="String">
@@ -19914,7 +20012,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  return data.Start;&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data) =&gt; {&#xA;  return data.Start;&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.Disabled" Type="String">
@@ -20865,6 +20963,7 @@
       <Value Key="New" Value="2022-08-22T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Specs" Value="488a53b5-abad-4877-b974-80b5b48f380f" Type="Entity" />
       <Value Key="Title" Value="Tutorial _100 - More" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -20919,7 +21018,7 @@
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Formula" Value="function v1 (data, context) {&#xA;  // If it has a value, keep it, don't look for another&#xA;  if (data.value) return data.value;&#xA;&#xA;  // If data had been stored in the cache by the api-call, return it&#xA;  if (context.cache.data) return context.cache.data;&#xA;  &#xA;  // Prevent the API call from running twice&#xA;  if (context.cache.alreadyRun) return data.value;&#xA;  context.cache.alreadyRun = true;&#xA;&#xA;  // Call the sxc web-api controller from other tutorials&#xA;  context.sxc.webApi.fetchJson('app/auto/api/formulas/OptionsFromBackend')&#xA;    .then(data =&gt; {&#xA;      console.log('got data', data);// log for demo reasons&#xA;      // The result is a dictionary, so we convert to lines&#xA;      const lines = Object.keys(data)&#xA;        .map(k =&gt; k + &quot;:&quot; + data[k])&#xA;        .join('\n');&#xA;      context.cache.data = lines;  // set cache for next formula cycle&#xA;      context.form.runFormulas(); // trigger the next formula cycle&#xA;    });&#xA;}" Type="String">
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  // If it has a value, keep it, don't look for another&#xA;  if (data.value) return data.value;&#xA;&#xA;  // If data had been stored in the cache by the api-call, return it&#xA;  // if (context.cache.data) return context.cache.data;&#xA;  &#xA;  // Prevent the API call from running twice&#xA;  // if (context.cache.alreadyRun) return data.value;&#xA;  // context.cache.alreadyRun = true;&#xA;&#xA;  // Call the sxc web-api controller from other tutorials&#xA;  return context.sxc.webApi.fetchJson('app/auto/api/formulas/OptionsFromBackend')&#xA;    .then(data =&gt; {&#xA;      console.log('got data', data);// log for demo reasons&#xA;      // The result is a dictionary, so we convert to lines&#xA;      const lines = Object.keys(data)&#xA;        .map(k =&gt; k + &quot;:&quot; + data[k])&#xA;        .join('\n');&#xA;&#xA;      // bug?&#xA;      console.log('lines', lines);&#xA;      // context.cache.data = lines;  // set cache for next formula cycle&#xA;      // return { stop: false };&#xA;      return lines;&#xA;    });&#xA;});" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Target" Value="Field.Settings.DropdownValues" Type="String">
@@ -21148,6 +21247,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="c5674d1b-87fc-4bf8-9c1e-e21f4d661805">
+      <Value Key="Category" Value="f07b3085-3d8a-4e9d-bc0d-caf520f676c7" Type="Entity" />
       <Value Key="FeatureLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21547,10 +21647,19 @@
       <Value Key="Field" Value="Title" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Instructions" Value="&lt;p&gt;This formula is very advanced, and will initialize a fields value (if empty) from a WebAPI call.&lt;/p&gt;" Type="String">
+      <Value Key="Instructions" Value="&lt;p&gt;This formula is very advanced, and will initialize a fields value (if empty) from a WebAPI call.&lt;/p&gt;&#xA;&lt;p&gt;🆕 in v2 all formulas returning a promise are stopped by default!&lt;br&gt;This is why the code is much simpler compared to v1.&lt;/p&gt;&#xA;&lt;p&gt;If ever necessary, the promise returned can specify to not stop the formula, but we don't need this for the current demo.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Get value for a field from a WebAPI" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="valuefromwebapi" Type="String">
@@ -21567,7 +21676,16 @@
       <Value Key="Instructions" Value="&lt;p&gt;This is an advanced formula which will call a WebApi to get the possible values in a drop down.&amp;nbsp;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Get dropdown options from WebAPI" Type="String">
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Get dropdown options from WebAPI - TODO: BUGs (stop/return value)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="dropdownfromwebapi" Type="String">
@@ -21584,7 +21702,16 @@
       <Value Key="Instructions" Value="&lt;p&gt;This is an advanced formula which will call a WebApi to get the possible values in a drop down - from Data in the App.&amp;nbsp;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Get dropdown options from WebAPI accessing App.Data" Type="String">
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Get dropdown options from WebAPI accessing App.Data - TODO" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="dropdownfromwebapidata" Type="String">
@@ -21801,6 +21928,12 @@
       <Value Key="Instructions" Value="&lt;p&gt;This formula shows a warning if a field has upper case letters, and an error if empty.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="Warnings and Errors based on Value" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21967,7 +22100,7 @@
       <Value Key="Parameters" Value="prefill:showAdvanced=true" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+      <Value Key="ShowSnippet" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Example without Ephemeral field (new v14)" Type="String">
@@ -23035,6 +23168,41 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Views" Value="1f983048-f264-4e9b-92d3-08e35e504973" Type="Entity" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="1ba2d738-c7c3-4d15-8687-1618c02349b1">
+      <Value Key="Title" Value="Basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="93a4b633-321e-486e-bead-685af948eabc">
+      <Value Key="Title" Value="Content and Images" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="c4689e63-d1d9-4fa9-82d6-356abc255f65">
+      <Value Key="Title" Value="Data and DataSources" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="cc780a6e-b538-45d8-afc1-26b8af6fe593">
+      <Value Key="Title" Value="RazorBlade and Koi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="30294fa8-f452-4dde-aaeb-bd2f34e704f9">
+      <Value Key="Title" Value="JavaScript, turnOn, WebAPIs / REST" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="90b29d75-ddda-41ac-998f-e9997d7775e0">
+      <Value Key="Title" Value="Edit UI and Formulas" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="f07b3085-3d8a-4e9d-bc0d-caf520f676c7">
+      <Value Key="Title" Value="Advanced / Other" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
   </Entities>
   <PortalFiles>

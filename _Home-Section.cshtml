@@ -23,12 +23,16 @@
   }
 }
 
-@if (tutorialSet.GroupHeading == true) {
-  <div @Edit.TagToolbar(tutorialSet)>
+@* Show a heading section to introduce a new main topic *@
+@{
+  var category = AsList(tutorialSet.Category as object).FirstOrDefault();
+}
+@if (category != null) {
+  <div @Edit.TagToolbar(category)>
     <br>
-    <h2>@tutorialSet.Title</h2>
+    <h2>@category.Title</h2>
+    <br>
   </div>
-  return;
 }
 
 @if (DynamicModel.IsSubSection == true) {
