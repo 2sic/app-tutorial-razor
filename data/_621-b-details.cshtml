@@ -20,4 +20,5 @@
 <a href='@Link.To(parameters: "data621=true")'>back to list</a>
 <br>
 <br>
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

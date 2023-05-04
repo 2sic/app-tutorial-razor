@@ -40,4 +40,5 @@
   Kit.Page.AddMeta("somename", "somevalue");
 }
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

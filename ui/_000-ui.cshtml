@@ -24,7 +24,7 @@
 
 <hr>
 
-<h2>Custom Input Fields (new in 11.02 ⭐)</h2>
+<h2>Custom Input Fields</h2>
 
 <br>
 <h4>More Information around Customizing the Edit UX</h4>
@@ -33,4 +33,7 @@
   @Sys.LiExtLink("https://docs.2sxc.org/specs/form/index.html", "Specs for Field Customization")
   @Sys.LiExtLink("https://docs.2sxc.org/specs/form/field-wysiwyg.html", "Specs for WYSIWYG customization")
 </ol>
-@Html.Partial("../shared/_PreCodeFooter.cshtml")
+
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

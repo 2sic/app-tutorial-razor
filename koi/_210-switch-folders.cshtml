@@ -44,4 +44,5 @@
 @Sys.SourceCode.ResultEnd("file:bs3/_Alert.cshtml","file:bs4/_Alert.cshtml" )
 
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

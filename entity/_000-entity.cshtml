@@ -59,4 +59,5 @@
 <p>Note that <code>Awards</code> refers to other Entities of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. In other tutorials you'll see how to work with such related Entities if there are more than one.  
 </trim>
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

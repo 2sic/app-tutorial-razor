@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor14
-@DynamicModel.Sys.PageParts.Header(new { Title = "JSON Data Tutorials", Name = "JSON Data", Link = "#data" })
+@Html.Partial("../Shared/Layout/Header.cshtml", new { Sys = DynamicModel.Sys, Title = "JSON Data Tutorials", Name = "JSON Data", Link = "#data" })

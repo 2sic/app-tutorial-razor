@@ -111,4 +111,5 @@
 
 <p>Other modes not demonstrated here, see <a href="https://imageresizing.net/docs/v4/reference" target="_blank">Image Resizer docs</a>.</p>
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -1,3 +1,6 @@
+// 2dm 2023-05-04 I believe this is actually not in use
+// Will remove the TurnOn for now, and monitor
+// probably delete ca. 2023-06
 export function initRevealers() { 
   const sections = document.querySelectorAll("snippet.reveal-on-h3");
   // console.log('sections', sections, sections.length);

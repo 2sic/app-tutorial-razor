@@ -44,21 +44,6 @@
     The <code>as object</code> part necessary because of limitations in Razor. 
   </li>
 </ul>
-@* 
-<hr>
-<h2>LINQ Examples</h2>
 
-<ol>
-  @hlp.TutorialLink("Basic looking for something with Where(...) and Any(...)", "linq105")
-  @hlp.TutorialLink("Get First() / Last() item in a list", "linq106")
-  @hlp.TutorialLink("Take() / Skip() items in a list", "linq107")
-  @hlp.TutorialLink("Count() items in a list", "linq108")
-
-  @hlp.TutorialLink("Basic sorting of lists", "linq120")
-
-  @hlp.TutorialLink("Get Authors of Books (sub-items) to show and for sorting", "linq210")
-  @hlp.TutorialLink("Group books by authors in 3 ways", "linq220")
-  @hlp.TutorialLink("Access a list in list in list", "linq230")
-
-  @hlp.TutorialLink("Go backwards - find Books pointing to Authors with Parents(...)", "linq310")
-</ol> *@
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

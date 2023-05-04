@@ -58,4 +58,5 @@
 @Sys.SourceCode.ResultEnd("file:demo.json")
 
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

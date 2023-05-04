@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor14
-@DynamicModel.Sys.PageParts.Header(new { Title = "Razor Blade Tutorials", Name = "Razor.Blade", Link = "#razor-blade", FeatureIconPath = "blade/assets/app-icon.png", FeatureUrl = "https://github.com/DNN-Connect/razor-blade" })
+@Html.Partial("../Shared/Layout/Header.cshtml", new { Sys = DynamicModel.Sys, Title = "Razor Blade Tutorials", Name = "Razor.Blade", Link = "#razor-blade", FeatureIconPath = "blade/assets/app-icon.png", FeatureUrl = "https://github.com/DNN-Connect/razor-blade" })

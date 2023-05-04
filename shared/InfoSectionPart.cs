@@ -78,7 +78,7 @@ public class InfoSectionPart: Custom.Hybrid.Code14
 
     var result = Tag.RawHtml();
     foreach (var dataEl in data) {
-      var viewUrl = Sys.GetViewUrl(dataEl);
+      var viewUrl = GetView(dataEl);
       string section = Field.ToLowerInvariant();
       var url = (section == SectRequirements || section == SectResources)
           ? dataEl.Link
@@ -106,5 +106,14 @@ public class InfoSectionPart: Custom.Hybrid.Code14
       case SectRelated: return "TutorialViewMetadata";
       default: return null;
     }
+  }
+
+  private dynamic GetView(dynamic Data){
+    var ViewList = AsList(App.Data["2SexyContent-Template"] as object);
+    var View = ViewList.FirstOrDefault(view => view.Metadata == Data);
+    if(View != null)
+      return View;
+    else
+      return null;
   }
 }

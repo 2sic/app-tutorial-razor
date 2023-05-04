@@ -49,4 +49,5 @@ And now the same thing with <code>Srcset</code> which allows high-density images
 @Sys.SourceCode.SnippetInlineEnd()
 
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

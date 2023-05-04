@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @{
-  var hlp = CreateInstance("Helpers.cs");
-  var viewMdType = hlp.TutViewMetadataType as string;
+  var Sys = DynamicModel.Sys;
+  var viewMdType = Sys.TutViewMetadataType as string;
   var md = CmsContext.View.Metadata;
 
   if (md == null) {
@@ -11,7 +11,7 @@
 
   @* Adding Metadata for Opengraph sharing *@
 
-  var viewSharingMdType = hlp.TutViewSharingMetadataType as string;
+  var viewSharingMdType = Sys.TutViewSharingMetadataType as string;
   var viewMd = AsList(md.OfType(viewMdType) as object).FirstOrDefault();
   var sharingMd = AsList(md.OfType(viewSharingMdType) as object).FirstOrDefault();
 

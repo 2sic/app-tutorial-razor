@@ -2,17 +2,23 @@
 @using System.Linq;
 @{
   var Sys = CreateInstance("shared/Helpers.cs");
+  var hdHlp = CreateInstance("./Shared/Layout/HeaderHelpers.cs");
+
+  // Set Title etc.
+  var pageTitle = Content.Title + " (" + App.Configuration.Version + ")";
   Kit.Page.SetBase();
+  Kit.Page.SetTitle(pageTitle + " - 2sxc Razor Tutorials for Dnn / Oqtane");
+
   var newConfig = Kit.Toolbar
     .Metadata(CmsContext.View, "TutorialViewSharing")
     .Settings(hover: "left");
 
-  @Html.Partial("shared/_OpenGraphHeaders.cshtml")
+  @Html.Partial("./Shared/Layout/Header.Part OpenGraph.cshtml", new { Sys = Sys})
 }
 
 <div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
   <div @Edit.TagToolbar(newConfig)>
-    @Sys.Title(Content.Title + " (" + App.Configuration.Version + ")")
+    @Html.Partial("./Shared/Layout/Header.Part Title and Assets.cshtml", new { Sys = Sys, Title = pageTitle })
   </div>
   @Html.Raw(Content.Teaser)
 

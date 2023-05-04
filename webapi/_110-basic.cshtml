@@ -101,4 +101,5 @@
 @Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
 
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

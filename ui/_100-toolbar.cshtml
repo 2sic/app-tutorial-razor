@@ -408,7 +408,6 @@
     <h3>New syntax: Add two button-groups</h3>
   </div>
 
-  <snippet id="tb-groups-oldsyn" class="show-hidden-with-reveal reveal-on-h3">
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { 
     "+group=my1",
     "+new&group=my1&color=red&title=Blog-Post?contentType=BlogPost",
@@ -504,4 +503,5 @@
 
 @* 2sxclint:disable:no-inline-script *@
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

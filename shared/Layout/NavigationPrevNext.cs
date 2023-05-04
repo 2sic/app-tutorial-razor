@@ -20,8 +20,18 @@ public class NavigationPrevNext: Custom.Hybrid.Code14
     return this;
   }
   public ICmsView View;
-
   public dynamic hlp = null;
+
+  // public NavigationParts GetNavParts() {
+  //   var currentView = CmsContext.View;
+  //   var viewMd = NavPrevNext.TryGetViewMd(currentView);
+  //   var sortedTutorialSections = (AsList(App.Data["Tutorial"]).Last().Sections as Dynlist).ToList();
+  //   return new NavigationParts {
+  //     ViewMetadata = viewMd,
+  //     SortedSections = sortedTutorialSections
+  //   };
+  // }
+
 
   // Fallback for missing metadata
   dynamic DummyViewMd { get { return _dummyViewMd ?? (_dummyViewMd = AsDynamic( new { LinkTitle = "Todo" })); }}
@@ -33,4 +43,10 @@ public class NavigationPrevNext: Custom.Hybrid.Code14
       : null;
   }
 
+}
+
+public class NavigationParts
+{
+  public dynamic ViewMetadata { get; set; }
+  // public List<dynamic> SortedSections { get; set; }
 }

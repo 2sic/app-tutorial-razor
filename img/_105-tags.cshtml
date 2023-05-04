@@ -205,4 +205,5 @@ Werdenberg: Photo by <a href="https://unsplash.com/@calina?utm_source=unsplash&u
   </div>
 </hide>
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

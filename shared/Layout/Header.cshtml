@@ -1,0 +1,43 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq;
+@using ToSic.Razor.Blade;
+@{
+  var Sys = DynamicModel.Sys;
+
+  var hdHlp = CreateInstance("./HeaderHelpers.cs");
+  
+  var title = DynamicModel.Title;
+  var sectionName = DynamicModel.Name;
+  var sectionLink = DynamicModel.Link;
+
+  // Page Metadata - will create a toolbar for this
+  var viewMdType = Sys.TutViewMetadataType as string;
+  var viewMd = AsList(CmsContext.View.Metadata.OfType(viewMdType) as object).FirstOrDefault();
+
+  // Metadata with new toolbar services
+  var mdTitle = viewMd != null ? viewMd.Title : title ?? "";
+  var teaser = viewMd != null ? viewMd.LinkTeaser : "";
+
+  var newConfig = Kit.Toolbar
+    .Metadata(CmsContext.View, viewMdType)
+    .Metadata(CmsContext.View, "TutorialViewSharing", parameters: "prefill:Title=" + Tags.Strip(mdTitle) + "&prefill:Description=" + Tags.Strip(teaser))
+    .Settings(hover: "left");
+
+}
+
+<div @Edit.TagToolbar(newConfig) class="mb-2">
+  @if (DynamicModel.FeatureIconPath != null) {
+    @hdHlp.AddFeatureLogo(DynamicModel.FeatureIconPath, DynamicModel.FeatureLink)
+  }
+
+  @Html.Partial("./Header.Part Title and Assets.cshtml", new { Sys = Sys, Title = title })
+  
+  @Html.Partial("./Header.Part Breadcrumb.cshtml", new { Sys = Sys, Topic = sectionName, TopicUrl = sectionLink })
+</div>
+
+@* Get the toolbar for: < previous | # Current | Next > *@
+@Html.Partial("./NavigationTutorials.cshtml", new { Sys = Sys })
+
+@* Assets, Page Headers, OpenGraph etc. *@
+@Html.Partial("./Header.Part OpenGraph.cshtml", new { Sys = Sys })
+@Html.Partial("./Header.Part Assets.cshtml")

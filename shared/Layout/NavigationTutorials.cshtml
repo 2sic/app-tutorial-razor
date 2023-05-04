@@ -1,18 +1,14 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
-@functions {
-
-  // todo: @2dm
-  // - create class for this
-  // make sure it inits all the values at start as below
-  // then use methods to build stuff
-
+@{
+  // Expect the calling page to give us it's Sys object
+  // which contains a lot of shared functionality
+  var Sys = DynamicModel.Sys;
 }
 @{
-  var hlp = CreateInstance("Helpers.cs");
+  var hlp = Sys; // CreateInstance("../shared/Helpers.cs");
   var NavPrevNext = CreateInstance("NavigationPrevNext.cs").Init(hlp, CmsContext.View);
-
 
   var currentView = CmsContext.View;
 
@@ -20,71 +16,69 @@
   Kit.Page.Activate("FontAwesome5");
 
   // Get current datasets
-  var viewMd = NavPrevNext.TryGetViewMd(currentView); // AsDynamic((currentView.Metadata.OfType(viewMdType) as Dynlist).FirstOrDefault() ?? DummyViewMd);
+  var viewMd = NavPrevNext.TryGetViewMd(currentView);
   var sortedTutorialSections = (AsList(App.Data["Tutorial"]).Last().Sections as Dynlist).ToList();
   var tutorialSection = AsList(sortedTutorialSections)
     .Where(section => (section.Views as Dynlist)
       .Any(view => view.EntityId == currentView.Id))
     .FirstOrDefault() ?? null;
   var tutorialSectionIndex = tutorialSection != null ? sortedTutorialSections.FindIndex(section => section.EntityId == tutorialSection.EntityId) : 0;
-}
 
-@if (tutorialSection != null) {
+  if (tutorialSection == null) {
+    return;
+  }
+
+  // Get List information
   var viewList = (tutorialSection.Views as Dynlist).ToList();
   var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
   var homeTarget = "#" + tutorialSection.NameId;
+
+  // Previous Tutorial
   var previousTutorial = currentIndex > 0 
     ? viewList[currentIndex - 1] 
     : tutorialSectionIndex > 0 
       ? (sortedTutorialSections[tutorialSectionIndex - 1].Views as Dynlist).Last() 
       : null;
 
+  // Previous Tutorial Metadata
+  var previousTutorialMd = NavPrevNext.TryGetViewMd(previousTutorial);
+  var previousTutorialTarget = previousTutorialMd != null 
+    ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
+    : homeTarget;
+
+  // Next Tutorial
   var nextTutorial = currentIndex < viewList.Count() - 1 
     ? viewList[currentIndex + 1] 
     : tutorialSectionIndex < sortedTutorialSections.Count() - 1
       ? (sortedTutorialSections[tutorialSectionIndex + 1].Views as Dynlist).First() 
       : null;
 
+  // Next Tutorial Metadata
+  var nextTutorialMd = NavPrevNext.TryGetViewMd(nextTutorial);
+  var nextTutorialTarget = nextTutorialMd != null 
+    ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
+    : homeTarget;
+
   <div class="alert alert-dark container-fluid">
     <div class="row justify-content-between">
       <div class="col-4 text-truncate">
-        @{
-          var previousTutorialMd = NavPrevNext.TryGetViewMd(previousTutorial);
-           @* previousTutorial != null
-            ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as Dynlist)
-              .FirstOrDefault() ?? DummyViewMd)
-            : null; *@
-          var previousTutorialTarget = previousTutorialMd != null 
-            ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
-            : homeTarget;
-        }
-        @viewList.First().Id
-
         <a href="@Link.To(parameters: previousTutorialTarget)" class="row">
+          
           <div class="col-auto">
             <i class="fas fa-chevron-left"></i>
           </div>
           <div class="col text-truncate">
-            @(previousTutorial != null ? Html.Raw(previousTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
+            @(previousTutorial != null ? Html.Raw(Kit.Scrub.All(previousTutorialMd.LinkTitle)) : "Home")
           </div>
         </a>
       </div>
       <div class="col-4 text-center text-truncate">
-        <strong>#@(currentIndex + 1) @Html.Raw(viewMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) </strong>
+        <strong>#@(currentIndex + 1) @Html.Raw(Kit.Scrub.All(viewMd.LinkTitle)) </strong>
       </div>
       <div class="col-4 text-end text-right">
-        @{
-          var nextTutorialMd = NavPrevNext.TryGetViewMd(nextTutorial);
-          @* nextTutorial != null
-            ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as Dynlist).FirstOrDefault() ?? DummyViewMd)
-            : null; *@
-          var nextTutorialTarget = nextTutorialMd != null 
-            ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
-            : homeTarget;
-        }
         <a href="@Link.To(parameters: nextTutorialTarget)" class="row">
           <div class="col text-truncate">
-            @(nextTutorial != null ? Html.Raw(nextTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
+            @(nextTutorial != null ? Html.Raw(Kit.Scrub.All(nextTutorialMd.LinkTitle)) : "Home")
           </div>
           <div class="col-auto">
             <i class="fas fa-chevron-right"></i>
@@ -93,11 +87,4 @@
       </div>
     </div>
   </div>
-}
-
-@functions {
-  
-  string RemoveP(string original) {
-    return (original ?? "").Replace("<p>", "").Replace("</p>", "");
-  }
 }

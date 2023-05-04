@@ -54,4 +54,5 @@
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
 @Sys.SourceCode.SnippetEnd()
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

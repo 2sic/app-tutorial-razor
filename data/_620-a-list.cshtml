@@ -34,4 +34,5 @@
 @Sys.SourceCode.ResultEnd("file:620-b-details" )
 
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

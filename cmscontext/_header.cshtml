@@ -1,2 +1,2 @@
 @inherits Custom.Hybrid.Razor14
-@DynamicModel.Sys.PageParts.Header(new { Title = "CmsContext Tutorials", Name = "CmsContext", Link = "#cmscontext" })
+@Html.Partial("../Shared/Layout/Header.cshtml", new { Sys = DynamicModel.Sys, Title = "CmsContext Tutorials", Name = "CmsContext", Link = "#cmscontext" })

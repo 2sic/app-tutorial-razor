@@ -253,18 +253,6 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-// 2dm wip, probably not used
-  // public ITag ResultAndExpandStart(string prefix, params string[] names) {
-  //   _resultEndWillPrepend = true;
-  //   _resultEndClosesReveal = true;
-  //   return Tag.RawHtml(
-  //     SnippetStartInner(prefix, ResultAndSourceTabName, null, names),
-  //     Tag.Div().Class("alert alert-info").TagStart,
-  //     Tag.H4("Output"),
-  //     Tag.Div().Class("show-hidden-with-reveal reveal-on-h3")
-  //   );
-  // }
-
 
   // TODO: replace all ResultPrepare with Invisible() in the code files
   public string Invisible() { return ResultPrepare(); }

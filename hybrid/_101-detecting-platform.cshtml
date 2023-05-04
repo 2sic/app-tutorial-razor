@@ -26,8 +26,9 @@
   You are running "@CmsContext.Platform.Name"
 @Sys.SourceCode.SnippetInlineEnd()
 
-@Sys.PageParts.FooterWithSource()
-
 <hide>
 @* 2sxclint:disable:no-dnn-namespaces *@
 </hide>
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

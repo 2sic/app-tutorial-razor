@@ -44,4 +44,5 @@
   <img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
 @Sys.SourceCode.SnippetEnd()
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

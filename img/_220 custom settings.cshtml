@@ -69,4 +69,5 @@
   <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 75)'>
 @Sys.SourceCode.SnippetEnd()
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

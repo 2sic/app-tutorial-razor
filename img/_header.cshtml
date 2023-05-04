@@ -1,5 +1,5 @@
 @inherits Custom.Hybrid.Razor14
-@DynamicModel.Sys.PageParts.Header(new { Title = "Images Tutorial", Name = "Images", Link = "#img" })
+@Html.Partial("../Shared/Layout/Header.cshtml", new { Sys = DynamicModel.Sys, Title = "Images Tutorial", Name = "Images", Link = "#img" })
 @* Styles to use on all Img Demos *@
 <style>
   .tab-pane img { max-width: 100%; height: auto; }

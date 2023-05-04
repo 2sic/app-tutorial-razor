@@ -29,4 +29,5 @@
 <h3>Details of @person.FirstName @person.LastName</h3>
 <a href='@Link.To(parameters: "data620=page")'>back to list</a>
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

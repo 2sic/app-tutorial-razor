@@ -34,5 +34,6 @@
 @Sys.SourceCode.ResultEnd("file:SharedFunctions.cs")
 
 
-@Sys.PageParts.FooterWithSource()
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
 
