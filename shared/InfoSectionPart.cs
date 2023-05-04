@@ -7,7 +7,7 @@ using ToSic.Sxc.Edit.Toolbar;
 
 // Class to generate shared parts on the page
 // Such as navigations etc.
-// Should itself not have much code, it's more central API to access everyhing
+// Should itself not have much code, it's more central API to access everything
 public class InfoSectionPart: Custom.Hybrid.Code14
 {
   #region Init / Dependencies
@@ -117,3 +117,7 @@ public class InfoSectionPart: Custom.Hybrid.Code14
       return null;
   }
 }
+
+// The next line is for 2sxc-internal quality checks, you can ignore this
+// It's necessary because the term "SexyContent" is used in the code
+// 2sxclint:disable:dont-use-sexycontent-ns

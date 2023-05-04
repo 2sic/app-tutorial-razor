@@ -50,3 +50,6 @@ public class Order {
   public int Id;
   public int Amount;
 }
+
+// The next line is for 2sxc-internal quality checks, you can ignore this
+// 2sxclint:disable:no-dnn-namespaces - 2sxclint:disable:no-web-namespace

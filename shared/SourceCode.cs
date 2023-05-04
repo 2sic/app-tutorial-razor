@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 
 public class SourceCode: Custom.Hybrid.Code14
 {
@@ -475,7 +474,7 @@ public class SourceCode: Custom.Hybrid.Code14
       var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
       var result = System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
     #else
-      var result = HttpContext.Current.Server.MapPath(filePath);
+      var result = System.Web.HttpContext.Current.Server.MapPath(filePath);
     #endif
     return result; // l(result, result);
   }
