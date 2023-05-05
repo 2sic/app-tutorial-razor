@@ -3,7 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -54,8 +54,8 @@
     "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
 
   @* Include local JavaScript file *@
-  <script src="@App.Path/turn-on/_202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:_202-system-scripts.js")
+  <script src="@App.Path/turn-on/202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:202-system-scripts.js")
 
 
 @* Footer *@

@@ -3,26 +3,23 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>Await libraries, before executing functions with turnOn</h2>
+      <h2>Await custom conditions through functions</h2>
       <p>
-        This page waits for a thirdparty library to finish loading, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
+        This page waits for a function to return true, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
         The executed JavaScript then triggers thirdparty library code, which modifies the DOM element in the page that causes an animation.
       </p>
       <br>
       In this tutorial you'll learn how to:
       <ul>
         <li>
-          Include an external library
-        </li>
-        <li>
-          Execute a JavaScript function <b>after</b> the library has finished loading
+          Execute a JavaScript function <b>after</b> a custom condition was met
         </li>
       </ul>
       Look at the element below to see the effect. 
@@ -30,7 +27,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of multi-file-js")
+@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of await-function-js")
   @{
     // Use the PageService to activate turnOn
     Kit.Page.Activate("turnOn");
@@ -43,22 +40,22 @@
   <div @uniqueDomAttrubute></div>
 
   @* 
-    Wait for thirdparty library to load, 
-    then execute the window.turnOnTutorial200.init function 
+    Wait for function to return true, 
+    then execute the window.turnOnTutorial201.init function 
     and pass the domAttribute as JSON 
   *@
 
-  <turnOn turn-on='{
-    "await": "window.spritejs",
-    "run": "window.turnOnTutorial200.init()",
+  <turnOn turn-on='{ 
+    "await": "window.turnOnTutorial201.ready()", 
+    "run": "window.turnOnTutorial201.init()", 
     "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
 
   @* Include thirdparty library from CDN *@
   <script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
 
   @* Include local JavaScript file *@
-  <script src="@App.Path/turn-on/_200-multi-file.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:_200-multi-file.js")
+  <script src="@App.Path/turn-on/201-await-function.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:201-await-function.js")
 
 
 @* Footer *@

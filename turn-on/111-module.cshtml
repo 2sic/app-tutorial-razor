@@ -3,7 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -44,8 +44,8 @@
   @* Passes the parameter domAttribute in a JSON format and executes the window.turnOnTutorial111.init function *@
   <turnOn turn-on='{ "run": "window.turnOnTutorial111.init()", "data": { "domAttribute": "@uniqueDomAttribute" } }'></turnOn>
 
-  <script src="@App.Path/turn-on/_111-module.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:_111-module.js")
+  <script src="@App.Path/turn-on/111-module.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:111-module.js")
 
 
 @* Footer *@

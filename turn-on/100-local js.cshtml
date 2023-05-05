@@ -3,7 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -40,8 +40,8 @@
   @* Executes the JavaScript function window.turnOnTutorial100.init() from the included script file *@
   <turnOn turn-on='{ "run": "window.turnOnTutorial100.init()" }'></turnOn>
 
-  <script src="@App.Path/turn-on/_100-local-js.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:_100-local-js.js")
+  <script src="@App.Path/turn-on/100-local-js.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:100-local-js.js")
 
 
 @* Footer *@
