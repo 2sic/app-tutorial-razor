@@ -4,16 +4,17 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Example from CSV</h2>
+    <h2>Example from CSV which was uploaded as an App Setting</h2>
     <p>
-      CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
+      This is similar to the previous example, except that the CSV file 
+      can be uploaded again and again in the App-Settings UI. So the path isn't hard-coded.  
       <br>
     </p>
     @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
@@ -21,15 +22,15 @@
 </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("data-query-csv", "Source-code products.csv.txt")
+@Sys.SourceCode.ResultAndSnippetStart("data-csv-query-settings", "Source of products.csv")
   @{
     // get the query
-    var query = App.Query["ProductsFromCSV"];
+    var query = App.Query["ProductsFromCsvInAppSettings"];
 
     // get the data from the query
     var products = AsList(query);
 
-    // get the current product or the default - the query always selects one
+    // get the current author (if available) from the stream Current
     var current = AsList(query["Current"]).FirstOrDefault();
 
     // Get the current url params so we can derive from it for details links

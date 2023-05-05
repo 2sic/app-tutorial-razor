@@ -4,7 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys }) 
+  @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
 
@@ -28,9 +28,9 @@
     int id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
   }
   @if (id == 0) {
-    @Html.Partial("_611-list.cshtml")
+    @Html.Partial("611-list.cshtml")
   } else {
-    @Html.Partial("_611-details.cshtml", new { Id = id })
+    @Html.Partial("611-details.cshtml", new { Id = id })
   }
 @Sys.SourceCode.ResultEnd("file:611-list", "file:611-details" )
 

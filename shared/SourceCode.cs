@@ -431,7 +431,7 @@ public class SourceCode: Custom.Hybrid.Code14
     var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
     if (Text.Has(file)) {
       if (file.IndexOf(".") == -1)
-        file = "_" + file + ".cshtml";
+        file = file + ".cshtml";
       var lastSlash = filePath.LastIndexOf("/");
       filePath = filePath.Substring(0, lastSlash) + "/" + file;
     }
