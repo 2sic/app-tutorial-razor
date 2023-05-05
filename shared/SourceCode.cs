@@ -318,10 +318,12 @@ public class SourceCode: Custom.Hybrid.Code14
       specs.Wrap = wrap ?? specs.Wrap;
       specs.ShowIntro = withIntro ?? specs.ShowIntro;
       specs.ShowTitle = showTitle ?? specs.ShowTitle;
+
+      TurnOnSource(specs, specs.Path, specs.Wrap);
+
       return Tag.RawHtml(
         debug ? Tag.Div(errPath).Class("alert alert-info") : null,
-        SourceBlock(specs, title),
-        TurnOnSource(specs, specs.Path, specs.Wrap)
+        SourceBlock(specs, title)
       );
     }
     catch
@@ -388,9 +390,9 @@ public class SourceCode: Custom.Hybrid.Code14
       Size = Size(null, source),
       Language = language,
     };
+    TurnOnSource(specs, "", false);
     return Tag.Div().Class("pre-result").Wrap(
-      SourceBlockCode(specs),
-      TurnOnSource(specs, "", false)
+      SourceBlockCode(specs)
     );
   }
 
@@ -400,16 +402,14 @@ public class SourceCode: Custom.Hybrid.Code14
     );
   }
 
-  private ITag TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
+  private void TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
     var language = "ace/mode/" + (specs.Language ?? (Text.Has(filePath)
       ? FindAce3LanguageName(filePath)
       : "html"));
 
-    var turnOnData = new {
-      @await = "window.ace",
-      run = "window.razorTutorial.initSourceCode()",
-      debug = true,
-      data = new {
+    Kit.Page.TurnOn("window.razorTutorial.initSourceCode()",
+      require: "window.ace",
+      data: new {
         test = "now-automated",
         domAttribute = specs.DomAttribute,
         aceOptions = new {
@@ -418,8 +418,7 @@ public class SourceCode: Custom.Hybrid.Code14
           sourceCodeId = specs.RandomId
         }
       }
-    };
-    return Tag.Custom("turnOn").Attr("turn-on", turnOnData);
+    );
   }
 
 
