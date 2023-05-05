@@ -3,9 +3,9 @@
   var hlp = CreateInstance("../shared/Helpers.cs");
 }
 
-<div @Sys.PageParts.InfoWrapper()>
+<div @hlp.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
-  <div @Sys.PageParts.InfoIntro()>
+  <div @hlp.PageParts.InfoIntro()>
     <h2>Settings in 2sxc 🆕<em> in 12.03</em></h2>
     <p>
       Settings allow your code to use predefined settings across all apps and sites.
