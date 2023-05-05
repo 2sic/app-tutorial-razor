@@ -2,7 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
 
@@ -21,8 +21,8 @@
 
 
 @Sys.SourceCode.ResultAndSnippetStart("hybrid", "Dnn Razor", "Oqtane Razor")
-  @Html.Partial("_CodeSwitching." + CmsContext.Platform.Name + ".cshtml")
-@Sys.SourceCode.ResultEnd("file:_CodeSwitching.Dnn.cshtml", "file:_CodeSwitching.Oqtane.cshtml")
+  @Html.Partial("CodeSwitching." + CmsContext.Platform.Name + ".cshtml")
+@Sys.SourceCode.ResultEnd("file:CodeSwitching.Dnn.cshtml", "file:CodeSwitching.Oqtane.cshtml")
 
 
 @* Footer *@
