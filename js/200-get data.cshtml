@@ -7,7 +7,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -56,8 +56,8 @@
   }
   <turnOn turn-on='{ "run": "window.sxcDataTutorial200.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 
-  <script src="@App.Path/js/_200-get-data.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:_200-get-data.js")
+  <script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:200-get-data.js")
 
 
 @* Footer *@

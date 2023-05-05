@@ -8,7 +8,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -69,8 +69,8 @@
   @* This tutorial uses turnOn, see turnOn tutorials *@
   @{ Kit.Page.Activate("turnOn"); }
   <turnOn turn-on='{ "run": "window.sxcDataTutorial240.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
-  <script src="@App.Path/js/_310-create-metadata.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:_310-create-metadata.js")
+  <script src="@App.Path/js/310-create-metadata.js" @Kit.Page.AssetAttributes()></script>
+@Sys.SourceCode.ResultEnd("file:310-create-metadata.js")
 
 
 @* Footer *@

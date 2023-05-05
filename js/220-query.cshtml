@@ -7,7 +7,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -52,8 +52,8 @@
   @{ Kit.Page.Activate("turnOn"); }
   <turnOn turn-on='{ "run": "window.tutQuery.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
 
-  <script src="@App.Path/js/_220-query.js"></script>
-@Sys.SourceCode.ResultEnd("file:_220-query.js")
+  <script src="@App.Path/js/220-query.js"></script>
+@Sys.SourceCode.ResultEnd("file:220-query.js")
 
 
 @* Footer *@

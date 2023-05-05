@@ -8,7 +8,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -53,8 +53,8 @@
     "data": { "moduleId": "@CmsContext.Module.Id", "demoAuthorId": "@demoAuthorId" } }'>
   </turnOn>
 
-  <script src="@App.Path/js/_230-query-parameters.js"></script>
-@Sys.SourceCode.ResultEnd("file:_230-query-parameters.js")
+  <script src="@App.Path/js/230-query-parameters.js"></script>
+@Sys.SourceCode.ResultEnd("file:230-query-parameters.js")
 
 
 @* Footer *@
