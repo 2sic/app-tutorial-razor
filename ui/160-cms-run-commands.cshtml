@@ -2,7 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
   @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 </hide>
 
@@ -42,10 +42,10 @@
 
       <a href="#" onclick="openAndCancelRefreshAfterwards(this, event, 'new', { contentType: 'UiEmptyHelloWorld'})">👉 Run open command</a>
   </div>
-@Sys.SourceCode.ResultEnd("file:_160-cms-run-commands.js")
+@Sys.SourceCode.ResultEnd("file:160-cms-run-commands.js")
 
 @* JS needed for the tutorial *@
-<script src="@App.Path/ui/_160-cms-run-commands.js" @Kit.Page.AssetAttributes()></script>
+<script src="@App.Path/ui/160-cms-run-commands.js" @Kit.Page.AssetAttributes()></script>
 
 <hide>
   <hr>
