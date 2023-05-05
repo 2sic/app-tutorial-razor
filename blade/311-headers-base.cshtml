@@ -34,7 +34,7 @@
 
 
 @if (CmsContext.Platform.Name == "Oqtane") {
-  Html.Partial("../shared/_MessageOqtaneDisabled.cshtml");
+  Html.Partial("../shared/MessageOqtaneDisabled.cshtml");
 } else {
   @Sys.SourceCode.SnippetInlineStart("base-tag")
     Kit.Page.SetBase();
