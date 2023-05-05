@@ -6,7 +6,7 @@ public class Bootstrap5 : Custom.Hybrid.Code14
   // this solves both the cases where its unknown, or another framework
   public void EnsureBootstrap5()
   {
-    if(Kit.Css.IsUnknown) {
+    if (Kit.Css.IsUnknown) {
       Kit.Page.Activate("Bootstrap5");
     }
   }

@@ -23,7 +23,7 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
   // attach click to all accordions when loading
   let accordionOpener = document.querySelectorAll(`[${options.attrParent}]`);
 
-  accordionOpener.forEach((elem: HTMLElement, index) => {
+  accordionOpener.forEach ((elem: HTMLElement, index) => {
     elem.addEventListener('click', (event) => {
       event.preventDefault();
 
@@ -42,12 +42,12 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
   });
 
   // get hash from url and open specific item
-  if(window.location.hash){
+  if (window.location.hash) {
     const hash = window.location.hash.replace('#', '');
     const targetHashElem = document.querySelector(`[${options.attrChild}="${hash}"]`) as HTMLElement;
     
     // if target element exists scroll to element and open it
-    if(targetHashElem){
+    if (targetHashElem) {
       // ADD THIS FUNCTION AFTER LIBRARY UPDATE:      
       showParentSections(targetHashElem, options);
 

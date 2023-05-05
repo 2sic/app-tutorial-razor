@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @{
-  // 1. Activate turnOn
-  Kit.Page.Activate("turnOn");
 
-  // 2. Include Bootstrap4 if the framework isn't known
   if (Kit.Css.IsUnknown) {
-    Kit.Page.Activate("Bootstrap5");
+    @* Include bootstrap 5 if the framework isn't known - then this file is still called, and we add Bootstrap to the page *@
+    @Kit.Page.Activate(condition: Kit.Css.IsUnknown, features: "Bootstrap5")
     <div class="alert alert-warning">This Tutorial uses Bootstrap 5, without Bootstrap 5 there will be display errors</div>
   }
 }

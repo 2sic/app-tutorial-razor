@@ -29,8 +29,6 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of await-function-js")
   @{
-    // Use the PageService to activate turnOn
-    Kit.Page.Activate("turnOn");
     
     // Create unique DOM attribute with Module Id
     var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
@@ -45,16 +43,19 @@
     and pass the domAttribute as JSON 
   *@
 
-  <turnOn turn-on='{ 
-    "await": "window.turnOnTutorial201.ready()", 
-    "run": "window.turnOnTutorial201.init()", 
-    "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+     @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{
+    var data = new {
+      domAttribute = uniqueDomAttrubute
+    };
+  }
+  @Kit.Page.TurnOn("window.turnOnTutorial201.init()", data: data)
 
   @* Include thirdparty library from CDN *@
   <script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
 
   @* Include local JavaScript file *@
-  <script src="@App.Path/turn-on/201-await-function.js" @Kit.Page.AssetAttributes()></script>
+  <script src="@CmsContext.View.Path/201-await-function.js" @Kit.Page.AssetAttributes()></script>
 @Sys.SourceCode.ResultEnd("file:201-await-function.js")
 
 

@@ -49,7 +49,7 @@
     }
   </ul>
   @if (current != null) {
-    if(Text.Has(current.Mugshot)) {
+    if (Text.Has(current.Mugshot)) {
       <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right float-end">
     }
     <h3>Current Author: @current.FirstName @current.LastName</h3>

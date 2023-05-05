@@ -14,7 +14,7 @@ public class RazorBladeVersion: Custom.Hybrid.Code14
 
   public float VersionDouble() {
     var verInfo = GetRazorBladeVersion();
-    if(verInfo == null) return 0;
+    if (verInfo == null) return 0;
 
     var major = verInfo.Major;
     var minor = verInfo.Minor;

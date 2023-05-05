@@ -108,10 +108,10 @@ public class InfoSectionPart: Custom.Hybrid.Code14
     }
   }
 
-  private dynamic GetView(dynamic Data){
+  private dynamic GetView(dynamic Data) {
     var ViewList = AsList(App.Data["2SexyContent-Template"] as object);
     var View = ViewList.FirstOrDefault(view => view.Metadata == Data);
-    if(View != null)
+    if (View != null)
       return View;
     else
       return null;

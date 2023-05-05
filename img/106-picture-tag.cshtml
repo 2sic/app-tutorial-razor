@@ -66,7 +66,7 @@
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
     <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
-    <img style="width: 40%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
+    <img loading="lazy" style="width: 40%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
   </picture>
 @Sys.SourceCode.SnippetEnd()
 
@@ -94,7 +94,7 @@
           @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
           @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
       sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
-    <img class="img-fluid" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
+    <img loading="lazy" class="img-fluid" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
   </picture>
 @Sys.SourceCode.SnippetEnd()
 
@@ -157,13 +157,13 @@
     {
       @st
     }
-    <img src='@picFullControl.Src' style='width: 50%' class='border border-primary'>
+    <img loading="lazy" src='@picFullControl.Src' style='width: 50%' class='border border-primary'>
   </picture>
 @Sys.SourceCode.ResultPrepare()
   @{
     previewString = "<picture> ";
     foreach (var st in picFullControl.Sources) { previewString += st.ToString(); }
-    previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary'>";
+    previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary' loading='lazy' >";
     previewString += "</picture>";
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
   }

@@ -33,7 +33,7 @@
   @{
     var imgUrl = App.Path + "/settings/demo.png";
   }
-  @* <img loading="lazy" src='@imgUrl'> <-- don't do this *@
+
   <img loading="lazy" src='@Link.Image(imgUrl)'>
 @Sys.SourceCode.SnippetEnd()
 

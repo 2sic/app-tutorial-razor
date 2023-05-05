@@ -13,7 +13,7 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     // Remember tab names
     _moreTabNames = names.ToArray();
     var tabList = new List<ITag>();
-    foreach(var name in names)
+    foreach (var name in names)
       tabList.Add(Tab(prefix, name, tabList.Count == 0)); // first entry is active = true
     return Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(tabList);
   }

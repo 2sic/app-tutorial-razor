@@ -49,12 +49,14 @@
     </thead>
     <tbody></tbody>
   </table>
-  @* This tutorial uses turnOn, see turnOn tutorials *@
+
   @{
-    // Use the PageService to activate turnOn
-    Kit.Page.Activate("turnOn");
+    var data = new {
+      moduleId = CmsContext.Module.Id
+    };
   }
-  <turnOn turn-on='{ "run": "window.sxcDataTutorial200.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+
+  @Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: data)
 
   <script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>
 @Sys.SourceCode.ResultEnd("file:200-get-data.js")

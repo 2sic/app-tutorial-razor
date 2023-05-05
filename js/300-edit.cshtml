@@ -70,10 +70,16 @@
     <button type="button" class="btn btn-primary" onclick="window.editPoets.add()" >Add poet</button>
   </div>
 
-  @* This tutorial uses turnOn, see turnOn tutorials *@
-  @{ Kit.Page.Activate("turnOn"); }
-  <turnOn turn-on='{ "run": "window.editPoets.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
-  <script src="@App.Path/js/300-edit.js"></script>
+ @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{
+    var data = new {
+      moduleId = CmsContext.Module.Id
+    };
+  }
+  @Kit.Page.TurnOn("window.editPoets.init()", data: data)
+
+
+  <script src="@CmsContext.View.Path/300-edit.js"></script>
 @Sys.SourceCode.ResultEnd("file:300-edit.js")
 
 

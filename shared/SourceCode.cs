@@ -272,7 +272,7 @@ public class SourceCode: Custom.Hybrid.Code14
       html = html.Add("</div>", Snippet(_snippet));
     html = html.Add(BsTabs.TabContentClose());
     // If we have any results, add them here
-    foreach(var m in results) {
+    foreach (var m in results) {
       var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
       Log.Add("tab name:" + name + " (" + nameCount + ")");
       html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
@@ -369,8 +369,8 @@ public class SourceCode: Custom.Hybrid.Code14
             ),
             Tag.Div().Class("col-auto").Wrap(
               // Up / Down arrows as SVG - hidden by default, become visible based on CSS 
-              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-up.svg' class='fa-chevron-up'>"),
-              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down'>")
+              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-up.svg' class='fa-chevron-up'> loading='lazy'"),
+              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down'> loading='lazy'")
             )
           ) as ITag
         : specs.ShowTitle

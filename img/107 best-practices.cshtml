@@ -63,8 +63,8 @@
   </div>
 @Sys.SourceCode.ResultPrepare()
   @{
-    var resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Image));
-    var resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Field("Image")));
+    var resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Image , imgAltFallback: "Picture from Content.Image"));
+    var resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Field("Image"), imgAltFallback: "Picture from Field"));
   }
 @Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
@@ -85,18 +85,18 @@
     <div class="col-md">
       <p><strong>Picture from <code>Content.Image</code></strong></p>
       @* Picture from Content.Image *@
-      @Kit.Image.Picture(Content.Image)
+      @Kit.Image.Picture(Content.Image, imgAltFallback: "Picture from Content.Image")
     </div>
     <div class="col-md">
       <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
       @* Picture from Field containing crop anchor and alt text *@
-      @Kit.Image.Picture(Content.Field("Image"))
+      @Kit.Image.Picture(Content.Field("Image"), imgAltFallback: "Picture from Field")
     </div>
   </div>
 @Sys.SourceCode.ResultPrepare()
   @{
-    resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Image));
-    resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image")));
+    resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Image , imgAltFallback: "Picture Left"));
+    resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAltFallback: "Picture Right"));
   }
 @Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
@@ -121,8 +121,8 @@
   </div>
 @Sys.SourceCode.ResultPrepare()
   @{
-    resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 0.5));
-    resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 5));
+    resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 0.5 , imgAltFallback: "Picture Factor 0.5"));
+    resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 5 , imgAltFallback: "Picture Factor 5"));
   }
 @Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
@@ -142,7 +142,7 @@
     <div class="col-md">
       <p><strong>Picture default recipe</strong></p>
       @* Picture using the default *@
-      @Kit.Image.Picture(Content.Field("Image"))
+      @Kit.Image.Picture(Content.Field("Image") , imgAltFallback: "Picture default recipe")
     </div>
     <div class="col-md">
       <p><strong>Picture with variants for 2x and 3x of the image size</strong></p>
@@ -150,13 +150,13 @@
         var customRecipe = Kit.Image.Recipe("2*, 3*");
       }
       @* Picture using recipe with 2x and 3x variants *@
-      @Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe)
+      @Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe  , imgAltFallback: "Picture customRecipe")
     </div>
 </div>
 @Sys.SourceCode.ResultPrepare()
   @{
-    resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image")));
-    resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe));
+    resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image") , imgAltFallback: "Picture Left"));
+    resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe , imgAltFallback: "Picture Right"));
   }
 @Sys.SourceCode.ResultEnd(resultHtmlLeft, resultHtmlRight )
 
@@ -187,12 +187,12 @@
   <div>
     <p><strong>Image with optimal alt text (@optimalAltText)</strong></p>
     <div style="width: 25%;">
-      @Kit.Image.Picture(imageFieldWithAltText, imgAlt: optimalAltText)
+      @Kit.Image.Picture(imageFieldWithAltText, imgAltFallback: optimalAltText)
     </div>
   </div>
 @Sys.SourceCode.ResultPrepare()
   @{
-   var resultHtml = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAlt: optimalAltText));
+   var resultHtml = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAltFallback: optimalAltText));
   }
 @Sys.SourceCode.ResultEnd(resultHtml )
 

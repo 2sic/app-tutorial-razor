@@ -21,8 +21,8 @@ window.toolbarWorkflow = {
 
   // Attach event-listener to the TagToolbar parent, so we can register the workflow when the toolbar is created
   initOnTagToolbar: function(name) {
-    console.log('initInlineToolbar(' + name + ')');
-    var parent = document.getElementById(name);
+    console.log('initInlineToolbar(' + name.data + ')');
+    var parent = document.getElementById(name.data);
     console.log('parent:', parent);
     parent.addEventListener('toolbar-init', (initEvent) => {
       console.log("Workflow Demo: Tag Toolbar was initialized - event kicked in - will now register");
@@ -38,8 +38,8 @@ window.toolbarWorkflow = {
 
   // Attach event-listener to the parent of the inline-toolbar, so we can register the workflow when the toolbar is created
   initInlineToolbar: function(name) {
-    console.log('initInlineToolbar(' + name + ')');
-    var parent = document.getElementById(name);
+    console.log('initInlineToolbar(' + name.data + ')');
+    var parent = document.getElementById(name.data);
     console.log('parent:', parent);
     parent.addEventListener('toolbar-init', (initEvent) => {
       console.log("Workflow Demo: Inline Toolbar was initialized - event kicked in - will now register");

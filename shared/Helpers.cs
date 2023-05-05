@@ -54,7 +54,7 @@ public class Helpers: Custom.Hybrid.Code14
         appendix
       )
     );
-    if(!string.IsNullOrWhiteSpace(description)) {
+    if (!string.IsNullOrWhiteSpace(description)) {
       result.Add(Tag.Br(), description);
     }
     return result;
@@ -68,7 +68,7 @@ public class Helpers: Custom.Hybrid.Code14
         appendix
       )
     );
-    if(!string.IsNullOrWhiteSpace(description)) {
+    if (!string.IsNullOrWhiteSpace(description)) {
       result.Add(description);
     }
     return result;
@@ -90,7 +90,7 @@ public class Helpers: Custom.Hybrid.Code14
 
 
   public dynamic Highlighted(string specialText) {
-    if(specialText == null) { return null; }
+    if (specialText == null) { return null; }
     return Tag.Span(specialText).Class("text-warning");
   }
 

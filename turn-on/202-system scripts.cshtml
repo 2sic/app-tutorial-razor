@@ -29,9 +29,6 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of system-scripts-js")
   @{
-    // Use the PageService to activate turnOn and a system script
-    Kit.Page.Activate("turnOn", "fancybox4");
-    
     // Create unique DOM attribute with Module Id
     var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
   }
@@ -48,13 +45,19 @@
     and pass the domAttribute as JSON 
   *@
 
-  <turnOn turn-on='{
-    "await": ["window.Fancybox"], 
-    "run": "window.turnOnTutorial202.init()", 
-    "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+     @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{
+    var data = new {
+      domAttribute = uniqueDomAttrubute
+    };
+  }
+  
+  @* TODO: Fancybox not working  *@
+  @Kit.Page.Activate("fancybox4")
+  @Kit.Page.TurnOn("window.turnOnTutorial202.init()", data: data)
 
   @* Include local JavaScript file *@
-  <script src="@App.Path/turn-on/202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
+  <script src="@CmsContext.View.Path/202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
 @Sys.SourceCode.ResultEnd("file:202-system-scripts.js")
 
 

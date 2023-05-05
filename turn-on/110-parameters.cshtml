@@ -35,16 +35,25 @@
     turnOn Example 2 hasn't started yet.
   </div>
 
-  @{
-    // Use the PageService to activate turnOn
-    Kit.Page.Activate("turnOn");
-  }
-
   @* Passes the parameters Hello for greeting and World for name in a JSON format and executes the window.turnOnTutorial110.init function *@
-  <turnOn turn-on='{ "run": "window.turnOnTutorial110.init()", "data": { "greeting": "Hello", "name": "World" } }'></turnOn>
-  <turnOn turn-on='{ "run": "window.turnOnTutorial110.demoDeconstruct()", "data": { "greeting": "Hello", "name": "Moon" } }'></turnOn>
 
-  <script src="@App.Path/turn-on/110-parameters.js" @Kit.Page.AssetAttributes()></script>
+   @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{
+    var data = new {
+      greeting = "Hello",
+      name = "World"
+    };
+
+      var dataDemo = new {
+      greeting = "Hello",
+      name = "Moon"
+    };
+  }
+  @Kit.Page.TurnOn("window.turnOnTutorial110.init()", data: data)
+  @Kit.Page.TurnOn("window.turnOnTutorial110.demoDeconstruct()", data: dataDemo)
+
+  <script src="@CmsContext.View.Path/110-parameters.js" @Kit.Page.AssetAttributes()></script>
+
 @Sys.SourceCode.ResultEnd("file:110-parameters.js")
 
 

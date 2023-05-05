@@ -29,9 +29,6 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of module-js")
   @{
-    // Use the PageService to activate turnOn
-    Kit.Page.Activate("turnOn");
-
     // Create unique DOM attribute with Module Id
     var uniqueDomAttribute = "turn-on-example-" + CmsContext.Module.Id;
   }
@@ -41,10 +38,17 @@
     turnOn hasn't passed any parameters.
   </div>
 
-  @* Passes the parameter domAttribute in a JSON format and executes the window.turnOnTutorial111.init function *@
-  <turnOn turn-on='{ "run": "window.turnOnTutorial111.init()", "data": { "domAttribute": "@uniqueDomAttribute" } }'></turnOn>
 
-  <script src="@App.Path/turn-on/111-module.js" @Kit.Page.AssetAttributes()></script>
+   @* This tutorial uses turnOn, see turnOn tutorials *@
+  @{
+    var data = new {
+      domAttribute = uniqueDomAttribute
+    };
+  }
+  
+  @Kit.Page.TurnOn("window.tutQuery.init()", data: data)
+
+  <script src="@CmsContext.View.Path/111-module.js" @Kit.Page.AssetAttributes()></script>
 @Sys.SourceCode.ResultEnd("file:111-module.js")
 
 

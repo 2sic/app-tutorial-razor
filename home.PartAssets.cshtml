@@ -1,13 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @{
-  // Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon
-  Kit.Page.Activate("FontAwesome5", "turnOn");
-
-  // 2. Include Bootstrap4 if the framework isn't known
-  if (Kit.Css.IsUnknown) {
-    Kit.Page.Activate("Bootstrap5");
-  }
 
   var accordionOptions = new {
     tagStickyHeader = "header",           // This is the sticky header in the page, the height of which must be respected on scroll
@@ -15,10 +8,19 @@
     attrParent = "data-accordion-parent", // This attribute marks the title tag which will trigger expand/collapse, the value must be same as in the child
     attrChild = "data-accordion-child"    // This attribute contains a key which is used in the #-fragment for navigating to a section
   };
-  var jsonOptions = Html.Raw(Kit.Json.ToJson(accordionOptions));
+  var data = new {
+    domId = DynamicModel.DomId,
+    options = accordionOptions
+  };
+
 }
+@* Include bootstrap 5 if the framework isn't known - then this file is still called, and we add Bootstrap to the page *@
+@Kit.Page.Activate(condition: Kit.Css.IsUnknown, features: "Bootstrap5")
 
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
-<turnOn turn-on='{ "run": "window.razorTutorial.initAccordion()", "data": { "domId": "@DynamicModel.DomId", "options": @jsonOptions }}'></turnOn>
-<script src="@App.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>
+@* Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon *@
+@Kit.Page.Activate("FontAwesome5")
 
+<link rel="stylesheet" href="@CmsContext.View.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
+<script src="@CmsContext.View.Path/dist/scripts.min.js" @Kit.Page.AssetAttributes()></script>
+
+@Kit.Page.TurnOn("window.razorTutorial.initAccordion()", data: data)

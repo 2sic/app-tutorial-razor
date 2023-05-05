@@ -34,11 +34,9 @@
   </div>
 
   @{
-    // Use the PageService to activate turnOn
-    Kit.Page.Activate("turnOn");
     
     // Create an anonymous object and define example settings 
-    var exampleObject = new {
+    var data = new {
       domId = "turn-on-example",
       style = new {
         backgroundColor = "mediumpurple",
@@ -49,11 +47,9 @@
   }
 
   @* Passes the exampleObject as parameter in a JSON format and executes the window.turnOnTutorial120.init function *@
-  <turnOn turn-on='{ 
-    "run": "window.turnOnTutorial120.init()", 
-    "data": @Html.Raw(Kit.Json.ToJson(exampleObject)) }'></turnOn>
+  @Kit.Page.TurnOn("window.turnOnTutorial120.init()", data: data)
 
-  <script src="@App.Path/turn-on/120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
+  <script src="@CmsContext.View.Path/120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
 @Sys.SourceCode.ResultEnd("file:120-anonymous-object.js")
 
 

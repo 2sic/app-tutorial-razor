@@ -68,7 +68,7 @@
 
 @Sys.SourceCode.SnippetStart("img-srcset")
   <hide-silent>@ShowCurrentSrc("img-srcset")</hide-silent>
-  <img class="img-fluid" alt="Image SrcSet Demo"
+  <img loading="lazy" class="img-fluid" alt="Image SrcSet Demo"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
     srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
             @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
@@ -165,7 +165,7 @@
   @{
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
-  <img src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+  <img loading="lazy" src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
 @Sys.SourceCode.ResultPrepare()
   @{
     // regenerate to match sample above

@@ -55,7 +55,7 @@
         .SelectMany(b => AsList(b.Authors as object).Select(a => new { Book = b, Author = a }))
         .GroupBy(set => set.Author);
       
-      foreach(var group in booksGroupedByAuthor) {
+      foreach (var group in booksGroupedByAuthor) {
       <li>
         Author: @group.Key.FirstName @group.Key.LastName
         <ul>
