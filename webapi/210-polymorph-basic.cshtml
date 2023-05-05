@@ -38,6 +38,7 @@
   <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
     Get Hello from dev
   </button> 
+    @* 2sxclint:disable:no-inline-script *@
     <script>
     function callBasicHello(moduleContext, edition) {
       $2sxc(moduleContext).webApi.fetchJson('app/auto/' + edition + '/api/demo/hello')

@@ -28,6 +28,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-json", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">Quick Fetch Json "Hello"</button>
+    @* 2sxclint:disable:no-inline-script *@
   <script>
     // Fetch using modern Browser Fetch-promises, with auto-get Json
     // This is the recommended method if you expect JSON, because it's simpler
@@ -45,6 +46,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="helloFetch(this)">Quick Fetch "Hello"</button> 
+    @* 2sxclint:disable:no-inline-script *@
   <script>
       // Fetch using modern Browser APIs
       // This is the more manual method, in case you don't expect JSON or want more control
@@ -60,6 +62,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-manual", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="helloFetchManual(this)">Quick Fetch "Hello"</button>
+    @* 2sxclint:disable:no-inline-script *@
     <script>
     // Manual Fetch call using more code
     // This is the most manual method, but shows how it actually works internally
@@ -77,6 +80,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("jquery", "Source of the WebApi Controller")
   <button type="button" class="btn btn-secondary" onclick="helloJQueryOld(this)">jQuery Get Hello</button>
+    @* 2sxclint:disable:no-inline-script *@
     <script>
     // jQuery versions (not recommended any more, will not work on pages without jQuery)
     function helloJQueryOld(moduleContext) {
@@ -92,6 +96,7 @@
 @Sys.SourceCode.ResultAndSnippetStart("square", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="squareFetch(this, 7)">Fetch Square 7</button>
     <button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">Fetch Square 27</button>
+      @* 2sxclint:disable:no-inline-script *@
     <script>
       function squareFetch(moduleContext, original) {
         $2sxc(moduleContext).webApi.fetchJson('basic/square?number=' + original)

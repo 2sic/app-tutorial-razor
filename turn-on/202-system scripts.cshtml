@@ -52,9 +52,9 @@
     };
   }
   
-  @* TODO: Fancybox not working  *@
+  @* TODO: Fancybox not working now *@
   @Kit.Page.Activate("fancybox4")
-  @Kit.Page.TurnOn("window.turnOnTutorial202.init()", data: data)
+  @Kit.Page.TurnOn("window.turnOnTutorial202.init()", data: data, require: "window.Fancybox")
 
   @* Include local JavaScript file *@
   <script src="@CmsContext.View.Path/202-system-scripts.js" @Kit.Page.AssetAttributes()></script>

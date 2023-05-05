@@ -28,6 +28,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-get", "Source of WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
+    @* 2sxclint:disable:no-inline-script *@
   <script>
       function getOrdersFetch(moduleContext) {
         $2sxc(moduleContext).webApi.fetchJson('orders/get')
@@ -40,6 +41,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-post", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
+    @* 2sxclint:disable:no-inline-script *@
   <script>
     function postOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
@@ -51,6 +53,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-put", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
+    @* 2sxclint:disable:no-inline-script *@
   <script>
     function putOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
@@ -62,6 +65,7 @@
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-delete", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
+    @* 2sxclint:disable:no-inline-script *@
   <script>
     function deleteOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
