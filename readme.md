@@ -18,7 +18,7 @@ You can also download the latest copy of this App directly from the [releases](.
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v12.05
+| 2sxc                | ✅    | requires 2sxc v16.00
 | Dnn                 | ✅    | For v7, v8 and v9
 | Oqtane 2            | ✅    | Requires v2.02
 | No jQuery           | ✅    | 
@@ -41,17 +41,21 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 ## History
 
 * v12.05 2021-10
-    * Upgraded everythnig to also run in Oqtane (except for Dnn specific examples)
-    * Using the latest & greatest best-practices of 2sxc 12.05
+  * Upgraded everythnig to also run in Oqtane (except for Dnn specific examples)
+  * Using the latest & greatest best-practices of 2sxc 12.05
 * v12.11 2021-12
-    * Added new tutorials for turnOn
+  * Added new tutorials for turnOn
 * v13.01
-    * Enabled data-optimizations
-    * Improved home
-    * Added tutorial navigation
-    * Added Oqtane support
-    * Added IScrub tutorials
+  * Enabled data-optimizations
+  * Improved home
+  * Added tutorial navigation
+  * Added Oqtane support
+  * Added IScrub tutorials
 * v14.07.05
-    * Migrated the app to the 14.07 best practices
-    * Changed the toolbar tutorials to also show the new IToolbarBuilder
-    * Added a CmsContext tutorial
+  * Migrated the app to the 14.07 best practices
+  * Changed the toolbar tutorials to also show the new IToolbarBuilder
+  * Added a CmsContext tutorial
+* v16.00.00 2023-05
+  * Removed _ from Filenames
+  * Enhanced Kit.Image with `imgAltFallback`
+  * Replaced turnOn Tag with `Kit.Page.TurnOn`
