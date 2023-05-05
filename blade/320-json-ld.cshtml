@@ -47,7 +47,9 @@
       }
     @Sys.SourceCode.ResultPrepare()
       <code>
-        @(new ToSic.Razor.Html5.ScriptJsonLd(jsonLd).ToString())
+        &lt;script&gt; type='application/ld+json'&gt;{ "@@context": "https://schema.org/" }&lt;/script&gt;
+        <br>
+        &lt;script type='application/ld+json'&gt;@(Kit.Json.ToJson(jsonLd))&lt;/script&gt;
       </code>
     @Sys.SourceCode.ResultEnd()
   </text>
