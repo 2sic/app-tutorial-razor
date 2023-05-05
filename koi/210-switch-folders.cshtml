@@ -3,7 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -40,8 +40,8 @@
   @{ 
     var folder = Kit.Css.Is("bs5") ? "bs5" : Kit.Css.Is("bs4") ? "bs4" : "bs3";
   }
-  @Html.Partial(folder + "/_Alert.cshtml")
-@Sys.SourceCode.ResultEnd("file:bs3/_Alert.cshtml","file:bs4/_Alert.cshtml" )
+  @Html.Partial(folder + "/Alert.cshtml")
+@Sys.SourceCode.ResultEnd("file:bs3/Alert.cshtml","file:bs4/Alert.cshtml" )
 
 
 @* Footer *@
