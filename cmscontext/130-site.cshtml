@@ -3,42 +3,42 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>Interface ICmsPlatform</h2>
+      <h2>Interface ICmsSite</h2>
       <p>
-        With this object you can get general information about the current platform. 
+        With this object you can get general informtion about the current site. 
       </p>
     </div>
   </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-name")
-  <h3>The .Name attribute:</h3>
-  The current platform name is: 
+@Sys.SourceCode.SnippetInlineStart("ICmsSite-id")
+  <h3>The .Id attribute:</h3>
+  The id of the current site (this is the same as <code>PortalId</code> in DNN): 
   <strong>
-    @CmsContext.Platform.Name
+    @CmsContext.Site.Id
   </strong>
 @Sys.SourceCode.SnippetInlineEnd()
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-type")
-  <h3>The .Type attribute:</h3>
-  The current platform type is: 
+@Sys.SourceCode.SnippetInlineStart("ICmsSite-url")
+  <h3>The .Url attribute:</h3>
+  The the site url with protocol:
   <strong>
-    @CmsContext.Platform.Type
+    @CmsContext.Site.Url
   </strong>
 @Sys.SourceCode.SnippetInlineEnd()
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-version")
-  <h3>The .Version attribute:</h3>
-  The current platform version is: 
+@Sys.SourceCode.SnippetInlineStart("ICmsSite-urlroot")
+  <h3>The .UrlRoot attribute:</h3>
+  The the site url without a protocol:
   <strong>
-    @CmsContext.Platform.Version
+    @CmsContext.Site.UrlRoot
   </strong>
 @Sys.SourceCode.SnippetInlineEnd()
 
