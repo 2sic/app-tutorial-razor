@@ -6,7 +6,7 @@
   }
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -36,7 +36,7 @@
   </script>
 @Sys.SourceCode.ResultEnd("file:../api/OrdersController.cs")
 
-@Html.Partial("_MessageHybrid.cshtml") 
+@Html.Partial("MessageHybrid.cshtml") 
 
 @Sys.SourceCode.ResultAndSnippetStart("fetch-post", "Source of the WebApi Controller")
   <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 

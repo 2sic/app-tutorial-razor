@@ -6,7 +6,7 @@
   }
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -46,7 +46,7 @@
   </script>
 @Sys.SourceCode.ResultEnd("file:../api/VerifiedController.cs")
 
-@Html.Partial("_MessageHybrid.cshtml") 
+@Html.Partial("MessageHybrid.cshtml") 
 
 
 <h3>URL</h3>
