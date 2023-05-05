@@ -3,30 +3,30 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>IPageService</em> to Set Headers / Meta etc.</h2>
+      <h2><em>IPageService</em> to add Open-Graph Headers</h2>
       <div>
-        This page sets the title, description, keywords and some manual tags to the header. 
+        This page sets various open-graph headers. 
 
         Look at the resulting output-source to see the effect. 
       </div>
     </div>
   </div>
 
-
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnlyStart("page-headers")
+@Sys.SourceCode.SnippetOnlyStart("page-graph")
   @{
-    // prefix the current title, description and keywords with additional values
-    Kit.Page.AddToHead("<meta xyz>");
-    Kit.Page.AddMeta("somename", "somevalue");
+    // note: 'og:' is auto-prefixed if not given in the key
+
+    Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
+    Kit.Page.AddOpenGraph("type", "website");
   }
 @Sys.SourceCode.SnippetOnlyEnd()
 

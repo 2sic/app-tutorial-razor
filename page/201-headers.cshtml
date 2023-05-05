@@ -3,14 +3,14 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/_DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>IPageService</em> To set Title, Description and Keywords</h2>
+      <h2><em>IPageService</em> to Set Headers / Meta etc.</h2>
       <div>
         This page sets the title, description, keywords and some manual tags to the header. 
 
@@ -22,12 +22,11 @@
 
 @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnlyStart("sample")
+@Sys.SourceCode.SnippetOnlyStart("page-headers")
   @{
     // prefix the current title, description and keywords with additional values
-    Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
-    Kit.Page.SetDescription("Learn to use Razor Blade ");
-    Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+    Kit.Page.AddToHead("<meta xyz>");
+    Kit.Page.AddMeta("somename", "somevalue");
   }
 @Sys.SourceCode.SnippetOnlyEnd()
 
