@@ -3,7 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
 
@@ -13,7 +13,7 @@
       <h2><em>RazorBlade</em> set Title, Description and other headers</h2>
 
       @* TOOD: Ask 2dm if we should remove this section - replaced by Pageservice already *@
-      @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+      @Html.Partial("MessageDnnOnlyUseIPageService.cshtml")
       
       @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
 

@@ -4,7 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })
+  @Html.Partial("header.cshtml", new { Sys = Sys })
   @{
   var rzr = CreateInstance("RazorbladeVersion.cs");
   var version = rzr.VersionDouble();
@@ -23,5 +23,5 @@
   </div>
 </div>
 
-@Html.Partial("_razorblade-version-info.cshtml", new { Expected =  3.00 } )
+@Html.Partial("razorblade-version-info.cshtml", new { Expected =  3.00 } )
 
