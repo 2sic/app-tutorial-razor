@@ -35,7 +35,7 @@
 
   @foreach (var sectionGroup in grouped)
   {
-    @Html.Partial("_Home-Section.cshtml", new { 
+    @Html.Partial("Home-Section.cshtml", new { 
       TutorialSet = sectionGroup.First().Section, 
       IsSubSection = false,
       SubSections = sectionGroup.Skip(1).Select(s => { return s.Section; }) 
@@ -69,7 +69,7 @@
       }
     };
   }
-  @Html.Partial("_Home-Section.cshtml", new { TutorialSet = wipSection })
+  @Html.Partial("Home-Section.cshtml", new { TutorialSet = wipSection })
 </div>
 
-@Html.Partial("./_home.PartAssets.cshtml")
+@Html.Partial("./home.PartAssets.cshtml")

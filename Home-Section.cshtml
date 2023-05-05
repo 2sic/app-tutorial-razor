@@ -85,5 +85,5 @@
 
 @* Show All Sub Sections *@
 @foreach (var section in AsList(DynamicModel.SubSections)) {
-  @Html.Partial("_Home-Section.cshtml", new { TutorialSet = section, IsSubSection = true } )
+  @Html.Partial("home-Section.cshtml", new { TutorialSet = section, IsSubSection = true } )
 }
