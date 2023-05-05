@@ -16,8 +16,10 @@
       <p>In this example, we'll get app-data from the WebApi.</p>
 
       <p>Click to see the result of a WebApi call with the shared code:</p>
-    </div>
+
+      @Html.Partial("./Part NowUsingJsonFormatter.cshtml")
   </div>
+</div>
 
 
 
@@ -27,9 +29,14 @@
   </button> 
   <button type="button" class="btn btn-primary" onclick="getBooks(this)">
     Get Books Custom
-  </button> 
+  </button>
+  <br>
+  <br>
   <button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
-    Get Persons with Auto-Convert
+    Persons with Auto-Convert
+  </button> 
+  <button type="button" class="btn btn-primary" onclick="getPersonsAutoPreserveCasing(this)">
+    Persons with Auto-Convert, preserve casing
   </button> 
     @* 2sxclint:disable:no-inline-script *@
   <script>
@@ -55,11 +62,22 @@
       $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
         .then(function(results) {
           alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
+            + 'The first one is "' + results[0].firstName + ' ' + results[0].lastName + '"\n\n'
+            + 'The raw JSON: \n' + JSON.stringify(results)
+          );
+        });
+    }
+
+    function getPersonsAutoPreserveCasing(moduleContext) {
+      $2sxc(moduleContext).webApi.fetchJson('books/PersonsAutoPreserveCasing')
+        .then(function(results) {
+          alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
             + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
             + 'The raw JSON: \n' + JSON.stringify(results)
           );
         });
     }
+    
   </script>
 @Sys.SourceCode.ResultEnd("file:../api/BooksController.cs")
 

@@ -8,6 +8,7 @@ using System.Web.Http;                    // .net 4.5 [AllowAnonymous] / [HttpGe
 using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAntiForgeryToken]
 #endif
 using System.Linq;        // this enables .Select(x => ...)
+using ToSic.Sxc.WebApi;   // For the [JsonFormatter] (see below)
 using ToSic.Eav.DataFormats.EavLight; // For Auto-Conversion (see below)
 
 [AllowAnonymous]                          // all commands can be accessed without a login
@@ -30,15 +31,22 @@ public class BooksController : Custom.Hybrid.Api14 // see https://r.2sxc.org/Cus
       });
   }
 
-  [HttpGet]                               // [HttpGet] says we're listening to GET requests
+  [HttpGet]
+  [JsonFormatter]                           // this will auto-convert Entities to JSON
   public dynamic PersonsAuto()
   {
-    // 2sxclint:disable:v14-no-getservice
-    var json = GetService<IConvertToEavLight>();
-    return json.Convert(App.Data["Persons"]);
+    return App.Data["Persons"];
   }
 
-  [HttpGet]                               // [HttpGet] says we're listening to GET requests
+  [HttpGet]
+  [JsonFormatter(Casing = Casing.Preserve)] // auto-convert but preserve casing
+  public dynamic PersonsAutoPreserveCasing()
+  {
+    return App.Data["Persons"];
+  }
+  
+
+  [HttpGet]
   public dynamic Books()
   {
     return AsList(App.Data["Books"])
