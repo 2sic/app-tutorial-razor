@@ -53,12 +53,12 @@
     <div class="col-md">
       <p><strong>Picture from <code>Content.Image</code></strong></p>
       @* Picture from Content.Image *@
-      @Kit.Image.Img(Content.Image)
+      @Kit.Image.Img(Content.Image, imgAltFallback: "Picture from Content.Image")
     </div>
     <div class="col-md">
       <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
       @* Picture from Field containing crop anchor and alt text *@
-      @Kit.Image.Img(Content.Field("Image"))
+      @Kit.Image.Img(Content.Field("Image"), , imgAltFallback: "Picture from Field")
     </div>
   </div>
 @Sys.SourceCode.ResultPrepare()
