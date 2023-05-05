@@ -3,7 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("_header.cshtml", new { Sys = Sys })  
+  @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
 
@@ -20,23 +20,23 @@
 
 
 <h3>Just render the same, external file into here</h3>
-<p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
+<p>This uses <code>@@Html.Partial</code> to get the file <code>line.cshtml</code> 3 times.</p>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of _line.cshtml")
-  @Html.Partial("_line.cshtml")
-  @Html.Partial("_line.cshtml")
-  @Html.Partial("_line.cshtml")
-@Sys.SourceCode.ResultEnd("file:_line.cshtml")
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of line.cshtml")
+  @Html.Partial("line.cshtml")
+  @Html.Partial("line.cshtml")
+  @Html.Partial("line.cshtml")
+@Sys.SourceCode.ResultEnd("file:line.cshtml")
 
 
 <h3>Passing in values</h3>
 <p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of _box.cshtml")
-  @Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
-  @Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
-  @Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
-@Sys.SourceCode.ResultEnd("file:_box.cshtml")
+@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of box.cshtml")
+  @Html.Partial("box.cshtml", new { Label = "Hello, this is the first line" })
+  @Html.Partial("box.cshtml", new { Label = "Second line!", Color = "red" })
+  @Html.Partial("box.cshtml", new { Label = "I'm last!", Color = "blue" })
+@Sys.SourceCode.ResultEnd("file:box.cshtml")
 
 
 @* Footer *@
