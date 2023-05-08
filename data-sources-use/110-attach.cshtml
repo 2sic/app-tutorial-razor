@@ -1,0 +1,121 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
+<h2>Data Sources Tutorial - Basic Use</h2>
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <p>
+      Now we'll connect some data sources, so that the data from the first serves as input for the second.
+    </p>
+
+  </div>
+</div>
+
+<trim>
+  <h2>Connect/Attach DataSources using <code>Kit.Data</code></h2>
+  <p>
+    Use <code>Kit.Data.GetAppSource</code> and <code>Kit.Data.GetSource&lt;T&gt;</code> to create data sources.
+    This sample shows how to:
+  </p>
+  <ol>
+    <li>First get all the data from the current App using <code>GetAppSource()</code></li>
+    <li>Then get a <code>EntityTypeFilter</code> from <code>ToSic.Eav.DataSources</code></li>
+    <li>When creating the filter, also <code>attach</code> the initial app DataSource...</li>
+    <li>...and give the filter the parameter <code>TypeName = "Books"</code></li>
+    <li>Count the data in both DataSources</li>
+    <li>Loop through the final items in the filter DataSource</li>
+  </ol>
+</trim>
+
+@Sys.SourceCode.SnippetStart("demo1")
+  @{
+    // First get the root data source - the App with all data
+    // Since we're in a Razor file it picks the current App based on the context
+    var appDs = Kit.Data.GetAppSource();
+
+    // Now create a Type-Filter and tell it to only keep Books
+    // * attach: Attach the App containing everything
+    // * options: Set the TypeName of the filter to only keep Books
+    var books = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs, options: new { TypeName = "Books" });
+  }
+  <h3>Statistics</h3>
+  <ul>
+    <li>App Item Count (unfiltered): @appDs.List.Count()</li>
+    <li>Books Item Count (filtered): @books.List.Count()</li>
+  </ul>
+
+  <h3>List of Persons from the DataSource</h3>
+  <ul>
+    @foreach (var book in AsList(books)) {
+      <li>
+        @book.Title
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+
+<trim>
+  <h2>Connect/Attach Multiple DataSources</h2>
+  <p>
+    Often you may want to attach multiple DataSources.
+    This sample shows how to:
+  </p>
+  <ol>
+    <li>First get all the data from the current App using <code>GetAppSource()</code></li>
+    <li>Then get a <code>EntityTypeFilter</code> from <code>ToSic.Eav.DataSources</code></li>
+    <li>When creating the filter, also <code>attach</code> the initial app DataSource...</li>
+    <li>...and give the filter the parameter <code>TypeName = "Books"</code></li>
+    <li>Count the data in both DataSources</li>
+    <li>Loop through the final items in the filter DataSource</li>
+  </ol>
+  <p>
+    Note that you can do much more, best check out the docs.
+  </p>
+</trim>
+
+@Sys.SourceCode.SnippetStart("demo2")
+  @{
+    // First get the root data source - the App with all data
+    var appDs2 = Kit.Data.GetAppSource();
+
+    // Now create a Type-Filter and tell it to only keep Books / Authors
+    var books2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, options: new { TypeName = "Books" });
+    var authors2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, options: new { TypeName = "Persons" });
+
+    // The following lines are just spread for easier documentation
+    // Usually you would write in inline
+    var dataSourceLinks2 = books2.Link    // Get the link to the books
+      .Add(authors2.Link              // Add the author2 link
+        .Rename(inName: "Stream2"     // but rename the link so it's attached as "Stream2"
+      )
+    );
+    var merged2 = Kit.Data.GetSource<StreamMerge>(attach: dataSourceLinks2);
+  }
+  <h3>Statistics</h3>
+  <ul>
+    <li>App Item Count (unfiltered): @appDs.List.Count()</li>
+    <li>Books Item Count (filtered): @books2.List.Count()</li>
+    <li>Authors Item Count (filtered): @authors2.List.Count()</li>
+  </ul>
+
+  <h3>List of Persons from the DataSource</h3>
+  <ul>
+    @foreach (var item in AsList(merged2)) {
+      <li>
+        @item.EntityTitle (@item.EntityType)
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

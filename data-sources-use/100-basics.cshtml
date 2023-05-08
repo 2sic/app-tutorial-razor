@@ -1,0 +1,57 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
+<h2>Data Sources Tutorial - Basic Use</h2>
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <p>
+      To get started, let's look at some samples to just <em>use</em> a DataSource in code.
+    </p>
+
+  </div>
+</div>
+
+<trim>
+  
+  <h2>First Sample: Get Csv DataSource using Kit.Data</h2>
+  <p>
+    Use <code>Kit.Data.GetSource&lt;Csv&gt;</code> to create a DataSource reading CSV data.
+    This sample shows how to:
+  </p>
+  <ol>
+    <li>Use <code>Kit.Data.GetSource&lt;DataSourceName&lt;</code> to get the desired DataSource</li>
+    <li>Get a <code>Csv</code> DataSource from <code>ToSic.Eav.DataSources</code></li>
+    <li>When creating the source, also provide settings for <code>FilePath</code> and <code>Delimiter</code></li>
+    <li>Loop through the items</li>
+  </ol>
+</trim>
+
+@Sys.SourceCode.ResultStart("data-source-basics-csv", "products.csv")
+  @{
+    // Create the data source and provide configuration in the options
+    var products = Kit.Data.GetSource<Csv>(options: new {
+      FilePath = App.RelativePath + "/data-sources/assets/products.csv.txt",
+      Delimiter = ";",
+    });
+  }
+  <h3>List of Data in the CSV DataSource (@products.List.Count())</h3>
+  <ul>
+    @foreach (var product in AsList(products)) {
+      <li>
+        @product.Name (@product.Description)
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:assets/products.csv.txt")
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -10,7 +10,7 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Formulas using parameters</h2>
+    <h2>Formulas with parameters or App Settings</h2>
     <p>We'll show you how to use page parameters with formulas</p>
     <p>In this tutorial you'll learn how to:</p>
     <ul>
@@ -79,10 +79,7 @@
   enables a editing experience matching the page context.
 </p>
 
-@{
-  specs = Sys.SourceCode.Formulas.Specs("parameters-basic");
-}
-
+@{ specs = Sys.SourceCode.Formulas.Specs("parameters-basic"); }
 @Sys.SourceCode.FormulaStart("formulas-showAdvanced", specs)
   <code>prefill:showAdvanced=true</code>:
   @Kit.Toolbar.Empty().New("FormulasParameters",
@@ -109,6 +106,12 @@
 
 
 @Sys.SourceCode.FormulaShow("parameters-basic")
+
+
+
+
+@Sys.SourceCode.FormulaShow("use-settings")
+
 
 
 
