@@ -38,8 +38,8 @@
 @Sys.SourceCode.ResultStart("data-source-basics-csv", "products.csv")
   @{
     // Create the data source and provide configuration in the options
-    var products = Kit.Data.GetSource<Csv>(options: new {
-      FilePath = App.RelativePath + "/data-sources/assets/products.csv.txt",
+    var products = Kit.Data.GetSource<Csv>(parameters: new {
+      FilePath = App.RelativePath + "/data-sources-use/assets/products.csv.txt",
       Delimiter = ";",
     });
   }

@@ -11,9 +11,9 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Run an App.Query multiple times on the same page</h2>
+    <h2>Run an App Query multiple times on the same page</h2>
     <p>
-      The previous examples showed how to use an <code>App.Query</code>. 
+      The previous examples showed how to use a <code>Query</code>. 
       Now we want to run the query twice, which requires a <code>Reset()</code>. <br/>
       Note that the parameter <code>SiteId</code> is preset to be <code>[Site:Id]</code>. 
     </p>
@@ -35,13 +35,13 @@
 
     // get the query and ask for the "Default" results as a dynamic List
     // This case doesn't set parameters, so we're using the defaults (current site)
-    var query = App.Query[queryName];
+    var query = Kit.Data.GetQuery(queryName);
     var currentFiles = AsList(query);
 
-    // Reset the query, so we can use again with other parameters
-    query.Reset();
-    var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
-    query.Params("SiteId", rootPortal.ToString());
+    // Get a fresh query, so we can use again with other parameters
+    query = Kit.Data.GetQuery(queryName, parameters: new { 
+      SiteId = CmsContext.Platform.Name == "Dnn" ? 0 : 1
+    });
     var rootFiles = AsList(query);
   }
 @Sys.SourceCode.SnippetInitEnd()

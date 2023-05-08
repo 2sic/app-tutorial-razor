@@ -11,7 +11,7 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>SQL from a App.Query, setting Params</h2>
+    <h2>SQL from a App Query, setting Params</h2>
     <p>
       The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
       <code>Select Top 10 * from Files Where SiteId = [Params:SiteId]</code> <br>
@@ -38,13 +38,14 @@
     // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-    // Get the query
-    var query = App.Query[queryName];
-
-    // ...and set a parameter
-    // This must happen before we access the query to get data
+    // Prepare the a parameter before we access the query to get data
     var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
-    query.Params("SiteId", rootPortal.ToString());
+
+    // Get the query
+    var query = Kit.Data.GetQuery(queryName, parameters: new {
+      SiteId = rootPortal
+    });
+
   }
   <ol>
     @foreach (var file in AsList(query)) {

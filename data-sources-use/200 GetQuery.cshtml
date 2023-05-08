@@ -1,0 +1,76 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys }) 
+</hide>
+
+
+<h2>Data Sources Tutorial - Use GetQuery</h2>
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <p>
+      <code>Kit.Data.GetQuery()</code> should be used to retrieve a query.
+      It also allows us to pass in parameters if the query supports it.
+      The following demos all use this query. 
+      TODO: PIC of query
+    </p>
+
+  </div>
+</div>
+
+<trim>
+  <h2>Get a Query as DataSource using <code>Kit.Data.GetQuery</code></h2>
+  <p>
+    Use <code>Kit.Data.GetQuery("QueryName")</code> to get a Query DataSource.
+    This first sample does <em>not use parameters</em> so the sorting happens on whatever was set as default.
+  </p>
+</trim>
+
+@Sys.SourceCode.SnippetStart("demo1")
+  @{
+    var queryNoParams = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted");
+  }
+  <h3>List of Persons from the DataSource</h3>
+  <ul>
+    @foreach (var person in AsList(queryNoParams)) {
+      <li>
+        @person.FirstName @person.LastName
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+
+
+<trim>
+  <h2>Give parameters to Query</h2>
+  <p>
+    This will also provide parameters to change how it is sorted.
+    Note that these parameters only work, because the Query expects these.
+  </p>
+</trim>
+
+@Sys.SourceCode.SnippetStart("demo1")
+  @{
+    var queryFirstNameDesc = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted", parameters: new {
+      Sort = "Desc",
+      Field = "FirstName"
+    });
+  }
+  <h3>List of Persons from the DataSource</h3>
+  <ul>
+    @foreach (var person in AsList(queryFirstNameDesc)) {
+      <li>
+        @person.FirstName @person.LastName
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -38,7 +38,7 @@
     <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/use-in-visual-query.jpg", 200, 100, "float-right float-end", label: "Simple Query", figure: false)</div>
   </div>
   @{
-    var queryOddAuthors = App.Query["DynamicDataSourceKeepOdd"];
+    var queryOddAuthors = Kit.Data.GetQuery("DynamicDataSourceKeepOdd");
   }
   <h3>Data in the Query (@queryOddAuthors.List.Count())</h3>
   <ul>
@@ -65,7 +65,7 @@
     <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/configure-in-visual-query2.jpg", 200, 100, "float-left", label: "Edit Configuration", figure: false)</div>
   </div>
   @{
-    var queryWithConfig = App.Query["DynamicDataSourceWithConfig"];
+    var queryWithConfig = Kit.Data.GetQuery("DynamicDataSourceWithConfig");
   }
   <h3>Data in the Query (@queryWithConfig.List.Count())</h3>
   <ul>

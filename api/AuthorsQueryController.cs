@@ -9,7 +9,7 @@ using DotNetNuke.Web.Api;                 // [DnnModuleAuthorize] & [ValidateAnt
 #endif
 using System.Linq;                        // this enables .First() or .Select(x => ...)
 
-// Tutorial note: This is used in the WebApi demos App.Query
+// Tutorial note: This is used in the WebApi demos for Querying App Data
 
 [AllowAnonymous]                          // all commands can be accessed without a login
 [ValidateAntiForgeryToken]                // protects API from users not on your site (CSRF protection)
@@ -18,8 +18,10 @@ public class AuthorsQueryController : Custom.Hybrid.Api14 // see https://r.2sxc.
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public dynamic Get(int authorId)
   {
-    var query = App.Query["AuthorsWithBooks"];
-    query.Params("AuthorId", authorId.ToString());
+    var query = Kit.Data.GetQuery("AuthorsWithBooks", parameters: new {
+      AuthorId = authorId
+    });
+    
     var a = AsDynamic(query["Current"].First());
 
     return new {

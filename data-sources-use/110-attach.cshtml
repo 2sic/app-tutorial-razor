@@ -44,8 +44,8 @@
 
     // Now create a Type-Filter and tell it to only keep Books
     // * attach: Attach the App containing everything
-    // * options: Set the TypeName of the filter to only keep Books
-    var books = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs, options: new { TypeName = "Books" });
+    // * parameters: Set the TypeName of the filter to only keep Books
+    var books = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs, parameters: new { TypeName = "Books" });
   }
   <h3>Statistics</h3>
   <ul>
@@ -88,8 +88,8 @@
     var appDs2 = Kit.Data.GetAppSource();
 
     // Now create a Type-Filter and tell it to only keep Books / Authors
-    var books2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, options: new { TypeName = "Books" });
-    var authors2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, options: new { TypeName = "Persons" });
+    var books2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, parameters: new { TypeName = "Books" });
+    var authors2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, parameters: new { TypeName = "Persons" });
 
     // The following lines are just spread for easier documentation
     // Usually you would write in inline
@@ -102,7 +102,7 @@
   }
   <h3>Statistics</h3>
   <ul>
-    <li>App Item Count (unfiltered): @appDs.List.Count()</li>
+    <li>App Item Count (unfiltered): @appDs2.List.Count()</li>
     <li>Books Item Count (filtered): @books2.List.Count()</li>
     <li>Authors Item Count (filtered): @authors2.List.Count()</li>
   </ul>

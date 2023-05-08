@@ -25,7 +25,7 @@
 @Sys.SourceCode.ResultAndSnippetStart("data-csv-query-settings", "Source of products.csv")
   @{
     // get the query
-    var query = App.Query["ProductsFromCsvInAppSettings"];
+    var query = Kit.Data.GetQuery("ProductsFromCsvInAppSettings");
 
     // get the data from the query
     var products = AsList(query);
