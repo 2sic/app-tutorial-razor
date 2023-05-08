@@ -371,8 +371,8 @@ public class SourceCode: Custom.Hybrid.Code14
             ),
             Tag.Div().Class("col-auto").Wrap(
               // Up / Down arrows as SVG - hidden by default, become visible based on CSS 
-              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-up.svg' class='fa-chevron-up'> loading='lazy'"),
-              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down'> loading='lazy'")
+              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-up.svg' class='fa-chevron-up' loading='lazy'>"),
+              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down' loading='lazy'>")
             )
           ) as ITag
         : specs.ShowTitle
