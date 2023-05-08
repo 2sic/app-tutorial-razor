@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.00.00" ExportDate="2023-05-05T18:43:46.4070429+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.00.00" ExportDate="2023-05-08T19:46:13.3970391+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -284,10 +284,17 @@
             </Value>
           </Entity>
         </Attribute>
-        <Attribute StaticName="Resources" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="2be356ff-bfbf-497f-bd58-5a8c31cef038" Json="True" KeyNumber="5181">
+        <Attribute StaticName="GroupFormulaDemos" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b42df0c6-2047-40c8-8527-c1e839ffc1ce" Json="True" KeyNumber="5653">
             <Value Key="InputType" Value="empty-default" Type="String" />
-            <Value Key="Name" Value="Resources" Type="String" />
+            <Value Key="Name" Value="GroupFormulaDemos" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="FormulaDemoShowAdvanced" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0b1b1552-a348-4a83-abf6-d7fa600f4c0e" Json="True" KeyNumber="5652">
+            <Value Key="InputType" Value="boolean-default" Type="String" />
+            <Value Key="Name" Value="FormulaDemoShowAdvanced" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
@@ -1594,8 +1601,103 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
-    <AttributeSet StaticName="43334d45-62f5-4d4b-bc7f-15e21593b6d9" Name="FormulasFeaturesAndUsers" Scope="Formulas" AlwaysShareConfiguration="false">
-      <Attributes />
+    <AttributeSet StaticName="43334d45-62f5-4d4b-bc7f-15e21593b6d9" Name="FormulasFeatures" Scope="Formulas" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="GoogleTranslateWarning" Type="Empty" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7aa32b85-c820-4969-beb9-039e3e29eab9" Json="True" KeyNumber="5658">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="8eb96967-8266-4281-9b17-0478572ea6ec" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-message" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="GoogleTranslateWarning" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;⚠️ Google Translate Feature is not Enabled&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="GoogleTranslateInfo" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5597a087-bb96-479b-925a-9065ac1d3d80" Json="True" KeyNumber="5660">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="ba557946-12eb-462c-8455-10d4b48d8948" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-message" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="GoogleTranslateInfo" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;💡 Google Translate is Enabled&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
     </AttributeSet>
     <AttributeSet StaticName="d3913cd8-7a53-45e1-8532-abea198c2803" Name="FormulasHelpText" Scope="Formulas" AlwaysShareConfiguration="false">
       <Attributes>
@@ -1932,6 +2034,223 @@
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="64e2f626-100b-4da2-a3f3-1202b607aef9" Json="True" KeyNumber="5327">
             <Value Key="InputType" Value="string-default" Type="String" />
             <Value Key="Name" Value="Address" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="8fd46b71-e390-49ff-86ca-bb0b48e6f593" Name="FormulasUser" Scope="Formulas" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="UserInformation" Type="Empty" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="fe54474b-9af6-4ed5-b38e-7ac5c25ab48f" Json="True" KeyNumber="5661">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="60bc5991-259e-4a3e-9b01-f672375364b2" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-message" Type="String" />
+            <Value Key="Name" Value="UserInformation" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;h2&gt;Information about the current User&lt;/h2&gt;&#xA;&lt;p&gt;This information contains placeholders, which the script replaces for demo purpose.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;User ID: [userid]&lt;/li&gt;&#xA;&lt;li&gt;Is Anonymous [isanonymous]&lt;/li&gt;&#xA;&lt;li&gt;Is Site Admin [issiteadmin]&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="dccf33f0-7117-4628-8685-b5b5a3eb91f7" Json="True" KeyNumber="5661">
+            <Value Key="DefaultCollapsed" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="WarningAnonymous" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="99949795-8f87-4dd7-a04e-f193d0bd24f4" Json="True" KeyNumber="5662">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="0c4b6471-c544-4cd0-ba4f-296d6b28c53e" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-message" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="WarningAnonymous" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;⚠️ You are not logged in&lt;/p&gt;&#xA;&lt;p&gt;This warning will only appear if the current user is anonymous.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="30055be3-e44c-419d-b8ee-301c30e420ee" Name="FormulasUseSettings" Scope="Formulas" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Introduction" Type="Empty" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="54e6f7b0-d273-4be7-b056-f2bedd9124dd" Json="True" KeyNumber="5654">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-message" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Introduction" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;This will get use an App Setting FormulaDemoShowAdvanced to determine if the Advanced section should be visible.&lt;/p&gt;&#xA;&lt;p&gt;By default it's not visible, but the setting then says it should be shown.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Title" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="e11a3440-538b-4574-820a-3b55a58a6296" Json="True" KeyNumber="5656">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="GroupAdvanced" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="6d22e8d6-0fb6-4a07-b1ec-63f298417d7a" Json="True" KeyNumber="5655">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="1beb1122-884e-4f16-9e85-39a488ac80a5" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Advanced Settings" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;These settings are only visible, because the App has a setting called &lt;strong&gt;FormulaDemoShowAdvanced&lt;/strong&gt; which is set to &lt;em&gt;true&lt;/em&gt;.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="4a532bde-a008-4463-93ca-7788daf149ba" Json="True" KeyNumber="5655">
+            <Value Key="DefaultCollapsed" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="AdvancedToggle" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="74aef1f0-4712-4bf0-8bd6-ff8e27c93b2b" Json="True" KeyNumber="5657">
+            <Value Key="InputType" Value="boolean-default" Type="String" />
+            <Value Key="Name" Value="AdvancedToggle" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
@@ -2787,6 +3106,12 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
             <Value Key="InputType" Value="string-dropdown-query" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2800,6 +3125,9 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2818,7 +3146,10 @@
             </Value>
           </Entity>
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown-query" AttributeSetName="@string-dropdown-query" EntityGUID="1288f382-fe27-45ca-9dc1-6fadb74f3131" Json="True" KeyNumber="5479">
-            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EnableEdit" Value="False" Type="Boolean">
@@ -2830,7 +3161,13 @@
             <Value Key="EnableTextEntry" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+            <Value Key="EntityType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
             <Value Key="Label" Value="Name" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="MoreFields" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Query" Value="Eav.Queries.Global.Attributes" Type="String">
@@ -4434,7 +4771,7 @@
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="16.00.00" Type="String">
+      <Value Key="Version" Value="16.00.01" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -4443,6 +4780,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="CustomColor" Value="#E91E63F2" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="FormulaDemoShowAdvanced" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="QrBackgroundColor" Value="#FFFFFF" Type="String">
@@ -19767,7 +20107,7 @@
       <Value Key="Title" Value="Customize Edit-UI - Formulas (new!)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Views" Value="57c308b3-ebfa-446a-810e-12fbe63351ec,7ced416c-e8f2-45e7-89c0-de4e11e39d8e,333982ed-d7f0-4233-9c25-bba3e939aba7,949498a5-5d71-46c8-aa95-8136a706dd81,c6eda53d-c3e3-427e-9fa1-46970aacf2f3,740ede08-2a1a-41e9-b632-bc5b5e448b9c,20366460-60e8-42b4-9d5e-765d17aac179" Type="Entity" />
+      <Value Key="Views" Value="57c308b3-ebfa-446a-810e-12fbe63351ec,7ced416c-e8f2-45e7-89c0-de4e11e39d8e,333982ed-d7f0-4233-9c25-bba3e939aba7,949498a5-5d71-46c8-aa95-8136a706dd81,c6eda53d-c3e3-427e-9fa1-46970aacf2f3,740ede08-2a1a-41e9-b632-bc5b5e448b9c,20366460-60e8-42b4-9d5e-765d17aac179,4f6ac663-f779-4959-aed9-a9bc154d9544" Type="Entity" />
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="81dd2427-395c-4346-85c6-e8ad1905d4be" KeyGuid="57c308b3-ebfa-446a-810e-12fbe63351ec">
       <Value Key="Deprecated" Value="False" Type="Boolean">
@@ -20461,8 +20801,8 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="05103e11-8b25-4598-b394-978f3444d269">
-      <Value Key="Requirements" Value="9aafe14c-1de5-4f10-9141-e3c7c922faa1" Type="Entity" />
-      <Value Key="Resources" Value="5d353336-e789-4062-ad3f-ac9818354e19" Type="Entity" />
+      <Value Key="Requirements" Value="9aafe14c-1de5-4f10-9141-e3c7c922faa1,980b6c4f-319c-4d58-98d4-c4584e6fc537" Type="Entity" />
+      <Value Key="Resources" Value="5d353336-e789-4062-ad3f-ac9818354e19,d4b35791-13cc-43c0-968e-284b887b4676" Type="Entity" />
       <Value Key="Title" Value="Formula Parameters Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -20480,13 +20820,13 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="new!" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="&lt;p&gt;Create formulas using page parameters&lt;/p&gt;" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Create formulas which modify the form using parameters or App Settings (new v16)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Formulas using parameters&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Formulas with parameters or App Settings&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2022-06-15T00:00:00" Type="DateTime">
@@ -20496,7 +20836,7 @@
       <Value Key="Title" Value="Formulas _120 - Formulas using parameters" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Updated" Value="2022-06-15T00:00:00" Type="DateTime">
+      <Value Key="Updated" Value="2023-05-08T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -22290,19 +22630,22 @@
       <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 170,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
     </Entity>
     <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="e580309c-72de-461a-9797-27bd61face77" Json="True" KeyString="43334d45-62f5-4d4b-bc7f-15e21593b6d9">
+      <Value Key="AdditionalSettings" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Description" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="DynamicChildrenField" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="EditInstructions" Value="" Type="String">
+      <Value Key="EditInstructions" Value="&lt;p&gt;This will show a warning or an info if the feature &lt;strong&gt;EditUiTranslateWithGoogle&lt;/strong&gt; is enabled.&lt;/p&gt;&#xA;&lt;div&gt;Such formulas can help guide the user if certain requirements are not enabled on their system.&amp;nbsp;&lt;/div&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Icon" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Label" Value="Formulas - Features and User" Type="String">
+      <Value Key="Label" Value="Formulas - Features" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Link" Value="" Type="Hyperlink">
@@ -23518,13 +23861,13 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Learn about DataSources in general, before we start using or even creating them.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Data Sources Overview&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Dynamic DataSources Overview&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2023-04-06T00:00:00" Type="DateTime">
@@ -23562,7 +23905,7 @@
       <Value Key="Name" Value="DS100 Data Sources - Use Basics" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Path" Value="data-sources/100-basics.cshtml" Type="String">
+      <Value Key="Path" Value="data-sources-use/100-basics.cshtml" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PresentationTypeStaticName" Value="" Type="String">
@@ -23662,7 +24005,7 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="new 15.08" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Create custom, dynamic data sources directly in the App folder, without compiling to a DLL.&lt;/p&gt;" Type="String">
@@ -23671,13 +24014,13 @@
       <Value Key="LinkTitle" Value="&lt;p&gt;Dynamic DataSources - Basics&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Tutorial _100 - More" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="Updated" Value="2023-05-08T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -23694,18 +24037,19 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="new 15.08" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTeaser" Value="&lt;p&gt;Use Kit.Data.GetSource() and more to get DataSource objects and work with them.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Get DataSources in Code - Introduction&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Get DataSources in Code - Basics&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Specs" Value="30e78a07-4ae9-4ba1-8727-fecfecd211d0" Type="Entity" />
       <Value Key="Title" Value="Tutorial _100 - More" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -24118,16 +24462,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;This sample is more realistic, returning many items.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Return Lists of Items&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24151,16 +24495,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Learn how to create DataSources which can be configured.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Configuration of DataSources&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24184,16 +24528,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Create DataSources which have multiple Out-Streams.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Provide Multiple Lists/Streams&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24217,16 +24561,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Create DataSources which receive data and filter them before providing them on Out.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Process In (attached) Data&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24250,16 +24594,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Your DataSource can also create other DataSources internally to get data.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Use Data from other DataSources&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24283,16 +24627,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Dynamic DataSources can also be used in VisualQuery.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Use in Visual Query&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24316,16 +24660,16 @@
       <Value Key="ForOqtane" Value="03.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkEmphasis" Value="" Type="String">
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTeaser" Value="" Type="String">
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Customize how the Data in a Dynamic DataSource is Converted.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkTitle" Value="&lt;p&gt;Conversion Factory Options&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
@@ -24429,7 +24773,7 @@
       <Value Key="Title" Value="DataSources: Use in C# Code" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Views" Value="1f983048-f264-4e9b-92d3-08e35e504973" Type="Entity" />
+      <Value Key="Views" Value="7d712c50-4df3-4eeb-967f-808495cd73ab,1f983048-f264-4e9b-92d3-08e35e504973,2490488b-e92b-4e98-93f0-a5bfab930e41" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" AttributeSetName="TutorialCategory" EntityGUID="1ba2d738-c7c3-4d15-8687-1618c02349b1">
       <Value Key="Title" Value="Basic" Type="String">
@@ -24579,7 +24923,7 @@
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f">
       <Value Key="Requirements" Value="980b6c4f-319c-4d58-98d4-c4584e6fc537" Type="Entity" />
       <Value Key="Resources" Value="e5711d57-bf96-4112-8071-9f575f624345,26454bba-08c7-4dee-a5f8-beb6b143ca6a,42ef434e-9aa5-43c3-ba45-dcaa0d71c1c8,6c94fabf-488b-4b00-ba03-09707a50e1aa" Type="Entity" />
-      <Value Key="Title" Value="Dynamic DataSources" Type="String">
+      <Value Key="Title" Value="DataSources - Dynamic" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -24624,6 +24968,577 @@
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="7fc97843-1baa-4836-95cb-27b729014c74" AttributeSetName="DeadPoetSocietyMembership" EntityGUID="d9dd6a3b-d0b6-4fb1-a4e0-072928252a0b" KeyGuid="505aa319-589b-4b52-8b71-f1209fdcc734">
       <Value Key="MembershipNumber" Value="225969" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="2490488b-e92b-4e98-93f0-a5bfab930e41" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="DS101 Data Sources - Attach" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="data-sources-use/110-attach.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="data-sources110/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="b704f2b7-2646-4ef0-887b-c83b7cb9398a" KeyGuid="2490488b-e92b-4e98-93f0-a5bfab930e41">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="&lt;p&gt;We can use one or more DataSources as&amp;nbsp;&lt;strong&gt;In&lt;/strong&gt; data for another DataSource.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Use DataSources in Code - Attach/Connect Multiple Sources&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Specs" Value="30e78a07-4ae9-4ba1-8727-fecfecd211d0" Type="Entity" />
+      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="30e78a07-4ae9-4ba1-8727-fecfecd211d0">
+      <Value Key="Requirements" Value="980b6c4f-319c-4d58-98d4-c4584e6fc537" Type="Entity" />
+      <Value Key="Resources" Value="39b03d35-58bc-4fc6-918c-3411e836d0c0,a8ada31f-6d9a-4b88-97a9-b0235494fb28" Type="Entity" />
+      <Value Key="Title" Value="DataSources - Use" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="39b03d35-58bc-4fc6-918c-3411e836d0c0">
+      <Value Key="Link" Value="https://docs.2sxc.org/net-code/data-sources/use/guide.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Guide Use DataSources" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="a8ada31f-6d9a-4b88-97a9-b0235494fb28">
+      <Value Key="Link" Value="https://docs.2sxc.org/api/dot-net/ToSic.Eav.DataSource.IDataSourceLink.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="DataSourceLink API" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="7d712c50-4df3-4eeb-967f-808495cd73ab" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="DSU000 Data Sources Use - Home" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="data-sources-use/000-data-sources-use.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="data-sources-use/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="eba623ca-110e-4ec1-aaef-3041399a7608" KeyGuid="7d712c50-4df3-4eeb-967f-808495cd73ab">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Overview about using DataSources directly in your code.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Get DataSources in Code - Introduction&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2023-05-04T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="d5a674df-adbc-40dc-a392-31d48aa1291e" Json="True" KeyString="30055be3-e44c-419d-b8ee-301c30e420ee">
+      <Value Key="AdditionalSettings" Value="Settings.FormulaDemoShowAdvanced" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Formula Demo - Use App Settings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="1beb1122-884e-4f16-9e85-39a488ac80a5" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  return context.app.getSetting(&quot;Settings.FormulaDemoShowAdvanced&quot;);&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="30055be3-e44c-419d-b8ee-301c30e420ee" AttributeSetName="FormulasUseSettings" EntityGUID="530e2a6b-9683-402e-af7c-1c2cc6292279">
+      <Value Key="AdvancedToggle" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="9b4550e4-2434-4d89-b7aa-04e435030292">
+      <Value Key="ContentType" Value="FormulasUseSettings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="GroupAdvanced" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This will show how a formula accesses the App Setting &lt;em&gt;Settings.FormulaDemoShowAdvanced &lt;/em&gt;to determine if it should show more fields.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Use App Settings in Formulas (new v16)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="use-settings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="d4b35791-13cc-43c0-968e-284b887b4676">
+      <Value Key="Link" Value="https://docs.2sxc.org/js-code/edit-form/formulas/app-settings.html" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ResourceType" Value="d" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Formulas with App Settings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="477445e1-6d5d-4cd9-8852-4a35100eec9e" Json="True" KeyGuid="43334d45-62f5-4d4b-bc7f-15e21593b6d9">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="90585b74-72c5-4448-9a0e-1b2a4e683045" Json="True" KeyGuid="30055be3-e44c-419d-b8ee-301c30e420ee">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="c" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="8eb96967-8266-4281-9b17-0478572ea6ec" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  return !context.features.isEnabled(&quot;EditUiTranslateWithGoogle&quot;);&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="ba557946-12eb-462c-8455-10d4b48d8948" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  return context.features.isEnabled(&quot;EditUiTranslateWithGoogle&quot;);&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="53860280-90a1-416d-bd5a-a839dd60ad13">
+      <Value Key="ContentType" Value="FormulasFeatures" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="GoogleTranslateWarning,GoogleTranslateInfo" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;Show a warning or info based on the feature GoogleTranslate being enabled.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Detect if Features are Enabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="features" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="4f6ac663-f779-4959-aed9-a9bc154d9544" Json="True">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="F300 Formulas Advanced" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="formulas/300 advanced.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="f300/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="f14e97a5-f7a4-4cd1-bc2b-0c957249d04c" KeyGuid="4f6ac663-f779-4959-aed9-a9bc154d9544">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="new v16" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="&lt;p&gt;Do advanced things such as checking features or the current user.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Advanced Formula API&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2023-05-08T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Specs" Value="488a53b5-abad-4877-b974-80b5b48f380f" Type="Entity" />
+      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="3324f822-64be-4808-84bc-73c2e7a7206b" Json="True" KeyString="8fd46b71-e390-49ff-86ca-bb0b48e6f593">
+      <Value Key="AdditionalSettings" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="&lt;p&gt;This should show some information about the current user - in case your UI should behave differently based on User information.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Formulas - User Information" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="3c49fef9-812b-4c4e-a8d1-0dc4008842cf" Json="True" KeyGuid="8fd46b71-e390-49ff-86ca-bb0b48e6f593">
+      <Value Key="Condition" Value="SecurityAccessLevel.Anonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Security Rule" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="0c4b6471-c544-4cd0-ba4f-296d6b28c53e" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  return context.user.isAnonymous;&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Visible" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="60bc5991-259e-4a3e-9b01-f672375364b2" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  return data.default&#xA;    .replace('[userid]', context.user.id)&#xA;    .replace('[isanonymous]', context.user.isAnonymous)&#xA;    .replace('[issiteadmin]', context.user.isSiteAdmin);&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Settings.Notes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Settings.Notes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="a897f10f-04f0-49fc-a511-3f89f7dba10f">
+      <Value Key="ContentType" Value="FormulasUser" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Field" Value="UserInformation,WarningAnonymous" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Instructions" Value="&lt;p&gt;This formula shows information about the user and shows a warning if the user is not logged in.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Parameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowSnippet" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="User Information in Formulas" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleInResults" Value="Try it:" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="user-info" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

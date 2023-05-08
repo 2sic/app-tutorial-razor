@@ -221,8 +221,8 @@ public class SourceCode: Custom.Hybrid.Code14
 
     var showSource = Formulas.ShowSnippet(specs);
     return showSource
-      ? SnippetStartInner(snippet, ResultTabName, SourceTabName, "Formula")
-      : SnippetStartInner(snippet, ResultTabName, "Formula");
+      ? SnippetStartInner(snippet, ResultTabName, SourceTabName, "Formulas")
+      : SnippetStartInner(snippet, ResultTabName, "Formulas");
   }
   public ITag FormulaEnd(params object[] results) {
     var result = _formulaSpecs != null

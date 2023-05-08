@@ -107,26 +107,37 @@ public class SourceCodeFormulas: Custom.Hybrid.Code14
 
   private ITag ShowFormulas(FormulaSpecs specs) {
 
-    var wrapper = Tag.Div().Class("mb-5").Wrap(
-      Tag.H3("Formulas of ", Tag.Code(specs.ContentType + "." + specs.Field))
-    );
-    var formulas = GetFormulas(specs);
-    foreach (var formula in formulas) {
-      wrapper.Add(
-        Tag.P(Tag.Strong(formula.Title), "(Formula-Target: " + formula.Target + ")"),
-        SourceCode.ShowResultJs(formula.Formula)
+    var fields = specs.Field;
+
+    if (!Text.Has(fields)) return Tag.Comment("No field specified");
+
+    var mainWrapper = Tag.Div();
+    foreach (var field in fields.Split(',')) {
+      if (!Text.Has(field)) continue;
+
+      var wrapper = Tag.Div().Class("mb-5").Wrap(
+        Tag.H3("Formulas of ", Tag.Code(specs.ContentType + "." + field))
       );
+      var formulas = GetFormulas(specs, field);
+      foreach (var formula in formulas) {
+        wrapper.Add(
+          Tag.P(Tag.Strong(formula.Title), " (Formula-Target: " + formula.Target + ")"),
+          SourceCode.ShowResultJs(formula.Formula)
+        );
+      }
+      mainWrapper.Add(wrapper);
     }
-    return wrapper;
+
+    return mainWrapper;
   }
 
 
 
 
-  private dynamic GetFormulas(FormulaSpecs specs) {
+  private dynamic GetFormulas(FormulaSpecs specs, string field) {
     var contentItemType = App.AppState.GetContentType(specs.ContentType);
     var fieldType = contentItemType.Attributes
-      .Where(a => a.Name == specs.Field)
+      .Where(a => a.Name == field)
       .FirstOrDefault();
     
     var attributeMd = AsList(fieldType.Metadata.OfType("@All") as object).FirstOrDefault();

@@ -1,0 +1,40 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys })
+</hide>
+
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <h2>Advanced Formula APIs</h2>
+    <p>In this tutorial you'll learn some of the advanced APIs such as:</p>
+    <ul>
+      <li>
+        Detect if features are enabled <em>new in v14</em>
+      </li>
+      <li>
+        Get user information about the current user <em>new in v16</em>
+      </li>
+    </ul>
+    @Html.Partial("./Part NowUsingV2.cshtml")
+  </div>
+</div>
+@Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
+
+
+
+
+@Sys.SourceCode.FormulaShow("features")
+
+
+@Sys.SourceCode.FormulaShow("user-info")
+
+
+
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
