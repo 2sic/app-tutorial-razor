@@ -49,5 +49,52 @@
   </ul>
 @Sys.SourceCode.ResultEnd("file:../DataSources/ListMultiStream.cs")
 
+
+<trim>
+  <h2>Two Streams, Prepared at same time</h2>
+  <p>
+    In some cases it makes sense to provide multiple streams which were processed at the same time.
+    For example, when splitting data or when providing a stream <code>Folders</code> and <code>Files</code>
+    which are still related.
+    <br>
+    The following sample takes the original <code>Persons</code>
+    and splits them into odd/even streams in one preparation step.
+  </p>
+</trim>
+
+@Sys.SourceCode.ResultStart("multi-streams", "SplitOddEven.cs")
+  @{
+    var oddEven = Kit.Data.GetSource(name: "SplitOddEven", attach: App.Data["Persons"]);
+    var all = oddEven.List;
+    var odd = oddEven["Odd"].List;
+    var even = oddEven["Even"].List;
+  }
+  <h3>List of Data in the All stream (@all.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(all)) {
+      <li>
+        <strong>@item.EntityTitle</strong> (#@item.EntityId)
+      </li>
+    }
+  </ul>
+  <h3>List of Data in the Odd stream (@odd.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(odd)) {
+      <li>
+        <strong>@item.EntityTitle</strong> (#@item.EntityId)
+      </li>
+    }
+  </ul>
+  <h3>List of Data in the Even stream (@even.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(even)) {
+      <li>
+        <strong>@item.EntityTitle</strong> (#@item.EntityId)
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("file:../DataSources/SplitOddEven.cs")
+
+
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
