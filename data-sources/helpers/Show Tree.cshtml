@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq;
+@using ToSic.Razor.Blade;
+
+@{
+  var node = AsDynamic(DynamicModel.Root as object);
+  var subNodeName = DynamicModel.SubNodeNames as string;
+  var parentField = DynamicModel.ParentField as string;
+
+  var title = DynamicModel.Title as string;
+}
+<h3>@title</h3>
+<ul>
+  @Html.Partial("./Show Tree Node.cshtml", new { Node = node, SubNodeNames = subNodeName, ParentField = parentField, Depth = 10 })
+</ul>

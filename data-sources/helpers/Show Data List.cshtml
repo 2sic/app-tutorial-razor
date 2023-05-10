@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq;
+@using ToSic.Razor.Blade;
+
+@{
+  var title = DynamicModel.Title as string;
+  var showCount = DynamicModel.ShowCount != false;
+
+  var list = AsList(DynamicModel.Data as object);
+
+}
+
+<h3>
+  @title
+  @if (showCount) {
+    @list.Count()
+  }
+</h3>
+<ul>
+  @foreach (var item in list) {
+    <li>
+      <strong>@item.EntityTitle</strong> (#@item.EntityId)
+    </li>
+  }
+</ul>

@@ -1,0 +1,49 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq;
+@using ToSic.Razor.Blade;
+
+@{
+  var node = AsDynamic(DynamicModel.Node);
+  var subNodesNames = (DynamicModel.SubNodeNames as string ?? "").Split(',');
+  var parentField = DynamicModel.ParentField as string;
+  var depth = ((int)DynamicModel.Depth);
+}
+
+@if (depth < 0) {
+  <span>ERROR: Depth too deep</span>
+  return;
+}
+
+<li>
+  Item: 
+  <strong>@node.EntityTitle</strong> (id: @node.EntityId)
+  @if (Text.Has(parentField)) {
+    var parentItem = AsList(node.Children(parentField) as object).FirstOrDefault();
+    if (parentItem != null) {
+      <br>
+      <em>
+        Parent (field @parentField): @parentItem.EntityTitle (id: @parentItem.EntityId)
+      </em>
+    }
+  }
+  @foreach (var subNodeName in subNodesNames)
+  {
+    if (Text.Has(subNodeName)) {
+      var subNodes = AsList(node.Children(subNodeName) as object);
+      if (subNodes.Any()) {
+        <ul>
+          <li>
+            Sub-Items on field <strong><em>@subNodeName</em></strong> - found @subNodes.Count()
+            <ul>
+              @foreach (var subNode in AsList(subNodes as object)) {
+                @Html.Partial("./Show Tree Node.cshtml", new { Node = subNode, SubNodeNames = DynamicModel.SubNodeNames, ParentField = DynamicModel.ParentField, Depth = depth - 1 })
+              }
+            </ul>
+          </li>
+        </ul>
+      }
+    } else {
+      <em>no sub node name</em>
+    }
+  }
+</li>
