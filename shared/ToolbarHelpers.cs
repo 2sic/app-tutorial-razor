@@ -9,24 +9,24 @@ public class ToolbarHelpers : Custom.Hybrid.Code14
   
   public ToolbarHelpers Init(dynamic sys) {
     Sys = sys;
-    ParentRazor = Sys.ParentRazor;
+    // ParentRazor = Sys.ParentRazor;
     return this;
   }
   public dynamic Sys = null;
-  public Razor14 ParentRazor;
+  // public Razor14 ParentRazor;
 
   #endregion
 
   // Todo: replace the EnableEditForAnonymous with this everywhere and make it private
   public void EnableEditForAll() {
-    EnableEditForAnonymous(ParentRazor.Edit);
+    EnableEditForAnonymous();
   }
 
-  public void EnableEditForAnonymous(dynamic Edit) {
+  public void EnableEditForAnonymous() {
     // Special command to ensure that the toolbars appear, even if they are won't work.
     // This is NOT an official API, and may change any time.
     // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
-    Edit.Enabled = true;
+    Kit.Edit.Enabled = true;
 
     // This will tell the edit-UI that we need the JS features
     Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");

@@ -16,11 +16,11 @@ public class PageParts: Custom.Hybrid.Code14
   
   public PageParts Init(dynamic sys) {
     Sys = sys;
-    ParentRazor = Sys.ParentRazor;
+    // ParentRazor = Sys.ParentRazor;
     return this;
   }
   public dynamic Sys = null;
-  public Razor14 ParentRazor;
+  // public Razor14 ParentRazor;
 
   #endregion
 

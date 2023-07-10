@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+
+<h3>Reuse Code with functions and Template Delegates in same file</h3>
+@Sys.SourceCode.ResultRefStart("reuse" @*, "Source of line.cshtml" *@)
+  @functions {
+    string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
+   
+    // Variable keeping the random number generator
+    private Random generator = new Random(DateTime.Now.Second);
+
+    // Get random number between 0 and 100
+    public int Random100() {
+      return generator.Next(0, 100);
+    }
+  }
+  @{
+    // Simple Hybrid (Dnn/Oqtane) Template Delegate
+    Func<string, dynamic> BoldLi = @<li>
+      <strong>
+        @Html.Raw(item)
+      </strong>
+    </li>;
+  }
+  <h4>Reuse some functions inside this file</h4>
+  <ul>
+    <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
+    <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
+    <li>Random number function: @Random100()</li>
+    <li>Random number function: @Random100()</li>
+    @BoldLi("this is just a bold item in a list using a Template Delegate")
+    @BoldLi("this is another bold item in a list using a Template Delegate")
+  </ul>
+@Sys.SourceCode.ResultRefEnd(new string[] { "reuse101", "reuse102", "reuse110" })

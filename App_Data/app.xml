@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.00.01" ExportDate="2023-05-10T17:00:40.5909557+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.02.00" ExportDate="2023-07-10T13:07:52.1615958+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -3302,6 +3302,13 @@
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
+        <Attribute StaticName="Introduction" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="adc73f46-1cd6-476a-8404-ce11417b0b1a" Json="True" KeyNumber="5798">
+            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
+            <Value Key="Name" Value="Introduction" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
       </Attributes>
     </AttributeSet>
     <AttributeSet StaticName="d105e4a7-551f-4885-ad2f-5af867b198d6" Name="TutorialRequirement" Scope="Default" AlwaysShareConfiguration="false">
@@ -4764,16 +4771,16 @@
       <Value Key="RequiredDnnVersion" Value="09.06.01" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredOqtaneVersion" Value="03.02.01" Type="String">
+      <Value Key="RequiredOqtaneVersion" Value="04.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="16.00.00" Type="String">
+      <Value Key="RequiredVersion" Value="16.02.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="16.00.01" Type="String">
+      <Value Key="Version" Value="16.02.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -9681,8 +9688,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Pipeline" Value="38ba6f80-f8f6-41ae-a873-29eaef08af85" Type="Entity" />
-      <Value Key="PresentationDemoEntity" Value="36726e4e-21cd-4c00-9ce8-72080f8935da" Type="Entity" />
-      <Value Key="PresentationTypeStaticName" Value="e748cf30-7849-46f1-a331-f181ba047cb2" Type="String">
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PublishData" Value="False" Type="Boolean">
@@ -13475,7 +13481,6 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="64438582-e47f-4f4c-92c9-c2fb908ee0a2">
-      <Value Key="Category" Value="1ba2d738-c7c3-4d15-8687-1618c02349b1" Type="Entity" />
       <Value Key="FeatureLogo" Value="file:6070" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -13859,7 +13864,7 @@
       <Value Key="LinkTeaser" Value="&lt;p&gt;Show content which was entered for this module&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Show current Content in the Ouput&lt;/p&gt;" Type="String">
+      <Value Key="LinkTitle" Value="&lt;p&gt;Show current Content in the Output&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
@@ -17792,7 +17797,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" AttributeSetName="Tutorial" EntityGUID="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa">
-      <Value Key="Sections" Value="64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,df11c290-8098-4978-87f9-1efc3aaac8ef,2aa08895-dc7d-4f37-b8db-f9997b92a406,1e4bb8ba-62f2-434b-bc8f-b9c7869053af,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,090041ff-e961-4eaf-b06a-ef47525d2739,80ea5703-b2ab-44d5-958e-7b48ef67488c,8533e0f4-523b-4cd5-9d07-d749aa291ade,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,b71c0e1a-d6c1-441a-95fb-72e7f85381cb,b451f1b7-0349-448b-ba66-fb359c62bd75,1d1ce984-c750-43d3-ab5e-988f579977aa,c9d06c64-eec2-4d23-a3d0-850ba0e87844,34850014-5b9a-4b15-b6e8-7b095b4fb036,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
+      <Value Key="Sections" Value="6df1175f-5bd4-45d1-8b2b-ea7b373a0b5c,64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,df11c290-8098-4978-87f9-1efc3aaac8ef,2aa08895-dc7d-4f37-b8db-f9997b92a406,1e4bb8ba-62f2-434b-bc8f-b9c7869053af,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,090041ff-e961-4eaf-b06a-ef47525d2739,80ea5703-b2ab-44d5-958e-7b48ef67488c,8533e0f4-523b-4cd5-9d07-d749aa291ade,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,b71c0e1a-d6c1-441a-95fb-72e7f85381cb,b451f1b7-0349-448b-ba66-fb359c62bd75,1d1ce984-c750-43d3-ab5e-988f579977aa,c9d06c64-eec2-4d23-a3d0-850ba0e87844,34850014-5b9a-4b15-b6e8-7b095b4fb036,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
       <Value Key="Teaser" Value="&lt;p&gt;Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -25767,6 +25772,205 @@
       </Value>
       <Value Key="Specs" Value="f5914c23-f9d6-421e-a0f2-1ff4ae69b64f" Type="Entity" />
       <Value Key="Title" Value="Tutorial _100 - More" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1b794fc1-7e13-439c-bfeb-d184accc0ea7" AttributeSetName="TutorialSection" EntityGUID="6df1175f-5bd4-45d1-8b2b-ea7b373a0b5c">
+      <Value Key="Category" Value="1ba2d738-c7c3-4d15-8687-1618c02349b1" Type="Entity" />
+      <Value Key="FeatureLogo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Introduction" Value="&lt;p&gt;Quick Summary of most APIs for reference.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="refs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Subsection" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Quick Reference for Razor APIs" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Views" Value="f49ec584-c2b9-4f19-b1b6-cf970069289b,ba8e3fde-fc92-4269-bb60-6240826679df" Type="Entity" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="f49ec584-c2b9-4f19-b1b6-cf970069289b" Json="True">
+      <Value Key="ContentDemoEntity" Value="36726e4e-21cd-4c00-9ce8-72080f8935da" Type="Entity" />
+      <Value Key="ContentTypeStaticName" Value="e748cf30-7849-46f1-a331-f181ba047cb2" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="quick-ref-dyn Dynamic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="quick-reference/dynamic.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Pipeline" Value="38ba6f80-f8f6-41ae-a873-29eaef08af85" Type="Entity" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="quick-ref-dyn/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="3d25e790-3e42-4848-a856-7d371ce45219" KeyGuid="f49ec584-c2b9-4f19-b1b6-cf970069289b">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="&lt;p&gt;For Razor12 and Razor14&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Dynamic Razor Code - Quick Reference&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2023-07-10T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Tutorial _100 - More" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Updated" Value="2023-07-10T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="ba8e3fde-fc92-4269-bb60-6240826679df" Json="True">
+      <Value Key="ContentDemoEntity" Value="36726e4e-21cd-4c00-9ce8-72080f8935da" Type="Entity" />
+      <Value Key="ContentTypeStaticName" Value="e748cf30-7849-46f1-a331-f181ba047cb2" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identifier" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsHidden" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListContentTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Location" Value="Site" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="quick-ref-pro Pro" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Path" Value="quick-reference/pro.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Pipeline" Value="38ba6f80-f8f6-41ae-a873-29eaef08af85" Type="Entity" />
+      <Value Key="PresentationTypeStaticName" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PublishData" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="SearchIndexingStreams" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsToPublish" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="C# Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseForList" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewController" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ViewNameInUrl" Value="quick-ref-pro/.*" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="732f9a61-c90a-442a-9e25-7359a9dc3df3" KeyGuid="ba8e3fde-fc92-4269-bb60-6240826679df">
+      <Value Key="Deprecated" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="For2sxc" Value="10.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForDnn" Value="07.04.02" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ForOqtane" Value="03.00.00" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="&lt;p&gt;Pro Code Razor todo&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Quick Ref Pro" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">

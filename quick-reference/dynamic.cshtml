@@ -28,100 +28,11 @@
   These are some very common Razor APIs which you should know.
 </p>
 
-<h3>Razor Variables</h3>
-@Sys.SourceCode.ResultRefStart("variables")
-  @{
-    // Create variables - the compiler detects the type automatically
-    var firstName = "Terry";
-    var birthday = new DateTime(1948, 04, 28);
-    var age = DateTime.Now.Year - birthday.Year;
-    var decades = age / 10; // integer division - so decades will still be an int
-    var decadesFloat = (float)age / 10; // float division - so decadesFloat will be a float
-    // example of explicit variable type
-    int decadesInt = (int)decadesFloat;  // This will loose the decimal places
-  }
-  <ol>
-    <li>Show firstName (string): @firstName</li>
-    <li>Show birthday (DateTime): @birthday</li>
-    <li>Show birthday (DateTime, formatted): @birthday.ToString("yyyy-MM-dd")</li>
-    <li>Show age (int): @age</li>
-    <li>Show decades (int): @decades</li>
-    <li>Show decadesFloat (float): @decadesFloat</li>
-    <li>Show decadesInt (int): @decadesInt</li>
-  </ol>
-@Sys.SourceCode.ResultRefEnd(new string[] { "basics110" })
-
-
-
-<h3>Conditions (if/else)</h3>
-@Sys.SourceCode.ResultRefStart("conditions")
-  @{
-    const int old = 60;
-    const string isOld = "this guy is old";
-    const string notOld = "this guy is not old";
-  }
-  <ol>
-    <li>
-      Show old/not old based on Terry's age using <code>@@if</code> and <code>@@else</code>:
-      @if (age > old) {
-        @isOld
-      } else {
-        @notOld
-      }
-    </li>
-    <li>
-      Show old/not old based on Terry's age using ternary <code>? ... : </code>:
-      @(age > old ? isOld : notOld)
-    </li>
-  </ol>
-@Sys.SourceCode.ResultRefEnd(new string[] { "basics210" })
-
-
-
-<h3>Loops</h3>
-@Sys.SourceCode.ResultRefStart("loops")
-  @{
-    var pets = new string[] { "dog", "cat", "mouse"};
-    var owners = new string[] { "Daniel", "John", "Markus"};
-  }
-  <h4>Loop through Pets using <code>@@foreach (var thing in list)</code></h4>
-  <ul>
-    @foreach (var pet in pets) {
-      <li>@pet</li>
-    }
-  </ul>
-  <h4>Loop through Pets using <code>@@foreach (counter; condition; increment)</code></h4>
-  <ul>
-    @for(var i = 0; i < pets.Length; i++) {
-      <li>@pets[i] - owned by @owners[i]</li>
-    }
-  </ul>
-@Sys.SourceCode.ResultRefEnd(new string[] { "basics220" })
-
-
-
-<h3>Html output and Emojis</h3>
-@Sys.SourceCode.ResultRefStart("html")
-  @{
-    var normalText = "this is text, it doesn't have tags";
-    var htmlText = "this string <em>has</em> html <strong>tags</strong>";
-  }
-  <h4>Output values (HTML is visible as source)</h4>
-  <ul>
-    <li>@normalText</li>
-    <li>@htmlText</li>
-  </ul>
-  <h4>Output values (HTML is applied, could be a security risk)</h4>
-  <ul>
-    <li>@Html.Raw(normalText)</li>
-    <li>@Html.Raw(htmlText)</li>
-  </ul>
-  <h4>Show some Emojis based on a true/false</h4>
-  <ul>
-    <li>Pick emoji from true ⇒ @(true ? "✔️" : "❌")</li>
-    <li>Pick emoji from true ⇒ @(false ? "✔️" : "❌")</li>
-  </ul>
-@Sys.SourceCode.ResultRefEnd(new string[] { "html", "html210" })
+@* Shared section, which is identical in both Razors syntaxes *@
+@Html.Partial("./shared-razor-variables.cshtml")
+@Html.Partial("./shared-razor-conditions.cshtml")
+@Html.Partial("./shared-razor-loops.cshtml")
+@Html.Partial("./shared-razor-html.cshtml")
 
 <hr>
 <h2>Advanced Razor Syntax</h2>
@@ -129,40 +40,15 @@
   These are some more advanced APIs which are very common as well, so you should be familiar with them.
 </p>
 
+@Html.Partial("./shared-razor-functions.cshtml")
 
-<h3>Reuse Code with functions and helper code files</h3>
+
+<h3>Reuse Partial Razor and functions from Helper Code files</h3>
 @Sys.SourceCode.ResultRefStart("reuse" @*, "Source of line.cshtml" *@)
-  @functions {
-    string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
-   
-    // Variable keeping the random number generator
-    private Random generator = new Random(DateTime.Now.Second);
-
-    // Get random number between 0 and 100
-    public int Random100() {
-      return generator.Next(0, 100);
-    }
-  }
   @{
-    // Simple Hybrid (Dnn/Oqtane) Template Delegate
-    Func<string, dynamic> BoldLi = @<li>
-      <strong>
-        @Html.Raw(item)
-      </strong>
-    </li>;
-
     // helper library to say hello & create QR codes
     var qrLib = CreateInstance("../reuse/SharedFunctions.cs");
   }
-  <h4>Reuse some functions inside this file</h4>
-  <ul>
-    <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
-    <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
-    <li>Random number function: @Random100()</li>
-    <li>Random number function: @Random100()</li>
-    @BoldLi("this is just a bold item in a list using a Template Delegate")
-    @BoldLi("this is another bold item in a list using a Template Delegate")
-  </ul>
   <h4>Call some external Razor files</h4>
   <ol>
     <li>@Html.Partial("../reuse/line.cshtml")</li>
@@ -175,7 +61,7 @@
       <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
     </li>
   </ol>
-@Sys.SourceCode.ResultRefEnd(new string[] { "reuse101", "reuse102", "reuse110", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
+@Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
 
 
 
