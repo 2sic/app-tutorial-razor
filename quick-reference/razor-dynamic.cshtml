@@ -1,0 +1,320 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys })
+</hide>
+
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <h2>Quick Reference for <em>Dynamic Razor Code</em></h2>
+    <p>
+      This is a quick CheatSheet to provide you with a reference to most APIs you'll use.
+    </p>
+    <p>
+      This uses a base class of <code>@@inherits Custom.Hybrid.Razor14</code> and would also apply to <code>...Razor12</code>. 
+      Most samples do not work for the new <code>@@inherits Custom.Hybrid.Razorpro</code> as that provides different objects and methods.  that uses a different syntax. 
+    </p>
+  </div>
+</div>
+
+<hr>
+<h2>Basic Razor Syntax</h2>
+<p>
+  These are some very common Razor APIs which you should know.
+</p>
+
+<h3>Razor Variables</h3>
+@Sys.SourceCode.ResultRefStart("variables")
+  @{
+    // Create variables - the compiler detects the type automatically
+    var firstName = "Terry";
+    var birthday = new DateTime(1948, 04, 28);
+    var age = DateTime.Now.Year - birthday.Year;
+    var decades = age / 10; // integer division - so decades will still be an int
+    var decadesFloat = (float)age / 10; // float division - so decadesFloat will be a float
+    // example of explicit variable type
+    int decadesInt = (int)decadesFloat;  // This will loose the decimal places
+  }
+  <ol>
+    <li>Show firstName (string): @firstName</li>
+    <li>Show birthday (DateTime): @birthday</li>
+    <li>Show birthday (DateTime, formatted): @birthday.ToString("yyyy-MM-dd")</li>
+    <li>Show age (int): @age</li>
+    <li>Show decades (int): @decades</li>
+    <li>Show decadesFloat (float): @decadesFloat</li>
+    <li>Show decadesInt (int): @decadesInt</li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "basics110" })
+
+
+
+<h3>Conditions (if/else)</h3>
+@Sys.SourceCode.ResultRefStart("conditions")
+  @{
+    const int old = 60;
+    const string isOld = "this guy is old";
+    const string notOld = "this guy is not old";
+  }
+  <ol>
+    <li>
+      Show old/not old based on Terry's age using <code>@@if</code> and <code>@@else</code>:
+      @if (age > old) {
+        @isOld
+      } else {
+        @notOld
+      }
+    </li>
+    <li>
+      Show old/not old based on Terry's age using ternary <code>? ... : </code>:
+      @(age > old ? isOld : notOld)
+    </li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "basics210" })
+
+
+
+<h3>Loops</h3>
+@Sys.SourceCode.ResultRefStart("loops")
+  @{
+    var pets = new string[] { "dog", "cat", "mouse"};
+    var owners = new string[] { "Daniel", "John", "Markus"};
+  }
+  <h4>Loop through Pets using <code>@@foreach (var thing in list)</code></h4>
+  <ul>
+    @foreach (var pet in pets) {
+      <li>@pet</li>
+    }
+  </ul>
+  <h4>Loop through Pets using <code>@@foreach (counter; condition; increment)</code></h4>
+  <ul>
+    @for(var i = 0; i < pets.Length; i++) {
+      <li>@pets[i] - owned by @owners[i]</li>
+    }
+  </ul>
+@Sys.SourceCode.ResultRefEnd(new string[] { "basics220" })
+
+
+
+<h3>Html output and Emojis</h3>
+@Sys.SourceCode.ResultRefStart("html")
+  @{
+    var normalText = "this is text, it doesn't have tags";
+    var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+  }
+  <h4>Output values (HTML is visible as source)</h4>
+  <ul>
+    <li>@normalText</li>
+    <li>@htmlText</li>
+  </ul>
+  <h4>Output values (HTML is applied, could be a security risk)</h4>
+  <ul>
+    <li>@Html.Raw(normalText)</li>
+    <li>@Html.Raw(htmlText)</li>
+  </ul>
+  <h4>Show some Emojis based on a true/false</h4>
+  <ul>
+    <li>Pick emoji from true ⇒ @(true ? "✔️" : "❌")</li>
+    <li>Pick emoji from true ⇒ @(false ? "✔️" : "❌")</li>
+  </ul>
+@Sys.SourceCode.ResultRefEnd(new string[] { "html", "html210" })
+
+<hr>
+<h2>Advanced Razor Syntax</h2>
+<p>
+  These are some more advanced APIs which are very common as well, so you should be familiar with them.
+</p>
+
+
+<h3>Reuse Code with functions and helper code files</h3>
+@Sys.SourceCode.ResultRefStart("reuse" @*, "Source of line.cshtml" *@)
+  @functions {
+    string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
+   
+    // Variable keeping the random number generator
+    private Random generator = new Random(DateTime.Now.Second);
+
+    // Get random number between 0 and 100
+    public int Random100() {
+      return generator.Next(0, 100);
+    }
+  }
+  @{
+    // Simple Hybrid (Dnn/Oqtane) Template Delegate
+    Func<string, dynamic> BoldLi = @<li>
+      <strong>
+        @Html.Raw(item)
+      </strong>
+    </li>;
+
+    // helper library to say hello & create QR codes
+    var qrLib = CreateInstance("../reuse/SharedFunctions.cs");
+  }
+  <h4>Reuse some functions inside this file</h4>
+  <ul>
+    <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
+    <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
+    <li>Random number function: @Random100()</li>
+    <li>Random number function: @Random100()</li>
+    @BoldLi("this is just a bold item in a list using a Template Delegate")
+    @BoldLi("this is another bold item in a list using a Template Delegate")
+  </ul>
+  <h4>Call some external Razor files</h4>
+  <ol>
+    <li>@Html.Partial("../reuse/line.cshtml")</li>
+    <li>@Html.Partial("../reuse/line.cshtml")</li>
+    <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Hello, this is the first line" })</li>
+    <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Second line!", Color = "red" })</li>
+    <li>Hello from shared lib: @qrLib.SayHello()</li>
+    <li>
+      QR Code from shared lib
+      <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
+    </li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "reuse101", "reuse102", "reuse110", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
+
+
+
+<hr>
+<h2>Work with current Content, Images, Multi-Language</h2>
+<p>
+  Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
+</p>
+
+
+<h3>Work with Current Content</h3>
+@Sys.SourceCode.ResultRefStart("content")
+  <h4>Douglas Adams, the current Content-item</h4>
+  <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" class="rounded-circle">
+  <ol>
+    <li>Content Name: @Content.FirstName @Content.LastName</li>
+    <li>Content Birthday: @Content.Birthday.ToString("d")</li>
+    <li>Content Award: @Content.Awards.Name</li>
+  </ol>
+  <h4>Loop the persons in the Query for this view</h4>
+  <ul>
+    @foreach (var person in AsList(Data)) {
+      <li>
+        @if (Text.Has(person.Mugshot)) {
+          <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" class="rounded-circle">
+        }
+        @person.FirstName @person.LastName
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })
+
+
+
+<hr>
+<h2>2sxc Razor APIs to work with Page and Links</h2>
+
+<h3>Page URL Parameters / QueryString</h3>
+@Sys.SourceCode.ResultRefStart("url-parameters")
+  <ol>
+    <li>
+      <a href='@Link.To(parameters: "demo=true")'>Link to this page with demo=true</a>
+      <br>
+      <em>Note: you will then not be on this page any more, since other parameters are removed.</em>
+    </li>
+    <li>
+      The current Page parameter for <code>ref100</code> (used in the URL):
+      @CmsContext.Page.Parameters["ref100"]
+    </li>
+    <li>
+      The current page parameters - used to create a new link: @CmsContext.Page.Parameters
+    </li>
+    <li>
+      <a href='@Link.To(parameters: CmsContext.Page.Parameters)'>Link to current page with same parameters</a>
+    </li>
+    <li>
+      <a href='@Link.To(parameters: CmsContext.Page.Parameters.Set("demo", true))'>Link to current page with demo=true</a>
+    </li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "basics310", "basics311", "basics320", "basics330", "basics410" })
+
+
+
+<h3>Set Page Title, Keywords etc.</h3>
+@Sys.SourceCode.ResultRefStart("set-page-properties")
+  @* Example with a single-liner directly in the code *@
+  @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
+  @Kit.Page.AddIconSet(App.Path + "/blade/assets/razor-blade-icon.png")
+  @Kit.Page.AddMeta("tutorial", "some value")
+
+  @{
+    // Example showing how to use in a block of code
+    Kit.Page.SetDescription("Learn to use Razor Blade ");
+    Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+  }
+
+  @* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
+  @Kit.Page.AddJsonLd(new Dictionary<string, object> {
+      { "@context", "https://schema.org"},
+      { "@type", "Organization"},
+      { "url", "http://www.example.com"},
+      { "name", "Unlimited Ball Bearings Corp."},
+      { "contactPoint", new Dictionary<string, object> {
+        {"@type", "ContactPoint"},
+        {"telephone", "+1-401-555-1212"},
+        {"contactType", "Customer service"}
+      }}
+  })
+
+  @* Set some OpenGraph headers *@
+  @Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers")
+  @Kit.Page.AddOpenGraph("type", "website")
+  <p>
+    This uses <code>Kit.Page.SetTitle(...)</code> and other methods to modify the HTML sent to the browser. 
+    It sets various aspecs such as <code>title</code> or FavIcons.
+  </p>
+  <ol>
+    <li><code>meta title</code>, <code>meta description</code>, <code>meta keywords</code> </li>
+    <li>favicon</li>
+    <li>some JsonLd for google</li>
+    <li>OpenGraph headers for FaceBook, Twitter, etc.</li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })
+
+
+
+<h3>Get Info about Platform, Culture/Languages etc.</h3>
+@Sys.SourceCode.ResultRefStart("cms-context")
+  <ol>
+    <li>Platform name: '<code>@CmsContext.Platform.Name</code>'</li>
+    <li>Platform type: '<code>@CmsContext.Platform.Type</code>'</li>
+    <li>Platform version: '<code>@CmsContext.Platform.Version</code>'</li>
+
+    <li>Culture Current Code: '<code>@CmsContext.Culture.CurrentCode</code>'</li>
+    <li>Culture Default Code: '<code>@CmsContext.Culture.DefaultCode</code>'</li>
+
+    <li>Site Id: '<code>@CmsContext.Site.Id</code>'</li>
+    <li>Site Url: '<code>@CmsContext.Site.Url</code>'</li>
+    <li>Site UrlRoot: '<code>@CmsContext.Site.UrlRoot</code>'</li>
+
+    <li>Page Id: '<code>@CmsContext.Page.Id</code>'</li>
+    <li>Page Url: '<code>@CmsContext.Page.Url</code>'</li>
+    <li>Page Url Parameters: '<code>@CmsContext.Page.Parameters</code>'</li>
+
+    <li>Module Id: '<code>@CmsContext.Module.Id</code>'</li>
+
+    <li>User Id: '<code>@CmsContext.User.Id</code>'</li>
+    <li>User Name: '<code>@CmsContext.User.Name</code>'</li>
+    <li>User IsContentAdmin: '<code>@CmsContext.User.IsContentAdmin</code>'</li>
+    <li>User IsSiteAdmin: '<code>@CmsContext.User.IsSiteAdmin</code>'</li>
+    <li>User IsSystemAdmin: '<code>@CmsContext.User.IsSystemAdmin</code>'</li>
+
+    <li>View Id: '<code>@CmsContext.View.Id</code>'</li>
+    <li>View Identifier: '<code>@CmsContext.View.Identifier</code>' (blank if no special identifier) </li>
+    <li>View Name: '<code>@CmsContext.View.Name</code>'</li>
+    <li>View Edition: '<code>@CmsContext.View.Edition</code>' (blank if no special CSS Framework edition) </li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
+
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

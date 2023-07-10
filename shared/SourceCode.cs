@@ -235,18 +235,22 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region Reference / CheatSheet
 
-  private object _referenceSpecs;
-
   // Must begin with the term "Result" to be captured later on when looking for the snippet
-  public ITag ResultRefStart(string snippetId, object specs = null) {
-    _referenceSpecs = specs;
-    return SnippetStartInner(snippetId, ResultTabName, "Additional Tutorials", SourceTabName);
+  public ITag ResultRefStart(string snippetId, params string[] names) {
+    var list = new List<string>() { SourceTabName };
+    if (names != null && names.Any()) list.AddRange(names);
+    return SnippetStartInner(snippetId, ResultTabName, "Additional Tutorials", list.ToArray());
   }
 
-  public ITag ResultRefEnd(params string[] results) {
+  public ITag ResultRefEnd(string[] results, params string[] files) {
     var links = results == null || !results.Any()
       ? null
       : Tag.Ol(results.Select(r => Sys.TutorialLiLinkLookup(r)));
+    var tabContents = new List<object>();
+    // TODO: doesn't work yet
+    if (files != null && files.Any())
+      tabContents.AddRange(files); //.Select(f => ShowFileContents(f, withIntro: false, showTitle: true)));
+    tabContents.Add(links);
     var result = ResultEndInner(false, true, false, links);
     return result;
   }
@@ -281,25 +285,6 @@ public class SourceCode: Custom.Hybrid.Code14
   private ITag ResultEndInner(bool showSnippet, params object[] results) {
     var l = Log.Call<ITag>("showSnippet: " + showSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
     return l(ResultEndInner(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results), "ok");
-    // var nameCount = 0;
-    // // Close the tabs / header div section if it hasn't been closed yet
-    // var html = Tag.RawHtml();
-    // if (_resultEndClosesReveal) {
-    //   html = html.Add("</div>");
-    //   _resultEndClosesReveal = false;
-    // }
-    // if (showSnippet && _resultEndWillPrepend)
-    //   html = html.Add("</div>", Snippet(_snippet));
-    // html = html.Add(BsTabs.TabContentClose());
-    // // If we have any results, add them here
-    // foreach (var m in results) {
-    //   var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
-    //   Log.Add("tab name:" + name + " (" + nameCount + ")");
-    //   html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
-    //   nameCount++;
-    // }
-    // html = html.Add(showSnippet && !_resultEndWillPrepend ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
-    // return l(html, "ok");
   }
 
   private ITag ResultEndInner(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, params object[] results) {

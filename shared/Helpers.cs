@@ -46,23 +46,11 @@ public class Helpers: Custom.Hybrid.CodePro
     return target;
   }
 
-  public IHtmlTag TutorialLiLinkLookup(string target, string label = "TODO - MUST LOOKUP", string description = null, string newText = null, string appendix = null) {
+  public IHtmlTag TutorialLiLinkLookup(string target) {
     var view = App.Data["2SexyContent-Template"].FirstOrDefault(e => e.Get<string>("ViewNameInUrl") == target + "/.*");
-    if (view == null) {
-      return Tag.Li("View not Found: " + target);
-    }
-    return TutorialLiFromView(view);
-    // var result = Tag.Li(
-    //   Tag.Strong(
-    //     TutLink(label + " ", target),
-    //     Highlighted(newText),
-    //     appendix
-    //   )
-    // );
-    // if (!string.IsNullOrWhiteSpace(description)) {
-    //   result.Add(Tag.Br(), description);
-    // }
-    // return result;
+    return (view == null)
+      ? Tag.Li("View not Found: " + target)
+      : TutorialLiFromView(view);
   }
 
   public IHtmlTag TutorialLiFromView(object tutViewObj) {
@@ -81,7 +69,7 @@ public class Helpers: Custom.Hybrid.CodePro
         newText: "",
         deprecated: false)
       : TutorialViewLink(
-        label: viewMd.Title,
+        label: Kit.Scrub.Only(viewMd.String("LinkTitle"), "p"),
         target: urlPattern,
         description: viewMd.String("LinkTeaser"),
         newText: viewMd.String("LinkEmphasis"),
