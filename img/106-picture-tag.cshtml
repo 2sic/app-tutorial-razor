@@ -104,7 +104,7 @@
 @Sys.SourceCode.ResultStart("pic-auto", "Generated HTML")
   <hide-silent>@ShowCurrentSrc("pic-auto")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     var previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -117,7 +117,7 @@
 @Sys.SourceCode.ResultStart("pic-auto-alt-class", "Generated HTML")
   <hide-silent>@ShowCurrentSrc("pic-auto-alt-class")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text",
         imgClass: "dummy-class");
@@ -136,7 +136,7 @@
     @picControlled.Sources
     @picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!")
   </picture>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     var previewString = "<picture> " + picControlled.Sources.ToString() + " " +
         picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!").ToString() + "</picture>";
@@ -159,7 +159,7 @@
     }
     <img loading="lazy" src='@picFullControl.Src' style='width: 50%' class='border border-primary'>
   </picture>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     previewString = "<picture> ";
     foreach (var st in picFullControl.Sources) { previewString += st.ToString(); }

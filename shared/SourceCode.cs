@@ -253,9 +253,8 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
 
-  // TODO: replace all ResultPrepare with Invisible() in the code files
-  public string Invisible() { return ResultPrepare(); }
-  public string ResultPrepare() { return null; }
+  public string Invisible() { return null; }
+  // public string ResultPrepare() { return null; }
 
   public ITag ResultEnd(params object[] results) { return ResultEndInner(true, results); }
 

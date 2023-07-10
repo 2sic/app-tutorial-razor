@@ -54,7 +54,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
 
     // hide unnecessary parts without comment
     source = ProcessHideSilent(source, "<hide-silent>", "</hide-silent>");
-    source = ProcessHideSilent(source, @"@Sys\.SourceCode\.ResultPrepare\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
+    source = ProcessHideSilent(source, @"@Sys\.SourceCode\.Invisible\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
 
     // remove snippet markers
     var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";

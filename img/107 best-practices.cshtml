@@ -61,7 +61,7 @@
       @Kit.Image.Img(Content.Field("Image"), , imgAltFallback: "Picture from Field")
     </div>
   </div>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     var resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Image , imgAltFallback: "Picture from Content.Image"));
     var resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Img(Content.Field("Image"), imgAltFallback: "Picture from Field"));
@@ -93,7 +93,7 @@
       @Kit.Image.Picture(Content.Field("Image"), imgAltFallback: "Picture from Field")
     </div>
   </div>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Image , imgAltFallback: "Picture Left"));
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAltFallback: "Picture Right"));
@@ -119,7 +119,7 @@
       @Kit.Image.Picture(Content.Field("Image"), factor: 5)
     </div>
   </div>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 0.5 , imgAltFallback: "Picture Factor 0.5"));
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), factor: 5 , imgAltFallback: "Picture Factor 5"));
@@ -153,7 +153,7 @@
       @Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe  , imgAltFallback: "Picture customRecipe")
     </div>
 </div>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     resultHtmlLeft = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image") , imgAltFallback: "Picture Left"));
     resultHtmlRight = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe , imgAltFallback: "Picture Right"));
@@ -190,7 +190,7 @@
       @Kit.Image.Picture(imageFieldWithAltText, imgAltFallback: optimalAltText)
     </div>
   </div>
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
    var resultHtml = Sys.SourceCode.ShowResultImg(Kit.Image.Picture(Content.Field("Image"), imgAltFallback: optimalAltText));
   }

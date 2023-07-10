@@ -84,7 +84,7 @@
     var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
   }
   @Kit.Image.Img(tomatoPicUrl)
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     var previewTag = Kit.Image.Img(tomatoPicUrl);
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -103,7 +103,7 @@
     var flatSettings = Kit.Image.Settings(Settings.Images.Content, aspectRatio: "8:1");
   }
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings)
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -121,7 +121,7 @@
 @Sys.SourceCode.ResultStart("img-srcset-auto-srcset", "Generated HTML")
   <hide-silent>@ShowCurrentSrc("img-srcset-auto-srcset")</hide-silent>
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400")
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400");
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -134,7 +134,7 @@
 @Sys.SourceCode.ResultStart("img-srcset-auto3", "Generated HTML")
   <hide-silent>@ShowCurrentSrc("img-srcset-auto3")</hide-silent>
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary")
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary");
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -150,7 +150,7 @@
     var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
   @imgControlled.Img.Id("Some-Id").Style("Width: 75%")
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     previewTag = imgControlled;
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
@@ -166,7 +166,7 @@
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
   <img loading="lazy" src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
-@Sys.SourceCode.ResultPrepare()
+@Sys.SourceCode.Invisible()
   @{
     // regenerate to match sample above
     var imgTag = Tag.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
