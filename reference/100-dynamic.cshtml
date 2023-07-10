@@ -1,0 +1,53 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys })
+</hide>
+
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <h2>CheatSheet Reference for Dynamic Code</h2>
+    <p>
+      TODO:
+      In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it. The current content item (if it's just one) is always available on the variable called <code>Content</code>. It's a <code>dynamic</code> object, so you can just type things like <code>@@Content.FirstName</code> to access the properties.
+    </p>
+  </div>
+</div>
+
+
+<h3>Basic use of Variables</h3>
+@Sys.SourceCode.ResultRefStart("razor-basics")
+  @{
+    // Create variables - the compiler detects the type automatically
+    var firstName = "Terry";
+    var birthday = new DateTime(1948, 04, 28);
+    var age = DateTime.Now.Year - birthday.Year;
+    var decades = age / 10; // integer division - so decades will still be an int
+    var decadesFloat = (float)age / 10; // float division - so decadesFloat will be a float
+  }
+  <ol>
+    <li>Show firstName (string): @firstName</li>
+    <li>Show birthday (DateTime): @birthday</li>
+    <li>Show birthday (DateTime, formatted): @birthday.ToString("yyyy-MM-dd")</li>
+    <li>Show age (int): @age</li>
+    <li>Show decades (int): @decades</li>
+    <li>Show decadesFloat (float): @decadesFloat</li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "basics110", "basics210" })
+
+
+<trim>
+<p>
+  TODO:
+</p>
+</trim>
+
+
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
