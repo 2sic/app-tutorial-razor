@@ -3,7 +3,7 @@ using ToSic.Razor.Blade;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Helpers: Custom.Hybrid.Code14
+public class Helpers: Custom.Hybrid.CodePro
 {
   public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";
@@ -18,25 +18,25 @@ public class Helpers: Custom.Hybrid.Code14
 
   public string Path {get;set;}
 
-  public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = CreateInstance("SourceCode.cs").Init(this, Path)); } }
+  public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("SourceCode.cs").Init(this, Path)); } }
   private dynamic _sourceCode;
 
-  public dynamic PageParts { get { return _pageParts ?? (_pageParts = CreateInstance("PageParts.cs").Init(this)); } }
+  public dynamic PageParts { get { return _pageParts ?? (_pageParts = GetCode("PageParts.cs").Init(this)); } }
   private dynamic _pageParts;
 
-  public dynamic Fancybox { get { return _fancybox ?? (_fancybox = CreateInstance("Fancybox.cs")); } }
+  public dynamic Fancybox { get { return _fancybox ?? (_fancybox = GetCode("Fancybox.cs")); } }
   private dynamic _fancybox;
 
-  public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = CreateInstance("ToolbarHelpers.cs")).Init(this); } }
+  public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs")).Init(this); } }
   private dynamic _tlbHelpers;
 
-  public dynamic InfoSection { get { return _infs ?? (_infs = CreateInstance("InfoSection.cs")).Init(this); } }
+  public dynamic InfoSection { get { return _infs ?? (_infs = GetCode("InfoSection.cs")).Init(this); } }
   private dynamic _infs;
 
 
 
   
-  public dynamic TutLink(string label, string target) {
+  public IHtmlTag TutLink(string label, string target) {
     return Tag.A(label).Href(Link.To(parameters: GetTargetUrl(target)));
   }
 
@@ -45,6 +45,52 @@ public class Helpers: Custom.Hybrid.Code14
     target = target + (target.Contains("=") ? "" : "=page");
     return target;
   }
+
+  public IHtmlTag TutorialLiLinkLookup(string target, string label = "TODO - MUST LOOKUP", string description = null, string newText = null, string appendix = null) {
+    var view = App.Data["2SexyContent-Template"].FirstOrDefault(e => e.Get<string>("ViewNameInUrl") == target + "/.*");
+    if (view == null) {
+      return Tag.Li("View not Found: " + target);
+    }
+    return TutorialLiFromView(view);
+    // var result = Tag.Li(
+    //   Tag.Strong(
+    //     TutLink(label + " ", target),
+    //     Highlighted(newText),
+    //     appendix
+    //   )
+    // );
+    // if (!string.IsNullOrWhiteSpace(description)) {
+    //   result.Add(Tag.Br(), description);
+    // }
+    // return result;
+  }
+
+  public IHtmlTag TutorialLiFromView(object tutViewObj) {
+    var tutView = AsItem(tutViewObj);
+    var urlPattern = tutView.String("ViewNameInUrl").Replace("/.*", "");
+    var viewMetadata = tutView.Metadata;
+    var viewMdType = TutViewMetadataType as string;
+    var viewMd = AsItem((viewMetadata.OfType(viewMdType)).FirstOrDefault());
+
+    var tutLink = (viewMd == null)
+      // If we don't have metadata, just create a dummy entry but add the toolbar to allow editing
+      ? TutorialViewLink(
+        label: "Todo - add metadata",
+        target: urlPattern,
+        description: "",
+        newText: "",
+        deprecated: false)
+      : TutorialViewLink(
+        label: viewMd.Title,
+        target: urlPattern,
+        description: viewMd.String("LinkTeaser"),
+        newText: viewMd.String("LinkEmphasis"),
+        deprecated: viewMd.Bool("Deprecated"));
+    // Metadata with new toolbar services
+    tutLink.Attr(Kit.Toolbar.Metadata(tutView, viewMdType));
+    return tutLink;
+  }
+
 
   public dynamic TutorialLink(string label, string target, string description = null, string newText = null, string appendix = null) {
     var result = Tag.Li(
