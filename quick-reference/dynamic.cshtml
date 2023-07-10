@@ -75,18 +75,20 @@
 <h3>Work with Current Content</h3>
 @Sys.SourceCode.ResultRefStart("content")
   <h4>Douglas Adams, the current Content-item</h4>
-  <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" class="rounded-circle">
+  @Kit.Image.Img(Content.Field("Mugshot"), settings: Kit.Image.Settings(width: 100, height: 100, resizeMode: "crop"), imgClass: "rounded-circle")
   <ol>
-    <li>Content Name: @Content.FirstName @Content.LastName</li>
-    <li>Content Birthday: @Content.Birthday.ToString("d")</li>
-    <li>Content Award: @Content.Awards.Name</li>
+    <li>Content item Name: @Content.FirstName @Content.LastName</li>
+    <li>Content item Birthday: @Content.Birthday.ToString("d")</li>
+    <li>Content item Award: @Content.Awards.Name</li>
+    <li>Content item Mugshot URL: @Content.Mugshot</li>
+    <li>Content item Mugshot Raw String: @(Content.Get<string>("Mugshot"))</li>
   </ol>
   <h4>Loop the persons in the Query for this view</h4>
   <ul>
     @foreach (var person in AsList(Data)) {
       <li>
         @if (Text.Has(person.Mugshot)) {
-          <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" class="rounded-circle">
+          @Kit.Image.Img(Content.Field("Mugshot"), settings: Kit.Image.Settings(width: 50, height: 50, resizeMode: "crop"), imgClass: "rounded-circle")
         }
         @person.FirstName @person.LastName
       </li>

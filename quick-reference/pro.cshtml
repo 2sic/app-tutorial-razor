@@ -80,18 +80,20 @@
 <h3>Work with Current Item (MyItem)</h3>
 @Sys.SourceCode.ResultRefStart("content")
   <h4>Douglas Adams, the current item (MyItem)</h4>
-  <img loading="lazy" src='@MyItem.Url("Mugshot")?w=100&h=100&mode=crop' class="rounded-circle">
+  @Kit.Image.Img(MyItem.Field("Mugshot"), settings: Kit.Image.Settings(width: 100, height: 100, resizeMode: "crop"), imgClass: "rounded-circle")
   <ol>
     <li>MyItem Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
     <li>MyItem Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
     <li>MyItem Award: @MyItem.Child("Awards").String("Name")</li>
+    <li>MyItem Mugshot URL: @MyItem.Url("Mugshot")</li>
+    <li>MyItem Mugshot Raw String: @MyItem.String("Mugshot")</li>
   </ol>
   <h4>Loop the persons in the Query for this view</h4>
   <ul>
     @foreach (var person in AsItems(MyData)) {
       <li>
-        @if (Text.Has(person.Url("Mugshot"))) {
-          <img loading="lazy" src='@person.Url("Mugshot")?w=50&h=50&mode=crop' width="50px" class="rounded-circle">
+        @if (Text.Has(person.String("Mugshot"))) {
+          @Kit.Image.Img(MyItem.Field("Mugshot"), settings: Kit.Image.Settings(width: 50, height: 50, resizeMode: "crop"), imgClass: "rounded-circle")
         }
         @person.String("FirstName") @person.String("LastName")
       </li>
