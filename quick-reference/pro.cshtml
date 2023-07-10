@@ -43,8 +43,9 @@
 @Html.Partial("./shared-razor-functions.cshtml")
 
 
+
 <h3>Reuse Partial Razor and functions from Helper Code files</h3>
-@Sys.SourceCode.ResultRefStart("reuse" @*, "Source of line.cshtml" *@)
+@Sys.SourceCode.ResultRefStart("reuse-external" @*, "Source of line.cshtml" *@)
   @{
     // helper library to say hello & create QR codes
     var qrLib = GetCode("../reuse/SharedFunctions.cs");
@@ -71,15 +72,19 @@
   Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
 </p>
 
+@{
+  // Quick workaround, so the tutorial works reliably even if the main module had data added
+  var MyItem = AsItem(MyData);
+}
 
-<h3>Work with Current Content</h3>
+<h3>Work with Current Item (MyItem)</h3>
 @Sys.SourceCode.ResultRefStart("content")
   <h4>Douglas Adams, the current item (MyItem)</h4>
   <img loading="lazy" src='@MyItem.Url("Mugshot")?w=100&h=100&mode=crop' class="rounded-circle">
   <ol>
-    <li>Content Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-    <li>Content Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
-    <li>Content Award: @MyItem.Child("Awards").String("Name")</li>
+    <li>MyItem Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
+    <li>MyItem Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
+    <li>MyItem Award: @MyItem.Child("Awards").String("Name")</li>
   </ol>
   <h4>Loop the persons in the Query for this view</h4>
   <ul>
@@ -94,6 +99,9 @@
   </ul>
 @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })
 
+@{
+  return;
+}
 
 
 <hr>
