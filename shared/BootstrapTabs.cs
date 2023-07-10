@@ -9,26 +9,31 @@ using System.Text.RegularExpressions;
 // Shared / re-used code to create bootstrap tabs
 public class BootstrapTabs: Custom.Hybrid.Code14
 {
-  public ITag TabList(string prefix, IEnumerable<string> names) {
+  public ITag TabList(string prefix, IEnumerable<string> names, string active = null) {
     // Remember tab names
     _moreTabNames = names.ToArray();
-    var tabList = new List<ITag>();
-    foreach (var name in names)
-      tabList.Add(Tab(prefix, name, tabList.Count == 0)); // first entry is active = true
+    var tabList = new List<object>();
+    foreach (var name in names) {
+      var isFirst = tabList.Count == 0;
+      var isActive = (active == null && isFirst) || name == active;
+
+      tabList.Add("\n");
+      tabList.Add(Tab(prefix, name, isFirst, isActive)); // first entry is active = true
+    }
     return Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(tabList);
   }
 
   // WARNING: DUPLICATE CODE
   private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
 
-  private ITag Tab(string prefix, string label, bool active = false) {
+  private ITag Tab(string prefix, string label, bool isFirst, bool active) {
     return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-      TabButton(prefix, label, Name2TabId(label), active)
+      TabButton(prefix, label, Name2TabId(label), isFirst, active)
     );
   }
 
-  private ITag TabButton(string prefix, string title, string name, bool selected) {
-    var id = selected ? "-default" : name;
+  private ITag TabButton(string prefix, string title, string name, bool isFirst, bool selected) {
+    var id = isFirst ? "-default" : name;
     return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
       .Attr("data-bs-toggle", "tab")
       .Attr("data-bs-target", "#" + prefix + id)
@@ -49,13 +54,13 @@ public class BootstrapTabs: Custom.Hybrid.Code14
   private bool _tabContentGroupIsOpen = false;
 
   public string TabContentGroupClose() {
-    var result = _tabContentGroupIsOpen ? "</div>": null;
+    var result = _tabContentGroupIsOpen ? "</div>\n": null;
     _tabContentGroupIsOpen = false;
     return result;
   }
 
-  private Div TabContentDiv(string prefix, string id, bool isActive = false) {
-    id = isActive ? "-default" : id;
+  private Div TabContentDiv(string prefix, string id, bool isFirst, bool isActive = false) {
+    id = isFirst ? "-default" : id;
     return Tag.Div()
         .Class("tab-pane fade " + (isActive ? "show active" : ""))
         .Id(prefix + id)
@@ -63,9 +68,9 @@ public class BootstrapTabs: Custom.Hybrid.Code14
         .Attr("aria-labelledby", prefix + id + "-tab");
   }
 
-  public dynamic TabContentOpen(string prefix, string id, bool isActive = false) {
+  public dynamic TabContentOpen(string prefix, string id, bool isFirst, bool isActive) {
     _tabContentIsOpen = true;
-    return TabContentDiv(prefix, id, isActive).TagStart;
+    return TabContentDiv(prefix, id, isFirst, isActive).TagStart + "\n";
   }
   private bool _tabContentIsOpen = false;
   public string TabContentClose() {
@@ -74,10 +79,10 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     return result;
   }
 
-  public ITag TabContent(string prefix, string id, object result, bool isActive = false) {
+  public ITag TabContent(string prefix, string id, object result, bool isFirst, bool isActive) {
     return Tag.RawHtml(
       "\n",
-      TabContentDiv(prefix, id, isActive).Wrap(result),
+      TabContentDiv(prefix, id, isFirst, isActive).Wrap(result),
       "\n"
     );
   }

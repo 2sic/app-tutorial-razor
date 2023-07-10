@@ -71,6 +71,8 @@ public class SourceCode: Custom.Hybrid.Code14
         "\n",
         BsTabs.TabContent(prefix, Name2TabId(names[i]),
           ShowFileContents(files[i], withIntro: false, showTitle: true),
+          // todo: this isn't quite right yet
+          isFirst: i == 0,
           isActive: i == 0
         ),
         "\n"
@@ -78,6 +80,7 @@ public class SourceCode: Custom.Hybrid.Code14
     }
     var result = Tag.RawHtml(
       BsTabs.TabList(prefix, names) as ITag,
+      "\n",
       contents
     );
     return result;
@@ -108,31 +111,33 @@ public class SourceCode: Custom.Hybrid.Code14
     return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
   }
 
-  private ITag SnippetStartInner(string snippetId, string firstName, string lastName, params string[] names) {
+  private ITag SnippetStartInner(string snippetId, string firstName, string lastName, string[] names = null, string active = null) {
+    names = names ?? new string[] { };
     _snippet = snippetId;
+    var firstIsActive = active == null || active == firstName;
     return Tag.RawHtml(
-      TabsForSnippet(snippetId, firstName, lastName, names),    // Tab headers
+      TabsForSnippet(snippetId, firstName, lastName, names, active),    // Tab headers
       BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
       "  ",                             // Open the first tab-body item as the snippet is right after this
-      BsTabs.TabContentOpen(snippetId, Name2TabId(ResultTabName), true)
+      BsTabs.TabContentOpen(snippetId, Name2TabId(firstName), true, firstIsActive)
     );
   }
 
   public ITag SnippetEnd() {
     return Tag.RawHtml(
       BsTabs.TabContentClose(),     // Will close if still open
-      BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet)),
+      BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet), isFirst: false, isActive: false),
       BsTabs.TabContentGroupClose() // Will close if still open
     );
   }
 
   // Tabs for Output, (optional more tabs), Source Code
-  private ITag TabsForSnippet(string prefix, string firstName, string lastName, params string[] names) {
+  private ITag TabsForSnippet(string prefix, string firstName, string lastName, string[] names, string active = null) {
     var tabNames = new List<string>() { firstName };
     tabNames.AddRange(names);
     if (Text.Has(lastName))
       tabNames.Add(lastName);
-    return BsTabs.TabList(prefix, tabNames) as ITag;
+    return BsTabs.TabList(prefix, tabNames, active) as ITag;
   }
 
   #endregion
@@ -221,8 +226,8 @@ public class SourceCode: Custom.Hybrid.Code14
 
     var showSource = Formulas.ShowSnippet(specs);
     return showSource
-      ? SnippetStartInner(snippet, ResultTabName, SourceTabName, "Formulas")
-      : SnippetStartInner(snippet, ResultTabName, "Formulas");
+      ? SnippetStartInner(snippet, ResultTabName, SourceTabName, new [] { "Formulas" })
+      : SnippetStartInner(snippet, ResultTabName, "Formulas", null);
   }
   public ITag FormulaEnd(params object[] results) {
     var result = _formulaSpecs != null
@@ -237,9 +242,9 @@ public class SourceCode: Custom.Hybrid.Code14
 
   // Must begin with the term "Result" to be captured later on when looking for the snippet
   public ITag ResultRefStart(string snippetId, params string[] names) {
-    var list = new List<string>() { SourceTabName };
+    var list = new List<string>() { SourceTabName, "Additional Tutorials" };
     if (names != null && names.Any()) list.AddRange(names);
-    return SnippetStartInner(snippetId, ResultTabName, "Additional Tutorials", list.ToArray());
+    return SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
   }
 
   public ITag ResultRefEnd(string[] results, params string[] files) {
@@ -251,7 +256,7 @@ public class SourceCode: Custom.Hybrid.Code14
     if (files != null && files.Any())
       tabContents.AddRange(files); //.Select(f => ShowFileContents(f, withIntro: false, showTitle: true)));
     tabContents.Add(links);
-    var result = ResultEndInner(false, true, false, links);
+    var result = ResultEndInner(false, true, false, links.ToArray(), active: SourceTabName);
     return result;
   }
 
@@ -284,10 +289,10 @@ public class SourceCode: Custom.Hybrid.Code14
 
   private ITag ResultEndInner(bool showSnippet, params object[] results) {
     var l = Log.Call<ITag>("showSnippet: " + showSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
-    return l(ResultEndInner(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results), "ok");
+    return l(ResultEndInner(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results, active: null), "ok");
   }
 
-  private ITag ResultEndInner(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, params object[] results) {
+  private ITag ResultEndInner(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, object[] results, string active) {
     var l = Log.Call<ITag>("showSnippetInResult: " + showSnippetInResult + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
     var nameCount = 0;
     // Close the tabs / header div section if it hasn't been closed yet
@@ -301,14 +306,14 @@ public class SourceCode: Custom.Hybrid.Code14
     html = html.Add(BsTabs.TabContentClose());
 
     if (showSnippetTab) {
-      html = html.Add(BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet)));
+      html = html.Add(BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet), isFirst: false, isActive: active == SourceTabName));
       nameCount++;
     }
     // If we have any results, add them here
     foreach (var m in results) {
       var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
       Log.Add("tab name:" + name + " (" + nameCount + ")");
-      html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m)));
+      html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m), isFirst: false, isActive: active == name));
       nameCount++;
     }
     html = html.Add(endWithSnippet /* showSnippet && !_resultEndWillPrepend */ ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
