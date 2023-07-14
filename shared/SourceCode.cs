@@ -387,7 +387,7 @@ public class SourceCode: Custom.Hybrid.Code14
     return fileInfo;
   }
 
-  private dynamic ShowError(string path) {
+  private IHtmlTag ShowError(string path) {
     return Tag.RawHtml(
       Tag.H2("Error showing file source"),
       Tag.Div("Where was a problem showing the file source for " + path).Class("alert alert-warning")
@@ -396,8 +396,7 @@ public class SourceCode: Custom.Hybrid.Code14
 
 
 
-  private dynamic SourceBlock(ShowSourceSpecs specs, string title) {
-
+  private Div SourceBlock(ShowSourceSpecs specs, string title) {
     return Tag.Div().Class("code-block " + (specs.Expand ? "is-expanded" : "")).Attr(specs.DomAttribute).Wrap(
       specs.ShowIntro
         ? Tag.Div().Class("header row justify-content-between").Wrap(

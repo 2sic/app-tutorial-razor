@@ -1,3 +1,13 @@
+@import "../../node_modules/bootstrap/scss/_functions.scss";
+@import "../../node_modules/bootstrap/scss/_variables.scss";
+@import "../../node_modules/bootstrap/scss/_variables-dark.scss";
+@import "../../node_modules/bootstrap/scss/_mixins.scss";
+@import "../../node_modules/bootstrap/scss/_accordion.scss";
+
+.accordion-body {
+  background-color: #fff;
+}
+
 .icon-wrapper {
   height: 75px;
   width: 75px;
@@ -7,6 +17,7 @@
     height: 100%;
   }
 }
+
 a {
   &.deprecated {
     color: gray;
@@ -15,6 +26,7 @@ a {
     color: #d63384 !important;
   }
 }
+
 .tutorial-wrapper {
   .sub-section {
     margin-left: 150px;
