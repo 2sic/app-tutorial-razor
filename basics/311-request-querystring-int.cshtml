@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -15,6 +15,9 @@
       When you expect a number, you usually need to convert it to an <code>int</code> or similar for further use. Otherwise you'll be comparing numbers with strings. For example <code>if (3 == "3")</code> would return <code>false</code> - which is not what you usually want. <br>
       Additionally, you usually want to ensure that if no parameter is found, you will have a default value - othertise you may run into errors.
     </p>
+    <p>
+      Click on the links to change the url-parameters of this page and see the results below.
+    </p>
     <ul>
       @SubpageLink("This page without additional params", "")
       @SubpageLink("put ?id=27 in the url", "id=27")
@@ -23,12 +26,13 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("basic-number-params")
- @{
+@Sys.SourceCode.ResultAndSnippetStart("basic-number-params", "Razor14 and older")
+  @{
     // This variable is a string, but could be null or empty
-    var idAsString = CmsContext.Page.Parameters["id"];
-    // This converts the id parameter to int and takes 0 as fallback
-    var id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"], 0);
+    var idAsString = MyPage.Parameters["id"];
+    // This converts the id parameter to int. First sample auto-falls back to 0, other to -1
+    var id = MyPage.Parameters.Int("id");
+    var idOrMinus1 = MyPage.Parameters.Int("id", fallback: -1);
   }
   <ul>
     <li>
@@ -41,9 +45,42 @@
       Equal to string "27": (would throw error) <br>
       Equal to number 27: @(id == 27) <br>
     </li>
+    <li>
+      <strong>Number id from URL or -1:</strong> @idOrMinus1 <br>
+      Equal to string "27": (would throw error) <br>
+      Equal to number 27: @(idOrMinus1 == 27) <br>
+    </li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("snippet:basic-number-params-14")
 
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("basic-number-params-14")
+  @{
+    // This variable is a string, but could be null or empty
+    var idAsString = CmsContext.Page.Parameters["id"];
+    // This converts the id parameter to int. First sample auto-falls back to 0, other to -1
+    var id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
+    var idOrMinus1 = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"], -1);
+  }
+  <ul>
+    <li>
+      <strong>Raw id from URL:</strong> @idAsString <br>
+      Equal to string "27": @(idAsString == "27") <br>
+      Equal to number 27: (would throw error) <br>
+    </li>
+    <li>
+      <strong>Number id from URL:</strong> @id <br>
+      Equal to string "27": (would throw error) <br>
+      Equal to number 27: @(id == 27) <br>
+    </li>
+    <li>
+      <strong>Number id from URL or -1:</strong> @idOrMinus1 <br>
+      Equal to string "27": (would throw error) <br>
+      Equal to number 27: @(idOrMinus1 == 27) <br>
+    </li>
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <hide>
 @functions {

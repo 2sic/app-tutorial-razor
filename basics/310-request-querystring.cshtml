@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -16,14 +16,17 @@
     </p>
     <ol>
       <li>
-        Cross-Platform (Dnn and Oqtane): <code>@@CmsContext.Page.Parameters["id"]</code>
+        Pro mode Cross-Platform (Dnn and Oqtane): <code>@@MyPage.Parameters["id"]</code>
+      </li>
+      <li>
+        Older mode Cross-Platform (Dnn and Oqtane): <code>@@CmsContext.Page.Parameters["id"]</code>
       </li>
       <li>
         This would <em>only</em> work in Dnn: <code>@@Request.QueryString["id"]</code>
       </li>
     </ol>
     <p>
-      Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
+      Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@MyPage.Parameters["id"]</code> / <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
       But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. 
     </p>
     <h2>Test changing this page URL</h2>
@@ -34,17 +37,46 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("basic-params")
+@Sys.SourceCode.ResultAndSnippetStart("basic-params")
  <ul>
     <li><a href='@Link.To(parameters: "?basics310=page")'>This page without additional url-parameter</a></li>
     <li><a href='@Link.To(parameters: "?basics310=page&sort=ascending")'>This page with additional <code>sort=ascending</code></a></li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd()
 
 
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
 
-@Sys.SourceCode.SnippetInlineStart("basic-query-string")
+@Sys.SourceCode.ResultAndSnippetStart("basic-query-string", "Razor14 and older")
+  <ul>
+    <li>URL contains <code>sort</code> using null-check: 
+      @(MyPage.Parameters["sort"] != null)
+    </li>
+    <li>URL contains <code>sort</code> using <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a> (this will also return false, if sort is empty):
+      @Text.Has(MyPage.Parameters["sort"])
+    </li>
+    <li>Sort value from URL:
+      @MyPage.Parameters["sort"]
+    </li>
+    <li>
+      Put <code>sort</code> in a variable for further use:
+      @{
+        var sort = MyPage.Parameters["sort"];
+      }
+      @sort
+    </li>
+    <li>
+      Get sort from url, or if it doesn't exist, use a default value <code>descending</code> (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>):
+      @{
+        sort = Text.First(MyPage.Parameters["sort"], "descending");
+      }
+      @sort
+    </li>
+  </ul>
+@Sys.SourceCode.ResultEnd("snippet:basic-query-string-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("basic-query-string-14")
   <ul>
     <li>URL contains <code>sort</code> using null-check: 
       @(CmsContext.Page.Parameters["sort"] != null)
@@ -70,7 +102,8 @@
       @sort
     </li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.SnippetEnd()
+*@
 
 
 @* Footer *@

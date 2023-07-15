@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -25,26 +25,50 @@
 <h2>Link to current page with all Parameters</h2>
 
 
-@Sys.SourceCode.SnippetInlineStart("link-to-current-params")
-  @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
+@Sys.SourceCode.ResultAndSnippetStart("link-to-current-params", "Razor14 and older")
+  @{ var currentPageUrl = Link.To(parameters: MyPage.Parameters); }
   <ol>
-    <li><a href='@Link.To()'>Link to current page without Parameters: @Link.To()</a></li>
+    <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
     <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("snippet:link-to-current-params-14")
 
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("link-to-current-params-14")
+  @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
+  <ol>
+    <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
+    <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <hide>
 <h3>Add Parameters</h3>
 <p>
-  Because <code>CmsContext.Page.Parameters</code> follows <a target="blank" href="https://en.wikipedia.org/wiki/Query_string#Structure">the query string convention</a> adding a new parameter isn't too difficult. <br> 
+  Because <code>MyPage.Parameters</code> / <code>CmsContext.Page.Parameters</code> follows <a target="blank" href="https://en.wikipedia.org/wiki/Query_string#Structure">the query string convention</a> adding a new parameter isn't too difficult. <br> 
   To add a new parameter you can use the <code>.Add(key, value)</code> method or add the parameters as string following the convention as for example <code>&name=2sxc</code>.<br>
 </p>
 
 </hide>
-<p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+<p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.SnippetInlineStart("link-to-new-params")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-new-params", "Razor14 and older")
+ @{
+    // Example using string
+    var newParamsFromString = MyPage.Parameters + "&name=2sxc";
+
+    // Page parameters using .Add(...) method
+    var newParamsFromAdd = MyPage.Parameters.Add("name", "2sxc");
+  }
+<hide>
+  <p>See adjusted page parameters: <code>@newParamsFromAdd</code></p>
+</hide>
+  <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
+  <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
+@Sys.SourceCode.ResultEnd("snippet:link-to-new-params-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("link-to-new-params-14")
  @{
     // Example using string
     var newParamsFromString = CmsContext.Page.Parameters + "&name=2sxc";
@@ -57,8 +81,8 @@
 </hide>
   <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
   <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
-@Sys.SourceCode.SnippetInlineEnd()
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <hide>
 <h3>Remove Parameters</h3>
@@ -66,9 +90,20 @@
   To remove a parameter you can use the <code>.Remove(key)</code> method or modify the string containing parameters.<br>
 </p>
 </hide>
-<p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+<p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.SnippetInlineStart("link-to-remove-params")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-remove-params", "Razor14 and older")
+  @{
+    var currentParamsRemoved = MyPage.Parameters.Remove("basics320");
+  }
+  <hide>
+  <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
+  </hide>
+  <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
+@Sys.SourceCode.ResultEnd("snippet:link-to-remove-params-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("link-to-remove-params-14")
   @{
     var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
   }
@@ -76,9 +111,8 @@
   <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
   </hide>
   <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
-
-@Sys.SourceCode.SnippetInlineEnd()
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <hide>
 <h3>Change Parameters</h3>
@@ -87,9 +121,20 @@
 </p>
 </hide>
 
-<p>See current page parameters: <code>@CmsContext.Page.Parameters</code></p>
+<p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.SnippetInlineStart("link-to-changed-params")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-changed-params", "Razor14 and older")
+  @{
+    var currentParamsChanged = MyPage.Parameters.Set("basics320", "2sxc");
+  }
+  <hide>
+  <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
+  </hide>
+  <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
+@Sys.SourceCode.ResultEnd("snippet:link-to-changed-params-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("link-to-changed-params-14")
   @{
     var currentParamsChanged = CmsContext.Page.Parameters.Set("basics320", "2sxc");
   }
@@ -97,8 +142,8 @@
   <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
   </hide>
   <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
-@Sys.SourceCode.SnippetInlineEnd()
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
