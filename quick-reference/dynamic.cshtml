@@ -88,9 +88,9 @@
       <h4>Douglas Adams, the current Content-item</h4>
       @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
       <ol>
-        <li>Content item Name: @Content.FirstName @Content.LastName</li>
-        <li>Content item Birthday: @Content.Birthday.ToString("d")</li>
-        <li>Content item Award: @Content.Awards.Name</li>
+        <li>Content item Name:        @Content.FirstName @Content.LastName</li>
+        <li>Content item Birthday:    @Content.Birthday.ToString("d")</li>
+        <li>Content item Award:       @Content.Awards.Name</li>
         <li>Content item Mugshot URL: @Content.Mugshot</li>
         <li>Content item Mugshot Raw String: @(Content.Get<string>("Mugshot"))</li>
       </ol>

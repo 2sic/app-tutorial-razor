@@ -148,6 +148,8 @@ public class SourceCode: Custom.Hybrid.Code14
       var strResult = result as string;
       if (strResult.StartsWith("file:"))
         return ShowFileContents(((string)result).Substring(5), withIntro: false, showTitle: true);
+      if (strResult.StartsWith("snippet:"))
+        return Snippet(((string)result).Substring(8));
     } 
     return result;
   }
@@ -302,7 +304,7 @@ public class SourceCode: Custom.Hybrid.Code14
       html = html.Add("</div>");
       _resultEndClosesReveal = false;
     }
-    if (showSnippetInResult) // showSnippet && _resultEndWillPrepend)
+    if (showSnippetInResult)
       html = html.Add("</div>", Snippet(_snippet));
     html = html.Add(BsTabs.TabContentClose());
 
@@ -317,7 +319,7 @@ public class SourceCode: Custom.Hybrid.Code14
       html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m), isFirst: false, isActive: active == name));
       nameCount++;
     }
-    html = html.Add(endWithSnippet /* showSnippet && !_resultEndWillPrepend */ ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
+    html = html.Add(endWithSnippet ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
     return l(html, "ok");
   }
 

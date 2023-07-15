@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
@@ -15,7 +15,7 @@
   <div @Sys.PageParts.InfoIntro()>
       <h2>Reuse code with .cs files (new in 2sxc 10.01)</h2>
       <p>
-        Starting with 2sxc 10.01 <code>CreateInstance()</code> can also be used with .cs files,
+        Starting with 2sxc 10.01 <code>GetCode()</code> can also be used with .cs files,
         from both razor pages as well as WebApi controllers.
         This allows you to create shared code which can be used in Razor and WebApi controllers.
       </p>
@@ -31,13 +31,21 @@
 </p>
 </trim>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of FunctionsBasic.cs")
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "Razor14 and older", "Source of FunctionsBasic.cs")
+  @{
+    var lib = GetCode("FunctionsBasic.cs");
+  }
+  <div>Hello from FunctionsBasic: @lib.SayHello()</div>
+@Sys.SourceCode.ResultEnd("snippet:demo1-14", "file:FunctionsBasic.cs")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
   @{
     var lib = CreateInstance("FunctionsBasic.cs");
   }
   <div>Hello from FunctionsBasic: @lib.SayHello()</div>
-@Sys.SourceCode.ResultEnd("file:FunctionsBasic.cs")
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <h2>Using a different Class from a library files</h2>
 <trim>
@@ -46,12 +54,21 @@
 </p>
 </trim>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of FunctionsBasic.cs")
+@Sys.SourceCode.ResultAndSnippetStart("demo2", "Razor14 and older", "Source of FunctionsBasic.cs")
+  @{
+    var lib2 = GetCode("FunctionsBasic.cs", className: "Second");
+  }
+  <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
+@Sys.SourceCode.ResultEnd("snippet:demo2-14", "file:FunctionsBasic.cs")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo2-14")
   @{
     var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
   }
   <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
-@Sys.SourceCode.ResultEnd("file:FunctionsBasic.cs")
+@Sys.SourceCode.SnippetEnd()
+*@
 
 
 <h2>Using shared code with context</h2>
@@ -65,21 +82,31 @@
 </p>
 </trim>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo3", "Source of FunctionsWithContext.cs")
+@Sys.SourceCode.ResultAndSnippetStart("demo3", "Razor14 and older", "Source of FunctionsWithContext.cs")
+  @{
+    var powerLib = GetCode("FunctionsWithContext.cs");
+  }
+  <div>
+    <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
+  </div>
+@Sys.SourceCode.ResultEnd("snippet:demo3-14", "file:FunctionsWithContext.cs")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo3-14")
   @{
     var powerLib = CreateInstance("FunctionsWithContext.cs");
   }
   <div>
     <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
   </div>
-@Sys.SourceCode.ResultEnd("file:FunctionsWithContext.cs")
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <hide>
 <h2>Using shared libraries in WebApi Controllers</h2>
 <p>
   The mechanism above also works in WebApi Controllers (if you have 2sxc 10.01+).
-  Note that specifically in WebApi you can only use <code>CreateInstance(...)</code> for <code>.cs</code> files.
+  Note that specifically in WebApi you can only use <code>GetCode(...)</code> for <code>.cs</code> files.
 </p>
 </hide>
 
@@ -92,7 +119,6 @@
     </button>
   </p>
   
-  @* 2sxclint:disable:no-inline-script *@
   <script>
     function callApiWithSharedCode(context) {
       $2sxc(context).webApi.fetchJson('app/auto/reuse/api/sharedcode/hello')
@@ -105,6 +131,6 @@
   </script>
 @Sys.SourceCode.ResultEnd("file:api/SharedCodeController.cs", "file:FunctionsBasic.cs")
 
-
+@* 2sxclint:disable:no-inline-script *@
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
