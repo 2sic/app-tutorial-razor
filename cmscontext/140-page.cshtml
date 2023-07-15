@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -13,33 +13,55 @@
       <p>
         Get information about the page which is the contxt for the currently running code.
       </p>
+      <p>On the new <code>RazorPro</code> it's on <code>MyPage</code> or on <code>MyContext.Page</code>.</p>
+      <p>On the older <code>Razor14</code> or <code>Razor12</code> it's on <code>CmsContext.Page</code>.</p>
     </div>
   </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPage-id")
-  <h3>The .Id attribute:</h3>
-  The id of the current site is (this is the same as <code>TabId</code> in DNN or <code>Page.PageId</code> in oqtane.): 
-  <strong>
-    @CmsContext.Page.Id
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current page: <strong>@MyPage.Id</strong>
+      (<code>TabId</code> in DNN or <code>Page.PageId</code> in oqtane.)
+    </li>
+    <li>
+      <code>.Url</code> the page url with protocol: <strong>@MyPage.Url</strong>
+    </li>
+    <li>
+      <code>.Parameters</code> all the url parameters of the page <code>@MyPage.Parameters</code>
+    </li>
+    <li>
+      <code>.Parameters[name]</code> Access a specific parameter (in this case the parameter <code>c140</code> from the url)
+      <strong>
+        @MyPage.Parameters["c140"]
+      </strong>
+    </li>
+  </ol>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPage-allparameters")
-  <h3>Access all parameters with .Parameters:</h3>
-  Use this to get a string which contains all url parameters:
-  <strong>
-    @CmsContext.Page.Parameters.ToString()
-  </strong>>
-@Sys.SourceCode.SnippetInlineEnd()
-
-@Sys.SourceCode.SnippetInlineStart("ICmsPage-specificparameter")
-  <h3>Access a specific parameter with .Parameters:</h3>
-  Use this to access the value of a specific url parameter:
-  <strong>
-    @CmsContext.Page.Parameters["c140"]
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current page: <strong>@CmsContext.Page.Id</strong>
+      (<code>TabId</code> in DNN or <code>Page.PageId</code> in oqtane.)
+    </li>
+    <li>
+      <code>.Url</code> the page url with protocol: <strong>@CmsContext.Page.Url</strong>
+    </li>
+    <li>
+      <code>.Parameters</code> all the url parameters of the page <code>@CmsContext.Page.Parameters</code>
+    </li>
+    <li>
+      <code>.Parameters[name]</code> Access a specific parameter (in this case the parameter <code>c140</code> from the url)
+      <strong>
+        @CmsContext.Page.Parameters["c140"]
+      </strong>
+    </li>
+  </ol>
+@Sys.SourceCode.SnippetEnd()
+*@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

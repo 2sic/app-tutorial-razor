@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -14,33 +14,41 @@
       <p>
         With this object you can get general information about the current platform. 
       </p>
+      <p>On the new <code>RazorPro</code> it's on <code>MyContext.Platform</code>.</p>
+      <p>On the older <code>Razor14</code> or <code>Razor12</code> it's on <code>CmsContext.Platform</code>.</p>
     </div>
   </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-name")
-  <h3>The .Name attribute:</h3>
-  The current platform name is: 
-  <strong>
-    @CmsContext.Platform.Name
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+  <ol>
+    <li>
+      <code>.Name</code> Current platform name is: <strong>@MyContext.Platform.Name</strong>
+    </li>
+    <li>
+      <code>.Type</code> Current platform type is: <strong>@MyContext.Platform.Type</strong>
+    </li>
+    <li>
+      <code>.Version</code> Current platform version is: <strong>@MyContext.Platform.Version</strong>
+    </li>
+  </ol>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
-@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-type")
-  <h3>The .Type attribute:</h3>
-  The current platform type is: 
-  <strong>
-    @CmsContext.Platform.Type
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
-
-@Sys.SourceCode.SnippetInlineStart("ICmsPlatform-version")
-  <h3>The .Version attribute:</h3>
-  The current platform version is: 
-  <strong>
-    @CmsContext.Platform.Version
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
+  <ol>
+    <li>
+      <code>.Name</code> Current platform name is: <strong>@CmsContext.Platform.Name</strong>
+    </li>
+    <li>
+      <code>.Type</code> Current platform type is: <strong>@CmsContext.Platform.Type</strong>
+    </li>
+    <li>
+      <code>.Version</code> Current platform version is: <strong>@CmsContext.Platform.Version</strong>
+    </li>
+  </ol>
+@Sys.SourceCode.SnippetEnd()
+*@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

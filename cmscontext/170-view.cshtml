@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -14,44 +14,64 @@
       <p>
         Get information about the view context.
       </p>
+      <p>On the new <code>RazorPro</code> it's on <code>MyView</code> or on <code>MyContext.View</code>.</p>
+      <p>On the older <code>Razor14</code> or <code>Razor12</code> it's on <code>CmsContext.View</code>.</p>
     </div>
   </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("ICmsView-edition")
-  <h3>The .Edition attribute:</h3>
-  Get information about the edition used (otherwise it returns an empty string): 
-  <strong>
-    @CmsContext.View.Edition
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current view: <strong>@MyView.Id</strong>
+    </li>
+    <li>
+      <code>.Edition</code> of the current view: <strong>@MyView.Edition</strong>
+      (Get information about the edition used or return an empty string)
+    </li>
+    <li>
+      <code>.Identifier</code> of the view: <strong>@MyView.Identifier</strong>
+      <br>
+      An optional identifier which the View configuration can provide. 
+      Use this when you want to use the same template but make minor changes based on the View selected (like change the number of columns). 
+      Usually you will use either this OR the Settings: 
+    </li>
+    <li>
+      <code>.Name</code> of the view <code>@MyView.Name</code>
+      <br>
+      Name of the view as configured - note that because of i18n it could be different depending on the language. 
+      To clearly identify a view, use the Identifier or use Settings: 
+    </li>
+  </ol>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
-@Sys.SourceCode.SnippetInlineStart("ICmsView-id")
-  <h3>The .Id attribute:</h3>
-  Get the id of the view configuration: 
-  <strong>
-    @CmsContext.View.Id
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current view: <strong>@CmsContext.View.Id</strong>
+    </li>
+    <li>
+      <code>.Edition</code> of the current view: <strong>@CmsContext.View.Edition</strong>
+      (Get information about the edition used or return an empty string)
+    </li>
+    <li>
+      <code>.Identifier</code> of the view: <strong>@CmsContext.View.Identifier</strong>
+      <br>
+      An optional identifier which the View configuration can provide. 
+      Use this when you want to use the same template but make minor changes based on the View selected (like change the number of columns). 
+      Usually you will use either this OR the Settings: 
+    </li>
+    <li>
+      <code>.Name</code> of the view <code>@CmsContext.View.Name</code>
+      <br>
+      Name of the view as configured - note that because of i18n it could be different depending on the language. 
+      To clearly identify a view, use the Identifier or use Settings: 
+    </li>
+  </ol>
+@Sys.SourceCode.SnippetEnd()
+*@
 
-@Sys.SourceCode.SnippetInlineStart("ICmsView-identifier")
-  <h3>The .Identifier attribute:</h3>
-  An optional identifier which the View configuration can provide. 
-  Use this when you want to use the same template but make minor changes based on the View selected (like change the number of columns). 
-  Usually you will use either this OR the Settings: 
-  <strong>
-    @CmsContext.View.Identifier
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
-
-@Sys.SourceCode.SnippetInlineStart("ICmsView-name")
-  <h3>The .Name attribute:</h3>
-  Name of the view as configured - note that because of i18n it could be different depending on the language. 
-  To clearly identify a view, use the Identifier or use Settings: 
-  <strong>
-    @CmsContext.View.Name
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

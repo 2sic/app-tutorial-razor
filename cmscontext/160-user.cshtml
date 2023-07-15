@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -14,41 +14,47 @@
       <p>
         Get information about the user which is currently used by the code.
       </p>
+      <p>On the new <code>RazorPro</code> it's on <code>MyUser</code> or on <code>MyContext.User</code>.</p>
+      <p>On the older <code>Razor14</code> or <code>Razor12</code> it's on <code>CmsContext.User</code>.</p>
     </div>
   </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("ICmsUser-id")
-  <h3>The .Id attribute:</h3>
-  The id of the current user: 
-  <strong>
-    @CmsContext.User.Id
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current user: <strong>@MyUser.Id</strong>
+    </li>
+    <li>
+      <code>.IsSiteAdmin</code> <strong>@MyUser.IsSiteAdmin</strong> (check if the current user is a site admin) 
+    </li>
+    <li>
+      <code>.IsContentAdmin</code> <strong>@MyUser.IsSiteAdmin</strong> (check if the current user can edit content) 
+    </li>
+    <li>
+      <code>.IsSystemAdmin</code> <strong>@MyUser.IsSystemAdmin</strong> (check if the current user is a supe-user) 
+    </li>
+  </ol>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
-@Sys.SourceCode.SnippetInlineStart("ICmsUser-issiteadmin")
-  <h3>The .IsSiteAdmin attribute:</h3>
-  Check if the current user is a site admin (returns a boolean): 
-  <strong>
-    @CmsContext.User.IsSiteAdmin
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
-
-@Sys.SourceCode.SnippetInlineStart("ICmsUser-issitedeveloper")
-  <h3>The .IsSiteDeveloper attribute:</h3>
-  Check if the current user is a site developer (returns a boolean): 
-  <strong>
-    @CmsContext.User.IsSiteDeveloper
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
-
-@Sys.SourceCode.SnippetInlineStart("ICmsUser-issystemadmin")
-  <h3>The .IsSystemAdmin attribute:</h3>
-  Check if the current user is a system admin (returns a boolean): 
-  <strong>
-    @CmsContext.User.IsSystemAdmin
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current user: <strong>@CmsContext.User.Id</strong>
+    </li>
+    <li>
+      <code>.IsSiteAdmin</code> <strong>@CmsContext.User.IsSiteAdmin</strong> (check if the current user is a site admin) 
+    </li>
+    <li>
+      <code>.IsContentAdmin</code> <strong>@CmsContext.User.IsSiteAdmin</strong> (check if the current user can edit content) 
+    </li>
+    <li>
+      <code>.IsSystemAdmin</code> <strong>@CmsContext.User.IsSystemAdmin</strong> (check if the current user is a supe-user) 
+    </li>
+  </ol>
+@Sys.SourceCode.SnippetEnd()
+*@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

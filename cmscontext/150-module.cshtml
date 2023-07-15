@@ -1,8 +1,8 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -14,17 +14,31 @@
       <p>
         Get information about the module context the code is running in.
       </p>
+      <p>On the new <code>RazorPro</code> it's on <code>MyContext.Module</code>.</p>
+      <p>On the older <code>Razor14</code> or <code>Razor12</code> it's on <code>CmsContext.Module</code>.</p>
+
     </div>
   </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("ICmsModule-id")
-  <h3>The .Id attribute:</h3>
-  The id of the current module: 
-  <strong>
-    @CmsContext.Module.Id
-  </strong>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current module: <strong>@MyContext.Module.Id</strong>
+    </li>
+  </ol>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
+  <ol>
+    <li>
+      <code>.Id</code> of the current module: <strong>@CmsContext.Module.Id</strong>
+    </li>
+  </ol>
+@Sys.SourceCode.SnippetEnd()
+*@
+
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
