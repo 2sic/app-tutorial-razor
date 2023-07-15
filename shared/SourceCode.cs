@@ -134,7 +134,8 @@ public class SourceCode: Custom.Hybrid.Code14
   // Tabs for Output, (optional more tabs), Source Code
   private ITag TabsForSnippet(string prefix, string firstName, string lastName, string[] names, string active = null) {
     var tabNames = new List<string>() { firstName };
-    tabNames.AddRange(names);
+    if (names != null && names.Any())
+      tabNames.AddRange(names.Select(n => n == "R14" ? "Razor14 and older" : n));
     if (Text.Has(lastName))
       tabNames.Add(lastName);
     return BsTabs.TabList(prefix, tabNames, active) as ITag;
@@ -142,14 +143,18 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
+  // Take a result and if it has a special prefix, process that
   private object FlexibleResult(object result) {
     // If it's a string such as "file:abc.cshtml" then resolve that first
     if (result is string) {
       var strResult = result as string;
       if (strResult.StartsWith("file:"))
         return ShowFileContents(((string)result).Substring(5), withIntro: false, showTitle: true);
-      if (strResult.StartsWith("snippet:"))
-        return Snippet(((string)result).Substring(8));
+      if (strResult.StartsWith("snippet:")) {
+        var key = ((string)result).Substring(8);
+        if (key.StartsWith("*")) key = _snippet + key.Substring(1);
+        return Snippet(key);
+      }
     } 
     return result;
   }

@@ -23,7 +23,7 @@
 <p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
 </trim>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Razor14 and older", "Source of SharedFunctions.cs")
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14", "Source of SharedFunctions.cs")
   @{
     // Use GetCode in RazorPro
     var lib = GetCode("SharedFunctions.cs");
@@ -32,7 +32,7 @@
   <div>
     <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
   </div>
-@Sys.SourceCode.ResultEnd("snippet:demo1-14", "file:SharedFunctions.cs")
+@Sys.SourceCode.ResultEnd("snippet:*-14", "file:SharedFunctions.cs")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 

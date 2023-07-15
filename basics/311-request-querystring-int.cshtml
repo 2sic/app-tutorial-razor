@@ -26,7 +26,7 @@
 </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("basic-number-params", "Razor14 and older")
+@Sys.SourceCode.ResultAndSnippetStart("basic-number-params", "R14")
   @{
     // This variable is a string, but could be null or empty
     var idAsString = MyPage.Parameters["id"];
@@ -51,7 +51,7 @@
       Equal to number 27: @(idOrMinus1 == 27) <br>
     </li>
   </ul>
-@Sys.SourceCode.ResultEnd("snippet:basic-number-params-14")
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 @Sys.SourceCode.SnippetStart("basic-number-params-14")

@@ -40,7 +40,7 @@
 <h2>Using Shared Helpers</h2>
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 
-@Sys.SourceCode.ResultAndSnippetStart("reuse-helpers", "Razor14 and older", "Source of fancybox.cs")
+@Sys.SourceCode.ResultAndSnippetStart("reuse-helpers", "R14", "Source of fancybox.cs")
   @{
     // Use GetCode in RazorPro
     var lightbox = GetCode("../shared/Fancybox.cs");
@@ -48,7 +48,7 @@
   @lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
   <br>
   @lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
-@Sys.SourceCode.ResultEnd("snippet:reuse-helpers-14", "file:../shared/fancybox.cs")
+@Sys.SourceCode.ResultEnd("snippet:*-14", "file:../shared/fancybox.cs")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 

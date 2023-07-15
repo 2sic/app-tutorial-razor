@@ -25,13 +25,13 @@
 <h2>Link to current page with all Parameters</h2>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-current-params", "Razor14 and older")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-current-params", "R14")
   @{ var currentPageUrl = Link.To(parameters: MyPage.Parameters); }
   <ol>
     <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
     <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
   </ol>
-@Sys.SourceCode.ResultEnd("snippet:link-to-current-params-14")
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 @Sys.SourceCode.SnippetStart("link-to-current-params-14")
@@ -52,7 +52,7 @@
 </hide>
 <p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-new-params", "Razor14 and older")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-new-params", "R14")
  @{
     // Example using string
     var newParamsFromString = MyPage.Parameters + "&name=2sxc";
@@ -65,7 +65,7 @@
 </hide>
   <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
   <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
-@Sys.SourceCode.ResultEnd("snippet:link-to-new-params-14")
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 @Sys.SourceCode.SnippetStart("link-to-new-params-14")
@@ -92,7 +92,7 @@
 </hide>
 <p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-remove-params", "Razor14 and older")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-remove-params", "R14")
   @{
     var currentParamsRemoved = MyPage.Parameters.Remove("basics320");
   }
@@ -100,7 +100,7 @@
   <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
   </hide>
   <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
-@Sys.SourceCode.ResultEnd("snippet:link-to-remove-params-14")
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 @Sys.SourceCode.SnippetStart("link-to-remove-params-14")
@@ -123,7 +123,7 @@
 
 <p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-changed-params", "Razor14 and older")
+@Sys.SourceCode.ResultAndSnippetStart("link-to-changed-params", "R14")
   @{
     var currentParamsChanged = MyPage.Parameters.Set("basics320", "2sxc");
   }
@@ -131,7 +131,7 @@
   <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
   </hide>
   <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
-@Sys.SourceCode.ResultEnd("snippet:link-to-changed-params-14")
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 @Sys.SourceCode.SnippetStart("link-to-changed-params-14")

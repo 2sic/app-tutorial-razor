@@ -47,7 +47,7 @@
 
 <h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
 
-@Sys.SourceCode.ResultAndSnippetStart("basic-query-string", "Razor14 and older")
+@Sys.SourceCode.ResultAndSnippetStart("basic-query-string", "R14")
   <ul>
     <li>URL contains <code>sort</code> using null-check: 
       @(MyPage.Parameters["sort"] != null)
@@ -73,7 +73,7 @@
       @sort
     </li>
   </ul>
-@Sys.SourceCode.ResultEnd("snippet:basic-query-string-14")
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
 @Sys.SourceCode.SnippetStart("basic-query-string-14")
