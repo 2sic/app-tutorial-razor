@@ -11,13 +11,13 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Quick Reference for <em>Pro/Typed Razor Code</em></h2>
+    <h2>Quick Reference for <em>Razor Pro (Typed) Code</em></h2>
     <p>
       This is a quick CheatSheet to provide you with a reference to most APIs you'll use.
     </p>
     <p>
-      This uses a base class of <code>@@inherits Custom.Hybrid.Razor14</code> and would also apply to <code>...Razor12</code>. 
-      Most samples do not work for the new <code>@@inherits Custom.Hybrid.Razorpro</code> as that provides different objects and methods.  that uses a different syntax. 
+      This uses a base class of <code>@@inherits Custom.Hybrid.RazorPro</code>.
+      Most samples <em>would not work</em> on older Razor base classes such as <code>@@inherits Custom.Hybrid.Razor14</code> as that provides different objects and methods.
     </p>
   </div>
 </div>
@@ -40,65 +40,69 @@
   @accordion.ItemEnd()
 
 
-  @accordion.ItemStart("advanced", "Advanced Razor Syntax")
+  @accordion.ItemStart("razor-reuse", "Advanced Razor: Re-Use Code")
     <p>
       These are some more advanced APIs which are very common as well, so you should be familiar with them.
     </p>
 
     @Html.Partial("./shared-razor-functions.cshtml")
+    @Html.Partial("./shared-razor-partial-no-params.cshtml")
 
+    <h3>Reuse Razor Components (Partial) with Parameters</h3>
+    @Sys.SourceCode.ResultRefStart("reuse-razor-params", "Source box.cshtml")
+      <h4>Call some external Razor files</h4>
+      <ol>
+        <li>@Html.Partial("../reuse/box-pro.cshtml", new { Label = "Hello, this is the first line" })</li>
+        <li>@Html.Partial("../reuse/box-pro.cshtml", new { Label = "Second line!", Color = "red" })</li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse110" }, "file:../reuse/box-pro.cshtml")
 
 
     <h3>Reuse Partial Razor and functions from Helper Code files</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-external" @*, "Source of line.cshtml" *@)
+    @Sys.SourceCode.ResultRefStart("reuse-code", "Source SharedFunctions.cs")
       @{
         // helper library to say hello & create QR codes
         var qrLib = GetCode("../reuse/SharedFunctions.cs");
       }
-      <h4>Call some external Razor files</h4>
+      <h4>Call some Code in External CSharp Files</h4>
       <ol>
-        <li>@Html.Partial("../reuse/line.cshtml")</li>
-        <li>@Html.Partial("../reuse/line.cshtml")</li>
-        <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Hello, this is the first line" })</li>
-        <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Second line!", Color = "red" })</li>
         <li>Hello from shared lib: @qrLib.SayHello()</li>
         <li>
           QR Code from shared lib
           <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
         </li>
       </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
+    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }, "file:../reuse/SharedFunctions.cs")
   @accordion.ItemEnd()
 
 
-  @accordion.ItemStart("ref-content", "Work with Content, Images, Multi-Language")
+  @accordion.ItemStart("ref-content", "Work with Current Item (MyItem)")
     <p>
       Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
     </p>
 
     @{
-      // Quick workaround, so the tutorial works reliably even if the main module had data added
+      // Patch so the tutorial works reliably even if the main module had data added which are not a person
+      // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
       var MyItem = AsItem(MyData);
     }
 
     <h3>Work with Current Item (MyItem)</h3>
     @Sys.SourceCode.ResultRefStart("content")
       <h4>Douglas Adams, the current item (MyItem)</h4>
-      @Kit.Image.Img(MyItem.Field("Mugshot"), settings: Kit.Image.Settings(width: 100, height: 100, resizeMode: "crop"), imgClass: "rounded-circle")
+      @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
       <ol>
-        <li>MyItem Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-        <li>MyItem Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
-        <li>MyItem Award: @MyItem.Child("Awards").String("Name")</li>
-        <li>MyItem Mugshot URL: @MyItem.Url("Mugshot")</li>
+        <li>MyItem Name:          @MyItem.String("FirstName") @MyItem.String("LastName")</li>
+        <li>MyItem Birthday:      @MyItem.DateTime("Birthday").ToString("d")</li>
+        <li>MyItem Award:         @MyItem.Child("Awards").String("Name")</li>
+        <li>MyItem Mugshot URL:   @MyItem.Url("Mugshot")</li>
         <li>MyItem Mugshot Raw String: @MyItem.String("Mugshot")</li>
       </ol>
       <h4>Loop the persons in the Query for this view</h4>
       <ul>
         @foreach (var person in AsItems(MyData)) {
           <li>
-            @if (Text.Has(person.String("Mugshot"))) {
-              @Kit.Image.Img(MyItem.Field("Mugshot"), settings: Kit.Image.Settings(width: 50, height: 50, resizeMode: "crop"), imgClass: "rounded-circle")
-            }
+            @MyItem.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
             @person.String("FirstName") @person.String("LastName")
           </li>
         }
@@ -106,6 +110,8 @@
     @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })  
   @accordion.ItemEnd()
 
+  @accordion.ItemStart("ref-todo", "Work with Images, Multi-Language TODO")
+  @accordion.ItemEnd()
 
 
   @accordion.ItemStart("url-parameters", "2sxc Razor APIs to work with Page and Links")
@@ -215,7 +221,7 @@
 @accordion.End()
 
 <p>
-  
+
 </p>
 
 

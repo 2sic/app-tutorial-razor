@@ -242,21 +242,22 @@ public class SourceCode: Custom.Hybrid.Code14
 
   // Must begin with the term "Result" to be captured later on when looking for the snippet
   public ITag ResultRefStart(string snippetId, params string[] names) {
-    var list = new List<string>() { SourceTabName, "Additional Tutorials" };
+    var list = new List<string>() { SourceTabName };
     if (names != null && names.Any()) list.AddRange(names);
+    list.Add("Additional Tutorials");
     return SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
   }
 
-  public ITag ResultRefEnd(string[] results, params string[] files) {
-    var links = results == null || !results.Any()
+  public ITag ResultRefEnd(string[] linkRefs, params string[] files) {
+    var links = linkRefs == null || !linkRefs.Any()
       ? null
-      : Tag.Ol(results.Select(r => Sys.TutorialLiLinkLookup(r)));
+      : Tag.Ol(linkRefs.Select(r => Sys.TutorialLiLinkLookup(r).ToString()));
     var tabContents = new List<object>();
-    // TODO: doesn't work yet
+    // tabContents.Add(links);
     if (files != null && files.Any())
-      tabContents.AddRange(files); //.Select(f => ShowFileContents(f, withIntro: false, showTitle: true)));
+      tabContents.AddRange(files);
     tabContents.Add(links);
-    var result = ResultEndInner(false, true, false, links.ToArray(), active: SourceTabName);
+    var result = ResultEndInner(false, true, false, results: tabContents.ToArray(), active: SourceTabName);
     return result;
   }
 

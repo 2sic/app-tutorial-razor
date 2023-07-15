@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.RazorPro
+@{
+  // pick up parameters which were passed in
+  var label = MyModel.String("Label");
+  var color = MyModel.String("Color", fallback: "black"); // default to "black" if not provided
+}
+<div style="border: solid 2px @color">
+  @label
+</div>

@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+
+
+<h3>Reuse Razor Components (Partial)</h3>
+@Sys.SourceCode.ResultRefStart("reuse-razor-no-params", "Source line.cshtml")
+  <h4>Call some external Razor files</h4>
+  <ol>
+    <li>@Html.Partial("../reuse/line.cshtml")</li>
+    <li>@Html.Partial("../reuse/line.cshtml")</li>
+  </ol>
+@Sys.SourceCode.ResultRefEnd(new string[] { "reuse110" }, "file:../reuse/line.cshtml")
+
