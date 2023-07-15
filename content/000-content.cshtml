@@ -1,9 +1,9 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 @using System.Linq;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -16,18 +16,36 @@
   </div>
 </div>
 
+<hide>
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var MyItem = AsItem(MyData);
+  var MyItems = AsItems(MyData);
+}
+</hide>
 
 <h3>Show Content of the Current template</h3>
 
-@Sys.SourceCode.SnippetInlineStart("content-values")
-  <img loading="lazy" src="@Content.Mugshot?w=100&h=100&mode=crop" class="rounded-circle">
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+  @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
+  <ul>
+    <li>Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
+    <li>Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
+    <li>Award: @MyItem.Child("Awards").String("Name")</li>
+  </ul>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo1-14")
+  @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
   <ul>
     <li>Name: @Content.FirstName @Content.LastName</li>
     <li>Birthday: @Content.Birthday.ToString("d")</li>
     <li>Award: @Content.Awards.Name</li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <trim>
 <p>In this example, the Content-Item is of the type <code>Person</code>. It has properties like <code>Name, Birthday</code> etc. and a property called <code>Awards</code>. <code>Awards</code> refers to other items of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. Below we'll show some ways to show many items, if there are more than one.  
@@ -41,19 +59,31 @@
   </p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("content-assigned-items")
+@Sys.SourceCode.ResultAndSnippetStart("demo2", "R14")
+  <ul>
+    @foreach (var person in MyItems) {
+      <li>
+        @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
+        @person.String("FirstName") @person.String("LastName")
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.ResultEnd("snippet:*-14")
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo2-14")
   <ul>
   @foreach (var person in AsList(Data)) {
     <li>
       @if (Text.Has(person.Mugshot)) {
-        <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" class="rounded-circle">
+        @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 50, imgClass: "rounded-circle")
       }
       @person.FirstName @person.LastName
     </li>
   }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
-
+@Sys.SourceCode.SnippetEnd()
+*@
 
 <trim>
 <h3>Show sub-items of current items</h3>
@@ -63,26 +93,45 @@
   </p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("content-sub-items")
+@Sys.SourceCode.ResultAndSnippetStart("demo3", "R14")
   <ul>
-  @foreach (var person in AsList(Data)) {
-    <li>
-      @if (Text.Has(person.Mugshot)) {
-        <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
-      }
-      @person.FirstName @person.LastName
-      @if (person.Awards.Count > 0 ) {
-        // we just want the award names - to understand this, look at the LINQ tutorial
-        var awardNames = AsList(person.Awards as object).Select(a => a.Name);
-        <span>
-          (awards: @string.Join(",", awardNames))
-        </span>
-      }
-    </li>
-  }
+    @foreach (var person in MyItems) {
+      <li>
+        @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
+        @person.String("FirstName") @person.String("LastName")
+        @if (person.Children("Awards").Any()) {
+          // we just want the award names - to understand this, look at the LINQ tutorial
+          var awardNames = person.Children("Awards").Select(a => a.String("Name"));
+          <span>
+            (awards: @string.Join(",", awardNames))
+          </span>
+        }
+      </li>
+    }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@Sys.SourceCode.ResultEnd("snippet:*-14")
 
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
+@Sys.SourceCode.SnippetStart("demo3-14")
+  <ul>
+    @foreach (var person in AsList(Data)) {
+      <li>
+        @if (Text.Has(person.Mugshot)) {
+          <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%">
+        }
+        @person.FirstName @person.LastName
+        @if (person.Awards.Count > 0 ) {
+          // we just want the award names - to understand this, look at the LINQ tutorial
+          var awardNames = AsList(person.Awards as object).Select(a => a.Name);
+          <span>
+            (awards: @string.Join(",", awardNames))
+          </span>
+        }
+      </li>
+    }
+  </ul>
+@Sys.SourceCode.SnippetEnd()
+*@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

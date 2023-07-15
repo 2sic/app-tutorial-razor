@@ -81,11 +81,13 @@
       Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
     </p>
 
+    <hide>
     @{
       // Patch so the tutorial works reliably even if the main module had data added which are not a person
       // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
       var MyItem = AsItem(MyData);
     }
+    </hide>
 
     <h3>Work with Current Item (MyItem)</h3>
     @Sys.SourceCode.ResultRefStart("content")
