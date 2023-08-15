@@ -94,7 +94,7 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     if (_moreTabNames.Length < index + 1) return l("index to high", "unknown");
     var name = _moreTabNames[index];
     Log.Add("name before optimization: '" + name + "'");
-    // return l(name, name);
-    return name;
+    return l(name, name);
+    // return name;
   }
 }

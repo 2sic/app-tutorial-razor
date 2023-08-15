@@ -483,7 +483,7 @@ public class SourceCode: Custom.Hybrid.Code14
     if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
       fullPath = GetFullPath(filePath);
     var contents = System.IO.File.ReadAllText(fullPath);
-    return /* l("test", */ new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents }; //);
+    return l(new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents }, Path);
   }
 
   public class ShowSourceSpecs {
@@ -520,7 +520,7 @@ public class SourceCode: Custom.Hybrid.Code14
     #else
       var result = System.Web.HttpContext.Current.Server.MapPath(filePath);
     #endif
-    return result; // l(result, result);
+    return l(result, result);
   }
 
   #endregion
