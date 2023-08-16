@@ -15,7 +15,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
     return this;
   }
 
-  public Helpers Init(RazorPro page) {
+  public Helpers Init(RazorTyped page) {
     // ParentRazor = page;
     Path = page.Path;
     return this;
