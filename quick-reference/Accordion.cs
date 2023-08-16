@@ -1,6 +1,6 @@
 using ToSic.Razor.Blade;
 
-public class Accordion: Custom.Hybrid.CodePro
+public class Accordion: Custom.Hybrid.CodeTyped
 {
   public object Start(string name) {
     Name = name;

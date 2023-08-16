@@ -3,7 +3,7 @@ using ToSic.Razor.Blade;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Helpers: Custom.Hybrid.CodePro
+public class Helpers: Custom.Hybrid.CodeTyped
 {
   public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";
