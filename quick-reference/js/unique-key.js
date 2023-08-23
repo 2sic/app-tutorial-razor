@@ -3,12 +3,14 @@
 window.quickReference = window.quickReference || {};
 
 // Bind a click action to the button with the unique id
-window.quickReference.demoUniqueQuey = function (buttonId) {
-  document.getElementById(buttonId)
+window.quickReference.demoUniqueQuey = function (ids) {
+  document.getElementById(ids.buttonId)
     .addEventListener("click", function () {
-      alert('The button was pressed. ' +
-        'This was only possible thanks to the unique id. ' + 
-        'The ID this time was: ' + buttonId + '.'
-      )
+      const msg = 'The button was pressed. ' +
+      'This was only possible thanks to the unique id. ' + 
+      'The ID this time was: ' + ids.buttonId + '.';
+
+      alert(msg);
+      document.getElementById(ids.messageId).innerHTML = msg;
   });
 }
