@@ -148,7 +148,7 @@
     @Sys.SourceCode.ResultRefStart("set-page-properties")
       @* Example with a single-liner directly in the code *@
       @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
-      @Kit.Page.AddIconSet(App.Path + "/blade/assets/razor-blade-icon.png")
+      @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
       @Kit.Page.AddMeta("tutorial", "some value")
 
       @{
@@ -217,8 +217,90 @@
         <li>View Identifier: '<code>@MyView.Identifier</code>' (blank if no special identifier) </li>
         <li>View Name: '<code>@MyView.Name</code>'</li>
         <li>View Edition: '<code>@MyView.Edition</code>' (blank if no special CSS Framework edition) </li>
+
+        <li>Unique Key '<code>@UniqueKey</code>'</li>
       </ol>
     @Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
+
+  @accordion.ItemEnd()
+
+  @accordion.ItemStart("js-interop", "Working with JavaScripts, turnOn and UniqueKey")
+
+    <h3>Load JavaScripts</h3>
+    <p>
+      Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
+      What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
+    </p>
+    @Sys.SourceCode.ResultRefStart("load-js", "Source JS1", "Source JS2")
+      <p>
+        Load a JavaScript relative to the App folder (see message/console): <br>
+        <strong id="loadjs-app-message"></strong>
+      </p>
+      <script src="@App.Folder.Url/quick-reference/js/report-loaded-in-console-path-app.js"></script>
+      <p>
+        Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
+        <strong id="loadjs-view-message"></strong>
+      </p>
+      <script src="@MyView.Folder.Url/js/report-loaded-in-console-path-view.js"></script>
+    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/report-loaded-in-console-path-app.js", "file:js/report-loaded-in-console-path-view.js" )
+
+
+
+    <h3>Activate JavaScript using <em>turnOn</em></h3>
+    <p>
+      A core challenge is to activate JavaScripts only when needed - and when all dependencies are loaded.
+      This is what <code>turnOn</code> does.
+      It checks if all specified JS objects exist, and then triggers the JS code.
+    </p>
+    @Sys.SourceCode.ResultRefStart("turnOn1", "Source JS")
+      <p>
+        The following text will be replaced once the JS is triggered: <br>
+        <strong id="turnOn1-message"></strong>
+      </p>
+
+      @* Load the JavaScript - it will not run by itself, as the DOM might not be ready *@
+      <script src="@MyView.Folder.Url/js/turnOn1.js"></script>
+
+      @* Tell TurnOn to trigger the JS when everything is ready *@
+      @Kit.Page.TurnOn("window.quickReference.turnOn1Message()")
+
+      <p>
+        This example passes data to the JS, so it can be parameterized:  <br>
+        <strong id="turnOn2-message"></strong>
+      </p>
+
+      @* Tell TurnOn to trigger the JS and give it a string *@
+      @Kit.Page.TurnOn("window.quickReference.turnOn2Message()", data: "Hello from Razor, the page Id is" + MyPage.Id)
+
+      <p>
+        We can also pass in more sophisticated data:  <br>
+        <strong id="turnOn3-message"></strong>
+      </p>
+      @{
+        // Create an anonymous object containing the data to send
+        var turnOn3Data = new {
+          domId = "turnOn3-message",
+          message = "Hello from Razor...",
+          pageId = MyPage.Id,
+          pageUrl = MyPage.Url
+        };
+      }
+      @* Tell TurnOn to trigger the JS and give it a complex object *@
+      @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
+
+    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/turnOn1.js" )
+
+
+
+    <h3>Work with the new UniqueKey with JavaScript (v16.04 🌟)</h3>
+    @Sys.SourceCode.ResultRefStart("unique-key")
+      @{
+        var buttonId = UniqueKey + "-Press-Demo";
+      }
+      <button type="button" id="@buttonId">Press this to see JS find the button using the UniqueKey: @buttonId</button>
+      @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: buttonId)
+      <script src="@MyView.Folder.Url/js/unique-key.js"></script>
+    @Sys.SourceCode.ResultRefEnd(new string[] { } )
   @accordion.ItemEnd()
 @accordion.End()
 
