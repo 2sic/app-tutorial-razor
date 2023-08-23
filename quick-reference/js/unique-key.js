@@ -10,7 +10,8 @@ window.quickReference.demoUniqueQuey = function (ids) {
       'This was only possible thanks to the unique id. ' + 
       'The ID this time was: ' + ids.buttonId + '.';
 
-      alert(msg);
+      // alert(msg);
+      
       document.getElementById(ids.messageId).innerHTML = msg;
   });
 }
