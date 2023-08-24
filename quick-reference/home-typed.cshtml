@@ -223,10 +223,13 @@
     @Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
 
   @accordion.ItemEnd()
+@accordion.End()
 
-  @accordion.ItemStart("js-interop", "Working with JavaScripts, turnOn and UniqueKey")
+<p>&nbsp;</p>
+<h2>JavaScript - Working with Razor and WebApi</h2>
 
-    <h3>Load JavaScripts</h3>
+@accordion.Start("accordionJs")
+  @accordion.ItemStart("js-load", "Load JavaScripts from App into Html")
     <p>
       Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
       What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
@@ -237,6 +240,7 @@
         <strong id="loadjs-app-message"></strong>
       </p>
       <script src="@App.Folder.Url/quick-reference/js/report-loaded-in-console-path-app.js"></script>
+
       <p>
         Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
         <strong id="loadjs-view-message"></strong>
@@ -244,9 +248,12 @@
       <script src="@MyView.Folder.Url/js/report-loaded-in-console-path-view.js"></script>
     @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/report-loaded-in-console-path-app.js", "file:js/report-loaded-in-console-path-view.js" )
 
+  @accordion.ItemEnd()
 
 
-    <h3>Activate JavaScript using <em>turnOn</em></h3>
+
+  @accordion.ItemStart("js-turnOn", "Activate Scripts when Ready using turnOn")
+    @* <h3>Activate JavaScript using <em>turnOn</em></h3> *@
     <p>
       A core challenge is to activate JavaScripts only when needed - and when all dependencies are loaded.
       This is what <code>turnOn</code> does.
@@ -290,32 +297,91 @@
       @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
 
     @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/turnOn1.js" )
+  @accordion.ItemEnd()
 
 
 
-    <h3>Work with the new UniqueKey with JavaScript (v16.04 🌟)</h3>
+  @accordion.ItemStart("js-interop", "Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")
+  
+    <h3>Work with the new UniqueKey with JavaScript - new v16.04 🌟</h3>
     <p>
       The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.
       The value of <code>UniqueKey</code> is the same in all Razor and C# files for the same Content-Block.
     </p>
     @Sys.SourceCode.ResultRefStart("unique-key", "Helper Razor", "JS File")
       @{
-        var buttonId = UniqueKey + "-demo-button";
+        var buttonId = "demo-uniquekey-btn-" + UniqueKey;
+        var messageId = "demo-uniquekey-msg-" + UniqueKey;
       }
       @* Show the button *@
       <button type="button" id="@buttonId" class="btn btn-primary">
         Press this to see JS find the button using the UniqueKey: @buttonId
       </button>
 
-      @* Create the DIV for the message - for Demo purpose it's in another file *@
+      @* Create the DIV for the message - it's in another file, but shares the UniqueKey *@
       @Html.Partial("./shared-uniquekey-message.cshtml")
 
       @* Trigger the script, and pass in the IDs it will need based on the UniqueKey *@
-      @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId = UniqueKey + "-demo-message" })
+      @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
       @* Load the script - this can be before or after the TurnOn *@
       <script src="@MyView.Folder.Url/js/unique-key.js"></script>
     @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
+
+
+
+    <h3>Combined Unique Keys with UniqueKeyWith(...) - new v16.04 🌟</h3>
+    <p>
+      Sometimes you need a <code>UniqueKey</code> which also depends on other objects.
+      For example, you may need to have a UniqueKey which also uses another value - or many.
+      This is done using <code>@@Kit.Keys.UniqueKeyWith(...)</code>.
+    </p>
+    @Sys.SourceCode.ResultRefStart("unique-key-with", "Helper Razor", "JS File")
+      <ol>
+        <li>
+          Unique Key with <code>12345</code>:
+          <code>@Kit.Keys.UniqueKeyWith(12345)</code>
+        </li>
+        <li>
+          Unique Key with <code>"hello"</code>:
+          <code>@Kit.Keys.UniqueKeyWith("hello")</code>
+        </li>
+        <li>
+          Unique Key with <code>"bad chars in id ! % / 👍🏽"</code>:
+          <code>@Kit.Keys.UniqueKeyWith("bad chars in id ! % / 👍🏽")</code>
+        </li>
+        <li>
+          Unique Key with <code>"this is a long text and should be shortened"</code>:
+          <code>@Kit.Keys.UniqueKeyWith("this is a long text and should be shortened")</code>
+        </li>
+        <li>
+          Unique Key with <code>12345</code> and <code>"hello"</code>:
+          <code>@Kit.Keys.UniqueKeyWith(12345, "hello")</code>
+        </li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
+    
+
+
+    <h3>Generate Unique Keys for Items/Entities - new v16.04 🌟</h3>
+    <p>
+      If the <code>UniqueKey</code> is based on known object types such as Entities, this works very well.
+      For example, you may need to loop through a list of items, and each item needs a unique key.
+    </p>
+    @Sys.SourceCode.ResultRefStart("unique-key-with-entity", "Helper Razor", "JS File")
+      @{
+        var books = AsItems(App.Data["Books"]);
+      }
+      <ol>
+        @foreach(var book in books) {
+          <li>
+            Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Keys.UniqueKeyWith(book)</code>
+          </li>
+        }
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
+
   @accordion.ItemEnd()
+
 @accordion.End()
 
 <p>

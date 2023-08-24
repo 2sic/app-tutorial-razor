@@ -7,11 +7,11 @@ window.quickReference.demoUniqueQuey = function (ids) {
   document.getElementById(ids.buttonId)
     .addEventListener("click", function () {
       const msg = 'The button was pressed. ' +
-      'This was only possible thanks to the unique id. ' + 
+      'This was only possible thanks to the unique id using UniqueKey. ' + 
       'The ID this time was: ' + ids.buttonId + '.';
 
       // alert(msg);
-      
+
       document.getElementById(ids.messageId).innerHTML = msg;
   });
 }
