@@ -1,54 +1,16 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
-@using System.Linq;
-<hide>
-  @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
-  @Html.Partial("header.cshtml", new { Sys = Sys })
-</hide>
-
-
-<div @Sys.PageParts.InfoWrapper()>
-  @Html.Partial("../shared/DefaultInfoSection.cshtml")
-  <div @Sys.PageParts.InfoIntro()>
-    <h2>Dynamic Razor - Quick Reference</h2>
-    <p>
-      This is a quick CheatSheet to provide you with a reference to most APIs you'll use.
-    </p>
-    <p>
-      This uses a base class of <code>@@inherits Custom.Hybrid.Razor14</code> and would also apply to <code>...Razor12</code>. 
-      Most samples do not work for the new <code>@@inherits Custom.Hybrid.Razorpro</code> as that provides different objects and methods.  that uses a different syntax. 
-    </p>
-  </div>
-</div>
-
-@* Bootstrap 5 Accordions *@
 @{
-  var accordion = CreateInstance("Accordion.cs");
+  // Sys helps generate code snippets etc.
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var accordion = DynamicModel.Accordion as dynamic;
+  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
+  var accPrefix = "acc-rzradv-";
 }
 
-<h2>Razor Basics</h2>
-
-@accordion.Start("accordionRazorBasics")
-  @Html.Partial("./Part RazorBasics Dyn.cshtml", new { accordion })
-@accordion.End()
-
-<p>&nbsp;</p>
-<h2>Working with Content Items</h2>
-
-@accordion.Start("items")
-  @Html.Partial("./Part ItemsBasic.Dyn.cshtml", new { accordion })
-@accordion.End()
-
-<p>&nbsp;</p>
-<h2>Razor Advanced</h2>
-
-@accordion.Start("razorAdvanced")
 
 
-
-
-  @accordion.ItemStart("url-parameters", "2sxc Razor APIs to work with Page and Links")
+  @accordion.ItemStart(accPrefix + "url-parameters", "2sxc Razor APIs to work with Page and Links")
 
     <h3>Page URL Parameters / QueryString</h3>
     @Sys.SourceCode.ResultRefStart("url-parameters")
@@ -153,18 +115,3 @@
     @Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
   @accordion.ItemEnd()
 
-
-
-
-@accordion.End()
-
-
-<p>
-  
-</p>
-
-
-
-
-@* Footer *@
-@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

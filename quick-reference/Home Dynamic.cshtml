@@ -1,0 +1,60 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @Html.Partial("header.cshtml", new { Sys = Sys })
+</hide>
+
+
+<div @Sys.PageParts.InfoWrapper()>
+  @Html.Partial("../shared/DefaultInfoSection.cshtml")
+  <div @Sys.PageParts.InfoIntro()>
+    <h2>Dynamic Razor - Quick Reference</h2>
+    <p>
+      This is a quick CheatSheet to provide you with a reference to most APIs you'll use.
+    </p>
+    <p>
+      This uses a base class of <code>@@inherits Custom.Hybrid.Razor14</code> and would also apply to <code>...Razor12</code>. 
+      Most samples do not work for the new <code>@@inherits Custom.Hybrid.Razorpro</code> as that provides different objects and methods.  that uses a different syntax. 
+    </p>
+  </div>
+</div>
+
+@* Bootstrap 5 Accordions *@
+@{
+  var accordion = CreateInstance("Accordion.cs");
+}
+
+<h2>Razor Basics</h2>
+
+@accordion.Start("accordionRazorBasics")
+  @Html.Partial("./Part RazorBasics Dyn.cshtml", new { accordion })
+@accordion.End()
+
+<p>&nbsp;</p>
+<h2>Working with Content Items</h2>
+
+@accordion.Start("items")
+  @Html.Partial("./Part ItemsBasic Dyn.cshtml", new { accordion })
+@accordion.End()
+
+<p>&nbsp;</p>
+<h2>Razor Advanced</h2>
+
+@accordion.Start("razorAdvanced")
+  @Html.Partial("./Part Page and Parameters Dyn.cshtml", new { accordion })
+
+@accordion.End()
+
+
+<p>
+  
+</p>
+
+
+
+
+@* Footer *@
+@Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
