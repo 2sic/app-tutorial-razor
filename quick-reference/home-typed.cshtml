@@ -333,29 +333,29 @@
     <p>
       Sometimes you need a <code>UniqueKey</code> which also depends on other objects.
       For example, you may need to have a UniqueKey which also uses another value - or many.
-      This is done using <code>@@Kit.Keys.UniqueKeyWith(...)</code>.
+      This is done using <code>@@Kit.Key.UniqueKeyWith(...)</code>.
     </p>
     @Sys.SourceCode.ResultRefStart("unique-key-with", "Helper Razor", "JS File")
       <ol>
         <li>
           Unique Key with <code>12345</code>:
-          <code>@Kit.Keys.UniqueKeyWith(12345)</code>
+          <code>@Kit.Key.UniqueKeyWith(12345)</code>
         </li>
         <li>
           Unique Key with <code>"hello"</code>:
-          <code>@Kit.Keys.UniqueKeyWith("hello")</code>
+          <code>@Kit.Key.UniqueKeyWith("hello")</code>
         </li>
         <li>
           Unique Key with <code>"bad chars in id ! % / 👍🏽"</code>:
-          <code>@Kit.Keys.UniqueKeyWith("bad chars in id ! % / 👍🏽")</code>
+          <code>@Kit.Key.UniqueKeyWith("bad chars in id ! % / 👍🏽")</code>
         </li>
         <li>
           Unique Key with <code>"this is a long text and should be shortened"</code>:
-          <code>@Kit.Keys.UniqueKeyWith("this is a long text and should be shortened")</code>
+          <code>@Kit.Key.UniqueKeyWith("this is a long text and should be shortened")</code>
         </li>
         <li>
           Unique Key with <code>12345</code> and <code>"hello"</code>:
-          <code>@Kit.Keys.UniqueKeyWith(12345, "hello")</code>
+          <code>@Kit.Key.UniqueKeyWith(12345, "hello")</code>
         </li>
       </ol>
     @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
@@ -374,7 +374,7 @@
       <ol>
         @foreach(var book in books) {
           <li>
-            Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Keys.UniqueKeyWith(book)</code>
+            Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Key.UniqueKeyWith(book)</code>
           </li>
         }
       </ol>
