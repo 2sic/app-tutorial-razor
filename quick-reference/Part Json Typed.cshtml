@@ -1,0 +1,217 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var accordion = MyModel.Get("Accordion") as dynamic;
+  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
+  var accPrefix = "acc-json-";
+}
+
+@accordion.ItemStart(accPrefix + "basic", "Use JSON Strings as Objects (ITyped) - simple .Get()")
+  <p>
+    JSON data can be difficult to work with, because you would need to use
+    <code>System.Text.Json</code> which has a sophisticated API.
+    Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
+  </p>
+  @Sys.SourceCode.ResultRefStart("json-basic")
+  @{
+    // Simple JSON strings which could come from a file or web service
+    var jDude = "{ \"name\": \"Dude\", \"age\": 47 }";
+
+    // Convert the JSON to ITyped
+    var dude = Kit.Json.ToTyped(jDude);
+  }
+  <ol>
+    <li>
+      <code>.Get("name")</code>: @dude.Get("Name")
+    </li>
+    <li>
+      <code>.Get("NAME")</code> (insensitive): @dude.Get("NAME")
+    </li>
+  </ol>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+
+
+@accordion.ItemStart(accPrefix + "basic2", "Use JSON Strings as Objects (ITyped) - typed .String() and .Int()")
+  <p>
+    This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
+  </p>
+  @Sys.SourceCode.ResultRefStart("json-basic2")
+  <ol>
+    <li>
+      <code>.String("Name")</code> (typed): @dude.String("Name")
+    </li>
+    <li>
+      <code>.Int("Age")</code>: @dude.Int("Age")
+    </li>
+    <li>
+      Add using Int(...): <code>@(100 + dude.Int("Age"))</code>
+    </li>
+    <li>
+      Add using String(...): <code>@(100 + dude.String("Age"))</code>
+    </li>
+  </ol>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+@functions {
+  public object GetOrShowError(Func<object> func) {
+    try {
+      return func();
+    } catch (Exception ex) {
+      return ex.Message;
+    }
+  }
+}
+
+
+@accordion.ItemStart(accPrefix + "json-required", "Use JSON Strings as Objects (ITyped) - strict / required fields")
+  <p>
+    By default, the object is strict, so you can only access fields which are present.
+  </p>
+  @Sys.SourceCode.ResultRefStart("json-required")
+  @{
+    var strict = Kit.Json.ToTyped(jDude);
+  }
+  <ol>
+    <li>
+      <code>strict.String("Fake")</code> (typed):
+      @GetOrShowError(() => strict.String("Fake"))
+    </li>
+    <li>
+      <code>strict.String("Fake", required: false)</code>:
+      @strict.String("Fake", required: false)
+    </li>
+    <li>
+      <code>strict.String("Fake", required: false, fallback: "undefined")</code>:
+      @strict.String("Fake", required: false, fallback: "undefined")
+    </li>
+    <li>
+      <code>strict.Int("Fake", required: false)</code>:
+      @strict.Int("Fake", required: false)
+    </li>
+    <li>
+      <code>strict.Int("Fake", required: false, fallback: -1)</code>:
+      @strict.Int("Fake", required: false, fallback: -1)
+    </li>
+  </ol>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+
+@accordion.ItemStart(accPrefix + "json-loose", "Use JSON Strings as Objects (ITyped) - loose / not-required fields")
+  <p>
+    By default, the object is strict, so you can only access fields which are present.
+  </p>
+  @Sys.SourceCode.ResultRefStart("json-loose")
+  @{
+    var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
+  }
+  <ol>
+    <li>
+      <code>loose.String("Fake")</code> (typed):
+      @GetOrShowError(() => loose.String("Fake"))
+    </li>
+    <li>
+      <code>loose.String("Fake")</code>:
+      @loose.String("Fake")
+    </li>
+    <li>
+      <code>loose.String("Fake", fallback: "undefined")</code>:
+      @loose.String("Fake", fallback: "undefined")
+    </li>
+    <li>
+      <code>loose.Int("Fake")</code>:
+      @loose.Int("Fake", required: false)
+    </li>
+    <li>
+      <code>loose.Int("Fake", fallback: -1)</code>:
+      @loose.Int("Fake", fallback: -1)
+    </li>
+  </ol>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+
+@accordion.ItemStart(accPrefix + "more", "Nested Objects in JSON (ITyped)")
+  <p>
+    JSON data can be difficult to work with, because you would need to use
+    <code>System.Text.Json</code> which has a sophisticated API.
+    Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
+  </p>
+  @Sys.SourceCode.ResultRefStart("json-basic")
+  @{
+    // Simple JSON strings which could come from a file or web service
+    var jMarc = "{ \"name\": \"Marc\", \"age\": 33, \"car\": null }";
+    var jFrank = "{ \"name\": \"Frank\", \"age\": 44, \"car\": { \"make\": \"Ford\", \"model\": \"Focus\" } }";
+
+    // Convert the JSON to ITyped
+    var marc = Kit.Json.ToTyped(jMarc);
+    var frank = Kit.Json.ToTyped(jFrank);
+    var year = DateTime.Now.Year;
+  }
+  <ol>
+    <li>
+      #1 <code>.Get("Name")</code>
+      (note that it's case insensitive):
+      <code>@marc.Get("Name")</code>
+    </li>
+    <li>
+      #1 name <code>.String("Name")</code>
+      (if you need the variable to be a string):
+      <code>@marc.String("Name")</code>
+    </li>
+    <li>#1 age: <code>@marc.Get("Age")</code></li>
+    <li>#1 birth year: <code>@(year - marc.Int("Age"))</code></li>
+    <li>#2 name: <code>@frank.String("Name")</code></li>
+    <li>#2 car make: <code>@frank.String("Car.Make")</code></li>
+    <li>#1 car make (will be null): <code>@marc.String("Car.Make", required: false)</code></li>
+  </ol>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+
+@* Int Array*@
+@accordion.ItemStart(accPrefix + "intarray", "Use JSON Arrays of Integers (int[])")
+  @Sys.SourceCode.ResultRefStart("json-int-array")
+  @{
+    // Simple JSON string containing fibonacci numbers
+    var jFibonacci = "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]";
+
+    // Convert the JSON to int[]
+    var fibonacci = Kit.Json.To<int[]>(jFibonacci);
+  }
+  <ul>
+    @foreach(var f in fibonacci) {
+      <li><code>@f</code></li>
+    }
+  </ul>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+
+@accordion.ItemStart(accPrefix + "array", "Use JSON Array of Objects (ITyped)")
+  <p>
+    If you have an array in your Json, you need a different object.
+  </p>
+  @Sys.SourceCode.ResultRefStart("json-obj-array")
+  @{
+    // Simple JSON strings which could come from a file or web service
+    var jCities = "[{\"name\": \"Buchs\"}, {\"name\": \"Grabs\"}, {\"name\": \"Sevelen\" }]";
+
+    // Convert the JSON to ITyped
+    var cities = Kit.Json.ToTypedList(jCities);
+  }
+  <ol>
+    @foreach(var city in cities) {
+      <li>Name: <code>@city.String("Name")</code></li>
+    }
+  </ol>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@accordion.ItemEnd()
+
+
+

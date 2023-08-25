@@ -54,11 +54,14 @@
   @Html.Partial("./Part JsBasics Typed.cshtml", new { accordion })
 @accordion.End()
 
-<p>
+<p>&nbsp;</p>
+<h2>JSON</h2>
 
-</p>
+@accordion.Start("accordionJs")
+  @Html.Partial("./Part Json Typed.cshtml", new { accordion })
+@accordion.End()
 
-
+<p>&nbsp;</p>
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
