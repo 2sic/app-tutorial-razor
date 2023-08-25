@@ -1,6 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @{
-  var tutorialSet = DynamicModel.TutorialSet;
+  // var tutorialSet = DynamicModel.TutorialSet;
+  var tutorialSet = AsDynamic(DynamicModel.TutorialSet);
   if (tutorialSet == null) {
     return;
   }
