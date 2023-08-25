@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+
+  @Sys.SourceCode.ResultRefStart("json-custom-class")
+  @functions {
+    public class City {
+      public string Name { get; set; }
+      public int ZipCode { get; set; }
+    }
+  }
+  @{
+    var jCities = "[{\"name\": \"Buchs\", \"ZipCode\": 9470 }, {\"name\": \"Grabs\"}, {\"name\": \"Sevelen\" }]";
+
+    // Convert the JSON to City
+    var cities = Kit.Json.To<City[]>(jCities);
+  }
+  <ul>
+    @foreach(var city in cities) {
+      <li><code>@city.Name</code>: @city.ZipCode</li>
+    }
+  </ul>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })

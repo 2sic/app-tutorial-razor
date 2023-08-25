@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+
+  @Sys.SourceCode.ResultRefStart("json-int-array")
+  @{
+    // Simple JSON string containing fibonacci numbers
+    var jFibonacci = "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]";
+
+    // Convert the JSON to int[]
+    var fibonacci = Kit.Json.To<int[]>(jFibonacci);
+  }
+  <ul>
+    @foreach(var f in fibonacci) {
+      <li><code>@f</code></li>
+    }
+  </ul>
+  @Sys.SourceCode.ResultRefEnd(new string[] { })

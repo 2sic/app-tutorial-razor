@@ -174,22 +174,14 @@
 @accordion.ItemEnd()
 
 
-@* Int Array*@
-@accordion.ItemStart(accPrefix + "intarray", "Use JSON Arrays of Integers (int[])")
-  @Sys.SourceCode.ResultRefStart("json-int-array")
-  @{
-    // Simple JSON string containing fibonacci numbers
-    var jFibonacci = "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]";
+@* Int Array *@
+@accordion.ItemStart(accPrefix + "intarray", "Use JSON Arrays of Integers (To&lt;int[]&gt;)")
+  @Html.Partial("./Part Json.Int Array.cshtml")
+@accordion.ItemEnd()
 
-    // Convert the JSON to int[]
-    var fibonacci = Kit.Json.To<int[]>(jFibonacci);
-  }
-  <ul>
-    @foreach(var f in fibonacci) {
-      <li><code>@f</code></li>
-    }
-  </ul>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+@* Custom Object *@
+@accordion.ItemStart(accPrefix + "custom-object", "Use JSON with Your Own Class (To&lt;City[]&gt;)")
+  @Html.Partial("./Part Json.Custom Class.cshtml")
 @accordion.ItemEnd()
 
 
