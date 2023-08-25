@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+
+@Sys.SourceCode.ResultRefStart("emoji")
+  <p>
+    You can just use any Emoji in your source.
+    Or you pick them with ternary operations.
+  </p>
+  <ul>
+    <li>This is just an emoji: 🚀</li>
+    <li>Pick emoji from true ⇒ @(true ? "✔️" : "❌")</li>
+    <li>Pick emoji from true ⇒ @(false ? "✔️" : "❌")</li>
+  </ul>
+@Sys.SourceCode.ResultRefEnd(new string[] { "html210" })

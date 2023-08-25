@@ -1,0 +1,116 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var accordion = MyModel.Get("Accordion") as dynamic;
+  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
+  var accPrefix = "acc-rzradv-";
+}
+  @accordion.ItemStart(accPrefix + "url-parameters", "2sxc Razor APIs to work with Page and Links")
+
+    <h3>Page URL Parameters / QueryString</h3>
+    @Sys.SourceCode.ResultRefStart("url-parameters")
+      <ol>
+        <li>
+          <a href='@Link.To(parameters: "demo=true")'>Link to this page with demo=true</a>
+          <br>
+          <em>Note: you will then not be on this page any more, since other parameters are removed.</em>
+        </li>
+        <li>
+          The current Page parameter for <code>ref100</code> (used in the URL):
+          @MyPage.Parameters["ref100"]
+        </li>
+        <li>
+          The current page parameters - used to create a new link: @MyPage.Parameters
+        </li>
+        <li>
+          <a href='@Link.To(parameters: MyPage.Parameters)'>Link to current page with same parameters</a>
+        </li>
+        <li>
+          <a href='@Link.To(parameters: MyPage.Parameters.Set("demo", true))'>Link to current page with demo=true</a>
+        </li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { "basics310", "basics311", "basics320", "basics330", "basics410" })
+
+
+
+    <h3>Set Page Title, Keywords etc.</h3>
+    @Sys.SourceCode.ResultRefStart("set-page-properties")
+      @* Example with a single-liner directly in the code *@
+      @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
+      @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
+      @Kit.Page.AddMeta("tutorial", "some value")
+
+      @{
+        // Example showing how to use in a block of code
+        Kit.Page.SetDescription("Learn to use Razor Blade ");
+        Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+      }
+
+      @* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
+      @Kit.Page.AddJsonLd(new Dictionary<string, object> {
+          { "@context", "https://schema.org"},
+          { "@type", "Organization"},
+          { "url", "http://www.example.com"},
+          { "name", "Unlimited Ball Bearings Corp."},
+          { "contactPoint", new Dictionary<string, object> {
+            {"@type", "ContactPoint"},
+            {"telephone", "+1-401-555-1212"},
+            {"contactType", "Customer service"}
+          }}
+      })
+
+      @* Set some OpenGraph headers *@
+      @Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers")
+      @Kit.Page.AddOpenGraph("type", "website")
+      <p>
+        This uses <code>Kit.Page.SetTitle(...)</code> and other methods to modify the HTML sent to the browser. 
+        It sets various aspecs such as <code>title</code> or FavIcons.
+      </p>
+      <ol>
+        <li><code>meta title</code>, <code>meta description</code>, <code>meta keywords</code> </li>
+        <li>favicon</li>
+        <li>some JsonLd for google</li>
+        <li>OpenGraph headers for FaceBook, Twitter, etc.</li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })
+
+
+
+    <h3>Get Info about Platform, Culture/Languages etc.</h3>
+    @Sys.SourceCode.ResultRefStart("cms-context")
+      <ol>
+        <li>Platform name: '<code>@MyContext.Platform.Name</code>'</li>
+        <li>Platform type: '<code>@MyContext.Platform.Type</code>'</li>
+        <li>Platform version: '<code>@MyContext.Platform.Version</code>'</li>
+
+        <li>Culture Current Code: '<code>@MyContext.Culture.CurrentCode</code>'</li>
+        <li>Culture Default Code: '<code>@MyContext.Culture.DefaultCode</code>'</li>
+
+        <li>Site Id: '<code>@MyContext.Site.Id</code>'</li>
+        <li>Site Url: '<code>@MyContext.Site.Url</code>'</li>
+        <li>Site UrlRoot: '<code>@MyContext.Site.UrlRoot</code>'</li>
+
+        <li>Page Id: '<code>@MyPage.Id</code>'</li>
+        <li>Page Url: '<code>@MyPage.Url</code>'</li>
+        <li>Page Url Parameters: '<code>@MyPage.Parameters</code>'</li>
+
+        <li>Module Id: '<code>@MyContext.Module.Id</code>'</li>
+
+        <li>User Id: '<code>@MyUser.Id</code>'</li>
+        <li>User Name: '<code>@MyUser.Name</code>'</li>
+        <li>User IsContentAdmin: '<code>@MyUser.IsContentAdmin</code>'</li>
+        <li>User IsSiteAdmin: '<code>@MyUser.IsSiteAdmin</code>'</li>
+        <li>User IsSystemAdmin: '<code>@MyUser.IsSystemAdmin</code>'</li>
+
+        <li>View Id: '<code>@MyView.Id</code>'</li>
+        <li>View Identifier: '<code>@MyView.Identifier</code>' (blank if no special identifier) </li>
+        <li>View Name: '<code>@MyView.Name</code>'</li>
+        <li>View Edition: '<code>@MyView.Edition</code>' (blank if no special CSS Framework edition) </li>
+
+        <li>Unique Key '<code>@UniqueKey</code>'</li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
+
+  @accordion.ItemEnd()

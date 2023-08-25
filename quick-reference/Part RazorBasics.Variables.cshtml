@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
 
-<h3>Razor Variables</h3>
 @Sys.SourceCode.ResultRefStart("variables")
   @{
     // Create variables - the compiler detects the type automatically

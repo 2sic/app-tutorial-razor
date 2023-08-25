@@ -11,7 +11,7 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Quick Reference for <em>Dynamic Razor Code</em></h2>
+    <h2>Dynamic Razor - Quick Reference</h2>
     <p>
       This is a quick CheatSheet to provide you with a reference to most APIs you'll use.
     </p>
@@ -26,88 +26,24 @@
 @{
   var accordion = CreateInstance("Accordion.cs");
 }
-@accordion.Start("accordionExample")
-  @accordion.ItemStart("basic", "Basic Razor Syntax")
-    <p>
-      These are some very common Razor APIs which you should know.
-    </p>
 
-    @* Shared section, which is identical in both Razors syntaxes *@
-    @Html.Partial("./shared-razor-variables.cshtml")
-    @Html.Partial("./shared-razor-conditions.cshtml")
-    @Html.Partial("./shared-razor-loops.cshtml")
-    @Html.Partial("./shared-razor-html.cshtml")
-  @accordion.ItemEnd()
+<h2>Razor Basics</h2>
 
+@accordion.Start("accordionRazorBasics")
+  @Html.Partial("./Part RazorBasics Dyn.cshtml", new { accordion })
+@accordion.End()
 
+<p>&nbsp;</p>
+<h2>Working with Content Items</h2>
 
-  @accordion.ItemStart("razor-reuse", "Advanced Razor: Re-Use Code")
-    <p>
-      These are some more advanced APIs which are very common as well, so you should be familiar with them.
-    </p>
+@accordion.Start("items")
+  @Html.Partial("./Part ItemsBasic.Dyn.cshtml", new { accordion })
+@accordion.End()
 
-    @Html.Partial("./shared-razor-functions.cshtml")
-    @Html.Partial("./shared-razor-partial-no-params.cshtml")
+<p>&nbsp;</p>
+<h2>Razor Advanced</h2>
 
-    <h3>Reuse Razor Components (Partial) with Parameters</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-razor-params", "Source of box-pro.cshtml")
-      <h4>Call some external Razor files</h4>
-      <ol>
-        <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Hello, this is the first line" })</li>
-        <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Second line!", Color = "red" })</li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse110" }, "file:../reuse/box.cshtml")
-
-
-    <h3>Reuse Partial Razor and functions from Helper Code files</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-code" @*, "Source of line.cshtml" *@)
-      @{
-        // helper library to say hello & create QR codes
-        var qrLib = CreateInstance("../reuse/SharedFunctions.cs");
-      }
-      <h4>Call some Code in External CSharp Files</h4>
-      <ol>
-        <li>Hello from shared lib: @qrLib.SayHello()</li>
-        <li>
-          QR Code from shared lib
-          <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
-        </li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
-  @accordion.ItemEnd()
-
-
-
-  @accordion.ItemStart("ref-content", "Work with Content, Images, Multi-Language")
-    <p>
-      Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
-    </p>
-
-    <h3>Work with Current Content</h3>
-    @Sys.SourceCode.ResultRefStart("content")
-      <h4>Douglas Adams, the current Content-item</h4>
-      @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
-      <ol>
-        <li>Content item Name:        @Content.FirstName @Content.LastName</li>
-        <li>Content item Birthday:    @Content.Birthday.ToString("d")</li>
-        <li>Content item Award:       @Content.Awards.Name</li>
-        <li>Content item Mugshot URL: @Content.Mugshot</li>
-        <li>Content item Mugshot Raw String: @(Content.Get<string>("Mugshot"))</li>
-      </ol>
-      <h4>Loop the persons in the Query for this view</h4>
-      <ul>
-        @foreach (var person in AsList(Data)) {
-          <li>
-            @if (Text.Has(person.Mugshot)) {
-              @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 50, imgClass: "rounded-circle")
-            }
-            @person.FirstName @person.LastName
-          </li>
-        }
-      </ul>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })
-
-  @accordion.ItemEnd()
+@accordion.Start("razorAdvanced")
 
 
 

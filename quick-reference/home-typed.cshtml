@@ -11,7 +11,7 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Quick Reference for <em>Razor Pro (Typed) Code</em></h2>
+    <h2>Razor Typed - Quick Reference</h2>
     <p>
       This is a quick CheatSheet to provide you with a reference to most APIs you'll use.
     </p>
@@ -26,362 +26,32 @@
 @{
   var accordion = GetCode("Accordion.cs");
 }
-@accordion.Start("accordionExample")
-  @accordion.ItemStart("basic", "Basic Razor Syntax")
-    <p>
-      These are some very common Razor APIs which you should know.
-    </p>
 
-    @* Shared section, which is identical in both Razors syntaxes *@
-    @Html.Partial("./shared-razor-variables.cshtml")
-    @Html.Partial("./shared-razor-conditions.cshtml")
-    @Html.Partial("./shared-razor-loops.cshtml")
-    @Html.Partial("./shared-razor-html.cshtml")
-  @accordion.ItemEnd()
+<h2>Razor Basics</h2>
 
+@accordion.Start("accordionRazorBasics")
+  @Html.Partial("./Part RazorBasics Typed.cshtml", new { accordion })
+@accordion.End()
 
-  @accordion.ItemStart("razor-reuse", "Advanced Razor: Re-Use Code")
-    <p>
-      These are some more advanced APIs which are very common as well, so you should be familiar with them.
-    </p>
+<p>&nbsp;</p>
+<h2>Working with Content Items</h2>
 
-    @Html.Partial("./shared-razor-functions.cshtml")
-    @Html.Partial("./shared-razor-partial-no-params.cshtml")
+@accordion.Start("items")
+  @Html.Partial("./Part ItemsBasic.Typed.cshtml", new { accordion })
+@accordion.End()
 
-    <h3>Reuse Razor Components (Partial) with Parameters</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-razor-params", "Source box.cshtml")
-      <h4>Call some external Razor files</h4>
-      <ol>
-        <li>@Html.Partial("../reuse/box-pro.cshtml", new { Label = "Hello, this is the first line" })</li>
-        <li>@Html.Partial("../reuse/box-pro.cshtml", new { Label = "Second line!", Color = "red" })</li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse110" }, "file:../reuse/box-pro.cshtml")
+<p>&nbsp;</p>
+<h2>Razor Advanced</h2>
 
-
-    <h3>Reuse Partial Razor and functions from Helper Code files</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-code", "Source SharedFunctions.cs")
-      @{
-        // helper library to say hello & create QR codes
-        var qrLib = GetCode("../reuse/SharedFunctions.cs");
-      }
-      <h4>Call some Code in External CSharp Files</h4>
-      <ol>
-        <li>Hello from shared lib: @qrLib.SayHello()</li>
-        <li>
-          QR Code from shared lib
-          <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
-        </li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }, "file:../reuse/SharedFunctions.cs")
-  @accordion.ItemEnd()
-
-
-  @accordion.ItemStart("ref-content", "Work with Current Item (MyItem)")
-    <p>
-      Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
-    </p>
-
-    <hide>
-    @{
-      // Patch so the tutorial works reliably even if the main module had data added which are not a person
-      // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
-      var MyItem = AsItem(MyData);
-    }
-    </hide>
-
-    <h3>Work with Current Item (MyItem)</h3>
-    @Sys.SourceCode.ResultRefStart("content")
-      <h4>Douglas Adams, the current item (MyItem)</h4>
-      @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
-      <ol>
-        <li>MyItem Name:          @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-        <li>MyItem Birthday:      @MyItem.DateTime("Birthday").ToString("d")</li>
-        <li>MyItem Award:         @MyItem.Child("Awards").String("Name")</li>
-        <li>MyItem Mugshot URL:   @MyItem.Url("Mugshot")</li>
-        <li>MyItem Mugshot Raw String: @MyItem.String("Mugshot")</li>
-      </ol>
-      <h4>Loop the persons in the Query for this view</h4>
-      <ul>
-        @foreach (var person in AsItems(MyData)) {
-          <li>
-            @MyItem.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
-            @person.String("FirstName") @person.String("LastName")
-          </li>
-        }
-      </ul>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })  
-  @accordion.ItemEnd()
-
-  @accordion.ItemStart("ref-todo", "Work with Images, Multi-Language TODO")
-  @accordion.ItemEnd()
-
-
-  @accordion.ItemStart("url-parameters", "2sxc Razor APIs to work with Page and Links")
-
-    <h3>Page URL Parameters / QueryString</h3>
-    @Sys.SourceCode.ResultRefStart("url-parameters")
-      <ol>
-        <li>
-          <a href='@Link.To(parameters: "demo=true")'>Link to this page with demo=true</a>
-          <br>
-          <em>Note: you will then not be on this page any more, since other parameters are removed.</em>
-        </li>
-        <li>
-          The current Page parameter for <code>ref100</code> (used in the URL):
-          @MyPage.Parameters["ref100"]
-        </li>
-        <li>
-          The current page parameters - used to create a new link: @MyPage.Parameters
-        </li>
-        <li>
-          <a href='@Link.To(parameters: MyPage.Parameters)'>Link to current page with same parameters</a>
-        </li>
-        <li>
-          <a href='@Link.To(parameters: MyPage.Parameters.Set("demo", true))'>Link to current page with demo=true</a>
-        </li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "basics310", "basics311", "basics320", "basics330", "basics410" })
-
-
-
-    <h3>Set Page Title, Keywords etc.</h3>
-    @Sys.SourceCode.ResultRefStart("set-page-properties")
-      @* Example with a single-liner directly in the code *@
-      @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
-      @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
-      @Kit.Page.AddMeta("tutorial", "some value")
-
-      @{
-        // Example showing how to use in a block of code
-        Kit.Page.SetDescription("Learn to use Razor Blade ");
-        Kit.Page.SetKeywords("Tutorial, Razor, Blade");
-      }
-
-      @* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
-      @Kit.Page.AddJsonLd(new Dictionary<string, object> {
-          { "@context", "https://schema.org"},
-          { "@type", "Organization"},
-          { "url", "http://www.example.com"},
-          { "name", "Unlimited Ball Bearings Corp."},
-          { "contactPoint", new Dictionary<string, object> {
-            {"@type", "ContactPoint"},
-            {"telephone", "+1-401-555-1212"},
-            {"contactType", "Customer service"}
-          }}
-      })
-
-      @* Set some OpenGraph headers *@
-      @Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers")
-      @Kit.Page.AddOpenGraph("type", "website")
-      <p>
-        This uses <code>Kit.Page.SetTitle(...)</code> and other methods to modify the HTML sent to the browser. 
-        It sets various aspecs such as <code>title</code> or FavIcons.
-      </p>
-      <ol>
-        <li><code>meta title</code>, <code>meta description</code>, <code>meta keywords</code> </li>
-        <li>favicon</li>
-        <li>some JsonLd for google</li>
-        <li>OpenGraph headers for FaceBook, Twitter, etc.</li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })
-
-
-
-    <h3>Get Info about Platform, Culture/Languages etc.</h3>
-    @Sys.SourceCode.ResultRefStart("cms-context")
-      <ol>
-        <li>Platform name: '<code>@MyContext.Platform.Name</code>'</li>
-        <li>Platform type: '<code>@MyContext.Platform.Type</code>'</li>
-        <li>Platform version: '<code>@MyContext.Platform.Version</code>'</li>
-
-        <li>Culture Current Code: '<code>@MyContext.Culture.CurrentCode</code>'</li>
-        <li>Culture Default Code: '<code>@MyContext.Culture.DefaultCode</code>'</li>
-
-        <li>Site Id: '<code>@MyContext.Site.Id</code>'</li>
-        <li>Site Url: '<code>@MyContext.Site.Url</code>'</li>
-        <li>Site UrlRoot: '<code>@MyContext.Site.UrlRoot</code>'</li>
-
-        <li>Page Id: '<code>@MyPage.Id</code>'</li>
-        <li>Page Url: '<code>@MyPage.Url</code>'</li>
-        <li>Page Url Parameters: '<code>@MyPage.Parameters</code>'</li>
-
-        <li>Module Id: '<code>@MyContext.Module.Id</code>'</li>
-
-        <li>User Id: '<code>@MyUser.Id</code>'</li>
-        <li>User Name: '<code>@MyUser.Name</code>'</li>
-        <li>User IsContentAdmin: '<code>@MyUser.IsContentAdmin</code>'</li>
-        <li>User IsSiteAdmin: '<code>@MyUser.IsSiteAdmin</code>'</li>
-        <li>User IsSystemAdmin: '<code>@MyUser.IsSystemAdmin</code>'</li>
-
-        <li>View Id: '<code>@MyView.Id</code>'</li>
-        <li>View Identifier: '<code>@MyView.Identifier</code>' (blank if no special identifier) </li>
-        <li>View Name: '<code>@MyView.Name</code>'</li>
-        <li>View Edition: '<code>@MyView.Edition</code>' (blank if no special CSS Framework edition) </li>
-
-        <li>Unique Key '<code>@UniqueKey</code>'</li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
-
-  @accordion.ItemEnd()
+@accordion.Start("razorAdvanced")
+  @Html.Partial("./Part Page and Parameters.Typed.cshtml", new { accordion })
 @accordion.End()
 
 <p>&nbsp;</p>
 <h2>JavaScript - Working with Razor and WebApi</h2>
 
 @accordion.Start("accordionJs")
-  @accordion.ItemStart("js-load", "Load JavaScripts from App into Html")
-    <p>
-      Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
-      What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
-    </p>
-    @Sys.SourceCode.ResultRefStart("load-js", "Source JS1", "Source JS2")
-      <p>
-        Load a JavaScript relative to the App folder (see message/console): <br>
-        <strong id="loadjs-app-message"></strong>
-      </p>
-      <script src="@App.Folder.Url/quick-reference/js/report-loaded-in-console-path-app.js"></script>
-
-      <p>
-        Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
-        <strong id="loadjs-view-message"></strong>
-      </p>
-      <script src="@MyView.Folder.Url/js/report-loaded-in-console-path-view.js"></script>
-    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/report-loaded-in-console-path-app.js", "file:js/report-loaded-in-console-path-view.js" )
-
-  @accordion.ItemEnd()
-
-
-
-  @accordion.ItemStart("js-turnOn", "Activate Scripts when Ready using turnOn")
-    @* <h3>Activate JavaScript using <em>turnOn</em></h3> *@
-    <p>
-      A core challenge is to activate JavaScripts only when needed - and when all dependencies are loaded.
-      This is what <code>turnOn</code> does.
-      It checks if all specified JS objects exist, and then triggers the JS code.
-    </p>
-    @Sys.SourceCode.ResultRefStart("turnOn1", "Source JS")
-      <p>
-        The following text will be replaced once the JS is triggered: <br>
-        <strong id="turnOn1-message"></strong>
-      </p>
-
-      @* Load the JavaScript - it will not run by itself, as the DOM might not be ready
-         Note that this can be before or after the TurnOn *@
-      <script src="@MyView.Folder.Url/js/turnOn1.js"></script>
-
-      @* Tell TurnOn to trigger the JS when everything is ready *@
-      @Kit.Page.TurnOn("window.quickReference.turnOn1Message()")
-
-      <p>
-        This example passes data to the JS, so it can be parameterized:  <br>
-        <strong id="turnOn2-message"></strong>
-      </p>
-
-      @* Tell TurnOn to trigger the JS and give it a string *@
-      @Kit.Page.TurnOn("window.quickReference.turnOn2Message()", data: "Hello from Razor, the page Id is" + MyPage.Id)
-
-      <p>
-        We can also pass in more sophisticated data:  <br>
-        <strong id="turnOn3-message"></strong>
-      </p>
-      @{
-        // Create an anonymous object containing the data to send
-        var turnOn3Data = new {
-          domId = "turnOn3-message",
-          message = "Hello from Razor...",
-          pageId = MyPage.Id,
-          pageUrl = MyPage.Url
-        };
-      }
-      @* Tell TurnOn to trigger the JS and give it a complex object *@
-      @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
-
-    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/turnOn1.js" )
-  @accordion.ItemEnd()
-
-
-
-  @accordion.ItemStart("js-interop", "Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")
-  
-    <h3>Work with the new UniqueKey with JavaScript - new v16.04 🌟</h3>
-    <p>
-      The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.
-      The value of <code>UniqueKey</code> is the same in all Razor and C# files for the same Content-Block.
-    </p>
-    @Sys.SourceCode.ResultRefStart("unique-key", "Helper Razor", "JS File")
-      @{
-        var buttonId = "demo-uniquekey-btn-" + UniqueKey;
-        var messageId = "demo-uniquekey-msg-" + UniqueKey;
-      }
-      @* Show the button *@
-      <button type="button" id="@buttonId" class="btn btn-primary">
-        Press this to see JS find the button using the UniqueKey: @buttonId
-      </button>
-
-      @* Create the DIV for the message - it's in another file, but shares the UniqueKey *@
-      @Html.Partial("./shared-uniquekey-message.cshtml")
-
-      @* Trigger the script, and pass in the IDs it will need based on the UniqueKey *@
-      @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
-      @* Load the script - this can be before or after the TurnOn *@
-      <script src="@MyView.Folder.Url/js/unique-key.js"></script>
-    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
-
-
-
-    <h3>Combined Unique Keys with UniqueKeyWith(...) - new v16.04 🌟</h3>
-    <p>
-      Sometimes you need a <code>UniqueKey</code> which also depends on other objects.
-      For example, you may need to have a UniqueKey which also uses another value - or many.
-      This is done using <code>@@Kit.Key.UniqueKeyWith(...)</code>.
-    </p>
-    @Sys.SourceCode.ResultRefStart("unique-key-with", "Helper Razor", "JS File")
-      <ol>
-        <li>
-          Unique Key with <code>12345</code>:
-          <code>@Kit.Key.UniqueKeyWith(12345)</code>
-        </li>
-        <li>
-          Unique Key with <code>"hello"</code>:
-          <code>@Kit.Key.UniqueKeyWith("hello")</code>
-        </li>
-        <li>
-          Unique Key with <code>"bad chars in id ! % / 👍🏽"</code>:
-          <code>@Kit.Key.UniqueKeyWith("bad chars in id ! % / 👍🏽")</code>
-        </li>
-        <li>
-          Unique Key with <code>"this is a long text and should be shortened"</code>:
-          <code>@Kit.Key.UniqueKeyWith("this is a long text and should be shortened")</code>
-        </li>
-        <li>
-          Unique Key with <code>12345</code> and <code>"hello"</code>:
-          <code>@Kit.Key.UniqueKeyWith(12345, "hello")</code>
-        </li>
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
-    
-
-
-    <h3>Generate Unique Keys for Items/Entities - new v16.04 🌟</h3>
-    <p>
-      If the <code>UniqueKey</code> is based on known object types such as Entities, this works very well.
-      For example, you may need to loop through a list of items, and each item needs a unique key.
-    </p>
-    @Sys.SourceCode.ResultRefStart("unique-key-with-entity", "Helper Razor", "JS File")
-      @{
-        var books = AsItems(App.Data["Books"]);
-      }
-      <ol>
-        @foreach(var book in books) {
-          <li>
-            Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Key.UniqueKeyWith(book)</code>
-          </li>
-        }
-      </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
-
-  @accordion.ItemEnd()
-
+  @Html.Partial("./Part JsBasics.Typed.cshtml", new { accordion })
 @accordion.End()
 
 <p>

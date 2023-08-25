@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
 
-<h3>Html output and Emojis</h3>
 @Sys.SourceCode.ResultRefStart("html")
   @{
     var normalText = "this is text, it doesn't have tags";
@@ -17,9 +16,4 @@
     <li>@Html.Raw(normalText)</li>
     <li>@Html.Raw(htmlText)</li>
   </ul>
-  <h4>Show some Emojis based on a true/false</h4>
-  <ul>
-    <li>Pick emoji from true ⇒ @(true ? "✔️" : "❌")</li>
-    <li>Pick emoji from true ⇒ @(false ? "✔️" : "❌")</li>
-  </ul>
-@Sys.SourceCode.ResultRefEnd(new string[] { "html", "html210" })
+@Sys.SourceCode.ResultRefEnd(new string[] { "html" })

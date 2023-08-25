@@ -1,0 +1,66 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var accordion = MyModel.Get("Accordion") as dynamic;
+  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
+  var accPrefix = "acc-rzr-";
+}
+
+  <p>
+    These are some very common Razor APIs which you should know.
+  </p>
+    
+  @* Shared section, which is identical in both Razors syntaxes *@
+  @accordion.ItemStart(accPrefix + "vars", "Variables in Razor / C#")
+    @Html.Partial("./Part RazorBasics.Variables.cshtml")
+  @accordion.ItemEnd()
+  @accordion.ItemStart(accPrefix + "if", "Conditions: if, else and ternary ? : syntax")
+    @Html.Partial("./Part RazorBasics.If.cshtml")
+  @accordion.ItemEnd()
+  @accordion.ItemStart(accPrefix + "loop", "Loops: for, foreach")
+    @Html.Partial("./Part RazorBasics.Loops.cshtml")
+  @accordion.ItemEnd()
+  @accordion.ItemStart(accPrefix + "html", "Show Raw HTML")
+    @Html.Partial("./Part RazorBasics.Html.cshtml")
+  @accordion.ItemEnd()
+  @accordion.ItemStart(accPrefix + "emoji", "Show Emojis")
+    @Html.Partial("./Part RazorBasics.Emoji.cshtml")
+  @accordion.ItemEnd()
+
+
+  @accordion.ItemStart(accPrefix +"razor-reuse", "Re-Use Code and Razor Files")
+    <p>
+      These are some more advanced APIs which are very common as well, so you should be familiar with them.
+    </p>
+
+    @Html.Partial("./Part RazorBasics.Functions.cshtml")
+    @Html.Partial("./Part RazorBasics.PartialNoParams.cshtml")
+
+    <h3>Reuse Razor Components (Partial) with Parameters</h3>
+    @Sys.SourceCode.ResultRefStart("reuse-razor-params", "Source box.cshtml")
+      <h4>Call some external Razor files</h4>
+      <ol>
+        <li>@Html.Partial("../reuse/box-pro.cshtml", new { Label = "Hello, this is the first line" })</li>
+        <li>@Html.Partial("../reuse/box-pro.cshtml", new { Label = "Second line!", Color = "red" })</li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse110" }, "file:../reuse/box-pro.cshtml")
+
+
+    <h3>Reuse Partial Razor and functions from Helper Code files</h3>
+    @Sys.SourceCode.ResultRefStart("reuse-code", "Source SharedFunctions.cs")
+      @{
+        // helper library to say hello & create QR codes
+        var qrLib = GetCode("../reuse/SharedFunctions.cs");
+      }
+      <h4>Call some Code in External CSharp Files</h4>
+      <ol>
+        <li>Hello from shared lib: @qrLib.SayHello()</li>
+        <li>
+          QR Code from shared lib
+          <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
+        </li>
+      </ol>
+    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }, "file:../reuse/SharedFunctions.cs")
+  @accordion.ItemEnd()

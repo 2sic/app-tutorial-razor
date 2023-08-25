@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
 
-<h3>Loops</h3>
 @Sys.SourceCode.ResultRefStart("loops")
   @{
     var pets = new string[] { "dog", "cat", "mouse"};

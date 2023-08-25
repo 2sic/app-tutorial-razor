@@ -1,0 +1,42 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var accordion = DynamicModel.Accordion as dynamic;
+  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
+  var accPrefix = "acc-rzr-";
+}
+
+@accordion.ItemStart(accPrefix +"ref-content", "Work with Content, Images, Multi-Language")
+  <p>
+    Every view/template receives prepared data, either entered by the user on this page, or provided throug a query.
+  </p>
+
+  <h3>Work with Current Content</h3>
+  @Sys.SourceCode.ResultRefStart("content")
+    <h4>Douglas Adams, the current Content-item</h4>
+    @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
+    <ol>
+      <li>Content item Name:        @Content.FirstName @Content.LastName</li>
+      <li>Content item Birthday:    @Content.Birthday.ToString("d")</li>
+      <li>Content item Award:       @Content.Awards.Name</li>
+      <li>Content item Mugshot URL: @Content.Mugshot</li>
+      <li>Content item Mugshot Raw String: @(Content.Get<string>("Mugshot"))</li>
+    </ol>
+    <h4>Loop the persons in the Query for this view</h4>
+    <ul>
+      @foreach (var person in AsList(Data)) {
+        <li>
+          @if (Text.Has(person.Mugshot)) {
+            @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 50, imgClass: "rounded-circle")
+          }
+          @person.FirstName @person.LastName
+        </li>
+      }
+    </ul>
+  @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })
+
+@accordion.ItemEnd()
+
