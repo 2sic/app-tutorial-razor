@@ -15,7 +15,7 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-basic"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = "{ \"name\": \"Dude\", \"age\": 47 }";
@@ -39,7 +39,7 @@
   <p>
     This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-basic2"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
   <ol>
     <li>
       <code>.String("Name")</code> (typed): @dude.String("Name")
@@ -74,7 +74,7 @@
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-required"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
   @{
     var strict = Kit.Json.ToTyped(jDude);
   }
@@ -108,7 +108,7 @@
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-loose"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
   @{
     var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
   }
@@ -144,7 +144,7 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-basic"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
     var jMarc = "{ \"name\": \"Marc\", \"age\": 33, \"car\": null }";
@@ -191,7 +191,7 @@
   <p>
     If you have an array in your Json, you need a different object.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-obj-array"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
     var jCities = "[{\"name\": \"Buchs\"}, {\"name\": \"Grabs\"}, {\"name\": \"Sevelen\" }]";

@@ -15,8 +15,23 @@ public class SourceProcessor: Custom.Hybrid.Code14
   }
 
   private string KeepOnlySnippet(string source, string id) {
+    // Preparations
     if (string.IsNullOrWhiteSpace(id)) return source;
     var idInQuotes = "\"" + id + "\"";
+
+    // New: Ability to auto-find the correct snippet by number
+    var idNumber = Kit.Convert.ToInt(id, fallback: -1);
+    if (idNumber >= 0) {
+      // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
+      var patternNoNames = @"(?:\.SnipStart\(\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
+      var matches = Regex.Matches(source, patternNoNames);
+      if (matches.Count >= idNumber) {
+        // var match = matches[idNumber];
+        return matches[idNumber].Groups["contents"].Value;
+      }
+      
+    }
+
     // trim unnecessary comments
     var patternSnippet = @"(?:<snippet id=" + idInQuotes + @"[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
     var match = Regex.Match(source, patternSnippet);

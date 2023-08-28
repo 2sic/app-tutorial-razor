@@ -306,7 +306,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         results: tabContents.ToArray(),
         active: SourceTabName,
         snippetTabId: TabIdPrefix,
-        snippetId: SnippetId ?? "count:" + SnippetCount
+        snippetId: SnippetId ?? "" + SnippetCount
       );
       return result;
     }
