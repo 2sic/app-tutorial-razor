@@ -7,18 +7,24 @@
   // variable to hold each section config
   dynamic accSection;
   dynamic qref;
+
+  // Variables for the tests
+  string jsonRoot = MyView.Folder.PhysicalPath + "/json";
+  var dudeTabs = new Dictionary<string, string> {
+    { "dude.json", "file:json/dude.json" },
+  };
 }
 
-@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - simple .Get()")).Start())
+@((accSection = acc.Section("JSON Strings as Objects (ITyped) - simple .Get()")).Start())
   <p>
     JSON data can be difficult to work with, because you would need to use
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
-    var jDude = "{ \"name\": \"Dude\", \"age\": 47 }";
+    var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
 
     // Convert the JSON to ITyped
     var dude = Kit.Json.ToTyped(jDude);
@@ -35,11 +41,11 @@
 @accSection.End()
 
 
-@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - typed .String() and .Int()")).Start())
+@((accSection = acc.Section("JSON Strings as Objects (ITyped) - typed .String() and .Int()")).Start())
   <p>
     This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
   <ol>
     <li>
       <code>.String("Name")</code> (typed): @dude.String("Name")
@@ -70,11 +76,11 @@
 }
 
 
-@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - strict / required fields")).Start())
+@((accSection = acc.Section("JSON Strings as Objects (ITyped) - strict / required fields")).Start())
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
   @{
     var strict = Kit.Json.ToTyped(jDude);
   }
@@ -104,11 +110,11 @@
 @accSection.End()
 
 
-@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - loose / not-required fields")).Start())
+@((accSection = acc.Section("JSON Strings as Objects (ITyped) - loose / not-required fields")).Start())
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
   @{
     var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
   }
@@ -144,11 +150,14 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(new Dictionary<string, string> {
+    { "dude-marc.json", "file:json/dude-marc.json" },
+    { "dude-frank.json", "file:json/dude-frank.json" },
+  })).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
-    var jMarc = "{ \"name\": \"Marc\", \"age\": 33, \"car\": null }";
-    var jFrank = "{ \"name\": \"Frank\", \"age\": 44, \"car\": { \"make\": \"Ford\", \"model\": \"Focus\" } }";
+    var jMarc = System.IO.File.ReadAllText(jsonRoot + "/dude-marc.json");
+    var jFrank = System.IO.File.ReadAllText(jsonRoot + "/dude-frank.json");
 
     // Convert the JSON to ITyped
     var marc = Kit.Json.ToTyped(jMarc);
@@ -177,24 +186,26 @@
 
 
 @* Int Array *@
-@((accSection = acc.Section("Use JSON Arrays of Integers (To&lt;int[]&gt;)")).Start())
+@((accSection = acc.Section("JSON Arrays of Integers (To&lt;int[]&gt;)")).Start())
   @Html.Partial("./Part Json.Int Array.cshtml")
 @accSection.End()
 
 @* Custom Object *@
-@((accSection = acc.Section("Use JSON with Your Own Class (To&lt;City[]&gt;)")).Start())
+@((accSection = acc.Section("JSON with Your Own Class (To&lt;City[]&gt;)")).Start())
   @Html.Partial("./Part Json.Custom Class.cshtml")
 @accSection.End()
 
 
-@((accSection = acc.Section("Use JSON Array of Objects (ITyped)")).Start())
+@((accSection = acc.Section("JSON Array of Objects (ITyped)")).Start())
   <p>
-    If you have an array in your Json, you need a different object.
+    If you have an array in your Json, you need to use <code>ToTypedList</code>.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+    { "cities.json", "file:json/cities.json" },
+  })).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
-    var jCities = "[{\"name\": \"Buchs\"}, {\"name\": \"Grabs\"}, {\"name\": \"Sevelen\" }]";
+    var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
 
     // Convert the JSON to ITyped
     var cities = Kit.Json.ToTypedList(jCities);

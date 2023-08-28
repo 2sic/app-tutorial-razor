@@ -1,18 +1,24 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @{
-  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
   dynamic qref;
+
+  string jsonRoot = MyView.Folder.PhysicalPath + "/json";
 }
 
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+    { "cities.json", "file:json/cities.json" },
+  })).SnipStart())
   @functions {
+    // Custom class to deserialize JSON into
+    // must be inside an @functions section
     public class City {
       public string Name { get; set; }
       public int ZipCode { get; set; }
     }
   }
   @{
-    var jCities = "[{\"name\": \"Buchs\", \"ZipCode\": 9470 }, {\"name\": \"Grabs\"}, {\"name\": \"Sevelen\" }]";
+    var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
 
     // Convert the JSON to City
     var cities = Kit.Json.To<City[]>(jCities);
