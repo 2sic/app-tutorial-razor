@@ -3,12 +3,12 @@
   // Sys helps generate code snippets etc.
   var Sys = GetCode("../shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
-  var accordion = MyModel.Get("Accordion") as dynamic;
-  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
-  var accPrefix = "acc-json-";
+  var acc = MyModel.Get("Accordion") as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
 }
 
-@accordion.ItemStart(accPrefix + "basic", "Use JSON Strings as Objects (ITyped) - simple .Get()")
+@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - simple .Get()")).Start())
   <p>
     JSON data can be difficult to work with, because you would need to use
     <code>System.Text.Json</code> which has a sophisticated API.
@@ -31,11 +31,10 @@
     </li>
   </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { })
-@accordion.ItemEnd()
+@accSection.End()
 
 
-
-@accordion.ItemStart(accPrefix + "basic2", "Use JSON Strings as Objects (ITyped) - typed .String() and .Int()")
+@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - typed .String() and .Int()")).Start())
   <p>
     This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
   </p>
@@ -55,20 +54,22 @@
     </li>
   </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { })
-@accordion.ItemEnd()
+@accSection.End()
+
+@{
+  dynamic testHelpers = GetCode("./TestHelpers.cs");
+}
 
 @functions {
-  public object GetOrShowError(Func<object> func) {
-    try {
-      return func();
-    } catch (Exception ex) {
-      return ex.Message;
-    }
-  }
+  // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
+  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("./TestHelpers.cs")); }}
+  private object _testHelpers;
+
+  public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
 }
 
 
-@accordion.ItemStart(accPrefix + "json-required", "Use JSON Strings as Objects (ITyped) - strict / required fields")
+@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - strict / required fields")).Start())
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
@@ -79,7 +80,7 @@
   <ol>
     <li>
       <code>strict.String("Fake")</code> (typed):
-      @GetOrShowError(() => strict.String("Fake"))
+      @TryGet(() => strict.String("Fake"))
     </li>
     <li>
       <code>strict.String("Fake", required: false)</code>:
@@ -99,10 +100,10 @@
     </li>
   </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { })
-@accordion.ItemEnd()
+@accSection.End()
 
 
-@accordion.ItemStart(accPrefix + "json-loose", "Use JSON Strings as Objects (ITyped) - loose / not-required fields")
+@((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - loose / not-required fields")).Start())
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
@@ -113,7 +114,7 @@
   <ol>
     <li>
       <code>loose.String("Fake")</code> (typed):
-      @GetOrShowError(() => loose.String("Fake"))
+      @loose.String("Fake")
     </li>
     <li>
       <code>loose.String("Fake")</code>:
@@ -133,10 +134,10 @@
     </li>
   </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { })
-@accordion.ItemEnd()
+@accSection.End()
 
 
-@accordion.ItemStart(accPrefix + "more", "Nested Objects in JSON (ITyped)")
+@((accSection = acc.Section("Nested Objects in JSON (ITyped)")).Start())
   <p>
     JSON data can be difficult to work with, because you would need to use
     <code>System.Text.Json</code> which has a sophisticated API.
@@ -171,21 +172,21 @@
     <li>#1 car make (will be null): <code>@marc.String("Car.Make", required: false)</code></li>
   </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { })
-@accordion.ItemEnd()
+@accSection.End()
 
 
 @* Int Array *@
-@accordion.ItemStart(accPrefix + "intarray", "Use JSON Arrays of Integers (To&lt;int[]&gt;)")
+@((accSection = acc.Section("Use JSON Arrays of Integers (To&lt;int[]&gt;)")).Start())
   @Html.Partial("./Part Json.Int Array.cshtml")
-@accordion.ItemEnd()
+@accSection.End()
 
 @* Custom Object *@
-@accordion.ItemStart(accPrefix + "custom-object", "Use JSON with Your Own Class (To&lt;City[]&gt;)")
+@((accSection = acc.Section("Use JSON with Your Own Class (To&lt;City[]&gt;)")).Start())
   @Html.Partial("./Part Json.Custom Class.cshtml")
-@accordion.ItemEnd()
+@accSection.End()
 
 
-@accordion.ItemStart(accPrefix + "array", "Use JSON Array of Objects (ITyped)")
+@((accSection = acc.Section("Use JSON Array of Objects (ITyped)")).Start())
   <p>
     If you have an array in your Json, you need a different object.
   </p>
@@ -203,7 +204,7 @@
     }
   </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { })
-@accordion.ItemEnd()
+@accSection.End()
 
 
 
