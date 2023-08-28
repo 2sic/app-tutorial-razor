@@ -18,7 +18,7 @@
   @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
     { "Source JS1", "file:js/report-loaded-in-console-path-app.js" },
     { "Source JS2", "file:js/report-loaded-in-console-path-view.js" },
-  })).SnipStart("load-js"))
+  })).SnipStart())
     <p>
       Load a JavaScript relative to the App folder (see message/console): <br>
       <strong id="loadjs-app-message"></strong>
@@ -45,7 +45,7 @@
   </p>
   @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
     { "Source JS", "file:js/turnOn1.js" },
-  })).SnipStart("turnOn1"))
+  })).SnipStart())
     <p>
       The following text will be replaced once the JS is triggered: <br>
       <strong id="turnOn1-message"></strong>
@@ -96,7 +96,7 @@
   @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
     { "Helper Razor", "file:shared-uniquekey-message.cshtml" },
     { "JS File", "file:js/unique-key.js" },
-  })).SnipStart("unique-key"))
+  })).SnipStart())
     @{
       var buttonId = "demo-uniquekey-btn-" + UniqueKey;
       var messageId = "demo-uniquekey-msg-" + UniqueKey;
@@ -123,7 +123,7 @@
     For example, you may need to have a UniqueKey which also uses another value - or many.
     This is done using <code>@@Kit.Key.UniqueKeyWith(...)</code>.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("unique-key-with"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
     <ol>
       <li>
         Unique Key with <code>12345</code>:
@@ -155,7 +155,7 @@
     If the <code>UniqueKey</code> is based on known object types such as Entities, this works very well.
     For example, you may need to loop through a list of items, and each item needs a unique key.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart("unique-key-with-entity"))
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
     @{
       var books = AsItems(App.Data["Books"]);
     }

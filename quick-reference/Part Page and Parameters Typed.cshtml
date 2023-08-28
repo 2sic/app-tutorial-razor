@@ -12,7 +12,7 @@
   @((accSection = acc.Section("2sxc Razor APIs to work with Page and Links")).Start())
 
     <h3>Page URL Parameters / QueryString</h3>
-    @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "basics310", "basics311", "basics320", "basics330", "basics410" })).SnipStart("url-parameters"))
+    @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "basics310", "basics311", "basics320", "basics330", "basics410" })).SnipStart())
       <ol>
         <li>
           <a href='@Link.To(parameters: "demo=true")'>Link to this page with demo=true</a>
@@ -38,7 +38,7 @@
 
 
     <h3>Set Page Title, Keywords etc.</h3>
-    @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })).SnipStart("set-page-properties"))
+    @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })).SnipStart())
       @* Example with a single-liner directly in the code *@
       @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
       @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
@@ -81,7 +81,7 @@
 
 
     <h3>Get Info about Platform, Culture/Languages etc.</h3>
-    @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })).SnipStart("cms-context"))
+    @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })).SnipStart())
       <ol>
         <li>Platform name: '<code>@MyContext.Platform.Name</code>'</li>
         <li>Platform type: '<code>@MyContext.Platform.Type</code>'</li>

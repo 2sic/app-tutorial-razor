@@ -16,7 +16,7 @@
   </p>
 
   <h3>Work with Current Content</h3>
-  @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "entity", "content" })).SnipStart("content"))
+  @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Douglas Adams, the current Content-item</h4>
     @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
     <ol>
