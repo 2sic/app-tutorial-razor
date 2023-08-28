@@ -3,13 +3,13 @@
   // Sys helps generate code snippets etc.
   var Sys = GetCode("../shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
-  var accordion = MyModel.Get("Accordion") as dynamic;
-  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
-  var accPrefix = "acc-js-";
+  var acc = MyModel.Get("Accordion") as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
 }
 
 @* Load JS *@
-@accordion.ItemStart(accPrefix + "js-load", "Load JavaScripts from App into Html")
+@((accSection = acc.Section("Load JavaScripts from App into Html")).Start())
   <p>
     Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
     What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
@@ -27,12 +27,12 @@
     </p>
     <script src="@MyView.Folder.Url/js/report-loaded-in-console-path-view.js"></script>
   @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/report-loaded-in-console-path-app.js", "file:js/report-loaded-in-console-path-view.js" )
-@accordion.ItemEnd()
+@accSection.End()
 
 
 
 @* turnOn *@
-@accordion.ItemStart(accPrefix + "js-turnOn", "Activate Scripts when Ready using turnOn")
+@((accSection = acc.Section("Activate Scripts when Ready using turnOn")).Start())
   @* <h3>Activate JavaScript using <em>turnOn</em></h3> *@
   <p>
     A core challenge is to activate JavaScripts only when needed - and when all dependencies are loaded.
@@ -77,12 +77,12 @@
     @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
 
   @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/turnOn1.js" )
-@accordion.ItemEnd()
+@accSection.End()
 
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@accordion.ItemStart("js-interop", "Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")
+@((accSection = acc.Section("Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")).Start())
   <h3>Work with the new UniqueKey with JavaScript - new v16.04 🌟</h3>
   <p>
     The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.
@@ -159,4 +159,4 @@
       }
     </ol>
   @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
-@accordion.ItemEnd()
+@accSection.End()

@@ -4,12 +4,12 @@
   // Sys helps generate code snippets etc.
   var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
-  var accordion = DynamicModel.Accordion as dynamic;
-  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
-  var accPrefix = "acc-rzr-";
+  var acc = DynamicModel.Accordion as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
 }
 
-@accordion.ItemStart(accPrefix +"ref-content", "Work with Content, Images, Multi-Language")
+@((accSection = acc.Section("Work with Content, Images, Multi-Language")).Start())
   <p>
     Every view/template receives prepared data, either entered by the user on this page, or provided through a query.
   </p>
@@ -38,5 +38,5 @@
     </ul>
   @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })
 
-@accordion.ItemEnd()
+@accSection.End()
 

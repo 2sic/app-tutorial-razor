@@ -2,12 +2,6 @@ using ToSic.Razor.Blade;
 
 public class Accordion: Custom.Hybrid.CodeTyped
 {
-  public Accordion Setup(string prefix) {
-    Prefix = prefix;
-    return this;
-  }
-  public string Prefix { get; private set; }
-
   public object Start(string name) {
     Name = name;
     return Kit.HtmlTags.Div().Class("accordion").Id(name).TagStart;
@@ -18,20 +12,10 @@ public class Accordion: Custom.Hybrid.CodeTyped
   public IHtmlTag End() { return Kit.HtmlTags.RawHtml(DivEnd); }
 
   public AccPart Section(string title) {
-    var partName = AutoPartName + AutoPartIndex++;
-    return new AccPart(this, Kit.HtmlTags, Name + Prefix + partName, title);
+    return new AccPart(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, title);
   }
   private const string AutoPartName = "auto-part-";
   private int AutoPartIndex = 0;
-
-  public IHtmlTag ItemStart(string partName, string title) {
-    var specs = new AccPart(this, Kit.HtmlTags, partName, title);
-    return specs.Start();
-  }
-
-  public IHtmlTag ItemEnd() {
-    return Kit.HtmlTags.RawHtml("\n", DivEnd, "\n", DivEnd, "\n", DivEnd, "\n");
-  }
 
   internal string DivEnd = "</div>";
 }

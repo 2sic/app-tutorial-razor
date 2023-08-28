@@ -3,14 +3,14 @@
   // Sys helps generate code snippets etc.
   var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
-  var accordion = DynamicModel.Accordion as dynamic;
-  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
-  var accPrefix = "acc-rzradv-";
+  var acc = DynamicModel.Accordion as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
 }
 
 
 
-  @accordion.ItemStart(accPrefix + "url-parameters", "2sxc Razor APIs to work with Page and Links")
+  @((accSection = acc.Section("2sxc Razor APIs to work with Page and Links")).Start())
 
     <h3>Page URL Parameters / QueryString</h3>
     @Sys.SourceCode.ResultRefStart("url-parameters")
@@ -113,5 +113,5 @@
         <li>View Edition: '<code>@CmsContext.View.Edition</code>' (blank if no special CSS Framework edition) </li>
       </ol>
     @Sys.SourceCode.ResultRefEnd(new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })
-  @accordion.ItemEnd()
+  @accSection.End()
 

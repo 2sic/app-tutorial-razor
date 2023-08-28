@@ -3,9 +3,9 @@
   // Sys helps generate code snippets etc.
   var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
-  var accordion = DynamicModel.Accordion as dynamic;
-  // The prefix is used to create unique IDs for the accordion; just in the name is reused elsewhere
-  var accPrefix = "acc-rzr-";
+  var acc = DynamicModel.Accordion as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
 }
 
   <p>
@@ -13,24 +13,24 @@
   </p>
     
   @* Shared section, which is identical in both Razors syntaxes *@
-  @accordion.ItemStart(accPrefix + "vars", "Variables in Razor / C#")
+  @((accSection = acc.Section("Variables in Razor / C#")).Start())
     @Html.Partial("./Part RazorBasics.Variables.cshtml")
-  @accordion.ItemEnd()
-  @accordion.ItemStart(accPrefix + "if", "Conditions: if, else and using ? : syntax")
+  @accSection.End()
+  @((accSection = acc.Section("Conditions: if, else and using ? : syntax")).Start())
     @Html.Partial("./Part RazorBasics.If.cshtml")
-  @accordion.ItemEnd()
-  @accordion.ItemStart(accPrefix + "loop", "Loops: for, foreach")
+  @accSection.End()
+  @((accSection = acc.Section("Loops: for, foreach")).Start())
     @Html.Partial("./Part RazorBasics.Loops.cshtml")
-  @accordion.ItemEnd()
-  @accordion.ItemStart(accPrefix + "html", "Show Raw HTML")
+  @accSection.End()
+  @((accSection = acc.Section("Show Raw HTML")).Start())
     @Html.Partial("./Part RazorBasics.Html.cshtml")
-  @accordion.ItemEnd()
-  @accordion.ItemStart(accPrefix + "emoji", "Show Emojis")
+  @accSection.End()
+  @((accSection = acc.Section("Show Emojis")).Start())
     @Html.Partial("./Part RazorBasics.Emoji.cshtml")
-  @accordion.ItemEnd()
+  @accSection.End()
 
 
-  @accordion.ItemStart(accPrefix + "razor-reuse", "Re-Use Code and Razor Files")
+  @((accSection = acc.Section("Re-Use Code and Razor Files")).Start())
     <p>
       These are some more advanced APIs which are very common as well, so you should be familiar with them.
     </p>
@@ -63,4 +63,4 @@
         </li>
       </ol>
     @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
-  @accordion.ItemEnd()
+  @accSection.End()
