@@ -251,19 +251,6 @@ public class SourceCode: Custom.Hybrid.Code14
     return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
   }
 
-  public ITag ResultRefEnd(string[] linkRefs, params string[] files) {
-    var links = linkRefs == null || !linkRefs.Any()
-      ? null
-      : Tag.Ol(linkRefs.Select(r => Sys.TutorialLiLinkLookup(r).ToString()));
-    var tabContents = new List<object>();
-    // tabContents.Add(links);
-    if (files != null && files.Any())
-      tabContents.AddRange(files);
-    tabContents.Add(links);
-    var result = ResultEndInner(false, true, false, results: tabContents.ToArray(), active: SourceTabName);
-    return result;
-  }
-
   public int SourceCodeId = 0;
 
   public class QuickRefSection: SnippetSection
@@ -293,7 +280,13 @@ public class SourceCode: Custom.Hybrid.Code14
     }
 
     public ITag SnipEnd() {
-      return SourceCode.ResultRefEnd(Tutorials, Tabs.Values.ToArray());
+      var links = Tag.Ol(Tutorials.Select(r => SourceCode.Sys.TutorialLiLinkLookup(r).ToString()));
+      var tabContents = new List<object>();
+      tabContents.AddRange(Tabs.Values);
+      tabContents.Add(links);
+      var result = SourceCode.ResultEndInner(false, true, false, results: tabContents.ToArray(), active: SourceTabName);
+      return result;
+
     }
   }
 
@@ -330,7 +323,7 @@ public class SourceCode: Custom.Hybrid.Code14
 
   public ITag ResultEnd(params object[] results) { return ResultEndInner(true, results); }
 
-  private ITag ResultEndInner(bool showSnippet, params object[] results) {
+  internal ITag ResultEndInner(bool showSnippet, params object[] results) {
     var l = Log.Call<ITag>("showSnippet: " + showSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
     return l(ResultEndInner(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results, active: null), "ok");
   }
