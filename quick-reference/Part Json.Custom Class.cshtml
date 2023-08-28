@@ -15,6 +15,7 @@
     public class City {
       public string Name { get; set; }
       public int ZipCode { get; set; }
+      public List<City> PartnerCities { get;set; }
     }
   }
   @{
@@ -25,7 +26,16 @@
   }
   <ul>
     @foreach(var city in cities) {
-      <li><code>@city.Name</code>: @city.ZipCode</li>
+      <li>
+        <code>@city.Name</code>: @city.ZipCode
+        @if (city.PartnerCities != null) {
+          <br>
+          <span>Partner Cities:
+            @string.Join(", ", city.PartnerCities.Select(c => c.Name))
+          </span>
+          
+        }
+      </li>
     }
   </ul>
   @qref.SnipEnd()

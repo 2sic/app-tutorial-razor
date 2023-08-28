@@ -164,22 +164,44 @@
     var frank = Kit.Json.ToTyped(jFrank);
     var year = DateTime.Now.Year;
   }
+  <h4>Marc</h4>
   <ol>
-    <li>
-      #1 <code>.Get("Name")</code>
-      (note that it's case insensitive):
-      <code>@marc.Get("Name")</code>
+    <li>marc.ToString():
+      <code>@marc.ToString()</code>
     </li>
-    <li>
-      #1 name <code>.String("Name")</code>
-      (if you need the variable to be a string):
+    <li>name <code>.String("Name")</code>
       <code>@marc.String("Name")</code>
     </li>
-    <li>#1 age: <code>@marc.Get("Age")</code></li>
-    <li>#1 birth year: <code>@(year - marc.Int("Age"))</code></li>
-    <li>#2 name: <code>@frank.String("Name")</code></li>
-    <li>#2 car make: <code>@frank.String("Car.Make")</code></li>
-    <li>#1 car make (will be null): <code>@marc.String("Car.Make", required: false)</code></li>
+    <li>age: <code>@marc.Get("Age")</code></li>
+    <li>birth year:
+      <code>@(year - marc.Int("Age"))</code>
+    </li>
+    <li>car make (will be null):
+      <code>@marc.String("Car.Make", required: false)</code>
+    </li>
+    <li>
+      Friends using <code>AsTypedList(...)</code>
+      <ul>
+        @foreach(var friend in AsTypedList(marc.Get("friends"))) {
+          <li>@friend.String("Name")</li>
+        }
+      </ul>      
+    </li>
+  </ol>
+  <h4>Frank</h4>
+  <ol>
+    <li>#2 frank.ToString():
+      <code>@frank.ToString()</code>
+    </li>
+    <li>#2 name:
+      <code>@frank.String("Name")</code>
+    </li>
+    <li>#2 car make:
+      <code>@frank.String("Car.Make")</code>
+    </li>
+    <li>#2 car ToString():
+      <code>@frank.Get("Car").ToString()</code>
+    </li>
   </ol>
   @qref.SnipEnd()
 @accSection.End()
