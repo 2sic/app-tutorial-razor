@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+@{
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  dynamic qref;
+}
 
-@Sys.SourceCode.ResultRefStart("conditions")
+@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "basics210" })).SnipStart("conditions"))
   @{
     const int old = 60;
     const string isOld = "this guy is old";
@@ -21,4 +24,4 @@
     Ternare show old/not old based on age <code>? ... : </code>:
     @(age > old ? isOld : notOld)
   </p>
-@Sys.SourceCode.ResultRefEnd(new string[] { "basics210" })
+@qref.SnipEnd()

@@ -33,7 +33,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
     if (match.Length > 0) return match.Groups["contents"].Value;
 
     // V3 with variable and SnipStart(...)
-    patternStartEnd = @"(?:@.*\.SnipStart\(""" + id + @"""\))(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
+    patternStartEnd = @"(?:\.SnipStart\(""" + id + @"""\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) return match.Groups["contents"].Value;
 

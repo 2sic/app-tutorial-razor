@@ -7,6 +7,7 @@
   var acc = DynamicModel.Accordion as dynamic;
   // variable to hold each section config
   dynamic accSection;
+  dynamic qref;
 }
 
 @((accSection = acc.Section("Work with Content, Images, Multi-Language")).Start())
@@ -15,7 +16,7 @@
   </p>
 
   <h3>Work with Current Content</h3>
-  @Sys.SourceCode.ResultRefStart("content")
+  @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "entity", "content" })).SnipStart("content"))
     <h4>Douglas Adams, the current Content-item</h4>
     @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
     <ol>
@@ -36,7 +37,7 @@
         </li>
       }
     </ul>
-  @Sys.SourceCode.ResultRefEnd(new string[] { "entity", "content" })
+  @qref.SnipEnd()
 
 @accSection.End()
 

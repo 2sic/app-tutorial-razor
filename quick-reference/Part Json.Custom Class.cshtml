@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+@{
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  dynamic qref;
+}
 
-  @Sys.SourceCode.ResultRefStart("json-custom-class")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-custom-class"))
   @functions {
     public class City {
       public string Name { get; set; }
@@ -19,4 +22,4 @@
       <li><code>@city.Name</code>: @city.ZipCode</li>
     }
   </ul>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()

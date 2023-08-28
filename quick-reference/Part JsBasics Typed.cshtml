@@ -6,6 +6,7 @@
   var acc = MyModel.Get("Accordion") as dynamic;
   // variable to hold each section config
   dynamic accSection;
+  dynamic qref;
 }
 
 @* Load JS *@
@@ -14,7 +15,10 @@
     Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
     What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
   </p>
-  @Sys.SourceCode.ResultRefStart("load-js", "Source JS1", "Source JS2")
+  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+    { "Source JS1", "file:js/report-loaded-in-console-path-app.js" },
+    { "Source JS2", "file:js/report-loaded-in-console-path-view.js" },
+  })).SnipStart("load-js"))
     <p>
       Load a JavaScript relative to the App folder (see message/console): <br>
       <strong id="loadjs-app-message"></strong>
@@ -26,7 +30,7 @@
       <strong id="loadjs-view-message"></strong>
     </p>
     <script src="@MyView.Folder.Url/js/report-loaded-in-console-path-view.js"></script>
-  @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/report-loaded-in-console-path-app.js", "file:js/report-loaded-in-console-path-view.js" )
+  @qref.SnipEnd()
 @accSection.End()
 
 
@@ -39,7 +43,9 @@
     This is what <code>turnOn</code> does.
     It checks if all specified JS objects exist, and then triggers the JS code.
   </p>
-  @Sys.SourceCode.ResultRefStart("turnOn1", "Source JS")
+  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+    { "Source JS", "file:js/turnOn1.js" },
+  })).SnipStart("turnOn1"))
     <p>
       The following text will be replaced once the JS is triggered: <br>
       <strong id="turnOn1-message"></strong>
@@ -75,8 +81,7 @@
     }
     @* Tell TurnOn to trigger the JS and give it a complex object *@
     @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
-
-  @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:js/turnOn1.js" )
+  @qref.SnipEnd()
 @accSection.End()
 
 
@@ -88,7 +93,10 @@
     The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.
     The value of <code>UniqueKey</code> is the same in all Razor and C# files for the same Content-Block.
   </p>
-  @Sys.SourceCode.ResultRefStart("unique-key", "Helper Razor", "JS File")
+  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+    { "Helper Razor", "file:shared-uniquekey-message.cshtml" },
+    { "JS File", "file:js/unique-key.js" },
+  })).SnipStart("unique-key"))
     @{
       var buttonId = "demo-uniquekey-btn-" + UniqueKey;
       var messageId = "demo-uniquekey-msg-" + UniqueKey;
@@ -105,7 +113,7 @@
     @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
     @* Load the script - this can be before or after the TurnOn *@
     <script src="@MyView.Folder.Url/js/unique-key.js"></script>
-  @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
+  @qref.SnipEnd()
 
 
 
@@ -115,7 +123,7 @@
     For example, you may need to have a UniqueKey which also uses another value - or many.
     This is done using <code>@@Kit.Key.UniqueKeyWith(...)</code>.
   </p>
-  @Sys.SourceCode.ResultRefStart("unique-key-with", "Helper Razor", "JS File")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("unique-key-with"))
     <ol>
       <li>
         Unique Key with <code>12345</code>:
@@ -138,7 +146,7 @@
         <code>@Kit.Key.UniqueKeyWith(12345, "hello")</code>
       </li>
     </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
+  @qref.SnipEnd()
   
 
 
@@ -147,7 +155,7 @@
     If the <code>UniqueKey</code> is based on known object types such as Entities, this works very well.
     For example, you may need to loop through a list of items, and each item needs a unique key.
   </p>
-  @Sys.SourceCode.ResultRefStart("unique-key-with-entity", "Helper Razor", "JS File")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("unique-key-with-entity"))
     @{
       var books = AsItems(App.Data["Books"]);
     }
@@ -158,5 +166,5 @@
         </li>
       }
     </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { }, "file:shared-uniquekey-message.cshtml", "file:js/unique-key.js" )
+  @qref.SnipEnd()
 @accSection.End()

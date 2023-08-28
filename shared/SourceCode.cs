@@ -251,18 +251,6 @@ public class SourceCode: Custom.Hybrid.Code14
     return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
   }
 
-  // Must begin with the term "Result" to be captured later on when looking for the snippet
-  public ITag ResultRefStart(string snippetId, params string[] names) {
-    return new QuickRefSection(this, names.ToDictionary(n => n, n => n), null).SnipStart(snippetId);
-  }
-
-  // public ITag ResultRefStartNew(string snippetId, params string[] names) {
-  //   var list = new List<string>() { SourceTabName };
-  //   if (names != null && names.Any()) list.AddRange(names);
-  //   list.Add("Additional Tutorials");
-  //   return SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
-  // }
-
   public ITag ResultRefEnd(string[] linkRefs, params string[] files) {
     var links = linkRefs == null || !linkRefs.Any()
       ? null
@@ -275,6 +263,8 @@ public class SourceCode: Custom.Hybrid.Code14
     var result = ResultEndInner(false, true, false, results: tabContents.ToArray(), active: SourceTabName);
     return result;
   }
+
+  public int SourceCodeId = 0;
 
   public class QuickRefSection: SnippetSection
   {
@@ -292,11 +282,13 @@ public class SourceCode: Custom.Hybrid.Code14
     /// The SnippetId must be provided here, so it can be found in the source code later on
     /// </summary>
     public ITag SnipStart(string snippetId) {
-      SnippetId = snippetId;
+      // note: can't auto-number yet, because the SnippetId is used for various things
+      SnippetId = /* "snippet-" + SourceCode.SourceCodeId++ + " " + */ snippetId;
       var names = Tabs.Keys.ToArray();
       var list = new List<string>() { SourceTabName };
       if (names != null && names.Any()) list.AddRange(names);
-      list.Add("Additional Tutorials");
+      if (Tutorials != null && Tutorials.Any())
+        list.Add("Additional Tutorials");
       return SourceCode.SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
     }
 

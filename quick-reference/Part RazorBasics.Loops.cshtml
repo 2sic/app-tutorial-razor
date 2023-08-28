@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+@{
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  dynamic qref;
+}
 
-@Sys.SourceCode.ResultRefStart("loops")
+@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "basics220" })).SnipStart("loops"))
   @{
     var pets = new string[] { "dog", "cat", "mouse"};
     var owners = new string[] { "Daniel", "John", "Markus"};
@@ -18,4 +21,4 @@
       <li>@pets[i] - owned by @owners[i]</li>
     }
   </ul>
-@Sys.SourceCode.ResultRefEnd(new string[] { "basics220" })
+@qref.SnipEnd()

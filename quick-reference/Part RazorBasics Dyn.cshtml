@@ -6,6 +6,7 @@
   var acc = DynamicModel.Accordion as dynamic;
   // variable to hold each section config
   dynamic accSection;
+  dynamic qref;
 }
 
   <p>
@@ -39,17 +40,21 @@
     @Html.Partial("./Part RazorBasics.PartialNoParams.cshtml")
 
     <h3>Reuse Razor Components (Partial) with Parameters</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-razor-params", "Source of box-pro.cshtml")
+    @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+      { "Source box.cshtml", "file:../reuse/box-pro.cshtml" },
+    }, tutorials: new string[] { "reuse110" })).SnipStart("reuse-razor-params"))
       <h4>Call some external Razor files</h4>
       <ol>
         <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Hello, this is the first line" })</li>
         <li>@Html.Partial("../reuse/box.cshtml", new { Label = "Second line!", Color = "red" })</li>
       </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse110" }, "file:../reuse/box.cshtml")
+    @qref.SnipEnd()
 
 
     <h3>Reuse Partial Razor and functions from Helper Code files</h3>
-    @Sys.SourceCode.ResultRefStart("reuse-code" @*, "Source of line.cshtml" *@)
+    @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+      { "Source SharedFunctions.cs", "file:../reuse/SharedFunctions.cs" },
+    }, tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart("reuse-code"))
       @{
         // helper library to say hello & create QR codes
         var qrLib = CreateInstance("../reuse/SharedFunctions.cs");
@@ -62,5 +67,5 @@
           <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
         </li>
       </ol>
-    @Sys.SourceCode.ResultRefEnd(new string[] { "reuse210", "reuse310", "reuse320" }) @*, "file:../reuse/line.cshtml") *@
+    @qref.SnipEnd()
   @accSection.End()

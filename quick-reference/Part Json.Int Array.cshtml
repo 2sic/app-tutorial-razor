@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+@{
+  var Sys = CreateInstance("../shared/Helpers.cs").Init(this);
+  dynamic qref;
+}
 
-  @Sys.SourceCode.ResultRefStart("json-int-array")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-int-array"))
   @{
     // Simple JSON string containing fibonacci numbers
     var jFibonacci = "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]";
@@ -14,4 +17,5 @@
       <li><code>@f</code></li>
     }
   </ul>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
+  

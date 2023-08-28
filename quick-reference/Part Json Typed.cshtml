@@ -6,6 +6,7 @@
   var acc = MyModel.Get("Accordion") as dynamic;
   // variable to hold each section config
   dynamic accSection;
+  dynamic qref;
 }
 
 @((accSection = acc.Section("Use JSON Strings as Objects (ITyped) - simple .Get()")).Start())
@@ -14,7 +15,7 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @Sys.SourceCode.ResultRefStart("json-basic")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-basic"))
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = "{ \"name\": \"Dude\", \"age\": 47 }";
@@ -30,7 +31,7 @@
       <code>.Get("NAME")</code> (insensitive): @dude.Get("NAME")
     </li>
   </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
 @accSection.End()
 
 
@@ -38,7 +39,7 @@
   <p>
     This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
   </p>
-  @Sys.SourceCode.ResultRefStart("json-basic2")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-basic2"))
   <ol>
     <li>
       <code>.String("Name")</code> (typed): @dude.String("Name")
@@ -53,7 +54,7 @@
       Add using String(...): <code>@(100 + dude.String("Age"))</code>
     </li>
   </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
 @accSection.End()
 
 @{
@@ -73,7 +74,7 @@
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @Sys.SourceCode.ResultRefStart("json-required")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-required"))
   @{
     var strict = Kit.Json.ToTyped(jDude);
   }
@@ -99,7 +100,7 @@
       @strict.Int("Fake", required: false, fallback: -1)
     </li>
   </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
 @accSection.End()
 
 
@@ -107,7 +108,7 @@
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @Sys.SourceCode.ResultRefStart("json-loose")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-loose"))
   @{
     var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
   }
@@ -133,7 +134,7 @@
       @loose.Int("Fake", fallback: -1)
     </li>
   </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
 @accSection.End()
 
 
@@ -143,7 +144,7 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @Sys.SourceCode.ResultRefStart("json-basic")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-basic"))
   @{
     // Simple JSON strings which could come from a file or web service
     var jMarc = "{ \"name\": \"Marc\", \"age\": 33, \"car\": null }";
@@ -171,7 +172,7 @@
     <li>#2 car make: <code>@frank.String("Car.Make")</code></li>
     <li>#1 car make (will be null): <code>@marc.String("Car.Make", required: false)</code></li>
   </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
 @accSection.End()
 
 
@@ -190,7 +191,7 @@
   <p>
     If you have an array in your Json, you need a different object.
   </p>
-  @Sys.SourceCode.ResultRefStart("json-obj-array")
+  @((qref = Sys.SourceCode.QuickRef()).SnipStart("json-obj-array"))
   @{
     // Simple JSON strings which could come from a file or web service
     var jCities = "[{\"name\": \"Buchs\"}, {\"name\": \"Grabs\"}, {\"name\": \"Sevelen\" }]";
@@ -203,7 +204,7 @@
       <li>Name: <code>@city.String("Name")</code></li>
     }
   </ol>
-  @Sys.SourceCode.ResultRefEnd(new string[] { })
+  @qref.SnipEnd()
 @accSection.End()
 
 
