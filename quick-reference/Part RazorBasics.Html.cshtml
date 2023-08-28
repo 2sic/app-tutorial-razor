@@ -4,7 +4,7 @@
   dynamic qref;
 }
 
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "html" })).SnipStart("html"))
+@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "html" })).SnipStart())
   @{
     var normalText = "this is text, it doesn't have tags";
     var htmlText = "this string <em>has</em> html <strong>tags</strong>";

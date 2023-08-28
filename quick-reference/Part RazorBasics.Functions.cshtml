@@ -4,8 +4,9 @@
   dynamic qref;
 }
 
-<h3>Reuse Code with functions and Template Delegates in same file</h3>
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "reuse101", "reuse102", "reuse110" })).SnipStart("reuse"))
+@* TODO: Sample Template Delegates in separate sample *@
+<h3>Reuse Code with functions in same file</h3>
+@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "reuse101", "reuse102", "reuse110" })).SnipStart())
   @functions {
     string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
    

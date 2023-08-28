@@ -8,7 +8,7 @@
 <h3>Reuse Razor Components (Partial)</h3>
   @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
     { "Source line.cshtml", "file:../reuse/line.cshtml" },
-  }, tutorials: new string[] { "reuse110" })).SnipStart("reuse-razor-no-params"))
+  }, tutorials: new string[] { "reuse110" })).SnipStart())
   <h4>Call some external Razor files</h4>
   <ol>
     <li>@Html.Partial("../reuse/line.cshtml")</li>

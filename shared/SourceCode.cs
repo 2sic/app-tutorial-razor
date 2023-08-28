@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-public class SourceCode: Custom.Hybrid.Code14
+public class SourceCode: Custom.Hybrid.CodeTyped
 {
   const int LineHeightPx = 20;
   const int BufferHeightPx = 20; // for footer scrollbar which often appears
@@ -16,8 +16,8 @@ public class SourceCode: Custom.Hybrid.Code14
   public SourceCode Init(dynamic sys, string path) {
     Sys = sys;
     Path = path;
-    SourceProcessor = CreateInstance("SourceProcessor.cs");
-    BsTabs = CreateInstance("BootstrapTabs.cs");
+    SourceProcessor = GetCode("SourceProcessor.cs");
+    BsTabs = GetCode("BootstrapTabs.cs");
     return this;
   }
 
@@ -26,7 +26,7 @@ public class SourceCode: Custom.Hybrid.Code14
   private dynamic SourceProcessor { get; set; }
   private dynamic BsTabs {get;set;}
 
-  public dynamic Formulas { get { return _formulas ?? (_formulas = CreateInstance("SourceCodeFormulas.cs")).Init(this); } }
+  public dynamic Formulas { get { return _formulas ?? (_formulas = GetCode("SourceCodeFormulas.cs")).Init(this); } }
   private dynamic _formulas;
 
   #endregion
@@ -111,34 +111,38 @@ public class SourceCode: Custom.Hybrid.Code14
     return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
   }
 
-  internal ITag SnippetStartInner(string snippetId, string firstName, string lastName, string[] names = null, string active = null) {
+  internal ITag SnippetStartInner(string tabIdPrefix, string firstName, string lastName, string[] names = null, string active = null) {
     names = names ?? new string[] { };
-    _snippet = snippetId;
+    _snippet = tabIdPrefix;
     var firstIsActive = active == null || active == firstName;
     return Tag.RawHtml(
-      TabsForSnippet(snippetId, firstName, lastName, names, active),    // Tab headers
+      TabsForSnippet(tabIdPrefix, firstName, lastName, names, active),    // Tab headers
       BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
       "  ",                             // Open the first tab-body item as the snippet is right after this
-      BsTabs.TabContentOpen(snippetId, Name2TabId(firstName), true, firstIsActive)
+      BsTabs.TabContentOpen(tabIdPrefix, Name2TabId(firstName), true, firstIsActive)
     );
   }
 
   public ITag SnippetEnd() {
+    return SnippetEndInternal(_snippet, _snippet);
+  }
+
+  private ITag SnippetEndInternal(string snippetTabId, string snippetId) {
     return Tag.RawHtml(
       BsTabs.TabContentClose(),     // Will close if still open
-      BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet), isFirst: false, isActive: false),
+      BsTabs.TabContent(snippetTabId, Name2TabId(SourceTabName), Snippet(snippetId), isFirst: false, isActive: false),
       BsTabs.TabContentGroupClose() // Will close if still open
     );
   }
 
   // Tabs for Output, (optional more tabs), Source Code
-  private ITag TabsForSnippet(string prefix, string firstName, string lastName, string[] names, string active = null) {
+  private ITag TabsForSnippet(string tabIdPrefix, string firstName, string lastName, string[] names, string active = null) {
     var tabNames = new List<string>() { firstName };
     if (names != null && names.Any())
       tabNames.AddRange(names.Select(n => n == "R14" ? "Razor14 and older" : n));
     if (Text.Has(lastName))
       tabNames.Add(lastName);
-    return BsTabs.TabList(prefix, tabNames, active) as ITag;
+    return BsTabs.TabList(tabIdPrefix, tabNames, active) as ITag;
   }
 
   #endregion
@@ -245,15 +249,26 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #endregion
 
+  #region Counter / Identifiers
+
+  /// <summary>
+  /// Count of source code snippets - used to create unique IDs
+  /// </summary>
+  public int SourceCodeTabCount = 0;
+
+  public string UniqueKey { get { return _uniqueKey ?? (_uniqueKey = Kit.Key.UniqueKeyWith(this)); }}
+  private string _uniqueKey;
+
+  #endregion
+
   #region Reference / CheatSheet
 
   public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
     return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
   }
 
-  public int SourceCodeId = 0;
 
-  public class QuickRefSection: SnippetSection
+  public class QuickRefSection: SectionBase
   {
     public QuickRefSection(SourceCode sourceCode, Dictionary<string, string> tabs, string[] tutorials)
     {
@@ -262,21 +277,24 @@ public class SourceCode: Custom.Hybrid.Code14
       Tabs = tabs;
       Tutorials = tutorials ?? new string[] {};
     }
+    protected int SnippetCount;
     private string SnippetId;
+    private string TabIdPrefix;
     private string [] Tutorials;
 
     /// <summary>
     /// The SnippetId must be provided here, so it can be found in the source code later on
     /// </summary>
-    public ITag SnipStart(string snippetId) {
-      // note: can't auto-number yet, because the SnippetId is used for various things
-      SnippetId = /* "snippet-" + SourceCode.SourceCodeId++ + " " + */ snippetId;
+    public ITag SnipStart(string snippetId = null) {
+      SnippetCount = SourceCode.SourceCodeTabCount++;
+      SnippetId = snippetId;
+      TabIdPrefix = "tab-" + SourceCode.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
       var names = Tabs.Keys.ToArray();
       var list = new List<string>() { SourceTabName };
       if (names != null && names.Any()) list.AddRange(names);
       if (Tutorials != null && Tutorials.Any())
         list.Add("Additional Tutorials");
-      return SourceCode.SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
+      return SourceCode.SnippetStartInner(TabIdPrefix, ResultTabName, null, list.ToArray(), SourceTabName);
     }
 
     public ITag SnipEnd() {
@@ -284,13 +302,17 @@ public class SourceCode: Custom.Hybrid.Code14
       var tabContents = new List<object>();
       tabContents.AddRange(Tabs.Values);
       tabContents.Add(links);
-      var result = SourceCode.ResultEndInner(false, true, false, results: tabContents.ToArray(), active: SourceTabName);
+      var result = SourceCode.ResultEndInner2(false, true, false,
+        results: tabContents.ToArray(),
+        active: SourceTabName,
+        snippetTabId: TabIdPrefix,
+        snippetId: SnippetId ?? "count:" + SnippetCount
+      );
       return result;
-
     }
   }
 
-  public class SnippetSection {
+  public class SectionBase {
     public SourceCode SourceCode;
     public string Title;
     public Dictionary<string, string> Tabs;
@@ -319,16 +341,15 @@ public class SourceCode: Custom.Hybrid.Code14
 
 
   public string Invisible() { return null; }
-  // public string ResultPrepare() { return null; }
 
   public ITag ResultEnd(params object[] results) { return ResultEndInner(true, results); }
 
-  internal ITag ResultEndInner(bool showSnippet, params object[] results) {
+  private ITag ResultEndInner(bool showSnippet, object[] results) {
     var l = Log.Call<ITag>("showSnippet: " + showSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
-    return l(ResultEndInner(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results, active: null), "ok");
+    return l(ResultEndInner2(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results, active: null, snippetTabId: _snippet, snippetId: _snippet), "ok");
   }
 
-  private ITag ResultEndInner(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, object[] results, string active) {
+  private ITag ResultEndInner2(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, object[] results, string active, string snippetTabId, string snippetId) {
     var l = Log.Call<ITag>("showSnippetInResult: " + showSnippetInResult + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
     var nameCount = 0;
     // Close the tabs / header div section if it hasn't been closed yet
@@ -338,21 +359,21 @@ public class SourceCode: Custom.Hybrid.Code14
       _resultEndClosesReveal = false;
     }
     if (showSnippetInResult)
-      html = html.Add("</div>", Snippet(_snippet));
+      html = html.Add("</div>", Snippet(snippetId));
     html = html.Add(BsTabs.TabContentClose());
 
     if (showSnippetTab) {
-      html = html.Add(BsTabs.TabContent(_snippet, Name2TabId(SourceTabName), Snippet(_snippet), isFirst: false, isActive: active == SourceTabName));
+      html = html.Add(BsTabs.TabContent(snippetTabId, Name2TabId(SourceTabName), Snippet(snippetId), isFirst: false, isActive: active == SourceTabName));
       nameCount++;
     }
     // If we have any results, add them here
     foreach (var m in results) {
       var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
       Log.Add("tab name:" + name + " (" + nameCount + ")");
-      html = html.Add(BsTabs.TabContent(_snippet, name, FlexibleResult(m), isFirst: false, isActive: active == name));
+      html = html.Add(BsTabs.TabContent(snippetTabId, name, FlexibleResult(m), isFirst: false, isActive: active == name));
       nameCount++;
     }
-    html = html.Add(endWithSnippet ? SnippetEnd() as object : BsTabs.TabContentGroupClose());
+    html = html.Add(endWithSnippet ? SnippetEndInternal(snippetTabId, snippetId) as object : BsTabs.TabContentGroupClose());
     return l(html, "ok");
   }
 
@@ -418,7 +439,7 @@ public class SourceCode: Custom.Hybrid.Code14
     fileInfo.ShowIntro = !isSnippet;
     fileInfo.ShowTitle = !isSnippet;
     fileInfo.Type = isSnippet ? "snippet" : "file";
-    fileInfo.DomAttribute = "source-code-" + CmsContext.Module.Id;
+    fileInfo.DomAttribute = "source-code-" + MyContext.Module.Id;
     if (string.IsNullOrEmpty(snippetId) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
     return fileInfo;
   }
@@ -444,8 +465,8 @@ public class SourceCode: Custom.Hybrid.Code14
             ),
             Tag.Div().Class("col-auto").Wrap(
               // Up / Down arrows as SVG - hidden by default, become visible based on CSS 
-              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-up.svg' class='fa-chevron-up' loading='lazy'>"),
-              Tag.Custom("<img src='" + App.Path + "/assets/svg/arrow-down.svg' class='fa-chevron-down' loading='lazy'>")
+              Tag.Custom("<img src='" + App.Folder.Url + "/assets/svg/arrow-up.svg' class='fa-chevron-up' loading='lazy'>"),
+              Tag.Custom("<img src='" + App.Folder.Url + "/assets/svg/arrow-down.svg' class='fa-chevron-down' loading='lazy'>")
             )
           ) as ITag
         : specs.ShowTitle

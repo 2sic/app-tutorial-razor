@@ -16,24 +16,30 @@ public class SourceProcessor: Custom.Hybrid.Code14
 
   private string KeepOnlySnippet(string source, string id) {
     if (string.IsNullOrWhiteSpace(id)) return source;
+    var idInQuotes = "\"" + id + "\"";
     // trim unnecessary comments
-    var patternSnippet = @"(?:<snippet id=""" + id + @"""[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
+    var patternSnippet = @"(?:<snippet id=" + idInQuotes + @"[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
     var match = Regex.Match(source, patternSnippet);
     if (match.Length > 0) {
       return match.Groups["contents"].Value;
     }
     // V2 with Snippet Tabs / Inline Tabs
-    var patternStartEnd = @"(?:@Sys\.SourceCode\.(Snippet|Formula)(Inline|Only|Init)?Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Snippet|Invisible\())";
+    var patternStartEnd = @"(?:@Sys\.SourceCode\.(Snippet|Formula)(Inline|Only|Init)?Start\(" + idInQuotes + @"[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Snippet|Invisible\())";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) return match.Groups["contents"].Value;
 
     // V2 with Result Tabs - for ResultStart(...) and ResultAndSnippetStart
-    patternStartEnd = @"(?:@Sys\.SourceCode\.Result[a-zA-Z]*Start\(""" + id + @"""[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Result|Invisible))";
+    patternStartEnd = @"(?:@Sys\.SourceCode\.Result[a-zA-Z]*Start\(" + idInQuotes + @"[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Result|Invisible))";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) return match.Groups["contents"].Value;
 
-    // V3 with variable and SnipStart(...)
-    patternStartEnd = @"(?:\.SnipStart\(""" + id + @"""\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
+    // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...)
+    patternStartEnd = @"(?:\.SnipStart\(" + idInQuotes + @"\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
+    match = Regex.Match(source, patternStartEnd);
+    if (match.Length > 0) return match.Groups["contents"].Value;
+
+    // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
+    patternStartEnd = @"(?:\.SnipStart\(\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
     match = Regex.Match(source, patternStartEnd);
     if (match.Length > 0) return match.Groups["contents"].Value;
 
