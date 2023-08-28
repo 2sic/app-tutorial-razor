@@ -261,25 +261,40 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #endregion
 
+  
+  #region Section Base - for all new implementations using objects
+
+  /// <summary>
+  /// Base class for all code sections with snippets etc.
+  /// </summary>
+  public abstract class SectionBase {
+    public SectionBase(SourceCode sourceCode, Dictionary<string, string> tabs) {
+      SourceCode = sourceCode;
+      Tabs = tabs;
+    }
+    public SourceCode SourceCode;
+    protected int SnippetCount;
+    protected string SnippetId;
+    protected string TabPrefix;
+
+    public Dictionary<string, string> Tabs;
+  }
+
+  #endregion
+
+
   #region Reference / CheatSheet
 
   public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
     return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
   }
 
-
   public class QuickRefSection: SectionBase
   {
-    public QuickRefSection(SourceCode sourceCode, Dictionary<string, string> tabs, string[] tutorials)
+    public QuickRefSection(SourceCode sourceCode, Dictionary<string, string> tabs, string[] tutorials): base(sourceCode, tabs)
     {
-      SourceCode = sourceCode;
-      Title = "Quick Reference";
-      Tabs = tabs;
       Tutorials = tutorials ?? new string[] {};
     }
-    protected int SnippetCount;
-    private string SnippetId;
-    private string TabIdPrefix;
     private string [] Tutorials;
 
     /// <summary>
@@ -288,13 +303,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public ITag SnipStart(string snippetId = null) {
       SnippetCount = SourceCode.SourceCodeTabCount++;
       SnippetId = snippetId;
-      TabIdPrefix = "tab-" + SourceCode.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
+      TabPrefix = "tab-" + SourceCode.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
       var names = Tabs.Keys.ToArray();
       var list = new List<string>() { SourceTabName };
       if (names != null && names.Any()) list.AddRange(names);
       if (Tutorials != null && Tutorials.Any())
         list.Add("Additional Tutorials");
-      return SourceCode.SnippetStartInner(TabIdPrefix, ResultTabName, null, list.ToArray(), SourceTabName);
+      return SourceCode.SnippetStartInner(TabPrefix, ResultTabName, null, list.ToArray(), SourceTabName);
     }
 
     public ITag SnipEnd() {
@@ -305,17 +320,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       var result = SourceCode.ResultEndInner2(false, true, false,
         results: tabContents.ToArray(),
         active: SourceTabName,
-        snippetTabId: TabIdPrefix,
+        snippetTabId: TabPrefix,
         snippetId: SnippetId ?? "" + SnippetCount
       );
       return result;
     }
-  }
-
-  public class SectionBase {
-    public SourceCode SourceCode;
-    public string Title;
-    public Dictionary<string, string> Tabs;
   }
 
   #endregion

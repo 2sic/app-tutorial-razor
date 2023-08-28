@@ -19,7 +19,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
     if (string.IsNullOrWhiteSpace(id)) return source;
     var idInQuotes = "\"" + id + "\"";
 
-    // New: Ability to auto-find the correct snippet by number
+    // V3 New: Ability to auto-find the correct snippet by number
     var idNumber = Kit.Convert.ToInt(id, fallback: -1);
     if (idNumber >= 0) {
       // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
