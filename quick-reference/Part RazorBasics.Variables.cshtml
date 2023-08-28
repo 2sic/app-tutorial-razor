@@ -1,7 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+@{ dynamic qref;}
 
-@Sys.SourceCode.ResultRefStart("variables")
+@((qref = Sys.SourceCode.QuickRef(tabs: null, tutorials: new string[] { "basics110" })).SnipStart("variables"))
   @{
     // Create variables - the compiler detects the type automatically
     var firstName = "Terry";
@@ -21,4 +22,5 @@
     <li>Show decadesFloat (float): @decadesFloat</li>
     <li>Show decadesInt (int): @decadesInt</li>
   </ol>
-@Sys.SourceCode.ResultRefEnd(new string[] { "basics110" })
+@qref.SnipEnd()
+@* @Sys.SourceCode.ResultRefEnd(new string[] { "basics110" }) *@

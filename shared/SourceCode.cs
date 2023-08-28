@@ -111,7 +111,7 @@ public class SourceCode: Custom.Hybrid.Code14
     return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
   }
 
-  private ITag SnippetStartInner(string snippetId, string firstName, string lastName, string[] names = null, string active = null) {
+  internal ITag SnippetStartInner(string snippetId, string firstName, string lastName, string[] names = null, string active = null) {
     names = names ?? new string[] { };
     _snippet = snippetId;
     var firstIsActive = active == null || active == firstName;
@@ -247,13 +247,21 @@ public class SourceCode: Custom.Hybrid.Code14
 
   #region Reference / CheatSheet
 
+  public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
+    return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
+  }
+
   // Must begin with the term "Result" to be captured later on when looking for the snippet
   public ITag ResultRefStart(string snippetId, params string[] names) {
-    var list = new List<string>() { SourceTabName };
-    if (names != null && names.Any()) list.AddRange(names);
-    list.Add("Additional Tutorials");
-    return SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
+    return new QuickRefSection(this, names.ToDictionary(n => n, n => n), null).SnipStart(snippetId);
   }
+
+  // public ITag ResultRefStartNew(string snippetId, params string[] names) {
+  //   var list = new List<string>() { SourceTabName };
+  //   if (names != null && names.Any()) list.AddRange(names);
+  //   list.Add("Additional Tutorials");
+  //   return SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
+  // }
 
   public ITag ResultRefEnd(string[] linkRefs, params string[] files) {
     var links = linkRefs == null || !linkRefs.Any()
@@ -266,6 +274,41 @@ public class SourceCode: Custom.Hybrid.Code14
     tabContents.Add(links);
     var result = ResultEndInner(false, true, false, results: tabContents.ToArray(), active: SourceTabName);
     return result;
+  }
+
+  public class QuickRefSection: SnippetSection
+  {
+    public QuickRefSection(SourceCode sourceCode, Dictionary<string, string> tabs, string[] tutorials)
+    {
+      SourceCode = sourceCode;
+      Title = "Quick Reference";
+      Tabs = tabs;
+      Tutorials = tutorials ?? new string[] {};
+    }
+    private string SnippetId;
+    private string [] Tutorials;
+
+    /// <summary>
+    /// The SnippetId must be provided here, so it can be found in the source code later on
+    /// </summary>
+    public ITag SnipStart(string snippetId) {
+      SnippetId = snippetId;
+      var names = Tabs.Keys.ToArray();
+      var list = new List<string>() { SourceTabName };
+      if (names != null && names.Any()) list.AddRange(names);
+      list.Add("Additional Tutorials");
+      return SourceCode.SnippetStartInner(snippetId, ResultTabName, null, list.ToArray(), SourceTabName);
+    }
+
+    public ITag SnipEnd() {
+      return SourceCode.ResultRefEnd(Tutorials, Tabs.Values.ToArray());
+    }
+  }
+
+  public class SnippetSection {
+    public SourceCode SourceCode;
+    public string Title;
+    public Dictionary<string, string> Tabs;
   }
 
   #endregion
@@ -346,7 +389,7 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
   public ITag ShowFileContents(string file,
-    string snippet = null, string title = null, string titlePath = null, 
+    string snippetId = null, string title = null, string titlePath = null, 
     bool? expand = null, bool? wrap = null, bool? withIntro = null, bool? showTitle = null)
   {
     var debug = false;
@@ -354,7 +397,7 @@ public class SourceCode: Custom.Hybrid.Code14
     var errPath = Path;
     try
     {
-      var specs = GetFileAndProcess(path, file, snippet);
+      var specs = GetFileAndProcess(path, file, snippetId);
       path = specs.Path;  // update in case of error
       errPath = debug ? specs.FullPath : path;
       title = title ?? "Source Code of " + (Text.Has(specs.File)
@@ -382,16 +425,16 @@ public class SourceCode: Custom.Hybrid.Code14
   }
 
 
-  public SourceInfo GetFileAndProcess(string path, string file, string snippet = null) {
+  private SourceInfo GetFileAndProcess(string path, string file, string snippetId = null) {
     var fileInfo = GetFile(path, file);
-    fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippet);
+    fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
     fileInfo.Size = Size(null, fileInfo.Processed);
-    var isSnippet = !string.IsNullOrWhiteSpace(snippet);
+    var isSnippet = !string.IsNullOrWhiteSpace(snippetId);
     fileInfo.ShowIntro = !isSnippet;
     fileInfo.ShowTitle = !isSnippet;
     fileInfo.Type = isSnippet ? "snippet" : "file";
     fileInfo.DomAttribute = "source-code-" + CmsContext.Module.Id;
-    if (string.IsNullOrEmpty(snippet) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
+    if (string.IsNullOrEmpty(snippetId) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
     return fileInfo;
   }
 
