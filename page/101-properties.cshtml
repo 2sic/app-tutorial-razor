@@ -22,14 +22,14 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnlyStart("sample")
+@Sys.SourceCode.SnippetOnly().SnipStart()
   @{
     // prefix the current title, description and keywords with additional values
     Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
     Kit.Page.SetDescription("Learn to use Razor Blade ");
     Kit.Page.SetKeywords("Tutorial, Razor, Blade");
   }
-@Sys.SourceCode.SnippetOnlyEnd()
+@Sys.SourceCode.SnipEnd()
 
 
 @* Footer *@

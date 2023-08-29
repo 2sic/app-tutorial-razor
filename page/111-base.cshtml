@@ -29,11 +29,11 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnlyStart("page-base")
+@Sys.SourceCode.SnippetOnly().SnipStart()
   @{
     Kit.Page.SetBase();
   }
-@Sys.SourceCode.SnippetOnlyEnd()
+@Sys.SourceCode.SnipEnd()
 
 
 @* Footer *@

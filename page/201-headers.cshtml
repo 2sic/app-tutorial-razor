@@ -22,13 +22,13 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnlyStart("page-headers")
+@Sys.SourceCode.SnippetOnly().SnipStart()
   @{
     // prefix the current title, description and keywords with additional values
     Kit.Page.AddToHead("<meta xyz>");
     Kit.Page.AddMeta("somename", "somevalue");
   }
-@Sys.SourceCode.SnippetOnlyEnd()
+@Sys.SourceCode.SnipEnd()
 
 
 @* Footer *@

@@ -27,7 +27,7 @@
   </ul>
 
 
-@Sys.SourceCode.SnippetOnlyStart("page-icons")
+@Sys.SourceCode.SnippetOnly().SnipStart()
   @{
     // use url parameter to decide which icon(s) to show, and default to "set"
     var mode = CmsContext.Page.Parameters["mode"];
@@ -50,7 +50,7 @@
       Kit.Page.AddIconSet(iconUrl, favicon: iconUrl);
     }
   }
-@Sys.SourceCode.SnippetOnlyEnd()
+@Sys.SourceCode.SnipEnd()
 
 
 <hide>

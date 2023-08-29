@@ -206,11 +206,26 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region SnippetOnly()
 
-  public ITag SnippetOnlyStart(string prefix) {
-    return Snippet(prefix);
-  }
-  public ITag SnippetOnlyEnd() {
-    return null;
+  /// <summary>
+  /// Lightweight "Just show a Snippet" object
+  /// </summary>
+  /// <returns></returns>
+  public SnippetOnlySection SnippetOnly() { return new SnippetOnlySection(this); }
+
+  /// <summary>
+  /// Dummy SnipEnd for all use cases where the end doesn't need output but marks the end.
+  /// </summary>
+  public ITag SnipEnd() { return null; }
+
+  public class SnippetOnlySection: SectionBase
+  {
+    public SnippetOnlySection(SourceCode sourceCode): base(sourceCode, null) { }
+
+    public override ITag SnipStart(string snippetId = null) {
+      // Neutralize snippetId, set TabPrefix etc.
+      base.SnipStart(snippetId);
+      return ScParent.Snippet(SnippetId);
+    }
   }
 
   #endregion
@@ -238,7 +253,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// </summary>
     public virtual ITag SnipStart(string snippetId = null) {
       SnippetCount = ScParent.SourceCodeTabCount++;
-      SnippetId = snippetId;
+      SnippetId = snippetId ?? "" + SnippetCount;
       TabPrefix = "tab-" + ScParent.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
       return null;
     }
@@ -307,7 +322,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           results: new object[] { ScParent.Formulas.Show(Specs, false) },
           active: null,
           snippetTabId: TabPrefix,
-          snippetId: SnippetId ?? "" + SnippetCount);
+          snippetId: SnippetId);
         return l(result, "formula show snippet");
       }
 
@@ -350,8 +365,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       // Neutralize snippetId, set TabPrefix etc.
       base.SnipStart(snippetId);
       var list = new List<string>() { SourceTabName };
-      // var names = Tabs.Keys.ToArray();
-      // if (names != null && names.Any()) list.AddRange(names);
       list.AddRange(Tabs.Keys.ToArray());
       if (Tutorials != null && Tutorials.Any())
         list.Add("Additional Tutorials");
@@ -368,7 +381,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         results: tabContents.ToArray(),
         active: SourceTabName,
         snippetTabId: TabPrefix,
-        snippetId: SnippetId ?? "" + SnippetCount
+        snippetId: SnippetId
       );
       return result;
     }

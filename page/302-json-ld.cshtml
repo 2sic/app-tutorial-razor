@@ -20,7 +20,7 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnlyStart("page-json-id")
+@Sys.SourceCode.SnippetOnly().SnipStart()
   @{
     // example adding a json-ld as a string
     Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
@@ -41,7 +41,7 @@
 
     Kit.Page.AddJsonLd(jsonLd);
   }
-@Sys.SourceCode.SnippetOnlyEnd()
+@Sys.SourceCode.SnipEnd()
 
 
 @* Footer *@
