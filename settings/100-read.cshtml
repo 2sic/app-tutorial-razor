@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @Html.Partial("ShortIntro.cshtml")
 </hide>
@@ -19,7 +20,7 @@
 <hide>
   <p>The following settings were configured on this View - see <a href="https://docs.2sxc.org/basics/app/views/settings.html" target="_blank">docs</a></p>
 </hide>
-@Sys.SourceCode.SnippetInlineStart("settings-view")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
     <li>
       <div style="width: 20px; height: 20px; float: left; background-color: @Settings.PrimaryColor"></div>
@@ -31,13 +32,13 @@
     </li>
     <li><code>@@Settings.Tiles</code> (for example to configure images side-by-side): @Settings.Tiles</li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <h3>App Settings</h3>
 <hide>
   <p>The following settings were configured on this App - see <a href="https://docs.2sxc.org/basics/app/settings.html" target="_blank">docs</a></p>
 </hide>
-@Sys.SourceCode.SnippetInlineStart("settings-app")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
     <li>
       <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrForegroundColor"></div>
@@ -49,7 +50,7 @@
     </li>
     <li><code>@@Settings.QrDimension</code>: @Settings.QrDimension</li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <h3>Site ond Global (across Sites) Settings</h3>
 <hide>
@@ -65,12 +66,12 @@
   <p>
     Each installation of 2sxc has predefined settings which you can also read - see <a href="https://r.2sxc.org/settings" target="_blank">docs</a></p>
 </hide>
-@Sys.SourceCode.SnippetInlineStart("settings-system")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
     <li><code>@@Settings.Images.Content.Width</code>: @Settings.Images.Content.Width</li>
     <li><code>@@Settings.Images.Content.AspectRatio</code>: @Settings.Images.Content.AspectRatio</li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

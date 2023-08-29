@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -38,14 +39,14 @@
   or in the <a href="https://docs.2sxc.org/basics/configuration/index.html" target="_blank">global resources</a>. 
 </p>
 
-@Sys.SourceCode.SnippetInlineStart("multilanguage-1")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     <li>The Greeting Text: <br>
       @Html.Raw(Resources.Greeting)
     </li>
     <li>A button: <button type="button">@Resources.ButtonOrder</button> </li>
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h2>Multi-Language (i18n) Content</h2>

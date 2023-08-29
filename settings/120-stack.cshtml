@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -16,7 +17,7 @@
     This example has a setting called <code>CustomColor</code> which is set at App and View level. Using <code>GetSource(...)</code> we can access a specific source.
   </p>
 </trim>
-@Sys.SourceCode.SnippetInlineStart("stack")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
     <li>
       <div style='width: 20px; height: 20px; float: left; background-color: @Settings.CustomColor'></div>
@@ -41,7 +42,7 @@
       <em>Note: this will be empty, as Site doesn't have this setting)</em>
     </li>
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

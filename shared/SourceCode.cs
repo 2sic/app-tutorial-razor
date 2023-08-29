@@ -219,37 +219,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag SnipEnd() { return Tag.RawHtml("</div>", ScParent.Snippet(SnippetId)); }
   }
 
-  public ITag SnippetInlineStart(string prefix) {
-    return SnippetInlineInitStart(prefix, Tag.H4("Output"));
-  }
-
-  public ITag SnippetInitStart(string prefix) {
-    return SnippetInlineInitStart(prefix, Tag.RawHtml(
-      Tag.H4("Initial Code"),
-      Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples.")));
-  }
-
-
-  private ITag SnippetInlineInitStart(string prefix, ITag body) {
-    _inlineId = prefix;
-    return Tag.RawHtml(
-      Tag.Div().Class("alert alert-info").TagStart,
-      body
-    );
-  }
-  private string _inlineId = null;
-
-  public ITag SnippetInlineEnd() { return SnippetInlineInitEnd(); }
-  public ITag SnippetInitEnd() { return SnippetInlineInitEnd(); }
-  public ITag SnippetInlineInitEnd() {
-    var result = Text.Has(_inlineId) ? Snippet(_inlineId) : Tag.Div("Error - can't close inline/init snippet without ...Start first");
-    _inlineId = null;
-    return Tag.RawHtml(
-      "</div>",
-      result
-    );
-  }
-
   #endregion
 
   #region SnippetOnly()

@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -37,7 +38,7 @@
   Note that in the following code <code>item</code> is the thing passed into the function.
 </div>
 
-@Sys.SourceCode.SnippetInlineStart("func-string")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var normalText = "this is text, it doesn't have tags";
     var htmlText = "this string <em>has</em> html <strong>tags</strong>";
@@ -54,7 +55,7 @@
     @BoldLi(htmlText)
     @BoldLi("this is just a bold line")
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Complex Data with <code>Func&lt;dynamic,dynamic&gt;</code> Template Delegate</h3>
@@ -62,7 +63,7 @@
   If you have multiple values, you often want to merge in into one object like this:
 </p>
 
-@Sys.SourceCode.SnippetInlineStart("reuse-function")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // Simple Hybrid (Dnn/Oqtane) Template Delegate
     Func<dynamic, dynamic> FancyLink = @<li>
@@ -78,7 +79,7 @@
     @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
     @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

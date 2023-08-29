@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
@@ -35,13 +36,13 @@
 
 <hr>
 
-@Sys.SourceCode.SnippetInlineStart("hybrid")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{#if NETCOREAPP}
     This is Oqtane (a .net core app) version: @Oqtane.Shared.Constants.Version
   @{#else}
     This is DNN (not a .net core app) version: @DotNetNuke.Application.DotNetNukeContext.Current.Application.Version
   @{#endif}
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <hide>
 @* 2sxclint:disable:no-dnn-namespaces *@

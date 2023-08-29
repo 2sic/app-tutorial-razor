@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -15,7 +16,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("basic-safe-url")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var path = App.Path + "/basics/assets/urls/";
     var exampleImgName = "göögle plus.png";
@@ -26,7 +27,7 @@
     👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
   </p>
   <img loading="lazy" src='@safeUrl' id="demo-logo">
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <hide>
 <p>

@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -18,18 +19,18 @@
 </div>
 @* 2dg: neue info section part *@
 
-@Sys.SourceCode.SnippetInlineStart("basic-set-show")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var firstName = "Terry";
   }
 
   Name: @firstName
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Numbers and Dates</h3>
 
-@Sys.SourceCode.SnippetInlineStart("basic-numbers-dates")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var age = 27;
     var birthday = new DateTime(1999, 09, 09);
@@ -38,12 +39,12 @@
   Birthday: @birthday <br>
   Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Arrays (lists of things)</h3>
 
-@Sys.SourceCode.SnippetInlineStart("basic-arrays")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var dogs = new string[] { "hound", "dackel", "doggy" };
     birthday = new DateTime(1999, 09, 09);
@@ -52,7 +53,7 @@
   Birthday: @birthday <br>
   Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

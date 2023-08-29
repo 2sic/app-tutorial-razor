@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -48,7 +49,7 @@
 </p>
 </hide>
 
-@Sys.SourceCode.SnippetInlineStart("view-url")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
       // Name of route view1 using query string conventions
       var view1Parameters = "view1=page";
@@ -58,7 +59,7 @@
     }
   <p>Link to view1 <a target="blank" href="@Link.To(parameters: view1Parameters)">@Link.To(parameters: view1Parameters)</a></p>
   <p>Link to view2 <a target="blank" href="@Link.To(parameters: view2Parameters)">@Link.To(parameters: view2Parameters)</a></p>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -27,7 +28,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("basic-emoji")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
 @functions {
   string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
 }
@@ -35,7 +36,7 @@
   <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
   <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
 </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@
