@@ -33,18 +33,18 @@
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
 
-@Sys.SourceCode.FormulaShow("fieldsettings-visible")
+@Sys.SourceCode.Formula("fieldsettings-visible").ShowAll()
 
 
-@Sys.SourceCode.FormulaShow("fieldsettings-required")
+@Sys.SourceCode.Formula("fieldsettings-required").ShowAll()
 
 
-@Sys.SourceCode.FormulaShow("fieldsettings-disabled")
+@Sys.SourceCode.Formula("fieldsettings-disabled").ShowAll()
 
 
 
 @* Errors and Warnings *@
-@Sys.SourceCode.FormulaShow("fieldsettings-warning")
+@Sys.SourceCode.Formula("fieldsettings-warning").ShowAll()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

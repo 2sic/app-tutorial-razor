@@ -18,26 +18,26 @@
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Fill Field If Empty *@
-@Sys.SourceCode.FormulaShow("value-set-if-empty")
+@Sys.SourceCode.Formula("value-set-if-empty").ShowAll()
 
 
 @* Combine Values of Fields *@
-@Sys.SourceCode.FormulaShow("value-combine")
+@Sys.SourceCode.Formula("value-combine").ShowAll()
 
 @* Get Value from WebApi *@
-@Sys.SourceCode.FormulaShow("ValueFromWebApi")
+@Sys.SourceCode.Formula("ValueFromWebApi").ShowAll()
 
 @* Set many values from one field *@
-@Sys.SourceCode.FormulaShow("value-set-many")
+@Sys.SourceCode.Formula("value-set-many").ShowAll()
 
 
 <h2>Date Examples</h2>
 
 @* Date Examples #1 *@
-@Sys.SourceCode.FormulaShow("value-date-prefill")
+@Sys.SourceCode.Formula("value-date-prefill").ShowAll()
 
 @* Date Examples #2 *@
-@Sys.SourceCode.FormulaShow("value-date-calculate")
+@Sys.SourceCode.Formula("value-date-calculate").ShowAll()
 
 
 

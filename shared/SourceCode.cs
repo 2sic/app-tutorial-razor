@@ -9,10 +9,15 @@ using System.Text.RegularExpressions;
 
 public class SourceCode: Custom.Hybrid.CodeTyped
 {
+  #region Constants
+
   const int LineHeightPx = 20;
   const int BufferHeightPx = 20; // for footer scrollbar which often appears
 
+  #endregion
+
   #region Init / Dependencies
+
   public SourceCode Init(dynamic sys, string path) {
     Sys = sys;
     Path = path;
@@ -210,41 +215,117 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #endregion
 
+  #region Section Base - for all new implementations using objects
+
+  /// <summary>
+  /// Base class for all code sections with snippets etc.
+  /// </summary>
+  public abstract class SectionBase {
+    public SectionBase(SourceCode sourceCode, Dictionary<string, string> tabs) {
+      // SourceCode = sourceCode;
+      ScParent = sourceCode;
+      Tabs = tabs;
+    }
+    internal SourceCode ScParent;
+    // public SourceCode SourceCode;
+    protected int SnippetCount;
+    protected string SnippetId;
+    protected string TabPrefix;
+    internal Dictionary<string, string> Tabs;
+
+    /// <summary>
+    /// The SnippetId must be provided here, so it can be found in the source code later on
+    /// </summary>
+    public virtual ITag SnipStart(string snippetId = null) {
+      SnippetCount = ScParent.SourceCodeTabCount++;
+      SnippetId = snippetId;
+      TabPrefix = "tab-" + ScParent.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
+      return null;
+    }
+
+    public virtual ITag SnipEnd() {
+      return null;
+    }
+  }
+
+  #endregion
+
   #region Formulas and FormulaStart() 
 
 
   private object _formulaSpecs;
 
-  public ITag FormulaShow(object specs) {
-    // If we got a name, look it up in the examples
-    if (specs is string) specs = Formulas.Specs(specs as string);
-
-    var result = Tag.RawHtml(
-      Formulas.Header(specs),
-      FormulaStart("formula-" + Guid.NewGuid().ToString(), specs),
-      Formulas.Intro(specs),
-      FormulaEnd()
-    );
-    return result;
+  public FormulaSection Formula(object specs)
+  {
+    return new FormulaSection(this, specs);
   }
 
-  public ITag FormulaStart(string snippet, object specs = null) {
-    // Remember for future close
-    _formulaSpecs = specs;
+  public class FormulaSection: SectionBase
+  {
+    public FormulaSection(SourceCode sourceCode, object specs): base(sourceCode, null)
+    {
+      // If specs is a string, look it up in the DB, otherwise use the given object
+      Specs = specs is string ? ScParent.Formulas.Specs(specs as string) : specs;
+      // TODO: IF we have tabs, add them here from the specs
+    }
 
-    // Activate toolbar for anonymous so it will always work in demo-mode
-    Sys.ToolbarHelpers.EnableEditForAll();
+    public object Specs;
 
-    var showSource = Formulas.ShowSnippet(specs);
-    return showSource
-      ? SnippetStartInner(snippet, ResultTabName, SourceTabName, new [] { "Formulas" })
-      : SnippetStartInner(snippet, ResultTabName, "Formulas", null);
-  }
-  public ITag FormulaEnd(params object[] results) {
-    var result = _formulaSpecs != null
-      ? ResultEndInner(Formulas.ShowSnippet(_formulaSpecs), new object[] { Formulas.Show(_formulaSpecs, false) })
-      : ResultEndInner(false, results);
-    return result;
+    /// <summary>
+    /// Show the entire formula as configured in the Specs
+    /// </summary>
+    /// <returns></returns>
+    public ITag ShowAll() {
+      var result = Tag.RawHtml(
+        ScParent.Formulas.Header(Specs),
+        SnipStart("formula-" + Guid.NewGuid().ToString()),
+        ScParent.Formulas.Intro(Specs),
+        SnipEnd()
+      );
+      return result;
+    }
+
+
+    public override ITag SnipStart(string snippetId = null) {
+      // Neutralize snippetId, set TabPrefix etc.
+      base.SnipStart(snippetId);
+      // Activate toolbar for anonymous so it will always work in demo-mode
+      ScParent.Sys.ToolbarHelpers.EnableEditForAll();
+
+      var showSource = ScParent.Formulas.ShowSnippet(Specs);
+      return showSource
+        ? ScParent.SnippetStartInner(snippetId, ResultTabName, SourceTabName, new [] { "Formulas" })
+        : ScParent.SnippetStartInner(snippetId, ResultTabName, "Formulas", null);
+    }
+
+    public override ITag SnipEnd()
+    {
+      var l = ScParent.Log.Call<ITag>();
+      // 2023-08-29 2dm - should use this later, once the SnipStart works with the TabPrefix for the tabs
+      // ATM it's not possible yet, as that setup doesn't happen
+      // so automatic numbering of tests (like in QuickRef) is not possible yet until all the infrastructure is updated
+      // if (Specs != null) {
+      //   ScParent.Log.Add("first version - 2compare");
+      //   bool showSnippet = ScParent.Formulas.ShowSnippet(Specs);
+      //   var _resultEndWillPrepend = false;
+      //   var resultX = ScParent.ResultEndInner2(
+      //     showSnippetInResult: showSnippet && _resultEndWillPrepend,
+      //     showSnippetTab: false,
+      //     endWithSnippet: showSnippet && !_resultEndWillPrepend,
+      //     results: new object[] { ScParent.Formulas.Show(Specs, false) },
+      //     active: null,
+      //     snippetTabId: TabPrefix,
+      //     snippetId: SnippetId ?? "" + SnippetCount);
+      //   return l(result, "formula show snippet");
+      // }
+
+      ScParent.Log.Add("second version - 2compare");
+
+      var result = Specs != null
+        ? ScParent.ResultEndInner(ScParent.Formulas.ShowSnippet(Specs), new object[] { ScParent.Formulas.Show(Specs, false) })
+        : ScParent.ResultEndInner(false, null); // extend with results in constructor when needed
+      return result;
+    }
   }
 
   #endregion
@@ -262,26 +343,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   #endregion
 
   
-  #region Section Base - for all new implementations using objects
-
-  /// <summary>
-  /// Base class for all code sections with snippets etc.
-  /// </summary>
-  public abstract class SectionBase {
-    public SectionBase(SourceCode sourceCode, Dictionary<string, string> tabs) {
-      SourceCode = sourceCode;
-      Tabs = tabs;
-    }
-    public SourceCode SourceCode;
-    protected int SnippetCount;
-    protected string SnippetId;
-    protected string TabPrefix;
-
-    public Dictionary<string, string> Tabs;
-  }
-
-  #endregion
-
 
   #region Reference / CheatSheet
 
@@ -297,27 +358,24 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
     private string [] Tutorials;
 
-    /// <summary>
-    /// The SnippetId must be provided here, so it can be found in the source code later on
-    /// </summary>
-    public ITag SnipStart(string snippetId = null) {
-      SnippetCount = SourceCode.SourceCodeTabCount++;
-      SnippetId = snippetId;
-      TabPrefix = "tab-" + SourceCode.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
+    public override ITag SnipStart(string snippetId = null) {
+      // Neutralize snippetId, set TabPrefix etc.
+      base.SnipStart(snippetId);
       var names = Tabs.Keys.ToArray();
       var list = new List<string>() { SourceTabName };
       if (names != null && names.Any()) list.AddRange(names);
       if (Tutorials != null && Tutorials.Any())
         list.Add("Additional Tutorials");
-      return SourceCode.SnippetStartInner(TabPrefix, ResultTabName, null, list.ToArray(), SourceTabName);
+      return ScParent.SnippetStartInner(TabPrefix, ResultTabName, null, list.ToArray(), SourceTabName);
     }
 
-    public ITag SnipEnd() {
-      var links = Tag.Ol(Tutorials.Select(r => SourceCode.Sys.TutorialLiLinkLookup(r).ToString()));
+    public override ITag SnipEnd() {
+      var liLinks = Tutorials.Select(r => ScParent.Sys.TutorialLiLinkLookup(r).ToString());
+      var olLinks = Tag.Ol(liLinks);
       var tabContents = new List<object>();
       tabContents.AddRange(Tabs.Values);
-      tabContents.Add(links);
-      var result = SourceCode.ResultEndInner2(false, true, false,
+      tabContents.Add(olLinks);
+      var result = ScParent.ResultEndInner2(false, true, false,
         results: tabContents.ToArray(),
         active: SourceTabName,
         snippetTabId: TabPrefix,
@@ -359,7 +417,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   private ITag ResultEndInner2(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, object[] results, string active, string snippetTabId, string snippetId) {
-    var l = Log.Call<ITag>("showSnippetInResult: " + showSnippetInResult + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
+    var l = Log.Call<ITag>("showSnippetInResult: " + showSnippetInResult + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; snippetId: " + snippetId + "; tab:" + snippetTabId + "; results:" + results.Length);
     var nameCount = 0;
     // Close the tabs / header div section if it hasn't been closed yet
     var html = Tag.RawHtml();
