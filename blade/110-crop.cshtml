@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
     @{
       var sample1 = "We love Tokyo, Z&uuml;rich &amp; M&uuml;nchen";
@@ -44,7 +45,7 @@ Original which visually has @realLength characters:
 </trim>
 
 
-@Sys.SourceCode.SnippetStart("substring-crop-ellipsis")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
  @{
    sample1 = "We love Tokyo, Z&uuml;rich &amp; M&uuml;nchen";
    realLength = 31;
@@ -72,7 +73,7 @@ Original which visually has @realLength characters:
     </tr>
        }
  </table>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

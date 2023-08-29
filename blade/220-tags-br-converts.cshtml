@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -20,7 +21,7 @@
 
 <h2>Simple example</h2>
 
-@Sys.SourceCode.SnippetStart("table-line")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var val1 = "This is a text.\nSecond line.\nThird line.";
     var val1br = Tags.Nl2Br(val1);
@@ -55,7 +56,7 @@
     </tr>
 
   </table>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 <hide>

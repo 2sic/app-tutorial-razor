@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -24,12 +25,12 @@
 <p>Using <code>IScrub.Classes(source)</code> you can scrub all classes.</p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("scrub-class")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
   }
   <div><strong>Scrub all classes from source: </strong><code>@Kit.Scrub.Classes(exampleClasses)</code></div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <trim>
@@ -37,14 +38,14 @@
 <p>Using <code>IScrub.Attributes(source, attributes)</code> you can scrub attributes.</p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("scrub-attributes")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
       var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
     }
   <div><strong>Scrub all attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes)</code></div>
   <div><strong>Scrub one attribute from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
   <div><strong>Scrub some attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <trim>
@@ -52,12 +53,12 @@
 <p>Using <code>IScrub.Styles(source)</code> you can scrub all styles.</p>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("scrub-styles")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
   }
   <div><strong>Scrub all styles from source: </strong><code>@Kit.Scrub.Styles(exampleStyle)</code></div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

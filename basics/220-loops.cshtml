@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -14,47 +15,45 @@
 </div>
 <h3>Using a <code>foreach</code> - the most common way of looping</h3>
 
-
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     var pets = new string[] { "dog", "cat", "mouse"};
     var owners = new string[] { "Daniel", "John", "Markus"};
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
-
-@Sys.SourceCode.SnippetInlineStart("basic-foreach")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
     @foreach (var pet in pets) {
       <li>@pet</li>
     }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <trim>
 <h3>Basic <code>for</code></h3>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("basic-for")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  <ul>
     @for(var i = 0; i < pets.Length; i++) {
       <li>@pets[i]</li>
     }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <trim>
 <h3>Using a <code>for</code> index with two lists (arrays)</h3>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("basic-for-index")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  <ul>
     @for(var i = 0; i < pets.Length; i++) {
       <li>@pets[i] - owned by @owners[i]</li>
     }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

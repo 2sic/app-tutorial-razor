@@ -112,8 +112,27 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region SnippetStart() / SnippetEnd() in Tabs
 
-  public ITag SnippetStart(string snippet, params string[] names) {
-    return SnippetStartInner(snippet, ResultTabName, SourceTabName, names);
+  public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs); }
+
+  public class TabsWithSnippetsSection: SectionBase
+  {
+    public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs): base(sourceCode, tabs) { }
+
+    public override ITag SnipStart(string snippetId = null) {
+      // Neutralize snippetId, set TabPrefix etc.
+      InitSnippetAndTabId(snippetId);
+      return ScParent.SnippetStartInner(TabPrefix, ResultTabName, SourceTabName, Tabs.Keys.ToArray());
+    }
+
+    public override ITag SnipEnd() {
+      var result = ScParent.SnippetEndInternal(TabPrefix, SnippetId);
+      return result;
+    }
+
+  }
+
+  public ITag SnippetStart(string snippetId, params string[] names) {
+    return SnippetStartInner(snippetId, ResultTabName, SourceTabName, names);
   }
 
   internal ITag SnippetStartInner(string tabIdPrefix, string firstName, string lastName, string[] names = null, string active = null) {
@@ -171,6 +190,34 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
 
   #region Snippet Inline and Intro
+  public SnippetWithIntroSection Intro() {
+    return new SnippetWithIntroSection(this, Tag.RawHtml(
+        Tag.H4("Initial Code"),
+        Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples."))
+    );
+  }
+
+  public SnippetWithIntroSection OutputBoxAndSnippet() {
+    return new SnippetWithIntroSection(this, Tag.H4("Output"));
+  }
+
+  public class SnippetWithIntroSection: SectionBase
+  {
+    public SnippetWithIntroSection(SourceCode sourceCode, ITag intro): base(sourceCode, null) {
+      Intro = intro;
+    }
+    private ITag Intro;
+
+    public override ITag SnipStart(string snippetId = null) {
+      InitSnippetAndTabId(snippetId);
+      return Tag.RawHtml(
+        Tag.Div().Class("alert alert-info").TagStart,
+        Intro
+      );
+    }
+
+    public override ITag SnipEnd() { return Tag.RawHtml("</div>", ScParent.Snippet(SnippetId)); }
+  }
 
   public ITag SnippetInlineStart(string prefix) {
     return SnippetInlineInitStart(prefix, Tag.H4("Output"));
@@ -181,6 +228,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       Tag.H4("Initial Code"),
       Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples.")));
   }
+
 
   private ITag SnippetInlineInitStart(string prefix, ITag body) {
     _inlineId = prefix;
@@ -223,7 +271,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
-      base.SnipStart(snippetId);
+      InitSnippetAndTabId(snippetId);
       return ScParent.Snippet(SnippetId);
     }
   }
@@ -239,7 +287,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public SectionBase(SourceCode sourceCode, Dictionary<string, string> tabs) {
       // SourceCode = sourceCode;
       ScParent = sourceCode;
-      Tabs = tabs;
+      Tabs = tabs ?? new Dictionary<string, string>();
     }
     internal SourceCode ScParent;
     // public SourceCode SourceCode;
@@ -251,11 +299,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// <summary>
     /// The SnippetId must be provided here, so it can be found in the source code later on
     /// </summary>
-    public virtual ITag SnipStart(string snippetId = null) {
+    public abstract ITag SnipStart(string snippetId = null);
+
+    protected void InitSnippetAndTabId(string snippetId = null) {
       SnippetCount = ScParent.SourceCodeTabCount++;
       SnippetId = snippetId ?? "" + SnippetCount;
       TabPrefix = "tab-" + ScParent.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
-      return null;
     }
 
     public virtual ITag SnipEnd() {
@@ -267,10 +316,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region Formulas and FormulaStart() 
 
-  public FormulaSection Formula(object specs)
-  {
-    return new FormulaSection(this, specs);
-  }
+  public FormulaSection Formula(object specs) { return new FormulaSection(this, specs); }
 
   public class FormulaSection: SectionBase
   {
@@ -300,7 +346,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
-      base.SnipStart(snippetId);
+      InitSnippetAndTabId(snippetId);
       // Activate toolbar for anonymous so it will always work in demo-mode
       ScParent.Sys.ToolbarHelpers.EnableEditForAll();
 
@@ -363,7 +409,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
-      base.SnipStart(snippetId);
+      InitSnippetAndTabId(snippetId);
       var list = new List<string>() { SourceTabName };
       list.AddRange(Tabs.Keys.ToArray());
       if (Tutorials != null && Tutorials.Any())

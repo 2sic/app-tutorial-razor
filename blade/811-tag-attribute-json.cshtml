@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -23,7 +24,7 @@
 <h2>Creating Attributes Containing JSON</h2>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("tag-attribute-json")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // this is the object we want in the data-attribute
     var myObj = new { 
@@ -36,7 +37,7 @@
     This div has an attribute created using an object, because we wanted json. If you look at the source, youll find <code>@Tag.Attr("data-my", myObj)</code>
     </trim>
   </div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

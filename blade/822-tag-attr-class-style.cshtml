@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -46,7 +47,7 @@
   </h3>
 
 
-@Sys.SourceCode.SnippetInlineStart("tag-attr")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  <ol>
     <li>
       <code>@@Tag.Div().Id("original").Id("replaced")</code>
@@ -64,7 +65,7 @@
       <code>@Tag.Div().Style("width: 75px").Style("height: 100px").ToString()</code>
     </li>
  </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

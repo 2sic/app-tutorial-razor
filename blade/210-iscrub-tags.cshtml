@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
     @{
     var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
@@ -30,50 +31,50 @@
 <div>which if cropped at @cropLen would be really messy</div>
 <code>@val1.Substring(0, cropLen)</code>
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
      val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
      cropLen = 50;
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 <h3>After IScrub.All</h3>
 
-@Sys.SourceCode.SnippetInlineStart("blade-scrub-all")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <code>@Kit.Scrub.All(val1)</code>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Usually you will then combine with crop or ellipsis</h3>
 
-@Sys.SourceCode.SnippetInlineStart("blade-scrub-all-ellipsis")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <code>@Html.Raw(Text.Ellipsis(Kit.Scrub.All(val1), cropLen))</code>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>IScrub.Only()</h3>
 <p>Only scrub specified tags using <code>IScrub.Only(source, tag)</code></p>
 
-@Sys.SourceCode.SnippetInlineStart("blade-scrub-only")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
   var exampleTagsOnly = "<div><h2><span>The cool title</span></h2></div>"; 
   }
   <div><strong>Scrub one tag: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, "div")</code></div>
   <div><strong>Scrub multiple tags: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>IScrub.Except()</h3>
 <p>Scrub except the specified tags using <code>IScrub.Except(source, tag)</code></p>
 
-@Sys.SourceCode.SnippetInlineStart("blade-scrub-except")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var exampleTagsExcept = "<div><h2><span>The cool title</span></h2></div>"; 
   }
   <div><strong>Scrub tags except one tag: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, "h2")</code></div>
   <div><strong>Scrub tags except multiple tags: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

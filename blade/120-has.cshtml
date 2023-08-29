@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -49,7 +50,7 @@
 
 <h2>Examples</h2>
 
-@Sys.SourceCode.SnippetStart("demo-table")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <table class="demo table table-hover">
     <tr>
       <th>Test</th>
@@ -66,7 +67,7 @@
     @RowEmojified("real text", "real text")
     @RowEmojified("Real text with nbps etc.", "real\n text &nbsp;")
   </table>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 <h2>Special case: &lt;BR&gt; Whitespace</h2>
@@ -76,9 +77,9 @@
   <li>If you want to ignore BRs, combine it with @Sys.TutLink("Tags.Br2Nl(...)", "blade220") </li>
   <li>...resulting in:</li>
 </ul>
-@Sys.SourceCode.SnippetInlineStart("data-br-whitespace")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  @Text.Has(Tags.Br2Nl("<br>"))
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <hide>

@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{
     var samples = new string[] {
@@ -44,7 +45,7 @@
 
 <h2>Correct and incorrect Character Counts</h2>
 
-@Sys.SourceCode.SnippetStart("character")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
      samples = new string[] {
       "This        contains multi-spaces and \t\t\t tabs",
@@ -71,7 +72,7 @@
   </tr>
    }
   </table>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 <hide>

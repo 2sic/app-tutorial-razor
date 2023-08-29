@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -20,7 +21,7 @@
 
 <h3>The result</h3>
 
-@Sys.SourceCode.SnippetInlineStart("demo-1")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var successBox = Tag.Div().Class("alert alert-success");
   }
@@ -28,7 +29,7 @@
     This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
     because it may be easier for you that way.
   @successBox.TagEnd
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

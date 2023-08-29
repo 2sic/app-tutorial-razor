@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -36,9 +37,9 @@
 @if (CmsContext.Platform.Name == "Oqtane") {
   Html.Partial("../shared/MessageOqtaneDisabled.cshtml");
 } else {
-  @Sys.SourceCode.SnippetInlineStart("base-tag")
+  @((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
     Kit.Page.SetBase();
-  @Sys.SourceCode.SnippetInlineEnd()
+  @snip.SnipEnd()
 }
 
 @* Footer *@

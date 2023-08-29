@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -23,7 +24,7 @@
 <h2>Creating Simple Attributes</h2>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("blade-tag-attr")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var titleWithIssues = "I said \"check this out!\" \n\n even 'different quotes' and line breaks work!";
     var cls = "alert alert-";
@@ -38,7 +39,7 @@
     If you mouse-over, you'll also see the tooltips showing stuff which would cause trouble otherwise.
     </trim>
   </div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

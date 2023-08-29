@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -20,7 +21,7 @@
   </div>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     // demo of path with umlauts and japanese characters
     var kaizenUrl = "überschrift-small.png?name=改善";
@@ -28,25 +29,25 @@
     var kaizenFullPath =  path + kaizenUrl;
     var kaizenFullHd = kaizenFullPath.Replace("small", "large");
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 This file is called @kaizenUrl <br>
 
-@Sys.SourceCode.SnippetInlineStart("blade-img")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @Tag.Img().Src(kaizenFullPath)
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.SnippetInlineStart("blade-img-pre")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  <pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 And now the same thing with <code>Srcset</code> which allows high-density images: <br>
 
-@Sys.SourceCode.SnippetInlineStart("blade-img-p")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  @Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -23,21 +24,21 @@
 
 <h3>Fist create a sample where a heading is from a variable</h3>
 
-@Sys.SourceCode.SnippetInlineStart("demo-1")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var headingType = "h3";
   }
   @Tag.Custom(headingType).Wrap("This is a title")
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* @2dg use show-result and manually show what the result would be *@
 @* <app-root></app-root> *@
 
 
-@Sys.SourceCode.SnippetInlineStart("demo-2")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @Tag.Custom("em").Wrap("this is a italic text")
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

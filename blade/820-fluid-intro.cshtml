@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -88,7 +89,7 @@
 
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("example-1")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @* this will place an HR in the page - not very useful, but just for a first example *@
   @Tag.H3("Example 1: This title was code-generated")
 
@@ -108,7 +109,7 @@
     Tag.Em("follows the title")
   )
 
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <h3>Same example, but with other setup</h3>
 <p>
@@ -117,7 +118,7 @@
 
 <h3>Example 3: Using <code>Tag.Div</code></h3>
 
-@Sys.SourceCode.SnippetInlineStart("example-3")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @(Tag.Div("This is the intro. ", 
         Tag.B("I hope you like it"), 
         Tag.I(" otherwise it's ok too"), 
@@ -126,7 +127,7 @@
         .Id("wrapper")
         .Class("alert")
         .Class("alert-dark"))
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <trim>
@@ -137,7 +138,7 @@
 </div>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("example-4")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var darkBox = Tag.Div()
       .Class("alert alert-dark")
@@ -155,7 +156,7 @@
 
   }
   @darkBox
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@
