@@ -242,7 +242,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
   public ITag FormulaEnd(params object[] results) {
     var result = _formulaSpecs != null
-      ? ResultEndInner(Formulas.ShowSnippet(_formulaSpecs), Formulas.Show(_formulaSpecs, false))
+      ? ResultEndInner(Formulas.ShowSnippet(_formulaSpecs), new object[] { Formulas.Show(_formulaSpecs, false) })
       : ResultEndInner(false, results);
     return result;
   }
@@ -529,7 +529,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region File Processing
 
-  public SourceInfo GetFile(string filePath, string file) {
+  private SourceInfo GetFile(string filePath, string file) {
     var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
     if (Text.Has(file)) {
       if (file.IndexOf(".") == -1)
