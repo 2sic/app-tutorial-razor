@@ -3,6 +3,7 @@
   @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{
     /* Internal remarks for the tutorial developers
@@ -61,14 +62,14 @@
   </ol>
 </hide>
 
-@Sys.SourceCode.SnippetStart("demo-picture-formats")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <hide-silent>@ShowCurrentSrc("demo-picture-formats")</hide-silent>
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
     <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
     <img loading="lazy" style="width: 40%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
   </picture>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 <trim>
   
@@ -81,7 +82,7 @@
 </trim>
 
 
-@Sys.SourceCode.SnippetStart("demo-picture-srcset")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <hide-silent>@ShowCurrentSrc("demo-picture-srcset")</hide-silent>
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-img-srcset-2000.webp 2000w,
@@ -96,7 +97,7 @@
       sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
     <img loading="lazy" class="img-fluid" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
   </picture>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 <h2>Automatically Resized Files &amp Formats</h2>

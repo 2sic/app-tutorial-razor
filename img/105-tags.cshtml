@@ -3,6 +3,7 @@
   @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{  
     /* Internal remarks for the tutorial developers
@@ -66,7 +67,7 @@
   <h3>Example with Different Files for Each Resolution</h3> 
 </hide>
 
-@Sys.SourceCode.SnippetStart("img-srcset")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <hide-silent>@ShowCurrentSrc("img-srcset")</hide-silent>
   <img loading="lazy" class="img-fluid" alt="Image SrcSet Demo"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
@@ -74,7 +75,7 @@
             @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
             @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
             @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,">
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>

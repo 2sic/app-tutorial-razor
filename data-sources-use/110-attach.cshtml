@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -36,7 +37,7 @@
   </ol>
 </trim>
 
-@Sys.SourceCode.SnippetStart("demo1")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     // First get the root data source - the App with all data
     // Since we're in a Razor file it picks the current App based on the context
@@ -61,7 +62,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 <trim>
   <h2>Connect/Attach Multiple DataSources</h2>
@@ -82,7 +83,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.SnippetStart("demo2")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     // First get the root data source - the App with all data
     var appDs2 = Kit.Data.GetAppSource();
@@ -115,7 +116,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

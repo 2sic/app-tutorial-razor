@@ -54,7 +54,7 @@
   The editor can edit anything and choose which field to translate. In the following example, only one book is translated - and even the cover-image is translated. 
 </p>
 
-@Sys.SourceCode.SnippetStart("multilanguage-2")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var flatSettings = Kit.Image.Settings(width: 200, height: 300, resizeMode: "crop", scaleMode: "both");
   }
@@ -71,7 +71,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

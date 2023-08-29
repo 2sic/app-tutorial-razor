@@ -3,6 +3,7 @@
   @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{
     var imgUrl = App.Path + "/settings/demo.png";
@@ -30,29 +31,29 @@
 
  <h3>Image with Default Content Settings</h3>
 <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
-@Sys.SourceCode.SnippetStart("content-settings")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 <h3>Image with <code>factor</code> <em>1/3rd</em> or <em>0.25</em> the Content Settings</h3>
 <p>This example uses the <code>Settings.Images.Content</code> 
   settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).</p>
-@Sys.SourceCode.SnippetStart("content-custom-1")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: "1/3")'> - 
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.25)'>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 <h3>Image with Settings, Custom Width & Height</h3>
 <p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
-@Sys.SourceCode.SnippetStart("content-custom-2")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 <h3>Image with Settings, Custom Width & Reset Height</h3>
 <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
-@Sys.SourceCode.SnippetStart("content-custom-3")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@Sys.SourceCode.SnippetEnd()
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
