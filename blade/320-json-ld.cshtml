@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -28,7 +29,7 @@
   @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
 } else {
   <text>
-    @Sys.SourceCode.ResultStart("json")
+    @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
       @{
         Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
         // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
@@ -51,7 +52,7 @@
         <br>
         &lt;script type='application/ld+json'&gt;@(Kit.Json.ToJson(jsonLd))&lt;/script&gt;
       </code>
-    @Sys.SourceCode.ResultEnd()
+    @snip.SnipEnd()
   </text>
 }
 

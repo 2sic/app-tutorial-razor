@@ -13,6 +13,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   const int LineHeightPx = 20;
   const int BufferHeightPx = 20; // for footer scrollbar which often appears
+  private const string ResultTabName = "Output"; // must match js in img samples, where it becomes "-output"
+  private const string SourceTabName = "Source Code";
+  private const string ResultAndSourceTabName = "Output and Source";
 
   #endregion
 
@@ -33,6 +36,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public dynamic Formulas { get { return _formulas ?? (_formulas = GetCode("SourceCodeFormulas.cs")).Init(this); } }
   private dynamic _formulas;
+
+  #endregion
+
+  #region All Main Entry Points to Show Snippets in Various Ways
+
+  /// <summary>
+  /// Show tabs with snippets, resulting in Output / Source Code
+  /// </summary>
+  /// <param name="tabs"></param>
+  /// <returns></returns>
+  public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs); }
+
 
   #endregion
 
@@ -93,10 +108,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #endregion
 
-  private const string ResultTabName = "Output"; // must match js in img samples, where it becomes "-output"
-  private const string SourceTabName = "Source Code";
-  private const string ResultAndSourceTabName = "Output and Source";
-
   #region Snippet(...) (Standalone)
 
   // Standalone call - just show a snippet
@@ -112,7 +123,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region SnippetStart() / SnippetEnd() in Tabs
 
-  public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs); }
 
   public class TabsWithSnippetsSection: SectionBase
   {

@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 
@@ -53,7 +54,7 @@
 
 
 <h2>Add / Remove Buttons</h2>
-@Sys.SourceCode.ResultStart("demo1")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Default(Content).Edit().New()>
     <h3>New syntax: Add two buttons </h3>
   </div>
@@ -61,10 +62,10 @@
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+edit", "+new"})>
     <h3>Old syntax: Add two buttons </h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo2")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-info" @Kit.Toolbar.Default().New(tweak: b=>b.Color("pink,black")).For(Content)>
     <h3>New syntax (tweak): Add <code>new</code> button with colors </h3>
   </div>
@@ -82,10 +83,10 @@
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&color=pink,black"})>
   <h3>Old syntax: Add <code>new</code> button with colors </h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo3")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-info" @Kit.Toolbar.Default().New(tweak: b=>b.Position(-1)).For(Content)>
     <h3>New <em>tweak</em> syntax: Add <code>new</code> at the end of button-list</h3>
   </div>
@@ -96,10 +97,10 @@
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "+new&pos=-1"})>
     <h3>Old syntax: Add <code>new</code> at the end of button-list</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo4")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"never");
   }
@@ -110,10 +111,10 @@
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "-more" })>
     <h3>Old syntax: Remove <code>more</code> button</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo5")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Empty(Content).Edit()>
     <h3>New syntax: Use empty toolbar template and add <code>edit</code></h3>
   </div>
@@ -121,7 +122,7 @@
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "toolbar=empty", "+edit"})>
     <h3>Old syntax: Use empty toolbar template and add <code>edit</code></h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 
@@ -131,7 +132,7 @@
   We've introduced a new feature to allow custom SVG icons for buttons. 
 </p>
 
-@Sys.SourceCode.ResultStart("demo6")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     // icon from https://fonts.google.com/icons?icon.query=func
     var svgIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>";
@@ -163,7 +164,7 @@
   <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiSvgIconColored)>
     <h3>New syntax only: Button with SVG Icon and color </h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 <h2>Add Info-Button with Note (v15.08+)</h2>
@@ -172,7 +173,7 @@
   Mouse over it to see the effect.
 </p>
 
-@Sys.SourceCode.ResultStart("demo-info")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var toolbarWithInfoAndNotes = Kit.Toolbar.Empty()
       .Info(link: "https://www.2sxc.org/", tweak: b=>b.Note("This is a post-it info. Click to visit 2sxc.org", background: "yellow"))
@@ -182,7 +183,7 @@
   <div class="alert alert-info" @toolbarWithInfoAndNotes>
     <h3>New syntax (tweak): Button with SVG Icon </h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 <h2>Modify a button</h2>
@@ -190,7 +191,7 @@
   When we modify a button, we don't add one, but change the look or behavior of an existing button.
 </p>
 
-@Sys.SourceCode.ResultStart("demo7")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-info" @Kit.Toolbar.Default().Edit("-").Edit(tweak: b=>b.Color("red")).For(Content)>
     <h3>New syntax (tweak): Edit button is now red</h3>
   </div>
@@ -202,9 +203,9 @@
   <div class="alert alert-secondary" @Edit.TagToolbar(Content, toolbar: new[] { "%edit&color=red"})>
     <h3>Old syntax: Edit button is now red</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
-@Sys.SourceCode.ResultStart("demo8")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var categoryButtonsTweak = Kit.Toolbar.Default()
       .New("BlogPost", tweak: b=>b.Color("red").Tooltip("Blog-Post"))
@@ -228,10 +229,10 @@
   })>
     <h3>Old syntax: New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo9")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Default().Delete().For(Content)>
   <h3>New syntax: Always show <code>Delete</code></h3>
     <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
@@ -241,7 +242,7 @@
     <h3>Old syntax: Always show <code>Delete</code></h3>
     <p>Note that you'll have to hit the ellipsis a few times to see it.</p>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 
@@ -264,7 +265,7 @@
   But the behavior is the same for <code>parameters</code> and <code>prefill</code>.
 </p>
 
-@Sys.SourceCode.ResultStart("demo10")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: "color=orange")>
     <h3><code>ui</code> as inline string </h3>
   </div>
@@ -282,10 +283,10 @@
     <h3><code>ui</code> as string for reuse and merge</h3>
     <p>Mouse over the buttons to see how we use/merge to ui configurations</p>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo11")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: new { color = "orange"})>
     <h3><code>ui</code> as inline object </h3>
   </div>
@@ -308,7 +309,7 @@
   <div class="alert alert-success" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared).New(ui: uiObjMerged)>
     <h3><code>ui</code> as prepared object merged with other object</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 
@@ -325,7 +326,7 @@
   </em>
 </p>
 
-@Sys.SourceCode.ResultStart("demo12")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-info" @Kit.Toolbar.Empty().Data("Books", tweak: b=>b.Filter("Title", "Good Omens"))>
     <h3><code>Data</code> button with <em>string</em> <code>filter</code> (tweak) </h3>
     <p>This will find all books with the title <em>Good Omens</em></p>
@@ -340,10 +341,10 @@
     <h3><code>Data</code> button with <em>object</em> <code>filter</code> </h3>
     <p>This will find all books with the title <em>Good Omens</em></p>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo13")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var firstThreeAuthorIds = AsList(App.Data["Persons"])
       .Select(author => author.EntityId)
@@ -368,7 +369,7 @@
   <div class="alert alert-success" @authorsToolbar>
     <h3>Many <code>Data</code> buttons each filtering for one related author</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 
@@ -393,10 +394,10 @@
   })>
     <h3>Old syntax: Add a button-group just for my buttons</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo15")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var multipleGroupsToolbar = Kit.Toolbar.Default()
       .Group()
@@ -416,14 +417,14 @@
   })>
     <h3>Old syntax: Add two button-groups</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 
 
 <h2>Hover Behavior</h2>
 
-@Sys.SourceCode.ResultStart("demo16")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Default(Content).Settings(hover:"left")>
     <h3>New syntax: Hover Left</h3>
   </div>
@@ -433,10 +434,10 @@
   })>
     <h3>Old syntax: Hover Left</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo17")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Default(Content).Settings(autoAddMore: "end", hover: "left")>
     <h3>New syntax: Hover Left and <code>more</code> button to the right</h3>
   </div>
@@ -446,14 +447,14 @@
   })>
     <h3>Old syntax: Hover Left and <code>more</code> button to the right</h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 
 
 <h2>Custom JavaScript Code</h2>
 
-@Sys.SourceCode.ResultStart("demo18")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <div class="alert alert-success" @Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message").For(Content)>
     <h3>New syntax: Just call <code>showMsg1()</code> </h3>
   </div>
@@ -463,10 +464,10 @@
   })>
     <h3>Old syntax: Just call <code>showMsg1()</code> </h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("demo19")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var customJsParamsToolbar = Kit.Toolbar.Default().Code("showMsg2", parameters:"id=42", ui:"title=Show%20Message");
   }
@@ -479,7 +480,7 @@
   })>
     <h3>Old syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
   </div>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
   @* 2sxclint:disable:no-inline-script *@
 <script>

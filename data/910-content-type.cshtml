@@ -35,7 +35,7 @@
 @snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultStart("content-types")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <ol>
     <li>Type object: <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html" target="_blank">@type 🔗</a></li>
     <li>Type Name: "@type.Name"</li>
@@ -52,7 +52,7 @@
       </ul>
     </li>
   </ol>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 <h3>Properties / Attributes</h3>
@@ -60,7 +60,7 @@
   Read more about <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html#ToSic_Eav_Data_IContentType_Attributes" target="_blank">attributes in the docs 🔗</a>
 </p>
 
-@Sys.SourceCode.ResultStart("content-type-attributes")
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <ul>
       @foreach (var attr in type.Attributes) {
       <li>
@@ -70,7 +70,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

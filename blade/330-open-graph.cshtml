@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -28,7 +29,7 @@
   @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
 } else {
   <text>
-    @Sys.SourceCode.ResultStart("json")
+    @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
       @{
         // note: 'og:' is auto-prefixed if not given in the key
         Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
@@ -36,7 +37,7 @@
       }
     @Sys.SourceCode.Invisible()
       The result is invisible, check the html headers in the source of this page.
-    @Sys.SourceCode.ResultEnd()
+    @snip.SnipEnd()
   </text>
 }
 

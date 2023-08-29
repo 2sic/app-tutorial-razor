@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -36,7 +37,7 @@
   @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
 } else {
   <text>
-    @Sys.SourceCode.ResultStart("json")
+    @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
     @{
       // use url parameter to decide which icon(s) to show, and default to "set"
       var mode = CmsContext.Page.Parameters["mode"] ?? "set";
@@ -61,7 +62,7 @@
     }
     @Sys.SourceCode.Invisible()
     The result is invisible, check the html headers in the source of this page.
-    @Sys.SourceCode.ResultEnd()
+    @snip.SnipEnd()
   </text>
 
 }
