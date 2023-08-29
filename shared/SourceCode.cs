@@ -252,9 +252,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region Formulas and FormulaStart() 
 
-
-  private object _formulaSpecs;
-
   public FormulaSection Formula(object specs)
   {
     return new FormulaSection(this, specs);
@@ -294,37 +291,28 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       var showSource = ScParent.Formulas.ShowSnippet(Specs);
       return showSource
-        ? ScParent.SnippetStartInner(snippetId, ResultTabName, SourceTabName, new [] { "Formulas" })
-        : ScParent.SnippetStartInner(snippetId, ResultTabName, "Formulas", null);
+        ? ScParent.SnippetStartInner(TabPrefix, ResultTabName, SourceTabName, new [] { "Formulas" })
+        : ScParent.SnippetStartInner(TabPrefix, ResultTabName, "Formulas", null);
     }
 
     public override ITag SnipEnd()
     {
       var l = ScParent.Log.Call<ITag>();
-      // 2023-08-29 2dm - should use this later, once the SnipStart works with the TabPrefix for the tabs
-      // ATM it's not possible yet, as that setup doesn't happen
-      // so automatic numbering of tests (like in QuickRef) is not possible yet until all the infrastructure is updated
-      // if (Specs != null) {
-      //   ScParent.Log.Add("first version - 2compare");
-      //   bool showSnippet = ScParent.Formulas.ShowSnippet(Specs);
-      //   var _resultEndWillPrepend = false;
-      //   var resultX = ScParent.ResultEndInner2(
-      //     showSnippetInResult: showSnippet && _resultEndWillPrepend,
-      //     showSnippetTab: false,
-      //     endWithSnippet: showSnippet && !_resultEndWillPrepend,
-      //     results: new object[] { ScParent.Formulas.Show(Specs, false) },
-      //     active: null,
-      //     snippetTabId: TabPrefix,
-      //     snippetId: SnippetId ?? "" + SnippetCount);
-      //   return l(result, "formula show snippet");
-      // }
+      if (Specs != null) {
+        bool showSnippet = ScParent.Formulas.ShowSnippet(Specs);
+        var result = ScParent.ResultEndInner2(
+          showSnippetInResult: false,
+          showSnippetTab: false,
+          endWithSnippet: showSnippet,
+          results: new object[] { ScParent.Formulas.Show(Specs, false) },
+          active: null,
+          snippetTabId: TabPrefix,
+          snippetId: SnippetId ?? "" + SnippetCount);
+        return l(result, "formula show snippet");
+      }
 
-      ScParent.Log.Add("second version - 2compare");
-
-      var result = Specs != null
-        ? ScParent.ResultEndInner(ScParent.Formulas.ShowSnippet(Specs), new object[] { ScParent.Formulas.Show(Specs, false) })
-        : ScParent.ResultEndInner(false, null); // extend with results in constructor when needed
-      return result;
+      var result3 = ScParent.ResultEndInner2(false, false, false, results: null, active: null, snippetTabId: null, snippetId: null);
+      return l(result3, "formula without snippet");
     }
   }
 
@@ -361,9 +349,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
       base.SnipStart(snippetId);
-      var names = Tabs.Keys.ToArray();
       var list = new List<string>() { SourceTabName };
-      if (names != null && names.Any()) list.AddRange(names);
+      // var names = Tabs.Keys.ToArray();
+      // if (names != null && names.Any()) list.AddRange(names);
+      list.AddRange(Tabs.Keys.ToArray());
       if (Tutorials != null && Tutorials.Any())
         list.Add("Additional Tutorials");
       return ScParent.SnippetStartInner(TabPrefix, ResultTabName, null, list.ToArray(), SourceTabName);

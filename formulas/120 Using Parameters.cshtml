@@ -46,7 +46,7 @@
 
 
 <h3>Ephemeral field </h3>
-@((snip = Sys.SourceCode.Formula("parameters-ephemeral")).SnipStart("formulas-ephemeral"))
+@((snip = Sys.SourceCode.Formula("parameters-ephemeral")).SnipStart())
   Button which doesn't tell the form anything:
   @Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon()).AsTag()
   <br>
@@ -77,7 +77,7 @@
   enables a editing experience matching the page context.
 </p>
 
-@((snip = Sys.SourceCode.Formula("parameters-basic")).SnipStart("formulas-showAdvanced"))
+@((snip = Sys.SourceCode.Formula("parameters-basic")).SnipStart())
   <code>prefill:showAdvanced=true</code>:
   @Kit.Toolbar.Empty().New("FormulasParameters",
     ui: Sys.SourceCode.Formulas.Icon(),
