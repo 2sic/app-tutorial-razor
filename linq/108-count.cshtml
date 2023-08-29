@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -24,7 +25,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("linq-count")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var persons = AsList(App.Data["Persons"]);
     var books = AsList(App.Data["Books"]);
@@ -40,7 +41,7 @@
       Books with Illustrators: @books.Where(b => (b.Illustrators.Count > 0).Count())
     </li>
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

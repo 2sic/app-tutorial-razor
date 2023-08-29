@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -16,41 +17,41 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
    var persons = AsList(App.Data["Persons"]);
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 <h3>Where(FirstName == "Terry")</h3>
 <p>This filters the authors to only find Terry.</p>
 
-@Sys.SourceCode.SnippetInlineStart("linq-where-simple-1")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var person in persons.Where(p => p.FirstName == "Terry")) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Where(FirstName.Length > 5)</h3>
 <p>This filters the authors with long first names.</p>
 
-@Sys.SourceCode.SnippetInlineStart("linq-where-simple-2")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var person in persons.Where(p => p.FirstName.Length > 5)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Any(FirstName.Length > 5 / 10)</h3>
 <p>This filters the authors with long first names.</p>
 
-@Sys.SourceCode.SnippetInlineStart("linq-any")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     <li>
       Persons with 5-char names or more: @persons.Any(p => p.FirstName.Length > 5)
@@ -59,7 +60,7 @@
       Persons with 10-char names or more: @persons.Any(p => p.FirstName.Length > 10)
     </li>
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

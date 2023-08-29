@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -15,17 +16,17 @@
   </div>
 </div>
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     var persons = AsList(App.Data["Persons"]);
     var books = AsList(App.Data["Books"]);
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 <h3>Show only books of Awarded Authors #1</h3>
 <p>This example first gets book, checks the authors and checks if they have awards with LINQ <code>Any()</code>. </p>
 
-@Sys.SourceCode.SnippetInlineStart("list-list-list")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // this keeps all books whose authors have awards
     var booksWithAwardedAuthors = books
@@ -39,13 +40,13 @@
       </li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Now the list of books NOT in that list</h3>
 <p>And now the opposite list, so all books which don't contain one of the books with authors. It gets the "other" books by filtering the list to exclude the ones it found first. That demonstrates how to use <code>Contains(x as object)</code>. The <code>Contains(...)</code> cannot work with <code>dynamic</code>, so we must tell it it's an object for it to work.</p>
 
-@Sys.SourceCode.SnippetInlineStart("opposite-list")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var otherBooks = books.Where(b => !booksWithAwardedAuthors.Contains(b as object));
   }
@@ -54,13 +55,13 @@
       <li><strong>@book.Title</strong></li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>Now the same using GroupBy</h3>
 <p>Now let's do the same, but using <code>GroupBy</code> to group by awarded authors and not-awarded authors:</p>
 
-@Sys.SourceCode.SnippetInlineStart("groupby-author")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var booksGroupedByAuthorAwards = books
       .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
@@ -79,7 +80,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

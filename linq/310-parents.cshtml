@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -16,15 +17,15 @@
   </div>
 </div>
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     var persons = AsList(App.Data["Persons"]);
     var books = AsList(App.Data["Books"]);
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.SnippetInlineStart("list-list-books")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var author in persons) {
       // this line would work, if Books only had people in the Authors. 
@@ -50,7 +51,7 @@
       </li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

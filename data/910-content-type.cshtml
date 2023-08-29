@@ -6,6 +6,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -23,7 +24,7 @@
 
 <h3>Content-Type Information</h3>
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     var type = AsEntity(Content).Type;
     var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
@@ -31,7 +32,7 @@
     // Check the metadata for the DropdownValues in the type @string-dropdown
     var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 @Sys.SourceCode.ResultStart("content-types")

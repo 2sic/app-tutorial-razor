@@ -7,6 +7,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
   @* @2dm TODO Oqtane *@
 </hide>
@@ -23,7 +24,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("sql-read")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // load the sql connection name from Web.Config
     // the default connection string for DNN is SiteSqlServer
@@ -48,7 +49,7 @@
   @{
     myReader.Close();
   }
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

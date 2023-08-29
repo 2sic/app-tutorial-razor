@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -16,18 +17,18 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     var persons = AsList(App.Data["Persons"]);
     var books = AsList(App.Data["Books"]);
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 <h3>Basic Use of List <code>book.Authors</code></h3>
 <p>This example shows the books, and we want to LINQ on the Authors. We must tell the compiler it's a list, so that LINQ can use <code>Select(...)</code>.</p>
 
-@Sys.SourceCode.SnippetInlineStart("list-dynamic")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var book in books) {
       // To work with a list coming off a dynamic object, we have to tell the compiler it's a dynamic list
@@ -39,13 +40,13 @@
       </li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>OrderBy and OrderByDescending with Amount of Authors</h3>
 <p>This example shows Z-A ordering, where we count the authors to sort.</p>
 
-@Sys.SourceCode.SnippetInlineStart("list-advanced")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var book in books.OrderByDescending(p => p.Authors.Count)) {
       var authors = AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName);
@@ -54,7 +55,7 @@
       </li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

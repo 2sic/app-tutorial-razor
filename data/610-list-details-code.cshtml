@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -22,7 +23,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("sql-read")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var persons = AsList(App.Data["Persons"]);
 
@@ -53,7 +54,7 @@
     <h3>Details of @person.FirstName @person.LastName</h3>
     <a href='@Link.To(parameters: urlParams.Remove("id"))'>back to list</a>
   }
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

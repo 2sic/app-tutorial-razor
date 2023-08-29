@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -28,7 +29,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
  @{
     // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
@@ -44,31 +45,31 @@
     });
     var rootFiles = AsList(query);
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 <h3>Files from the current Portal</h3>
 
-@Sys.SourceCode.SnippetInlineStart("sql-query-reset")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
    @foreach (var file in currentFiles) {
     <li>@file.Name</li>
   }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
   </div>
 </div>
 
 <h3>Files from the root portal</h2>
 
-@Sys.SourceCode.SnippetInlineStart("sql-query-reset")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
    @foreach (var file in rootFiles) {
     <li>@file.Name</li>
   }
   </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
   @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/view-details-auto-query-configuration.png", 400, 200, "float-right float-end")
 </hide>

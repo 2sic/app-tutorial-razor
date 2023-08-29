@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -21,32 +22,32 @@
 <p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
      normalText = "this is text, it doesn't have tags";
      htmlText = "this string <em>has</em> html <strong>tags</strong>";
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.SnippetInlineStart("basic-variable")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
 <ul>
   <li>@normalText</li>
   <li>@htmlText</li>
 </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <trim>
 <h2>Encode using <code>@@Html.Raw(...)</code> </h2>
 </trim>
 
-@Sys.SourceCode.SnippetInlineStart("basic-variable-raw")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
 <ul>
   <li>@Html.Raw(normalText)</li>
   <li>@Html.Raw(htmlText)</li>
 </ul>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h2>Add "uncontrolled" html using <code>@@:...</code></h2>
@@ -55,7 +56,7 @@
   This would normally throw an error. so you need <code>@@:</code>. 
 </p>
 
-@Sys.SourceCode.SnippetInlineStart("basic-variable-uncontrolled")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
 <div>
   @{ var makeBold = new System.Random().NextDouble() > 0.5; }
   @if (makeBold) { 
@@ -66,7 +67,7 @@
     @:</strong>
   }
 </div>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

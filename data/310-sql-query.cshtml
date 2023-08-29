@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -33,7 +34,7 @@
   In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code>
 </p>
 
-@Sys.SourceCode.SnippetInlineStart("sql-query")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
@@ -49,7 +50,7 @@
     </li>
   }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

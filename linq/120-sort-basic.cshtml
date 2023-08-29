@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -15,46 +16,46 @@
   </div>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
     var persons = AsList(App.Data["Persons"]);
   }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
 </div>
 <h3>OrderBy(EntityId)</h3>
 <p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
-@Sys.SourceCode.SnippetInlineStart("sort-by-id")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var person in persons.OrderBy(p => p.EntityId)) {
       <li>@person.FirstName @person.LastName (#@person.EntityId)</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 <h3>OrderBy(FirstName)</h3>
 <p>This example shows A-Z ordering by a property which exists only on Person-entities. This is simple with <code>dynamic</code> objects</p>
 
-@Sys.SourceCode.SnippetInlineStart("sort-by-property")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var person in persons.OrderBy(p => p.FirstName)) {
       <li>@person.FirstName @person.LastName</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>OrderByDescending(Birthday)</h3>
 <p>This example shows Z-A ordering by a property.</p>
 
-@Sys.SourceCode.SnippetInlineStart("sort-by-property")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (var person in persons.OrderByDescending(p => p.Birthday)) {
       <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

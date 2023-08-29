@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -20,7 +21,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInlineStart("data-query")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // get the query
     var query = Kit.Data.GetQuery("AuthorsWithBooks");
@@ -62,7 +63,7 @@
   } else {
     <h3>No author selected - click on an author above</h3>
   }
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@

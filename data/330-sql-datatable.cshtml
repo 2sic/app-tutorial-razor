@@ -7,6 +7,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
   @* @2dm TODO Oqtane *@
 </hide>
@@ -23,7 +24,7 @@
 </div>
 
 
-@Sys.SourceCode.SnippetInitStart("intro")
+@((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
       // load the sql connection name from Web.Config
       // the default connection string for DNN is SiteSqlServer
@@ -40,22 +41,22 @@
       var fileTable = new DataTable();
       adapter.Fill(fileTable);
     }
-@Sys.SourceCode.SnippetInitEnd()
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.SnippetInlineStart("sql-rows")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ol>
     @foreach (DataRow row in fileTable.Rows)
     {
       <li>@row["FileName"]</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 <h3>The top 10 files found in this portal with reverse sorting</h3>
 
-@Sys.SourceCode.SnippetInlineStart("sql-reverse")
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     // This applies a default-view with more parameters
     fileTable.DefaultView.Sort = "FileName DESC";
@@ -66,7 +67,7 @@
       <li>@row["FileName"]</li>
     }
   </ol>
-@Sys.SourceCode.SnippetInlineEnd()
+@snip.SnipEnd()
 
 
 @* Footer *@
