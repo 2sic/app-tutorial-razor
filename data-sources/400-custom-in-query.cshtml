@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -33,7 +34,7 @@
     The second will apply the KeepOdd filters.
   </p>
 </trim>
-@Sys.SourceCode.ResultStart("custom-101", "Authors.cs", "KeepOdd.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/Authors.cs,file:../DataSources/KeepOdd.cs")).SnipStart())
   <div class="row">
     <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/use-in-visual-query.jpg", 200, 100, "float-right float-end", label: "Simple Query", figure: false)</div>
   </div>
@@ -48,7 +49,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Authors.cs", "file:../DataSources/KeepOdd.cs")
+@snip.SnipEnd()
 
 
 <trim>
@@ -59,7 +60,7 @@
     In this case, it's looking for a Content Type <code>WithConfigConfiguration</code>.
   </p>
 </trim>
-@Sys.SourceCode.ResultStart("withConfig", "WithConfig.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/WithConfig.cs")).SnipStart())
   <div class="row">
     <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/configure-in-visual-query1.jpg", 200, 100, "float-left", label: "Configured Query", figure: false)</div>
     <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/configure-in-visual-query2.jpg", 200, 100, "float-left", label: "Edit Configuration", figure: false)</div>
@@ -75,7 +76,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/WithConfig.cs")
+@snip.SnipEnd()
 
 
 <trim>
@@ -86,11 +87,11 @@
   </p>
 
 </trim>
-@Sys.SourceCode.ResultStart("customized", "VisualQueryCustomized.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/VisualQueryCustomized.cs")).SnipStart())
   <div class="row">
     <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/visual-query-attribute.jpg", 200, 200, "float-left", label: "Customized with VisualQuery Attribute", figure: false)</div>
   </div>
-@Sys.SourceCode.ResultEnd("file:../DataSources/VisualQueryCustomized.cs")
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

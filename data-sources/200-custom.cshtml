@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -32,7 +33,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "Basic101.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/Basic101.cs")).SnipStart())
   @{
     // Create the Dynamic DataSource with the name "Basic101"
     var basic101 = Kit.Data.GetSource(name: "Basic101");
@@ -45,7 +46,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101.cs")
+@snip.SnipEnd()
 
 
 <trim>
@@ -61,7 +62,7 @@
   </ol>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101c", "Basic101Commented.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/Basic101Commented.cs")).SnipStart())
   @{
     // Create the Dynamic DataSource with the name "Basic101Commented"
     var basic101c = Kit.Data.GetSource(name: "Basic101Commented");
@@ -74,7 +75,8 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/Basic101Commented.cs")
+@snip.SnipEnd()
+
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -31,7 +32,7 @@
     IDs are a common way to declare relationships, but there are other options as well.
   </p>
 </trim>
-@Sys.SourceCode.ResultStart("tree-basic", "TreeBasic.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeBasic.cs")).SnipStart())
   @{
     var tree = Kit.Data.GetSource(name: "TreeBasic");
     var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
@@ -56,8 +57,7 @@
   @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems" })
 
   @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-
-@Sys.SourceCode.ResultEnd("file:../DataSources/TreeBasic.cs")
+@snip.SnipEnd()
 
 
 
@@ -69,7 +69,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("tree-2", "TreeBasicWithParents.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeBasicWithParents.cs")).SnipStart())
   @{
     tree = Kit.Data.GetSource(name: "TreeBasicWithParents");
     root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
@@ -77,8 +77,7 @@
   @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
 
   @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-
-@Sys.SourceCode.ResultEnd("file:../DataSources/TreeBasicWithParents.cs")
+@snip.SnipEnd()
 
 
 
@@ -101,7 +100,7 @@
   </ul>
 </trim>
 
-@Sys.SourceCode.ResultStart("tree-3", "TreeChildPaths.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeChildPaths.cs")).SnipStart())
   @{
     tree = Kit.Data.GetSource(name: "TreeChildPaths");
     root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
@@ -109,8 +108,7 @@
   @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
 
   @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-
-@Sys.SourceCode.ResultEnd("file:../DataSources/TreeChildPaths.cs")
+@snip.SnipEnd()
 
 
 
@@ -129,7 +127,7 @@
   </ul>
 </trim>
 
-@Sys.SourceCode.ResultStart("tree-4", "TreeParentPaths.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeParentPaths.cs")).SnipStart())
   @{
     tree = Kit.Data.GetSource(name: "TreeParentPaths");
     root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
@@ -137,8 +135,7 @@
   @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
 
   @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-
-@Sys.SourceCode.ResultEnd("file:../DataSources/TreeParentPaths.cs")
+@snip.SnipEnd()
 
 
 
@@ -154,7 +151,7 @@
   <li></li>
 </trim>
 
-@Sys.SourceCode.ResultStart("tree-folders-and-files", "TreeFoldersAndFiles.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeFoldersAndFiles.cs")).SnipStart())
   @{
     tree = Kit.Data.GetSource(name: "TreeFoldersAndFiles");
     root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
@@ -166,8 +163,7 @@
   @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Folders", Data = tree["Folders"] })
 
   @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Files", Data = tree["Folders"] })
-
-@Sys.SourceCode.ResultEnd("file:../DataSources/TreeFoldersAndFiles.cs")
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -47,7 +47,44 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// <param name="tabs"></param>
   /// <returns></returns>
   public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs); }
+  public TabsWithSnippetsSection TabsWithSnippet(string tabs) {
+    var tabList = tabs.Split(',').Select(t => t.Trim()).ToArray();
+    var tabDic = tabList.ToDictionary(t => t.StartsWith("file:") ? Text.AfterLast(t, "/") : t, t => t);
+    return new TabsWithSnippetsSection(this, tabDic);
+  }
 
+  public SnippetWithIntroSection Intro() {
+    return new SnippetWithIntroSection(this, Tag.RawHtml(
+        Tag.H4("Initial Code"),
+        Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples."))
+    );
+  }
+
+  public SnippetWithIntroSection OutputBoxAndSnippet() {
+    return new SnippetWithIntroSection(this, Tag.H4("Output"));
+  }
+
+
+  /// <summary>
+  /// Lightweight "Just show a Snippet" object
+  /// </summary>
+  /// <returns></returns>
+  public SnippetOnlySection SnippetOnly() { return new SnippetOnlySection(this); }
+
+  /// <summary>
+  /// Dummy SnipEnd for all use cases where the end doesn't need output but marks the end.
+  /// </summary>
+  public ITag SnipEnd() { return null; }
+
+  /// <summary>
+  /// QuickRef section - only to be used in the Quick Reference
+  /// </summary>
+  /// <param name="tabs"></param>
+  /// <param name="tutorials">list of tutorials view IDs to add to the last tab</param>
+  /// <returns></returns>
+  public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
+    return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
+  }
 
   #endregion
 
@@ -115,14 +152,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return ShowFileContents(null, snippet, expand: true);
   }
 
+  public FormulaSection Formula(object specs) { return new FormulaSection(this, specs); }
+
   #endregion
 
   #region Remember current snippet ID
   private string _snippet;
   #endregion
 
-  #region SnippetStart() / SnippetEnd() in Tabs
-
+  #region TabsWithSnippetsSection
 
   public class TabsWithSnippetsSection: SectionBase
   {
@@ -135,11 +173,30 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
 
     public override ITag SnipEnd() {
-      var result = ScParent.SnippetEndInternal(TabPrefix, SnippetId);
+      // Original setup, without any tabs
+      if (!Tabs.Any()) 
+        return ScParent.SnippetEndInternal(TabPrefix, SnippetId);
+
+      // Extending 2023-08-29 - with tabs
+      var tabContents = new List<object>();
+      tabContents.AddRange(Tabs.Values);
+      var result = ScParent.ResultEndInner2(
+        snippetInResultTab: false,
+        showSnippetTab: false,
+        endWithSnippet: true,
+        results: tabContents.ToArray(),
+        active: SourceTabName,
+        tabPrefix: TabPrefix,
+        snippetId: SnippetId
+      );
       return result;
     }
 
   }
+
+  #endregion
+
+  #region SnippetStart(...) / SnippetEnd() - working on removing
 
   public ITag SnippetStart(string snippetId, params string[] names) {
     return SnippetStartInner(snippetId, ResultTabName, SourceTabName, names);
@@ -157,18 +214,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     );
   }
 
-  public ITag SnippetEnd() {
-    return SnippetEndInternal(_snippet, _snippet);
-  }
-
-  private ITag SnippetEndInternal(string snippetTabId, string snippetId) {
-    return Tag.RawHtml(
-      BsTabs.TabContentClose(),     // Will close if still open
-      BsTabs.TabContent(snippetTabId, Name2TabId(SourceTabName), Snippet(snippetId), isFirst: false, isActive: false),
-      BsTabs.TabContentGroupClose() // Will close if still open
-    );
-  }
-
   // Tabs for Output, (optional more tabs), Source Code
   private ITag TabsForSnippet(string tabIdPrefix, string firstName, string lastName, string[] names, string active = null) {
     var tabNames = new List<string>() { firstName };
@@ -178,6 +223,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       tabNames.Add(lastName);
     return BsTabs.TabList(tabIdPrefix, tabNames, active) as ITag;
   }
+
+  public ITag SnippetEnd() { return SnippetEndInternal(_snippet, _snippet); }
+
+  private ITag SnippetEndInternal(string tabPrefix, string snippetId) {
+    return Tag.RawHtml(
+      BsTabs.TabContentClose(),     // Will close if still open
+      BsTabs.TabContent(tabPrefix, Name2TabId(SourceTabName), Snippet(snippetId), isFirst: false, isActive: false),
+      BsTabs.TabContentGroupClose() // Will close if still open
+    );
+  }
+
+
 
   #endregion
 
@@ -199,17 +256,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
 
-  #region Snippet Inline and Intro
-  public SnippetWithIntroSection Intro() {
-    return new SnippetWithIntroSection(this, Tag.RawHtml(
-        Tag.H4("Initial Code"),
-        Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples."))
-    );
-  }
-
-  public SnippetWithIntroSection OutputBoxAndSnippet() {
-    return new SnippetWithIntroSection(this, Tag.H4("Output"));
-  }
+  #region class SectionBase, SnippetWithIntroSection, SnippetOnlySection, Formula
 
   public class SnippetWithIntroSection: SectionBase
   {
@@ -229,20 +276,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag SnipEnd() { return Tag.RawHtml("</div>", ScParent.Snippet(SnippetId)); }
   }
 
-  #endregion
-
-  #region SnippetOnly()
-
-  /// <summary>
-  /// Lightweight "Just show a Snippet" object
-  /// </summary>
-  /// <returns></returns>
-  public SnippetOnlySection SnippetOnly() { return new SnippetOnlySection(this); }
-
-  /// <summary>
-  /// Dummy SnipEnd for all use cases where the end doesn't need output but marks the end.
-  /// </summary>
-  public ITag SnipEnd() { return null; }
 
   public class SnippetOnlySection: SectionBase
   {
@@ -255,9 +288,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
   }
 
-  #endregion
-
-  #region Section Base - for all new implementations using objects
 
   /// <summary>
   /// Base class for all code sections with snippets etc.
@@ -291,11 +321,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
   }
 
-  #endregion
-
-  #region Formulas and FormulaStart() 
-
-  public FormulaSection Formula(object specs) { return new FormulaSection(this, specs); }
 
   public class FormulaSection: SectionBase
   {
@@ -341,17 +366,17 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (Specs != null) {
         bool showSnippet = ScParent.Formulas.ShowSnippet(Specs);
         var result = ScParent.ResultEndInner2(
-          showSnippetInResult: false,
+          snippetInResultTab: false,
           showSnippetTab: false,
           endWithSnippet: showSnippet,
           results: new object[] { ScParent.Formulas.Show(Specs, false) },
           active: null,
-          snippetTabId: TabPrefix,
+          tabPrefix: TabPrefix,
           snippetId: SnippetId);
         return l(result, "formula show snippet");
       }
 
-      var result3 = ScParent.ResultEndInner2(false, false, false, results: null, active: null, snippetTabId: null, snippetId: null);
+      var result3 = ScParent.ResultEndInner2(false, false, false, results: null, active: null, tabPrefix: null, snippetId: null);
       return l(result3, "formula without snippet");
     }
   }
@@ -374,10 +399,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region Reference / CheatSheet
 
-  public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
-    return new QuickRefSection(this, tabs ?? new Dictionary<string, string>(), tutorials);
-  }
-
   public class QuickRefSection: SectionBase
   {
     public QuickRefSection(SourceCode sourceCode, Dictionary<string, string> tabs, string[] tutorials): base(sourceCode, tabs)
@@ -397,15 +418,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
 
     public override ITag SnipEnd() {
-      var liLinks = Tutorials.Select(r => ScParent.Sys.TutorialLiLinkLookup(r).ToString());
-      var olLinks = Tag.Ol(liLinks);
       var tabContents = new List<object>();
       tabContents.AddRange(Tabs.Values);
+      var liLinks = Tutorials.Select(r => ScParent.Sys.TutorialLiLinkLookup(r).ToString());
+      var olLinks = Tag.Ol(liLinks);
       tabContents.Add(olLinks);
-      var result = ScParent.ResultEndInner2(false, true, false,
+      var result = ScParent.ResultEndInner2(
+        snippetInResultTab: false,
+        showSnippetTab: true,
+        endWithSnippet: false,
         results: tabContents.ToArray(),
         active: SourceTabName,
-        snippetTabId: TabPrefix,
+        tabPrefix: TabPrefix,
         snippetId: SnippetId
       );
       return result;
@@ -440,11 +464,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   private ITag ResultEndInner(bool showSnippet, object[] results) {
     var l = Log.Call<ITag>("showSnippet: " + showSnippet + "; prefix: " + _snippet + "; results:" + results.Length);
-    return l(ResultEndInner2(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results, active: null, snippetTabId: _snippet, snippetId: _snippet), "ok");
+    return l(ResultEndInner2(showSnippet && _resultEndWillPrepend, false, showSnippet && !_resultEndWillPrepend, results, active: null, tabPrefix: _snippet, snippetId: _snippet), "ok");
   }
 
-  private ITag ResultEndInner2(bool showSnippetInResult, bool showSnippetTab, bool endWithSnippet, object[] results, string active, string snippetTabId, string snippetId) {
-    var l = Log.Call<ITag>("showSnippetInResult: " + showSnippetInResult + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; snippetId: " + snippetId + "; tab:" + snippetTabId + "; results:" + results.Length);
+  private ITag ResultEndInner2(bool snippetInResultTab, bool showSnippetTab, bool endWithSnippet, object[] results, string active, string tabPrefix, string snippetId) {
+    var l = Log.Call<ITag>("snippetInResultTab: " + snippetInResultTab + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; snippetId: " + snippetId + "; tab:" + tabPrefix + "; results:" + results.Length);
     var nameCount = 0;
     // Close the tabs / header div section if it hasn't been closed yet
     var html = Tag.RawHtml();
@@ -452,22 +476,22 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       html = html.Add("</div>");
       _resultEndClosesReveal = false;
     }
-    if (showSnippetInResult)
+    if (snippetInResultTab)
       html = html.Add("</div>", Snippet(snippetId));
     html = html.Add(BsTabs.TabContentClose());
 
     if (showSnippetTab) {
-      html = html.Add(BsTabs.TabContent(snippetTabId, Name2TabId(SourceTabName), Snippet(snippetId), isFirst: false, isActive: active == SourceTabName));
+      html = html.Add(BsTabs.TabContent(tabPrefix, Name2TabId(SourceTabName), Snippet(snippetId), isFirst: false, isActive: active == SourceTabName));
       nameCount++;
     }
     // If we have any results, add them here
     foreach (var m in results) {
       var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
       Log.Add("tab name:" + name + " (" + nameCount + ")");
-      html = html.Add(BsTabs.TabContent(snippetTabId, name, FlexibleResult(m), isFirst: false, isActive: active == name));
+      html = html.Add(BsTabs.TabContent(tabPrefix, name, FlexibleResult(m), isFirst: false, isActive: active == name));
       nameCount++;
     }
-    html = html.Add(endWithSnippet ? SnippetEndInternal(snippetTabId, snippetId) as object : BsTabs.TabContentGroupClose());
+    html = html.Add(endWithSnippet ? SnippetEndInternal(tabPrefix, snippetId) as object : BsTabs.TabContentGroupClose());
     return l(html, "ok");
   }
 

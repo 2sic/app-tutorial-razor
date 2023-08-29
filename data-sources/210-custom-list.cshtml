@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -30,7 +31,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "ListBasic.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/ListBasic.cs")).SnipStart())
   @{
     // Create the Dynamic DataSource with the name "Basic101"
     var basic101 = Kit.Data.GetSource(name: "ListBasic");
@@ -43,11 +44,11 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/ListBasic.cs")
+@snip.SnipEnd()
 
 <h2>Advanced List</h2>
 
-@Sys.SourceCode.ResultStart("webapi", "DataFromWebService.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/DataFromWebservice.cs")).SnipStart())
   @{
     // Create the Dynamic DataSource with the name "DataFromWebService"
     var weather = Kit.Data.GetSource(name: "DataFromWebService");
@@ -60,7 +61,7 @@
       <li>WindDirection: @item.WindDirection</li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/DataFromWebService.cs")
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

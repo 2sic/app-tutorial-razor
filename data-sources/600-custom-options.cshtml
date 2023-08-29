@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -46,7 +47,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "FactoryOptions.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/FactoryOptions.cs")).SnipStart())
   @{
     var dsWithOptions = Kit.Data.GetSource(name: "FactoryOptions");
   }
@@ -58,7 +59,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/FactoryOptions.cs")
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

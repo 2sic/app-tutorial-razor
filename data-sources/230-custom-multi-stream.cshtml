@@ -5,6 +5,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -28,7 +29,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("custom-101", "ListMultiStream.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/ListMultiStream.cs")).SnipStart())
   @{
     // Create the Dynamic DataSource with the name "ListMultiStream"
     var multiStream = Kit.Data.GetSource(name: "ListMultiStream");
@@ -47,7 +48,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/ListMultiStream.cs")
+@snip.SnipEnd()
 
 
 <trim>
@@ -62,7 +63,7 @@
   </p>
 </trim>
 
-@Sys.SourceCode.ResultStart("multi-streams", "SplitOddEven.cs")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/SplitOddEven.cs")).SnipStart())
   @{
     var oddEven = Kit.Data.GetSource(name: "SplitOddEven", attach: App.Data["Persons"]);
     var all = oddEven.List;
@@ -93,7 +94,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:../DataSources/SplitOddEven.cs")
+@snip.SnipEnd()
 
 
 @* Footer *@
