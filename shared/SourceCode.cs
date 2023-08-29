@@ -392,18 +392,23 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region Show Source Block
 
-  public ITag ShowCurrentRazor() {
-    return ShowFileContents("");
-  }
-  public ITag Show(string file) {
-    return ShowFileContents(file);
-  }
-
   public ITag ShowFile(string file, string titlePath = null) {
     return ShowFileContents(file, titlePath: titlePath);
   }
 
-  public ITag ShowFileContents(string file,
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="file">The file name - if empty string, will use current file name</param>
+  /// <param name="snippetId"></param>
+  /// <param name="title"></param>
+  /// <param name="titlePath"></param>
+  /// <param name="expand"></param>
+  /// <param name="wrap"></param>
+  /// <param name="withIntro"></param>
+  /// <param name="showTitle"></param>
+  /// <returns></returns>
+  private ITag ShowFileContents(string file,
     string snippetId = null, string title = null, string titlePath = null, 
     bool? expand = null, bool? wrap = null, bool? withIntro = null, bool? showTitle = null)
   {
