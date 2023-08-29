@@ -172,7 +172,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return ScParent.SnippetStartInner(TabPrefix, ResultTabName, SourceTabName, Tabs.Keys.ToArray());
     }
 
-    public override ITag SnipEnd() {
+    public override ITag SnipEnd() { return SnipEndInternal(); }
+
+    public ITag SnipEndInternal() {
       // Original setup, without any tabs
       if (!Tabs.Any()) 
         return ScParent.SnippetEndInternal(TabPrefix, SnippetId);
@@ -184,12 +186,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         snippetInResultTab: false,
         showSnippetTab: false,
         endWithSnippet: true,
-        results: tabContents.ToArray(),
+        results: _contentsOverride ?? tabContents.ToArray(),
         active: SourceTabName,
         tabPrefix: TabPrefix,
         snippetId: SnippetId
       );
       return result;
+    }
+    private object[] _contentsOverride = null;
+
+    public ITag SnipEnd(params object[] generated) {
+      _contentsOverride = generated;
+      return SnipEndInternal();
     }
 
   }

@@ -20,11 +20,11 @@ public class SourceProcessor: Custom.Hybrid.Code14
     var idInQuotes = "\"" + id + "\"";
 
     // V3 New: Ability to auto-find the correct snippet by number
+    var patternSnipStartSnipEnd = @"(?:\.SnipStart\(\)+)(?<contents>[\s\S]*?)(?:(@.*\.SnipEnd\(|@Sys\.SourceCode\.Invisible\(\)))"; // note: we're not testing for the final ")"
     var idNumber = Kit.Convert.ToInt(id, fallback: -1);
     if (idNumber >= 0) {
       // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
-      var patternNoNames = @"(?:\.SnipStart\(\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
-      var matches = Regex.Matches(source, patternNoNames);
+      var matches = Regex.Matches(source, patternSnipStartSnipEnd);
       if (matches.Count >= idNumber) {
         // var match = matches[idNumber];
         return matches[idNumber].Groups["contents"].Value;
@@ -54,8 +54,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
     if (match.Length > 0) return match.Groups["contents"].Value;
 
     // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
-    patternStartEnd = @"(?:\.SnipStart\(\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
-    match = Regex.Match(source, patternStartEnd);
+    match = Regex.Match(source, patternSnipStartSnipEnd);
     if (match.Length > 0) return match.Groups["contents"].Value;
 
     return source;

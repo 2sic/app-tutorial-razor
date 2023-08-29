@@ -22,9 +22,9 @@
   }
 </hide>
 
-<hide-silent>
+
   test 2dm
-</hide-silent>
+
 
 
 <div @Sys.PageParts.InfoWrapper()>
@@ -102,7 +102,7 @@
 
 <h2>Automatically Resized Files &amp Formats</h2>
 
-@Sys.SourceCode.ResultStart("pic-auto", "Generated HTML")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
   <hide-silent>@ShowCurrentSrc("pic-auto")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
 @Sys.SourceCode.Invisible()
@@ -110,12 +110,12 @@
     var previewTag = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
     var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd(resultHtml)
+@snip.SnipEnd(resultHtml)
 
 
 <h2>Automatically Resized With Custom Alt and Classes</h2>
 
-@Sys.SourceCode.ResultStart("pic-auto-alt-class", "Generated HTML")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
   <hide-silent>@ShowCurrentSrc("pic-auto-alt-class")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
 @Sys.SourceCode.Invisible()
@@ -124,11 +124,11 @@
         imgClass: "dummy-class");
     resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
   }
-@Sys.SourceCode.ResultEnd(resultHtml)
+@snip.SnipEnd(resultHtml)
 
 
 <h2>Automatically Resized Bits with More Control</h2>
-@Sys.SourceCode.ResultStart("pic-auto-control1", "Generated HTML")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
   <hide-silent>@ShowCurrentSrc("pic-auto-control1")</hide-silent>
   @{
     var picControlled = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
@@ -143,12 +143,12 @@
         picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!").ToString() + "</picture>";
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
   }
-@Sys.SourceCode.ResultEnd(resultHtml)
+@snip.SnipEnd(resultHtml)
 
 
 <h2>Automatically Resized Bits with Lots of Control</h2>
 
-@Sys.SourceCode.ResultStart("pic-auto-control2", "Generated HTML")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
   <hide-silent>@ShowCurrentSrc("pic-auto-control2")</hide-silent>
   @{
     var picFullControl = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
@@ -168,7 +168,8 @@
     previewString += "</picture>";
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
   }
-@Sys.SourceCode.ResultEnd(resultHtml)
+@snip.SnipEnd(resultHtml)
+
   @* 2sxclint:disable:no-inline-script *@
 <script>
   // Activate the controls which show the current live src of each picture/image tag
