@@ -7,6 +7,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
 </hide>
 
 
@@ -26,7 +27,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("fetch-get", "Source of WebApi Controller")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
     @* 2sxclint:disable:no-inline-script *@
   <script>
@@ -35,11 +36,11 @@
           .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
       }
   </script>
-@Sys.SourceCode.ResultEnd("file:../api/OrdersController.cs")
+@snip.SnipEnd()
 
 @Html.Partial("MessageHybrid.cshtml") 
 
-@Sys.SourceCode.ResultAndSnippetStart("fetch-post", "Source of the WebApi Controller")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
     @* 2sxclint:disable:no-inline-script *@
   <script>
@@ -48,10 +49,10 @@
         .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
     }
   </script>
-@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultAndSnippetStart("fetch-put", "Source of the WebApi Controller")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
     @* 2sxclint:disable:no-inline-script *@
   <script>
@@ -60,10 +61,10 @@
         .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
     }
   </script>
-@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
+@snip.SnipEnd()
 
 
-@Sys.SourceCode.ResultAndSnippetStart("fetch-delete", "Source of the WebApi Controller")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
     @* 2sxclint:disable:no-inline-script *@
   <script>
@@ -72,7 +73,7 @@
         .then(data => alert('Delete executed'));
     }
   </script>
-@Sys.SourceCode.ResultEnd("To see the source of the WebApi Controller, check the first sample on this page.")
+@snip.SnipEnd()
 
 
 @* Footer *@

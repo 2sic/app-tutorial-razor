@@ -7,6 +7,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
 </hide>
 
 
@@ -25,7 +26,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("get-query", "Source of api_AuthorsQueryController")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/AuthorsQueryController.cs")).SnipStart())
   @{
     var authorId = AsDynamic(App.Data["Persons"].First()).EntityId;
   }
@@ -45,7 +46,7 @@
         });    
       }
   </script>
-@Sys.SourceCode.ResultEnd("file:../api/AuthorsQueryController.cs")
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -23,8 +23,14 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     return Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(tabList);
   }
 
-  // WARNING: DUPLICATE CODE
-  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
+  // WARNING: DUPLICATE CODE BootstrapTabs.cs / SourceCode.cs; keep in sync
+  private string Name2TabId(string name) {
+    return "-" + name.ToLower()
+      .Replace(" ", "-")
+      .Replace(".", "-")
+      .Replace("/", "-")
+      .Replace("\\", "-");
+  }
 
   private ITag Tab(string prefix, string label, bool isFirst, bool active) {
     return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(

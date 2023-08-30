@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
@@ -111,7 +112,7 @@
 </hide>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("demo4", "Source of ApiController", "Source of FunctionsBasic.cs")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./api/SharedCodeController.cs,file:./FunctionsBasic.cs")).SnipStart())
   <p>
     Click to see the result of a WebApi call with the shared code:
     <button type="button" class="btn btn-primary" onclick="callApiWithSharedCode(this)">
@@ -129,7 +130,7 @@
       return false;
     }
   </script>
-@Sys.SourceCode.ResultEnd("file:api/SharedCodeController.cs", "file:FunctionsBasic.cs")
+@snip.SnipEnd()
 
 @* 2sxclint:disable:no-inline-script *@
 @* Footer *@

@@ -4,6 +4,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
 </hide>
 
 
@@ -27,7 +28,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of anonymous-js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./120-anonymous-object.js")).SnipStart())
     @* Inject attribute into DIV, to make it accessible for query *@
   <div id="turn-on-example">
     turnOn hasn't started yet.
@@ -50,7 +51,7 @@
   @Kit.Page.TurnOn("window.turnOnTutorial120.init()", data: data)
 
   <script src="@CmsContext.View.Path/120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:120-anonymous-object.js")
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -7,6 +7,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
 </hide>
 
 <div @Sys.PageParts.InfoWrapper()>
@@ -23,7 +24,7 @@
 
 
 
-@Sys.SourceCode.ResultAndSnippetStart("demo-1", "Source of api_BooksController")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/BooksController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="getPersons(this)">
     Get Persons Custom
   </button> 
@@ -79,7 +80,7 @@
     }
     
   </script>
-@Sys.SourceCode.ResultEnd("file:../api/BooksController.cs")
+@snip.SnipEnd()
 
 
 @* Footer *@

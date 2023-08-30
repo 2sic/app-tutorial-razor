@@ -7,6 +7,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
 </hide>
 
 
@@ -25,7 +26,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("fetch", "Source of api_VerifiedController")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/VerifiedController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">
     Call WebApi
   </button> 
@@ -36,7 +37,7 @@
         .then(data => alert(data));
     }
   </script>
-@Sys.SourceCode.ResultEnd("file:../api/VerifiedController.cs")
+@snip.SnipEnd()
 
 
 @* Footer *@

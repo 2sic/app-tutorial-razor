@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -21,7 +22,7 @@
 
 <h3>Show properties and sub-properties - case insensitive</h3>
 
-@Sys.SourceCode.ResultAndSnippetStart("json-intro", "Source of demo.json")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./demo.json")).SnipStart())
   @{
       var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/json/demo.json");
       var thing = AsDynamic(someJson);
@@ -33,29 +34,29 @@
     <li>Is this a list/array? @thing.IsList </li>
     <li>Are the tags a list? @thing.Tags.IsList </li>
   </ul>
-@Sys.SourceCode.ResultEnd("file:demo.json")
+@snip.SnipEnd()
 
 
 <h3>Loop through a list of @thing.Tags.Count tags</h3>
 
-@Sys.SourceCode.ResultAndSnippetStart("json-list",  "Source of demo.json")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./demo.json")).SnipStart())
   <ol>
   @foreach (var tag in thing.Tags) {
     <li>@tag</li>
   }
   </ol>
-@Sys.SourceCode.ResultEnd("file:demo.json")
+@snip.SnipEnd()
 
 
 <h3>Loop through a list of @thing.Count properties</h3>
 
-@Sys.SourceCode.ResultAndSnippetStart("json-probs",  "Source of demo.json")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./demo.json")).SnipStart())
   <ol>
   @foreach (var prop in thing) {
     <li><strong>@prop</strong> (@thing[prop].GetType()) = @thing[prop]</li>
   }
   </ol>
-@Sys.SourceCode.ResultEnd("file:demo.json")
+@snip.SnipEnd()
 
 
 @* Footer *@

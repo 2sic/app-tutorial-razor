@@ -3,6 +3,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
   @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 </hide>
 
@@ -27,18 +28,15 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 </hide>
-<div class="alert alert-success">
   <h2>String Color-Picker Custom Input Field</h2>
 
-
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of string_app_color_pickrs.js")
-  <p>
-    This example shows a real string-field uses Pickr to provide a color picker. <br>
-    Hit this edit button to have a look:
-  </p>
-  @Kit.Toolbar.Empty().New("UiStringColorPickr").AsTag()
-@Sys.SourceCode.ResultEnd("file:../system/field-string-app-color-pickr/index.js")
-</div>
+  @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../system/field-string-app-color-pickr/index.js")).SnipStart())
+    <p>
+      This example shows a real string-field uses Pickr to provide a color picker. <br>
+      Hit this edit button to have a look:
+    </p>
+    @Kit.Toolbar.Empty().New("UiStringColorPickr").AsTag()
+  @snip.SnipEnd()
 
 
 @Html.Partial("warning.cshtml")

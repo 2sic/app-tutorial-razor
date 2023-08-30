@@ -46,14 +46,20 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   /// <param name="tabs"></param>
   /// <returns></returns>
-  public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs); }
-  public TabsWithSnippetsSection TabsWithSnippet(string tabs) {
+  public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs, combineOutputAndSource: false); }
+  public TabsWithSnippetsSection TabsWithSnippet(string tabs) { return TabsWithSnippet(TabStringToDic(tabs)); }
+
+  public TabsWithSnippetsSection TabsOutputAndSource(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs, combineOutputAndSource: true); }
+
+  public TabsWithSnippetsSection TabsOutputAndSource(string tabs) { return TabsOutputAndSource(TabStringToDic(tabs)); }
+
+  private Dictionary<string, string> TabStringToDic(string tabs) {
     var tabList = tabs.Split(',').Select(t => t.Trim()).ToArray();
     var tabDic = tabList.ToDictionary(
       t => t.StartsWith("file:") ? (Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":")) : t,
       t => t
     );
-    return new TabsWithSnippetsSection(this, tabDic);
+    return tabDic;
   }
 
   public SnippetWithIntroSection Intro() {
@@ -167,12 +173,26 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public class TabsWithSnippetsSection: SectionBase
   {
-    public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs): base(sourceCode, tabs) { }
+    public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs, bool combineOutputAndSource): base(sourceCode, tabs)
+    {
+      _combineOutputAndSource = combineOutputAndSource;
+    }
+
+    private bool _combineOutputAndSource;
 
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
       InitSnippetAndTabId(snippetId);
-      return ScParent.SnippetStartInner(TabPrefix, ResultTabName, SourceTabName, Tabs.Keys.ToArray());
+      var firstTabName = _combineOutputAndSource ? ResultAndSourceTabName : ResultTabName;
+      var lastTabName = _combineOutputAndSource ? null : SourceTabName;
+      var start = ScParent.SnippetStartInner(TabPrefix, firstTabName, lastTabName, Tabs.Keys.ToArray());
+      if (_combineOutputAndSource)
+        start = Tag.RawHtml(
+          start,
+          Tag.Div().Class("alert alert-info").TagStart,
+          Tag.H4("Output")
+        );
+      return start;
     }
 
     public override ITag SnipEnd() { return SnipEndShared(); }
@@ -187,9 +207,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       tabContents.AddRange(Tabs.Values);
       ScParent.Log.Add("tabContents: " + tabContents.Count);
       var result = ScParent.ResultEndInner2(
-        snippetInResultTab: false,
+        snippetInResultTab: _combineOutputAndSource, //false,
         showSnippetTab: false,
-        endWithSnippet: true,
+        endWithSnippet: !_combineOutputAndSource, // true,
         results: _contentsOverride ?? tabContents.ToArray(),
         active: SourceTabName,
         tabPrefix: TabPrefix,
@@ -231,7 +251,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private ITag TabsForSnippet(string tabIdPrefix, string firstName, string lastName, string[] names, string active = null) {
     var tabNames = new List<string>() { firstName };
     if (names != null && names.Any())
-      tabNames.AddRange(names.Select(n => n == "R14" ? "Razor14 and older" : n));
+      tabNames.AddRange(names.Select(n => {
+        if (n == "R14") return "Razor14 and older";
+        if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
+        return n;
+        // n == "R14" ? "Razor14 and older" : n
+      }));
     if (Text.Has(lastName))
       tabNames.Add(lastName);
     return BsTabs.TabList(tabIdPrefix, tabNames, active) as ITag;
@@ -267,7 +292,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return result;
   }
 
-  private string Name2TabId(string name) { return "-" + name.ToLower().Replace(" ", "-").Replace(".", "-"); }
+  // WARNING: DUPLICATE CODE BootstrapTabs.cs / SourceCode.cs; keep in sync
+  private string Name2TabId(string name) {
+    return "-" + name.ToLower()
+      .Replace(" ", "-")
+      .Replace(".", "-")
+      .Replace("/", "-")
+      .Replace("\\", "-");
+  }
 
   #region class SectionBase, SnippetWithIntroSection, SnippetOnlySection, Formula
 
@@ -307,12 +339,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   public abstract class SectionBase {
     public SectionBase(SourceCode sourceCode, Dictionary<string, string> tabs) {
-      // SourceCode = sourceCode;
       ScParent = sourceCode;
       Tabs = tabs ?? new Dictionary<string, string>();
     }
     internal SourceCode ScParent;
-    // public SourceCode SourceCode;
     protected int SnippetCount;
     protected string SnippetId;
     protected string TabPrefix;
@@ -461,6 +491,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   //   return SnippetStartInner(snippetId, ResultTabName, SourceTabName, names);
   // }
 
+  // TODO: Next TO tackle
+  // Probably use the OutputBoxAndSnippet
   public ITag ResultAndSnippetStart(string snippetId, params string[] names) {
     _resultEndWillPrepend = true;
     return Tag.RawHtml(

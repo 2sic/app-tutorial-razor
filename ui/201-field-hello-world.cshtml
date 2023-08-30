@@ -3,6 +3,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
   @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 </hide>
 
@@ -34,13 +35,13 @@
 
 <h2>Basic Hello-World Custom Field</h2>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of app_hello_world.js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../system/field-empty-app-hello-world/index.js")).SnipStart())
   <p>
     This example shows a dummy-field which doesn't allow editing, but will just show a message. <br>
     Hit this edit button to have a look:
     @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
   </p>
-@Sys.SourceCode.ResultEnd("file:../system/field-empty-app-hello-world/index.js")
+@snip.SnipEnd()
 
 
 @Html.Partial("warning.cshtml")

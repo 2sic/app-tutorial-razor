@@ -2,6 +2,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
@@ -20,9 +21,12 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("hybrid", "Dnn Razor", "Oqtane Razor")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: new Dictionary<string, string> {
+  { "Dnn Razor", "file:./CodeSwitching.Dnn.cshtml" },
+  { "Oqtane Razor", "file:./CodeSwitching.Oqtane.cshtml" },
+  })).SnipStart())
   @Html.Partial("CodeSwitching." + CmsContext.Platform.Name + ".cshtml")
-@Sys.SourceCode.ResultEnd("file:CodeSwitching.Dnn.cshtml", "file:CodeSwitching.Oqtane.cshtml")
+@snip.SnipEnd()
 
 
 @* Footer *@

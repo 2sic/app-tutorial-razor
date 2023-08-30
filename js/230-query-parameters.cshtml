@@ -8,6 +8,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -40,7 +41,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of query-parameters.js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./230-query-parameters.js")).SnipStart())
   <button id="mod-@CmsContext.Module.Id-object" type="button" class="btn btn-primary">Get Query with parameters (object)</button>
   <button id="mod-@CmsContext.Module.Id-string" type="button" class="btn btn-primary">Get Query with parameters (string)</button>
   <button id="mod-@CmsContext.Module.Id-stream-params" type="button" class="btn btn-primary">Get Query Stream with parameters</button>
@@ -57,7 +58,7 @@
 @Kit.Page.TurnOn("window.tutQueryParameters.init()", data: data)
 
   <script src="@CmsContext.View.Path/230-query-parameters.js"></script>
-@Sys.SourceCode.ResultEnd("file:230-query-parameters.js")
+@snip.SnipEnd()
 
 
 @* Footer *@

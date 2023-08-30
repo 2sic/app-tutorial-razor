@@ -23,7 +23,7 @@
 </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of List.cshtml", "Source of Details.cshtml" )
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./611-list.cshtml,file:./611-details.cshtml")).SnipStart())
   @{
     // check if we have a url-parameter called "id" with a value - defaults to 0 if not found
     int id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
@@ -33,7 +33,7 @@
   } else {
     @Html.Partial("611-details.cshtml", new { Id = id })
   }
-@Sys.SourceCode.ResultEnd("file:611-list", "file:611-details" )
+@snip.SnipEnd()
 
 
 @* Footer *@

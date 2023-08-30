@@ -7,6 +7,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -38,7 +39,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of get-data.js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./200-get-data.js")).SnipStart())
   <table id="example-content" class="table">
     <thead>
       <tr>
@@ -59,7 +60,7 @@
   @Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: data)
 
   <script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:200-get-data.js")
+@snip.SnipEnd()
 
 
 @* Footer *@

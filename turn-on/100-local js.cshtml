@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -27,7 +28,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of local-js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./100-local-js.js")).SnipStart())
   <div id="turn-on-example">
     turnOn is waiting - this will be replaced within 3 seconds... 😔
   </div>
@@ -36,7 +37,7 @@
     @Kit.Page.TurnOn("window.turnOnTutorial100.init()")
 
   <script src="@CmsContext.View.Path/100-local-js.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:100-local-js.js")
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -3,6 +3,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
   @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 </hide>
 
@@ -36,11 +37,10 @@
 
 
 </hide>
-<div class="alert alert-success">
 
-  <h2>Standard TagToolbar</h2>
+<h2>Standard TagToolbar</h2>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of toolbar-workflow.js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./130-toolbar-workflow.js")).SnipStart())
   @{
       var standardToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(show: "always");
     }
@@ -51,13 +51,12 @@
       Instead, you'll see console messages that a custom JS took over the process.
     </div>
   </div>
-@Sys.SourceCode.ResultEnd("file:130-toolbar-workflow.js")
+@snip.SnipEnd()
 
 
-<div class="alert alert-success">
-  <h2>Standard Inline Toolbar</h2>
+<h2>Standard Inline Toolbar</h2>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source of toolbar-workflow.js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./130-toolbar-workflow.js")).SnipStart())
   <div class="alert alert-primary" style="width: 100%;">
       <div id='inlineToolbar'>
         @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
@@ -66,7 +65,7 @@
       </div>
     </div>
 
-@Sys.SourceCode.ResultEnd("file:130-toolbar-workflow.js")
+@snip.SnipEnd()
 
 
 <hide>

@@ -22,7 +22,7 @@
 
   <h3>List of Persons</h3>
 
-@Sys.SourceCode.ResultAndSnippetStart("list-detail", "Source of Details.cshtml" )
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./620-b-details.cshtml")).SnipStart())
   <ul>
     @foreach (var person in AsList(App.Data["Persons"])) {
       <li>
@@ -32,7 +32,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:620-b-details" )
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -27,7 +28,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of await-function-js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./201-await-function.js")).SnipStart())
   @{
     
     // Create unique DOM attribute with Module Id
@@ -56,7 +57,7 @@
 
   @* Include local JavaScript file *@
   <script src="@CmsContext.View.Path/201-await-function.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:201-await-function.js")
+@snip.SnipEnd()
 
 
 @* Footer *@

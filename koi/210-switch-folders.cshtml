@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -28,7 +29,11 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source of bs3_Alert.cshtml", "Source of bs4_Alert.cshtml")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: new Dictionary<string, string> {
+  { "bs3/Alert.Cshtml", "file:./bs3/Alert.cshtml" },
+  { "bs4/Alert.Cshtml", "file:./bs4/Alert.cshtml" },
+  { "bs5/Alert.Cshtml", "file:./bs5/Alert.cshtml" },
+  })).SnipStart())
   @*
     This page is just an entry point for your code. It will do the following:
     1. Check if it can detect the CSS framework used by the theme
@@ -41,7 +46,7 @@
     var folder = Kit.Css.Is("bs5") ? "bs5" : Kit.Css.Is("bs4") ? "bs4" : "bs3";
   }
   @Html.Partial(folder + "/Alert.cshtml")
-@Sys.SourceCode.ResultEnd("file:bs3/Alert.cshtml","file:bs4/Alert.cshtml" )
+@snip.SnipEnd()
 
 
 @* Footer *@

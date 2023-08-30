@@ -45,9 +45,9 @@
     // Use GetCode in RazorPro
     var lightbox = GetCode("../shared/Fancybox.cs");
   }
-  @lightbox.PreviewWithLightbox(@App.Path + "/app-icon.png")
+  @lightbox.PreviewWithLightbox(App.Folder.Url + "/app-icon.png")
   <br>
-  @lightbox.PreviewWithLightbox(@App.Path + "/reuse/demo.png", 200, 100)
+  @lightbox.PreviewWithLightbox(App.Folder.Url + "/reuse/demo.png", 200, 100)
 @Sys.SourceCode.ResultEnd("snippet:*-14", "file:../shared/fancybox.cs")
 
 @* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works

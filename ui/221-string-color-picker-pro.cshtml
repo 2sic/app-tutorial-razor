@@ -3,6 +3,7 @@
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+  @{ dynamic snip = null; }
   @{ Sys.ToolbarHelpers.EnableEditForAll();  /* IMPORTANT: This must be at the top of the file */ }
 </hide>
 
@@ -28,17 +29,18 @@
   @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 </hide>
 
-<div class="alert alert-success">
-  <h2>Configurable Color-Picker Input Field</h2>
+<h2>Configurable Color-Picker Input Field</h2>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo4", "Source of Color-Picker.js", "Config JSON of Field")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: new Dictionary<string, string> {
+  { "Color-Picker.js", "file:../system/field-string-app-color-pickr/index.js" },
+  { "Config JSON of Field", "file:../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json" }
+  })).SnipStart())
   <p>
     This example shows two color-picker fields, with different initial configurations. <br>
     Hit this edit button to have a look: 
   </p>
   @Kit.Toolbar.Empty().New("UiStringColorPickrPro").AsTag()
-@Sys.SourceCode.ResultEnd("file:../system/field-string-app-color-pickr/index.js", "file:../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json")
-</div>
+@snip.SnipEnd()
 
 
 @Html.Partial("warning.cshtml")

@@ -4,6 +4,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -21,7 +22,7 @@
 </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("data-query-csv", "Source-code products.csv.txt")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./assets/products.csv.txt")).SnipStart())
   @{
     // get the query
     var query = Kit.Data.GetQuery("ProductsFromCSV");
@@ -53,7 +54,7 @@
       </li>
     }
   </ul>
-@Sys.SourceCode.ResultEnd("file:assets/products.csv.txt")
+@snip.SnipEnd()
 
 
 @* Footer *@

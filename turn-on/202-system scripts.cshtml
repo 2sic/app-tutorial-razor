@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -27,7 +28,7 @@
   </div> 
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of system-scripts-js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./202-system-scripts.js")).SnipStart())
   @{
     // Create unique DOM attribute with Module Id
     var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
@@ -58,7 +59,7 @@
 
   @* Include local JavaScript file *@
   <script src="@CmsContext.View.Path/202-system-scripts.js" @Kit.Page.AssetAttributes()></script>
-@Sys.SourceCode.ResultEnd("file:202-system-scripts.js")
+@snip.SnipEnd()
 
 
 @* Footer *@

@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
@@ -29,31 +30,34 @@
 <h3>Just render the same, external file into here</h3>
 <p>This uses <code>@@Html.Partial</code> to get the file <code>line.cshtml</code> 3 times.</p>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "Source line.cshtml")
+@* @Sys.SourceCode.ResultAndSnippetStart("demo1", "Source line.cshtml") *@
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./line.cshtml")).SnipStart())
   @Html.Partial("line.cshtml")
   @Html.Partial("line.cshtml")
   @Html.Partial("line.cshtml")
-@Sys.SourceCode.ResultEnd("file:line.cshtml")
+@snip.SnipEnd()
 
 
 <h3>Passing in Parameters/Values</h3>
 <p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source box.cshtml")
+@* @Sys.SourceCode.ResultAndSnippetStart("demo2", "Source box.cshtml") *@
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./box.cshtml")).SnipStart())
   @Html.Partial("box.cshtml", new { Label = "Hello, this is the first line" })
   @Html.Partial("box.cshtml", new { Label = "Second line!", Color = "red" })
   @Html.Partial("box.cshtml", new { Label = "I'm last!", Color = "blue" })
-@Sys.SourceCode.ResultEnd("file:box.cshtml")
+@snip.SnipEnd()
 
 
 <h3>Passing in Parameters/Values Pro</h3>
 <p>This is the same, but using the <code>RazorPro</code> (new v16). The called template will get the parameters on <code>MyModel</code> (see code below)</p>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo2", "Source box-pro.cshtml")
+@* @Sys.SourceCode.ResultAndSnippetStart("demo2", "Source box-pro.cshtml") *@
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./box-pro.cshtml")).SnipStart())
   @Html.Partial("box.cshtml", new { Label = "Hello, this is the first line" })
   @Html.Partial("box.cshtml", new { Label = "Second line!", Color = "red" })
   @Html.Partial("box.cshtml", new { Label = "I'm last!", Color = "blue" })
-@Sys.SourceCode.ResultEnd("file:box-pro.cshtml")
+@snip.SnipEnd()
 
 
 @* Footer *@

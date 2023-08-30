@@ -3,8 +3,13 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
+
+@*
+  NOTE: 2023-08-30 I believe this tutorial isn't in use any more, but must verify
+*@
 
 <trim>
   <h2>Code-Behind Strategy in Razor Templates</h2>
@@ -26,14 +31,14 @@
   </ul>
 </trim>
 
-@Sys.SourceCode.ResultAndSnippetStart("code-behind", "Source of CodeBehindSimulated.cs")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./CodeBehindSimulated.cs")).SnipStart())
   @{
     var code = CreateInstance("CodeBehindSimulated.cs");
   }
   <div>Hello from Code Behind: <strong>@code.Hello()</strong></div>
 
   @code.Message("Message in a special format")
-@Sys.SourceCode.ResultEnd("file:CodeBehindSimulated.cs")
+@snip.SnipEnd()
 
 
 @* Footer *@

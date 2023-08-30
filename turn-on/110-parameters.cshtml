@@ -3,6 +3,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -27,7 +28,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("turn-on-demo", "Source of parameters-js")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./110-parameters.js")).SnipStart())
   <div id="turn-on-example">
     turnOn Example 1 hasn't started yet.
   </div>
@@ -54,7 +55,7 @@
 
   <script src="@CmsContext.View.Path/110-parameters.js" @Kit.Page.AssetAttributes()></script>
 
-@Sys.SourceCode.ResultEnd("file:110-parameters.js")
+@snip.SnipEnd()
 
 
 @* Footer *@
