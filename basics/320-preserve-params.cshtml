@@ -3,7 +3,14 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+
+  @* If we have ?Rzr14 in the url, show that code to verify it works *@
+  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
+    @Sys.SourceCode.ShowAltCodeFile(Html);
+    return;
+  }
 </hide>
 
 
@@ -25,22 +32,15 @@
 <h2>Link to current page with all Parameters</h2>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-current-params", "R14")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#current-params")).SnipStart())
   @{ var currentPageUrl = Link.To(parameters: MyPage.Parameters); }
   <ol>
     <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
     <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
   </ol>
-@Sys.SourceCode.ResultEnd("snippet:*-14")
+@snip.SnipEnd()
 
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-@Sys.SourceCode.SnippetStart("link-to-current-params-14")
-  @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
-  <ol>
-    <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
-    <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
-@Sys.SourceCode.SnippetEnd()
-*@
+
 
 <hide>
 <h3>Add Parameters</h3>
@@ -52,7 +52,7 @@
 </hide>
 <p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-new-params", "R14")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#new-params")).SnipStart())
  @{
     // Example using string
     var newParamsFromString = MyPage.Parameters + "&name=2sxc";
@@ -65,24 +65,9 @@
 </hide>
   <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
   <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
-@Sys.SourceCode.ResultEnd("snippet:*-14")
+@snip.SnipEnd()
 
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-@Sys.SourceCode.SnippetStart("link-to-new-params-14")
- @{
-    // Example using string
-    var newParamsFromString = CmsContext.Page.Parameters + "&name=2sxc";
 
-    // Page parameters using .Add(...) method
-    var newParamsFromAdd = CmsContext.Page.Parameters.Add("name", "2sxc");
-  }
-<hide>
-  <p>See adjusted page parameters: <code>@newParamsFromAdd</code></p>
-</hide>
-  <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
-  <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
-@Sys.SourceCode.SnippetEnd()
-*@
 
 <hide>
 <h3>Remove Parameters</h3>
@@ -92,7 +77,7 @@
 </hide>
 <p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-remove-params", "R14")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#remove-params")).SnipStart())
   @{
     var currentParamsRemoved = MyPage.Parameters.Remove("basics320");
   }
@@ -100,19 +85,9 @@
   <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
   </hide>
   <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
-@Sys.SourceCode.ResultEnd("snippet:*-14")
+@snip.SnipEnd()
 
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-@Sys.SourceCode.SnippetStart("link-to-remove-params-14")
-  @{
-    var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
-  }
-  <hide>
-  <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
-  </hide>
-  <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
-@Sys.SourceCode.SnippetEnd()
-*@
+
 
 <hide>
 <h3>Change Parameters</h3>
@@ -123,7 +98,7 @@
 
 <p>See current page parameters: <code>@MyPage.Parameters</code></p>
 
-@Sys.SourceCode.ResultAndSnippetStart("link-to-changed-params", "R14")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#change-params")).SnipStart())
   @{
     var currentParamsChanged = MyPage.Parameters.Set("basics320", "2sxc");
   }
@@ -131,19 +106,9 @@
   <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
   </hide>
   <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
-@Sys.SourceCode.ResultEnd("snippet:*-14")
+@snip.SnipEnd()
 
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-@Sys.SourceCode.SnippetStart("link-to-changed-params-14")
-  @{
-    var currentParamsChanged = CmsContext.Page.Parameters.Set("basics320", "2sxc");
-  }
-  <hide>
-  <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
-  </hide>
-  <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
-@Sys.SourceCode.SnippetEnd()
-*@
+
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

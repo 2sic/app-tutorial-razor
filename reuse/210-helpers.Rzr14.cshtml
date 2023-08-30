@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+<h1>Razor 14 code clone</h1>
+
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
+  @{
+    // Use CreateInstance in Razor12 and Razor14
+    var lightbox = CreateInstance("../shared/Fancybox.cs");
+  }
+  @lightbox.PreviewWithLightbox(App.Path + "/app-icon.png")
+  <br>
+  @lightbox.PreviewWithLightbox(App.Path + "/reuse/demo.png", 200, 100)
+@snip.SnipEnd()

@@ -1,0 +1,21 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
+  <ol>
+    <li>
+      <code>.Id</code> of the current site (same as <code>PortalId</code> in DNN): <strong>@CmsContext.Site.Id</strong>
+    </li>
+    <li>
+      <code>.Url</code> The site url with protocol: <strong>@CmsContext.Site.Url</strong>
+    </li>
+    <li>
+      <code>.UrlRoot</code> The site url without a protocol: <strong>@CmsContext.Site.UrlRoot</strong>
+    </li>
+  </ol>
+@snip.SnipEnd()

@@ -3,7 +3,14 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })  
+
+  @* If we have ?Rzr14 in the url, show that code to verify it works *@
+  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
+    @Sys.SourceCode.ShowAltCodeFile(Html);
+    return;
+  }
 </hide>
 
 
@@ -23,7 +30,7 @@
 <p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
 </trim>
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14", "Source of SharedFunctions.cs")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet,file:SharedFunctions.cs")).SnipStart())
   @{
     // Use GetCode in RazorPro
     var lib = GetCode("SharedFunctions.cs");
@@ -32,21 +39,7 @@
   <div>
     <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
   </div>
-@Sys.SourceCode.ResultEnd("snippet:*-14", "file:SharedFunctions.cs")
-
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-
-@Sys.SourceCode.SnippetStart("demo1-14")
-  @{
-    // Use CreateInstance in Razor12 and Razor14
-    var lib = CreateInstance("SharedFunctions.cs");
-  }
-  <div>Hello from lib: @lib.SayHello()</div>
-  <div>
-    <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
-  </div>
-@Sys.SourceCode.SnippetEnd()
-*@
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

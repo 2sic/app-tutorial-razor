@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
+  <ol>
+    <li>
+      <code>.CurrentCode</code> Current code culture is: <strong>@CmsContext.Culture.CurrentCode</strong>
+    </li>
+    <li>
+      <code>.DefaultCode</code>
+      @if (Text.Has(CmsContext.Culture.DefaultCode)) {
+        <strong>@CmsContext.Culture.DefaultCode</strong>
+      } else {
+        <p>
+          The system is single language and the response is an empty string.
+        </p>
+      }
+    </li>
+  </ol>
+@snip.SnipEnd()

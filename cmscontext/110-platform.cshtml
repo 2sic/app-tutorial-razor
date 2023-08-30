@@ -3,7 +3,14 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+
+  @* If we have ?Rzr14 in the url, show that code to verify it works *@
+  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
+    @Sys.SourceCode.ShowAltCodeFile(Html);
+    return;
+  }
 </hide>
 
 
@@ -20,7 +27,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet")).SnipStart())
   <ol>
     <li>
       <code>.Name</code> Current platform name is: <strong>@MyContext.Platform.Name</strong>
@@ -32,23 +39,7 @@
       <code>.Version</code> Current platform version is: <strong>@MyContext.Platform.Version</strong>
     </li>
   </ol>
-@Sys.SourceCode.ResultEnd("snippet:*-14")
-
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-@Sys.SourceCode.SnippetStart("demo1-14")
-  <ol>
-    <li>
-      <code>.Name</code> Current platform name is: <strong>@CmsContext.Platform.Name</strong>
-    </li>
-    <li>
-      <code>.Type</code> Current platform type is: <strong>@CmsContext.Platform.Type</strong>
-    </li>
-    <li>
-      <code>.Version</code> Current platform version is: <strong>@CmsContext.Platform.Version</strong>
-    </li>
-  </ol>
-@Sys.SourceCode.SnippetEnd()
-*@
+@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

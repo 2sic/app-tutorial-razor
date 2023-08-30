@@ -10,17 +10,14 @@ public class Helpers: Custom.Hybrid.CodeTyped
   public string TutViewSharingMetadataType = "TutorialViewSharing";
 
   public Helpers Init(Razor14 page) {
-    // ParentRazor = page;
     Path = page.Path;
     return this;
   }
 
   public Helpers Init(RazorTyped page) {
-    // ParentRazor = page;
     Path = page.Path;
     return this;
   }
-  // public Razor14 ParentRazor;
 
   public string Path {get;set;}
 

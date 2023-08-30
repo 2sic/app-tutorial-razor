@@ -1,0 +1,28 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
+  <ol>
+    <li>
+      <code>.Id</code> of the current page: <strong>@CmsContext.Page.Id</strong>
+      (<code>TabId</code> in DNN or <code>Page.PageId</code> in oqtane.)
+    </li>
+    <li>
+      <code>.Url</code> the page url with protocol: <strong>@CmsContext.Page.Url</strong>
+    </li>
+    <li>
+      <code>.Parameters</code> all the url parameters of the page <code>@CmsContext.Page.Parameters</code>
+    </li>
+    <li>
+      <code>.Parameters[name]</code> Access a specific parameter (in this case the parameter <code>c140</code> from the url)
+      <strong>
+        @CmsContext.Page.Parameters["c140"]
+      </strong>
+    </li>
+  </ol>
+@snip.SnipEnd()

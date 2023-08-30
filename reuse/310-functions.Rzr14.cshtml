@@ -1,0 +1,32 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+<h1>Razor 14 code clone</h1>
+
+@Sys.SourceCode.ResultAndSnippetStart("demo1", "R14", "Source of SharedFunctions.cs")
+  @{
+    // Use GetCode in RazorPro
+    var lib = GetCode("SharedFunctions.cs");
+  }
+  <div>Hello from lib: @lib.SayHello()</div>
+  <div>
+    <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
+  </div>
+@snip.SnipEnd()
+@* @Sys.SourceCode.ResultEnd("snippet:*-14", "file:SharedFunctions.cs") *@
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
+  @{
+    // Use CreateInstance in Razor12 and Razor14
+    var lib = CreateInstance("SharedFunctions.cs");
+  }
+  <div>Hello from lib: @lib.SayHello()</div>
+  <div>
+    <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
+  </div>
+@snip.SnipEnd()

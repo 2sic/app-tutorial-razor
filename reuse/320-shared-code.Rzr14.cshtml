@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+<h1>Razor 14 code clone</h1>
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("demo1"))
+  @{
+    var lib = CreateInstance("FunctionsBasic.cs");
+  }
+  <div>Hello from FunctionsBasic: @lib.SayHello()</div>
+@snip.SnipEnd()
+
+
+
+
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("demo2"))
+  @{
+    var lib2 = CreateInstance("FunctionsBasic.cs", name: "Second");
+  }
+  <div>Hello from FunctionsBasic: @lib2.SayHello()</div>
+@snip.SnipEnd()
+
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("demo3"))
+  @{
+    var powerLib = CreateInstance("FunctionsWithContext.cs");
+  }
+  <div>
+    <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
+  </div>
+@snip.SnipEnd()

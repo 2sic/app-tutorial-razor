@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+<h1>Razor 14 code clone</h1>
+
+@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works *@
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("query-string"))
+  <ul>
+    <li>URL contains <code>sort</code> using null-check: 
+      @(CmsContext.Page.Parameters["sort"] != null)
+    </li>
+    <li>URL contains <code>sort</code> using <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a> (this will also return false, if sort is empty):
+      @Text.Has(CmsContext.Page.Parameters["sort"])
+    </li>
+    <li>Sort value from URL:
+      @CmsContext.Page.Parameters["sort"]
+    </li>
+    <li>
+      Put <code>sort</code> in a variable for further use:
+      @{
+        var sort = CmsContext.Page.Parameters["sort"];
+      }
+      @sort
+    </li>
+    <li>
+      Get sort from url, or if it doesn't exist, use a default value <code>descending</code> (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>):
+      @{
+        sort = Text.First(CmsContext.Page.Parameters["sort"], "descending");
+      }
+      @sort
+    </li>
+  </ul>
+@snip.SnipEnd()

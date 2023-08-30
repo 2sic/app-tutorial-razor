@@ -56,8 +56,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private Dictionary<string, string> TabStringToDic(string tabs) {
     var tabList = tabs.Split(',').Select(t => t.Trim()).ToArray();
     var tabDic = tabList.ToDictionary(
-      t => t.StartsWith("file:") ? (Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":")) : t,
-      t => t
+      t => {
+        if (t.StartsWith("Rzr14"))
+          return "Rzr14";
+        if (t.StartsWith("file:"))
+          return Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":");
+        return t;
+      },
+      t => (t.StartsWith("Rzr14") ? ("file:./" + AltCodeFileRzr14() + Text.After(t, "Rzr14")) : t)
     );
     return tabDic;
   }
@@ -252,10 +258,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     var tabNames = new List<string>() { firstName };
     if (names != null && names.Any())
       tabNames.AddRange(names.Select(n => {
-        if (n == "R14") return "Razor14 and older";
+        if (n == "R14" || n == "Rzr14") return "Razor14 and older";
         if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
         return n;
-        // n == "R14" ? "Razor14 and older" : n
       }));
     if (Text.Has(lastName))
       tabNames.Add(lastName);
@@ -569,6 +574,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     var debug = false;
     var path = Path;
     var errPath = Path;
+
+    // New: support for snippetId in path
+    if (snippetId == null && file.Contains("#")) {
+      snippetId = Text.AfterLast(file, "#");
+      file = Text.BeforeLast(file, "#");
+    }
+
     try
     {
       var specs = GetFileAndProcess(path, file, snippetId);
@@ -766,6 +778,25 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       case "json": return "json";
       default: return "razor";
     }
+  }
+
+  #endregion
+
+  #region Support Rrz14 Debugging
+
+  public bool ShouldShowAltCodeFile()
+  {
+    return MyPage.Parameters.ContainsKey("Rzr14");
+  }
+
+  public ITag ShowAltCodeFile(dynamic html) {
+    var altFile = AltCodeFileRzr14();
+    return Tag.RawHtml(Tag.H1("Show Rzr"), Tag.Code(altFile), html.Partial(altFile));
+  }
+
+  public string AltCodeFileRzr14()
+  {
+    return Text.AfterLast(Path, "/").Replace(".cshtml", ".Rzr14.cshtml");
   }
 
   #endregion

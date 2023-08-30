@@ -3,7 +3,14 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
+
+  @* If we have ?Rzr14 in the url, show that code to verify it works *@
+  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
+    @Sys.SourceCode.ShowAltCodeFile(Html);
+    return;
+  }
 </hide>
 
 
@@ -26,7 +33,7 @@
 </div>
 
 
-@Sys.SourceCode.ResultAndSnippetStart("basic-number-params", "R14")
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#query-string")).SnipStart())
   @{
     // This variable is a string, but could be null or empty
     var idAsString = MyPage.Parameters["id"];
@@ -51,36 +58,8 @@
       Equal to number 27: @(idOrMinus1 == 27) <br>
     </li>
   </ul>
-@Sys.SourceCode.ResultEnd("snippet:*-14")
+@snip.SnipEnd()
 
-@* Snippet for the old v14 code, which shouldn't run but should be shown. This is a bit of a hack, but it works
-@Sys.SourceCode.SnippetStart("basic-number-params-14")
-  @{
-    // This variable is a string, but could be null or empty
-    var idAsString = CmsContext.Page.Parameters["id"];
-    // This converts the id parameter to int. First sample auto-falls back to 0, other to -1
-    var id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
-    var idOrMinus1 = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"], -1);
-  }
-  <ul>
-    <li>
-      <strong>Raw id from URL:</strong> @idAsString <br>
-      Equal to string "27": @(idAsString == "27") <br>
-      Equal to number 27: (would throw error) <br>
-    </li>
-    <li>
-      <strong>Number id from URL:</strong> @id <br>
-      Equal to string "27": (would throw error) <br>
-      Equal to number 27: @(id == 27) <br>
-    </li>
-    <li>
-      <strong>Number id from URL or -1:</strong> @idOrMinus1 <br>
-      Equal to string "27": (would throw error) <br>
-      Equal to number 27: @(idOrMinus1 == 27) <br>
-    </li>
-  </ul>
-@Sys.SourceCode.SnippetEnd()
-*@
 
 <hide>
 @functions {

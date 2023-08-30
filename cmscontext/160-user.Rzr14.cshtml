@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @* Sys must always be an exact copy of this line, so that we could search/replace *@
+  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
+</hide>
+
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
+  <ol>
+    <li>
+      <code>.Id</code> of the current user: <strong>@CmsContext.User.Id</strong>
+    </li>
+    <li>
+      <code>.IsSiteAdmin</code> <strong>@CmsContext.User.IsSiteAdmin</strong> (check if the current user is a site admin) 
+    </li>
+    <li>
+      <code>.IsContentAdmin</code> <strong>@CmsContext.User.IsSiteAdmin</strong> (check if the current user can edit content) 
+    </li>
+    <li>
+      <code>.IsSystemAdmin</code> <strong>@CmsContext.User.IsSystemAdmin</strong> (check if the current user is a supe-user) 
+    </li>
+  </ol>
+@snip.SnipEnd()
