@@ -49,7 +49,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) { return new TabsWithSnippetsSection(this, tabs); }
   public TabsWithSnippetsSection TabsWithSnippet(string tabs) {
     var tabList = tabs.Split(',').Select(t => t.Trim()).ToArray();
-    var tabDic = tabList.ToDictionary(t => t.StartsWith("file:") ? Text.AfterLast(t, "/") : t, t => t);
+    var tabDic = tabList.ToDictionary(
+      t => t.StartsWith("file:") ? (Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":")) : t,
+      t => t
+    );
     return new TabsWithSnippetsSection(this, tabDic);
   }
 
@@ -172,9 +175,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return ScParent.SnippetStartInner(TabPrefix, ResultTabName, SourceTabName, Tabs.Keys.ToArray());
     }
 
-    public override ITag SnipEnd() { return SnipEndInternal(); }
+    public override ITag SnipEnd() { return SnipEndShared(); }
 
-    public ITag SnipEndInternal() {
+    private ITag SnipEndShared() {
       // Original setup, without any tabs
       if (!Tabs.Any()) 
         return ScParent.SnippetEndInternal(TabPrefix, SnippetId);
@@ -182,6 +185,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       // Extending 2023-08-29 - with tabs
       var tabContents = new List<object>();
       tabContents.AddRange(Tabs.Values);
+      ScParent.Log.Add("tabContents: " + tabContents.Count);
       var result = ScParent.ResultEndInner2(
         snippetInResultTab: false,
         showSnippetTab: false,
@@ -196,8 +200,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     private object[] _contentsOverride = null;
 
     public ITag SnipEnd(params object[] generated) {
-      _contentsOverride = generated;
-      return SnipEndInternal();
+      // must check for any, because generated is `params` and so never null
+      _contentsOverride = generated.Any() ? generated : null;
+      return SnipEndShared();
     }
 
   }
@@ -451,10 +456,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private bool _resultEndWillPrepend = false;
   private bool _resultEndClosesReveal = false;
 
-  public ITag ResultStart(string snippetId, params string[] names) {
-    _resultEndWillPrepend = false;
-    return SnippetStartInner(snippetId, ResultTabName, SourceTabName, names);
-  }
+  // public ITag ResultStart(string snippetId, params string[] names) {
+  //   _resultEndWillPrepend = false;
+  //   return SnippetStartInner(snippetId, ResultTabName, SourceTabName, names);
+  // }
 
   public ITag ResultAndSnippetStart(string snippetId, params string[] names) {
     _resultEndWillPrepend = true;

@@ -8,6 +8,7 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -30,7 +31,7 @@
   </div>
 
 
-@Sys.SourceCode.ResultStart("turn-on-demo", "Source of edit.js")
+@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:./300-edit.js")).SnipStart())
   <table id="example-content" class="table">
     <trim>
       <thead>
@@ -78,9 +79,8 @@
   }
   @Kit.Page.TurnOn("window.editPoets.init()", data: data)
 
-
   <script src="@CmsContext.View.Path/300-edit.js"></script>
-@Sys.SourceCode.ResultEnd("file:300-edit.js")
+@snip.SnipEnd()
 
 
 @* Footer *@
