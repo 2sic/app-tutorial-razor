@@ -21,7 +21,7 @@ You can also download the latest copy of this App directly from the [releases](.
 | 2sxc                | ✅    | requires 2sxc v16.00
 | Dnn                 | ✅    | For v7, v8 and v9
 | Oqtane 2            | ✅    | Requires v2.02
-| No jQuery           | ✅    | 
+| No jQuery           | ✅    |
 | Live Demo           | ✅    | See [Dnn Razor Tutorial](https://2sxc.org/dnn-tutorials/en/razor)
 | Install Checklist   | ➖    | <!-- See [Installation](https://azing.org/2sxc/r/Y2n1XQwq) on [azing.org](https://azing.org/2sxc) -->
 | Source & License    | ✅    | included, ISC/MIT

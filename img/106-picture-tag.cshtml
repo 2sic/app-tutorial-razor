@@ -135,6 +135,8 @@
   </picture>
 @Sys.SourceCode.Invisible()
   @{
+    // must create the picControlled again, otherwise they style values are compounded resulting in "width: 75%; width: 75%;"
+    picControlled = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
     var previewString = "<picture> " + picControlled.Sources.ToString() + " " +
         picControlled.Img.Id("some-id").Style("width: 75%").Title("Mouseover this!").ToString() + "</picture>";
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
