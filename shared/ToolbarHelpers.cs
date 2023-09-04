@@ -9,11 +9,9 @@ public class ToolbarHelpers : Custom.Hybrid.Code14
   
   public ToolbarHelpers Init(dynamic sys) {
     Sys = sys;
-    // ParentRazor = Sys.ParentRazor;
     return this;
   }
   public dynamic Sys = null;
-  // public Razor14 ParentRazor;
 
   #endregion
 
@@ -22,7 +20,7 @@ public class ToolbarHelpers : Custom.Hybrid.Code14
     EnableEditForAnonymous();
   }
 
-  public void EnableEditForAnonymous() {
+  private void EnableEditForAnonymous() {
     // Special command to ensure that the toolbars appear, even if they are won't work.
     // This is NOT an official API, and may change any time.
     // This will tell the edit-UI that it's enabled (which is usually only the case if a user is an editor)
