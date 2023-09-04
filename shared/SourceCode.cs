@@ -99,7 +99,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// <param name="tutorials">list of tutorials view IDs to add to the last tab</param>
   /// <returns></returns>
   public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
-    return new QuickRefSection(this, tabs, tutorials);
+    return new QuickRefSection(this, tabs, tutorials, split: false);
+  }
+
+  public QuickRefSection QuickRefSplit(Dictionary<string, string> tabs = null, string[] tutorials = null, int outputW = 50) {
+    return new QuickRefSection(this, tabs, tutorials, split: true, firstWidth: outputW);
   }
 
   #endregion
@@ -209,8 +213,16 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return BsTabs.TabList(TabPrefix, tabNames, active) as ITag;
     }
 
+    protected virtual string SnippetBefore { get { return null; } }
+    protected virtual string SnippetAfter { get { return null; } }
+
     protected ITag SnipEndFinal(bool snippetInResultTab, bool showSnippetTab, bool endWithSnippet, object[] results, string active) {
-      var l = Log.Call<ITag>("snippetInResultTab: " + snippetInResultTab + "; ...inTab: " + showSnippetTab + "; endWithSnippet: " + endWithSnippet + "; snippetId: " + SnippetId + "; tab:" + TabPrefix + "; results:" + results.Length);
+      var l = Log.Call<ITag>("snippetInResultTab: " + snippetInResultTab 
+        + "; ...inTab: " + showSnippetTab 
+        + "; endWithSnippet: " + endWithSnippet 
+        + "; snippetId: " + SnippetId 
+        + "; tab:" + TabPrefix 
+        + "; results:" + results.Length);
       var nameCount = 0;
       // Close the tabs / header div section if it hasn't been closed yet
       var html = Tag.RawHtml();
@@ -221,7 +233,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       //   _resultEndClosesReveal = false;
       // }
       if (snippetInResultTab)
-        html = html.Add("</div>", ScParent.ShowSnippet(SnippetId));
+        html = html.Add("</div>", SnippetBefore, ScParent.ShowSnippet(SnippetId), SnippetAfter);
       html = html.Add(BsTabs.TabContentClose());
 
       if (showSnippetTab) {
@@ -443,36 +455,115 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public class QuickRefSection: SectionBase
   {
-    internal QuickRefSection(SourceCode sourceCode, Dictionary<string, string> tabs, string[] tutorials): base(sourceCode, tabs)
+    internal QuickRefSection(
+      SourceCode sourceCode,
+      Dictionary<string, string> tabs,
+      string[] tutorials,
+      bool split = false,
+      int firstWidth = 50
+    ) : base(sourceCode, tabs)
     {
       Tutorials = tutorials ?? new string[] {};
+      Split = split;
+      FirstWidth = firstWidth;
     }
     private string [] Tutorials;
 
+    private bool Split;
+    private int FirstWidth;
+
     public override ITag SnipStart(string snippetId = null) {
       InitSnippetAndTabId(snippetId);
-      var list = new List<string>() { SourceTabName };
+      var firstTab = Split ? ResultAndSourceTabName : ResultTabName;
+      var active = Split ? ResultAndSourceTabName : SourceTabName;
+      var list = new List<string>();
+      if (!Split) list.Add(SourceTabName);
       list.AddRange(Tabs.Keys.ToArray());
+
       if (Tutorials != null && Tutorials.Any())
         list.Add("Additional Tutorials");
-      return SnippetStartInner(ResultTabName, list.ToArray(), active: SourceTabName);
+
+      var header = SnippetStartInner(firstTab, list.ToArray(), active: active);
+      if (!Split) return header;
+
+      return Tag.RawHtml(
+        header,
+        "\n",
+        IndentPreSplit,
+        "<!-- Splitter -->",
+        "\n",
+        IndentPreSplit,
+        Tag.Div().Id(TabPrefix + "-splitter").Class("splitter-group").TagStart,
+        "\n",
+        IndentSplit,
+        "<!-- split left -->\n",
+        IndentSplit,
+        Tag.Div().Id(TabPrefix + "-splitter-left").TagStart,
+        "\n",
+        IndentSplit,
+        Tag.H4("Output"),
+        IndentPreSplit
+      );
     }
+
+    private const string IndentPreSplit = "      ";
+
+    private const string IndentSplit = "        ";
 
     public override ITag SnipEnd() {
       var tabContents = new List<object>();
       tabContents.AddRange(Tabs.Values);
-      var liLinks = Tutorials.Select(r => ScParent.Sys.TutorialLiLinkLookup(r).ToString());
+      var liLinks = Tutorials.Select(r => "\n    " + ScParent.Sys.TutorialLiLinkLookup(r) + "\n");
       var olLinks = Tag.Ol(liLinks);
       tabContents.Add(olLinks);
       var result = SnipEndFinal(
-        snippetInResultTab: false,
-        showSnippetTab: true,
+        snippetInResultTab: Split /* false */, // if split, the result must be inside...
+        showSnippetTab: !Split /* true */,
         endWithSnippet: false,
         results: tabContents.ToArray(),
         active: SourceTabName
       );
-      return result;
+      // return result;
+      if (!Split) return result;
+
+      ScParent.Kit.Page.TurnOn("window.splitter.init()", data: new {
+        parts = new [] {
+          "#" + TabPrefix + "-splitter-left",
+          "#" + TabPrefix + "-splitter-right"
+        },
+        options = new {
+          sizes = new [] { FirstWidth, 100 - FirstWidth },
+        }
+      });
+
+      return Tag.RawHtml(
+        result,
+        "\n",
+        "<!-- /Splitter -->"
+      );
     }
+
+    protected override string SnippetBefore { get {
+      return Split
+        ? "\n" + IndentSplit + "<!-- /split-left -->" 
+          + "\n" + IndentSplit + "<!-- split-right -->"
+          + "\n" + IndentSplit
+          + Tag.Div().Id(TabPrefix + "-splitter-right").TagStart.ToString()
+          + "\n"
+        : null;
+    } }
+    protected override string SnippetAfter { get {
+      return Split
+        ? IndentSplit 
+          + "</div>\n" 
+          + IndentSplit
+          + "<!-- /split-right -->\n"
+          + "\n" + IndentPreSplit 
+          + "</div>\n"
+          + IndentPreSplit
+          + "<!-- /Splitter -->\n"
+        : null;
+    } }
   }
 
   #endregion
@@ -538,7 +629,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       return Tag.RawHtml(
         debug ? Tag.Div(errPath).Class("alert alert-info") : null,
-        SourceBlock(specs, title)
+        "\n<!-- Source Code -->\n",
+        SourceBlock(specs, title),
+        "\n<!-- /Source Code -->\n"
       );
     }
     catch
@@ -592,7 +685,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         : specs.ShowTitle
           ? Tag.H3(title) as ITag
           : Tag.Span(),
-      SourceBlockCode(specs)
+      "\n<!-- Raw Source in Pre -->\n",
+      SourceBlockCode(specs),
+      "\n<!-- /Raw Source in Pre -->\n"
     );
   }
 
@@ -600,7 +695,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   private ITag SourceBlockCode(ShowSourceSpecs specs) {
     return Tag.Div().Class("source-code").Wrap(
-      Tag.Pre(Tags.Encode(specs.Processed)).Id(specs.RandomId).Style("height: " + specs.Size + "px; font-size: 16px")
+      "\n",
+      Tag.Pre(Tags.Encode(specs.Processed)).Id(specs.RandomId).Style("height: " + specs.Size + "px; font-size: 16px"),
+      "\n"
     );
   }
 

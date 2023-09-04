@@ -2,6 +2,7 @@ import { show, toggle } from 'slidetoggle';
 import { initAccordion } from './lib-2sxc-accordion';
 import { AccordionOptions } from './lib-2sxc-accordion-options';
 import { initRevealers } from './snippets';
+import { initSplit } from './split';
 declare let ace: any;
 
 function initSourceCode({ domAttribute, aceOptions  }: { domAttribute: string, aceOptions: { sourceCodeId: string, language: string, wrap: boolean } }) {  
@@ -49,3 +50,7 @@ winAny.razorTutorial.initSourceCode ??= initSourceCode;
 // Get snippets ready
 winAny.snippets ??= {};
 winAny.snippets.initRevealers ??= initRevealers;
+
+// Get splitter ready
+winAny.splitter ??= {};
+winAny.splitter.init ??= initSplit;

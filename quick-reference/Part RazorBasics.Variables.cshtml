@@ -2,21 +2,26 @@
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
 @{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "basics110" })).SnipStart())
+@((qref = Sys.SourceCode.QuickRefSplit(tutorials: new string[] { "basics110" }, outputW: 33)).SnipStart())
   @{
-    // Create variables - the compiler detects the type automatically
+    // Create variables using var; compiler detects the type
     var firstName = "Terry";
     var birthday = new DateTime(1948, 04, 28);
     var age = DateTime.Now.Year - birthday.Year;
-    var decades = age / 10; // integer division - so decades will still be an int
-    var decadesFloat = (float)age / 10; // float division - so decadesFloat will be a float
-    // example of explicit variable type
-    int decadesInt = (int)decadesFloat;  // This will loose the decimal places
+    var decades = age / 10;             // int division - decades will be int
+    var decadesFloat = (float)age / 10; // float div - so it be float
+    int decadesInt = (int)decadesFloat; // this drops the decimal places
   }
   <ol>
     <li>Show firstName (string): @firstName</li>
-    <li>Show birthday (DateTime): @birthday</li>
-    <li>Show birthday (DateTime, formatted): @birthday.ToString("yyyy-MM-dd")</li>
+    <li>
+      Show birthday (DateTime): <br>
+      @birthday
+    </li>
+    <li>
+      Show birthday (DateTime, formatted): <br>
+      @birthday.ToString("yyyy-MM-dd")
+    </li>
     <li>Show age (int): @age</li>
     <li>Show decades (int): @decades</li>
     <li>Show decadesFloat (float): @decadesFloat</li>

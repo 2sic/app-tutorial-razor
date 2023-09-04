@@ -2,9 +2,13 @@ using ToSic.Razor.Blade;
 
 public class Accordion: Custom.Hybrid.CodeTyped
 {
-  public object Start(string name) {
+  public IHtmlTag Start(string name) {
     Name = name;
-    return Kit.HtmlTags.Div().Class("accordion").Id(name).TagStart;
+    return Tag.RawHtml(
+      "<!-- Start(" + name + ") -->" 
+      + "\n"
+      + Kit.HtmlTags.Div().Class("accordion").Id(name).TagStart
+    );
   }
 
   public string Name { get; private set; }
@@ -35,10 +39,18 @@ public class AccPart {
   public string HeadingId { get { return Name + "-heading"; } }
   public string BodyId { get { return Name + "-body"; } }
 
+  private string Indent = "    ";
+
   public IHtmlTag Start() { 
     return TagsSvc.RawHtml(
+      "\n",
+      Indent,
+      "<!-- Part.Start(" + Name + ") -->",
+      "\n",
+      Indent,
       TagsSvc.Div().Class("accordion-item").TagStart,
       "\n",
+      Indent,
       Header(),
       "\n",
       BodyStart()
@@ -50,9 +62,11 @@ public class AccPart {
   }
 
   #region Helpers to build Start
-
+  private const string Indent2 = "      ";
   private IHtmlTag Header() {
     return TagsSvc.H2().Class("accordion-header").Id(HeadingId).Wrap(
+      "\n",
+      Indent2,
       TagsSvc.Button()
         .Class("accordion-button collapsed")
         .Type("button")
@@ -60,16 +74,21 @@ public class AccPart {
         .Data("bs-target", "#" + BodyId)
         .Attr("aria-expanded", "false")
         .Attr("aria-controls", BodyId)
-        .Wrap(Title)
+        .Wrap(Title),
+      "\n",
+      Indent
     );
   }
 
   private IHtmlTag BodyStart() {
     return TagsSvc.RawHtml(
-      TagsSvc.Div().Id(BodyId).Class("accordion-collapse collapse").Attr("aria-labelledby", HeadingId).Data("bs-parent", "#" + Acc.Name).TagStart 
-      + "\n"
-      + TagsSvc.Div().Class("accordion-body").TagStart
-      + "\n"
+      "\n",
+      Indent,
+      TagsSvc.Div().Id(BodyId).Class("accordion-collapse collapse").Attr("aria-labelledby", HeadingId).Data("bs-parent", "#" + Acc.Name).TagStart,
+      "\n",
+      Indent2,
+      TagsSvc.Div().Class("accordion-body").TagStart,
+      "\n"
     );
   }
   #endregion

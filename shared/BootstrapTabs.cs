@@ -9,6 +9,8 @@ using System.Text.RegularExpressions;
 // Shared / re-used code to create bootstrap tabs
 public class BootstrapTabs: Custom.Hybrid.Code14
 {
+  private const string Indent = "    ";
+  private const string IndentBtn = "      ";
   public ITag TabList(string prefix, IEnumerable<string> names, string active = null) {
     // Remember tab names
     _moreTabNames = names.ToArray();
@@ -18,9 +20,18 @@ public class BootstrapTabs: Custom.Hybrid.Code14
       var isActive = (active == null && isFirst) || name == active;
 
       tabList.Add("\n");
+      tabList.Add(IndentBtn);
       tabList.Add(Tab(prefix, name, isFirst, isActive)); // first entry is active = true
     }
-    return Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(tabList);
+    return Tag.RawHtml(
+      Indent,
+      "<!-- TabList Start -->\n",
+      Indent,
+      Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(
+        tabList
+      ),
+      "\n<!-- TabList End -->\n"
+    );
   }
 
   // WARNING: DUPLICATE CODE BootstrapTabs.cs / SourceCode.cs; keep in sync
@@ -34,7 +45,10 @@ public class BootstrapTabs: Custom.Hybrid.Code14
 
   private ITag Tab(string prefix, string label, bool isFirst, bool active) {
     return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-      TabButton(prefix, label, Name2TabId(label), isFirst, active)
+      Tag.Comment("Tab button"),
+      "\n",
+      TabButton(prefix, label, Name2TabId(label), isFirst, active),
+      "\n"
     );
   }
 
@@ -74,9 +88,13 @@ public class BootstrapTabs: Custom.Hybrid.Code14
         .Attr("aria-labelledby", prefix + id + "-tab");
   }
 
-  public dynamic TabContentOpen(string prefix, string id, bool isFirst, bool isActive) {
+  public string TabContentOpen(string prefix, string id, bool isFirst, bool isActive) {
     _tabContentIsOpen = true;
-    return TabContentDiv(prefix, id, isFirst, isActive).TagStart + "\n";
+    return "\n" + 
+      "<!-- TabContentOpen -->" + 
+      "\n" +
+      TabContentDiv(prefix, id, isFirst, isActive).TagStart +
+      "\n";
   }
   private bool _tabContentIsOpen = false;
   public string TabContentClose() {
