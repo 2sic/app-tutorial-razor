@@ -23,21 +23,22 @@
   </hide>
 
   <h3>Work with Current Item (MyItem)</h3>
-  @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "entity", "content" })).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Douglas Adams, the current item (MyItem)</h4>
     @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
     <ol>
-      <li>MyItem Name:          @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-      <li>MyItem Birthday:      @MyItem.DateTime("Birthday").ToString("d")</li>
-      <li>MyItem Award:         @MyItem.Child("Awards").String("Name")</li>
-      <li>MyItem Mugshot URL:   @MyItem.Url("Mugshot")</li>
-      <li>MyItem Mugshot Raw String: @MyItem.String("Mugshot")</li>
+      <li>Name:          @MyItem.String("FirstName") @MyItem.String("LastName")</li>
+      <li>Birthday:      @MyItem.DateTime("Birthday").ToString("d")</li>
+      <li>Award:         @MyItem.Child("Awards").String("Name")</li>
+      <li>Mugshot URL:   @MyItem.Url("Mugshot")</li>
+      <li>Mugshot Raw String: @MyItem.String("Mugshot")</li>
     </ol>
     <h4>Loop the persons in the Query for this view</h4>
     <ul>
       @foreach (var person in AsItems(MyData)) {
         <li>
-          @MyItem.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
+          @MyItem.Picture("Mugshot", settings: "Square",
+            width: 50, imgClass: "rounded-circle")
           @person.String("FirstName") @person.String("LastName")
         </li>
       }

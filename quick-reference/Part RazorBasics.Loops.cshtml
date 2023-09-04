@@ -4,18 +4,24 @@
   dynamic qref;
 }
 
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "basics220" })).SnipStart())
+@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "basics220" })).SnipStart())
   @{
     var pets = new string[] { "dog", "cat", "mouse"};
     var owners = new string[] { "Daniel", "John", "Markus"};
   }
-  <h4>Loop through Pets using <code>@@foreach (var thing in list)</code></h4>
+  <h4>
+    Loop through Pets using <br>
+    <code>@@foreach (var thing in list)</code>
+  </h4>
   <ul>
     @foreach (var pet in pets) {
       <li>@pet</li>
     }
   </ul>
-  <h4>Loop through Pets using <code>@@for (counter; condition; increment)</code></h4>
+  <h4>
+    Loop through Pets using <br>
+    <code>@@for (counter; condition; increment)</code>
+  </h4>
   <ul>
     @for(var i = 0; i < pets.Length; i++) {
       <li>@pets[i] - owned by @owners[i]</li>

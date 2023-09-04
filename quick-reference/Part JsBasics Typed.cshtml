@@ -15,7 +15,7 @@
     Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
     What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Source JS1", "file:js/report-loaded-in-console-path-app.js" },
     { "Source JS2", "file:js/report-loaded-in-console-path-view.js" },
   })).SnipStart())
@@ -43,7 +43,7 @@
     This is what <code>turnOn</code> does.
     It checks if all specified JS objects exist, and then triggers the JS code.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Source JS", "file:js/turnOn1.js" },
   })).SnipStart())
     <p>
@@ -93,7 +93,7 @@
     The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.
     The value of <code>UniqueKey</code> is the same in all Razor and C# files for the same Content-Block.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Helper Razor", "file:shared-uniquekey-message.cshtml" },
     { "JS File", "file:js/unique-key.js" },
   })).SnipStart())
@@ -123,7 +123,7 @@
     For example, you may need to have a UniqueKey which also uses another value - or many.
     This is done using <code>@@Kit.Key.UniqueKeyWith(...)</code>.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33()).SnipStart())
     <ol>
       <li>
         Unique Key with <code>12345</code>:
@@ -155,7 +155,7 @@
     If the <code>UniqueKey</code> is based on known object types such as Entities, this works very well.
     For example, you may need to loop through a list of items, and each item needs a unique key.
   </p>
-  @((qref = Sys.SourceCode.QuickRef()).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33()).SnipStart())
     @{
       var books = AsItems(App.Data["Books"]);
     }

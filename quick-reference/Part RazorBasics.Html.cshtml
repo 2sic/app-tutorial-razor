@@ -4,17 +4,17 @@
   dynamic qref;
 }
 
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "html" })).SnipStart())
+@((qref = Sys.SourceCode.QuickRefSplit(tutorials: new string[] { "html" })).SnipStart())
   @{
     var normalText = "this is text, it doesn't have tags";
     var htmlText = "this string <em>has</em> html <strong>tags</strong>";
   }
-  <h4>Output values (HTML is visible as source)</h4>
+  <h4>Output values (HTML-source shown)</h4>
   <ul>
     <li>@normalText</li>
     <li>@htmlText</li>
   </ul>
-  <h4>Output values (HTML is applied, could be a security risk)</h4>
+  <h4>Output values (HTML is used; maybe security risk)</h4>
   <ul>
     <li>@Html.Raw(normalText)</li>
     <li>@Html.Raw(htmlText)</li>

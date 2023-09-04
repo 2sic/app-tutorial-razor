@@ -6,7 +6,7 @@
 
 @* TODO: Sample Template Delegates in separate sample *@
 <h3>Reuse Code with functions in same file</h3>
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "reuse101", "reuse102", "reuse110" })).SnipStart())
+@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "reuse101", "reuse102", "reuse110" })).SnipStart())
   @functions {
     string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
    
@@ -32,7 +32,7 @@
     <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
     <li>Random number function: @Random100()</li>
     <li>Random number function: @Random100()</li>
-    @BoldLi("this is just a bold item in a list using a Template Delegate")
-    @BoldLi("this is another bold item in a list using a Template Delegate")
+    @BoldLi("this is a bold item in a list using a Template Delegate")
+    @BoldLi("another bold item in a list using a Template Delegate")
   </ul>
 @qref.SnipEnd()

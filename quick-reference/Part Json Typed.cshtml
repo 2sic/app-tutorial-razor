@@ -21,7 +21,7 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
@@ -45,7 +45,7 @@
   <p>
     This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   <ol>
     <li>
       <code>.String("Name")</code> (typed): @dude.String("Name")
@@ -80,13 +80,14 @@
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     var strict = Kit.Json.ToTyped(jDude);
   }
   <ol>
     <li>
       <code>strict.String("Fake")</code> (typed):
+      @* Note: TryGet is a tutorial-internal helper to show the error *@
       @TryGet(() => strict.String("Fake"))
     </li>
     <li>
@@ -114,7 +115,7 @@
   <p>
     By default, the object is strict, so you can only access fields which are present.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: dudeTabs)).SnipStart())
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
   }
@@ -128,8 +129,8 @@
       @loose.String("Fake")
     </li>
     <li>
-      <code>loose.String("Fake", fallback: "undefined")</code>:
-      @loose.String("Fake", fallback: "undefined")
+      <code>loose.String("Fake", fallback: "I don't know!")</code>:
+      @loose.String("Fake", fallback: "I don't know!")
     </li>
     <li>
       <code>loose.Int("Fake")</code>:
@@ -150,7 +151,7 @@
     <code>System.Text.Json</code> which has a sophisticated API.
     Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(new Dictionary<string, string> {
+  @((qref = Sys.SourceCode.QuickRefSplit33(new Dictionary<string, string> {
     { "dude-marc.json", "file:json/dude-marc.json" },
     { "dude-frank.json", "file:json/dude-frank.json" },
   })).SnipStart())
@@ -222,7 +223,7 @@
   <p>
     If you have an array in your Json, you need to use <code>ToTypedList</code>.
   </p>
-  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "cities.json", "file:json/cities.json" },
   })).SnipStart())
   @{

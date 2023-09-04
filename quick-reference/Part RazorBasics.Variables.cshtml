@@ -2,7 +2,7 @@
 @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
 @{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRefSplit(tutorials: new string[] { "basics110" }, outputW: 33)).SnipStart())
+@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "basics110" })).SnipStart())
   @{
     // Create variables using var; compiler detects the type
     var firstName = "Terry";

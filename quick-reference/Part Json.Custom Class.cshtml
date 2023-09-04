@@ -6,7 +6,7 @@
   string jsonRoot = MyView.Folder.PhysicalPath + "/json";
 }
 
-  @((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "cities.json", "file:json/cities.json" },
   })).SnipStart())
   @functions {
@@ -33,7 +33,6 @@
           <span>Partner Cities:
             @string.Join(", ", city.PartnerCities.Select(c => c.Name))
           </span>
-          
         }
       </li>
     }
