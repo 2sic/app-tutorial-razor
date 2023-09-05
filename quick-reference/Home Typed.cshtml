@@ -34,11 +34,32 @@
 @accordion.End()
 
 <p>&nbsp;</p>
-<h2>Working with Content Items</h2>
+<h2>Work with Content Items (<code>MyItem</code>)</h2>
 
 @accordion.Start("items")
-  @Html.Partial("./Part ItemsBasic Typed.cshtml", new { accordion })
+  @Html.Partial("./Part Item Properties Typed.cshtml", new { accordion })
+  @Html.Partial("./Part Item Children Typed.cshtml", new { accordion })
+  @Html.Partial("./Part Items Pic and Url Typed.cshtml", new { accordion })
+  @Html.Partial("./Part Items File and Folder Typed.cshtml", new { accordion })
 @accordion.End()
+
+<p>&nbsp;</p>
+<h2>Work with List of Items (<code>MyItems</code>)</h2>
+
+@accordion.Start("items")
+  @Html.Partial("./Part Items from Block Typed.cshtml", new { accordion })
+  @* @((accSection = accordion.Section("Work with Images, Multi-Language TODO")).Start())
+  @accSection.End() *@
+@accordion.End()
+
+
+<p>&nbsp;</p>
+<h2>Data and Query</h2>
+
+@accordion.Start("dataQuery")
+  @Html.Partial("./Part Data from Query Typed.cshtml", new { accordion })
+@accordion.End()
+
 
 <p>&nbsp;</p>
 <h2>Razor Advanced</h2>

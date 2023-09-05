@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.04.00" ExportDate="2023-09-04T09:35:42.9832244+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-05T23:14:12.2631987+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -2820,6 +2820,15 @@
             <Value Key="Disabled" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2829,7 +2838,13 @@
             <Value Key="Notes" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
             <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2840,7 +2855,7 @@
             </Value>
           </Entity>
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="9ec085d0-a159-4828-9749-b1becd2c6ab3" Json="True" KeyNumber="4817">
-            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EnableAddExisting" Value="True" Type="Boolean">
@@ -2859,6 +2874,15 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EntityType" Value="PersonAwards" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Label" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="MoreFields" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
@@ -2915,6 +2939,20 @@
             <Value Key="EnableTextEntry" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="FavoriteNumber" Type="Number" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="39125a58-cab6-4f2a-b1e1-ed4e742aa3ec" Json="True" KeyNumber="5875">
+            <Value Key="InputType" Value="number-default" Type="String" />
+            <Value Key="Name" Value="FavoriteNumber" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="IsAlive" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="da583e0e-a81f-4467-a511-695590e65380" Json="True" KeyNumber="5876">
+            <Value Key="InputType" Value="boolean-default" Type="String" />
+            <Value Key="Name" Value="IsAlive" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
       </Attributes>
@@ -5097,11 +5135,17 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="36726e4e-21cd-4c00-9ce8-72080f8935da">
-      <Value Key="Awards" Value="75b1dbf7-05a6-4fef-9aad-b62278e5be7d" Type="Entity" />
+      <Value Key="Awards" Value="75b1dbf7-05a6-4fef-9aad-b62278e5be7d,3579e0c0-93d6-4f93-89ca-83c222a89d0e" Type="Entity" />
       <Value Key="Birthday" Value="1952-03-11T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="FavoriteNumber" Value="41.99" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="FirstName" Value="Douglas" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsAlive" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LastName" Value="Adams" Type="String">
@@ -5110,9 +5154,15 @@
       <Value Key="Mugshot" Value="file:1532" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Sex" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="97ccde9f-65c5-49d7-9900-371b2a69812b">
       <Value Key="Birthday" Value="1948-04-28T00:00:00" Type="DateTime">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="FavoriteNumber" Value="8" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="FirstName" Value="Terry" Type="String">
@@ -5122,6 +5172,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Mugshot" Value="file:1533" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sex" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -25916,7 +25969,7 @@
       <Value Key="Path" Value="quick-reference/Home Typed.cshtml" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Pipeline" Value="38ba6f80-f8f6-41ae-a873-29eaef08af85" Type="Entity" />
+      <Value Key="Pipeline" Value="66d3b5ec-37fc-4ff1-87da-daee3b829618" Type="Entity" />
       <Value Key="PresentationTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -25977,6 +26030,68 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="ddb7a63d-5be2-45ad-b103-28dfc2ae8056" Json="True" KeyGuid="66d3b5ec-37fc-4ff1-87da-daee3b829618">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 500,&#xD;&#xA;  &quot;Left&quot;: 440&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="66d3b5ec-37fc-4ff1-87da-daee3b829618" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="QuickRef" Type="String" />
+      <Value Key="Params" Value="" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header,PersonAdams,Persons" Type="String" />
+      <Value Key="StreamWiring" Value="ddb7a63d-5be2-45ad-b103-28dfc2ae8056:Persons&gt;3462e466-2e7d-4e91-8a22-7a0fd0f51039:Default&#xD;&#xA;3462e466-2e7d-4e91-8a22-7a0fd0f51039:Default&gt;Out:PersonAdams&#xD;&#xA;ddb7a63d-5be2-45ad-b103-28dfc2ae8056:Persons&gt;358aab8b-de63-43ee-ace7-3b70eca84709:Default&#xD;&#xA;358aab8b-de63-43ee-ace7-3b70eca84709:Default&gt;Out:Persons" Type="String" />
+      <Value Key="TestParameters" Value="" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="3462e466-2e7d-4e91-8a22-7a0fd0f51039" Json="True" KeyGuid="66d3b5ec-37fc-4ff1-87da-daee3b829618">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Value Filter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.ValueFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 180,&#xD;&#xA;  &quot;Left&quot;: 220&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.ValueFilter" AttributeSetName="ToSic.Eav.DataSources.ValueFilter" EntityGUID="f8bfb387-bb4f-4eab-804d-fce37c04f79d" Json="True" KeyGuid="3462e466-2e7d-4e91-8a22-7a0fd0f51039">
+      <Value Key="Attribute" Value="LastName" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Languages" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Operator" Value="==" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Take" Value="1" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Value" Value="Adams" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="358aab8b-de63-43ee-ace7-3b70eca84709" Json="True" KeyGuid="66d3b5ec-37fc-4ff1-87da-daee3b829618">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Paging" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Paging, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 240,&#xD;&#xA;  &quot;Left&quot;: 560&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.Paging" AttributeSetName="ToSic.Eav.DataSources.Paging" EntityGUID="d3620fbb-b1b5-491d-9567-7e8afc9f1271" Json="True" KeyGuid="358aab8b-de63-43ee-ace7-3b70eca84709">
+      <Value Key="PageNumber" Value="1" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageSize" Value="3" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Paging data source" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="23efb193-1a4d-40f3-9d41-274570a6e57f" AttributeSetName="PersonAwards" EntityGUID="3579e0c0-93d6-4f93-89ca-83c222a89d0e">
+      <Value Key="Name" Value="Inkpot Award" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -26018,6 +26133,7 @@
     <File Id="6095" RelativePath="adam\Tutorial-Razor\oemnwEUKSUmao3JExQd75A\Image\app-icon.png" />
     <File Id="6101" RelativePath="adam\Tutorial-Razor\ROEcJLCX40m6vu4w0iogag\Image\app-icon.png" />
     <File Id="6096" RelativePath="adam\Tutorial-Razor\SjaSfr5aXk2ziKpsl56oqQ\Image\app-icon.png" />
+    <File Id="6412" RelativePath="adam\Tutorial-Razor\Tm5yNs0hAEyc6HIID4k12g\Mugshot\not-panicking.jpg" />
     <File Id="6098" RelativePath="adam\Tutorial-Razor\u2PgemEJYEaL9yM3DnOLEg\Image\app-icon.png" />
     <File Id="6105" RelativePath="adam\Tutorial-Razor\xg6dySq8Aku2g4CY6b-OMw\Image\look-up-system.svg" />
     <File Id="6102" RelativePath="adam\Tutorial-Razor\-YQYgfVpPUGFd3ci9FOd2g\Image\app-icon.png" />

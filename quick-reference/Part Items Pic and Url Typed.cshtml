@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var acc = MyModel.Get("Accordion") as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
+  dynamic qref;
+}
+
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var MyItem = AsItem(MyData.GetStream("PersonAdams"));
+}
+
+@((accSection = acc.Section("MyItem - Create Pictures using .Picture(…) or .Url")).Start())
+  <p>
+    Properties can contain urls such as <code>/abc.jpg</code> or file references like <code>file:72</code>.
+  </p>
+
+  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+    <h4>Douglas Adams, the current item (MyItem)</h4>
+    
+    <ol>
+      <li>Mugshot field Value:  @MyItem.String("Mugshot")</li>
+      <li>Mugshot URL:          @MyItem.Url("Mugshot")</li>
+      <li>
+        Mugshot Picture <br>
+        @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
+      </li>
+    </ol>
+  @qref.SnipEnd()
+@accSection.End()
+
+

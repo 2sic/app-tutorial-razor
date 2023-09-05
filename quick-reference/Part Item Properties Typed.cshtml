@@ -1,0 +1,65 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var acc = MyModel.Get("Accordion") as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
+  dynamic qref;
+}
+
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var MyItem = AsItem(MyData.GetStream("PersonAdams"));
+}
+
+@((accSection = acc.Section("MyItem (Current Item) - Get Properties using Get(), String(), Int(), etc.")).Start())
+  <p>
+    Every view/template receives prepared data, usually on the <code>MyItem</code> object.
+  </p>
+  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+    <h4>Douglas Adams on <code>MyItem</code></h4>
+    <p>
+      Id, Guid and Title are built-in properties
+    </p>
+    <ol>
+      <li>Id:             @MyItem.Id</li>
+      <li>Guid:           @MyItem.Guid</li>
+      <li>Title:          @MyItem.Title</li>
+    </ol>
+
+    <p>Use <code>Get(…)</code> if you don't care about the var type.</p>
+    <ol>
+      <li>Name:           @MyItem.Get("FirstName")</li>
+      <li>Birthday:       @MyItem.Get("Birthday")</li>
+    </ol>
+
+    <p>Use typed methods such as <code>.String(…)</code> if you care about the variable type.</p>
+    <ol>
+      @* use .String(…), .DateTime(…), .Int(…) to make it typed *@
+      <li>Name (strings): @MyItem.String("FirstName") @MyItem.String("LastName")</li>
+      <li>Birthday:       @MyItem.DateTime("Birthday").ToString("d")</li>
+      <li>Is Alive:       @MyItem.Bool("IsAlive")</li>
+
+      @* use .Int(…), .Long(…), .Float(…) etc. for numbers *@
+      <li>Fav Num. Int:   @MyItem.Int("FavoriteNumber")</li>
+      <li>Fav Num. Float: @MyItem.Float("FavoriteNumber")</li>
+    </ol>
+
+    <p>Use <code>.Url(…)</code> to resolve file references such as <code>file:72</code></p>
+    <ol>
+      <li>Mugshot String: @MyItem.String("Mugshot")</li>
+      <li>Mugshot URL:    @MyItem.Url("Mugshot")</li>
+    </ol>
+
+    <p title='@MyItem.Attribute("FirstName")'>
+      Use <code>.Attribute(…)</code> to safely encode properties.
+      Mouse over this to see the effect.
+    </p>
+
+  @qref.SnipEnd()
+@accSection.End()
+
+

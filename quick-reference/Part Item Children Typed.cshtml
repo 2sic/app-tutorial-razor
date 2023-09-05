@@ -1,0 +1,53 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var acc = MyModel.Get("Accordion") as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
+  dynamic qref;
+}
+
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var MyItem = AsItem(MyData.GetStream("PersonAdams"));
+}
+
+@((accSection = acc.Section("MyItem (Current Item) - Get Children such as Awards of an Author")).Start())
+  <p>
+    Child items such as <code>Awards</code> are accessed using <code>Child("Awards")</code>.
+    There are many ways to work with them. 
+  </p>
+  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+    <h4>Use <code>.Child("Awards")</code> to get one</h4>
+    <ol>
+      <li>Award ID:          @MyItem.Child("Awards").Id</li>
+      <li>Award Name:        @MyItem.Child("Awards").String("Name")</li>
+      <li>Award Name (Path): @MyItem.String("Awards.Name")</li>
+    </ol>
+
+    <p>Use ContainsKey(…), IsEmpty(…), IsNotEmpty(…)</p>
+    <ol>
+      <li>ContainsKey("Awards"):  @MyItem.ContainsKey("Awards")</li>
+      <li>ContainsKey("Awards2"): @MyItem.ContainsKey("Awards2")</li>
+      <li>IsEmpty("Awards"):      @MyItem.IsEmpty("Awards")</li>
+      <li>IsNotEmpty("Awards"):   @MyItem.IsNotEmpty("Awards")</li>
+      <li>IsEmpty("Awards.Name"): @MyItem.IsEmpty("Awards.Name")</li>
+      <li>IsEmpty("Awards2.Name"): @MyItem.IsEmpty("Awards2.Name")</li>
+      <li>IsEmpty("Awards.NameX"): @MyItem.IsEmpty("Awards.NameX")</li>
+    </ol>
+
+    <h4>Use <code>.Children("Awards")</code> to get all</h4>
+    <span>Award Count:       @MyItem.Children("Awards").Count()</span>
+    <ol>
+      @foreach(var award in MyItem.Children("Awards")) {
+        <li>Award: @award.String("Name")</li>
+      }
+    </ol>
+
+  @qref.SnipEnd()
+@accSection.End()
+
+
