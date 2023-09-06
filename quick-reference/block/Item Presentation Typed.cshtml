@@ -1,0 +1,42 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("/shared/Helpers.cs").Init(this);
+  // The accordion is an external helper file, so we must treat it as dynamic
+  var acc = MyModel.Get("Accordion") as dynamic;
+  // variable to hold each section config
+  dynamic accSection;
+  dynamic qref;
+}
+
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var data = App.GetQuery("QuickRef-Content-Simulation");
+  var MyItem = AsItem(data.GetStream("Default"));
+  var prepPres = AsItem(data.GetStream("Presentation"));
+}
+
+@((accSection = acc.Section("quickref-myitem-presentation")).Start())
+  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+    <h4>A Person on <code>MyItem</code></h4>
+    @{
+      @* var x = MyItem.String("hello"); *@
+      // var presentation = MyItem.Presentation;
+    }
+    <hide>
+      @{
+        var presentation = prepPres;
+      }
+    </hide>
+    <p>
+      Note that the following should be @presentation.String("Color") (probably green)
+    </p>
+    <p style='color: @presentation.String("Color")'>
+      @MyItem.Title
+    </p>
+
+  @qref.SnipEnd()
+@accSection.End()
+
+
