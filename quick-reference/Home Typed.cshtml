@@ -37,17 +37,17 @@
 <h2>Work with Content Items (<code>MyItem</code>)</h2>
 
 @accordion.Start("items")
-  @Html.Partial("./Part Item Properties Typed.cshtml", new { accordion })
-  @Html.Partial("./Part Item Children Typed.cshtml", new { accordion })
-  @Html.Partial("./Part Items Pic and Url Typed.cshtml", new { accordion })
-  @Html.Partial("./Part Items File and Folder Typed.cshtml", new { accordion })
+  @Html.Partial("./block/Item Properties Typed.cshtml", new { accordion })
+  @Html.Partial("./block/Item Children Typed.cshtml", new { accordion })
+  @Html.Partial("./block/Item Pic and Url Typed.cshtml", new { accordion })
+  @Html.Partial("./block/Item File and Folder Typed.cshtml", new { accordion })
 @accordion.End()
 
 <p>&nbsp;</p>
 <h2>Work with List of Items (<code>MyItems</code>)</h2>
 
 @accordion.Start("items")
-  @Html.Partial("./Part Items from Block Typed.cshtml", new { accordion })
+  @Html.Partial("./block/Items Typed.cshtml", new { accordion })
 @accordion.End()
 
 @* TODO:
