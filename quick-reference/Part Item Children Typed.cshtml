@@ -15,11 +15,7 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@((accSection = acc.Section("MyItem (Current Item) - Get Children such as Awards of an Author")).Start())
-  <p>
-    Child items such as <code>Awards</code> are accessed using <code>Child("Awards")</code>.
-    There are many ways to work with them. 
-  </p>
+@((accSection = acc.Section("myitem-children")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Use <code>.Child("Awards")</code> to get one</h4>
     <ol>

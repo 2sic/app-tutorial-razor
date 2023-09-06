@@ -14,24 +14,24 @@
   </p>
     
   @* Shared section, which is identical in both Razors syntaxes *@
-  @((accSection = acc.Section("Variables in Razor / C#")).Start())
+  @((accSection = acc.SectionOld("Variables in Razor / C#")).Start())
     @Html.Partial("./Part RazorBasics.Variables.cshtml")
   @accSection.End()
-  @((accSection = acc.Section("Conditions: if, else and using ? : syntax")).Start())
+  @((accSection = acc.SectionOld("Conditions: if, else and using ? : syntax")).Start())
     @Html.Partial("./Part RazorBasics.If.cshtml")
   @accSection.End()
-  @((accSection = acc.Section("Loops: for, foreach")).Start())
+  @((accSection = acc.SectionOld("Loops: for, foreach")).Start())
     @Html.Partial("./Part RazorBasics.Loops.cshtml")
   @accSection.End()
-  @((accSection = acc.Section("Show Raw HTML")).Start())
+  @((accSection = acc.SectionOld("Show Raw HTML")).Start())
     @Html.Partial("./Part RazorBasics.Html.cshtml")
   @accSection.End()
-  @((accSection = acc.Section("Show Emojis")).Start())
+  @((accSection = acc.SectionOld("Show Emojis")).Start())
     @Html.Partial("./Part RazorBasics.Emoji.cshtml")
   @accSection.End()
 
 
-  @((accSection = acc.Section("Re-Use Code and Razor Files")).Start())
+  @((accSection = acc.SectionOld("Re-Use Code and Razor Files")).Start())
     <p>
       These are some more advanced APIs which are very common as well, so you should be familiar with them.
     </p>

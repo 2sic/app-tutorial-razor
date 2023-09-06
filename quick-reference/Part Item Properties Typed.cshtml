@@ -15,10 +15,7 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@((accSection = acc.Section("MyItem (Current Item) - Get Properties using Get(), String(), Int(), etc.")).Start())
-  <p>
-    Every view/template receives prepared data, usually on the <code>MyItem</code> object.
-  </p>
+@((accSection = acc.Section("myitem-get-props")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Douglas Adams on <code>MyItem</code></h4>
     <p>
@@ -30,10 +27,18 @@
       <li>Title:          @MyItem.Title</li>
     </ol>
 
-    <p>Use <code>Get(…)</code> if you don't care about the var type.</p>
+    <p>Use <code>Get(…)</code> if you don't care about the var type...</p>
     <ol>
       <li>Name:           @MyItem.Get("FirstName")</li>
       <li>Birthday:       @MyItem.Get("Birthday")</li>
+    </ol>
+
+    <p>... or <code>Get&lt;T&gt;(…)</code> which will try to treat as the expected type.</p>
+    <ol>
+      <li>Birthday Get&lt;string&gt;    @(MyItem.Get<string>("Birthday"))</li>
+      <li>Birthday Get&lt;DateTime&gt;  @(MyItem.Get<DateTime>("Birthday"))</li>
+      <li>Birthday Get&lt;bool&gt;      @(MyItem.Get<bool>("Birthday"))</li>
+      <li>Birthday Get&lt;int&gt;       @(MyItem.Get<int>("Birthday"))</li>
     </ol>
 
     <p>Use typed methods such as <code>.String(…)</code> if you care about the variable type.</p>
@@ -48,11 +53,13 @@
       <li>Fav Num. Float: @MyItem.Float("FavoriteNumber")</li>
     </ol>
 
-    <p>Use <code>.Url(…)</code> to resolve file references such as <code>file:72</code></p>
+    <p>Use <code>fallback: …</code> to handle empty values or conversion problems.</p>
     <ol>
-      <li>Mugshot String: @MyItem.String("Mugshot")</li>
-      <li>Mugshot URL:    @MyItem.Url("Mugshot")</li>
+      @* this has no effect, as the value works *@
+      <li>Name (strings): @MyItem.String("FirstName", fallback: "unknown")
+      <li>Name (int):     @MyItem.Int("FirstName", fallback: 12345)
     </ol>
+
 
     <p title='@MyItem.Attribute("FirstName")'>
       Use <code>.Attribute(…)</code> to safely encode properties.

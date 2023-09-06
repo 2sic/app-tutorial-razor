@@ -15,7 +15,7 @@
   var MyItems = AsItems(App.GetQuery("QuickRef-Persons-Selected"));
 }
 
-@((accSection = acc.Section("Show a List of MyItems")).Start())
+@((accSection = acc.SectionOld("Show a List of MyItems")).Start())
   <p>
     Every view/template receives prepared data, either entered by the user on this page, or provided through a query.
     It can contain many items - so to get the list, use <code>MyItems</code>

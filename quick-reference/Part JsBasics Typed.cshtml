@@ -10,7 +10,7 @@
 }
 
 @* Load JS *@
-@((accSection = acc.Section("Load JavaScripts from App into Html")).Start())
+@((accSection = acc.SectionOld("Load JavaScripts from App into Html")).Start())
   <p>
     Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
     What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
@@ -36,7 +36,7 @@
 
 
 @* turnOn *@
-@((accSection = acc.Section("Activate Scripts when Ready using turnOn")).Start())
+@((accSection = acc.SectionOld("Activate Scripts when Ready using turnOn")).Start())
   @* <h3>Activate JavaScript using <em>turnOn</em></h3> *@
   <p>
     A core challenge is to activate JavaScripts only when needed - and when all dependencies are loaded.
@@ -87,7 +87,7 @@
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@((accSection = acc.Section("Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")).Start())
+@((accSection = acc.SectionOld("Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")).Start())
   <h3>Work with the new UniqueKey with JavaScript - new v16.04 🌟</h3>
   <p>
     The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.

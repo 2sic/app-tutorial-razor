@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using ToSic.Razor.Blade;
+using ToSic.Sxc.Data;
 
 public class Accordion: Custom.Hybrid.CodeTyped
 {
@@ -15,25 +18,42 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   public IHtmlTag End() { return Kit.HtmlTags.RawHtml(DivEnd); }
 
-  public AccPart Section(string title) {
+  public AccPart SectionOld(string title) {
     return new AccPart(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, title);
   }
+  public AccPart Section(string tutorialId) {
+    return new AccPart(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, item: GetSectionData(tutorialId));
+  }
+
   private const string AutoPartName = "auto-part-";
   private int AutoPartIndex = 0;
 
   internal string DivEnd = "</div>";
+
+  private ITypedItem GetSectionData(string tutorialId) {
+    if (_sectionData == null) _sectionData = AsItems(App.Data["TutAccordionSection"]);
+    return _sectionData.FirstOrDefault(s => s.String("TutorialId") == tutorialId)
+      ?? AsItem(new { Title = "Section '" + tutorialId + "' not found", TutorialId = tutorialId }, mock: true, propsRequired: false);
+  }
+  private IEnumerable<ITypedItem> _sectionData;
 }
 
+
+/// <summary>
+/// Accordion Part (Section)
+/// </summary>
 public class AccPart {
-  public AccPart(Accordion accordion, IHtmlTagsService tags, string name, string title = null) {
+  public AccPart(Accordion accordion, IHtmlTagsService tags, string name, string title = null, ITypedItem item = null) {
     Acc = accordion;
     Name = name;
-    Title = title;
+    Item = item;
+    Title = title ?? (item == null ? "No Title" : item.String("Title"));
     TagsSvc = tags;
   }
   private Accordion Acc;
   public string Name { get; private set; }
   public string Title { get; private set; }
+  public ITypedItem Item { get; private set; }
 
   private IHtmlTagsService TagsSvc;
   public string HeadingId { get { return Name + "-heading"; } }
@@ -42,13 +62,18 @@ public class AccPart {
   private string Indent = "    ";
 
   public IHtmlTag Start() { 
+    var start = TagsSvc.Div().Class("accordion-item");
+    if (Item != null)
+      start = (Item.Id != 0)
+        ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit())
+        : start.Attr(Acc.Kit.Toolbar.Empty().New("TutAccordionSection", prefill: new { TutorialId = Item.String("TutorialId") }));
     return TagsSvc.RawHtml(
       "\n",
       Indent,
       "<!-- Part.Start(" + Name + ") -->",
       "\n",
       Indent,
-      TagsSvc.Div().Class("accordion-item").TagStart,
+      start.TagStart,
       "\n",
       Indent,
       Header(),
@@ -88,7 +113,8 @@ public class AccPart {
       "\n",
       Indent2,
       TagsSvc.Div().Class("accordion-body").TagStart,
-      "\n"
+      "\n",
+      (Item == null ? "" : Indent2 + Item.Html("Intro"))
     );
   }
   #endregion
