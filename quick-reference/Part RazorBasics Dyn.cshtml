@@ -14,19 +14,19 @@
   </p>
     
   @* Shared section, which is identical in both Razors syntaxes *@
-  @((accSection = acc.SectionOld("Variables in Razor / C#")).Start())
+  @((accSection = acc.Section("razor-variables")).Start())
     @Html.Partial("./Part RazorBasics.Variables.cshtml")
   @accSection.End()
-  @((accSection = acc.SectionOld("Conditions: if, else and using ? : syntax")).Start())
+  @((accSection = acc.Section("razor-if")).Start())
     @Html.Partial("./Part RazorBasics.If.cshtml")
   @accSection.End()
-  @((accSection = acc.SectionOld("Loops: for, foreach")).Start())
+  @((accSection = acc.Section("razor-loop")).Start())
     @Html.Partial("./Part RazorBasics.Loops.cshtml")
   @accSection.End()
-  @((accSection = acc.SectionOld("Show Raw HTML")).Start())
+  @((accSection = acc.Section("razor-raw")).Start())
     @Html.Partial("./Part RazorBasics.Html.cshtml")
   @accSection.End()
-  @((accSection = acc.SectionOld("Show Emojis")).Start())
+  @((accSection = acc.Section("razor-emoji")).Start())
     @Html.Partial("./Part RazorBasics.Emoji.cshtml")
   @accSection.End()
 
