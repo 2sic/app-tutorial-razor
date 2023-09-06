@@ -15,7 +15,7 @@
   var MyItems = AsItems(App.GetQuery("QuickRef-Persons-Selected"));
 }
 
-@((accSection = acc.Section("myitems-basic")).Start())
+@((accSection = acc.Section("quickref-myitems-basic")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Loop persons which were added to this view</h4>
     <ul>

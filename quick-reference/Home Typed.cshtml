@@ -59,8 +59,8 @@
 <h2>Data and Query</h2>
 
 @accordion.Start("dataQuery")
-  @Html.Partial("./Part Query Typed.cshtml", new { accordion })
-  @Html.Partial("./Part Query Selected Typed.cshtml", new { accordion })
+  @Html.Partial("./Query/Query Typed.cshtml", new { accordion })
+  @Html.Partial("./Query/Query Selected Typed.cshtml", new { accordion })
 @accordion.End()
 
 
@@ -68,21 +68,21 @@
 <h2>Razor Advanced</h2>
 
 @accordion.Start("razorAdvanced")
-  @Html.Partial("./Part Page and Parameters Typed.cshtml", new { accordion })
+  @Html.Partial("./Context/Page and Parameters Typed.cshtml", new { accordion })
 @accordion.End()
 
 <p>&nbsp;</p>
 <h2>JavaScript - Working with Razor and WebApi</h2>
 
 @accordion.Start("accordionJs")
-  @Html.Partial("./Part JsBasics Typed.cshtml", new { accordion })
+  @Html.Partial("./Js/JsBasics Typed.cshtml", new { accordion })
 @accordion.End()
 
 <p>&nbsp;</p>
 <h2>JSON</h2>
 
 @accordion.Start("accordionJson")
-  @Html.Partial("./Part Json Typed.cshtml", new { accordion })
+  @Html.Partial("./Json/Json Typed.cshtml", new { accordion })
 @accordion.End()
 
 <p>&nbsp;</p>

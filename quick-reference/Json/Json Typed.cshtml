@@ -9,13 +9,13 @@
   dynamic qref;
 
   // Variables for the tests
-  string jsonRoot = MyView.Folder.PhysicalPath + "/json";
+  string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
   var dudeTabs = new Dictionary<string, string> {
     { "dude.json", "file:json/dude.json" },
   };
 }
 
-@((accSection = acc.Section("json-get")).Start())
+@((accSection = acc.Section("quickref-json-get")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
@@ -36,7 +36,7 @@
 @accSection.End()
 
 
-@((accSection = acc.Section("json-typed-get")).Start())
+@((accSection = acc.Section("quickref-json-typed-get")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   <ol>
     <li>
@@ -55,20 +55,16 @@
   @qref.SnipEnd()
 @accSection.End()
 
-@{
-  dynamic testHelpers = GetCode("./TestHelpers.cs");
-}
-
 @functions {
   // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
-  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("./TestHelpers.cs")); }}
+  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("../TestHelpers.cs")); }}
   private object _testHelpers;
 
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
 }
 
 
-@((accSection = acc.Section("json-strict")).Start())
+@((accSection = acc.Section("quickref-json-strict")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     var strict = Kit.Json.ToTyped(jDude);
@@ -100,7 +96,7 @@
 @accSection.End()
 
 
-@((accSection = acc.Section("json-loose")).Start())
+@((accSection = acc.Section("quickref-json-loose")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
@@ -131,7 +127,7 @@
 @accSection.End()
 
 
-@((accSection = acc.Section("json-nested")).Start())
+@((accSection = acc.Section("quickref-json-nested")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(new Dictionary<string, string> {
     { "dude-marc.json", "file:json/dude-marc.json" },
     { "dude-frank.json", "file:json/dude-frank.json" },
@@ -190,17 +186,17 @@
 
 
 @* Int Array *@
-@((accSection = acc.Section("json-array-int")).Start())
+@((accSection = acc.Section("quickref-json-array-int")).Start())
   @Html.Partial("./Part Json.Int Array.cshtml")
 @accSection.End()
 
 @* Custom Object *@
-@((accSection = acc.Section("json-class")).Start())
+@((accSection = acc.Section("quickref-json-class")).Start())
   @Html.Partial("./Part Json.Custom Class.cshtml")
 @accSection.End()
 
 
-@((accSection = acc.Section("json-array")).Start())
+@((accSection = acc.Section("quickref-json-array")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "cities.json", "file:json/cities.json" },
   })).SnipStart())

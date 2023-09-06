@@ -15,7 +15,7 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@((accSection = acc.Section("myitem-pic-url")).Start())
+@((accSection = acc.Section("quickref-myitem-pic-url")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Douglas Adams, the current item (MyItem)</h4>
     <p>Use <code>.Url(…)</code> to resolve file references such as <code>file:72</code></p>

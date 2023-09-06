@@ -15,7 +15,7 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@((accSection = acc.Section("myitem-children")).Start())
+@((accSection = acc.Section("quickref-myitem-children")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Use <code>.Child("Awards")</code> to get one</h4>
     <ol>

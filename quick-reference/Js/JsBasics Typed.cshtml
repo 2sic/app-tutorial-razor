@@ -19,13 +19,13 @@
       Load a JavaScript relative to the App folder (see message/console): <br>
       <strong id="loadjs-app-message"></strong>
     </p>
-    <script src="@App.Folder.Url/quick-reference/js/report-loaded-in-console-path-app.js"></script>
+    <script src="@App.Folder.Url/quick-reference/js/js/report-loaded-in-console-path-app.js"></script>
 
     <p>
       Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
       <strong id="loadjs-view-message"></strong>
     </p>
-    <script src="@MyView.Folder.Url/js/report-loaded-in-console-path-view.js"></script>
+    <script src="@MyView.Folder.Url/js/js/report-loaded-in-console-path-view.js"></script>
   @qref.SnipEnd()
 @accSection.End()
 
@@ -43,7 +43,7 @@
 
     @* Load the JavaScript - it will not run by itself, as the DOM might not be ready
         Note that this can be before or after the TurnOn *@
-    <script src="@MyView.Folder.Url/js/turnOn1.js"></script>
+    <script src="@MyView.Folder.Url/js/js/turnOn1.js"></script>
 
     @* Tell TurnOn to trigger the JS when everything is ready *@
     @Kit.Page.TurnOn("window.quickReference.turnOn1Message()")
@@ -97,7 +97,7 @@
     @* Trigger the script, and pass in the IDs it will need based on the UniqueKey *@
     @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
     @* Load the script - this can be before or after the TurnOn *@
-    <script src="@MyView.Folder.Url/js/unique-key.js"></script>
+    <script src="@MyView.Folder.Url/js/js/unique-key.js"></script>
   @qref.SnipEnd()
 
 
