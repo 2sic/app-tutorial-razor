@@ -1,7 +1,7 @@
 import Split from 'split.js';
 
 export function initSplit(data: SplitOptions) {
-  console.log('initSplit', data);
+  // console.log('initSplit', data);
   const options: Split.Options = {
     gutter: (index, direction) => {
       // most code copied from https://github.com/nathancahill/split/tree/master/packages/splitjs
