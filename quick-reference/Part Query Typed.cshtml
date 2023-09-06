@@ -15,12 +15,7 @@
   var MyData = App.GetQuery("QuickRef-Persons-Selected");
 }
 
-@((accSection = acc.SectionOld("Show a List of Items (MyItems, MyData)")).Start())
-  <p>
-    Every view/template receives prepared data, either entered by the user on this page, or provided through a query.
-  </p>
-
-  <h3>Work with Current Item (MyItem)</h3>
+@((accSection = acc.Section("quickref-query-basic")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Loop persons in Query of this view</h4>
     <ul>

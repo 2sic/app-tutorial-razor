@@ -15,12 +15,7 @@
   };
 }
 
-@((accSection = acc.SectionOld("JSON Strings as Objects (ITyped) - simple .Get()")).Start())
-  <p>
-    JSON data can be difficult to work with, because you would need to use
-    <code>System.Text.Json</code> which has a sophisticated API.
-    Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
-  </p>
+@((accSection = acc.Section("json-get")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
@@ -41,10 +36,7 @@
 @accSection.End()
 
 
-@((accSection = acc.SectionOld("JSON Strings as Objects (ITyped) - typed .String() and .Int()")).Start())
-  <p>
-    This example shows more advanced scenarios. It uses the previously created <code>dude</code> object.
-  </p>
+@((accSection = acc.Section("json-typed-get")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   <ol>
     <li>
@@ -76,10 +68,7 @@
 }
 
 
-@((accSection = acc.SectionOld("JSON Strings as Objects (ITyped) - strict / required fields")).Start())
-  <p>
-    By default, the object is strict, so you can only access fields which are present.
-  </p>
+@((accSection = acc.Section("json-strict")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     var strict = Kit.Json.ToTyped(jDude);
@@ -111,10 +100,7 @@
 @accSection.End()
 
 
-@((accSection = acc.SectionOld("JSON Strings as Objects (ITyped) - loose / not-required fields")).Start())
-  <p>
-    By default, the object is strict, so you can only access fields which are present.
-  </p>
+@((accSection = acc.Section("json-loose")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     var loose = Kit.Json.ToTyped(jDude, propsRequired: false);
@@ -145,12 +131,7 @@
 @accSection.End()
 
 
-@((accSection = acc.SectionOld("Nested Objects in JSON (ITyped)")).Start())
-  <p>
-    JSON data can be difficult to work with, because you would need to use
-    <code>System.Text.Json</code> which has a sophisticated API.
-    Instead, we can convert it to <code>ITyped</code> and then use a very simple API.
-  </p>
+@((accSection = acc.Section("json-nested")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(new Dictionary<string, string> {
     { "dude-marc.json", "file:json/dude-marc.json" },
     { "dude-frank.json", "file:json/dude-frank.json" },
@@ -209,20 +190,17 @@
 
 
 @* Int Array *@
-@((accSection = acc.SectionOld("JSON Arrays of Integers (To&lt;int[]&gt;)")).Start())
+@((accSection = acc.Section("json-array-int")).Start())
   @Html.Partial("./Part Json.Int Array.cshtml")
 @accSection.End()
 
 @* Custom Object *@
-@((accSection = acc.SectionOld("JSON with Your Own Class (To&lt;City[]&gt;)")).Start())
+@((accSection = acc.Section("json-class")).Start())
   @Html.Partial("./Part Json.Custom Class.cshtml")
 @accSection.End()
 
 
-@((accSection = acc.SectionOld("JSON Array of Objects (ITyped)")).Start())
-  <p>
-    If you have an array in your Json, you need to use <code>ToTypedList</code>.
-  </p>
+@((accSection = acc.Section("json-array")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "cities.json", "file:json/cities.json" },
   })).SnipStart())

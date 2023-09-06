@@ -15,14 +15,7 @@
   var MyData = App.GetQuery("QuickRef-Persons-Selected");
 }
 
-@((accSection = acc.SectionOld("Compare Items using .Equals(…)")).Start())
-  <p>
-    This uses a query which returns a list of Persons and a selected person separately.
-    The <code>Default</code> stream has persons, and <code>Selected</code> has a selected person to compare with.
-    Compare using <code>.Equals(…)</code>.
-  </p>
-
-  <h3>Work with Current Item (MyItem)</h3>
+@((accSection = acc.Section("quickref-query-selected-equals")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     @{
       var selected = AsItem(MyData.GetStream("Selected"));

@@ -9,9 +9,7 @@
   dynamic qref;
 }
 
-  @((accSection = acc.SectionOld("2sxc Razor APIs to work with Page and Links")).Start())
-
-    <h3>Page URL Parameters / QueryString</h3>
+  @((accSection = acc.Section("quickref-page-parameters")).Start())
     @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "basics310", "basics311", "basics320", "basics330", "basics410" })).SnipStart())
       <ol>
         <li>

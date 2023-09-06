@@ -30,16 +30,17 @@
     @Html.Partial("./Part RazorBasics.Emoji.cshtml")
   @accSection.End()
 
-
-  @((accSection = acc.SectionOld("Re-Use Code and Razor Files")).Start())
-    <p>
-      These are some more advanced APIs which are very common as well, so you should be familiar with them.
-    </p>
-
+  @* Functions, Partials, Parameters *@
+  @((accSection = acc.Section("quickref-razor-functions")).Start())
     @Html.Partial("./Part RazorBasics.Functions.cshtml")
-    @Html.Partial("./Part RazorBasics.PartialNoParams.cshtml")
+  @accSection.End()
 
-    <h3>Reuse Razor Components (Partial) with Parameters</h3>
+  @((accSection = acc.Section("quickref-razor-partials-basic")).Start())
+    @Html.Partial("./Part RazorBasics.PartialNoParams.cshtml")
+  @accSection.End()
+
+
+  @((accSection = acc.Section("quickref-razor-partials-parameters")).Start())
     @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
       { "Source box.cshtml", "file:../reuse/box-pro.cshtml" },
     }, tutorials: new string[] { "reuse110" })).SnipStart())
@@ -64,9 +65,11 @@
         </li>
       </ol>
     @qref.SnipEnd()
+  @accSection.End()
 
 
-    <h3>Reuse Partial Razor and functions from Helper Code files</h3>
+  @((accSection = acc.Section("quickref-razor-shared-code")).Start())
+    <h3></h3>
     @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
       { "Source SharedFunctions.cs", "file:../reuse/SharedFunctions.cs" },
     }, tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())

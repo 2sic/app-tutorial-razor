@@ -18,11 +18,8 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   public IHtmlTag End() { return Kit.HtmlTags.RawHtml(DivEnd); }
 
-  public AccPart SectionOld(string title) {
-    return new AccPart(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, title);
-  }
-  public AccPart Section(string tutorialId) {
-    return new AccPart(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, item: GetSectionData(tutorialId));
+  public Section Section(string tutorialId) {
+    return new Section(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, item: GetSectionData(tutorialId));
   }
 
   private const string AutoPartName = "auto-part-";
@@ -42,17 +39,15 @@ public class Accordion: Custom.Hybrid.CodeTyped
 /// <summary>
 /// Accordion Part (Section)
 /// </summary>
-public class AccPart {
-  public AccPart(Accordion accordion, IHtmlTagsService tags, string name, string title = null, ITypedItem item = null) {
+public class Section {
+  public Section(Accordion accordion, IHtmlTagsService tags, string name, ITypedItem item = null) {
     Acc = accordion;
     Name = name;
     Item = item;
-    Title = title ?? (item == null ? "No Title" : item.String("Title"));
     TagsSvc = tags;
   }
   private Accordion Acc;
   public string Name { get; private set; }
-  public string Title { get; private set; }
   public ITypedItem Item { get; private set; }
 
   private IHtmlTagsService TagsSvc;
@@ -99,7 +94,7 @@ public class AccPart {
         .Data("bs-target", "#" + BodyId)
         .Attr("aria-expanded", "false")
         .Attr("aria-controls", BodyId)
-        .Wrap(Title),
+        .Wrap(Item.String("Title", scrubHtml: "p")),
       "\n",
       Indent
     );

@@ -48,10 +48,12 @@
 
 @accordion.Start("items")
   @Html.Partial("./Part Items from Block Typed.cshtml", new { accordion })
-  @* @((accSection = accordion.SectionOld("Work with Images, Multi-Language TODO")).Start())
-  @accSection.End() *@
 @accordion.End()
 
+@* TODO:
+  - languages - get(...)
+  - Images
+*@
 
 <p>&nbsp;</p>
 <h2>Data and Query</h2>

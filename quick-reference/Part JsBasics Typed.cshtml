@@ -10,11 +10,7 @@
 }
 
 @* Load JS *@
-@((accSection = acc.SectionOld("Load JavaScripts from App into Html")).Start())
-  <p>
-    Loading JavaScripts is standard HTML using <code>&lt;script src="..."&lt;</code> tags.
-    What more challenging is getting the right path to scripts in this app or relative to the current Razor file.
-  </p>
+@((accSection = acc.Section("quickref-js-load")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Source JS1", "file:js/report-loaded-in-console-path-app.js" },
     { "Source JS2", "file:js/report-loaded-in-console-path-view.js" },
@@ -36,13 +32,7 @@
 
 
 @* turnOn *@
-@((accSection = acc.SectionOld("Activate Scripts when Ready using turnOn")).Start())
-  @* <h3>Activate JavaScript using <em>turnOn</em></h3> *@
-  <p>
-    A core challenge is to activate JavaScripts only when needed - and when all dependencies are loaded.
-    This is what <code>turnOn</code> does.
-    It checks if all specified JS objects exist, and then triggers the JS code.
-  </p>
+@((accSection = acc.Section("quickref-js-turnon")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Source JS", "file:js/turnOn1.js" },
   })).SnipStart())
@@ -87,12 +77,7 @@
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@((accSection = acc.SectionOld("Use UniqueKey (new) to create unique IDs for HTML elements (new v16.04 🌟)")).Start())
-  <h3>Work with the new UniqueKey with JavaScript - new v16.04 🌟</h3>
-  <p>
-    The <code>UniqueKey</code> is a new feature in 2sxc 16.04 which allows you to create unique IDs for HTML elements.
-    The value of <code>UniqueKey</code> is the same in all Razor and C# files for the same Content-Block.
-  </p>
+@((accSection = acc.Section("quickref-uniquekey-basic")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Helper Razor", "file:shared-uniquekey-message.cshtml" },
     { "JS File", "file:js/unique-key.js" },

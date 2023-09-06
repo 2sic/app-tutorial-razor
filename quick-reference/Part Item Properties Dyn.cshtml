@@ -10,12 +10,8 @@
   dynamic qref;
 }
 
-@((accSection = acc.SectionOld("Work with Content, Images, Multi-Language")).Start())
-  <p>
-    Every view/template receives prepared data, either entered by the user on this page, or provided through a query.
-  </p>
-
-  <h3>Work with Current Content</h3>
+@* @((accSection = acc.SectionOld("Work with Content, Images, Multi-Language")).Start()) *@
+@((accSection = acc.Section("quickref-dyn-getprops")).Start())
   @((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Douglas Adams, the current Content-item</h4>
     @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
