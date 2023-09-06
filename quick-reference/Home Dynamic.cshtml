@@ -3,7 +3,7 @@
 @using System.Linq;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("../shared/Helpers.cs").Init(this); }
+  @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -30,7 +30,7 @@
 <h2>Razor Basics</h2>
 
 @accordion.Start("accordionRazorBasics")
-  @Html.Partial("./Part RazorBasics Dyn.cshtml", new { accordion })
+  @Html.Partial("./Razor/Basics Dyn.cshtml", new { accordion })
 @accordion.End()
 
 <p>&nbsp;</p>

@@ -50,7 +50,7 @@
 <h3>Passing in Parameters/Values Pro</h3>
 <p>This is the same, but using the <code>RazorPro</code> (new v16). The called template will get the parameters on <code>MyModel</code> (see code below)</p>
 
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./box-pro.cshtml")).SnipStart())
+@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./Box Typed.cshtml")).SnipStart())
   @Html.Partial("box.cshtml", new { Label = "Hello, this is the first line" })
   @Html.Partial("box.cshtml", new { Label = "Second line!", Color = "red" })
   @Html.Partial("box.cshtml", new { Label = "I'm last!", Color = "blue" })

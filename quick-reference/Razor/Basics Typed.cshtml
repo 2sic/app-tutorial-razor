@@ -12,47 +12,39 @@
   <p>
     These are some very common Razor APIs which you should know.
   </p>
-  
-  @* Shared section, which is identical in both Razors syntaxes *@
-  @((accSection = acc.Section("razor-variables")).Start())
-    @Html.Partial("./Part RazorBasics.Variables.cshtml")
-  @accSection.End()
-  @((accSection = acc.Section("razor-if")).Start())
-    @Html.Partial("./Part RazorBasics.If.cshtml")
-  @accSection.End()
-  @((accSection = acc.Section("razor-loop")).Start())
-    @Html.Partial("./Part RazorBasics.Loops.cshtml")
-  @accSection.End()
-  @((accSection = acc.Section("razor-raw")).Start())
-    @Html.Partial("./Part RazorBasics.Html.cshtml")
-  @accSection.End()
-  @((accSection = acc.Section("razor-emoji")).Start())
-    @Html.Partial("./Part RazorBasics.Emoji.cshtml")
-  @accSection.End()
 
-  @* Functions, Partials, Parameters *@
-  @((accSection = acc.Section("quickref-razor-functions")).Start())
-    @Html.Partial("./Part RazorBasics.Functions.cshtml")
-  @accSection.End()
+  @{
+    var sections = new [] {
+      "quickref-razor-variables",
+      "quickref-razor-if",
+      "quickref-razor-loop",
+      "quickref-razor-html-raw",
+      "quickref-razor-emoji",
+      "quickref-razor-functions",
+      "quickref-razor-partials-basic",
+    };
+  }
 
-  @((accSection = acc.Section("quickref-razor-partials-basic")).Start())
-    @Html.Partial("./Part RazorBasics.PartialNoParams.cshtml")
-  @accSection.End()
+  @foreach(var section in sections) {
+    @((accSection = acc.Section(section)).Start())
+      @Html.Partial("./" + section + ".cshtml")
+    @accSection.End()
+  }
 
 
   @((accSection = acc.Section("quickref-razor-partials-parameters")).Start())
     @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-      { "Source box.cshtml", "file:../../reuse/box-pro.cshtml" },
+      { "Source Box Typed.cshtml", "file:../../reuse/Box Typed.cshtml" },
     }, tutorials: new string[] { "reuse110" })).SnipStart())
       <h4>Call some external Razor files</h4>
       <ol>
         <li>
-          @Html.Partial("../../reuse/box-pro.cshtml", new {
+          @Html.Partial("../../reuse/Box Typed.cshtml", new {
             Label = "Hello, this is the first line"
           })
         </li>
         <li>
-          @Html.Partial("../../reuse/box-pro.cshtml", new {
+          @Html.Partial("../../reuse/Box Typed.cshtml", new {
             Label = "Second line!", Color = "red"
           })
         </li>
@@ -61,7 +53,7 @@
             var label = "Third line!"; // if variable name is the same...
             var color = "green";  // if variable name is the same...
           }
-          @Html.Partial("../../reuse/box-pro.cshtml", new { label, color })
+          @Html.Partial("../../reuse/Box Typed.cshtml", new { label, color })
         </li>
       </ol>
     @qref.SnipEnd()
