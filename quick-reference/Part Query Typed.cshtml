@@ -12,20 +12,19 @@
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyData` is the assigned query for this view
-  var MyItems = AsItems(App.GetQuery("QuickRef-Persons-Selected"));
+  var MyData = App.GetQuery("QuickRef-Persons-Selected");
 }
 
-@((accSection = acc.Section("Show a List of MyItems")).Start())
+@((accSection = acc.Section("Show a List of Items (MyItems, MyData)")).Start())
   <p>
     Every view/template receives prepared data, either entered by the user on this page, or provided through a query.
-    It can contain many items - so to get the list, use <code>MyItems</code>
   </p>
 
   <h3>Work with Current Item (MyItem)</h3>
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
-    <h4>Loop persons which were added to this view</h4>
+    <h4>Loop persons in Query of this view</h4>
     <ul>
-      @foreach (var person in MyItems) {
+      @foreach (var person in AsItems(MyData)) {
         <li>
           @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
           @person.String("FirstName") @person.String("LastName")
