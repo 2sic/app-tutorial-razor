@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @{
   // Sys helps generate code snippets etc.
-  var Sys = GetCode("../shared/Helpers.cs").Init(this);
+  var Sys = GetCode("/shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
   var acc = MyModel.Get("Accordion") as dynamic;
   // variable to hold each section config
@@ -42,17 +42,17 @@
 
   @((accSection = acc.Section("quickref-razor-partials-parameters")).Start())
     @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-      { "Source box.cshtml", "file:../reuse/box-pro.cshtml" },
+      { "Source box.cshtml", "file:../../reuse/box-pro.cshtml" },
     }, tutorials: new string[] { "reuse110" })).SnipStart())
       <h4>Call some external Razor files</h4>
       <ol>
         <li>
-          @Html.Partial("../reuse/box-pro.cshtml", new {
+          @Html.Partial("../../reuse/box-pro.cshtml", new {
             Label = "Hello, this is the first line"
           })
         </li>
         <li>
-          @Html.Partial("../reuse/box-pro.cshtml", new {
+          @Html.Partial("../../reuse/box-pro.cshtml", new {
             Label = "Second line!", Color = "red"
           })
         </li>
@@ -61,7 +61,7 @@
             var label = "Third line!"; // if variable name is the same...
             var color = "green";  // if variable name is the same...
           }
-          @Html.Partial("../reuse/box-pro.cshtml", new { label, color })
+          @Html.Partial("../../reuse/box-pro.cshtml", new { label, color })
         </li>
       </ol>
     @qref.SnipEnd()
@@ -71,11 +71,11 @@
   @((accSection = acc.Section("quickref-razor-shared-code")).Start())
     <h3></h3>
     @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-      { "Source SharedFunctions.cs", "file:../reuse/SharedFunctions.cs" },
+      { "Source SharedFunctions.cs", "file:../../reuse/SharedFunctions.cs" },
     }, tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())
       @{
         // helper library to say hello & create QR codes
-        var qrLib = GetCode("../reuse/SharedFunctions.cs");
+        var qrLib = GetCode("../../reuse/SharedFunctions.cs");
       }
       <h4>Call some Code in External CSharp Files</h4>
       <ol>
