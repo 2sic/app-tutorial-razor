@@ -21,19 +21,15 @@
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>A Person on <code>MyItem</code></h4>
     @{
-      var presentation = MyItem.Presentation;
+      var itemPres = MyItem.Presentation;
     }
     <hide-silent>
-      @{
-        // This is inserted silently because the tutorial must look like it has a presentation, 
-        // when in reality it's not a standalone view with own data (since it's mixed with many tutorials)
-        presentation = prepPres;
-      }
+      @{ itemPres = prepPres; /* Silent patching for tutorial only, as it's not a standalone view */ }
     </hide-silent>
     <p>
-      Note that the following should be @presentation.String("Color") (probably green)
+      Note that the following should be @itemPres.String("Color") (probably green)
     </p>
-    <p style='color: @presentation.String("Color")'>
+    <p style='color: @itemPres.Attribute("Color")'>
       @MyItem.Title
     </p>
 

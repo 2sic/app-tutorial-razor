@@ -36,9 +36,9 @@
 <p>&nbsp;</p>
 <h2>Work with Content Items (<code>MyItem</code>)</h2>
 
-@accordion.Start("items")
+@accordion.Start("item")
   @Html.Partial("./block/Item Properties Typed.cshtml", new { accordion })
-  @Html.Partial("./block/Item Presentation Typed.cshtml", new { accordion })
+  @Html.Partial("./block/QuickRef-MyItem-Presentation.cshtml", new { accordion })
   @Html.Partial("./block/Item Children Typed.cshtml", new { accordion })
   @Html.Partial("./block/Item Pic and Url Typed.cshtml", new { accordion })
   @Html.Partial("./block/Item File and Folder Typed.cshtml", new { accordion })
@@ -49,6 +49,8 @@
 
 @accordion.Start("items")
   @Html.Partial("./block/Items Typed.cshtml", new { accordion })
+  @Html.Partial("./block/QuickRef-MyItems-Presentation.cshtml", new { accordion })
+
 @accordion.End()
 
 @* TODO:
