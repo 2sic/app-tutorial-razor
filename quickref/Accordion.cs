@@ -49,26 +49,27 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   private string NextName() { return Name + "-" + AutoPartName + AutoPartIndex++; }
 
-  public string ReworkPath(string backtrack) {
-    var appPath = App.Folder.Path;
-    var first = Item.Children("Sections").FirstOrDefault();
-    var tutorialId = first.String("TutorialId");
+  // public string ReworkPath(string backtrack) {
+  //   var appPath = App.Folder.Path;
+  //   var first = Item.Children("Sections").FirstOrDefault();
+  //   var tutorialId = first.String("TutorialId");
 
-    string fileName;
-    if (CheckFile2(appPath, backtrack, tutorialId, null, out fileName))
-      return fileName;
-    return null;
-  }
+  //   string fileName;
+  //   if (CheckFile2(appPath, backtrack, tutorialId, null, out fileName))
+  //     return fileName;
+  //   return null;
+  // }
 
-  private bool CheckFile2(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
+  private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
     var topPath = Text.Before(tutorialId, "-");
     var rest = Text.After(tutorialId, "-");
     var secondPath = Text.Before(rest, "-");
+    rest = Text.After(rest, "-");
 
     if (!Text.Has(secondPath))
       throw new Exception("Second path is empty, original was '" + tutorialId + "'");
 
-    var realName = tutorialId + variant + ".cshtml";
+    var realName = "Snip-" + rest + variant + ".cshtml";
     var filePath = System.IO.Path.Combine(appPath, topPath, secondPath, realName);
     var fullPath = Sys.SourceCode.GetFullPath(filePath);
     if (System.IO.File.Exists(fullPath)) {
@@ -87,8 +88,8 @@ public class Accordion: Custom.Hybrid.CodeTyped
       .Select(itm => {
         var tutorialId = itm.String("TutorialId");
         string fileName;
-        if (!CheckFile2(appPath, backtrack, tutorialId, null, out fileName))
-          CheckFile2(appPath, backtrack, tutorialId, _variantExtension, out fileName);
+        if (!CheckFile(appPath, backtrack, tutorialId, null, out fileName))
+          CheckFile(appPath, backtrack, tutorialId, _variantExtension, out fileName);
         // if (!CheckFile(basePath, pathPrefix, tutorialId, null, out fileName))
         //   CheckFile(basePath, pathPrefix, tutorialId, _variantExtension, out fileName);
         return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
@@ -97,14 +98,14 @@ public class Accordion: Custom.Hybrid.CodeTyped
     return names;
   }
 
-  private bool CheckFile(string basePath, string pathPrefix, string tutorialId, string suffix, out string fileName) {
-    fileName = pathPrefix + tutorialId + suffix + ".cshtml";
-    var filePath = System.IO.Path.Combine(basePath, fileName);
-    var fullPath = Sys.SourceCode.GetFullPath(filePath);
-    if (System.IO.File.Exists(fullPath)) return true;
-    fileName = null;
-    return false;
-  }
+  // private bool CheckFile(string basePath, string pathPrefix, string tutorialId, string suffix, out string fileName) {
+  //   fileName = pathPrefix + tutorialId + suffix + ".cshtml";
+  //   var filePath = System.IO.Path.Combine(basePath, fileName);
+  //   var fullPath = Sys.SourceCode.GetFullPath(filePath);
+  //   if (System.IO.File.Exists(fullPath)) return true;
+  //   fileName = null;
+  //   return false;
+  // }
 
   private const string AutoPartName = "auto-part-";
   private int AutoPartIndex = 0;
