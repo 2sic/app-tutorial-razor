@@ -1,9 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
-@{
-  // Sys helps generate code snippets etc.
-  var Sys = GetCode("/shared/Helpers.cs").Init(this);
-  dynamic qref;
-}
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
 
 
 @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {

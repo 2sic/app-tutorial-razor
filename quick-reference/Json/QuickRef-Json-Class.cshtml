@@ -1,8 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
 @{
-  var Sys = GetCode("/shared/Helpers.cs").Init(this);
-  dynamic qref;
-
   string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
 }
 

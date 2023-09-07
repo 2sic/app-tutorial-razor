@@ -1,8 +1,6 @@
 @inherits Custom.Hybrid.Razor14
-@{
-  var Sys = CreateInstance("/shared/Helpers.cs").Init(this);
-  dynamic qref;
-}
+@{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
 
 @* TODO: Sample Template Delegates in separate sample *@
 <h3>Reuse Code with functions in same file</h3>

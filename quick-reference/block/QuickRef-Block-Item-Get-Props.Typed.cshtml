@@ -1,9 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
-@{
-  // Sys helps generate code snippets etc.
-  var Sys = GetCode("/shared/Helpers.cs").Init(this);
-  dynamic qref;
-}
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
 
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
@@ -11,56 +8,55 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
-    <h4>Douglas Adams on <code>MyItem</code></h4>
-    <p>
-      Id, Guid and Title are built-in properties
-    </p>
-    <ol>
-      <li>Id:             @MyItem.Id</li>
-      <li>Guid:           @MyItem.Guid</li>
-      <li>Title:          @MyItem.Title</li>
-    </ol>
 
-    <p>Use <code>Get(…)</code> if you don't care about the var type...</p>
-    <ol>
-      <li>Name:           @MyItem.Get("FirstName")</li>
-      <li>Birthday:       @MyItem.Get("Birthday")</li>
-    </ol>
+@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+  <h4>Douglas Adams on <code>MyItem</code></h4>
+  <p>
+    Id, Guid and Title are built-in properties
+  </p>
+  <ol>
+    <li>Id:             @MyItem.Id</li>
+    <li>Guid:           @MyItem.Guid</li>
+    <li>Title:          @MyItem.Title</li>
+  </ol>
 
-    <p>... or <code>Get&lt;T&gt;(…)</code> which will try to treat as the expected type.</p>
-    <ol>
-      <li>Birthday Get&lt;string&gt;    @(MyItem.Get<string>("Birthday"))</li>
-      <li>Birthday Get&lt;DateTime&gt;  @(MyItem.Get<DateTime>("Birthday"))</li>
-      <li>Birthday Get&lt;bool&gt;      @(MyItem.Get<bool>("Birthday"))</li>
-      <li>Birthday Get&lt;int&gt;       @(MyItem.Get<int>("Birthday"))</li>
-    </ol>
+  <p>Use <code>Get(…)</code> if you don't care about the var type...</p>
+  <ol>
+    <li>Name:           @MyItem.Get("FirstName")</li>
+    <li>Birthday:       @MyItem.Get("Birthday")</li>
+  </ol>
 
-    <p>Use typed methods such as <code>.String(…)</code> if you care about the variable type.</p>
-    <ol>
-      @* use .String(…), .DateTime(…), .Int(…) to make it typed *@
-      <li>Name (strings): @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-      <li>Birthday:       @MyItem.DateTime("Birthday").ToString("d")</li>
-      <li>Is Alive:       @MyItem.Bool("IsAlive")</li>
+  <p>... or <code>Get&lt;T&gt;(…)</code> which will try to treat as the expected type.</p>
+  <ol>
+    <li>Birthday Get&lt;string&gt;    @(MyItem.Get<string>("Birthday"))</li>
+    <li>Birthday Get&lt;DateTime&gt;  @(MyItem.Get<DateTime>("Birthday"))</li>
+    <li>Birthday Get&lt;bool&gt;      @(MyItem.Get<bool>("Birthday"))</li>
+    <li>Birthday Get&lt;int&gt;       @(MyItem.Get<int>("Birthday"))</li>
+  </ol>
 
-      @* use .Int(…), .Long(…), .Float(…) etc. for numbers *@
-      <li>Fav Num. Int:   @MyItem.Int("FavoriteNumber")</li>
-      <li>Fav Num. Float: @MyItem.Float("FavoriteNumber")</li>
-    </ol>
+  <p>Use typed methods such as <code>.String(…)</code> if you care about the variable type.</p>
+  <ol>
+    @* use .String(…), .DateTime(…), .Int(…) to make it typed *@
+    <li>Name (strings): @MyItem.String("FirstName") @MyItem.String("LastName")</li>
+    <li>Birthday:       @MyItem.DateTime("Birthday").ToString("d")</li>
+    <li>Is Alive:       @MyItem.Bool("IsAlive")</li>
 
-    <p>Use <code>fallback: …</code> to handle empty values or conversion problems.</p>
-    <ol>
-      @* this has no effect, as the value works *@
-      <li>Name (strings): @MyItem.String("FirstName", fallback: "unknown")
-      <li>Name (int):     @MyItem.Int("FirstName", fallback: 12345)
-    </ol>
+    @* use .Int(…), .Long(…), .Float(…) etc. for numbers *@
+    <li>Fav Num. Int:   @MyItem.Int("FavoriteNumber")</li>
+    <li>Fav Num. Float: @MyItem.Float("FavoriteNumber")</li>
+  </ol>
 
-
-    <p title='@MyItem.Attribute("FirstName")'>
-      Use <code>.Attribute(…)</code> to safely encode properties.
-      Mouse over this to see the effect.
-    </p>
-
-  @qref.SnipEnd()
+  <p>Use <code>fallback: …</code> to handle empty values or conversion problems.</p>
+  <ol>
+    @* this has no effect, as the value works *@
+    <li>Name (strings): @MyItem.String("FirstName", fallback: "unknown")
+    <li>Name (int):     @MyItem.Int("FirstName", fallback: 12345)
+  </ol>
 
 
+  <p title='@MyItem.Attribute("FirstName")'>
+    Use <code>.Attribute(…)</code> to safely encode properties.
+    Mouse over this to see the effect.
+  </p>
+
+@qref.SnipEnd()

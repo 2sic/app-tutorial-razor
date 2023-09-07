@@ -1,9 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
-@{
-  // Sys helps generate code snippets etc.
-  var Sys = GetCode("/shared/Helpers.cs").Init(this);
-  dynamic qref;
-}
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
 
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
@@ -11,33 +8,33 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
-    <h4>Douglas Adams, the current item (MyItem)</h4>
-    @{
-      var file = MyItem.File("Mugshot");
-      var sizeInfo = file.SizeInfo;
-    }
-    <ol>
-      <li>File name:        @file.Name</li>
-      <li>File extension:   @file.Extension</li>
-      <li>Size (bytes):     @file.Size</li>
-      <li>SizeInfo:         @sizeInfo.BestSize.ToString("#.#") @sizeInfo.BestUnit</li>
-    </ol>
+@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+  <h4>Douglas Adams, the current item (MyItem)</h4>
+  @{
+    var file = MyItem.File("Mugshot");
+    var sizeInfo = file.SizeInfo;
+  }
+  <ol>
+    <li>File name:        @file.Name</li>
+    <li>File extension:   @file.Extension</li>
+    <li>Size (bytes):     @file.Size</li>
+    <li>SizeInfo:         @sizeInfo.BestSize.ToString("#.#") @sizeInfo.BestUnit</li>
+  </ol>
 
-    <p>Every file-field is actually a folder...</p>
-    @{
-      var folder = MyItem.Folder("Mugshot");
+  <p>Every file-field is actually a folder...</p>
+  @{
+    var folder = MyItem.Folder("Mugshot");
+  }
+  <ol>
+    <li>Files count:    @folder.Files.Count()</li>
+    <li>Sub-Folders:    @folder.Folders.Count()</li>
+  </ol>
+  <p>
+    ...which could hold many files. 
+    If you want to show them, you need <code>Kit.Image...</code></p>
+  <ol>
+    @foreach (var f in folder.Files) {
+      <li>@f.Name <br> @Kit.Image.Picture(f, width: 100)</li>
     }
-    <ol>
-      <li>Files count:    @folder.Files.Count()</li>
-      <li>Sub-Folders:    @folder.Folders.Count()</li>
-    </ol>
-    <p>
-      ...which could hold many files. 
-      If you want to show them, you need <code>Kit.Image...</code></p>
-    <ol>
-      @foreach (var f in folder.Files) {
-        <li>@f.Name <br> @Kit.Image.Picture(f, width: 100)</li>
-      }
-    </ol>
-  @qref.SnipEnd()
+  </ol>
+@qref.SnipEnd()
