@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-07T23:02:56.4210085+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-07T23:41:48.660177+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -3014,6 +3014,80 @@
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
+        <Attribute StaticName="Biography" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="c6ab61ae-1047-4986-9837-bce820c3dc2e" Json="True" KeyNumber="5899">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-wysiwyg" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Biography" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="beeabb39-f304-4232-8e12-ea5c9b7176b7" Json="True" KeyNumber="5899">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="1dddb08e-17ca-4469-87ab-fe1774310235" Json="True" KeyNumber="5899">
+            <Value Key="ButtonAdvanced" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ButtonSource" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ContentCss" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Dialog" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InlineInitialHeight" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="WysiwygConfiguration" Value="52d79da0-b10d-4f62-9838-2e17b2254a3e" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
       </Attributes>
     </AttributeSet>
     <AttributeSet StaticName="c4b4441e-c32f-401c-b1aa-fdf3a5b4f54a" Name="Poets" Scope="Default" AlwaysShareConfiguration="false">
@@ -6005,6 +6079,9 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e748cf30-7849-46f1-a331-f181ba047cb2" AttributeSetName="Persons" EntityGUID="36726e4e-21cd-4c00-9ce8-72080f8935da">
       <Value Key="Awards" Value="75b1dbf7-05a6-4fef-9aad-b62278e5be7d,3579e0c0-93d6-4f93-89ca-83c222a89d0e" Type="Entity" />
+      <Value Key="Biography" Value="&lt;p&gt;&lt;strong&gt;&lt;img class=&quot;wysiwyg-right wysiwyg-50&quot; src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/Tm5yNs0hAEyc6HIID4k12g/Biography/douglas_adams_portrait.jpg&quot; data-cmsid=&quot;file:douglas_adams_portrait.jpg&quot;&gt;Douglas No&amp;euml;l Adams&lt;/strong&gt;&amp;nbsp;(11 March 1952 &amp;ndash; 11 May 2001) was an English author,&amp;nbsp;&lt;a title=&quot;Humorist&quot; href=&quot;https://en.wikipedia.org/wiki/Humorist&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;humorist&lt;/a&gt;, and screenwriter, best known for&amp;nbsp;&lt;i&gt;&lt;a title=&quot;The Hitchhiker's Guide to the Galaxy&quot; href=&quot;https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Hitchhiker's Guide to the Galaxy&lt;/a&gt;&lt;/i&gt;. Originally a 1978&amp;nbsp;&lt;a title=&quot;The Hitchhiker's Guide to the Galaxy (radio series)&quot; href=&quot;https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy_(radio_series)&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;BBC radio comedy&lt;/a&gt;,&amp;nbsp;&lt;i&gt;The Hitchhiker's Guide to the Galaxy&lt;/i&gt; developed into a &quot;trilogy&quot; of five books that sold more than 15&amp;nbsp;million copies in his lifetime.&amp;nbsp;&lt;sup id=&quot;cite_ref-radioacad_2-0&quot; class=&quot;reference&quot;&gt;&lt;/sup&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Birthday" Value="1952-03-11T00:00:00" Type="DateTime">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27638,7 +27715,7 @@
       <Value Key="Intro" Value="&lt;p&gt;MyItem is the object which contains the first thing added by the editor on the current block.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Sections" Value="c4c14e57-1c71-494f-8300-9d9f66ea1a5c,2ab49a4b-7542-4a7f-bc67-5ad5b15878d8,9933194e-998d-4827-8e00-3b1f95d3dee8,c2e7a2ed-b55c-4616-b3d6-df7d21801739,368fc1ac-7af2-4803-ba5e-200ca2f2db7c,e3a0b30c-f667-4c55-b670-d4bb6f6ec920,0f29113e-9d46-46ac-87c8-3fe74cfc4e0b" Type="Entity" />
+      <Value Key="Sections" Value="c4c14e57-1c71-494f-8300-9d9f66ea1a5c,e30848ea-4ac6-4655-aa35-daa1c4809d33,2ab49a4b-7542-4a7f-bc67-5ad5b15878d8,9933194e-998d-4827-8e00-3b1f95d3dee8,c2e7a2ed-b55c-4616-b3d6-df7d21801739,368fc1ac-7af2-4803-ba5e-200ca2f2db7c,e3a0b30c-f667-4c55-b670-d4bb6f6ec920,0f29113e-9d46-46ac-87c8-3fe74cfc4e0b" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Work with Content Items - &lt;code&gt;MyItem&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -28024,6 +28101,20 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="e30848ea-4ac6-4655-aa35-daa1c4809d33">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="50" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Magic with Strings - incl. scrubHtml, Ellipsis(...) and Very-Rich-HTML&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="block-quickref-item-string" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -28065,6 +28156,7 @@
     <File Id="6095" RelativePath="adam\Tutorial-Razor\oemnwEUKSUmao3JExQd75A\Image\app-icon.png" />
     <File Id="6101" RelativePath="adam\Tutorial-Razor\ROEcJLCX40m6vu4w0iogag\Image\app-icon.png" />
     <File Id="6096" RelativePath="adam\Tutorial-Razor\SjaSfr5aXk2ziKpsl56oqQ\Image\app-icon.png" />
+    <File Id="6413" RelativePath="adam\Tutorial-Razor\Tm5yNs0hAEyc6HIID4k12g\Biography\douglas_adams_portrait.jpg" />
     <File Id="6412" RelativePath="adam\Tutorial-Razor\Tm5yNs0hAEyc6HIID4k12g\Mugshot\not-panicking.jpg" />
     <File Id="6098" RelativePath="adam\Tutorial-Razor\u2PgemEJYEaL9yM3DnOLEg\Image\app-icon.png" />
     <File Id="6105" RelativePath="adam\Tutorial-Razor\xg6dySq8Aku2g4CY6b-OMw\Image\look-up-system.svg" />
@@ -28108,6 +28200,7 @@
     <Folder Id="13638" RelativePath="adam/Tutorial-Razor/oemnwEUKSUmao3JExQd75A/Image/" />
     <Folder Id="13650" RelativePath="adam/Tutorial-Razor/ROEcJLCX40m6vu4w0iogag/Image/" />
     <Folder Id="13640" RelativePath="adam/Tutorial-Razor/SjaSfr5aXk2ziKpsl56oqQ/Image/" />
+    <Folder Id="14072" RelativePath="adam/Tutorial-Razor/Tm5yNs0hAEyc6HIID4k12g/Biography/" />
     <Folder Id="13644" RelativePath="adam/Tutorial-Razor/u2PgemEJYEaL9yM3DnOLEg/Image/" />
     <Folder Id="13658" RelativePath="adam/Tutorial-Razor/xg6dySq8Aku2g4CY6b-OMw/Image/" />
     <Folder Id="13652" RelativePath="adam/Tutorial-Razor/-YQYgfVpPUGFd3ci9FOd2g/Image/" />

@@ -1,0 +1,35 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var MyItem = AsItem(MyData.GetStream("PersonAdams"));
+}
+
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  <h4>Douglas Adams on <code>MyItem</code></h4>
+  <p>
+    Note: The Biography contains a LOT of HTML...
+  </p>
+  @{
+    // scrubHtml will clean up Html tags; there are more options
+    var bio = MyItem.String("Biography", scrubHtml: true);
+
+    // Text.Ellipsis uses RazorBlade
+    var teaser = Text.Ellipsis(bio, 100);
+  }
+  <p>
+    <strong>Teaser</strong> (using .Raw() for Umlauts): <br>
+    <em>@Html.Raw(teaser)</em>
+  </p>
+  <hr>
+  <div>
+    <strong>Now as rich HTML</strong> <br>
+    (drag size to see responsiv behavior) <br>
+    @MyItem.Html("Biography")
+  </div>
+@qref.SnipEnd()
