@@ -1,0 +1,41 @@
+@inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  <h4>Get some App Setting / Resources</h4>
+  <ol>
+    <li>Setting CustomColor: <br>
+      <code>@App.Settings.String("CustomColor")</code>
+    </li>
+    <li>Setting CsvFile: <br>
+      <code>@App.Settings.String("CsvFile")</code> <br>
+      <code>@App.Settings.Url("CsvFile")</code>
+    </li>
+    <li>Resource ButtonOrder: <br>
+      <button type="button">@App.Resources.String("ButtonOrder")</button>
+    </li>
+  </ol>
+
+  <h4>Get <em>Global</em> Settings</h4>
+  <ol>
+    <li>Settings.Images.Content.Width <br>
+      <code>@AllSettings.Int("Images.Content.Width")</code>
+    </li>
+    <li>The same with prefix <code>Settings</code> <br>
+      <code>@AllSettings.Int("Settings.Images.Content.Width")</code>
+    </li>
+    <li>GoogleMaps.DefaultCoordinates <br>
+      <code>@AllSettings.Get("Settings.GoogleMaps.DefaultCoordinates")</code>
+    </li>
+    <li>GoogleMaps.DefaultCoordinates as Typed <br>
+      @{
+        var json = AllSettings.String("Settings.GoogleMaps.DefaultCoordinates");
+        var coords = Kit.Json.ToTyped(json);
+      }
+      Lat: @coords.Float("Latitude") <br>
+      Lng: @coords.Float("Longitude")
+    </li>
+  </ol>
+@qref.SnipEnd()
