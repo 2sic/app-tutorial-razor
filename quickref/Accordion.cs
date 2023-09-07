@@ -49,14 +49,48 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   private string NextName() { return Name + "-" + AutoPartName + AutoPartIndex++; }
 
-  public IEnumerable<Section> Sections(string basePath, string pathPrefix) {
+  public string ReworkPath(string backtrack) {
+    var appPath = App.Folder.Path;
+    var first = Item.Children("Sections").FirstOrDefault();
+    var tutorialId = first.String("TutorialId");
+
+    string fileName;
+    if (CheckFile2(appPath, backtrack, tutorialId, null, out fileName))
+      return fileName;
+    return null;
+  }
+
+  private bool CheckFile2(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
+    var topPath = Text.Before(tutorialId, "-");
+    var rest = Text.After(tutorialId, "-");
+    var secondPath = Text.Before(rest, "-");
+
+    if (!Text.Has(secondPath))
+      throw new Exception("Second path is empty, original was '" + tutorialId + "'");
+
+    var realName = tutorialId + variant + ".cshtml";
+    var filePath = System.IO.Path.Combine(appPath, topPath, secondPath, realName);
+    var fullPath = Sys.SourceCode.GetFullPath(filePath);
+    if (System.IO.File.Exists(fullPath)) {
+      fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);
+      return true;
+    }
+    fileName = null;
+    return false;
+  }
+
+  public IEnumerable<Section> Sections(string basePath, string pathPrefix, string backtrack) {
     if (Item == null) throw new Exception("Item in Accordion is null");
+    var appPath = App.Folder.Path;
     basePath = Text.BeforeLast(basePath, "/");
     var names = Item.Children("Sections")
       .Select(itm => {
+        var tutorialId = itm.String("TutorialId");
         string fileName;
-        if (!CheckFile(basePath, pathPrefix, itm.String("TutorialId"), null, out fileName))
-          CheckFile(basePath, pathPrefix, itm.String("TutorialId"), _variantExtension, out fileName);
+        if (!CheckFile2(appPath, backtrack, tutorialId, null, out fileName))
+          CheckFile2(appPath, backtrack, tutorialId, _variantExtension, out fileName);
+        // if (!CheckFile(basePath, pathPrefix, tutorialId, null, out fileName))
+        //   CheckFile(basePath, pathPrefix, tutorialId, _variantExtension, out fileName);
         return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
       })
       .ToList();

@@ -7,9 +7,17 @@
   var acc = MyModel.Get("Accordion") as dynamic;
   var root = AsItem(acc.Item as object).String("RootPath") + "/";
 }
-@foreach(var acs in acc.Sections(Path, root)) {
+@foreach(var acs in acc.Sections(Path, root, backtrack: "..")) {
   if (acs.SectionFile != null) {
+    var relPath = acc.ReworkPath("..");
+    <div>
+      test 2dm: @relPath <br>
+      Path: @Path <br>
+      AppPath: @App.Folder.Path
+
+    </div>
     @acs.Start()
+      @* @Html.Partial(relPath, new { acs.Item }) *@
       @Html.Partial(acs.SectionFile, new { acs.Item })
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
