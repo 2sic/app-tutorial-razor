@@ -110,6 +110,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return new QuickRefSection(this, tabs, tutorials, split: true, firstWidth: 33);
   }
 
+  public QuickRefSection QuickRefSplit33S(string tabs = null, string[] tutorials = null) {
+    return new QuickRefSection(this, TabStringToDic(tabs), tutorials, split: true, firstWidth: 33);
+  }
+
   #endregion
 
 

@@ -25,7 +25,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     var t = Kit.HtmlTags;
     var heading = t.H2(Item.String("Title", scrubHtml: "p")).Class("quick-ref");
     heading = (Item.Id != 0)
-      ? heading.Attr(Kit.Toolbar.Empty(Item).Edit())
+      ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().Add())
       : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { TutorialId = Item.String("TutorialId") }));
     return t.RawHtml(
       "\n<!-- Accordion.Start(" + Name + ") -->\n",
@@ -105,7 +105,7 @@ public class Section {
     var start = TagsSvc.Div().Class("accordion-item");
     if (Item != null)
       start = (Item.Id != 0)
-        ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit())
+        ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit().New())
         : start.Attr(Acc.Kit.Toolbar.Empty().New("TutAccordionSection", prefill: new { TutorialId }));
     return TagsSvc.RawHtml(
       "\n",

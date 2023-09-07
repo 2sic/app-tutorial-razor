@@ -12,7 +12,6 @@
   };
 }
 
-<hide-silent>
 @functions {
   // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
   private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("../TestHelpers.cs")); }}
@@ -20,9 +19,8 @@
 
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
 }
-</hide-silent>
 
-  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
+@((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
@@ -51,4 +49,4 @@
       @strict.Int("Fake", required: false, fallback: -1)
     </li>
   </ol>
-  @qref.SnipEnd()
+@qref.SnipEnd()
