@@ -3,7 +3,7 @@
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:shared-uniquekey-message.cshtml,file:js/unique-key.js" ); }
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:Uniquekey-Message.cshtml,file:js/unique-key.js" ); }
 @qref.SnipStart()
   @{
     var buttonId = "demo-uniquekey-btn-" + UniqueKey;
@@ -15,7 +15,7 @@
   </button>
 
   @* Create the DIV for the message - it's in another file, but shares the UniqueKey *@
-  @Html.Partial("./shared-uniquekey-message.cshtml")
+  @Html.Partial("./Uniquekey-Message.cshtml")
 
   @* Trigger the script, and pass in the IDs it will need based on the UniqueKey *@
   @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
