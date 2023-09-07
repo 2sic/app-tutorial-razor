@@ -2,10 +2,6 @@
 @{
   // Sys helps generate code snippets etc.
   var Sys = GetCode("/shared/Helpers.cs").Init(this);
-  // The accordion is an external helper file, so we must treat it as dynamic
-  var acc = MyModel.Get("Accordion") as dynamic;
-  // variable to hold each section config
-  dynamic accSection;
   dynamic qref;
 }
 
@@ -15,7 +11,6 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@((accSection = acc.Section("quickref-myitem-get-props")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
     <h4>Douglas Adams on <code>MyItem</code></h4>
     <p>
@@ -67,6 +62,5 @@
     </p>
 
   @qref.SnipEnd()
-@accSection.End()
 
 

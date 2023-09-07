@@ -33,18 +33,12 @@
 
 
 @accordion.Start("quickref-item")
-  @Html.Partial("./block/Item Properties Typed.cshtml", new { accordion })
-  @Html.Partial("./block/QuickRef-MyItem-Presentation.cshtml", new { accordion })
-  @Html.Partial("./block/Item Children Typed.cshtml", new { accordion })
-  @Html.Partial("./block/Item Pic and Url Typed.cshtml", new { accordion })
-  @Html.Partial("./block/Item File and Folder Typed.cshtml", new { accordion })
+  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./block/" })
 @accordion.End()
 
 
 @accordion.Start("quickref-items")
-  @Html.Partial("./block/Items Typed.cshtml", new { accordion })
-  @Html.Partial("./block/QuickRef-MyItems-Presentation.cshtml", new { accordion })
-  @Html.Partial("./block/QuickRef-MyHeader.cshtml", new { accordion })
+  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./block/" })
 @accordion.End()
 
 @* TODO:
@@ -54,8 +48,7 @@
 
 
 @accordion.Start("quickref-query")
-  @Html.Partial("./Query/Query Typed.cshtml", new { accordion })
-  @Html.Partial("./Query/Query Selected Typed.cshtml", new { accordion })
+  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./query/" })
 @accordion.End()
 
 
@@ -66,7 +59,7 @@
 
 
 @accordion.Start("quickref-js")
-  @Html.Partial("./Js/JsBasics Typed.cshtml", new { accordion })
+  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./js/" })
 @accordion.End()
 
 

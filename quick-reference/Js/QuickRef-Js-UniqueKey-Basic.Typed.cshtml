@@ -2,82 +2,10 @@
 @{
   // Sys helps generate code snippets etc.
   var Sys = GetCode("/shared/Helpers.cs").Init(this);
-  // The accordion is an external helper file, so we must treat it as dynamic
-  var acc = MyModel.Get("Accordion") as dynamic;
-  // variable to hold each section config
-  dynamic accSection;
   dynamic qref;
 }
 
-@* Load JS *@
-@((accSection = acc.Section("quickref-js-load")).Start())
-  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-    { "Source JS1", "file:js/report-loaded-in-console-path-app.js" },
-    { "Source JS2", "file:js/report-loaded-in-console-path-view.js" },
-  })).SnipStart())
-    <p>
-      Load a JavaScript relative to the App folder (see message/console): <br>
-      <strong id="loadjs-app-message"></strong>
-    </p>
-    <script src="@App.Folder.Url/quick-reference/js/js/report-loaded-in-console-path-app.js"></script>
-
-    <p>
-      Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
-      <strong id="loadjs-view-message"></strong>
-    </p>
-    <script src="@MyView.Folder.Url/js/js/report-loaded-in-console-path-view.js"></script>
-  @qref.SnipEnd()
-@accSection.End()
-
-
-
-@* turnOn *@
-@((accSection = acc.Section("quickref-js-turnon")).Start())
-  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-    { "Source JS", "file:js/turnOn1.js" },
-  })).SnipStart())
-    <p>
-      The following text will be replaced once the JS is triggered: <br>
-      <strong id="turnOn1-message"></strong>
-    </p>
-
-    @* Load the JavaScript - it will not run by itself, as the DOM might not be ready
-        Note that this can be before or after the TurnOn *@
-    <script src="@MyView.Folder.Url/js/js/turnOn1.js"></script>
-
-    @* Tell TurnOn to trigger the JS when everything is ready *@
-    @Kit.Page.TurnOn("window.quickReference.turnOn1Message()")
-
-    <p>
-      This example passes data to the JS, so it can be parameterized:  <br>
-      <strong id="turnOn2-message"></strong>
-    </p>
-
-    @* Tell TurnOn to trigger the JS and give it a string *@
-    @Kit.Page.TurnOn("window.quickReference.turnOn2Message()", data: "Hello from Razor, the page Id is" + MyPage.Id)
-
-    <p>
-      We can also pass in more sophisticated data:  <br>
-      <strong id="turnOn3-message"></strong>
-    </p>
-    @{
-      // Create an anonymous object containing the data to send
-      var turnOn3Data = new {
-        domId = "turnOn3-message",
-        message = "Hello from Razor...",
-        pageId = MyPage.Id,
-        pageUrl = MyPage.Url
-      };
-    }
-    @* Tell TurnOn to trigger the JS and give it a complex object *@
-    @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
-  @qref.SnipEnd()
-@accSection.End()
-
-
-
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@((accSection = acc.Section("quickref-uniquekey-basic")).Start())
   @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
     { "Helper Razor", "file:shared-uniquekey-message.cshtml" },
     { "JS File", "file:js/unique-key.js" },
@@ -152,4 +80,3 @@
       }
     </ol>
   @qref.SnipEnd()
-@accSection.End()

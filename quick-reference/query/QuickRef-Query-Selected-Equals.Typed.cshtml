@@ -1,0 +1,33 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("/shared/Helpers.cs").Init(this);
+  dynamic qref;
+}
+
+<hide-silent>
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyData` is the assigned query for this view
+  var MyData = App.GetQuery("QuickRef-Persons-Selected");
+}
+</hide-silent>
+
+@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+  @{
+    var selected = AsItem(MyData.GetStream("Selected"));
+  }
+  <div>
+    Selected: @selected.String("FirstName") @selected.String("LastName")
+  </div>
+  <ul>
+    @foreach (var person in AsItems(MyData)) {
+      <li>
+        @person.String("FirstName") @person.String("LastName")
+        @if (person.Equals(selected)) {
+          <strong>(selected ⭐)</strong>
+        }
+      </li>
+    }
+  </ul>
+@qref.SnipEnd()
