@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
@@ -9,7 +8,8 @@
 }
 
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
   <h4>Douglas Adams on <code>MyItem</code></h4>
   <p>
     Id, Guid and Title are built-in properties

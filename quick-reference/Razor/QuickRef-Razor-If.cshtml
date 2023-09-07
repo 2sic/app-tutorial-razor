@@ -1,8 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "basics210" })).SnipStart())
+
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@qref.SnipStart()
   @{
     const int old = 60;
     const string isOld = "this guy is old";

@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItems`, `Presentation` etc. work like on a normal view
@@ -9,8 +9,8 @@
   var MyHeader = AsItem(data.GetStream("Header"));
 }
 
-
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
   <h3>@MyHeader.Title</h3>
   <ul>
     @foreach (var item in MyItems) {

@@ -1,20 +1,18 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-  { "Source JS1", "file:js/report-loaded-in-console-path-app.js" },
-  { "Source JS2", "file:js/report-loaded-in-console-path-view.js" },
-})).SnipStart())
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:js/load-with-app-path.js,file:js/load-with-view-path.js" ); }
+@qref.SnipStart()
   <p>
     Load a JavaScript relative to the App folder (see message/console): <br>
     <strong id="loadjs-app-message"></strong>
   </p>
-  <script src="@App.Folder.Url/quick-reference/js/js/report-loaded-in-console-path-app.js"></script>
+  <script src="@App.Folder.Url/quick-reference/js/js/load-with-app-path.js.js"></script>
 
   <p>
     Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
     <strong id="loadjs-view-message"></strong>
   </p>
-  <script src="@MyView.Folder.Url/js/js/report-loaded-in-console-path-view.js"></script>
+  <script src="@MyView.Folder.Url/js/js/load-with-view-path.js"></script>
 @qref.SnipEnd()

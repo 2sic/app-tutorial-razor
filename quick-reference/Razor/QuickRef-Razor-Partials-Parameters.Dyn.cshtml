@@ -1,12 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
 
 @* Note: this is only typed, because the inner file is typed; the other code is identical *@
 
-@((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
-  { "Source box.cshtml", "file:../../reuse/box.cshtml" },
-}, tutorials: new string[] { "reuse110" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item, tabs: "file:../../reuse/box.cshtml" ); }
+@qref.SnipStart()
   <h4>Call some external Razor files</h4>
   <ol>
     <li>

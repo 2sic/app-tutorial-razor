@@ -1,10 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@* TODO: Sample Template Delegates in separate sample *@
-<h3>Reuse Code with functions in same file</h3>
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "reuse101", "reuse102", "reuse110" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@qref.SnipStart()
   @functions {
     string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
    

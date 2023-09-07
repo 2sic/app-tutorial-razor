@@ -1,9 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
   <ol>
     <li>Platform name: '<code>@MyContext.Platform.Name</code>'</li>
     <li>Platform type: '<code>@MyContext.Platform.Type</code>'</li>

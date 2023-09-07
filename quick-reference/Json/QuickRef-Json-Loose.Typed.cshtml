@@ -1,16 +1,15 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
+
 @{
   // Variables for the tests
   string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
-  var dudeTabs = new Dictionary<string, string> {
-    { "dude.json", "file:json/dude.json" },
-  };
 }
 
 
-  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
+@qref.SnipStart()
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
@@ -38,5 +37,5 @@
       @loose.Int("Fake", fallback: -1)
     </li>
   </ol>
-  @qref.SnipEnd()
+@qref.SnipEnd()
 

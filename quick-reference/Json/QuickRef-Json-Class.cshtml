@@ -1,13 +1,13 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
+
 @{
   string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
 }
 
-  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-    { "cities.json", "file:json/cities.json" },
-  })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
+@qref.SnipStart()
   @functions {
     // Custom class to deserialize JSON into
     // must be inside an @functions section

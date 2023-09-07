@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
 
 @{
@@ -10,7 +9,8 @@
 }
 
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
   <h4>Loop persons which were added to this view</h4>
   <ul>
     @foreach (var person in MyItems) {

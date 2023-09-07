@@ -1,10 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
 
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "entity", "content" })).SnipStart())
+
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item); }
+@qref.SnipStart()
   <h4>Douglas Adams, the current Content-item</h4>
   @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
   <ol>

@@ -1,13 +1,14 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+  @{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+  @qref.SnipStart()
     <h4>Use <code>.Child("Awards")</code> to get one</h4>
     <ol>
       <li>Award ID:          @MyItem.Child("Awards").Id</li>

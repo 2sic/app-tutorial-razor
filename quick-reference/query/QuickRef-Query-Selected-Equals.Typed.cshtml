@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
 <hide-silent>
 @{
@@ -10,7 +9,8 @@
 }
 </hide-silent>
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "entity", "content" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
   @{
     var selected = AsItem(MyData.GetStream("Selected"));
   }

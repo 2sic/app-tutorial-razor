@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
 
 @functions {
   // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
@@ -10,7 +10,8 @@
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
 }
 
-@((qref = Sys.SourceCode.QuickRefSplit33S(tabs: "file:../../reuse/ReturnObjects.cs",
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/ReturnObjects.cs" ); }
+@qref.SnipStart()
   tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())
   @{
     // helper library which will return object

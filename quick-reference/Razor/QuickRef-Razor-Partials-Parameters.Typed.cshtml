@@ -1,12 +1,10 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@* Note: this is only typed, because the inner file is typed; the other code is identical *@
+@* Note: this is only typed, because the inner file "Box Typed" is typed; the other code is identical *@
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-  { "Source Box Typed.cshtml", "file:../../reuse/Box Typed.cshtml" },
-}, tutorials: new string[] { "reuse110" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/Box Typed.cshtml" ); }
+@qref.SnipStart()
   <h4>Call some external Razor files</h4>
   <ol>
     <li>

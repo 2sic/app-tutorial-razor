@@ -1,7 +1,9 @@
 using Custom.Hybrid;
-using ToSic.Razor.Blade;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using ToSic.Razor.Blade;
+using ToSic.Sxc.Data;
 
 public class Helpers: Custom.Hybrid.CodeTyped
 {
@@ -54,6 +56,14 @@ public class Helpers: Custom.Hybrid.CodeTyped
     return (view == null)
       ? Tag.Li("View not Found: " + target)
       : TutorialLiFromView(view);
+  }
+
+  public IHtmlTag TutorialLiFromViewMd(ITypedItem viewMd) {
+    var target = viewMd.Entity.MetadataFor;
+    var targetId = target.KeyGuid;
+    var view = App.Data["2SexyContent-Template"].FirstOrDefault(e => e.EntityGuid == targetId);
+    if (view == null) throw new Exception("Can't find view - tried target: " + targetId + "; target: " + target);
+    return TutorialLiFromView(view);
   }
 
   public IHtmlTag TutorialLiFromView(object tutViewObj) {

@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-  { "Source JS", "file:js/turnOn1.js" },
-})).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:js/turnOn1.js" ); }
+@qref.SnipStart()
   <p>
     The following text will be replaced once the JS is triggered: <br>
     <strong id="turnOn1-message"></strong>

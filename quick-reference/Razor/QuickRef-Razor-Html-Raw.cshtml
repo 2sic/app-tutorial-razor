@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRefSplit(tutorials: new string[] { "html" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@qref.SnipStart()
   @{
     var normalText = "this is text, it doesn't have tags";
     var htmlText = "this string <em>has</em> html <strong>tags</strong>";

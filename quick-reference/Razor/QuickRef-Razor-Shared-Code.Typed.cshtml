@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-  { "Source SharedFunctions.cs", "file:../../reuse/SharedFunctions.cs" },
-}, tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/SharedFunctions.cs" ); }
+@qref.SnipStart()
   @{
     // helper library to say hello & create QR codes
     var qrLib = GetCode("../../reuse/SharedFunctions.cs");

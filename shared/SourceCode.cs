@@ -2,6 +2,7 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
 using ToSic.Sxc.Code;
+using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,18 +55,36 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public TabsWithSnippetsSection TabsOutputAndSource(string tabs) { return TabsOutputAndSource(TabStringToDic(tabs)); }
 
+  /// <summary>
+  /// Convert a CSV string to dictionary.
+  /// It handles special cases such as 
+  /// * "Rzr14" which will be converted to the Razor14 file name
+  /// * "file:*" which will be optimized for title
+  /// </summary>
+  /// <param name="tabs"></param>
+  /// <returns></returns>
   private Dictionary<string, string> TabStringToDic(string tabs) {
-    var tabList = tabs.Split(',').Select(t => t.Trim()).ToArray();
-    var tabDic = tabList.ToDictionary(
-      t => {
-        if (t.StartsWith("Rzr14"))
-          return "Rzr14";
-        if (t.StartsWith("file:"))
-          return Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":");
-        return t;
-      },
-      t => (t.StartsWith("Rzr14") ? ("file:./" + AltCodeFileRzr14() + Text.After(t, "Rzr14")) : t)
-    );
+    var tabList = (tabs ?? "").Split(',').Select(t => t.Trim()).ToArray();
+    var tabDic = tabList.Select(t => {
+      // Pre-Split if possible
+      var pair = t.Split('|');
+      var hasLabel = pair.Length > 1;
+      var pVal = hasLabel ? pair[1] : pair[0];
+      var pLabel = pair[0];
+
+      // Figure out the parts
+      var isRzr14 = t.StartsWith("Rzr14");
+      var label = hasLabel 
+        ? pLabel
+        : isRzr14 ? "Rzr14" : ((t.StartsWith("file:")) ? Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":") : t);
+      var value = isRzr14 ? ("file:./" + AltCodeFileRzr14() + Text.After(pVal, "Rzr14")) : pVal;
+      return new {
+        isRzr14,
+        label,
+        value,
+        t
+      };
+    }).ToDictionary(t => t.label, t => t.value);
     return tabDic;
   }
 
@@ -95,23 +114,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// <summary>
   /// QuickRef section - only to be used in the Quick Reference
   /// </summary>
+  /// <param name="item">ATM object, because when coming through a Razor14 the type is not known</param>
   /// <param name="tabs"></param>
-  /// <param name="tutorials">list of tutorials view IDs to add to the last tab</param>
   /// <returns></returns>
-  public QuickRefSection QuickRef(Dictionary<string, string> tabs = null, string[] tutorials = null) {
-    return new QuickRefSection(this, tabs, tutorials, split: false);
-  }
-
-  public QuickRefSection QuickRefSplit(Dictionary<string, string> tabs = null, string[] tutorials = null, int outputW = 50) {
-    return new QuickRefSection(this, tabs, tutorials, split: true, firstWidth: outputW);
-  }
-
-  public QuickRefSection QuickRefSplit33(Dictionary<string, string> tabs = null, string[] tutorials = null) {
-    return new QuickRefSection(this, tabs, tutorials, split: true, firstWidth: 33);
-  }
-
-  public QuickRefSection QuickRefSplit33S(string tabs = null, string[] tutorials = null) {
-    return new QuickRefSection(this, TabStringToDic(tabs), tutorials, split: true, firstWidth: 33);
+  public QuickRefSection QuickRef(
+    object item,
+    string tabs = null,
+    Dictionary<string, string> tabDic = null
+  ) {
+    return new QuickRefSection(this, tabDic ?? TabStringToDic(tabs), null, item: item as ITypedItem);
   }
 
   #endregion
@@ -468,13 +479,21 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       Dictionary<string, string> tabs,
       string[] tutorials,
       bool split = false,
-      int firstWidth = 50
+      int firstWidth = 50,
+      ITypedItem item = null
     ) : base(sourceCode, tabs)
     {
+      Item = item;
+      // if (item == null) throw new Exception("Item should never be null");
       Tutorials = tutorials ?? new string[] {};
       Split = split;
       FirstWidth = firstWidth;
+      if (Item != null) {
+        FirstWidth = Item.Int("OutputWidth", fallback: 0);
+        Split = FirstWidth > 0;
+      };
     }
+    public ITypedItem Item {get;set;}
     private string [] Tutorials;
 
     private bool Split;
@@ -488,7 +507,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (!Split) list.Add(SourceTabName);
       list.AddRange(Tabs.Keys.ToArray());
 
-      if (Tutorials != null && Tutorials.Any())
+      if ((Tutorials != null && Tutorials.Any()) || (Item != null && Item.IsNotEmpty("Tutorials")))
         list.Add("Additional Tutorials");
 
       var header = SnippetStartInner(firstTab, list.ToArray(), active: active);
@@ -521,7 +540,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag SnipEnd() {
       var tabContents = new List<object>();
       tabContents.AddRange(Tabs.Values);
-      var liLinks = Tutorials.Select(r => "\n    " + ScParent.Sys.TutorialLiLinkLookup(r) + "\n");
+      var liLinks = Item == null
+        ? Tutorials.Select(r => "\n    " + ScParent.Sys.TutorialLiLinkLookup(r) + "\n")
+        : Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
       var olLinks = Tag.Ol(liLinks);
       tabContents.Add(olLinks);
       var result = SnipEndFinal(

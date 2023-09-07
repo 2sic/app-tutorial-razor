@@ -1,27 +1,25 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
+
+
+
 @{
   // Variables for the tests
   string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
 }
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
-  { "cities.json", "file:json/cities.json" },
-})).SnipStart())
-@{
-  // Simple JSON strings which could come from a file or web service
-  var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
+@qref.SnipStart()
+  @{
+    // Simple JSON strings which could come from a file or web service
+    var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
 
-  // Convert the JSON to ITyped
-  var cities = Kit.Json.ToTypedList(jCities);
-}
-<ol>
-  @foreach(var city in cities) {
-    <li>Name: <code>@city.String("Name")</code></li>
+    // Convert the JSON to ITyped
+    var cities = Kit.Json.ToTypedList(jCities);
   }
-</ol>
+  <ol>
+    @foreach(var city in cities) {
+      <li>Name: <code>@city.String("Name")</code></li>
+    }
+  </ol>
 @qref.SnipEnd()
-
-
-

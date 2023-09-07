@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "html210" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@qref.SnipStart()
   <p>
     You can just use any Emoji in your source.
     Or you pick them with ternary operations.

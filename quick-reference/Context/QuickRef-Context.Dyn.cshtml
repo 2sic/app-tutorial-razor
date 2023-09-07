@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-@((qref = Sys.SourceCode.QuickRef(tutorials: new string[] { "c110", "c120", "c130", "c140", "c150", "c160", "c170" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@qref.SnipStart()
   <ol>
     <li>Platform name: '<code>@CmsContext.Platform.Name</code>'</li>
     <li>Platform type: '<code>@CmsContext.Platform.Type</code>'</li>

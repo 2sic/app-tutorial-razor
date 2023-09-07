@@ -1,9 +1,12 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ dynamic qref; }
 
-
-@((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })).SnipStart())
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  <p>
+    Note: you won't see any output here.
+    To see the effect, look at the page source.
+  </p>
   @* Example with a single-liner directly in the code *@
   @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
   @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")

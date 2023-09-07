@@ -10,7 +10,7 @@
 @foreach(var acs in acc.Sections(Path, root)) {
   if (acs.SectionFile != null) {
     @acs.Start()
-      @Html.Partial(acs.SectionFile)
+      @Html.Partial(acs.SectionFile, new { acs.Item })
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
     <div>SysUserOnly: This section doesn't exist: @acs.TutorialId</div>
