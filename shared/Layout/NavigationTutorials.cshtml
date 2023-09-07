@@ -7,8 +7,7 @@
   var Sys = DynamicModel.Sys;
 }
 @{
-  var hlp = Sys; // CreateInstance("../shared/Helpers.cs");
-  var NavPrevNext = CreateInstance("NavigationPrevNext.cs").Init(hlp, CmsContext.View);
+  var NavPrevNext = GetCode("NavigationPrevNext.cs").Init(Sys, CmsContext.View);
 
   var currentView = CmsContext.View;
 
@@ -43,7 +42,7 @@
   // Previous Tutorial Metadata
   var previousTutorialMd = NavPrevNext.TryGetViewMd(previousTutorial);
   var previousTutorialTarget = previousTutorialMd != null 
-    ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
+    ? Sys.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
     : homeTarget;
 
   // Next Tutorial
@@ -56,7 +55,7 @@
   // Next Tutorial Metadata
   var nextTutorialMd = NavPrevNext.TryGetViewMd(nextTutorial);
   var nextTutorialTarget = nextTutorialMd != null 
-    ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
+    ? Sys.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
     : homeTarget;
 
   <div class="alert alert-dark container-fluid">

@@ -2,7 +2,7 @@
 @using System.Linq;
 @{
   var Sys = GetCode("/Shared/Helpers.cs");
-  var hdHlp = CreateInstance("./Shared/Layout/HeaderHelpers.cs");
+  var hdHlp = GetCode("/Shared/Layout/HeaderHelpers.cs");
 
   // Set Title etc.
   var pageTitle = Content.Title + " (" + App.Configuration.Version + ")";

@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
 @Html.Partial("header.cshtml")
-@{  var linker = CreateInstance("../shared/Helpers.cs"); }
+@{ var Sys = GetCode("/Shared/Helpers.cs"); }
 </hide>
 
 <trim>
@@ -19,7 +19,7 @@
 <h2>Working with ContentBlocks</h2>
 
 <ol>
-  @linker.TutorialLink("2sxc-Advanced - Query the Content Block", "2sa110", "", "new!")
+  @Sys.TutorialLink("2sxc-Advanced - Query the Content Block", "2sa110", "", "new!")
 
 </ol>
 

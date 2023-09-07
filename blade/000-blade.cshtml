@@ -6,7 +6,7 @@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{
-  var rzr = CreateInstance("RazorbladeVersion.cs");
+  var rzr = GetCode("RazorbladeVersion.cs");
   var version = rzr.VersionDouble();
 }
 </hide>

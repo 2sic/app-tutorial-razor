@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 
 @{
-  var rzr = CreateInstance("RazorbladeVersion.cs");
+  var rzr = GetCode("RazorbladeVersion.cs");
   var expected = DynamicModel.Expected;
   var version = rzr.VersionDouble();
   var exists = version != 0;

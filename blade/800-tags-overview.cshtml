@@ -3,10 +3,10 @@
 @using System.IO;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("/Shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{
-  var rzr = CreateInstance("RazorbladeVersion.cs");
+  var rzr = GetCode("RazorbladeVersion.cs");
   var version = rzr.VersionDouble();
 }
 </hide>
