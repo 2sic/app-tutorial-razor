@@ -24,11 +24,11 @@
 
 @* Bootstrap 5 Accordions *@
 @{
-  var accordion = CreateInstance("Accordion.cs");
+  var accordion = CreateInstance("Accordion.cs").Setup(Sys, ".Dyn");;
 }
 
 @accordion.Start("quickref-razor-basics")
-  @Html.Partial("./Razor/Basics Dyn.cshtml", new { accordion })
+  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./Razor/" })
 @accordion.End()
 
 

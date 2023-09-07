@@ -52,16 +52,25 @@ public class Accordion: Custom.Hybrid.CodeTyped
   public IEnumerable<Section> Sections(string basePath, string pathPrefix) {
     if (Item == null) throw new Exception("Item in Accordion is null");
     basePath = Text.BeforeLast(basePath, "/");
-    var names = Item.Children("Sections").Select(itm => {
-      var fileName = pathPrefix + itm.String("TutorialId") + ".cshtml";
-      var filePath = System.IO.Path.Combine(basePath, fileName);
-      var fullPath = Sys.SourceCode.GetFullPath(filePath);
-      if (!System.IO.File.Exists(fullPath)) {
-        fileName = pathPrefix + itm.String("TutorialId") + _variantExtension + ".cshtml";
-      }
-      return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
-    });
+    var names = Item.Children("Sections")
+      .Select(itm => {
+        string fileName;
+        if (!CheckFile(basePath, pathPrefix, itm.String("TutorialId"), null, out fileName))
+          CheckFile(basePath, pathPrefix, itm.String("TutorialId"), _variantExtension, out fileName);
+        return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
+      })
+      .Where(s => s != null)
+      .ToList();
     return names;
+  }
+
+  private bool CheckFile(string basePath, string pathPrefix, string tutorialId, string suffix, out string fileName) {
+    fileName = pathPrefix + tutorialId + suffix + ".cshtml";
+    var filePath = System.IO.Path.Combine(basePath, fileName);
+    var fullPath = Sys.SourceCode.GetFullPath(filePath);
+    if (System.IO.File.Exists(fullPath)) return true;
+    fileName = null;
+    return false;
   }
 
   private const string AutoPartName = "auto-part-";
@@ -103,6 +112,7 @@ public class Section {
   private IHtmlTagsService TagsSvc;
   public string HeadingId { get { return Name + "-heading"; } }
   public string BodyId { get { return Name + "-body"; } }
+  public string TutorialId { get { return Item.String("TutorialId"); } }
 
   private string Indent = "    ";
 
@@ -111,7 +121,7 @@ public class Section {
     if (Item != null)
       start = (Item.Id != 0)
         ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit())
-        : start.Attr(Acc.Kit.Toolbar.Empty().New("TutAccordionSection", prefill: new { TutorialId = Item.String("TutorialId") }));
+        : start.Attr(Acc.Kit.Toolbar.Empty().New("TutAccordionSection", prefill: new { TutorialId }));
     return TagsSvc.RawHtml(
       "\n",
       Indent,

@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
+
+@((qref = Sys.SourceCode.QuickRef(tabs: new Dictionary<string, string> {
+  { "Source SharedFunctions.cs", "file:../../reuse/SharedFunctions.cs" },
+}, tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())
+  @{
+    // helper library to say hello & create QR codes
+    var qrLib = CreateInstance("../../reuse/SharedFunctions.cs");
+  }
+  <h4>Call some Code in External CSharp Files</h4>
+  <ol>
+    <li>Hello from shared lib: @qrLib.SayHello()</li>
+    <li>
+      QR Code from shared lib
+      <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
+    </li>
+  </ol>
+@qref.SnipEnd()
