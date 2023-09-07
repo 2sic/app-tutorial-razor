@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
+  var MyItem = AsItem(MyData.GetStream("PersonAdams"));
+}
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  <h4>Inspect the fields of an Item</h4>
+  <ol>
+    @foreach(var key in MyItem.Keys()) {
+      <li>
+        @(MyItem.IsNotEmpty(key) ? "✅" : "🔲")
+        @key:
+        @MyItem.Get(key)
+      </li>
+    }
+  </ol>
+@qref.SnipEnd()

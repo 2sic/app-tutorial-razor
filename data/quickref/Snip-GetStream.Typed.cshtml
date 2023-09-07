@@ -1,0 +1,46 @@
+@inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  @{
+    // Get a query to be executed when accessed
+    // It has 2 streams: Default and Authors
+    var query = App.GetQuery("QuickRef-GetQuery");
+
+    // Get the stream Authors (this exists)
+    var authors = query.GetStream("Authors");
+
+    // Get the stream Critics (this does not exist)
+    // we'll take a null instead of an error
+    var critics = query.GetStream("Critics", nullIfNotFound: true);
+
+    // This will get the authors, as critics is null
+    var cOrA = critics ?? authors;
+
+    // Get the stream players (this does not exist)
+    // we want an empty list instead of an error
+    var players = query.GetStream("Critics", emptyIfNotFound: true);
+
+    // This will keep the empty list, as it's not null
+    var pOrA = players ?? authors;
+  }
+  <h4>Let's see the if anything exists</h4>
+  <ol>
+    <li>@(authors != null ? "✅" : "🔲") Authors exists? </li>
+    <li>@(critics != null ? "✅" : "🔲") Critics exists? </li>
+    <li>@(players != null ? "✅" : "🔲") Players exists? </li>
+    <li>@(cOrA != null ? "✅" : "🔲") Critics || Authors exists? </li>
+    <li>@(pOrA != null ? "✅" : "🔲") Players || Authors exists? </li>
+  </ol>
+
+  <h4>Now let's count what's inside</h4>
+  <ol>
+    <li>Authors: @authors.Count()</li>
+    <li>Critics: <em>skip</em></li>
+    <li>Players: @players.Count()</li>
+    <li>Critics || Authors: @cOrA.Count()</li>
+    <li>Players || Authors: @pOrA.Count()</li>
+  </ol>
+@qref.SnipEnd()

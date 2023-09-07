@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  @{
+    // Create a mock item, to be used if nothing else is found
+    var mockPerson = AsItem(new {
+      FirstName = "John",
+      LastName = "Doe"
+    }, mock: true); // mock: true is required to be sure you wanted this
+
+    // Let's pretend the query may have a stream or may not
+    var stream = MyData.GetStream("Guys", emptyIfNotFound: true);
+
+    // Get the item, or the mock if nothing is found
+    var guy = AsItem(stream) ?? mockPerson;
+  }
+  <h4>Inspect the fields of an Item</h4>
+  <ol>
+    @foreach(var key in guy.Keys()) {
+      <li>
+        @(guy.IsNotEmpty(key) ? "✅" : "🔲")
+        @key:
+        @guy.Get(key)
+      </li>
+    }
+  </ol>
+@qref.SnipEnd()

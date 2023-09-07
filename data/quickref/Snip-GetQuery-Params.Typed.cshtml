@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+
+@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@qref.SnipStart()
+  @{
+    // Get a query to be executed when accessed
+    // It has 2 streams: Default and Authors
+    // Since the query expects a `Max` parameter, we pass it in
+    // ...it will then only return 3 items on each stream
+    var query = App.GetQuery("QuickRef-GetQuery", parameters: new {
+      Max = 3
+    });
+  }
+  <h4>Get Books from the <code>Default</code> stream</h4>
+  <ol>
+    @foreach(var book in AsItems(query)) {
+      <li>@book.Title</li>
+    }
+  </ol>
+
+  <h4>Get Authors from the <code>Authors</code> stream</h4>
+  <ol>
+    @foreach(var author in AsItems(query.GetStream("Authors"))) {
+      <li>@author.Title</li>
+    }
+  </ol>
+@qref.SnipEnd()

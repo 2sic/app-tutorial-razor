@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-07T21:10:47.6522226+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-07T22:35:35.5384532+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -32,9 +32,61 @@
         </Attribute>
         <Attribute StaticName="ButtonOrder" Type="String" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="ad063892-4bb8-4334-9db2-b5c6be3ac5f2" Json="True" KeyNumber="4829">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="OrderButton" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="ButtonOrder" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="02f93b05-10b7-4945-9baf-3e1cfd573400" Json="True" KeyNumber="4829">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="686fd62e-8e42-4117-9d14-0049f8286d93" Json="True" KeyNumber="4829">
+            <Value Key="InputFontFamily" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
           </Entity>
         </Attribute>
       </Attributes>
@@ -2952,6 +3004,13 @@
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="da583e0e-a81f-4467-a511-695590e65380" Json="True" KeyNumber="5876">
             <Value Key="InputType" Value="boolean-default" Type="String" />
             <Value Key="Name" Value="IsAlive" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Haters" Type="Entity" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="cf4d4dd4-f298-4313-869f-779d8cd58071" Json="True" KeyNumber="5898">
+            <Value Key="InputType" Value="entity-default" Type="String" />
+            <Value Key="Name" Value="Haters" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
@@ -27579,7 +27638,7 @@
       <Value Key="Intro" Value="&lt;p&gt;MyItem is the object which contains the first thing added by the editor on the current block.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Sections" Value="c4c14e57-1c71-494f-8300-9d9f66ea1a5c,2ab49a4b-7542-4a7f-bc67-5ad5b15878d8,9933194e-998d-4827-8e00-3b1f95d3dee8,c2e7a2ed-b55c-4616-b3d6-df7d21801739,368fc1ac-7af2-4803-ba5e-200ca2f2db7c" Type="Entity" />
+      <Value Key="Sections" Value="c4c14e57-1c71-494f-8300-9d9f66ea1a5c,2ab49a4b-7542-4a7f-bc67-5ad5b15878d8,9933194e-998d-4827-8e00-3b1f95d3dee8,c2e7a2ed-b55c-4616-b3d6-df7d21801739,368fc1ac-7af2-4803-ba5e-200ca2f2db7c,e3a0b30c-f667-4c55-b670-d4bb6f6ec920,0f29113e-9d46-46ac-87c8-3fe74cfc4e0b" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Work with Content Items - &lt;code&gt;MyItem&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27603,7 +27662,7 @@
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Sections" Value="368485f1-c334-454c-9a0a-dd601fe33b6f,d739472c-99c4-42cd-84b2-fe988f942d1d" Type="Entity" />
+      <Value Key="Sections" Value="368485f1-c334-454c-9a0a-dd601fe33b6f,d739472c-99c4-42cd-84b2-fe988f942d1d,80acfcb5-2512-40c3-9b81-167acef1f9e5,d86690b6-e016-40ac-8d21-611c9931e830,980827b9-6e1d-4efb-9d2f-7eb277597ed2" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Data and Query - &lt;code&gt;MyData&lt;/code&gt;,&amp;nbsp;&lt;code&gt;App.GetQuery(...)&lt;/code&gt; and&amp;nbsp;&lt;code&gt;AsItems(...)&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27693,7 +27752,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="a8740fec-5e2e-4d90-ae3a-173d36714bca">
-      <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,bc48caf4-8453-4cd0-90f1-d132b163103c,88cb83ce-be46-4024-bf28-f132569e4059,375acb62-cb97-46ee-81eb-68d8cad1741f,fc00f609-e1d2-4a04-80c0-a6873a7b321d,f7d70b00-4d01-4edd-9735-b10e31694df4,9f6219e2-27ec-4187-82e7-4aba8a2726dd,ec3a8d47-ccb0-4c9e-a600-206cb6810d4a" Type="Entity" />
+      <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,bc48caf4-8453-4cd0-90f1-d132b163103c,88cb83ce-be46-4024-bf28-f132569e4059,375acb62-cb97-46ee-81eb-68d8cad1741f,fc00f609-e1d2-4a04-80c0-a6873a7b321d,1f627760-f000-4e56-9838-d5a117b91169,f7d70b00-4d01-4edd-9735-b10e31694df4,9f6219e2-27ec-4187-82e7-4aba8a2726dd,ec3a8d47-ccb0-4c9e-a600-206cb6810d4a" Type="Entity" />
       <Value Key="NameId" Value="typed" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27784,6 +27843,184 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="quickref-razor-linking" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="1f627760-f000-4e56-9838-d5a117b91169">
+      <Value Key="Intro" Value="&lt;p&gt;Settings can be configured at many levels, the most-local (eg. the App) would override the most global (eg. Presets).&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="c7052d3d-36ff-4055-8f5b-963bcbfee52d" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Work with Settings and Resources&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="quickref-settings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="c7052d3d-36ff-4055-8f5b-963bcbfee52d">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Overview how to get Settings and Resources.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="settings-quickref-summary" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tutorials" Value="2c0f93c7-b914-4c97-9d4a-16dcf023d620" Type="Entity" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="80acfcb5-2512-40c3-9b81-167acef1f9e5">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Get data from a Query using &lt;code&gt;App.GetQuery(...)&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-quickref-getquery-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="5cfce73f-a774-4d0c-9ec4-69f0383b4624" Json="True" KeyGuid="68c79c51-3190-4d47-b502-eb811a4f8e73">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 480,&#xD;&#xA;  &quot;Left&quot;: 420&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="68c79c51-3190-4d47-b502-eb811a4f8e73" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="Basic query which can also take a parameter Max" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="QuickRef-GetQuery" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Params" Value="Max=10" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamsOut" Value="Default,Header,Authors" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="StreamWiring" Value="5cfce73f-a774-4d0c-9ec4-69f0383b4624:Books&gt;e955066a-6935-4bae-add2-d06c769e0cdd:Default&#xD;&#xA;5cfce73f-a774-4d0c-9ec4-69f0383b4624:Persons&gt;eb90223b-0777-42aa-a41a-a75a5aea0c04:Default&#xD;&#xA;eb90223b-0777-42aa-a41a-a75a5aea0c04:Default&gt;Out:Authors&#xD;&#xA;e955066a-6935-4bae-add2-d06c769e0cdd:Default&gt;Out:Default" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TestParameters" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="eb90223b-0777-42aa-a41a-a75a5aea0c04" Json="True" KeyGuid="68c79c51-3190-4d47-b502-eb811a4f8e73">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Paging" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Paging, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 220,&#xD;&#xA;  &quot;Left&quot;: 240&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.Paging" AttributeSetName="ToSic.Eav.DataSources.Paging" EntityGUID="5b3b1be5-ed3b-4aa2-b788-883baf13af1e" Json="True" KeyGuid="eb90223b-0777-42aa-a41a-a75a5aea0c04">
+      <Value Key="PageNumber" Value="1" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageSize" Value="[Params:Max]" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Paging data source" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e955066a-6935-4bae-add2-d06c769e0cdd" Json="True" KeyGuid="68c79c51-3190-4d47-b502-eb811a4f8e73">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Paging" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.Paging, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 220,&#xD;&#xA;  &quot;Left&quot;: 580&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.Paging" AttributeSetName="ToSic.Eav.DataSources.Paging" EntityGUID="3ec5c93b-608c-422d-b34c-88d4c24dff50" Json="True" KeyGuid="e955066a-6935-4bae-add2-d06c769e0cdd">
+      <Value Key="PageNumber" Value="1" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageSize" Value="[Params:Max]" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Paging data source" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="d86690b6-e016-40ac-8d21-611c9931e830">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Use GetQuery together with Query Parameters&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-quickref-getquery-params" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="acf61674-aa58-4cd1-b609-99415777841f">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="e3a0b30c-f667-4c55-b670-d4bb6f6ec920" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Advanced Work with Items&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="items-inspect" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="e3a0b30c-f667-4c55-b670-d4bb6f6ec920">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Inspect an item for the fields it has and if they contain anything&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="items-quickref-inspect" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="0f29113e-9d46-46ac-87c8-3fe74cfc4e0b">
+      <Value Key="Intro" Value="&lt;p&gt;In some scenarios you need may expect that data isn't there. In that case, you can create fake items to use in your razor.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Create a fake (mock) item as a fallback&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="items-quickref-mock" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="980827b9-6e1d-4efb-9d2f-7eb277597ed2">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Various ways to use GetStream(...)&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-quickref-getstream" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
