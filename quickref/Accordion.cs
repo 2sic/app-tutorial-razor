@@ -49,16 +49,21 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   private string NextName() { return Name + "-" + AutoPartName + AutoPartIndex++; }
 
-  // public string ReworkPath(string backtrack) {
-  //   var appPath = App.Folder.Path;
-  //   var first = Item.Children("Sections").FirstOrDefault();
-  //   var tutorialId = first.String("TutorialId");
-
-  //   string fileName;
-  //   if (CheckFile2(appPath, backtrack, tutorialId, null, out fileName))
-  //     return fileName;
-  //   return null;
-  // }
+  public IEnumerable<Section> Sections(string basePath, string backtrack) {
+    if (Item == null) throw new Exception("Item in Accordion is null");
+    var appPath = App.Folder.Path;
+    basePath = Text.BeforeLast(basePath, "/");
+    var names = Item.Children("Sections")
+      .Select(itm => {
+        var tutorialId = itm.String("TutorialId");
+        string fileName;
+        if (!CheckFile(appPath, backtrack, tutorialId, null, out fileName))
+          CheckFile(appPath, backtrack, tutorialId, _variantExtension, out fileName);
+        return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
+      })
+      .ToList();
+    return names;
+  }
 
   private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
     var topPath = Text.Before(tutorialId, "-");
@@ -79,33 +84,6 @@ public class Accordion: Custom.Hybrid.CodeTyped
     fileName = null;
     return false;
   }
-
-  public IEnumerable<Section> Sections(string basePath, string pathPrefix, string backtrack) {
-    if (Item == null) throw new Exception("Item in Accordion is null");
-    var appPath = App.Folder.Path;
-    basePath = Text.BeforeLast(basePath, "/");
-    var names = Item.Children("Sections")
-      .Select(itm => {
-        var tutorialId = itm.String("TutorialId");
-        string fileName;
-        if (!CheckFile(appPath, backtrack, tutorialId, null, out fileName))
-          CheckFile(appPath, backtrack, tutorialId, _variantExtension, out fileName);
-        // if (!CheckFile(basePath, pathPrefix, tutorialId, null, out fileName))
-        //   CheckFile(basePath, pathPrefix, tutorialId, _variantExtension, out fileName);
-        return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
-      })
-      .ToList();
-    return names;
-  }
-
-  // private bool CheckFile(string basePath, string pathPrefix, string tutorialId, string suffix, out string fileName) {
-  //   fileName = pathPrefix + tutorialId + suffix + ".cshtml";
-  //   var filePath = System.IO.Path.Combine(basePath, fileName);
-  //   var fullPath = Sys.SourceCode.GetFullPath(filePath);
-  //   if (System.IO.File.Exists(fullPath)) return true;
-  //   fileName = null;
-  //   return false;
-  // }
 
   private const string AutoPartName = "auto-part-";
   private int AutoPartIndex = 0;
