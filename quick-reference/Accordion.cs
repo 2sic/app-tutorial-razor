@@ -11,23 +11,29 @@ public class Accordion: Custom.Hybrid.CodeTyped
     _variantExtension = variantExtension;
     return this;
   }
+
   private dynamic Sys;
   private string _variantExtension;
-  public IHtmlTag Start(string name) {
-    Name = name;
-    Item = GetAccordionData(name);
+
+  public IHtmlTag Start(ITypedItem item) {
+    Item = item;
+    Name = item.String("TutorialId");
+    return StartInner();
+  }
+
+  private IHtmlTag StartInner() {
     var t = Kit.HtmlTags;
     var heading = t.H2(Item.String("Title", scrubHtml: "p")).Class("quick-ref");
     heading = (Item.Id != 0)
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit())
       : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { TutorialId = Item.String("TutorialId") }));
     return t.RawHtml(
-      "\n<!-- Accordion.Start(" + name + ") -->\n",
+      "\n<!-- Accordion.Start(" + Name + ") -->\n",
       heading,
       "\n",
       Item.Html("Intro"),
       "\n",
-      t.Div().Class("accordion").Id(name).TagStart
+      t.Div().Class("accordion").Id(Name).TagStart
     );
   }
 
@@ -41,13 +47,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     return end;
   }
 
-  public Section Section(string tutorialId) {
-    return new Section(this, Kit.HtmlTags, NextName(), item: GetSectionData(tutorialId));
-  }
-
-  private string NextName() {
-    return Name + "-" + AutoPartName + AutoPartIndex++;
-  }
+  private string NextName() { return Name + "-" + AutoPartName + AutoPartIndex++; }
 
   public IEnumerable<Section> Sections(string basePath, string pathPrefix) {
     if (Item == null) throw new Exception("Item in Accordion is null");
@@ -59,7 +59,6 @@ public class Accordion: Custom.Hybrid.CodeTyped
           CheckFile(basePath, pathPrefix, itm.String("TutorialId"), _variantExtension, out fileName);
         return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
       })
-      .Where(s => s != null)
       .ToList();
     return names;
   }
@@ -77,20 +76,6 @@ public class Accordion: Custom.Hybrid.CodeTyped
   private int AutoPartIndex = 0;
 
   internal string DivEnd = "</div>";
-
-  private ITypedItem GetAccordionData(string tutorialId) {
-    if (_accordionData == null) _accordionData = AsItems(App.Data["TutAccordion"]);
-    return _accordionData.FirstOrDefault(s => s.String("TutorialId") == tutorialId)
-      ?? AsItem(new { Title = "Accordion '" + tutorialId + "' not found", TutorialId = tutorialId }, mock: true, propsRequired: false);
-  }
-  private IEnumerable<ITypedItem> _accordionData;
-
-  private ITypedItem GetSectionData(string tutorialId) {
-    if (_sectionData == null) _sectionData = AsItems(App.Data["TutAccordionSection"]);
-    return _sectionData.FirstOrDefault(s => s.String("TutorialId") == tutorialId)
-      ?? AsItem(new { Title = "Section '" + tutorialId + "' not found", TutorialId = tutorialId }, mock: true, propsRequired: false);
-  }
-  private IEnumerable<ITypedItem> _sectionData;
 }
 
 

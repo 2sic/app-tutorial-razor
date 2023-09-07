@@ -5,17 +5,16 @@
   var Sys = GetCode("/shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
   var acc = MyModel.Get("Accordion") as dynamic;
-  var root = MyModel.String("Root");
+  var root = AsItem(acc.Item as object).String("RootPath") + "/";
 }
 @foreach(var acs in acc.Sections(Path, root)) {
-  @acs.Start()
-    if (acs.SectionFile != null) {
+  if (acs.SectionFile != null) {
+    @acs.Start()
       @Html.Partial(acs.SectionFile)
-    } else if (MyUser.IsSystemAdmin) {
-      <div>SysUserOnly: This section doesn't exist: @acs.TutorialId</div>
-    } else {
-
-      <!-- this section '@acs.TutorialId' doesn't exist -->
-    }
-  @acs.End()
+    @acs.End()
+  } else if (MyUser.IsSystemAdmin) {
+    <div>SysUserOnly: This section doesn't exist: @acs.TutorialId</div>
+  } else {
+    <!-- this section '@acs.TutorialId' doesn't exist -->
+  }
 }

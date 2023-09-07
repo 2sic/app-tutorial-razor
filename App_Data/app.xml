@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-07T13:09:16.2576911+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.05.00" ExportDate="2023-09-07T13:34:10.8089715+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -3141,6 +3141,13 @@
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
+        <Attribute StaticName="RootPath" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="3fc4f8e9-2b68-4948-98b9-1b924efa13ac" Json="True" KeyNumber="5894">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="RootPath" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
         <Attribute StaticName="Title" Type="String" IsTitle="true">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1e16ab48-7ff6-4c9b-a3e5-220521e02f82" Json="True" KeyNumber="5889">
             <Value Key="CustomJavaScript" Value="" Type="String">
@@ -3354,6 +3361,95 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EntityType" Value="TutAccordionSection" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Label" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="MoreFields" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Prefill" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" Name="TutAccordionList" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="NameId" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5253074b-076f-489a-9243-06fac7fe0d89" Json="True" KeyNumber="5892">
+            <Value Key="InputType" Value="string-url-path" Type="String" />
+            <Value Key="Name" Value="NameId" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Accordions" Type="Entity" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="82be7789-277f-4f74-a307-9c0d3da4f94b" Json="True" KeyNumber="5893">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="entity-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Accordions" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="ddb9bebb-a044-4c3a-b36b-1b90c6b55e98" Json="True" KeyNumber="5893">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableDelete" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EntityType" Value="TutAccordion" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Label" Value="" Type="String">
@@ -27117,6 +27213,9 @@
       <Value Key="Intro" Value="&lt;p&gt;Common basics for working with Razor.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="RootPath" Value="./razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="3063edde-3d75-49ab-b763-557fb2f39ed2,d7018751-199f-4059-93de-8e3c695cf65b,6171e78d-4bef-4dc2-bb95-90292a590649,1bff57b8-ef1d-4bd3-8b55-a003692a8561,2b8c8908-79c1-4007-9e24-fbd74ca06ac3,fb1ddd99-8412-475a-b89f-9e41cd3cfe87,a77fa50b-b791-4e09-b328-4f09c69e4477,86ad70dc-fb54-4dc7-a8a6-676d32f71057,2f4bea95-9319-4cab-a46d-8a2a9b06dc89" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Razor Basics &lt;code&gt;@...&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -27127,6 +27226,9 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="88cb83ce-be46-4024-bf28-f132569e4059">
       <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="RootPath" Value="./block" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="c4c14e57-1c71-494f-8300-9d9f66ea1a5c,2ab49a4b-7542-4a7f-bc67-5ad5b15878d8,9933194e-998d-4827-8e00-3b1f95d3dee8,c2e7a2ed-b55c-4616-b3d6-df7d21801739,368fc1ac-7af2-4803-ba5e-200ca2f2db7c" Type="Entity" />
@@ -27141,6 +27243,9 @@
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="RootPath" Value="./block" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="16c5285f-0ecc-4106-9e31-73c873a8131d,dab61c0f-7938-42bf-884a-4ec2427e77de,0da5f288-e812-4a6f-a5a6-9133b640658b" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Work with List of Items (&lt;code&gt;MyItems&lt;/code&gt;)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -27151,6 +27256,9 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="fc00f609-e1d2-4a04-80c0-a6873a7b321d">
       <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="RootPath" Value="./query" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="368485f1-c334-454c-9a0a-dd601fe33b6f,d739472c-99c4-42cd-84b2-fe988f942d1d" Type="Entity" />
@@ -27165,6 +27273,9 @@
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="RootPath" Value="./js" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="962ace2a-31dd-4ef5-b222-444dad725f2b,f9469de2-9138-43b4-bd60-dd462bad8f5f,b779fce3-5194-419c-ab99-31c16523e040" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;JavaScript - Working with Razor and WebApi&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -27175,6 +27286,9 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="ec3a8d47-ccb0-4c9e-a600-206cb6810d4a">
       <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="RootPath" Value="./json" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="a509c8d4-0bef-4ffd-a305-8b1afc0d912a,2f300206-1642-4769-a31b-ebf88946efbe,4e996498-0397-4124-ad9b-5de07829c5a3,6d5fe1fa-45bc-4701-a51c-a13453b7f412,117ac3f5-c97d-4456-98e7-3d6f99333acc,ab4c5b17-38f0-4727-adad-aa1b9874f5a9,69b4d051-0c13-41c6-9112-fcda7054b81b,6c187ad5-1ada-486f-a57b-8fc734a087da" Type="Entity" />
@@ -27222,11 +27336,26 @@
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="RootPath" Value="./context" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="d25b2ffe-dc76-4b4d-ba82-e046dc5dcbbd,76090f30-06a0-4d9b-9205-5a652d569c9b,88ce6775-c7c5-40cf-8780-2c1eb4e7601d" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Page, Site, Platform and More&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="quickref-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="a8740fec-5e2e-4d90-ae3a-173d36714bca">
+      <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,88cb83ce-be46-4024-bf28-f132569e4059,375acb62-cb97-46ee-81eb-68d8cad1741f,fc00f609-e1d2-4a04-80c0-a6873a7b321d,f7d70b00-4d01-4edd-9735-b10e31694df4,9f6219e2-27ec-4187-82e7-4aba8a2726dd,ec3a8d47-ccb0-4c9e-a600-206cb6810d4a" Type="Entity" />
+      <Value Key="NameId" Value="typed" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="0ad69445-115a-414c-b818-11cf2d604507">
+      <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,88cb83ce-be46-4024-bf28-f132569e4059,f7d70b00-4d01-4edd-9735-b10e31694df4" Type="Entity" />
+      <Value Key="NameId" Value="dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

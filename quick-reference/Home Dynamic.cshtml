@@ -1,9 +1,9 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @using System.Linq;
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
-  @{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
+  @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -24,29 +24,19 @@
 
 @* Bootstrap 5 Accordions *@
 @{
-  var accordion = CreateInstance("Accordion.cs").Setup(Sys, ".Dyn");;
+  var accordion = GetCode("Accordion.cs").Setup(Sys, ".Dyn");
+  var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == "dyn");
 }
 
-@accordion.Start("quickref-razor-basics")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./Razor/" })
-@accordion.End()
 
-
-@accordion.Start("quickref-item")
-  @Html.Partial("./block/Item Properties Dyn.cshtml", new { accordion })
-@accordion.End()
-
-
-
-@accordion.Start("quickref-page")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./context/" })
-@accordion.End()
+@foreach (var accSpecs in list.Children("Accordions")) {
+  @accordion.Start(accSpecs)
+    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
+  @accordion.End()
+}
 
 
 <p>&nbsp;</p>
-
-
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

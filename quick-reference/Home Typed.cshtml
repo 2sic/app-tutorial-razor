@@ -25,48 +25,19 @@
 @* Bootstrap 5 Accordions *@
 @{
   var accordion = GetCode("Accordion.cs").Setup(Sys, ".Typed");
+  var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == "typed");
 }
 
-@accordion.Start("quickref-razor-basics")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./razor/" })
-@accordion.End()
-
-
-@accordion.Start("quickref-item")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./block/" })
-@accordion.End()
-
-
-@accordion.Start("quickref-items")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./block/" })
-@accordion.End()
+@foreach (var accSpecs in list.Children("Accordions")) {
+  @accordion.Start(accSpecs)
+    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
+  @accordion.End()
+}
 
 @* TODO:
   - languages - get(...)
   - Images
 *@
-
-
-@accordion.Start("quickref-query")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./query/" })
-@accordion.End()
-
-
-@accordion.Start("quickref-page")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./context/" })
-@accordion.End()
-
-
-
-@accordion.Start("quickref-js")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./js/" })
-@accordion.End()
-
-
-
-@accordion.Start("quickref-json")
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion, Root = "./json/" })
-@accordion.End()
 
 <p>&nbsp;</p>
 
