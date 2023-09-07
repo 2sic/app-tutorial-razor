@@ -24,7 +24,7 @@
 
 @* Bootstrap 5 Accordions *@
 @{
-  var accordion = GetCode("Accordion.cs");
+  var accordion = GetCode("Accordion.cs").Setup(Sys, ".Typed");
 }
 
 @accordion.Start("quickref-razor-basics")

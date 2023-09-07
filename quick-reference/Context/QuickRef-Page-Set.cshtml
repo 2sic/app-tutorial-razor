@@ -3,24 +3,20 @@
   // Sys helps generate code snippets etc.
   var Sys = GetCode("/shared/Helpers.cs").Init(this);
   // The accordion is an external helper file, so we must treat it as dynamic
-  @* var acc = MyModel.Get("Accordion") as dynamic; *@
   // variable to hold each section config
-  @* dynamic accSection; *@
   dynamic qref;
 }
 
-  @* @((accSection = acc.Section("quickref-page-set")).Start()) *@
-    <h3>Set Page Title, Keywords etc.</h3>
-    @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })).SnipStart())
-      @* Example with a single-liner directly in the code *@
-      @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
-      @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
-      @Kit.Page.AddMeta("tutorial", "some value")
+  <h3>Set Page Title, Keywords etc.</h3>
+  @((qref = Sys.SourceCode.QuickRefSplit33(tutorials: new string[] { "page101", "page111", "page121", "page201", "page302", "page303" })).SnipStart())
+    @* Example with a single-liner directly in the code *@
+    @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
+    @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
+    @Kit.Page.AddMeta("tutorial", "some value")
 
-      @{
-        // Example showing how to use in a block of code
-        Kit.Page.SetDescription("Learn to use Razor Blade ");
-        Kit.Page.SetKeywords("Tutorial, Razor, Blade");
-      }
-    @qref.SnipEnd()
-  @* @accSection.End() *@
+    @{
+      // Example showing how to use in a block of code
+      Kit.Page.SetDescription("Learn to use Razor Blade ");
+      Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+    }
+  @qref.SnipEnd()

@@ -767,7 +767,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public string Contents;
   }
 
-  private string GetFullPath(string filePath) {
+  public string GetFullPath(string filePath) {
     var l = Log.Call<string>(filePath);
     #if NETCOREAPP
       // This is the Oqtane implementation - cannot use Server.MapPath

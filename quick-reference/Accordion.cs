@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ToSic.Razor.Blade;
@@ -5,6 +6,13 @@ using ToSic.Sxc.Data;
 
 public class Accordion: Custom.Hybrid.CodeTyped
 {
+  public Accordion Setup(object sys, string variantExtension) {
+    Sys = sys;
+    _variantExtension = variantExtension;
+    return this;
+  }
+  private dynamic Sys;
+  private string _variantExtension;
   public IHtmlTag Start(string name) {
     Name = name;
     Item = GetAccordionData(name);
@@ -16,6 +24,9 @@ public class Accordion: Custom.Hybrid.CodeTyped
     return t.RawHtml(
       "\n<!-- Accordion.Start(" + name + ") -->\n",
       heading,
+      "\n",
+      Item.Html("Intro"),
+      "\n",
       t.Div().Class("accordion").Id(name).TagStart
     );
   }
@@ -24,10 +35,33 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   public ITypedItem Item { get; private set; }
 
-  public IHtmlTag End() { return Kit.HtmlTags.RawHtml(DivEnd); }
+  public IHtmlTag End() {
+    var end = Kit.HtmlTags.RawHtml(DivEnd);
+    Item = null;
+    return end;
+  }
 
   public Section Section(string tutorialId) {
-    return new Section(this, Kit.HtmlTags, Name + "-" + AutoPartName + AutoPartIndex++, item: GetSectionData(tutorialId));
+    return new Section(this, Kit.HtmlTags, NextName(), item: GetSectionData(tutorialId));
+  }
+
+  private string NextName() {
+    return Name + "-" + AutoPartName + AutoPartIndex++;
+  }
+
+  public IEnumerable<Section> Sections(string basePath, string pathPrefix) {
+    if (Item == null) throw new Exception("Item in Accordion is null");
+    basePath = Text.BeforeLast(basePath, "/");
+    var names = Item.Children("Sections").Select(itm => {
+      var fileName = pathPrefix + itm.String("TutorialId") + ".cshtml";
+      var filePath = System.IO.Path.Combine(basePath, fileName);
+      var fullPath = Sys.SourceCode.GetFullPath(filePath);
+      if (!System.IO.File.Exists(fullPath)) {
+        fileName = pathPrefix + itm.String("TutorialId") + _variantExtension + ".cshtml";
+      }
+      return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
+    });
+    return names;
   }
 
   private const string AutoPartName = "auto-part-";
@@ -55,11 +89,12 @@ public class Accordion: Custom.Hybrid.CodeTyped
 /// Accordion Part (Section)
 /// </summary>
 public class Section {
-  public Section(Accordion accordion, IHtmlTagsService tags, string name, ITypedItem item = null) {
+  public Section(Accordion accordion, IHtmlTagsService tags, string name, ITypedItem item = null, string fileName = null) {
     Acc = accordion;
     Name = name;
     Item = item;
     TagsSvc = tags;
+    SectionFile = fileName;
   }
   private Accordion Acc;
   public string Name { get; private set; }
@@ -91,6 +126,8 @@ public class Section {
       BodyStart()
     );
   }
+
+  public string SectionFile { get; private set; }
 
   public IHtmlTag End() {
     return TagsSvc.RawHtml("\n", Acc.DivEnd, "\n", Acc.DivEnd, "\n", Acc.DivEnd, "\n");

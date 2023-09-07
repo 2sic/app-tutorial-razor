@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
+@{ dynamic qref; }
+
+@* Note: this is only typed, because the inner file is typed; the other code is identical *@
+
+@((qref = Sys.SourceCode.QuickRefSplit33(tabs: new Dictionary<string, string> {
+  { "Source Box Typed.cshtml", "file:../../reuse/Box Typed.cshtml" },
+}, tutorials: new string[] { "reuse110" })).SnipStart())
+  <h4>Call some external Razor files</h4>
+  <ol>
+    <li>
+      @Html.Partial("../../reuse/Box Typed.cshtml", new {
+        Label = "Hello, this is the first line"
+      })
+    </li>
+    <li>
+      @Html.Partial("../../reuse/Box Typed.cshtml", new {
+        Label = "Second line!", Color = "red"
+      })
+    </li>
+    <li>
+      @{
+        var label = "Third line!"; // if variable name is the same...
+        var color = "green";  // if variable name is the same...
+      }
+      @Html.Partial("../../reuse/Box Typed.cshtml", new { label, color })
+    </li>
+  </ol>
+@qref.SnipEnd()
