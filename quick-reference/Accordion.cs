@@ -7,14 +7,22 @@ public class Accordion: Custom.Hybrid.CodeTyped
 {
   public IHtmlTag Start(string name) {
     Name = name;
-    return Tag.RawHtml(
-      "<!-- Start(" + name + ") -->" 
-      + "\n"
-      + Kit.HtmlTags.Div().Class("accordion").Id(name).TagStart
+    Item = GetAccordionData(name);
+    var t = Kit.HtmlTags;
+    var heading = t.H2(Item.String("Title", scrubHtml: "p")).Class("quick-ref");
+    heading = (Item.Id != 0)
+      ? heading.Attr(Kit.Toolbar.Empty(Item).Edit())
+      : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { TutorialId = Item.String("TutorialId") }));
+    return t.RawHtml(
+      "\n<!-- Accordion.Start(" + name + ") -->\n",
+      heading,
+      t.Div().Class("accordion").Id(name).TagStart
     );
   }
 
   public string Name { get; private set; }
+
+  public ITypedItem Item { get; private set; }
 
   public IHtmlTag End() { return Kit.HtmlTags.RawHtml(DivEnd); }
 
@@ -26,6 +34,13 @@ public class Accordion: Custom.Hybrid.CodeTyped
   private int AutoPartIndex = 0;
 
   internal string DivEnd = "</div>";
+
+  private ITypedItem GetAccordionData(string tutorialId) {
+    if (_accordionData == null) _accordionData = AsItems(App.Data["TutAccordion"]);
+    return _accordionData.FirstOrDefault(s => s.String("TutorialId") == tutorialId)
+      ?? AsItem(new { Title = "Accordion '" + tutorialId + "' not found", TutorialId = tutorialId }, mock: true, propsRequired: false);
+  }
+  private IEnumerable<ITypedItem> _accordionData;
 
   private ITypedItem GetSectionData(string tutorialId) {
     if (_sectionData == null) _sectionData = AsItems(App.Data["TutAccordionSection"]);

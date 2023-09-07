@@ -27,16 +27,12 @@
   var accordion = GetCode("Accordion.cs");
 }
 
-<h2>Razor Basics</h2>
-
-@accordion.Start("accordionRazorBasics")
+@accordion.Start("quickref-razor-basics")
   @Html.Partial("./Razor/Basics Typed.cshtml", new { accordion })
 @accordion.End()
 
-<p>&nbsp;</p>
-<h2>Work with Content Items (<code>MyItem</code>)</h2>
 
-@accordion.Start("item")
+@accordion.Start("quickref-item")
   @Html.Partial("./block/Item Properties Typed.cshtml", new { accordion })
   @Html.Partial("./block/QuickRef-MyItem-Presentation.cshtml", new { accordion })
   @Html.Partial("./block/Item Children Typed.cshtml", new { accordion })
@@ -44,10 +40,8 @@
   @Html.Partial("./block/Item File and Folder Typed.cshtml", new { accordion })
 @accordion.End()
 
-<p>&nbsp;</p>
-<h2>Work with List of Items (<code>MyItems</code>)</h2>
 
-@accordion.Start("items")
+@accordion.Start("quickref-items")
   @Html.Partial("./block/Items Typed.cshtml", new { accordion })
   @Html.Partial("./block/QuickRef-MyItems-Presentation.cshtml", new { accordion })
   @Html.Partial("./block/QuickRef-MyHeader.cshtml", new { accordion })
@@ -58,33 +52,26 @@
   - Images
 *@
 
-<p>&nbsp;</p>
-<h2>Data and Query</h2>
 
-@accordion.Start("dataQuery")
+@accordion.Start("quickref-query")
   @Html.Partial("./Query/Query Typed.cshtml", new { accordion })
   @Html.Partial("./Query/Query Selected Typed.cshtml", new { accordion })
 @accordion.End()
 
 
-<p>&nbsp;</p>
-<h2>Razor Advanced</h2>
-
-@accordion.Start("razorAdvanced")
+@accordion.Start("quickref-page")
   @Html.Partial("./Context/Page and Parameters Typed.cshtml", new { accordion })
 @accordion.End()
 
-<p>&nbsp;</p>
-<h2>JavaScript - Working with Razor and WebApi</h2>
 
-@accordion.Start("accordionJs")
+
+@accordion.Start("quickref-js")
   @Html.Partial("./Js/JsBasics Typed.cshtml", new { accordion })
 @accordion.End()
 
-<p>&nbsp;</p>
-<h2>JSON</h2>
 
-@accordion.Start("accordionJson")
+
+@accordion.Start("quickref-json")
   @Html.Partial("./Json/Json Typed.cshtml", new { accordion })
 @accordion.End()
 

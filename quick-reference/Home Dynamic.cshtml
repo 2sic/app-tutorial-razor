@@ -27,23 +27,18 @@
   var accordion = CreateInstance("Accordion.cs");
 }
 
-<h2>Razor Basics</h2>
-
-@accordion.Start("accordionRazorBasics")
+@accordion.Start("quickref-razor-basics")
   @Html.Partial("./Razor/Basics Dyn.cshtml", new { accordion })
 @accordion.End()
 
-<p>&nbsp;</p>
-<h2>Working with Content Items</h2>
 
-@accordion.Start("items")
+@accordion.Start("quickref-item")
   @Html.Partial("./block/Item Properties Dyn.cshtml", new { accordion })
 @accordion.End()
 
-<p>&nbsp;</p>
-<h2>Razor Advanced</h2>
 
-@accordion.Start("razorAdvanced")
+
+@accordion.Start("quickref-page")
   @Html.Partial("./Context/Page and Parameters Dyn.cshtml", new { accordion })
 
 @accordion.End()
