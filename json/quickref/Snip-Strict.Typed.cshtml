@@ -4,12 +4,12 @@
 
 @{
   // Variables for the tests
-  string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
+  string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
 }
 
 @functions {
   // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
-  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("../TestHelpers.cs")); }}
+  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("/Shared/TestHelpers.cs")); }}
   private object _testHelpers;
 
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }

@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-
 @{
   // Variables for the tests
-  string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
+  string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
 }
 
 @{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
@@ -18,10 +17,16 @@
   }
   <ol>
     <li>
-      <code>.Get("name")</code>: @dude.Get("Name")
+      <code>.String("Name")</code> (typed): @dude.String("Name")
     </li>
     <li>
-      <code>.Get("NAME")</code> (insensitive): @dude.Get("NAME")
+      <code>.Int("Age")</code>: @dude.Int("Age")
+    </li>
+    <li>
+      Add using Int(...): <code>@(100 + dude.Int("Age"))</code>
+    </li>
+    <li>
+      Add using String(...): <code>@(100 + dude.String("Age"))</code>
     </li>
   </ol>
 @qref.SnipEnd()
