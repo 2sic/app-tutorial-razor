@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("/shared/Helpers.cs").Init(this);
+  // variable to hold each section config
+  dynamic qref;
+
+  // Variables for the tests
+  string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
+  var dudeTabs = new Dictionary<string, string> {
+    { "dude.json", "file:json/dude.json" },
+  };
+}
+
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
+  @{
+    // Simple JSON strings which could come from a file or web service
+    var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
+
+    // Convert the JSON to ITyped
+    var dude = Kit.Json.ToTyped(jDude);
+  }
+  <ol>
+    <li>
+      <code>.String("Name")</code> (typed): @dude.String("Name")
+    </li>
+    <li>
+      <code>.Int("Age")</code>: @dude.Int("Age")
+    </li>
+    <li>
+      Add using Int(...): <code>@(100 + dude.Int("Age"))</code>
+    </li>
+    <li>
+      Add using String(...): <code>@(100 + dude.String("Age"))</code>
+    </li>
+  </ol>
+  @qref.SnipEnd()

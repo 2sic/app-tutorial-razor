@@ -1,0 +1,54 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Sys helps generate code snippets etc.
+  var Sys = GetCode("/shared/Helpers.cs").Init(this);
+  // variable to hold each section config
+  dynamic qref;
+
+  // Variables for the tests
+  string jsonRoot = MyView.Folder.PhysicalPath + "/Json/json";
+  var dudeTabs = new Dictionary<string, string> {
+    { "dude.json", "file:json/dude.json" },
+  };
+}
+
+<hide-silent>
+@functions {
+  // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
+  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("../TestHelpers.cs")); }}
+  private object _testHelpers;
+
+  public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
+}
+</hide-silent>
+
+  @((qref = Sys.SourceCode.QuickRefSplit33(tabs: dudeTabs)).SnipStart())
+  @{
+    // Simple JSON strings which could come from a file or web service
+    var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
+    var strict = Kit.Json.ToTyped(jDude);
+  }
+  <ol>
+    <li>
+      <code>strict.String("Fake")</code> (typed):
+      @* Note: TryGet is a tutorial-internal helper to show the error *@
+      @TryGet(() => strict.String("Fake"))
+    </li>
+    <li>
+      <code>strict.String("Fake", required: false)</code>:
+      @strict.String("Fake", required: false)
+    </li>
+    <li>
+      <code>strict.String("Fake", required: false, fallback: "undefined")</code>:
+      @strict.String("Fake", required: false, fallback: "undefined")
+    </li>
+    <li>
+      <code>strict.Int("Fake", required: false)</code>:
+      @strict.Int("Fake", required: false)
+    </li>
+    <li>
+      <code>strict.Int("Fake", required: false, fallback: -1)</code>:
+      @strict.Int("Fake", required: false, fallback: -1)
+    </li>
+  </ol>
+  @qref.SnipEnd()
