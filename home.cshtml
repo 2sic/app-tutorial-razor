@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
 @{
-  var Sys = CreateInstance("shared/Helpers.cs");
+  var Sys = GetCode("/Shared/Helpers.cs");
   var hdHlp = CreateInstance("./Shared/Layout/HeaderHelpers.cs");
 
   // Set Title etc.

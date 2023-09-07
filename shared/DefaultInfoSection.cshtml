@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
 @{
-  var Sys = CreateInstance("../shared/Helpers.cs");
+  var Sys = GetCode("/Shared/Helpers.cs");
   var viewMdEnt = (CmsContext.View.Metadata.OfType(Sys.TutViewMetadataType) as IEnumerable<dynamic>).FirstOrDefault();
   
   if (viewMdEnt == null) {

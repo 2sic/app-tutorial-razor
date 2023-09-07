@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{
-  var Sys = CreateInstance("../shared/Helpers.cs"); 
+  var Sys = GetCode("/Shared/Helpers.cs"); 
   // Plase this message in a variable, so our quality checks don't trigger a warning
   // The # and if must not be directly connected in the source, as that triggers the warning
   var ifNetStandard = "#" + "if " + "NETCOREAPP";

@@ -1,5 +1,5 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = CreateInstance("/shared/Helpers.cs").Init(this); }
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
 
 @{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
