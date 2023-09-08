@@ -17,7 +17,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   public IHtmlTag Start(ITypedItem item) {
     Item = item;
-    Name = item.String("TutorialId");
+    Name = item.String("NameId");
     return StartInner();
   }
 
@@ -26,7 +26,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     var heading = t.H2(Item.String("Title", scrubHtml: "p")).Class("quick-ref");
     heading = (Item.Id != 0)
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())
-      : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { TutorialId = Item.String("TutorialId") }));
+      : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { NameId = Name }));
     return t.RawHtml(
       "\n<!-- Accordion.Start(" + Name + ") -->\n",
       heading,
@@ -102,6 +102,7 @@ public class Section {
     Item = item;
     TagsSvc = tags;
     SectionFile = fileName;
+    Show = Acc.Item.Bool("DefaultStateIsOpen"); // later we can add more conditions
   }
   private Accordion Acc;
   public string Name { get; private set; }
@@ -112,6 +113,7 @@ public class Section {
   public string BodyId { get { return Name + "-body"; } }
   public string TutorialId { get { return Item.String("TutorialId"); } }
 
+  private bool Show {get;set;}
   private string Indent = "    ";
 
   public IHtmlTag Start() { 
@@ -164,7 +166,11 @@ public class Section {
     return TagsSvc.RawHtml(
       "\n",
       Indent,
-      TagsSvc.Div().Id(BodyId).Class("accordion-collapse collapse").Attr("aria-labelledby", HeadingId).Data("bs-parent", "#" + Acc.Name).TagStart,
+      TagsSvc.Div().Id(BodyId)
+        .Class("accordion-collapse collapse " + (Show ? "show" : ""))
+        .Attr("aria-labelledby", HeadingId)
+        .Data("bs-parent", "#" + Acc.Name)
+        .TagStart,
       "\n",
       Indent2,
       TagsSvc.Div().Class("accordion-body").TagStart,

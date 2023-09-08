@@ -13,13 +13,16 @@
   <div @Sys.PageParts.InfoIntro()>
     <h2>Create and Show Variables</h2>
 
-    <h3>Basic set variable and show</h3>
-    <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
+    @* <h3>Basic set variable and show</h3>
+    <p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p> *@
   </div>
 </div>
 @* 2dg: neue info section part *@
 
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
+@* Bootstrap 5 Accordions *@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".None", NameId = "razor-variables" })
+
+@* @((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
     var firstName = "Terry";
   }
@@ -53,7 +56,7 @@
   Birthday: @birthday <br>
   Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
   Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
-@snip.SnipEnd()
+@snip.SnipEnd() *@
 
 
 @* Footer *@

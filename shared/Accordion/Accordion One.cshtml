@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@* Bootstrap 5 Accordions *@
+@{
+  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant"));
+  var accSpecs = AsItems(App.Data["TutAccordion"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+}
+
+@accordion.Start(accSpecs)
+  @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
+@accordion.End()
+
+@* Add a padding - if ever this may be impractical, then we can change it to be controlled by a parameter *@
+<p>&nbsp;</p>

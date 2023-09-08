@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+@* <h3>Arrays (lists of things)</h3> *@
+
+@{ var snip = Sys.SourceCode.OutputBoxAndSnippet(); }
+@snip.SnipStart()
+  @{
+    var dogs = new string[] { "hound", "dackel", "doggy" };
+    var birthday = new DateTime(1999, 09, 09);
+  }
+  <div>
+    Dog Count: @dogs.Length <br>
+    Dog[0]: @dogs[0] <br>
+    Dog First (with LINQ): @dogs.First() <br>
+    Dog Last (with LINQ): @dogs.Last() <br>
+  </div>
+
+  <ol>
+    @for (int i = 0; i < dogs.Length; i++) {
+      <li>Dog @i: @dogs[i]</li>
+    }
+  </ol>
+@snip.SnipEnd()
