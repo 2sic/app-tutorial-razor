@@ -2,8 +2,8 @@
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/SharedFunctions.cs" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/SharedFunctions.cs" ); }
+@snip.SnipStart()
   @{
     // helper library to say hello & create QR codes
     var qrLib = GetCode("../../reuse/SharedFunctions.cs");
@@ -16,4 +16,4 @@
       <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
     </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

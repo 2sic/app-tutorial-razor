@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <p>
     Note: you won't see any output here.
     To see the effect, look at the page source.
@@ -17,4 +17,4 @@
     Kit.Page.SetDescription("Learn to use Razor Blade ");
     Kit.Page.SetKeywords("Tutorial, Razor, Blade");
   }
-@qref.SnipEnd()
+@snip.SnipEnd()

@@ -2,8 +2,8 @@
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:js/load-with-app-path.js,file:js/load-with-view-path.js" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:js/load-with-app-path.js,file:js/load-with-view-path.js" ); }
+@snip.SnipStart()
   <p>
     Load a JavaScript relative to the App folder (see message/console): <br>
     <strong id="loadjs-app-message"></strong>
@@ -15,4 +15,4 @@
     <strong id="loadjs-view-message"></strong>
   </p>
   <script src="@MyView.Folder.Url/js/js/load-with-view-path.js"></script>
-@qref.SnipEnd()
+@snip.SnipEnd()

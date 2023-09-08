@@ -9,8 +9,8 @@
 }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h4>Douglas Adams on <code>MyItem</code></h4>
   <p>
     Note: The Biography contains a LOT of HTML...
@@ -32,4 +32,4 @@
     (drag size to see responsiv behavior) <br>
     @MyItem.Html("Biography")
   </div>
-@qref.SnipEnd()
+@snip.SnipEnd()

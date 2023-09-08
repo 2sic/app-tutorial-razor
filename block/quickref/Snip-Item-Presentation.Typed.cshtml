@@ -11,8 +11,8 @@
 }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h4>A Person on <code>MyItem</code></h4>
   @{
     var itemPres = MyItem.Presentation;
@@ -27,4 +27,4 @@
     @MyItem.Title
   </p>
 
-@qref.SnipEnd()
+@snip.SnipEnd()

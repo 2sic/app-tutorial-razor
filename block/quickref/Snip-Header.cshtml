@@ -9,8 +9,8 @@
   var MyHeader = AsItem(data.GetStream("Header"));
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h3>@MyHeader.Title</h3>
   <ul>
     @foreach (var item in MyItems) {
@@ -19,6 +19,6 @@
       </li>
     }
   </ul>
-@qref.SnipEnd()
+@snip.SnipEnd()
 
 

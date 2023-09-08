@@ -3,8 +3,8 @@
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:Uniquekey-Message.cshtml,file:js/unique-key.js" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:Uniquekey-Message.cshtml,file:js/unique-key.js" ); }
+@snip.SnipStart()
   @{
     var buttonId = "demo-uniquekey-btn-" + UniqueKey;
     var messageId = "demo-uniquekey-msg-" + UniqueKey;
@@ -21,4 +21,4 @@
   @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
   @* Load the script - this can be before or after the TurnOn *@
   <script src="@MyView.Folder.Url/js/js/unique-key.js"></script>
-@qref.SnipEnd()
+@snip.SnipEnd()

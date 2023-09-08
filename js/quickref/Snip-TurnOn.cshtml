@@ -2,8 +2,8 @@
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:js/turnOn1.js" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:js/turnOn1.js" ); }
+@snip.SnipStart()
   <p>
     The following text will be replaced once the JS is triggered: <br>
     <strong id="turnOn1-message"></strong>
@@ -39,5 +39,5 @@
   }
   @* Tell TurnOn to trigger the JS and give it a complex object *@
   @Kit.Page.TurnOn("window.quickReference.turnOn3Message()", data: turnOn3Data)
-@qref.SnipEnd()
+@snip.SnipEnd()
 

@@ -6,8 +6,8 @@
   string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
+@snip.SnipStart()
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
@@ -29,4 +29,4 @@
       Add using String(...): <code>@(100 + dude.String("Age"))</code>
     </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

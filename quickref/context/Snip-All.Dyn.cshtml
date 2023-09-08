@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@snip.SnipStart()
   <ol>
     <li>Platform name: '<code>@CmsContext.Platform.Name</code>'</li>
     <li>Platform type: '<code>@CmsContext.Platform.Type</code>'</li>
@@ -32,4 +32,4 @@
     <li>View Name: '<code>@CmsContext.View.Name</code>'</li>
     <li>View Edition: '<code>@CmsContext.View.Edition</code>' (blank if no special CSS Framework edition) </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

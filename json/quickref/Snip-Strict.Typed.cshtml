@@ -15,8 +15,8 @@
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
+@snip.SnipStart()
   @{
     // Simple JSON strings which could come from a file or web service
     var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
@@ -45,4 +45,4 @@
       @strict.Int("Fake", required: false, fallback: -1)
     </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

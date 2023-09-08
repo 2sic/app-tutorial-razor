@@ -7,8 +7,8 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-  @{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-  @qref.SnipStart()
+  @{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+  @snip.SnipStart()
     <h4>Use <code>.Child("Awards")</code> to get one</h4>
     <ol>
       <li>Award ID:          @MyItem.Child("Awards").Id</li>
@@ -35,4 +35,4 @@
       }
     </ol>
 
-  @qref.SnipEnd()
+  @snip.SnipEnd()

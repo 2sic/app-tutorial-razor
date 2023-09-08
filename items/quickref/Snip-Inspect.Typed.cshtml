@@ -7,8 +7,8 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   @functions {
     // quick helper to make the output nicer
     string Boolmoji(bool value) { return value ? "✅" : "🔲"; }
@@ -34,4 +34,4 @@
     <li>@Boolmoji(MyItem.IsEmpty("hello")) "hello" is empty?</li>
     <li>@Boolmoji(MyItem.IsNotEmpty("hello")) "hello" is not empty?</li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

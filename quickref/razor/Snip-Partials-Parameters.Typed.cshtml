@@ -3,8 +3,8 @@
 
 @* Note: this is only typed, because the inner file "Box Typed" is typed; the other code is identical *@
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/Box Typed.cshtml" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/Box Typed.cshtml" ); }
+@snip.SnipStart()
   <h4>Call some external Razor files</h4>
   <ol>
     <li>
@@ -26,4 +26,4 @@
       @Html.Partial("../../reuse/Box Typed.cshtml", new { label, color })
     </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

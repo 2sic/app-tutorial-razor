@@ -10,8 +10,8 @@
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/ReturnObjects.cs" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/ReturnObjects.cs" ); }
+@snip.SnipStart()
   tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())
   @{
     // helper library which will return object
@@ -94,4 +94,4 @@
     <li>dic Count ✅: @dic.Count</li>
     <li>dic["Name"] ✅: @dic["Name"]</li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

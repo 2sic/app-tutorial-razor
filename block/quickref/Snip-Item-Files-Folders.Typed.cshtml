@@ -7,8 +7,8 @@
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h4>Douglas Adams, the current item (MyItem)</h4>
   @{
     var file = MyItem.File("Mugshot");
@@ -37,4 +37,4 @@
       <li>@f.Name <br> @Kit.Image.Picture(f, width: 100)</li>
     }
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

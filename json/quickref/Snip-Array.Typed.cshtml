@@ -8,8 +8,8 @@
   string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
+@snip.SnipStart()
   @{
     // Simple JSON strings which could come from a file or web service
     var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
@@ -22,4 +22,4 @@
       <li>Name: <code>@city.String("Name")</code></li>
     }
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

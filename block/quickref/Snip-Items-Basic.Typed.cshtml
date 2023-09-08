@@ -9,8 +9,8 @@
 }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h4>Loop persons which were added to this view</h4>
   <ul>
     @foreach (var person in MyItems) {
@@ -20,4 +20,4 @@
       </li>
     }
   </ul>
-@qref.SnipEnd()
+@snip.SnipEnd()

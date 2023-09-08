@@ -11,8 +11,8 @@
 }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <ul>
     @foreach (var item in MyItems) {
       var pres = item.Presentation;
@@ -39,6 +39,6 @@
       </li>
     }
   </ul>
-@qref.SnipEnd()
+@snip.SnipEnd()
 
 

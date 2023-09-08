@@ -6,8 +6,8 @@
   string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
 }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
+@snip.SnipStart()
   @functions {
     // Custom class to deserialize JSON into
     // must be inside an @functions section
@@ -36,4 +36,4 @@
       </li>
     }
   </ul>
-  @qref.SnipEnd()
+  @snip.SnipEnd()

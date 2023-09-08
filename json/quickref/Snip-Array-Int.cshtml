@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
 @{
   // Simple JSON string containing fibonacci numbers
   var jFibonacci = "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]";
@@ -15,4 +15,4 @@
     <li><code>@f</code></li>
   }
 </ul>
-@qref.SnipEnd()
+@snip.SnipEnd()

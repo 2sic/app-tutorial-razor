@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item") ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item") ); }
+@snip.SnipStart()
   <p>
     Normally you would use the following in an <code>href</code> attribute.
   </p>
@@ -56,4 +56,4 @@
     </li>
   </ol>
 
-@qref.SnipEnd()
+@snip.SnipEnd()

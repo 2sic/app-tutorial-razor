@@ -9,8 +9,8 @@
 }
 </hide-silent>
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   @{
     var selected = AsItem(MyData.GetStream("Selected"));
   }
@@ -27,4 +27,4 @@
       </li>
     }
   </ul>
-@qref.SnipEnd()
+@snip.SnipEnd()

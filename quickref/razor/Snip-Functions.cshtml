@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@snip.SnipStart()
   @functions {
     string Boolmoji(bool value) { return value ? "👍🏽" : "👎🏽"; }
    
@@ -31,4 +31,4 @@
     @BoldLi("this is a bold item in a list using a Template Delegate")
     @BoldLi("another bold item in a list using a Template Delegate")
   </ul>
-@qref.SnipEnd()
+@snip.SnipEnd()

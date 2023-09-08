@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@snip.SnipStart()
   @{
     // Create variables using var; compiler detects the type
     var firstName = "Terry";
@@ -27,4 +27,4 @@
     <li>Show decadesFloat (float): @decadesFloat</li>
     <li>Show decadesInt (int): @decadesInt</li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

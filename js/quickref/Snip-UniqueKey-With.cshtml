@@ -3,8 +3,8 @@
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <ol>
     <li>
       Unique Key with <code>12345</code>:
@@ -27,4 +27,4 @@
       <code>@Kit.Key.UniqueKeyWith(12345, "hello")</code>
     </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

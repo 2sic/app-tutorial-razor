@@ -8,8 +8,8 @@
 }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h4>Douglas Adams on <code>MyItem</code></h4>
   <p>
     Id, Guid and Title are built-in properties
@@ -59,4 +59,4 @@
     Mouse over this to see the effect.
   </p>
 
-@qref.SnipEnd()
+@snip.SnipEnd()

@@ -3,8 +3,8 @@
 
 
 @* UniqueKey / Kit.Key.UniqueKeyWith *@
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   @{
     var books = AsItems(App.Data["Books"]);
   }
@@ -15,4 +15,4 @@
       </li>
     }
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

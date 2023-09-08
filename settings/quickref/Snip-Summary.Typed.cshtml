@@ -2,8 +2,8 @@
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   <h4>Get some App Setting / Resources</h4>
   <ol>
     <li>Setting CustomColor: <br>
@@ -38,4 +38,4 @@
       Lng: @coords.Float("Longitude")
     </li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

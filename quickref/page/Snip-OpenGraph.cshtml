@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@snip.SnipStart()
   @* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
   @Kit.Page.AddJsonLd(new Dictionary<string, object> {
       { "@context", "https://schema.org"},
@@ -29,4 +29,4 @@
     <li>some JsonLd for google</li>
     <li>OpenGraph headers for FaceBook, Twitter, etc.</li>
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

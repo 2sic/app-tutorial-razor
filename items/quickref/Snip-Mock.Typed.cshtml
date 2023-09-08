@@ -3,8 +3,8 @@
 
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
   @{
     // Create a mock item, to be used if nothing else is found
     var mockPerson = AsItem(new {
@@ -28,4 +28,4 @@
       </li>
     }
   </ol>
-@qref.SnipEnd()
+@snip.SnipEnd()

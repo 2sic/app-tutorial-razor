@@ -2,8 +2,8 @@
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
 
-@{ var qref = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@qref.SnipStart()
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@snip.SnipStart()
   @{
     const int old = 60;
     const string isOld = "this guy is old";
@@ -23,4 +23,4 @@
     Ternare show old/not old based on age <code>? ... : </code>:
     @(age > old ? isOld : notOld)
   </p>
-@qref.SnipEnd()
+@snip.SnipEnd()
