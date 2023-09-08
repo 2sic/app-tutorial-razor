@@ -23,20 +23,11 @@
 </div>
 
 @* Bootstrap 5 Accordions *@
-@{
-  var accordion = GetCode("Accordion.cs").Setup(Sys, ".Typed");
-  var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == "typed");
-}
-
-@foreach (var accSpecs in list.Children("Accordions")) {
-  @accordion.Start(accSpecs)
-    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
-  @accordion.End()
-}
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, Variant = ".Typed", NameId = "quickref-typed" })
 
 @* TODO:
-  - languages - get(...)
   - Images
+  
 *@
 
 <p>&nbsp;</p>

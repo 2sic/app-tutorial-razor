@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@* Bootstrap 5 Accordions *@
+@{
+  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant"));
+  var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+}
+
+@foreach (var accSpecs in list.Children("Accordions")) {
+  @accordion.Start(accSpecs)
+    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
+  @accordion.End()
+}

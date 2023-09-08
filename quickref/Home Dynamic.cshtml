@@ -23,17 +23,8 @@
 </div>
 
 @* Bootstrap 5 Accordions *@
-@{
-  var accordion = GetCode("Accordion.cs").Setup(Sys, ".Dyn");
-  var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == "dyn");
-}
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, Variant = ".Dyn", NameId = "quickref-dyn" })
 
-
-@foreach (var accSpecs in list.Children("Accordions")) {
-  @accordion.Start(accSpecs)
-    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
-  @accordion.End()
-}
 
 
 <p>&nbsp;</p>
