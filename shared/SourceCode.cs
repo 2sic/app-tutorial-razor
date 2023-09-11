@@ -18,6 +18,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string ResultTabName = "Output"; // must match js in img samples, where it becomes "-output"
   private const string SourceTabName = "Source Code";
   private const string ResultAndSourceTabName = "Output and Source";
+  private const string CodeTutorialLinks = "code:tutlinks";
+  private const string CodeSource = "code:source";
 
   #endregion
 
@@ -122,7 +124,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     string tabs = null,
     Dictionary<string, string> tabDic = null
   ) {
-    return new QuickRefSection(this, tabDic ?? TabStringToDic(tabs), null, item: item as ITypedItem);
+    return new QuickRefSection(this, tabDic ?? TabStringToDic(tabs), item: item as ITypedItem);
   }
 
   #endregion
@@ -180,93 +182,128 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// Base class for all code sections with snippets etc.
   /// </summary>
   public abstract class SectionBase {
-    public SectionBase(SourceCode sourceCode, Dictionary<string, string> tabs) {
+    public SectionBase(SourceCode sourceCode, ITypedItem item, Dictionary<string, string> tabs) {
       ScParent = sourceCode;
       BsTabs = ScParent.BsTabs;
       Log = ScParent.Log;
-      Tabs = tabs ?? new Dictionary<string, string>();
+      Item = item;
+      TabHandler = new TabHandlerBase(sourceCode, item, tabs);
     }
     internal SourceCode ScParent;
     private dynamic BsTabs;
     internal ICodeLog Log;
     protected int SnippetCount;
-    protected string SnippetId;
-    protected string TabPrefix;
-    internal Dictionary<string, string> Tabs;
+    internal string SnippetId {get; private set;}
+    public string TabPrefix {get; protected set;}
+    protected SourceWrapBase SourceWrap;
+    internal TabHandlerBase TabHandler;
+    internal ITypedItem Item;
 
     /// <summary>
     /// The SnippetId must be provided here, so it can be found in the source code later on
     /// </summary>
     public abstract ITag SnipStart(string snippetId = null);
 
+    /// <summary>
+    /// Helper which is usually called by implementations of SnipStart
+    /// </summary>
     protected void InitSnippetAndTabId(string snippetId = null) {
       SnippetCount = ScParent.SourceCodeTabCount++;
       SnippetId = snippetId ?? "" + SnippetCount;
       TabPrefix = "tab-" + ScParent.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
     }
 
+    /// <summary>
+    /// End of Snippet, so the source-analyzer can find it.
+    /// Usually overridden by the implementation.
+    /// </summary>
     public virtual ITag SnipEnd() {
       return null;
     }
 
-    protected ITag SnippetStartInner(string firstName, string[] names = null, string active = null) {
-      names = names ?? new string[] { };
+    protected ITag TabsBeforeContent(string active = null) {
+      var firstName = TabHandler.TabNames.FirstOrDefault();
       var firstIsActive = active == null || active == firstName;
       return Tag.RawHtml(
-        TabsForSnippet(firstName, names, active),    // Tab headers
+        BsTabs.TabList(TabPrefix, TabHandler.TabNames, active), // Tab headers
         BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
         "  ",                             // Open the first tab-body item as the snippet is right after this
         BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), true, firstIsActive)
       );
     }
 
-    // Tabs for Output, (optional more tabs), Source Code
-    private ITag TabsForSnippet(string firstName, string[] names, string active = null) {
-      var tabNames = new List<string>() { firstName };
-      if (names != null && names.Any())
-        tabNames.AddRange(names.Select(n => {
-          if (n == "R14" || n == "Rzr14") return "Razor14 and older";
-          if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
-          return n;
-        }));
-      return BsTabs.TabList(TabPrefix, tabNames, active) as ITag;
-    }
-
     protected virtual string SnippetBefore { get { return null; } }
     protected virtual string SnippetAfter { get { return null; } }
 
-    protected ITag SnipEndFinal(bool snippetInResultTab, bool showSnippetTab, bool endWithSnippet, object[] results, string active) {
-      var l = Log.Call<ITag>("snippetInResultTab: " + snippetInResultTab 
-        + "; ...inTab: " + showSnippetTab 
+    protected ITag SnipEndFinal(/* bool snippetInResultTab,  bool showSnippetTab, */bool endWithSnippet) {
+      var results = TabHandler.TabContents;
+      var active = TabHandler.ActiveTabName;
+      var l = Log.Call<ITag>("" // "snippetInResultTab: " + snippetInResultTab 
+        // + "; ...inTab: " + showSnippetTab 
         + "; endWithSnippet: " + endWithSnippet 
         + "; snippetId: " + SnippetId 
         + "; tab:" + TabPrefix 
-        + "; results:" + results.Length);
+        + "; results:" + results.Count());
       var nameCount = 0;
       // Close the tabs / header div section if it hasn't been closed yet
       var html = Tag.RawHtml();
-      // 2023-08-30 previously this was a more global variable, but I believe it's not used any more
-      // bool _resultEndClosesReveal = false;
-      // if (_resultEndClosesReveal) {
-      //   html = html.Add("</div>");
-      //   _resultEndClosesReveal = false;
+
+      if (results.FirstOrDefault() == ResultTabName) {
+        results = results.Skip(1).ToList();
+        // nameCount++;
+      }
+
+      if (results.FirstOrDefault() == ResultAndSourceTabName) {
+        results = results.Skip(1).ToList();
+        Log.Add("snippetInResultTab - new!");
+        html = html.Add(
+          "</div>",
+          SnippetBefore,
+          ScParent.ShowSnippet(SnippetId),
+          SnippetAfter
+        );
+        // nameCount++;
+      }
+      // old!
+      // else if (snippetInResultTab) {
+      //   Log.Add("snippetInResultTab - old");
+      //   html = html.Add(
+      //     "</div>",
+      //     SnippetBefore,
+      //     ScParent.ShowSnippet(SnippetId),
+      //     SnippetAfter
+      //   );
       // }
-      if (snippetInResultTab)
-        html = html.Add("</div>", SnippetBefore, ScParent.ShowSnippet(SnippetId), SnippetAfter);
       html = html.Add(BsTabs.TabContentClose());
 
-      if (showSnippetTab) {
+      if (results.FirstOrDefault() == SourceTabName) {
+        results = results.Skip(1).ToList();
+        Log.Add("showSnippetTab new");
         html = html.Add(BsTabs.TabContent(TabPrefix, Name2TabId(SourceTabName), ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: active == SourceTabName));
         nameCount++;
       }
+      // old!
+      // else if (showSnippetTab) {
+      //   Log.Add("showSnippetTab old");
+      //   html = html.Add(BsTabs.TabContent(TabPrefix, Name2TabId(SourceTabName), ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: active == SourceTabName));
+      //   nameCount++;
+      // }
+
+      
       // If we have any results, add them here
       foreach (var m in results) {
         var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
         Log.Add("tab name:" + name + " (" + nameCount + ")");
-        html = html.Add(BsTabs.TabContent(TabPrefix, name, FlexibleResult(m), isFirst: false, isActive: active == name));
+        html = m == CodeSource
+          ? html.Add(BsTabs.TabContent(TabPrefix, name, ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: active == SourceTabName))
+          : html.Add(BsTabs.TabContent(TabPrefix, name, FlexibleResult(m, Item), isFirst: false, isActive: active == name));
         nameCount++;
       }
-      html = html.Add(endWithSnippet ? SnippetEndInternal() as object : BsTabs.TabContentGroupClose());
+      if (endWithSnippet) {
+        html = html.Add(SnippetEndInternal());
+      } else {
+        html = html.Add(BsTabs.TabContentGroupClose());
+      }
       return l(html, "ok");
     }
 
@@ -279,13 +316,21 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
 
     // Take a result and if it has a special prefix, process that
-    private object FlexibleResult(object result) {
+    private object FlexibleResult(object result, ITypedItem item = null)
+    {
       // If it's a string such as "file:abc.cshtml" then resolve that first
-      if (result is string) {
-        var strResult = result as string;
-        if (strResult.StartsWith("file:"))
-          return ScParent.ShowFileContents(((string)result).Substring(5), withIntro: false, showTitle: true);
-      } 
+      var strResult = result as string;
+      if (strResult == null) return result; 
+      if (strResult.StartsWith("file:"))
+        return ScParent.ShowFileContents(strResult.Substring(5), withIntro: false, showTitle: 
+        true);
+      // Optionally add tutorial links if defined in the item
+      if (item == null) return result;
+      if (strResult == CodeTutorialLinks) {
+          var liLinks = Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
+          var olLinks = Tag.Ol(liLinks);
+          return olLinks;
+      }
       return result;
     }
 
@@ -297,6 +342,110 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         .Replace("/", "-")
         .Replace("\\", "-");
     }
+  }
+
+  internal class TabHandlerBase
+  {
+    public TabHandlerBase(SourceCode scParent, ITypedItem item,
+      Dictionary<string, string> tabs,
+      bool addOutput = false,
+      bool outputWithSource = false,
+      bool sourceAtEnd = false,
+      string activeTabName = null
+    ) {
+      ScParent = scParent;
+      Item = item;
+      Tabs = tabs ?? new Dictionary<string, string>();
+      _addOutput = addOutput;
+      _outputWithSource = outputWithSource;
+      _sourceAtEnd = sourceAtEnd;
+      ActiveTabName = activeTabName;
+    }
+    public readonly Dictionary<string, string> Tabs;
+    public readonly SourceCode ScParent;
+    public ITypedItem Item { get; protected set; }
+    private bool _addOutput;
+    private bool _outputWithSource;
+    private bool _sourceAtEnd;
+    public string ActiveTabName;
+
+    #region TabNames
+
+    public List<string> TabNames { get { return _tabNames ?? (_tabNames = GetTabNames()); } }
+    private List<string> _tabNames;
+    protected virtual List<string> GetTabNames() {
+      // Logging
+      var log = ScParent.Log;
+      var l = log.Call<List<string>>("addOutput:" + _addOutput + 
+        "; outputWith: " + _outputWithSource + 
+        "; sourceAtEnd: " + _sourceAtEnd
+      );
+
+      // Build Names
+      var names = new List<string>();
+      if (_addOutput) {
+        log.Add("addOutput");
+        names.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
+        if (!_outputWithSource && !_sourceAtEnd) names.Add(SourceTabName);
+      }
+      if (Tabs != null && Tabs.Any()) names.AddRange(Tabs.Keys.ToArray());
+      if (_sourceAtEnd && !_outputWithSource) names.Add(SourceTabName);
+
+      if (Item != null && Item.IsNotEmpty("Tutorials")) {
+        log.Add("Tutorials");
+        names.Add("Additional Tutorials");
+      }
+      
+      var final = OptimizeTabNames(names);
+      return l(final, final.Count.ToString()); 
+    }
+
+    protected List<string> OptimizeTabNames(List<string> original) {
+      return original.Select(n => {
+        if (n == "R14" || n == "Rzr14") return "Razor14 and older";
+        if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
+        return n;
+      }).ToList();
+    }
+
+
+    #endregion
+
+    #region TabContents
+
+    /// <summary>
+    /// The TabContents is either automatic, or set by the caller
+    /// </summary>
+    public List<object> TabContents {
+      get { return _tabContents ?? (_tabContents = GetTabContents()) ; }
+      set { _tabContents = value; }
+    }
+    private List<object> _tabContents;
+    protected virtual List<object> GetTabContents()
+    {
+      // Logging
+      var log = ScParent.Log;
+      var l = log.Call<List<object>>();
+
+      // Build
+      var tabContents = new List<object>();
+      if (_addOutput) {
+        log.Add("addOutput");
+        tabContents.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
+        if (!_outputWithSource && !_sourceAtEnd) tabContents.Add(SourceTabName);
+      }
+
+      if (Tabs != null && Tabs.Any()) tabContents.AddRange(Tabs.Values);
+
+      if (Item != null && Item.IsNotEmpty("Tutorials")) {
+        log.Add("Tutorials");
+        tabContents.Add(CodeTutorialLinks);
+      }
+
+      return l(tabContents, "tabContents: " + tabContents.Count);
+    }
+
+    #endregion
 
   }
 
@@ -307,9 +456,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public class TabsWithSnippetsSection: SectionBase
   {
-    public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs, bool combineOutputAndSource): base(sourceCode, tabs)
+    public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs, bool combineOutputAndSource): base(sourceCode, null, tabs)
     {
       _combineOutputAndSource = combineOutputAndSource;
+      TabHandler = new TabHandlerBase(sourceCode, null, tabs, addOutput: true, outputWithSource: combineOutputAndSource, sourceAtEnd: true, activeTabName: SourceTabName);
     }
 
     private bool _combineOutputAndSource;
@@ -317,10 +467,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
       InitSnippetAndTabId(snippetId);
-      var firstTabName = _combineOutputAndSource ? ResultAndSourceTabName : ResultTabName;
-      var tabs = Tabs.Keys.ToList();
-      if (!_combineOutputAndSource) tabs.Add(SourceTabName);
-      var start = SnippetStartInner(firstTabName, tabs.ToArray());
+      var start = TabsBeforeContent();
       if (_combineOutputAndSource)
         start = Tag.RawHtml(
           start,
@@ -334,27 +481,23 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     private ITag SnipEndShared() {
       // Original setup, without any tabs
-      if (!Tabs.Any()) 
+      if (!TabHandler.TabNames.Any()) 
         return SnippetEndInternal();
 
+      // TabHandler.TabContents.Add(CodeSource);
+
       // Extending 2023-08-29 - with tabs
-      var tabContents = new List<object>();
-      tabContents.AddRange(Tabs.Values);
-      ScParent.Log.Add("tabContents: " + tabContents.Count);
       var result = SnipEndFinal(
-        snippetInResultTab: _combineOutputAndSource,
-        showSnippetTab: false,
-        endWithSnippet: !_combineOutputAndSource,
-        results: _contentsOverride ?? tabContents.ToArray(),
-        active: SourceTabName
+        endWithSnippet: !_combineOutputAndSource
       );
       return result;
     }
-    private object[] _contentsOverride = null;
 
+    /// <summary>
+    /// End Snip, but manually specify the content to be added
+    /// </summary>
     public ITag SnipEnd(params object[] generated) {
-      // must check for any, because generated is `params` and so never null
-      _contentsOverride = generated.Any() ? generated : null;
+      TabHandler.TabContents = generated.Any() ? generated.ToList() : null;
       return SnipEndShared();
     }
 
@@ -367,26 +510,48 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public class SnippetWithIntroSection: SectionBase
   {
-    public SnippetWithIntroSection(SourceCode sourceCode, ITag intro): base(sourceCode, null) {
+    public SnippetWithIntroSection(SourceCode sourceCode, ITag intro): base(sourceCode, null, null) {
       Intro = intro;
+      SourceWrap = new SourceWrapIntro(this);
     }
     private ITag Intro;
 
     public override ITag SnipStart(string snippetId = null) {
       InitSnippetAndTabId(snippetId);
+      return SourceWrap.GetStart(Intro);
+    }
+    public override ITag SnipEnd() { return SourceWrap.GetFinally(ScParent.ShowSnippet(SnippetId)); }
+  }
+
+  // TODO: Next
+  // goal is to separate wrapping of output/intro into own class
+  // so that we can remove the snippetwithintrosection
+  // and instead switch between the "wrappers"
+  // - so finish moving wrap-logic - incl. close-between etc.
+  // to the SourceWrapBase etc.
+  // so the final class can just call the various Start/End/Between etc.
+  internal class SourceWrapIntro : SourceWrapBase
+  {
+    public SourceWrapIntro(SectionBase sb) : base(sb) { }
+
+    public override ITag GetStart(ITag result) {
       return Tag.RawHtml(
         Tag.Div().Class("alert alert-info").TagStart,
-        Intro
+        result
       );
     }
 
-    public override ITag SnipEnd() { return Tag.RawHtml("</div>", ScParent.ShowSnippet(SnippetId)); }
+    public override ITag GetFinally(ITag result) {
+      return Tag.RawHtml(
+        "</div>",
+        result
+      );
+    }
   }
-
 
   public class SnippetOnlySection: SectionBase
   {
-    public SnippetOnlySection(SourceCode sourceCode): base(sourceCode, null) { }
+    public SnippetOnlySection(SourceCode sourceCode): base(sourceCode, null, null) { }
 
     public override ITag SnipStart(string snippetId = null) {
       // Neutralize snippetId, set TabPrefix etc.
@@ -398,11 +563,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public class FormulaSection: SectionBase
   {
-    public FormulaSection(SourceCode sourceCode, object specs): base(sourceCode, null)
+    public FormulaSection(SourceCode sourceCode, object specs): base(sourceCode, null, null)
     {
       // If specs is a string, look it up in the DB, otherwise use the given object
       Specs = specs is string ? ScParent.Formulas.Specs(specs as string) : specs;
-      // TODO: IF we have tabs, add them here from the specs
+      TabHandler = new TabHandlerFormula(sourceCode, null, null, Specs);
     }
 
     public object Specs;
@@ -427,30 +592,55 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       InitSnippetAndTabId(snippetId);
       // Activate toolbar for anonymous so it will always work in demo-mode
       ScParent.Sys.ToolbarHelpers.EnableEditForAll();
-
-      var showSource = ScParent.Formulas.ShowSnippet(Specs);
-      return showSource
-        ? SnippetStartInner(ResultTabName, new [] { "Formulas", SourceTabName })
-        : SnippetStartInner(ResultTabName, new [] { "Formulas" });
+      return TabsBeforeContent();
     }
 
     public override ITag SnipEnd()
     {
       var l = ScParent.Log.Call<ITag>();
-      if (Specs != null) {
-        bool showSnippet = ScParent.Formulas.ShowSnippet(Specs);
-        var result = SnipEndFinal(
-          snippetInResultTab: false,
-          showSnippetTab: false,
-          endWithSnippet: showSnippet,
-          results: new object[] { ScParent.Formulas.Show(Specs, false) },
-          active: null
+      var result = SnipEndFinal(
+        endWithSnippet: false
       );
-        return l(result, "formula show snippet");
+      return l(result, "ok");
+    }
+  }
+
+  internal class TabHandlerFormula: TabHandlerBase
+  {
+    public TabHandlerFormula(SourceCode scParent, ITypedItem item, Dictionary<string, string> tabs, object specs) : base(scParent, item, tabs, addOutput: false, outputWithSource: false, sourceAtEnd: false, activeTabName: ResultTabName) {
+      Specs = specs;
+    }
+    public object Specs;
+
+    protected override List<string> GetTabNames()
+    {
+      var names = new List<string>();
+      names.Add(ResultTabName);
+      names.Add("Formulas");
+      var showSource = ScParent.Formulas.ShowSnippet(Specs);
+      if (showSource) names.Add(SourceTabName);
+      return names;
+    }
+
+    protected override List<object> GetTabContents()
+    {
+      var l = ScParent.Log.Call<List<object>>("Formulas");
+      string lMsg;
+      List<object> result;
+      if (Specs == null) {
+        lMsg = "no specs, no snippets";
+        result = new List<object>();
+      } else {
+        lMsg = "with specs";
+        result = new List<object> { ScParent.Formulas.Show(Specs, false) };
       }
 
-      var result3 = SnipEndFinal(false, false, false, results: null, active: null);
-      return l(result3, "formula without snippet");
+      if (ScParent.Formulas.ShowSnippet(Specs)) {
+        lMsg += ", with source";
+        result.Add(CodeSource);
+      }
+
+      return l(result, lMsg);
     }
   }
 
@@ -477,88 +667,102 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     internal QuickRefSection(
       SourceCode sourceCode,
       Dictionary<string, string> tabs,
-      string[] tutorials,
-      bool split = false,
-      int firstWidth = 50,
       ITypedItem item = null
-    ) : base(sourceCode, tabs)
+    ) : base(sourceCode, item, tabs)
     {
-      Item = item;
-      // if (item == null) throw new Exception("Item should never be null");
-      Tutorials = tutorials ?? new string[] {};
-      Split = split;
-      FirstWidth = firstWidth;
-      if (Item != null) {
-        FirstWidth = Item.Int("OutputWidth", fallback: 0);
-        Split = FirstWidth > 0;
-      };
+      // Item = item;
+      if (item == null) throw new Exception("Item should never be null");
+      Splitter = new SourceWrapSplit(this);
+      TabHandler = new TabHandlerBase(sourceCode, item, tabs, addOutput: true, outputWithSource: Splitter.Active, activeTabName: Splitter.Active ? ResultAndSourceTabName : SourceTabName);
     }
-    public ITypedItem Item {get;set;}
-    private string [] Tutorials;
-
-    private bool Split;
-    private int FirstWidth;
+    private SourceWrapSplit Splitter;
 
     public override ITag SnipStart(string snippetId = null) {
       InitSnippetAndTabId(snippetId);
-      var firstTab = Split ? ResultAndSourceTabName : ResultTabName;
-      var active = Split ? ResultAndSourceTabName : SourceTabName;
-      var list = new List<string>();
-      if (!Split) list.Add(SourceTabName);
-      list.AddRange(Tabs.Keys.ToArray());
+      var active = Splitter.Active ? ResultAndSourceTabName : SourceTabName;
+      var header = TabsBeforeContent(active: active);
+      return Splitter.GetStart(header);
+    }
 
-      if ((Tutorials != null && Tutorials.Any()) || (Item != null && Item.IsNotEmpty("Tutorials")))
-        list.Add("Additional Tutorials");
+    public override ITag SnipEnd() {
+      var result = SnipEndFinal(
+        endWithSnippet: false
+      );
+      return Tag.RawHtml(Splitter.GetFinally(result));
+    }
+    protected override string SnippetBefore { get { return Splitter.GetBetween(); } }
+    protected override string SnippetAfter { get { return Splitter.GetAfter(); } }
+  }
 
-      var header = SnippetStartInner(firstTab, list.ToArray(), active: active);
-      if (!Split) return header;
+  public class SourceWrapBase
+  {
+    public SourceWrapBase(SectionBase sb) {
+      Section = sb;
+    }
+    protected readonly SectionBase Section;
+    public virtual ITag GetStart(ITag result) { return result; }
+    public virtual string GetBetween() { return null; }
+    public virtual string GetAfter() { return null; }
+    public virtual ITag GetFinally(ITag result) { return result; }
 
-      return Tag.RawHtml(
-        header,
+  }
+
+  internal class SourceWrapSplit: SourceWrapBase
+  {
+    public const string IndentPreSplit = "      ";
+    public const string IndentSplit = "        ";
+    public readonly bool Active;
+    private int FirstWidth;
+
+    public SourceWrapSplit(QuickRefSection sectionBase) : base(sectionBase)
+    {
+      FirstWidth = sectionBase.Item.Int("OutputWidth", fallback: 0);
+      Active = FirstWidth > 0;
+    }
+
+    public override ITag GetStart(ITag result) { return !Active
+      ? result
+      : Tag.RawHtml(result, 
         "\n",
+        IndentPreSplit + "<!-- Splitter -->\n",
         IndentPreSplit,
-        "<!-- Splitter -->",
+        Tag.Div().Id(Section.TabPrefix + "-splitter").Class("splitter-group").TagStart,
         "\n",
-        IndentPreSplit,
-        Tag.Div().Id(TabPrefix + "-splitter").Class("splitter-group").TagStart,
-        "\n",
+        IndentSplit + "<!-- split left -->\n",
         IndentSplit,
-        "<!-- split left -->\n",
-        IndentSplit,
-        Tag.Div().Id(TabPrefix + "-splitter-left").TagStart,
+        Tag.Div().Id(Section.TabPrefix + "-splitter-left").TagStart,
         "\n",
         IndentSplit,
         Tag.H4("Output"),
-        IndentPreSplit
-      );
+        IndentPreSplit);
     }
 
-    private const string IndentPreSplit = "      ";
+    public override string GetBetween() { return !Active
+      ? null
+      : "\n" + IndentSplit + "<!-- /split-left -->" 
+        + "\n" + IndentSplit + "<!-- split-right -->"
+        + "\n" + IndentSplit
+        + Tag.Div().Id(Section.TabPrefix + "-splitter-right").TagStart.ToString()
+        + "\n";
+    }
+    public override string GetAfter() { return !Active 
+      ? null 
+      : IndentSplit 
+        + "</div>\n" 
+        + IndentSplit
+        + "<!-- /split-right -->\n"
+        + "\n" + IndentPreSplit 
+        + "</div>\n"
+        + IndentPreSplit
+        + "<!-- /Splitter -->\n";
+    }
 
-    private const string IndentSplit = "        ";
-
-    public override ITag SnipEnd() {
-      var tabContents = new List<object>();
-      tabContents.AddRange(Tabs.Values);
-      var liLinks = Item == null
-        ? Tutorials.Select(r => "\n    " + ScParent.Sys.TutorialLiLinkLookup(r) + "\n")
-        : Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
-      var olLinks = Tag.Ol(liLinks);
-      tabContents.Add(olLinks);
-      var result = SnipEndFinal(
-        snippetInResultTab: Split /* false */, // if split, the result must be inside...
-        showSnippetTab: !Split /* true */,
-        endWithSnippet: false,
-        results: tabContents.ToArray(),
-        active: SourceTabName
-      );
-      // return result;
-      if (!Split) return result;
-
-      ScParent.Kit.Page.TurnOn("window.splitter.init()", data: new {
+    public ITag GetFinally(ITag result) {
+      if (!Active) return result;
+      Section.ScParent.Kit.Page.TurnOn("window.splitter.init()", data: new {
         parts = new [] {
-          "#" + TabPrefix + "-splitter-left",
-          "#" + TabPrefix + "-splitter-right"
+          "#" + Section.TabPrefix + "-splitter-left",
+          "#" + Section.TabPrefix + "-splitter-right"
         },
         options = new {
           sizes = new [] { FirstWidth, 100 - FirstWidth },
@@ -570,29 +774,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         "\n",
         "<!-- /Splitter -->"
       );
-    }
 
-    protected override string SnippetBefore { get {
-      return Split
-        ? "\n" + IndentSplit + "<!-- /split-left -->" 
-          + "\n" + IndentSplit + "<!-- split-right -->"
-          + "\n" + IndentSplit
-          + Tag.Div().Id(TabPrefix + "-splitter-right").TagStart.ToString()
-          + "\n"
-        : null;
-    } }
-    protected override string SnippetAfter { get {
-      return Split
-        ? IndentSplit 
-          + "</div>\n" 
-          + IndentSplit
-          + "<!-- /split-right -->\n"
-          + "\n" + IndentPreSplit 
-          + "</div>\n"
-          + IndentPreSplit
-          + "<!-- /Splitter -->\n"
-        : null;
-    } }
+    }
   }
 
   #endregion
