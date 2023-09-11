@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item); }
 @snip.SnipStart()
   @* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
   @Kit.Page.AddJsonLd(new Dictionary<string, object> {
