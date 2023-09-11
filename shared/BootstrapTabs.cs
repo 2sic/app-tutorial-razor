@@ -10,7 +10,8 @@ using System.Text.RegularExpressions;
 public class BootstrapTabs: Custom.Hybrid.Code14
 {
   private const string Indent = "    ";
-  private const string IndentBtn = "      ";
+  private const string IndentLi = "      ";
+  private const string IndentBtn = "        ";
   public ITag TabList(string prefix, IEnumerable<string> names, string active = null) {
     // Remember tab names
     _moreTabNames = names.ToArray();
@@ -19,18 +20,17 @@ public class BootstrapTabs: Custom.Hybrid.Code14
       var isFirst = tabList.Count == 0;
       var isActive = (active == null && isFirst) || name == active;
 
-      tabList.Add("\n");
-      tabList.Add(IndentBtn);
-      tabList.Add(Tab(prefix, name, isFirst, isActive)); // first entry is active = true
+      tabList.Add("\n\n" + IndentLi + "<!-- Tab '" + name + "'-->");
+      tabList.Add("\n" + IndentLi);
+      tabList.Add(TabLi(prefix, name, isFirst, isActive)); // first entry is active = true
     }
     return Tag.RawHtml(
+      "\n" + Indent + "<!-- TabList Start '" + prefix + "'-->\n",
       Indent,
-      "<!-- TabList Start -->\n",
-      Indent,
-      Tag.Ul().Class("nav nav-pills p-3 rounded-top border").Attr("role", "tablist").Wrap(
-        tabList
-      ),
-      "\n<!-- TabList End -->\n"
+      Tag.Ul().Class("nav nav-pills p-3 rounded-top border")
+        .Attr("role", "tablist")
+        .Wrap(tabList),
+      "\n" + Indent + "<!-- TabList End '" + prefix + "'-->\n"
     );
   }
 
@@ -43,18 +43,21 @@ public class BootstrapTabs: Custom.Hybrid.Code14
       .Replace("\\", "-");
   }
 
-  private ITag Tab(string prefix, string label, bool isFirst, bool active) {
+  private ITag TabLi(string prefix, string label, bool isFirst, bool active) {
     return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
-      Tag.Comment("Tab button"),
       "\n",
+      IndentBtn + "<!-- Tab button -->\n",
+      IndentBtn,
       TabButton(prefix, label, Name2TabId(label), isFirst, active),
-      "\n"
+      "\n" + IndentLi
     );
   }
 
   private ITag TabButton(string prefix, string title, string name, bool isFirst, bool selected) {
     var id = isFirst ? "-default" : name;
-    return Tag.Button(title).Class("nav-link " + (selected ? "active" : "")).Id(prefix + "-tab")
+    return Tag.Button(title)
+      .Class("nav-link " + (selected ? "active" : ""))
+      .Id(prefix + "-tab")
       .Attr("data-bs-toggle", "tab")
       .Attr("data-bs-target", "#" + prefix + id)
       .Type("button")
@@ -63,13 +66,17 @@ public class BootstrapTabs: Custom.Hybrid.Code14
       .Attr("aria-selected", selected.ToString().ToLower());
   }
 
-  public Div TabContentGroup() {
+  private Div TabContentGroup() {
     return Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5");
   }
 
   public dynamic TabContentGroupOpen() {
     _tabContentGroupIsOpen = true;
-    return TabContentGroup().TagStart;
+    return Tag.RawHtml(
+      "\n" + Indent + "<!-- TabContentGroupOpen -->\n",
+      Indent,
+      Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5").TagStart
+    );
   }
   private bool _tabContentGroupIsOpen = false;
 
@@ -90,24 +97,28 @@ public class BootstrapTabs: Custom.Hybrid.Code14
 
   public string TabContentOpen(string prefix, string id, bool isFirst, bool isActive) {
     _tabContentIsOpen = true;
-    return "\n" + 
-      "<!-- TabContentOpen -->" + 
-      "\n" +
-      TabContentDiv(prefix, id, isFirst, isActive).TagStart +
-      "\n";
+    return "\n" + Indent + "<!-- TabContentOpen -->\n"
+      + Indent
+      + TabContentDiv(prefix, id, isFirst, isActive).TagStart
+      + "\n";
   }
   private bool _tabContentIsOpen = false;
   public string TabContentClose() {
-    var result = _tabContentIsOpen ? "</div>": null;
+    if (!_tabContentIsOpen)
+      return "\n" + Indent + "<!-- TabContentClose - already closed -->\n";
     _tabContentIsOpen = false;
-    return result;
+    var result = _tabContentIsOpen ? "</div>": null;
+    return "\n" + Indent + "<!-- TabContentClose -->\n"
+      + Indent + "</div>" + "\n";
   }
 
   public ITag TabContent(string prefix, string id, object result, bool isFirst, bool isActive) {
     return Tag.RawHtml(
-      "\n",
+      "\n" + Indent + "<!-- TabContent '" + prefix +"':'" + id + "' -->\n",
+      Indent,
       TabContentDiv(prefix, id, isFirst, isActive).Wrap(result),
-      "\n"
+      "\n",
+      Indent + "<!-- /TabContent '" + prefix +"':'" + id + "' -->\n"
     );
   }
 
@@ -119,6 +130,5 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     var name = _moreTabNames[index];
     Log.Add("name before optimization: '" + name + "'");
     return l(name, name);
-    // return name;
   }
 }
