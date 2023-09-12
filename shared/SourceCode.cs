@@ -18,7 +18,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string ResultTabName = "Output"; // must match js in img samples, where it becomes "-output"
   private const string SourceTabName = "Source Code";
   private const string ResultAndSourceTabName = "Output and Source";
-  private const string CodeTutorialLinks = "code:tutlinks";
+  private const string TutorialsTabName = "Additional Tutorials";
   private const string CodeSource = "code:source";
 
   #endregion
@@ -201,6 +201,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     protected int SnippetCount;
     internal string SnippetId {get; private set;}
     public string TabPrefix {get; protected set;}
+    protected Wrap WrapAll;
     protected SourceWrapBase SourceWrap;
     internal TabHandlerBase TabHandler;
     internal ITypedItem Item;
@@ -283,8 +284,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       // If we have any results, add them here; Very often there are none left
       foreach (var m in results) {
         var name = Name2TabId(BsTabs.GetTabName(nameCount + 1));
-        Log.Add("tab name:" + name + " (" + nameCount + ")");
-        html = m == CodeSource
+        var msg = "tab name:" + name + " (" + nameCount + ")";
+        Log.Add(msg);
+        html = html.Add("<!-- " + msg + "-->");
+        html = (m == CodeSource || m == SourceTabName)
           ? html.Add(BsTabs.TabContent(TabPrefix, name, ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: active == SourceTabName))
           : html.Add(BsTabs.TabContent(TabPrefix, name, FlexibleResult(m, Item), isFirst: false, isActive: active == name));
         nameCount++;
@@ -313,10 +316,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         true);
       // Optionally add tutorial links if defined in the item
       if (item == null) return result;
-      if (strResult == CodeTutorialLinks) {
-          var liLinks = Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
-          var olLinks = Tag.Ol(liLinks);
-          return olLinks;
+      if (strResult == TutorialsTabName) {
+        var liLinks = Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
+        var olLinks = Tag.Ol(liLinks);
+        return olLinks;
       }
       return result;
     }
@@ -362,29 +365,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     private List<string> _tabNames;
     protected virtual List<string> GetTabNames() {
       // Logging
-      var log = ScParent.Log;
-      var l = log.Call<List<string>>("addOutput:" + _addOutput + 
-        "; outputWith: " + _outputWithSource + 
-        "; sourceAtEnd: " + _sourceAtEnd
-      );
+      var l = ScParent.Log.Call<List<string>>();
 
       // Build Names
-      var names = new List<string>();
-      if (_addOutput) {
-        log.Add("addOutput");
-        names.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
-        if (!_outputWithSource && !_sourceAtEnd) names.Add(SourceTabName);
-      }
-      if (Tabs != null && Tabs.Any()) {
-        log.Add("Tab Keys: " + Tabs.Keys.Count());
-        names.AddRange(Tabs.Keys.ToArray());
-      }
-      if (_sourceAtEnd && !_outputWithSource) names.Add(SourceTabName);
-
-      if (Item != null && Item.IsNotEmpty("Tutorials")) {
-        log.Add("Tutorials");
-        names.Add("Additional Tutorials");
-      }
+      var names = GetTabNamesAndContentBase(useKeys: true)
+        .Select(s => s as string)
+        .Where(s => s != null)
+        .ToList();
       
       var final = OptimizeTabNames(names);
       return l(final, final.Count.ToString()); 
@@ -398,6 +385,46 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }).ToList();
     }
 
+    private List<object> GetTabNamesAndContentBase(bool useKeys) {
+      // Logging
+      var log = ScParent.Log;
+      var l = log.Call<List<object>>("addOutput:" + _addOutput + 
+        "; outputWith: " + _outputWithSource + 
+        "; sourceAtEnd: " + _sourceAtEnd
+      );
+      // Build list
+      var list = new List<object>();
+      if (_addOutput) {
+        log.Add("addOutput");
+        list.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
+        if (!_outputWithSource && !_sourceAtEnd) list.Add(SourceTabName);
+      }
+
+      if (Tabs != null && Tabs.Any()) {
+        log.Add("Tab Count: " + Tabs.Keys.Count());
+        if (useKeys)
+          list.AddRange(Tabs.Keys);
+        else {
+          if (_replaceTabContents != null)
+            list.AddRange(_replaceTabContents);
+          else
+            list.AddRange(Tabs.Values);
+        }
+      }
+
+      if (_sourceAtEnd && !_outputWithSource) {
+        log.Add("Add SourceTab:" + SourceTabName);
+        list.Add(SourceTabName);
+      }
+
+      if (Item != null && Item.IsNotEmpty("Tutorials")) {
+        log.Add("Tutorials");
+        list.Add(TutorialsTabName);
+      }
+
+      return l(list, list.Count.ToString());
+    }
+
 
     #endregion
 
@@ -408,31 +435,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// </summary>
     public List<object> TabContents {
       get { return _tabContents ?? (_tabContents = GetTabContents()) ; }
-      set { _tabContents = value; }
+      set { _replaceTabContents = value; }
     }
     private List<object> _tabContents;
+    private List<object> _replaceTabContents;
     protected virtual List<object> GetTabContents()
     {
-      // Logging
-      var log = ScParent.Log;
-      var l = log.Call<List<object>>();
-
-      // Build
-      var tabContents = new List<object>();
-      if (_addOutput) {
-        log.Add("addOutput");
-        tabContents.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
-        if (!_outputWithSource && !_sourceAtEnd) tabContents.Add(SourceTabName);
-      }
-
-      if (Tabs != null && Tabs.Any()) tabContents.AddRange(Tabs.Values);
-
-      if (Item != null && Item.IsNotEmpty("Tutorials")) {
-        log.Add("Tutorials");
-        tabContents.Add(CodeTutorialLinks);
-      }
-
-      return l(tabContents, "tabContents: " + tabContents.Count);
+      var l = ScParent.Log.Call<List<object>>();
+      var list = GetTabNamesAndContentBase(useKeys: false);
+      return l(list, "tabContents: " + list.Count);
     }
 
     #endregion
@@ -441,7 +452,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     public string TabNamesDebug { get { return string.Join(", ", TabNames); }  }
     public string TabContentsDebug { get {
-      return string.Join(", ", TabContents.Select(tc => tc.ToString()));
+      return string.Join(", ", TabContents.Select(tc => Text.Ellipsis(tc.ToString() ?? "", 20)));
     }  }
     #endregion
 
@@ -457,7 +468,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs, bool combineOutputAndSource): base(sourceCode, null, tabs)
     {
       _combineOutputAndSource = combineOutputAndSource;
-      TabHandler = new TabHandlerBase(sourceCode, null, tabs, addOutput: true, outputWithSource: combineOutputAndSource, sourceAtEnd: true, activeTabName: SourceTabName);
+      TabHandler = new TabHandlerBase(sourceCode, null, tabs, addOutput: true,
+        outputWithSource: combineOutputAndSource, sourceAtEnd: true,
+        activeTabName: combineOutputAndSource ? ResultAndSourceTabName : SourceTabName);
       if (combineOutputAndSource)
         SourceWrap = new SourceWrapIntroWithSource(this);
     }
@@ -468,24 +481,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       var l = ScParent.Log.Call<ITag>("snippetId: " + snippetId + "; tabs: " + TabHandler.TabNamesDebug);
       // Neutralize snippetId, set TabPrefix etc.
       InitSnippetAndTabId(snippetId);
-      var start = TabsBeforeContent();
+      var tabsStartHtml = TabsBeforeContent();
       if (SourceWrap != null)
-        start = SourceWrap.GetStart(start);
-      return l(start, "ok");
+        tabsStartHtml = SourceWrap.GetStart(tabsStartHtml);
+      return l(tabsStartHtml, "ok");
     }
 
     public override ITag SnipEnd() { return SnipEndShared(); }
-
-    private ITag SnipEndShared() {
-      var l = ScParent.Log.Call<ITag>(TabHandler.TabContentsDebug);
-      // Original setup, without any tabs
-      if (!TabHandler.TabNames.Any()) 
-        return l(SnippetEndInternal(), "no tabs");
-
-      // Extending 2023-08-29 - with tabs
-      var result = SnipEndFinal();
-      return l(result, "with tabs");
-    }
 
     /// <summary>
     /// End Snip, but manually specify the content to be added
@@ -493,6 +495,17 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public ITag SnipEnd(params object[] generated) {
       TabHandler.TabContents = generated.Any() ? generated.ToList() : null;
       return SnipEndShared();
+    }
+
+    private ITag SnipEndShared() {
+      var l = ScParent.Log.Call<ITag>(TabHandler.TabContentsDebug);
+      // Original setup, without any tabs
+      if (!TabHandler.TabNames.Any())
+        return l(Tag.RawHtml("<!-- /SnipEndShared no-tabs -->", SnippetEndInternal()), "no tabs");
+
+      // Extending 2023-08-29 - with tabs
+      var result = Tag.RawHtml("<!-- /SnipEndShared with-tabs -->", SnipEndFinal());
+      return l(result, "with tabs");
     }
 
   }
@@ -506,16 +519,16 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   {
     public SnippetWithIntroSection(SourceCode sourceCode, ITag intro): base(sourceCode, null, null) {
       Intro = intro;
-      SourceWrap = new SourceWrapIntro(this);
+      WrapAll = new WrapAllIntroInside();
     }
     private ITag Intro;
 
     public override ITag SnipStart(string snippetId = null) {
       InitSnippetAndTabId(snippetId);
-      return SourceWrap.GetStart(Intro);
+      return WrapAll.GetStart(Intro);
     }
     public override ITag SnipEnd() {
-      return Tag.RawHtml(SourceWrap.GetAfter(), ScParent.ShowSnippet(SnippetId));
+      return Tag.RawHtml(WrapAll.GetAfter(), ScParent.ShowSnippet(SnippetId));
     }
   }
 
@@ -526,31 +539,33 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   // - so finish moving wrap-logic - incl. close-between etc.
   // to the SourceWrapBase etc.
   // so the final class can just call the various Start/End/Between etc.
-  internal class SourceWrapIntro : SourceWrapBase
+  internal class WrapAllIntroInside : Wrap
   {
-    public SourceWrapIntro(SectionBase sb) : base(sb) { }
+    // public SourceWrapIntro(SectionBase sb) : base(sb) { }
 
-    public override ITag GetStart(ITag result) { return Tag.RawHtml(
+    public override ITag GetStart(ITag contents) { return Tag.RawHtml(
       Tag.Div().Class("alert alert-info").TagStart,
-      result
+      contents
     ); }
 
-    public override string GetAfter() { return "</div>"; }
+    public override ITag GetAfter() { return Tag.RawHtml(Comment("/"), "</div>"); }
   }
 
   internal class SourceWrapIntroWithSource : SourceWrapBase
   {
-    public SourceWrapIntroWithSource(SectionBase sb) : base(sb) { }
+    public SourceWrapIntroWithSource(SectionBase sb) : base(sb, "SourceWrapIntroWithSource") { }
 
     public override ITag GetStart(ITag result) { return Tag.RawHtml(
+      Comment("Intro-"),
       result,
+      Comment(""),
       Tag.Div().Class("alert alert-info").TagStart,
       Tag.H4("Output")
     ); }
 
-    public override string GetBetween()
+    public override ITag GetBetween()
     {
-      return "\n<!-- GetBetween -->\n" + "</div>\n";
+      return Tag.RawHtml(Comment("|") + "</div>\n");
     }
   }
 
@@ -704,60 +719,75 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return new SourceWrapBase(section);
   }
 
-  public class SourceWrapBase
+
+  public class Wrap
   {
-    public SourceWrapBase(SectionBase sb) {
+    public const string Indent1 = "      ";
+    public const string Indent2 = "        ";
+    public Wrap(string name = "Wrap") {
+      Name = name;
+    }
+    protected string Name;
+    public virtual ITag GetStart(ITag contents) {
+      return Tag.RawHtml(Comment("") + Indent1, contents);
+    }
+    public virtual ITag GetAfter() {
+      return Tag.RawHtml(Comment("/"));
+    }
+    protected string Comment(string op, string name = null) {
+      return "\n" + Indent1 + "<!-- " + op + (name ?? Name) + " -->\n";
+    }
+  }
+
+  public class SourceWrapBase: Wrap
+  {
+    public const string Indent1 = "      ";
+    public const string Indent2 = "        ";
+    public SourceWrapBase(SectionBase sb, string name = null) : base(name ?? "SourceWrapBase") {
       Section = sb;
     }
     protected readonly SectionBase Section;
-    public virtual ITag GetStart(ITag result) { return result; }
-    public virtual string GetBetween() { return null; }
-    public virtual string GetAfter() { return null; }
-
+    public virtual ITag GetBetween() { return null; }
   }
 
   internal class SourceWrapSplit: SourceWrapBase
   {
-    public const string IndentPreSplit = "      ";
-    public const string IndentSplit = "        ";
-    public readonly bool Active;
-    private int FirstWidth;
-
     public SourceWrapSplit(SectionBase section) : base(section)
     {
       FirstWidth = section.Item.Int("OutputWidth", fallback: 0);
       Active = FirstWidth > 0;
     }
+    public readonly bool Active;
+    private int FirstWidth;
 
     public override ITag GetStart(ITag result) { return !Active
       ? result
       : Tag.RawHtml(
-          result, 
-          "\n",
-          IndentPreSplit + "<!-- Splitter -->\n",
-          IndentPreSplit,
+          result,
+          Comment("", "Splitter"),
+          Indent1,
           Tag.Div().Id(Section.TabPrefix + "-splitter").Class("splitter-group").TagStart,
           "\n",
-          IndentSplit + "<!-- split left -->\n",
-          IndentSplit,
+          Indent2 + "<!-- split left -->\n",
+          Indent2,
           Tag.Div().Id(Section.TabPrefix + "-splitter-left").TagStart,
           "\n",
-          IndentSplit,
+          Indent2,
           Tag.H4("Output"),
-          IndentPreSplit
+          Indent1
         );
     }
 
-    public override string GetBetween() { return !Active
+    public override ITag GetBetween() { return !Active
       ? null
-      : "\n" + IndentSplit + "<!-- /split-left -->"
-        + "\n" + IndentSplit + "</div>\n"
-        + "\n" + IndentSplit + "<!-- split-right -->"
-        + "\n" + IndentSplit
+      : Tag.RawHtml("\n" + Indent2 + "<!-- /split-left -->"
+        + "\n" + Indent2 + "</div>\n"
+        + "\n" + Indent2 + "<!-- split-right -->"
+        + "\n" + Indent2
         + Tag.Div().Id(Section.TabPrefix + "-splitter-right").TagStart.ToString()
-        + "\n";
+        + "\n");
     }
-    public override string GetAfter() {
+    public override ITag GetAfter() {
       // Skip if not active
       if (!Active) return null;
       // Ensure it's registered in turnOn
@@ -772,13 +802,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       });
 
       // Return the closing tags
-      return IndentSplit 
+      return Tag.RawHtml(
+        Indent2 
           + "</div>\n" 
-          + IndentSplit
+          + Indent2
           + "<!-- /split-right -->\n"
-          + "\n" + IndentPreSplit + "</div>\n"
-          + IndentPreSplit
-          + "<!-- /Splitter -->\n";
+          + "\n" + Indent1 + "</div>\n"
+          + Indent1
+          + "<!-- /Splitter -->\n"
+      );
     }
   }
 
