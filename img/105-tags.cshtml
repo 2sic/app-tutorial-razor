@@ -7,15 +7,17 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
   @{  
     /* Internal remarks for the tutorial developers
-      To reall see the images loading they must have different names in each tutorial.
+      To really see the images loading they must have different names in each tutorial.
       Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
     */
   }
   @functions {
-    dynamic ShowCurrentSrc(string id) {
+    public List<string> ShowSrcs = new List<string>();
+    object ShowCurrentSrc(string id) {
+      ShowSrcs.Add(id);
       return Tag.Div().Class("alert alert-light").Wrap(
         Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-        Tag.Code().Id(id + "-label")
+        Tag.Code("image src should appear here").Id(id + "-label")
       );
     }
   }
@@ -70,6 +72,7 @@
 @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <hide-silent>@ShowCurrentSrc("img-srcset")</hide-silent>
   <img loading="lazy" class="img-fluid" alt="Image SrcSet Demo"
+    id="img-srcset-default"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
     srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
             @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
@@ -175,16 +178,10 @@
   }
 @snip.SnipEnd(resultHtml)
 
-  @* 2sxclint:disable:no-inline-script *@
+@* 2sxclint:disable:no-inline-script *@
 <script>
-  // Activate the controls which show the current live src of each picture/image tag
-  showChangingSrc("img-srcset")
-  showChangingSrc('img-srcset-auto');
-  showChangingSrc('img-srcset-auto-srcset');
-  showChangingSrc('img-srcset-auto2');
-  showChangingSrc('img-srcset-auto3');
-  showChangingSrc('img-srcset-auto4');
-  showChangingSrc('img-srcset-auto5');
+// Activate the js which show the current live src of each picture/image tag
+@Html.Raw(string.Join("\n", ShowSrcs.Select(id => "showChangingSrc('" + id + "');")))
 </script>
 
 @* 

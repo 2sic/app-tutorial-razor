@@ -13,24 +13,47 @@
 <script>
   function getbySelector(id) { return document.querySelector(id) };
 
-  function showCurrentSrc(imgId, labelId) {
-    const img = getbySelector(imgId);
-    // console.log(imgId, labelId, img);
-    let src = img.currentSrc;
+  function getImgAndLabel(labelId) {
+    // find the label
+    const label = document.querySelector(labelId);
+
+    // based on the label, try to find the image
+    // console.log("label", label);
+    var labelParentDiv = label.parentElement;
+    // console.log("labelParentDiv", labelParentDiv);
+    // based on the parent, find the next image sibling
+    var img = labelParentDiv.nextElementSibling;
+    // console.log("img", img);
+
+    // if still null, it's because it's wrapped inside the <hide-silent> tag
+    if (img == null)
+      img = labelParentDiv.parentElement.nextElementSibling;
+
+    // if the img is actually a picture tag, find the inner img
+    if (img.tagName == "PICTURE")
+      img = img.getElementsByTagName('img')[0];
+
+    // console.log("img", img != null);
+    return { img, label };
+  }
+
+
+  function showCurrentSrc(parts) {
+    // log for debugging
+    // console.log('showCurrentSrc', parts);
+    let src = parts.img.currentSrc;
+    if (!src) return;
     const lastSlash = src.lastIndexOf('/');
     src = "..." + src.substring(lastSlash);
-    const label = getbySelector(labelId);
-    if (label)
-      label.innerHTML = 'CurrentSrc:' + src;
-    else
-      console.warn("Can't find label: " + labelId);
+    parts.label.innerHTML = 'CurrentSrc:' + src;
   }
   
   function showChangingSrc(sampleId) {
     // note: the `-output` suffix is from the demo-tabs which place the img in a ...-output div
     const imgSelector = "#" + sampleId + "-default img";
     const labelId = "#" + sampleId + "-label";
-    showCurrentSrc(imgSelector, labelId);
-    getbySelector(imgSelector).onload = function () { showCurrentSrc(imgSelector, labelId); }
+    var parts = getImgAndLabel(labelId);
+    showCurrentSrc(parts);
+    parts.img.onload = function () { showCurrentSrc(parts); }
   }
 </script>

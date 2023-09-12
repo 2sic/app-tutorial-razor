@@ -12,11 +12,12 @@
       */
   }
   @functions {
-    dynamic ShowCurrentSrc(string id)
-    {
+    public List<string> ShowSrcs = new List<string>();
+    object ShowCurrentSrc(string id) {
+      ShowSrcs.Add(id);
       return Tag.Div().Class("alert alert-light").Wrap(
-      Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-      Tag.Code().Id(id + "-label")
+        Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
+        Tag.Code("image src should appear here").Id(id + "-label")
       );
     }
   }
@@ -168,8 +169,13 @@
   }
 @snip.SnipEnd(resultHtml)
 
-  @* 2sxclint:disable:no-inline-script *@
+@* 2sxclint:disable:no-inline-script *@
 <script>
+// Activate the js which show the current live src of each picture/image tag
+@Html.Raw(string.Join("\n", ShowSrcs.Select(id => "showChangingSrc('" + id + "');")))
+</script>
+
+@* <script>
   // Activate the controls which show the current live src of each picture/image tag
   showChangingSrc('demo-picture-formats');
   showChangingSrc('demo-picture-srcset');
@@ -177,7 +183,7 @@
   showChangingSrc('pic-auto-alt-class');
   showChangingSrc('pic-auto-control1');
   showChangingSrc('pic-auto-control2');
-</script>
+</script> *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
