@@ -21,6 +21,10 @@
   </div>
 </div>
 
+@* TODO: @2dg - move all to /razorblade/text/Snip-xxx.cshtml *@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".None", NameId = "razorblade-text" })
+
+
 <trim>
 <h3>Split Text after first key occurence</h3>
 <p>Using <code>Text.After(text, key)</code> only the text after the first found occurence of the <code>key</code> will be shown.</p>
