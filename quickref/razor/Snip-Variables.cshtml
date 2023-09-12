@@ -1,30 +1,26 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@snip.SnipStart()
-  @{
-    // Create variables using var; compiler detects the type
-    var firstName = "Terry";
-    var birthday = new DateTime(1948, 04, 28);
-    var age = DateTime.Now.Year - birthday.Year;
-    var decades = age / 10;             // int division - decades will be int
-    var decadesFloat = (float)age / 10; // float div - so it be float
-    int decadesInt = (int)decadesFloat; // this drops the decimal places
-  }
-  <ol>
-    <li>Show firstName (string): @firstName</li>
-    <li>
-      Show birthday (DateTime): <br>
-      @birthday
-    </li>
-    <li>
-      Show birthday (DateTime, formatted): <br>
-      @birthday.ToString("yyyy-MM-dd")
-    </li>
-    <li>Show age (int): @age</li>
-    <li>Show decades (int): @decades</li>
-    <li>Show decadesFloat (float): @decadesFloat</li>
-    <li>Show decadesInt (int): @decadesInt</li>
-  </ol>
-@snip.SnipEnd()
+@{
+  // Create variables using var; compiler detects the type
+  var firstName = "Terry";
+  var birthday = new DateTime(1948, 04, 28);
+  var age = DateTime.Now.Year - birthday.Year;
+  var decades = age / 10;             // int division - decades will be int
+  var decadesFloat = (float)age / 10; // float div - so it be float
+  int decadesInt = (int)decadesFloat; // this drops the decimal places
+}
+<ol>
+  <li>Show firstName (string): @firstName</li>
+  <li>
+    Show birthday (DateTime): <br>
+    @birthday
+  </li>
+  <li>
+    Show birthday (DateTime, formatted): <br>
+    @birthday.ToString("yyyy-MM-dd")
+  </li>
+  <li>Show age (int): @age</li>
+  <li>Show decades (int): @decades</li>
+  <li>Show decadesFloat (float): @decadesFloat</li>
+  <li>Show decadesInt (int): @decadesInt</li>
+</ol>

@@ -1,14 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  @functions {
-    string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
-  }
-  <ul>
-    <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
-    <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
-  </ul>
-@snip.SnipEnd()
+@functions {
+  string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
+}
+<ul>
+  <li>Boolmoji(true) ⇒ @Boolmoji(true)</li>
+  <li>Boolmoji(false) ⇒ @Boolmoji(false)</li>
+</ul>

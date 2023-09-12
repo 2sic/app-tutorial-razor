@@ -1,59 +1,54 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item") ); }
-@snip.SnipStart()
-  <p>
-    Normally you would use the following in an <code>href</code> attribute.
-  </p>
-  <h4>Current Page</h4>
-  <ol>
-    <li>This page URL: <br>
-      <code>@MyPage.Url</code>
-    </li>
-    <li>This page url params: <br>
-      <code>@MyPage.Parameters</code>
-    </li>
-    <li>Link this page without params: <br>
-      <code>@Link.To(parameters: "")</code>
-    </li>
-    <li>Link this page with same params: <br>
-      <code>@Link.To(parameters: MyPage.Parameters)</code>
-    </li>
-    <li>Link this page with same params: <br>
-      <code>@Link.To(parameters: MyPage.Parameters)</code>
-    </li>
-    <li>Link this page with more params: <br>
-      <code>@Link.To(parameters: MyPage.Parameters
-        .Add("another")
-        .Add("more", 27)
-        .Add("more", 42)
-      )</code>
-    </li>
-    <li>Link this page remove params: <br>
-      <code>@Link.To(parameters: MyPage.Parameters
-        .Remove("quick-ref-typed")
-      )</code>
-    </li>
-    <li>Link this page replace params: <br>
-      <code>@Link.To(parameters: MyPage.Parameters
-        .Set("quick-ref-typed", "test")
-      )</code>
-    </li>
-  </ol>
+<p>
+  Normally you would use the following in an <code>href</code> attribute.
+</p>
+<h4>Current Page</h4>
+<ol>
+  <li>This page URL: <br>
+    <code>@MyPage.Url</code>
+  </li>
+  <li>This page url params: <br>
+    <code>@MyPage.Parameters</code>
+  </li>
+  <li>Link this page without params: <br>
+    <code>@Link.To(parameters: "")</code>
+  </li>
+  <li>Link this page with same params: <br>
+    <code>@Link.To(parameters: MyPage.Parameters)</code>
+  </li>
+  <li>Link this page with same params: <br>
+    <code>@Link.To(parameters: MyPage.Parameters)</code>
+  </li>
+  <li>Link this page with more params: <br>
+    <code>@Link.To(parameters: MyPage.Parameters
+      .Add("another")
+      .Add("more", 27)
+      .Add("more", 42)
+    )</code>
+  </li>
+  <li>Link this page remove params: <br>
+    <code>@Link.To(parameters: MyPage.Parameters
+      .Remove("quick-ref-typed")
+    )</code>
+  </li>
+  <li>Link this page replace params: <br>
+    <code>@Link.To(parameters: MyPage.Parameters
+      .Set("quick-ref-typed", "test")
+    )</code>
+  </li>
+</ol>
 
-  <h4>Another Page</h4>
-  <p>
-    This only works if you don't have a page 12, 
-    otherwise you'll see an error in the url.
-  </p>
-  <ol>
-    <li>Link to page 12 without params: <br>
-      <code>@Link.To(pageId: 12)</code>
-    </li>
-    <li>Link to page 12 with current params: <br>
-      <code>@Link.To(pageId: 12, parameters: MyPage.Parameters)</code>
-    </li>
-  </ol>
-
-@snip.SnipEnd()
+<h4>Another Page</h4>
+<p>
+  This only works if you don't have a page 12, 
+  otherwise you'll see an error in the url.
+</p>
+<ol>
+  <li>Link to page 12 without params: <br>
+    <code>@Link.To(pageId: 12)</code>
+  </li>
+  <li>Link to page 12 with current params: <br>
+    <code>@Link.To(pageId: 12, parameters: MyPage.Parameters)</code>
+  </li>
+</ol>

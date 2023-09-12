@@ -1,32 +1,28 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item); }
-@snip.SnipStart()
-  @* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
-  @Kit.Page.AddJsonLd(new Dictionary<string, object> {
-      { "@context", "https://schema.org"},
-      { "@type", "Organization"},
-      { "url", "http://www.example.com"},
-      { "name", "Unlimited Ball Bearings Corp."},
-      { "contactPoint", new Dictionary<string, object> {
-        {"@type", "ContactPoint"},
-        {"telephone", "+1-401-555-1212"},
-        {"contactType", "Customer service"}
-      }}
-  })
+@* Create a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data *@
+@Kit.Page.AddJsonLd(new Dictionary<string, object> {
+    { "@context", "https://schema.org"},
+    { "@type", "Organization"},
+    { "url", "http://www.example.com"},
+    { "name", "Unlimited Ball Bearings Corp."},
+    { "contactPoint", new Dictionary<string, object> {
+      {"@type", "ContactPoint"},
+      {"telephone", "+1-401-555-1212"},
+      {"contactType", "Customer service"}
+    }}
+})
 
-  @* Set some OpenGraph headers *@
-  @Kit.Page.AddOpenGraph("title", "2sxc QuickRef Razor Typed")
-  @Kit.Page.AddOpenGraph("type", "website")
-  <p>
-    This uses <code>Kit.Page.SetTitle(...)</code> and other methods to modify the HTML sent to the browser. 
-    It sets various aspecs such as <code>title</code> or FavIcons.
-  </p>
-  <ol>
-    <li><code>meta title</code>, <code>meta description</code>, <code>meta keywords</code> </li>
-    <li>favicon</li>
-    <li>some JsonLd for google</li>
-    <li>OpenGraph headers for FaceBook, Twitter, etc.</li>
-  </ol>
-@snip.SnipEnd()
+@* Set some OpenGraph headers *@
+@Kit.Page.AddOpenGraph("title", "2sxc QuickRef Razor Typed")
+@Kit.Page.AddOpenGraph("type", "website")
+<p>
+  This uses <code>Kit.Page.SetTitle(...)</code> and other methods to modify the HTML sent to the browser. 
+  It sets various aspecs such as <code>title</code> or FavIcons.
+</p>
+<ol>
+  <li><code>meta title</code>, <code>meta description</code>, <code>meta keywords</code> </li>
+  <li>favicon</li>
+  <li>some JsonLd for google</li>
+  <li>OpenGraph headers for FaceBook, Twitter, etc.</li>
+</ol>

@@ -1,35 +1,31 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item ); }
-@snip.SnipStart()
-  <ol>
-    <li>Platform name: '<code>@CmsContext.Platform.Name</code>'</li>
-    <li>Platform type: '<code>@CmsContext.Platform.Type</code>'</li>
-    <li>Platform version: '<code>@CmsContext.Platform.Version</code>'</li>
+<ol>
+  <li>Platform name: '<code>@CmsContext.Platform.Name</code>'</li>
+  <li>Platform type: '<code>@CmsContext.Platform.Type</code>'</li>
+  <li>Platform version: '<code>@CmsContext.Platform.Version</code>'</li>
 
-    <li>Culture Current Code: '<code>@CmsContext.Culture.CurrentCode</code>'</li>
-    <li>Culture Default Code: '<code>@CmsContext.Culture.DefaultCode</code>'</li>
+  <li>Culture Current Code: '<code>@CmsContext.Culture.CurrentCode</code>'</li>
+  <li>Culture Default Code: '<code>@CmsContext.Culture.DefaultCode</code>'</li>
 
-    <li>Site Id: '<code>@CmsContext.Site.Id</code>'</li>
-    <li>Site Url: '<code>@CmsContext.Site.Url</code>'</li>
-    <li>Site UrlRoot: '<code>@CmsContext.Site.UrlRoot</code>'</li>
+  <li>Site Id: '<code>@CmsContext.Site.Id</code>'</li>
+  <li>Site Url: '<code>@CmsContext.Site.Url</code>'</li>
+  <li>Site UrlRoot: '<code>@CmsContext.Site.UrlRoot</code>'</li>
 
-    <li>Page Id: '<code>@CmsContext.Page.Id</code>'</li>
-    <li>Page Url: '<code>@CmsContext.Page.Url</code>'</li>
-    <li>Page Url Parameters: '<code>@CmsContext.Page.Parameters</code>'</li>
+  <li>Page Id: '<code>@CmsContext.Page.Id</code>'</li>
+  <li>Page Url: '<code>@CmsContext.Page.Url</code>'</li>
+  <li>Page Url Parameters: '<code>@CmsContext.Page.Parameters</code>'</li>
 
-    <li>Module Id: '<code>@CmsContext.Module.Id</code>'</li>
+  <li>Module Id: '<code>@CmsContext.Module.Id</code>'</li>
 
-    <li>User Id: '<code>@CmsContext.User.Id</code>'</li>
-    <li>User Name: '<code>@CmsContext.User.Name</code>'</li>
-    <li>User IsContentAdmin: '<code>@CmsContext.User.IsContentAdmin</code>'</li>
-    <li>User IsSiteAdmin: '<code>@CmsContext.User.IsSiteAdmin</code>'</li>
-    <li>User IsSystemAdmin: '<code>@CmsContext.User.IsSystemAdmin</code>'</li>
+  <li>User Id: '<code>@CmsContext.User.Id</code>'</li>
+  <li>User Name: '<code>@CmsContext.User.Name</code>'</li>
+  <li>User IsContentAdmin: '<code>@CmsContext.User.IsContentAdmin</code>'</li>
+  <li>User IsSiteAdmin: '<code>@CmsContext.User.IsSiteAdmin</code>'</li>
+  <li>User IsSystemAdmin: '<code>@CmsContext.User.IsSystemAdmin</code>'</li>
 
-    <li>View Id: '<code>@CmsContext.View.Id</code>'</li>
-    <li>View Identifier: '<code>@CmsContext.View.Identifier</code>' (blank if no special identifier) </li>
-    <li>View Name: '<code>@CmsContext.View.Name</code>'</li>
-    <li>View Edition: '<code>@CmsContext.View.Edition</code>' (blank if no special CSS Framework edition) </li>
-  </ol>
-@snip.SnipEnd()
+  <li>View Id: '<code>@CmsContext.View.Id</code>'</li>
+  <li>View Identifier: '<code>@CmsContext.View.Identifier</code>' (blank if no special identifier) </li>
+  <li>View Name: '<code>@CmsContext.View.Name</code>'</li>
+  <li>View Edition: '<code>@CmsContext.View.Edition</code>' (blank if no special CSS Framework edition) </li>
+</ol>
