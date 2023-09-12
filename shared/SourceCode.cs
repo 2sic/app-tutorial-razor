@@ -202,7 +202,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     internal string SnippetId {get; private set;}
     public string TabPrefix {get; protected set;}
     protected Wrap WrapAll;
-    protected SourceWrapBase SourceWrap;
+    protected WrapOutSrcBase SourceWrap;
     internal TabHandlerBase TabHandler;
     internal ITypedItem Item;
 
@@ -339,12 +339,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   internal class TabHandlerBase
   {
-    public TabHandlerBase(SourceCode scParent, ITypedItem item,
+    public TabHandlerBase(SourceCode scParent,
+      ITypedItem item,
       Dictionary<string, string> tabs,
       bool addOutput = false,
       bool outputWithSource = false,
       bool sourceAtEnd = false,
-      string activeTabName = null
+      string activeTabName = null,
+      WrapOutSrcBase sourceWrap = null
     ) {
       ScParent = scParent;
       Item = item;
@@ -352,11 +354,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       _addOutput = addOutput;
       _outputWithSource = outputWithSource;
       _sourceAtEnd = sourceAtEnd;
-      ActiveTabName = activeTabName ?? ResultTabName;
+      ActiveTabName = (sourceWrap != null)
+        ? sourceWrap.TabSelected
+        : activeTabName ?? ResultTabName;
     }
     public readonly Dictionary<string, string> Tabs;
     public readonly SourceCode ScParent;
-    public ITypedItem Item { get; protected set; }
+    public ITypedItem Item { get; private set; }
     private bool _addOutput;
     private bool _outputWithSource;
     private bool _sourceAtEnd;
@@ -538,7 +542,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   // so that we can remove the snippetwithintrosection
   // and instead switch between the "wrappers"
   // - so finish moving wrap-logic - incl. close-between etc.
-  // to the SourceWrapBase etc.
+  // to the WrapOutSrcBase etc.
   // so the final class can just call the various Start/End/Between etc.
   internal class WrapAllIntroInside : Wrap
   {
@@ -554,7 +558,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     ); }
   }
 
-  internal class SourceWrapIntroWithSource : SourceWrapBase
+  internal class SourceWrapIntroWithSource : WrapOutSrcBase
   {
     public SourceWrapIntroWithSource(SectionBase sb) : base(sb, "SourceWrapIntroWithSource") { }
 
@@ -692,11 +696,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     ) : base(sourceCode, item, tabs)
     {
       if (item == null) throw new Exception("Item should never be null");
-      var splitter = sourceCode.GetSourceWrap(this, item, "temp");
+      var splitter = sourceCode.GetSourceWrap(this, item);
       SourceWrap = splitter;
-      var merge = (splitter is SourceWrapSplit) && (splitter as SourceWrapSplit).Active;
-      if (!merge) merge = (splitter is SourceWrapBelowOutputBox);
-      TabHandler = new TabHandlerBase(sourceCode, item, tabs, addOutput: true, outputWithSource: merge, activeTabName: merge ? ResultAndSourceTabName : SourceTabName);
+      var merge = (splitter is WrapOutSplitSrc) && (splitter as WrapOutSplitSrc).Active;
+      if (!merge) merge = (splitter is WrapOutOverSrc);
+      TabHandler = new TabHandlerBase(sourceCode, item, tabs,
+        addOutput: true, outputWithSource: merge,
+        // activeTabName: merge ? ResultAndSourceTabName : SourceTabName,
+        sourceWrap: SourceWrap
+      );
     }
 
     public override ITag SnipStart(string snippetId = null) {
@@ -712,16 +720,23 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region SourceWrappers
 
-  private SourceWrapBase GetSourceWrap(SectionBase section, ITypedItem item, string code) {
-    code = item != null ? item.String("OutputAndSourceDisplay") : code;
-    // Default ATM: split
-    if (!code.Has() || code == "split")
-      return new SourceWrapSplit(section);
-    if (code == "temp" || code == "out-over-src")
-      return new SourceWrapBelowOutputBox(section, Tag.RawHtml("temp"));
+  private WrapOutSrcBase GetSourceWrap(SectionBase section, ITypedItem item) {
+    var code = item != null ? item.String("OutputAndSourceDisplay") : null;
+    // Default Output over Source
+    if (!code.Has() || code == "out-over-src")
+      return new WrapOutOverSrc(section, intro: null);
+
+    // Split - either a real split, or if width == 0, then 2 tabs
+    if (code == "split") {
+      if (item.Int("OutputWidth") != 0)
+        return new WrapOutSplitSrc(section);
+      var wrap = new WrapOutSrcBase(section, null, false);
+      wrap.TabSelected = SourceTabName;
+      return wrap;
+    }
     // SourceWrapIntro
     // SourceWrapIntroWithSource
-    return new SourceWrapBase(section);
+    return new WrapOutSrcBase(section, null, false);
   }
 
 
@@ -746,23 +761,29 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
   }
 
-  public class SourceWrapBase: Wrap
+  public class WrapOutSrcBase: Wrap
   {
     public const string Indent1 = "      ";
     public const string Indent2 = "        ";
-    public SourceWrapBase(SectionBase sb, string name = null) : base(sb, name ?? "SourceWrapBase") {
+    public WrapOutSrcBase(SectionBase sb, string name, bool combined = false) : base(sb, name ?? "WrapOutSrcBase") {
       Section = sb;
+      Tabs = combined
+        ? new List<string> { ResultAndSourceTabName }
+        : new List<string> { ResultTabName, SourceTabName };
+      TabSelected = combined ? ResultAndSourceTabName : ResultTabName;
     }
+    public readonly List<string> Tabs;
+    public string TabSelected {get; set;}
     protected readonly SectionBase Section;
     public virtual ITag GetBetween() { return null; }
   }
 
   /// <summary>
-  /// Todo: Create SourceWrapBelowOutputBox
+  /// Show Out in box above src
   /// </summary>
-  internal class SourceWrapBelowOutputBox: SourceWrapBase
+  internal class WrapOutOverSrc: WrapOutSrcBase
   {
-    public SourceWrapBelowOutputBox(SectionBase section, ITag intro) : base(section, "SourceWrapBelowOutputBox")
+    public WrapOutOverSrc(SectionBase section, ITag intro) : base(section, "WrapOutOverSrc", true)
     {
     }
     private ITag Intro;
@@ -777,9 +798,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag GetBetween() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
   }
 
-  internal class SourceWrapSplit: SourceWrapBase
+  internal class WrapOutSplitSrc: WrapOutSrcBase
   {
-    public SourceWrapSplit(SectionBase section) : base(section)
+    public WrapOutSplitSrc(SectionBase section) : base(section, "WrapOutSplitSrc", true)
     {
       FirstWidth = section.Item.Int("OutputWidth", fallback: 0);
       Active = FirstWidth > 0;
