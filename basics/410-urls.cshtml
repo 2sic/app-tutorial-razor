@@ -15,6 +15,9 @@
   </div>
 </div>
 
+@* TODO: @2dg *@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".None", NameId = "razorblade-safeurls" })
+
 
 @((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   @{
@@ -27,6 +30,12 @@
     👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
   </p>
   <img loading="lazy" src='@safeUrl' id="demo-logo">
+  <style>
+    #demo-logo {
+      width: 50px;
+      padding-right: 20px;
+    }
+  </style>
 @snip.SnipEnd()
 
 <hide>
@@ -49,12 +58,6 @@
   </li>
 </ul>
 
-<style>
-  #demo-logo {
-    width: 50px;
-    padding-right: 20px;
-  }
-</style>
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

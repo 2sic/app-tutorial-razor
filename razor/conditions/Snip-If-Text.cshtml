@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+
+@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
+@snip.SnipStart()
+  @{
+    var val4 = "orange";
+  }
+  @if (val4 != "pink") {
+    <text>it's not pink</text>
+  }
+@snip.SnipEnd()

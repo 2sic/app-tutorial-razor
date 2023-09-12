@@ -7,9 +7,20 @@
   var accSpecs = AsItems(App.Data["TutAccordion"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 }
 
-@accordion.Start(accSpecs)
-  @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
-@accordion.End()
+@if (accSpecs != null) {
+  @accordion.Start(accSpecs)
+    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
+  @accordion.End()
+} else if (MyUser.IsSystemAdmin) {
+  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutAccordion", prefill: new {
+    NameId = MyModel.String("NameId")
+  })>
+    The Accordion Set <strong>@MyModel.String("NameId")</strong> was not found.
+    <br />
+    This is something you probably want to create next.
+    Use the Toolbar to create.
+  </div>
+}
 
 @* Add a padding - if ever this may be impractical, then we can change it to be controlled by a parameter *@
 <p>&nbsp;</p>

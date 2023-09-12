@@ -108,7 +108,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
       .Where(line => !string.IsNullOrWhiteSpace(line))
       .Select(line => line.TakeWhile(Char.IsWhiteSpace).Count());
 
-    var minIndent = indents.Min();
+    var minIndent = indents.Any() ? indents.Min() : 0;
 
     result = result
       .Select(line => string.IsNullOrWhiteSpace(line) ? line : line.Substring(minIndent))

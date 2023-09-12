@@ -351,6 +351,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       ScParent = scParent;
       Item = item;
       Tabs = tabs ?? new Dictionary<string, string>();
+      SourceWrap = sourceWrap;
       _addOutput = addOutput;
       _outputWithSource = outputWithSource;
       _sourceAtEnd = sourceAtEnd;
@@ -365,6 +366,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     private bool _outputWithSource;
     private bool _sourceAtEnd;
     public string ActiveTabName;
+    private readonly WrapOutSrcBase SourceWrap;
 
     #region TabNames
 
@@ -401,7 +403,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       );
       // Build list
       var list = new List<object>();
-      if (_addOutput) {
+
+      // If we have source-wrap, that determines what tabs to add
+      if (this.SourceWrap != null) {
+        log.Add("SourceWrap: " + SourceWrap);
+        list.AddRange(SourceWrap.Tabs);
+      }
+      // Old section, remove as soon as all specs come from the item
+      else if (_addOutput) {
         log.Add("addOutput");
         list.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
         if (!_outputWithSource && !_sourceAtEnd) list.Add(SourceTabName);
@@ -698,10 +707,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (item == null) throw new Exception("Item should never be null");
       var splitter = sourceCode.GetSourceWrap(this, item);
       SourceWrap = splitter;
-      var merge = (splitter is WrapOutSplitSrc) && (splitter as WrapOutSplitSrc).Active;
-      if (!merge) merge = (splitter is WrapOutOverSrc);
+      // var merge = (splitter is WrapOutSplitSrc) && (splitter as WrapOutSplitSrc).Active;
+      // if (!merge) merge = (splitter is WrapOutOverSrc);
       TabHandler = new TabHandlerBase(sourceCode, item, tabs,
-        addOutput: true, outputWithSource: merge,
+        addOutput: true, // outputWithSource: merge,
         // activeTabName: merge ? ResultAndSourceTabName : SourceTabName,
         sourceWrap: SourceWrap
       );
@@ -721,7 +730,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   #region SourceWrappers
 
   private WrapOutSrcBase GetSourceWrap(SectionBase section, ITypedItem item) {
-    var code = item != null ? item.String("OutputAndSourceDisplay") : null;
+    string code = null;
+    if (item != null) {
+      if (item.IsNotEmpty("OutputAndSourceDisplay"))
+        code = item.String("OutputAndSourceDisplay");
+      var parent = AsItem(item.Parents(type: "TutAccordion"));
+      if (parent != null && parent.IsNotEmpty("OutputAndSourceDisplay"))
+        code = parent.String("OutputAndSourceDisplay");
+    }
     // Default Output over Source
     if (!code.Has() || code == "out-over-src")
       return new WrapOutOverSrc(section, intro: null);
@@ -802,41 +818,33 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   {
     public WrapOutSplitSrc(SectionBase section) : base(section, "WrapOutSplitSrc", true)
     {
-      FirstWidth = section.Item.Int("OutputWidth", fallback: 0);
-      Active = FirstWidth > 0;
+      FirstWidth = section.Item.Int("OutputWidth", fallback: 50);
     }
-    public readonly bool Active;
     private int FirstWidth;
 
-    public override ITag GetStart(ITag result) { return !Active
-      ? result
-      : Tag.RawHtml(
-          result,
-          Comment("", "Splitter"),
-          Indent1,
-          TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter").Class("splitter-group")),
-          "\n" + Indent2 + "<!-- split left -->",
-          "\n" + Indent2,
-          TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter-left")),
-          "\n" + Indent2,
-          Tag.H4("Output"),
-          Indent1
-        );
-    }
+    public override ITag GetStart(ITag result) { return Tag.RawHtml(
+      result,
+      Comment("", "Splitter"),
+      Indent1,
+      TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter").Class("splitter-group")),
+      "\n" + Indent2 + "<!-- split left -->",
+      "\n" + Indent2,
+      TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter-left")),
+      "\n" + Indent2,
+      Tag.H4("Output"),
+      Indent1
+    ); }
 
-    public override ITag GetBetween() { return !Active
-      ? null
-      : Tag.RawHtml("\n" + Indent2 + "<!-- /split-left -->"
-        + "\n" + Indent2,
-        TagCount.CloseDiv(),
-        "\n" + Indent2 + "<!-- split-right -->"
-        + "\n" + Indent2,
-        TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter-right"))
-        );
-    }
+    public override ITag GetBetween() { return Tag.RawHtml(
+      "\n" + Indent2 + "<!-- /split-left -->"
+      + "\n" + Indent2,
+      TagCount.CloseDiv(),
+      "\n" + Indent2 + "<!-- split-right -->"
+      + "\n" + Indent2,
+      TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter-right"))
+    ); }
+
     public override ITag GetAfter() {
-      // Skip if not active
-      if (!Active) return null;
       // Ensure it's registered in turnOn
       Section.ScParent.Kit.Page.TurnOn("window.splitter.init()", data: new {
         parts = new [] {

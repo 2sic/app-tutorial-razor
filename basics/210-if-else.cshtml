@@ -14,6 +14,8 @@
   </div>
 </div>
 
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".None", NameId = "razor-conditions" })
+@* 
 
 <h3>Basic <code>if</code></h3>
 
@@ -61,7 +63,7 @@
     var val3 = "blue";
   }
   @(val3 == "red" ? "it's red" : "it's not red")
-@snip.SnipEnd()
+@snip.SnipEnd() *@
 
 
 @* Footer *@
