@@ -1,30 +1,27 @@
 @inherits Custom.Hybrid.Razor14
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@*!
+Tut.Tabs=file:../../reuse/box.cshtml
 
-
-@* Note: this is only typed, because the inner file is typed; the other code is identical *@
-
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item, tabs: "file:../../reuse/box.cshtml" ); }
-@snip.SnipStart()
-  <h4>Call some external Razor files</h4>
-  <ol>
-    <li>
-      @Html.Partial("../../reuse/box.cshtml", new {
-        Label = "Hello, this is the first line"
-      })
-    </li>
-    <li>
-      @Html.Partial("../../reuse/box.cshtml", new {
-        Label = "Second line!",
-        Color = "red"
-      })
-    </li>
-    <li>
-      @{
-        var label = "Third line!"; // if variable name is the same...
-        var color = "green";  // if variable name is the same...
-      }
-      @Html.Partial("../../reuse/box.cshtml", new { label, color })
-    </li>
-  </ol>
-@snip.SnipEnd()
+Note: this is only typed, because the inner file is typed; the other code is identical 
+!*@
+<h4>Call some external Razor files</h4>
+<ol>
+  <li>
+    @Html.Partial("../../reuse/box.cshtml", new {
+      Label = "Hello, this is the first line"
+    })
+  </li>
+  <li>
+    @Html.Partial("../../reuse/box.cshtml", new {
+      Label = "Second line!",
+      Color = "red"
+    })
+  </li>
+  <li>
+    @{
+      var label = "Third line!"; // if variable name is the same...
+      var color = "green";  // if variable name is the same...
+    }
+    @Html.Partial("../../reuse/box.cshtml", new { label, color })
+  </li>
+</ol>

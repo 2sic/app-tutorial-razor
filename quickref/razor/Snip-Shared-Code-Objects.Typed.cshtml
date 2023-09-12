@@ -1,97 +1,94 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
-
+@*!
+Tut.Tabs=file:../../reuse/ReturnObjects.cs
+!*@
+<hidden-silent>
 @functions {
   // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
   private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("/Shared/TestHelpers.cs")); }}
   private object _testHelpers;
 
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
+}  
+</hidden-silent>
+@{
+  // helper library which will return object
+  var lib = GetCode("../../reuse/ReturnObjects.cs");
 }
+<h4>Working with anonymous objects</h4>
+<p>
+  The only way to get values from an anonymous object 
+  created elsewhere is using 
+  <code>AsTyped(... as object)</code>.
+  Everything else will 🚫.
+</p>
+@{
+  // Various ways to (try) to get values from an anonymous object
+  var anon = lib.GetAnonymous();
+  var anonDyn = anon as dynamic;
+  var aTypedDyn = AsTyped(anon);
+  var aTyped = AsTyped(anon as object);
+}
+<ol>
+  <li>Anon: @anon</li>
+  <li>Anon Type: @anon.GetType()</li>
+  <li>aTyped.Name ✅: @aTyped.Get("Name")</li>
+  <li>Anon.Name 🚫: @TryGet(() => anon.Name)</li>
+  <li>anonDyn.Name 🚫: @TryGet(() => anonDyn.Name)</li>
+  <li>aTypedDyn.Name 🚫: @TryGet(() => aTypedDyn.Get("Name"))</li>
+</ol>
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/ReturnObjects.cs" ); }
-@snip.SnipStart()
-  tutorials: new string[] { "reuse210", "reuse310", "reuse320" })).SnipStart())
-  @{
-    // helper library which will return object
-    var lib = GetCode("../../reuse/ReturnObjects.cs");
-  }
-  <h4>Working with anonymous objects</h4>
-  <p>
-    The only way to get values from an anonymous object 
-    created elsewhere is using 
-    <code>AsTyped(... as object)</code>.
-    Everything else will 🚫.
-  </p>
-  @{
-    // Various ways to (try) to get values from an anonymous object
-    var anon = lib.GetAnonymous();
-    var anonDyn = anon as dynamic;
-    var aTypedDyn = AsTyped(anon);
-    var aTyped = AsTyped(anon as object);
-  }
-  <ol>
-    <li>Anon: @anon</li>
-    <li>Anon Type: @anon.GetType()</li>
-    <li>aTyped.Name ✅: @aTyped.Get("Name")</li>
-    <li>Anon.Name 🚫: @TryGet(() => anon.Name)</li>
-    <li>anonDyn.Name 🚫: @TryGet(() => anonDyn.Name)</li>
-    <li>aTypedDyn.Name 🚫: @TryGet(() => aTypedDyn.Get("Name"))</li>
-  </ol>
+<h4>Working with <code>ITyped</code> objects</h4>
+<p>
+  If the returned object is based on <code>ITyped</code>, things are a bit easier.
+  But you must still ensure that Razor knows the type.
+</p>
+@{
+  var typedDyn = lib.GetTyped();          // Razor sees this as dynamic
+  var typed = AsTyped(typedDyn as object);// this is now typed
+}
+<ol>
+  <li>Name ✅: @typed.Get("Name")</li>
+  <li>Name (string) ✅: @typed.String("Name")</li>
+</ol>
 
-  <h4>Working with <code>ITyped</code> objects</h4>
-  <p>
-    If the returned object is based on <code>ITyped</code>, things are a bit easier.
-    But you must still ensure that Razor knows the type.
-  </p>
-  @{
-    var typedDyn = lib.GetTyped();          // Razor sees this as dynamic
-    var typed = AsTyped(typedDyn as object);// this is now typed
-  }
-  <ol>
-    <li>Name ✅: @typed.Get("Name")</li>
-    <li>Name (string) ✅: @typed.String("Name")</li>
-  </ol>
-
-  <h4>Working with real objects</h4>
-  <p>
-    If the returned object is based on a class, things are a bit easier.
-  </p>
-  @{
-    // Various ways to (try) to get values from real object
-    // note that for Razor, the type is `dynamic`
-    var person = lib.GetPerson();
-    var pTypedDyn = AsTyped(person);
-    var pTyped = AsTyped(person as object);
-  }
-  <ol>
-    <li>Person: @person</li>
-    <li>Person Type: @person.GetType()</li>
-    <li>Person.Name ✅: @person.Name</li>
-    <li>pTyped.Get("Name") ✅: @pTyped.Get("Name")</li>
-    <li>pTyped.String("Name") ✅: @pTyped.String("Name")</li>
-    <li>pTypedDyn.Get("Name") 🚫: @TryGet(() => pTypedDyn.Get("Name"))</li>
-  </ol>
+<h4>Working with real objects</h4>
+<p>
+  If the returned object is based on a class, things are a bit easier.
+</p>
+@{
+  // Various ways to (try) to get values from real object
+  // note that for Razor, the type is `dynamic`
+  var person = lib.GetPerson();
+  var pTypedDyn = AsTyped(person);
+  var pTyped = AsTyped(person as object);
+}
+<ol>
+  <li>Person: @person</li>
+  <li>Person Type: @person.GetType()</li>
+  <li>Person.Name ✅: @person.Name</li>
+  <li>pTyped.Get("Name") ✅: @pTyped.Get("Name")</li>
+  <li>pTyped.String("Name") ✅: @pTyped.String("Name")</li>
+  <li>pTypedDyn.Get("Name") 🚫: @TryGet(() => pTypedDyn.Get("Name"))</li>
+</ol>
 
 
-  <h4>Working with dictionaries</h4>
-  @{
-    var dicDyn = lib.GetDictionary();
-    var dic = dicDyn as System.Collections.Generic.Dictionary<string, string>;
-  }
-  <p>
-    If the returned object is based on a dictionary, things are a bit easier.
-    This is because <code>dynamic</code> will be able to work with it, but it's not type safe.
-  </p>
-  <ol>
-    <li>dicDyn: @dicDyn</li>
-    <li>dicDyn Type: @dicDyn.GetType()</li>
-    <li>dicDyn Count ✅: @dicDyn.Count</li>
-    <li>dicDyn["Name"] ✅: @dicDyn["Name"]</li>
-    <li>dic: @dic</li>
-    <li>dic Type: @dic.GetType()</li>
-    <li>dic Count ✅: @dic.Count</li>
-    <li>dic["Name"] ✅: @dic["Name"]</li>
-  </ol>
-@snip.SnipEnd()
+<h4>Working with dictionaries</h4>
+@{
+  var dicDyn = lib.GetDictionary();
+  var dic = dicDyn as System.Collections.Generic.Dictionary<string, string>;
+}
+<p>
+  If the returned object is based on a dictionary, things are a bit easier.
+  This is because <code>dynamic</code> will be able to work with it, but it's not type safe.
+</p>
+<ol>
+  <li>dicDyn: @dicDyn</li>
+  <li>dicDyn Type: @dicDyn.GetType()</li>
+  <li>dicDyn Count ✅: @dicDyn.Count</li>
+  <li>dicDyn["Name"] ✅: @dicDyn["Name"]</li>
+  <li>dic: @dic</li>
+  <li>dic Type: @dic.GetType()</li>
+  <li>dic Count ✅: @dic.Count</li>
+  <li>dic["Name"] ✅: @dic["Name"]</li>
+</ol>

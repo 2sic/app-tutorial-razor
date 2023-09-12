@@ -1,12 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:../../reuse/line.cshtml" ); }
-@snip.SnipStart()
-  <h4>Call some external Razor files</h4>
-  <ol>
-    <li>@Html.Partial("../../reuse/line.cshtml")</li>
-    <li>@Html.Partial("../../reuse/line.cshtml")</li>
-  </ol>
-@snip.SnipEnd()
+@*!
+Tut.Tabs=file:../../reuse/line.cshtml
+!*@
+<h4>Call some external Razor files</h4>
+<ol>
+  <li>@Html.Partial("../../reuse/line.cshtml")</li>
+  <li>@Html.Partial("../../reuse/line.cshtml")</li>
+</ol>

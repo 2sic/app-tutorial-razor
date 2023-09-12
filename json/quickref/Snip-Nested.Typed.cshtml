@@ -1,60 +1,55 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
-
+@*!
+Tut.Tabs=file:json/dude-marc.json,file:json/dude-frank.json
+!*@
 @{
   string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
+
+  // Simple JSON strings which could come from a file or web service
+  var jMarc = System.IO.File.ReadAllText(jsonRoot + "/dude-marc.json");
+  var jFrank = System.IO.File.ReadAllText(jsonRoot + "/dude-frank.json");
+
+  // Convert the JSON to ITyped
+  var marc = Kit.Json.ToTyped(jMarc);
+  var frank = Kit.Json.ToTyped(jFrank);
+  var year = DateTime.Now.Year;
 }
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude-marc.json,file:json/dude-frank.json" ); }
-@snip.SnipStart()
-  @{
-    // Simple JSON strings which could come from a file or web service
-    var jMarc = System.IO.File.ReadAllText(jsonRoot + "/dude-marc.json");
-    var jFrank = System.IO.File.ReadAllText(jsonRoot + "/dude-frank.json");
-
-    // Convert the JSON to ITyped
-    var marc = Kit.Json.ToTyped(jMarc);
-    var frank = Kit.Json.ToTyped(jFrank);
-    var year = DateTime.Now.Year;
-  }
-  <h4>Marc</h4>
-  <ol>
-    <li>marc.ToString():
-      <code>@marc.ToString()</code>
-    </li>
-    <li>name <code>.String("Name")</code>
-      <code>@marc.String("Name")</code>
-    </li>
-    <li>age: <code>@marc.Get("Age")</code></li>
-    <li>birth year:
-      <code>@(year - marc.Int("Age"))</code>
-    </li>
-    <li>car make (will be null):
-      <code>@marc.String("Car.Make", required: false)</code>
-    </li>
-    <li>
-      Friends using <code>AsTypedList(...)</code>
-      <ul>
-        @foreach(var friend in AsTypedList(marc.Get("friends"))) {
-          <li>@friend.String("Name")</li>
-        }
-      </ul>      
-    </li>
-  </ol>
-  <h4>Frank</h4>
-  <ol>
-    <li>#2 frank.ToString():
-      <code>@frank.ToString()</code>
-    </li>
-    <li>#2 name:
-      <code>@frank.String("Name")</code>
-    </li>
-    <li>#2 car make:
-      <code>@frank.String("Car.Make")</code>
-    </li>
-    <li>#2 car ToString():
-      <code>@frank.Get("Car").ToString()</code>
-    </li>
-  </ol>
-@snip.SnipEnd()
+<h4>Marc</h4>
+<ol>
+  <li>marc.ToString():
+    <code>@marc.ToString()</code>
+  </li>
+  <li>name <code>.String("Name")</code>
+    <code>@marc.String("Name")</code>
+  </li>
+  <li>age: <code>@marc.Get("Age")</code></li>
+  <li>birth year:
+    <code>@(year - marc.Int("Age"))</code>
+  </li>
+  <li>car make (will be null):
+    <code>@marc.String("Car.Make", required: false)</code>
+  </li>
+  <li>
+    Friends using <code>AsTypedList(...)</code>
+    <ul>
+      @foreach(var friend in AsTypedList(marc.Get("friends"))) {
+        <li>@friend.String("Name")</li>
+      }
+    </ul>      
+  </li>
+</ol>
+<h4>Frank</h4>
+<ol>
+  <li>#2 frank.ToString():
+    <code>@frank.ToString()</code>
+  </li>
+  <li>#2 name:
+    <code>@frank.String("Name")</code>
+  </li>
+  <li>#2 car make:
+    <code>@frank.String("Car.Make")</code>
+  </li>
+  <li>#2 car ToString():
+    <code>@frank.Get("Car").ToString()</code>
+  </li>
+</ol>

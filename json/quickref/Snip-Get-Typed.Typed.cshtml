@@ -1,32 +1,28 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
+@*!
+Tut.Tabs=file:json/dude.json
+!*@
 @{
   // Variables for the tests
   string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
+
+  // Simple JSON strings which could come from a file or web service
+  var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
+
+  // Convert the JSON to ITyped
+  var dude = Kit.Json.ToTyped(jDude);
 }
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/dude.json" ); }
-@snip.SnipStart()
-  @{
-    // Simple JSON strings which could come from a file or web service
-    var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
-
-    // Convert the JSON to ITyped
-    var dude = Kit.Json.ToTyped(jDude);
-  }
-  <ol>
-    <li>
-      <code>.String("Name")</code> (typed): @dude.String("Name")
-    </li>
-    <li>
-      <code>.Int("Age")</code>: @dude.Int("Age")
-    </li>
-    <li>
-      Add using Int(...): <code>@(100 + dude.Int("Age"))</code>
-    </li>
-    <li>
-      Add using String(...): <code>@(100 + dude.String("Age"))</code>
-    </li>
-  </ol>
-@snip.SnipEnd()
+<ol>
+  <li>
+    <code>.String("Name")</code> (typed): @dude.String("Name")
+  </li>
+  <li>
+    <code>.Int("Age")</code>: @dude.Int("Age")
+  </li>
+  <li>
+    Add using Int(...): <code>@(100 + dude.Int("Age"))</code>
+  </li>
+  <li>
+    Add using String(...): <code>@(100 + dude.String("Age"))</code>
+  </li>
+</ol>

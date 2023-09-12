@@ -1,39 +1,33 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
-
+@*!
+Tut.Tabs=file:json/cities.json
+!*@
+@functions {
+  // Custom class to deserialize JSON into
+  // must be inside an @functions section
+  public class City {
+    public string Name { get; set; }
+    public int ZipCode { get; set; }
+    public List<City> PartnerCities { get;set; }
+  }
+}
 @{
   string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
+  var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
+
+  // Convert the JSON to City
+  var cities = Kit.Json.To<City[]>(jCities);
 }
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:json/cities.json" ); }
-@snip.SnipStart()
-  @functions {
-    // Custom class to deserialize JSON into
-    // must be inside an @functions section
-    public class City {
-      public string Name { get; set; }
-      public int ZipCode { get; set; }
-      public List<City> PartnerCities { get;set; }
-    }
+<ul>
+  @foreach(var city in cities) {
+    <li>
+      <code>@city.Name</code>: @city.ZipCode
+      @if (city.PartnerCities != null) {
+        <br>
+        <span>Partner Cities:
+          @string.Join(", ", city.PartnerCities.Select(c => c.Name))
+        </span>
+      }
+    </li>
   }
-  @{
-    var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
-
-    // Convert the JSON to City
-    var cities = Kit.Json.To<City[]>(jCities);
-  }
-  <ul>
-    @foreach(var city in cities) {
-      <li>
-        <code>@city.Name</code>: @city.ZipCode
-        @if (city.PartnerCities != null) {
-          <br>
-          <span>Partner Cities:
-            @string.Join(", ", city.PartnerCities.Select(c => c.Name))
-          </span>
-        }
-      </li>
-    }
-  </ul>
-  @snip.SnipEnd()
+</ul>

@@ -1,24 +1,20 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@*!
+Tut.Tabs=file:Uniquekey-Message.cshtml,file:js/unique-key.js
+!*@
+@{
+  var buttonId = "demo-uniquekey-btn-" + UniqueKey;
+  var messageId = "demo-uniquekey-msg-" + UniqueKey;
+}
+@* Show the button *@
+<button type="button" id="@buttonId" class="btn btn-primary">
+  Press to see JS find the button using UniqueKey: @buttonId
+</button>
 
+@* Create the DIV for the message - it's in another file, but shares the UniqueKey *@
+@Html.Partial("./Uniquekey-Message.cshtml")
 
-@* UniqueKey / Kit.Key.UniqueKeyWith *@
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item"), tabs: "file:Uniquekey-Message.cshtml,file:js/unique-key.js" ); }
-@snip.SnipStart()
-  @{
-    var buttonId = "demo-uniquekey-btn-" + UniqueKey;
-    var messageId = "demo-uniquekey-msg-" + UniqueKey;
-  }
-  @* Show the button *@
-  <button type="button" id="@buttonId" class="btn btn-primary">
-    Press to see JS find the button using UniqueKey: @buttonId
-  </button>
-
-  @* Create the DIV for the message - it's in another file, but shares the UniqueKey *@
-  @Html.Partial("./Uniquekey-Message.cshtml")
-
-  @* Trigger the script, and pass in the IDs it will need based on the UniqueKey *@
-  @Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
-  @* Load the script - this can be before or after the TurnOn *@
-  <script src="@App.Folder.Url/js/quickref/js/unique-key.js"></script>
-@snip.SnipEnd()
+@* Trigger the script, and pass in the IDs it will need based on the UniqueKey *@
+@Kit.Page.TurnOn("window.quickReference.demoUniqueQuey()", data: new { buttonId, messageId })
+@* Load the script - this can be before or after the TurnOn *@
+<script src="@App.Folder.Url/js/quickref/js/unique-key.js"></script>

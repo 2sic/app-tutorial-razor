@@ -74,6 +74,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
 
     // hide unnecessary parts without comment
     source = ProcessHideSilent(source, "<hide-silent>", "</hide-silent>");
+    source = ProcessHideSilent(source, "@\\*!", "!\\*@");
     source = ProcessHideSilent(source, @"@Sys\.SourceCode\.Invisible\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
 
     // remove snippet markers
@@ -88,10 +89,13 @@ public class SourceProcessor: Custom.Hybrid.Code14
   }
 
   private string ProcessHideSilent(string source, string start, string end, bool captureStart = true, bool captureEnd = true) {
+    var l = Log.Call<string>();
     var startCapt = captureStart ? ":" : "=";
     var endCapt = captureEnd ? ":" : "=";
     var patternHideSilent = @"(?" + startCapt + start + @")([\s\S]*?)(?" + endCapt + (end ?? start) + @")";
-    return Regex.Replace(source, patternHideSilent, "");
+    Log.Add("Pattern: " + patternHideSilent);
+    var result = Regex.Replace(source, patternHideSilent, "");
+    return l(result, "changed: " + (result != source));
   }
 
   public string SourceTrim(string source) {

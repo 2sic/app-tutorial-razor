@@ -120,31 +120,49 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   /// <summary>
   /// QuickRef section - only to be used in the Quick Reference
+  /// for manual adding complex cases - ATM not in use 2023-09-12
   /// </summary>
   /// <param name="item">ATM object, because when coming through a Razor14 the type is not known</param>
   /// <param name="tabs"></param>
   /// <returns></returns>
-  public QuickRefSection QuickRef(
-    object item,
-    string tabs = null,
-    Dictionary<string, string> tabDic = null
-  ) {
+  public QuickRefSection QuickRef(object item, string tabs = null, Dictionary<string, string> tabDic = null)
+  {
     var l = Log.Call<QuickRefSection>("tabs: '" + tabs + "'");
     tabDic = tabDic ?? TabStringToDic(tabs);
     var result = new QuickRefSection(this, tabDic, item: item as ITypedItem);
     return l(result, "ok - count: " + tabDic.Count());
   }
 
-  public QuickRefSection QuickRefInstant(
-    object item,
-    string file = null,
-    string tabs = null,
-    Dictionary<string, string> tabDic = null
-  ) {
-    var l = Log.Call<QuickRefSection>("tabs: '" + tabs + "'");
-    tabDic = tabDic ?? TabStringToDic(tabs);
-    var result = new QuickRefSection(this, tabDic, item: item as ITypedItem, file: file);
-    return l(result, "ok - count: " + tabDic.Count());
+  public QuickRefSection SnipFromItem(object item, string file = null)
+  {
+    var l = Log.Call<QuickRefSection>("file: " + file);
+    // If we have a file, we should try to look up the tabs
+    var tabCsv = TryToGetTabsFromSource(file);
+    Log.Add("tabs: '" + tabCsv + "'");
+    var tabs = TabStringToDic(tabCsv);
+    var result = new QuickRefSection(this, tabs, item: item as ITypedItem, file: file);
+    return l(result, "ok - count: " + tabs.Count());
+  }
+
+  private string TryToGetTabsFromSource(string file) {
+    if (!file.Has()) return null;
+    var srcPath = file.Replace("\\", "/").BeforeLast("/");
+    var src = GetFileAndProcess(file).Contents;
+    if (src.Contains("Tut.Tabs=")) {
+      var tabsLine = Text.After(src, "Tut.Tabs=");
+      var tabsString = Text.Before(tabsLine, "\n");
+      if (!tabsString.Has()) return null;
+      var tabs = tabsString.Split(',')
+        .Select(t => {
+          var entry = t.Trim();
+          if (!entry.StartsWith("file:")) return t;
+          var fileName = Text.After(entry, "file:");
+          return "file:" + srcPath + "/" + fileName;
+        })
+        .ToArray();
+      return string.Join(",", tabs);
+    }
+    return null;
   }
 
   #endregion
@@ -941,7 +959,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     try
     {
-      var specs = GetFileAndProcess(path, file, snippetId);
+      var specs = GetFileAndProcess(file, snippetId);
       path = specs.Path;  // update in case of error
       errPath = debug ? specs.FullPath : path;
       title = title ?? "Source Code of " + (Text.Has(specs.File)
@@ -972,14 +990,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   public bool FileContainsSnipCode(string file) {
     try {
-      var specs = GetFileAndProcess(Path, file);
+      var specs = GetFileAndProcess(file);
       return specs.Contents.Contains("snip = Sys.SourceCode.");
     } catch {
       return false;
     }
   }
 
-  private SourceInfo GetFileAndProcess(string path, string file, string snippetId = null) {
+  private SourceInfo GetFileAndProcess(string file, string snippetId = null, string path = null) {
+    path = path ?? Path;
     var fullPath = GetFileFullPath(path, file);
     var cacheKey = fullPath.ToLowerInvariant();
     if (_fileCache.ContainsKey(cacheKey)) return _fileCache[cacheKey];
