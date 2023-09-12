@@ -1061,6 +1061,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   private void TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
+    var l = Log.Call("filePath:" + filePath + ", wrap:" + wrap);
     var language = "ace/mode/" + (specs.Language ?? (Text.Has(filePath)
       ? FindAce3LanguageName(filePath)
       : "html"));
@@ -1077,6 +1078,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         }
       }
     );
+    l("language=" + language);
   }
 
 
