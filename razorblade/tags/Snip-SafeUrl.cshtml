@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+
+
+@* @{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); } *@
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item); }
+@snip.SnipStart()
+  @using ToSic.Razor.Blade;
+  @{
+    var path = App.Path + "/basics/assets/urls/";
+    var exampleImgName = "göögle plus.png";
+    var resizeParameters = "?w=100";
+    var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
+  }
+  <img loading="lazy" src='@safeUrl' id="demo-logo">
+  <p>
+    ☝🏽 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
+  </p>
+  <style>
+    #demo-logo {
+      width: 50px;
+      padding-right: 20px;
+    }
+  </style>
+@snip.SnipEnd()

@@ -16,47 +16,7 @@
 </div>
 
 @* TODO: @2dg *@
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".None", NameId = "razorblade-safeurls" })
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var path = App.Path + "/basics/assets/urls/";
-    var exampleImgName = "göögle plus.png";
-    var resizeParameters = "?w=100";
-    var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
-  }
-  <p>
-    👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
-  </p>
-  <img loading="lazy" src='@safeUrl' id="demo-logo">
-  <style>
-    #demo-logo {
-      width: 50px;
-      padding-right: 20px;
-    }
-  </style>
-@snip.SnipEnd()
-
-<hide>
-<p>
-  Sometimes you have files with unexpected characters - like umlauts or spaces. The best way to encode this is using <code>Tags.SafeUrl(...)</code> from RazorBlade, or <code>Uri.EscapeUriString(...)</code> from .net. 
-</p>
-<h3>Important notes</h3>
-<ul>
-  <li>
-    Two characters won't resolve properly on a standard web server: <code>+</code> and <code>%</code>. There are ways to work around this, but we would avoid them at all cost. 
-  </li>
-  <li>
-    Other characters like <code>spaces</code>, umlauts (<code>öäè</code>) etc. are no problem. 
-  </li>
-  <li>
-    You may also find suggestions to use <code>Server.UrlEcode(...)</code>. This often doesn't work! 
-  </li>
-  <li>
-    Remember to add <code>@@using System</code> to make this fly
-  </li>
-</ul>
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".None", NameId = "razorblade-urls" })
 
 
 @* Footer *@

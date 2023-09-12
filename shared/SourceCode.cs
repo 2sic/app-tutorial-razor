@@ -19,7 +19,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string SourceTabName = "Source Code";
   private const string ResultAndSourceTabName = "Output and Source";
   private const string TutorialsTabName = "Additional Tutorials";
-  private const string CodeSource = "code:source";
+
+  private const string InDepthField = "InDepthExplanation";
+  private const string InDepthTabName = "In-Depth Explanation";
 
   #endregion
 
@@ -390,6 +392,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return original.Select(n => {
         if (n == "R14" || n == "Rzr14") return "Razor14 and older";
         if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
+        if (n == InDepthField) return InDepthTabName;
         return n;
       }).ToList();
     }
@@ -410,11 +413,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         list.AddRange(SourceWrap.Tabs);
       }
       // Old section, remove as soon as all specs come from the item
-      else if (_addOutput) {
-        log.Add("addOutput");
-        list.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
-        if (!_outputWithSource && !_sourceAtEnd) list.Add(SourceTabName);
-      }
+        else if (_addOutput) {
+          log.Add("addOutput - old");
+          list.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
+          if (!_outputWithSource && !_sourceAtEnd) list.Add(SourceTabName);
+        }
 
       if (Tabs != null && Tabs.Any()) {
         log.Add("Tab Count: " + Tabs.Keys.Count());
@@ -433,9 +436,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         list.Add(SourceTabName);
       }
 
-      if (Item != null && Item.IsNotEmpty("Tutorials")) {
-        log.Add("Tutorials");
-        list.Add(TutorialsTabName);
+      if (Item != null) {
+        if (Item.IsNotEmpty("Tutorials")) {
+          log.Add("Tutorials");
+          list.Add(TutorialsTabName);
+        }
+        if (Item.IsNotEmpty(InDepthField)) {
+          log.Add(InDepthField);
+          list.Add(useKeys ? InDepthField : Item.String(InDepthField));
+        }
       }
 
       return l(list, list.Count.ToString());
@@ -707,11 +716,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (item == null) throw new Exception("Item should never be null");
       var splitter = sourceCode.GetSourceWrap(this, item);
       SourceWrap = splitter;
-      // var merge = (splitter is WrapOutSplitSrc) && (splitter as WrapOutSplitSrc).Active;
-      // if (!merge) merge = (splitter is WrapOutOverSrc);
       TabHandler = new TabHandlerBase(sourceCode, item, tabs,
-        addOutput: true, // outputWithSource: merge,
-        // activeTabName: merge ? ResultAndSourceTabName : SourceTabName,
+        addOutput: true,
         sourceWrap: SourceWrap
       );
     }
@@ -730,6 +736,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   #region SourceWrappers
 
   private WrapOutSrcBase GetSourceWrap(SectionBase section, ITypedItem item) {
+    // Figure out the type based on the item or it's parent
     string code = null;
     if (item != null) {
       if (item.IsNotEmpty("OutputAndSourceDisplay"))
@@ -740,7 +747,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
     // Default Output over Source
     if (!code.Has() || code == "out-over-src")
-      return new WrapOutOverSrc(section, intro: null);
+      return new WrapOutOverSrc(section);
 
     // Split - either a real split, or if width == 0, then 2 tabs
     if (code == "split") {
@@ -799,16 +806,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   internal class WrapOutOverSrc: WrapOutSrcBase
   {
-    public WrapOutOverSrc(SectionBase section, ITag intro) : base(section, "WrapOutOverSrc", true)
+    public WrapOutOverSrc(SectionBase section) : base(section, "WrapOutOverSrc", true)
     {
     }
-    private ITag Intro;
 
     public override ITag GetStart(ITag contents) { return Tag.RawHtml(
       Comment(""),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
       Tag.H4("Output")
-      // contents
     ); }
 
     public override ITag GetBetween() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
