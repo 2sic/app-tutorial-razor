@@ -135,6 +135,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return l(result, "ok - count: " + tabDic.Count());
   }
 
+  public QuickRefSection QuickRefInstant(
+    object item,
+    string file = null,
+    string tabs = null,
+    Dictionary<string, string> tabDic = null
+  ) {
+    var l = Log.Call<QuickRefSection>("tabs: '" + tabs + "'");
+    tabDic = tabDic ?? TabStringToDic(tabs);
+    var result = new QuickRefSection(this, tabDic, item: item as ITypedItem, file: file);
+    return l(result, "ok - count: " + tabDic.Count());
+  }
+
   #endregion
 
 
@@ -190,12 +202,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// Base class for all code sections with snippets etc.
   /// </summary>
   public abstract class SectionBase {
-    public SectionBase(SourceCode sourceCode, ITypedItem item, Dictionary<string, string> tabs) {
+    public SectionBase(SourceCode sourceCode, ITypedItem item, Dictionary<string, string> tabs, string sourceFile = null) {
       ScParent = sourceCode;
       BsTabs = ScParent.BsTabs;
       Log = ScParent.Log;
       Item = item;
       TabHandler = new TabHandlerBase(sourceCode, item, tabs);
+      SourceFile = sourceFile;
     }
     internal SourceCode ScParent;
     private dynamic BsTabs;
@@ -207,6 +220,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     protected WrapOutSrcBase SourceWrap;
     internal TabHandlerBase TabHandler;
     internal ITypedItem Item;
+    internal string SourceFile;
 
     /// <summary>
     /// The SnippetId must be provided here, so it can be found in the source code later on
@@ -282,7 +296,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
           html = html.Add(
             SourceWrap != null ? SourceWrap.GetBetween() : null,
-            ScParent.ShowSnippet(SnippetId),
+            ScParent.ShowSnippet(SnippetId, item: Item, file: SourceFile),
             SourceWrap != null ? SourceWrap.GetAfter() : null
           );
           // Reliably close the "Content" section IF it had been opened
@@ -295,7 +309,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         // Special case: Source Tab
         if (m == SourceTabName) {
           Log.Add("Contents of: " + SourceTabName);
-          html = html.Add(BsTabs.TabContent(TabPrefix, nameId, ScParent.ShowSnippet(SnippetId), isActive: active == SourceTabName));
+          html = html.Add(BsTabs.TabContent(TabPrefix, nameId,
+            ScParent.ShowSnippet(SnippetId, item: Item, file: SourceFile),
+            isActive: active == SourceTabName)
+          );
           continue;
         }
 
@@ -710,8 +727,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     internal QuickRefSection(
       SourceCode sourceCode,
       Dictionary<string, string> tabs,
-      ITypedItem item = null
-    ) : base(sourceCode, item, tabs)
+      ITypedItem item = null,
+      string file = null
+    ) : base(sourceCode, item, tabs, sourceFile: file)
     {
       if (item == null) throw new Exception("Item should never be null");
       var splitter = sourceCode.GetSourceWrap(this, item);
@@ -889,7 +907,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// <summary>
   /// just show a snippet
   /// </summary>
-  private ITag ShowSnippet(string snippetId) {
+  private ITag ShowSnippet(string snippetId, ITypedItem item = null, string file = null) {
+    if (file != null)
+      return ShowFileContents(file, snippetId, withIntro: false, showTitle: false, expand: true);
     return ShowFileContents(null, snippetId, expand: true);
   }
 
@@ -950,9 +970,20 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return null;
   }
 
+  public bool FileContainsSnipCode(string file) {
+    try {
+      var specs = GetFileAndProcess(Path, file);
+      return specs.Contents.Contains("snip = Sys.SourceCode.");
+    } catch {
+      return false;
+    }
+  }
 
   private SourceInfo GetFileAndProcess(string path, string file, string snippetId = null) {
-    var fileInfo = GetFile(path, file);
+    var fullPath = GetFileFullPath(path, file);
+    var cacheKey = fullPath.ToLowerInvariant();
+    if (_fileCache.ContainsKey(cacheKey)) return _fileCache[cacheKey];
+    var fileInfo = GetFile(path, file, fullPath);
     fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
     fileInfo.Size = Size(null, fileInfo.Processed);
     var isSnippet = !string.IsNullOrWhiteSpace(snippetId);
@@ -961,8 +992,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     fileInfo.Type = isSnippet ? "snippet" : "file";
     fileInfo.DomAttribute = "source-code-" + MyContext.Module.Id;
     if (string.IsNullOrEmpty(snippetId) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
+    _fileCache[cacheKey] = fileInfo;
     return fileInfo;
   }
+  private Dictionary<string, SourceInfo> _fileCache = new Dictionary<string, SourceInfo>();
 
   private IHtmlTag ShowError(string path) {
     return Tag.RawHtml(
@@ -1032,8 +1065,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region (private/internal) File Processing
 
-  private SourceInfo GetFile(string filePath, string file) {
-    var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
+  private string GetFileFullPath(string filePath, string file) {
+    var l = Log.Call<string>("filePath:" + filePath + ", file:" + file);
     if (Text.Has(file)) {
       if (file.IndexOf(".") == -1)
         file = file + ".cshtml";
@@ -1043,6 +1076,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     var fullPath = filePath;
     if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
       fullPath = GetFullPath(filePath);
+    return l(fullPath, fullPath);
+  }
+
+  private SourceInfo GetFile(string filePath, string file, string fullPath = null) {
+    var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
+    fullPath = fullPath ?? GetFileFullPath(filePath, file);
     var contents = System.IO.File.ReadAllText(fullPath);
     return l(new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents }, Path);
   }

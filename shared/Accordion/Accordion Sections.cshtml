@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
+@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 @{
   // The accordion is an external helper file, so we must treat it as dynamic
   var acc = MyModel.Code("Accordion");
@@ -7,8 +8,15 @@
 @foreach(var acs in acc.Sections(Path, backtrack: "../..")) {
   if (acs.SectionFile != null) {
     @acs.Start()
-      @* @Html.Partial(relPath, new { acs.Item }) *@
-      @Html.Partial(acs.SectionFile, new { acs.Item })
+      var containsSnipCode = Sys.SourceCode.FileContainsSnipCode(acs.SectionFile);
+      if (!containsSnipCode) {
+        var snip = Sys.SourceCode.QuickRefInstant(item: acs.Item, file: acs.SectionFile);
+        @snip.SnipStart()
+          @Html.Partial(acs.SectionFile, new { acs.Item })
+        @snip.SnipEnd()
+      } else {
+        @Html.Partial(acs.SectionFile, new { acs.Item })
+      }
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
     <div>SysUserOnly: This section doesn't exist: @acs.TutorialId</div>

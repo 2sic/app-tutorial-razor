@@ -25,8 +25,7 @@ public class SourceProcessor: Custom.Hybrid.Code14
     if (idNumber >= 0) {
       // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
       var matches = Regex.Matches(source, patternSnipStartSnipEnd);
-      if (matches.Count >= idNumber) {
-        // var match = matches[idNumber];
+      if (matches.Count > idNumber) {
         return matches[idNumber].Groups["contents"].Value;
       }
       
