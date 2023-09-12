@@ -1001,7 +1001,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     path = path ?? Path;
     var fullPath = GetFileFullPath(path, file);
     var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
-    if (_fileCache.ContainsKey(cacheKey)) return _fileCache[cacheKey];
+    if (_sourceInfoCache.ContainsKey(cacheKey)) return _sourceInfoCache[cacheKey];
     var fileInfo = GetFile(path, file, fullPath);
     fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
     fileInfo.Size = Size(null, fileInfo.Processed);
@@ -1011,10 +1011,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     fileInfo.Type = isSnippet ? "snippet" : "file";
     fileInfo.DomAttribute = "source-code-" + MyContext.Module.Id;
     if (string.IsNullOrEmpty(snippetId) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
-    _fileCache[cacheKey] = fileInfo;
+    _sourceInfoCache[cacheKey] = fileInfo;
     return fileInfo;
   }
-  private Dictionary<string, SourceInfo> _fileCache = new Dictionary<string, SourceInfo>();
+  private Dictionary<string, SourceInfo> _sourceInfoCache = new Dictionary<string, SourceInfo>();
 
   private IHtmlTag ShowError(string path) {
     return Tag.RawHtml(
@@ -1103,9 +1103,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private SourceInfo GetFile(string filePath, string file, string fullPath = null) {
     var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
     fullPath = fullPath ?? GetFileFullPath(filePath, file);
-    var contents = System.IO.File.ReadAllText(fullPath);
+    var cacheKey = fullPath.ToLowerInvariant();
+    var contents = (_getFileCache.ContainsKey(cacheKey))
+      ? _getFileCache[cacheKey]
+      : System.IO.File.ReadAllText(fullPath);
     return l(new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents }, Path);
   }
+
+  private Dictionary<string, string> _getFileCache = new Dictionary<string, string>();
+
 
   internal class ShowSourceSpecs {
     public ShowSourceSpecs() {
