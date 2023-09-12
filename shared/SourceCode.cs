@@ -752,10 +752,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (item == null) throw new Exception("Item should never be null");
       var splitter = sourceCode.GetSourceWrap(this, item);
       SourceWrap = splitter;
-      TabHandler = new TabHandlerBase(sourceCode, item, tabs,
-        addOutput: true,
-        sourceWrap: SourceWrap
-      );
+      TabHandler = new TabHandlerBase(sourceCode, item, tabs, addOutput: true, sourceWrap: SourceWrap);
     }
 
     public override ITag SnipStart(string snippetId = null) {
@@ -765,6 +762,21 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
 
     public override ITag SnipEnd() { return SnipEndFinal(); }
+
+    /// <summary>
+    /// End Snip, but manually specify the content to be added
+    /// </summary>
+    public ITag SnipEnd(params object[] generated) {
+      var l = ScParent.Log.Call<ITag>(TabHandler.TabContentsDebug);
+
+      if (generated != null && generated.Any()) {
+        ScParent.Log.Add("Replace tab contents with: " + generated.Count());
+        TabHandler.ReplaceTabContents(generated.ToList());
+      }
+
+      return l(SnipEndFinal(), "with tabs");
+    }
+
   }
 
   #endregion
@@ -777,9 +789,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     if (item != null) {
       if (item.IsNotEmpty("OutputAndSourceDisplay"))
         code = item.String("OutputAndSourceDisplay");
-      var parent = AsItem(item.Parents(type: "TutAccordion"));
-      if (parent != null && parent.IsNotEmpty("OutputAndSourceDisplay"))
-        code = parent.String("OutputAndSourceDisplay");
+      else {
+        var parent = AsItem(item.Parents(type: "TutAccordion"));
+        if (parent != null && parent.IsNotEmpty("OutputAndSourceDisplay"))
+          code = parent.String("OutputAndSourceDisplay");
+      }
     }
     // Default Output over Source
     if (!code.Has() || code == "out-over-src")

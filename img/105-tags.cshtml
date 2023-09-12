@@ -39,26 +39,6 @@
   </div>
   @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
 
-  <h2>Responsive <code>img</code> with <code>srcset</code> and <code>sizes</code> To Load Different Pictures</h2>
-  <p>
-    With <code>srcset</code> on the <code>img</code> tag you can tell the browser to load different images based on screen size. 
-    To really get the hang of this, best check out <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">the MDN docs</a>.
-  </p>
-
-
-<hide>
-  <h3>What you need to know about <code>srcset</code></h3>
-  <ol>
-    <li>
-      <strong>Important: </strong> If the browser already has a large image, it won't load smaller ones. 
-      So to see this in action, you have to start with a tiny browser window, loading the 250px - then make it larger to see bigger pictures load. 
-    </li>
-    <li>The main picture in <code>src</code> is used in all old browsers</li>
-    <li>You can also use <code>srcset</code> to specify different resolutions for retina displays.</li>
-    <li><strong>Important: </strong> the width specified in the <code>max-width</code> is the view/page width, not the image width</li>
-  </ol>
-  <h3>Example with Different Files for Each Resolution</h3> 
-</hide>
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".Dyn", NameId = "img-responsive" })
 

@@ -3,7 +3,7 @@
 @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 @{ var imgDemoHelper = GetCode("../ImgDemoHelpers.cs"); }
 </hide-silent>
-@{ var snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML"); }
+@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item, tabs: "Generated HTML"); }
 @snip.SnipStart()
   <hide-silent>@imgDemoHelper.ShowCurrentSrc()</hide-silent>
   @{
