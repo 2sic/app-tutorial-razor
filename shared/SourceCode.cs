@@ -297,14 +297,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return l(html, "ok");
     }
 
-    protected ITag SnippetEndInternal() {
-      return Tag.RawHtml(
-        BsTabs.TabContentClose(),     // Will close if still open
-        BsTabs.TabContent(TabPrefix, Name2TabId(SourceTabName), ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: false),
-        BsTabs.TabContentGroupClose() // Will close if still open
-      );
-    }
-
     // Take a result and if it has a special prefix, process that
     private object FlexibleResult(object result, ITypedItem item = null)
     {
@@ -435,9 +427,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// </summary>
     public List<object> TabContents {
       get { return _tabContents ?? (_tabContents = GetTabContents()) ; }
-      set { _replaceTabContents = value; }
     }
     private List<object> _tabContents;
+    public void ReplaceTabContents(List<object> replacement) {
+      _replaceTabContents = replacement;
+      _tabContents = null;
+    }
     private List<object> _replaceTabContents;
     protected virtual List<object> GetTabContents()
     {
@@ -487,25 +482,20 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return l(tabsStartHtml, "ok");
     }
 
-    public override ITag SnipEnd() { return SnipEndShared(); }
+    public override ITag SnipEnd() { return SnipEnd(null); }
 
     /// <summary>
     /// End Snip, but manually specify the content to be added
     /// </summary>
     public ITag SnipEnd(params object[] generated) {
-      TabHandler.TabContents = generated.Any() ? generated.ToList() : null;
-      return SnipEndShared();
-    }
-
-    private ITag SnipEndShared() {
       var l = ScParent.Log.Call<ITag>(TabHandler.TabContentsDebug);
-      // Original setup, without any tabs
-      if (!TabHandler.TabNames.Any())
-        return l(Tag.RawHtml("<!-- /SnipEndShared no-tabs -->", SnippetEndInternal()), "no tabs");
 
-      // Extending 2023-08-29 - with tabs
-      var result = Tag.RawHtml("<!-- /SnipEndShared with-tabs -->", SnipEndFinal());
-      return l(result, "with tabs");
+      if (generated != null && generated.Any()) {
+        ScParent.Log.Add("Replace tab contents with: " + generated.Count());
+        TabHandler.ReplaceTabContents(generated.ToList());
+      }
+
+      return l(SnipEndFinal(), "with tabs");
     }
 
   }
