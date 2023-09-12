@@ -123,12 +123,13 @@ public class BootstrapTabs: Custom.Hybrid.Code14
   }
 
   private string[] _moreTabNames;
-  public string GetTabName(int index) {
-    var l = Log.Call<string>("index:" + index);
-    if (_moreTabNames == null || !_moreTabNames.Any()) return l("no names", "unknown");
-    if (_moreTabNames.Length < index + 1) return l("index to high", "unknown");
-    var name = _moreTabNames[index];
-    Log.Add("name before optimization: '" + name + "'");
-    return l(name, name);
-  }
+  // 2023-09-12 2dm disabled, probably don't need any more
+  // public string GetTabName(int index) {
+  //   var l = Log.Call<string>("index:" + index);
+  //   if (_moreTabNames == null || !_moreTabNames.Any()) return l("no names", "unknown");
+  //   if (_moreTabNames.Length < index + 1) return l("index to high", "unknown");
+  //   var name = _moreTabNames[index];
+  //   Log.Add("name before optimization: '" + name + "'");
+  //   return l(name, name);
+  // }
 }

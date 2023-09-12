@@ -11,7 +11,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     _variantExtension = variantExtension;
     return this;
   }
-
+  public TagCount TagCount = new TagCount("Accordion", true);
   private dynamic Sys;
   private string _variantExtension;
 
@@ -33,7 +33,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
       "\n",
       Item.Html("Intro"),
       "\n",
-      t.Div().Class("accordion").Id(Name).TagStart
+      TagCount.Open(t.Div().Class("accordion").Id(Name))
     );
   }
 
@@ -42,7 +42,8 @@ public class Accordion: Custom.Hybrid.CodeTyped
   public ITypedItem Item { get; private set; }
 
   public IHtmlTag End() {
-    var end = Kit.HtmlTags.RawHtml(DivEnd);
+    var end = TagCount.Close(DivEnd + "<!-- /Accordion -->");
+    // Kit.HtmlTags.RawHtml(DivEnd, "<!-- /Accordion -->", TagCount.Close());
     Item = null;
     return end;
   }
@@ -123,16 +124,13 @@ public class Section {
         ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit().New())
         : start.Attr(Acc.Kit.Toolbar.Empty().New("TutAccordionSection", prefill: new { TutorialId }));
     return TagsSvc.RawHtml(
-      "\n",
+      "\n" + Indent + "<!-- Part.Start(" + Name + ") -->\n",
       Indent,
-      "<!-- Part.Start(" + Name + ") -->",
-      "\n",
-      Indent,
-      start.TagStart,
-      "\n",
+      Acc.TagCount.Open(start),
       Indent,
       Header(),
-      "\n",
+      "\n\n",
+      Indent +  "<!-- Part.Body(" + Name + ") -->\n",
       BodyStart()
     );
   }
@@ -140,7 +138,12 @@ public class Section {
   public string SectionFile { get; private set; }
 
   public IHtmlTag End() {
-    return TagsSvc.RawHtml("\n", Acc.DivEnd, "\n", Acc.DivEnd, "\n", Acc.DivEnd, "\n");
+    return TagsSvc.RawHtml(
+      "\n",
+      Acc.TagCount.Close(Acc.DivEnd + "<!-- /Acc 1 ? -->"),
+      Acc.TagCount.Close(Acc.DivEnd + "<!-- /Acc 2 ? -->"),
+      Acc.TagCount.Close(Acc.DivEnd + "<!-- /Acc 3 ? -->")
+    );
   }
 
   #region Helpers to build Start
@@ -166,18 +169,32 @@ public class Section {
     return TagsSvc.RawHtml(
       "\n",
       Indent,
-      TagsSvc.Div().Id(BodyId)
+      Acc.TagCount.Open(TagsSvc.Div().Id(BodyId)
         .Class("accordion-collapse collapse " + (Show ? "show" : ""))
         .Attr("aria-labelledby", HeadingId)
-        .Data("bs-parent", "#" + Acc.Name)
-        .TagStart,
+        .Data("bs-parent", "#" + Acc.Name)),
       "\n",
       Indent2,
-      TagsSvc.Div().Class("accordion-body").TagStart,
+      Acc.TagCount.Open(TagsSvc.Div().Class("accordion-body")),
       "\n",
       (Item == null ? "" : Indent2 + Item.Html("Intro"))
     );
   }
   #endregion
 
+}
+
+/// <summary>
+/// Helper class to count tags and add comments
+/// Duplicated in Accordion.cs and SourceCode.cs
+/// Try to keep in sync
+/// </summary>
+public class TagCount {
+  public TagCount(string name, bool enabled) { Name = name; Enabled = enabled; }
+  public string Name; public bool Enabled; public int Count = 0;
+  public string Open() { return "\n<!-- opened " + Name + " OpenCount: " + ++Count + " -->\n"; }
+  public string Close() { return "<!-- closed " + Name + " OpenCount: " + --Count + " -->\n"; }
+
+  public IHtmlTag Open(IHtmlTag tag) { return Tag.RawHtml(tag.TagStart, Open()); }
+  public IHtmlTag Close(string html) { return Tag.RawHtml(html, Close()); }
 }
