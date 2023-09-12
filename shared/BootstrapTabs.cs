@@ -22,7 +22,7 @@ public class BootstrapTabs: Custom.Hybrid.Code14
 
       tabList.Add("\n\n" + IndentLi + "<!-- Tab '" + name + "'-->");
       tabList.Add("\n" + IndentLi);
-      tabList.Add(TabLi(prefix, name, isFirst, isActive)); // first entry is active = true
+      tabList.Add(TabLi(prefix, name, isActive)); // first entry is active = true
     }
     return Tag.RawHtml(
       "\n" + Indent + "<!-- TabList Start '" + prefix + "'-->\n",
@@ -43,26 +43,26 @@ public class BootstrapTabs: Custom.Hybrid.Code14
       .Replace("\\", "-");
   }
 
-  private ITag TabLi(string prefix, string label, bool isFirst, bool active) {
+  private ITag TabLi(string prefix, string label, bool active) {
     return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
       "\n",
       IndentBtn + "<!-- Tab button -->\n",
       IndentBtn,
-      TabButton(prefix, label, Name2TabId(label), isFirst, active),
+      TabButton(prefix, label, Name2TabId(label), active),
       "\n" + IndentLi
     );
   }
 
-  private ITag TabButton(string prefix, string title, string name, bool isFirst, bool selected) {
-    var id = isFirst ? "-default" : name;
+  private ITag TabButton(string prefix, string title, string name, bool selected) {
+    var realId = prefix + name;
     return Tag.Button(title)
       .Class("nav-link " + (selected ? "active" : ""))
       .Id(prefix + "-tab")
       .Attr("data-bs-toggle", "tab")
-      .Attr("data-bs-target", "#" + prefix + id)
+      .Attr("data-bs-target", "#" + realId)
       .Type("button")
       .Attr("role", "tab")
-      .Attr("aria-controls", prefix + id)
+      .Attr("aria-controls", realId)
       .Attr("aria-selected", selected.ToString().ToLower());
   }
 
@@ -86,20 +86,20 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     return result;
   }
 
-  private Div TabContentDiv(string prefix, string id, bool isFirst, bool isActive = false) {
-    id = isFirst ? "-default" : id;
+  private Div TabContentDiv(string prefix, string id, bool isActive = false) {
+    var realId = prefix + id;
     return Tag.Div()
         .Class("tab-pane fade " + (isActive ? "show active" : ""))
-        .Id(prefix + id)
+        .Id(realId)
         .Attr("role", "tabpanel")
-        .Attr("aria-labelledby", prefix + id + "-tab");
+        .Attr("aria-labelledby", realId + "-tab");
   }
 
-  public string TabContentOpen(string prefix, string id, bool isFirst, bool isActive) {
+  public string TabContentOpen(string prefix, string id, bool isActive) {
     _tabContentIsOpen = true;
     return "\n" + Indent + "<!-- TabContentOpen -->\n"
       + Indent
-      + TabContentDiv(prefix, id, isFirst, isActive).TagStart
+      + TabContentDiv(prefix, id, isActive).TagStart
       + "\n";
   }
   private bool _tabContentIsOpen = false;
@@ -112,11 +112,11 @@ public class BootstrapTabs: Custom.Hybrid.Code14
       + Indent + "</div>" + "\n";
   }
 
-  public ITag TabContent(string prefix, string id, object result, bool isFirst, bool isActive) {
+  public ITag TabContent(string prefix, string id, object result, bool isActive) {
     return Tag.RawHtml(
       "\n" + Indent + "<!-- TabContent '" + prefix +"':'" + id + "' -->\n",
       Indent,
-      TabContentDiv(prefix, id, isFirst, isActive).Wrap(result),
+      TabContentDiv(prefix, id, isActive).Wrap(result),
       "\n",
       Indent + "<!-- /TabContent '" + prefix +"':'" + id + "' -->\n"
     );

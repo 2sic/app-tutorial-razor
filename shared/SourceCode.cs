@@ -237,7 +237,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         BsTabs.TabList(TabPrefix, tabNames, active), // Tab headers
         BsTabs.TabContentGroupOpen(),     // Tab bodies - must open the first one
         "  ",                             // Open the first tab-body item as the snippet is right after this
-        BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), true, firstIsActive)
+        BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), firstIsActive)
       );
       return l(result, "ok");
     }
@@ -277,7 +277,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (results.FirstOrDefault() == SourceTabName) {
         results = results.Skip(1).ToList();
         Log.Add("showSnippetTab new");
-        html = html.Add(BsTabs.TabContent(TabPrefix, Name2TabId(SourceTabName), ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: active == SourceTabName));
+        html = html.Add(BsTabs.TabContent(TabPrefix, Name2TabId(SourceTabName), ScParent.ShowSnippet(SnippetId), isActive: active == SourceTabName));
         nameCount++;
       }
 
@@ -287,9 +287,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         var msg = "tab name:" + name + " (" + nameCount + ")";
         Log.Add(msg);
         html = html.Add("<!-- " + msg + "-->");
-        html = (m == CodeSource || m == SourceTabName)
-          ? html.Add(BsTabs.TabContent(TabPrefix, name, ScParent.ShowSnippet(SnippetId), isFirst: false, isActive: active == SourceTabName))
-          : html.Add(BsTabs.TabContent(TabPrefix, name, FlexibleResult(m, Item), isFirst: false, isActive: active == name));
+        var body = m != SourceTabName
+          ? FlexibleResult(m, Item)
+          : ScParent.ShowSnippet(SnippetId);
+        var isActive = m != SourceTabName
+          ? active == name
+          : active == SourceTabName;
+        html = html.Add(BsTabs.TabContent(TabPrefix, name, body, isActive: isActive));
         nameCount++;
       }
 
@@ -646,7 +650,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       if (ScParent.Formulas.ShowSnippet(Specs)) {
         lMsg += ", with source";
-        result.Add(CodeSource);
+        result.Add(SourceTabName);
       }
 
       return l(result, lMsg);
