@@ -259,37 +259,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       // Close the tabs / header div section if it hasn't been closed yet
       var html = Tag.RawHtml();
 
-      // // Handle first tab contents
-      // // - either the results (just skip, already on the page)
-      // // - or results combined with source - add source
-      // if (results.FirstOrDefault() == ResultTabName) {
-      //   results = results.Skip(1).ToList();
-
-      //   // Reliably close the "Content" section IF it had been opened
-      //   html = html.Add(BsTabs.TabContentClose());
-        
-      //   nameCount++;
-      // }
-      // else if (results.FirstOrDefault() == ResultAndSourceTabName) {
-      //   results = results.Skip(1).ToList();
-      //   Log.Add("OLD snippetInResultTab - SourceWrap: " + SourceWrap);
-      //   html = html.Add(
-      //     SourceWrap != null ? SourceWrap.GetBetween() : null,
-      //     ScParent.ShowSnippet(SnippetId),
-      //     SourceWrap != null ? SourceWrap.GetAfter() : null
-      //   );
-      //   // Reliably close the "Content" section IF it had been opened
-      //   html = html.Add(BsTabs.TabContentClose());
-        
-      // }
-
-
       // If we have any results, add them here; Very often there are none left
       foreach (var m in results) {
         // Find Name and Log Stuff
         var name = names.ElementAt(nameCount);// BsTabs.GetTabName(nameCount);// + 1));
         nameCount++;
-        var msg = "tab name:" + name + " (" + nameCount + ")";
+        var msg = "tab name: " + name + " (" + nameCount + ")";
         Log.Add(msg);
         html = html.Add("<!-- " + msg + "-->");
 
@@ -299,7 +274,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           html = html.Add(BsTabs.TabContentClose());
           continue;
         }
-
 
         // Special case: Source-and-Result Tab
         if (name == ResultAndSourceTabName) {
@@ -324,6 +298,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         }
 
         // Other: Normal predefined content
+          Log.Add("Contents of: " + name + "; nameId: " + nameId);
         var body = FlexibleResult(m, Item);
         var isActive = active == nameId;
         html = html.Add(BsTabs.TabContent(TabPrefix, nameId, body, isActive: isActive));
@@ -673,13 +648,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     {
       var l = ScParent.Log.Call<List<object>>("Formulas");
       string lMsg;
-      List<object> result;
+      List<object> result = new List<object> { ResultTabName };
       if (Specs == null) {
         lMsg = "no specs, no snippets";
-        result = new List<object>();
       } else {
         lMsg = "with specs";
-        result = new List<object> { ScParent.Formulas.Show(Specs, false) };
+        result.Add(ScParent.Formulas.Show(Specs, false));
       }
 
       if (ScParent.Formulas.ShowSnippet(Specs)) {
