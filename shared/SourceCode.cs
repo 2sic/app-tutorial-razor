@@ -692,7 +692,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     ) : base(sourceCode, item, tabs)
     {
       if (item == null) throw new Exception("Item should never be null");
-      var splitter = sourceCode.GetSourceWrap(this, "split"); // new SourceWrapSplit(this);
+      var splitter = sourceCode.GetSourceWrap(this, item, "temp");
       SourceWrap = splitter;
       var merge = (splitter is SourceWrapSplit) && (splitter as SourceWrapSplit).Active;
       if (!merge) merge = (splitter is SourceWrapBelowOutputBox);
@@ -712,12 +712,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #region SourceWrappers
 
-  private SourceWrapBase GetSourceWrap(SectionBase section, string code) {
-    if (!code.Has())
-      return new SourceWrapBase(section);
-    if (code == "split")
+  private SourceWrapBase GetSourceWrap(SectionBase section, ITypedItem item, string code) {
+    code = item != null ? item.String("OutputAndSourceDisplay") : code;
+    // Default ATM: split
+    if (!code.Has() || code == "split")
       return new SourceWrapSplit(section);
-    if (code == "temp")
+    if (code == "temp" || code == "out-over-src")
       return new SourceWrapBelowOutputBox(section, Tag.RawHtml("temp"));
     // SourceWrapIntro
     // SourceWrapIntroWithSource
