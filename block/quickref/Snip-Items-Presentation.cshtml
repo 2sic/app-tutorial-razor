@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
+<hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItems`, `Presentation` etc. work like on a normal view
@@ -9,36 +8,30 @@
   var prepPres = AsItems(data.GetStream("Presentation"));
   var presCount = 0;
 }
-
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <ul>
-    @foreach (var item in MyItems) {
-      var pres = item.Presentation;
-      <hide-silent>
-        @{
-          /* Silent patching for tutorial only, as it's not a standalone view */ 
-          pres = prepPres.Skip(presCount++).FirstOrDefault() ?? prepPres.First();
-        }
-      </hide-silent>
-      var hType = pres.String("HeadingType");
-      var title = item.Title + (pres.Bool("Highlight") ? " 🌟" : "");
-      <li>
-        @* Create a heading tag the size specified in Presentation *@
-        @if (pres.IsNotEmpty("HeadingType")) {
-          @Kit.HtmlTags.Custom(hType).Wrap(title)
-        } else {
-          @title
-        }
-        <br>
-        <em>FYI: Heading @(pres.IsEmpty("HeadingType") ? "none" : pres.String("HeadingType"))</em>
-        <div style='color: @pres.Attribute("Color")'>
-          @item.Html("Contents")
-        </div>
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
-
+</hide-silent>
+<ul>
+  @foreach (var item in MyItems) {
+    var pres = item.Presentation;
+    <hide-silent>
+      @{
+        /* Silent patching for tutorial only, as it's not a standalone view */ 
+        pres = prepPres.Skip(presCount++).FirstOrDefault() ?? prepPres.First();
+      }
+    </hide-silent>
+    var hType = pres.String("HeadingType");
+    var title = item.Title + (pres.Bool("Highlight") ? " 🌟" : "");
+    <li>
+      @* Create a heading tag the size specified in Presentation *@
+      @if (pres.IsNotEmpty("HeadingType")) {
+        @Kit.HtmlTags.Custom(hType).Wrap(title)
+      } else {
+        @title
+      }
+      <br>
+      <em>FYI: Heading @(pres.IsEmpty("HeadingType") ? "none" : pres.String("HeadingType"))</em>
+      <div style='color: @pres.Attribute("Color")'>
+        @item.Html("Contents")
+      </div>
+    </li>
+  }
+</ul>

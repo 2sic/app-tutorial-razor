@@ -1,18 +1,12 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-
-@* UniqueKey / Kit.Key.UniqueKeyWith *@
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  @{
-    var books = AsItems(App.Data["Books"]);
+@{
+  var books = AsItems(App.Data["Books"]);
+}
+<ol>
+  @foreach(var book in books) {
+    <li>
+      Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Key.UniqueKeyWith(book)</code>
+    </li>
   }
-  <ol>
-    @foreach(var book in books) {
-      <li>
-        Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Key.UniqueKeyWith(book)</code>
-      </li>
-    }
-  </ol>
-@snip.SnipEnd()
+</ol>

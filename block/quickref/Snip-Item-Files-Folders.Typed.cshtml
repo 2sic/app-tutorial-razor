@@ -1,40 +1,36 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
+<hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
+</hide-silent>
+<h4>Douglas Adams, the current item (MyItem)</h4>
+@{
+  var file = MyItem.File("Mugshot");
+  var sizeInfo = file.SizeInfo;
+}
+<ol>
+  <li>File name:        @file.Name</li>
+  <li>File extension:   @file.Extension</li>
+  <li>Size (bytes):     @file.Size</li>
+  <li>SizeInfo:         @sizeInfo.BestSize.ToString("#.#") @sizeInfo.BestUnit</li>
+</ol>
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <h4>Douglas Adams, the current item (MyItem)</h4>
-  @{
-    var file = MyItem.File("Mugshot");
-    var sizeInfo = file.SizeInfo;
+<p>Every file-field is actually a folder...</p>
+@{
+  var folder = MyItem.Folder("Mugshot");
+}
+<ol>
+  <li>Files count:    @folder.Files.Count()</li>
+  <li>Sub-Folders:    @folder.Folders.Count()</li>
+</ol>
+<p>
+  ...which could hold many files. 
+  If you want to show them, you need <code>Kit.Image...</code></p>
+<ol>
+  @foreach (var f in folder.Files) {
+    <li>@f.Name <br> @Kit.Image.Picture(f, width: 100)</li>
   }
-  <ol>
-    <li>File name:        @file.Name</li>
-    <li>File extension:   @file.Extension</li>
-    <li>Size (bytes):     @file.Size</li>
-    <li>SizeInfo:         @sizeInfo.BestSize.ToString("#.#") @sizeInfo.BestUnit</li>
-  </ol>
-
-  <p>Every file-field is actually a folder...</p>
-  @{
-    var folder = MyItem.Folder("Mugshot");
-  }
-  <ol>
-    <li>Files count:    @folder.Files.Count()</li>
-    <li>Sub-Folders:    @folder.Folders.Count()</li>
-  </ol>
-  <p>
-    ...which could hold many files. 
-    If you want to show them, you need <code>Kit.Image...</code></p>
-  <ol>
-    @foreach (var f in folder.Files) {
-      <li>@f.Name <br> @Kit.Image.Picture(f, width: 100)</li>
-    }
-  </ol>
-@snip.SnipEnd()
+</ol>

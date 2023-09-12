@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
+<hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItems`, `Presentation` etc. work like on a normal view
@@ -8,17 +7,14 @@
   var MyItems = AsItems(data.GetStream("Default"));
   var MyHeader = AsItem(data.GetStream("Header"));
 }
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <h3>@MyHeader.Title</h3>
-  <ul>
-    @foreach (var item in MyItems) {
-      <li>
-        @item.Title
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
+</hide-silent>
+<h3>@MyHeader.Title</h3>
+<ul>
+  @foreach (var item in MyItems) {
+    <li>
+      @item.Title
+    </li>
+  }
+</ul>
 
 

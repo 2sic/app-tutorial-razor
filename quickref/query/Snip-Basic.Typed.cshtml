@@ -1,6 +1,4 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
 <hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
@@ -9,15 +7,12 @@
 }
 </hide-silent>
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <h4>Loop persons in Query of this view</h4>
-  <ul>
-    @foreach (var person in AsItems(MyData)) {
-      <li>
-        @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
-        @person.String("FirstName") @person.String("LastName")
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
+<h4>Loop persons in Query of this view</h4>
+<ul>
+  @foreach (var person in AsItems(MyData)) {
+    <li>
+      @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
+      @person.String("FirstName") @person.String("LastName")
+    </li>
+  }
+</ul>

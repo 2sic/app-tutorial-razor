@@ -1,23 +1,17 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
-
+<hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyData` is the assigned query for this view
   var MyItems = AsItems(App.GetQuery("QuickRef-Persons-Selected"));
 }
-
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <h4>Loop persons which were added to this view</h4>
-  <ul>
-    @foreach (var person in MyItems) {
-      <li>
-        @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
-        @person.String("FirstName") @person.String("LastName")
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
+</hide-silent>
+<h4>Loop persons which were added to this view</h4>
+<ul>
+  @foreach (var person in MyItems) {
+    <li>
+      @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
+      @person.String("FirstName") @person.String("LastName")
+    </li>
+  }
+</ul>

@@ -8,11 +8,18 @@
     Load a JavaScript relative to the App folder (see message/console): <br>
     <strong id="loadjs-app-message"></strong>
   </p>
-  <script src="@App.Folder.Url/quick-reference/js/js/load-with-app-path.js.js"></script>
+  <script src="@App.Folder.Url/js/quickref/js/load-with-app-path.js"></script>
 
   <p>
     Load a JavaScript relative to the folder of this Razor file (see message/console): <br>
     <strong id="loadjs-view-message"></strong>
   </p>
+  <hide-silent>@*</hide-silent>
   <script src="@MyView.Folder.Url/js/js/load-with-view-path.js"></script>
+  <hide-silent>*@</hide-silent>
 @snip.SnipEnd()
+<hide-silent>
+  @* Note: this is a workaround, because we're demoing how to use the MyView
+  but because of the setup of the tutorial, this file isn't actually a normal view *@
+  <script src="@App.Folder.Url/js/quickref/js/load-with-view-path.js"></script>
+</hide-silent>

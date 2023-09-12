@@ -1,20 +1,16 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <p>
-    Note: you won't see any output here.
-    To see the effect, look at the page source.
-  </p>
-  @* Example with a single-liner directly in the code *@
-  @Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
-  @Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
-  @Kit.Page.AddMeta("tutorial", "some value")
+<p>
+  Note: you won't see any output here.
+  To see the effect, look at the page source.
+</p>
+@* Example with a single-liner directly in the code *@
+@Kit.Page.SetTitle("Reference CheatSheet for Razor in 2sxc")
+@Kit.Page.AddIconSet(App.Folder.Url + "/blade/assets/razor-blade-icon.png")
+@Kit.Page.AddMeta("tutorial", "some value")
 
-  @{
-    // Example showing how to use in a block of code
-    Kit.Page.SetDescription("Learn to use Razor Blade ");
-    Kit.Page.SetKeywords("Tutorial, Razor, Blade");
-  }
-@snip.SnipEnd()
+@{
+  // Example showing how to use in a block of code
+  Kit.Page.SetDescription("Learn to use Razor Blade ");
+  Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+}

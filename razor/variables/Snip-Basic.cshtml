@@ -1,26 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
+@{
+  var firstName = "Terry";
+}
 
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  @{
-    var firstName = "Terry";
-  }
-
-  Name: @firstName
-@snip.SnipEnd()
-
-@* @{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <h3>@MyHeader.Title</h3>
-  <ul>
-    @foreach (var item in MyItems) {
-      <li>
-        @item.Title
-      </li>
-    }
-  </ul>
-@snip.SnipEnd() *@
-
-
+Name: @firstName

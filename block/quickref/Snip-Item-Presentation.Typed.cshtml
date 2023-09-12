@@ -1,7 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
-
+<hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
@@ -9,22 +7,17 @@
   var MyItem = AsItem(data.GetStream("Default"));
   var prepPres = AsItem(data.GetStream("Presentation"));
 }
-
-
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  <h4>A Person on <code>MyItem</code></h4>
-  @{
-    var itemPres = MyItem.Presentation;
-  }
-  <hide-silent>
-    @{ itemPres = prepPres; /* Silent patching for tutorial only, as it's not a standalone view */ }
-  </hide-silent>
-  <p>
-    Note that the following should be @itemPres.String("Color") (probably green)
-  </p>
-  <p style='color: @itemPres.Attribute("Color")'>
-    @MyItem.Title
-  </p>
-
-@snip.SnipEnd()
+</hide-silent>
+<h4>A Person on <code>MyItem</code></h4>
+@{
+  var itemPres = MyItem.Presentation;
+}
+<hide-silent>
+  @{ itemPres = prepPres; /* Silent patching for tutorial only, as it's not a standalone view */ }
+</hide-silent>
+<p>
+  Note that the following should be @itemPres.String("Color") (probably green)
+</p>
+<p style='color: @itemPres.Attribute("Color")'>
+  @MyItem.Title
+</p>

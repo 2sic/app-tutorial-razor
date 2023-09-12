@@ -1,37 +1,33 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
+<hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
   var MyItem = AsItem(MyData.GetStream("PersonAdams"));
 }
+</hide-silent>
+@functions {
+  // quick helper to make the output nicer
+  string Boolmoji(bool value) { return value ? "✅" : "🔲"; }
+}
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  @functions {
-    // quick helper to make the output nicer
-    string Boolmoji(bool value) { return value ? "✅" : "🔲"; }
+<h4>Inspect the fields of an Item</h4>
+<ol>
+  @foreach(var key in MyItem.Keys()) {
+    <li>
+      @Boolmoji(MyItem.IsNotEmpty(key))
+      @key:
+      @MyItem.Get(key)
+    </li>
   }
+</ol>
 
-  <h4>Inspect the fields of an Item</h4>
-  <ol>
-    @foreach(var key in MyItem.Keys()) {
-      <li>
-        @Boolmoji(MyItem.IsNotEmpty(key))
-        @key:
-        @MyItem.Get(key)
-      </li>
-    }
-  </ol>
-
-  <h4>Let's do some manual inspection</h4>
-  <ol>
-    <li>@Boolmoji(MyItem.ContainsKey("FirstName")) "FirstName" exits?</li>
-    <li>@Boolmoji(MyItem.IsEmpty("FirstName")) "FirstName" is empty?</li>
-    <li>@Boolmoji(MyItem.IsNotEmpty("FirstName")) "FirstName" is not empty?</li>
-    <li>@Boolmoji(MyItem.ContainsKey("hello")) "hello" exits?</li>
-    <li>@Boolmoji(MyItem.IsEmpty("hello")) "hello" is empty?</li>
-    <li>@Boolmoji(MyItem.IsNotEmpty("hello")) "hello" is not empty?</li>
-  </ol>
-@snip.SnipEnd()
+<h4>Let's do some manual inspection</h4>
+<ol>
+  <li>@Boolmoji(MyItem.ContainsKey("FirstName")) "FirstName" exits?</li>
+  <li>@Boolmoji(MyItem.IsEmpty("FirstName")) "FirstName" is empty?</li>
+  <li>@Boolmoji(MyItem.IsNotEmpty("FirstName")) "FirstName" is not empty?</li>
+  <li>@Boolmoji(MyItem.ContainsKey("hello")) "hello" exits?</li>
+  <li>@Boolmoji(MyItem.IsEmpty("hello")) "hello" is empty?</li>
+  <li>@Boolmoji(MyItem.IsNotEmpty("hello")) "hello" is not empty?</li>
+</ol>

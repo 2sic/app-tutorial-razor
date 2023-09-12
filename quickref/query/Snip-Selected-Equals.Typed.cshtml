@@ -1,6 +1,4 @@
 @inherits Custom.Hybrid.RazorTyped
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-
 <hide-silent>
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
@@ -9,22 +7,19 @@
 }
 </hide-silent>
 
-@{ var snip = Sys.SourceCode.QuickRef(item: MyModel.Item("Item")); }
-@snip.SnipStart()
-  @{
-    var selected = AsItem(MyData.GetStream("Selected"));
+@{
+  var selected = AsItem(MyData.GetStream("Selected"));
+}
+<div>
+  Selected: @selected.String("FirstName") @selected.String("LastName")
+</div>
+<ul>
+  @foreach (var person in AsItems(MyData)) {
+    <li>
+      @person.String("FirstName") @person.String("LastName")
+      @if (person.Equals(selected)) {
+        <strong>(selected ⭐)</strong>
+      }
+    </li>
   }
-  <div>
-    Selected: @selected.String("FirstName") @selected.String("LastName")
-  </div>
-  <ul>
-    @foreach (var person in AsItems(MyData)) {
-      <li>
-        @person.String("FirstName") @person.String("LastName")
-        @if (person.Equals(selected)) {
-          <strong>(selected ⭐)</strong>
-        }
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
+</ul>
