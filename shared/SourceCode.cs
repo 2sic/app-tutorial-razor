@@ -1000,7 +1000,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private SourceInfo GetFileAndProcess(string file, string snippetId = null, string path = null) {
     path = path ?? Path;
     var fullPath = GetFileFullPath(path, file);
-    var cacheKey = fullPath.ToLowerInvariant();
+    var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
     if (_fileCache.ContainsKey(cacheKey)) return _fileCache[cacheKey];
     var fileInfo = GetFile(path, file, fullPath);
     fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
