@@ -10,16 +10,7 @@
       To reall see the images loading they must have different names in each tutorial.
       Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
       */
-  }
-  @functions {
-    public List<string> ShowSrcs = new List<string>();
-    object ShowCurrentSrc(string id) {
-      ShowSrcs.Add(id);
-      return Tag.Div().Class("alert alert-light").Wrap(
-        Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-        Tag.Code("image src should appear here").Id(id + "-label")
-      );
-    }
+    var imgDemoHelper = GetCode("ImgDemoHelpers.cs");
   }
 </hide>
 
@@ -60,7 +51,7 @@
 </hide>
 
 @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <hide-silent>@ShowCurrentSrc("demo-picture-formats")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("demo-picture-formats")</hide-silent>
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
     <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
@@ -80,7 +71,7 @@
 
 
 @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <hide-silent>@ShowCurrentSrc("demo-picture-srcset")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("demo-picture-srcset")</hide-silent>
   <picture>
     <source type="image/webp" srcset="@App.Path/img/assets/koi-img-srcset-2000.webp 2000w,
           @App.Path/img/assets/koi-img-srcset-1000.webp 1000w,
@@ -100,7 +91,7 @@
 <h2>Automatically Resized Files &amp Formats</h2>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("pic-auto")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("pic-auto")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg")
 @Sys.SourceCode.Invisible()
   @{
@@ -113,7 +104,7 @@
 <h2>Automatically Resized With Custom Alt and Classes</h2>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("pic-auto-alt-class")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("pic-auto-alt-class")</hide-silent>
   @Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg", imgAlt: "This is the ALT text", imgClass: "dummy-class")
 @Sys.SourceCode.Invisible()
   @{
@@ -126,7 +117,7 @@
 
 <h2>Automatically Resized Bits with More Control</h2>
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("pic-auto-control1")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("pic-auto-control1")</hide-silent>
   @{
     var picControlled = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
   }
@@ -148,7 +139,7 @@
 <h2>Automatically Resized Bits with Lots of Control</h2>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("pic-auto-control2")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("pic-auto-control2")</hide-silent>
   @{
     var picFullControl = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
   }
@@ -168,22 +159,6 @@
     resultHtml = Sys.SourceCode.ShowResultImg(previewString);
   }
 @snip.SnipEnd(resultHtml)
-
-@* 2sxclint:disable:no-inline-script *@
-<script>
-// Activate the js which show the current live src of each picture/image tag
-@Html.Raw(string.Join("\n", ShowSrcs.Select(id => "showChangingSrc('" + id + "');")))
-</script>
-
-@* <script>
-  // Activate the controls which show the current live src of each picture/image tag
-  showChangingSrc('demo-picture-formats');
-  showChangingSrc('demo-picture-srcset');
-  showChangingSrc('pic-auto');
-  showChangingSrc('pic-auto-alt-class');
-  showChangingSrc('pic-auto-control1');
-  showChangingSrc('pic-auto-control2');
-</script> *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -10,16 +10,7 @@
       To really see the images loading they must have different names in each tutorial.
       Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
     */
-  }
-  @functions {
-    public List<string> ShowSrcs = new List<string>();
-    object ShowCurrentSrc(string id) {
-      ShowSrcs.Add(id);
-      return Tag.Div().Class("alert alert-light").Wrap(
-        Tag.Div("To see the currentSrc change, make the window narrow, reload, and then drag it to become larger."),
-        Tag.Code("image src should appear here").Id(id + "-label")
-      );
-    }
+    var imgDemoHelper = GetCode("ImgDemoHelpers.cs");
   }
 </hide>
 
@@ -70,7 +61,7 @@
 </hide>
 
 @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset")</hide-silent>
   <img loading="lazy" class="img-fluid" alt="Image SrcSet Demo"
     id="img-srcset-default"
     src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
@@ -83,7 +74,7 @@
 
 <h3>Example with Automatically Resized Files for Each Resolution</h3>
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset-auto")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset-auto")</hide-silent>
   @{
     var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
   }
@@ -102,7 +93,7 @@
   To achieve this, we must create <code>ResizeSettings</code> for this. It will be based on the default <code>Content</code> settings.
 </p>
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset-auto2")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset-auto2")</hide-silent>
   @{
     var flatSettings = Kit.Image.Settings(Settings.Images.Content, aspectRatio: "8:1");
   }
@@ -123,7 +114,7 @@
 </p>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset-auto-srcset")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset-auto-srcset")</hide-silent>
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400")
 @Sys.SourceCode.Invisible()
   @{
@@ -136,7 +127,7 @@
 <h3>Automatic Resize with Custom <code>alt</code> and <code>class</code> </h3>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset-auto3")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset-auto3")</hide-silent>
   @Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAlt: "SEO Text", imgClass: "border border-primary")
 @Sys.SourceCode.Invisible()
   @{
@@ -149,7 +140,7 @@
 <h3>Automatic Resize with Detailed Control</h3>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset-auto4")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset-auto4")</hide-silent>
   @{
     var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
@@ -165,7 +156,7 @@
 <h3>Automatic Resize with Full Control</h3>
 
 @((snip = Sys.SourceCode.TabsWithSnippet(tabs: "Generated HTML")).SnipStart())
-  <hide-silent>@ShowCurrentSrc("img-srcset-auto5")</hide-silent>
+  <hide-silent>@imgDemoHelper.ShowCurrentSrc("img-srcset-auto5")</hide-silent>
   @{
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
   }
@@ -177,12 +168,6 @@
     resultHtml = Sys.SourceCode.ShowResultImg(imgTag);
   }
 @snip.SnipEnd(resultHtml)
-
-@* 2sxclint:disable:no-inline-script *@
-<script>
-// Activate the js which show the current live src of each picture/image tag
-@Html.Raw(string.Join("\n", ShowSrcs.Select(id => "showChangingSrc('" + id + "');")))
-</script>
 
 @* 
 Photo by <a href="https://unsplash.com/@dorianbaumann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dorian Baumann</a> on <a href="https://unsplash.com/s/photos/aescher?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
