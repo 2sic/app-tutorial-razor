@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+  var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
+  var cropLen = 50;
+}
+
+<h4>Original</h4>
+<code>@val1</code>
+<div>which if cropped at @cropLen would be really messy</div>
+<code>@val1.Substring(0, cropLen)</code>
+
+
+

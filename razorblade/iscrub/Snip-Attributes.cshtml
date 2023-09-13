@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+    var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
+  }
+<div>
+  <strong>Scrub all attributes from source: </strong>
+  <code>@Kit.Scrub.Attributes(exampleAttributes)</code>
+</div>
+<div>
+  <strong>Scrub one attribute from source: </strong>
+  <code>@Kit.Scrub.Attributes(exampleAttributes, "remove-me")</code>
+</div>
+<div>
+  <strong>Scrub some attributes from source: </strong>
+  <code>@Kit.Scrub.Attributes(exampleAttributes, new string[] 
+    { "remove-me", "not-allowed" })
+  </code>
+</div>
+
+

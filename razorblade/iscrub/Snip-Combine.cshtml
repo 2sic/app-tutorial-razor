@@ -1,0 +1,8 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+  var val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
+  var cropLen = 50;
+}
+<code>@Html.Raw(Text.Ellipsis(Kit.Scrub.All(val1), cropLen))</code>

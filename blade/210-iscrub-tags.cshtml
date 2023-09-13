@@ -25,65 +25,14 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
 
-<h2>Simple example</h2>
-<h3>Original</h3>
-<code>@val1</code>
-<div>which if cropped at @cropLen would be really messy</div>
-<code>@val1.Substring(0, cropLen)</code>
 
 @* TODO: @2dg - move all to /razorblade/iscrub/Snip-xxx.cshtml 
   Note that you'll have to copy the "intro" code into each file, and then just comment it out here
 
   afterwards also put all the 221-iscrub-attributes samples here as well
 *@
+
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-iscrub" })
-
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-     val1 = "<h1>Introduction</h1><p>Welcome to this blog post</p><hr><p>beginning with xyz we'll tell you more</p>";
-     cropLen = 50;
-  }
-@snip.SnipEnd()
-
-
-<h3>After IScrub.All</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <code>@Kit.Scrub.All(val1)</code>
-@snip.SnipEnd()
-
-
-<h3>Usually you will then combine with crop or ellipsis</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <code>@Html.Raw(Text.Ellipsis(Kit.Scrub.All(val1), cropLen))</code>
-@snip.SnipEnd()
-
-
-<h3>IScrub.Only()</h3>
-<p>Only scrub specified tags using <code>IScrub.Only(source, tag)</code></p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-  var exampleTagsOnly = "<div><h2><span>The cool title</span></h2></div>"; 
-  }
-  <div><strong>Scrub one tag: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, "div")</code></div>
-  <div><strong>Scrub multiple tags: </strong><code>@Kit.Scrub.Only(exampleTagsOnly, new string[] { "div", "h2" })</code></div>
-@snip.SnipEnd()
-
-
-<h3>IScrub.Except()</h3>
-<p>Scrub except the specified tags using <code>IScrub.Except(source, tag)</code></p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var exampleTagsExcept = "<div><h2><span>The cool title</span></h2></div>"; 
-  }
-  <div><strong>Scrub tags except one tag: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, "h2")</code></div>
-  <div><strong>Scrub tags except multiple tags: </strong><code>@Kit.Scrub.Except(exampleTagsExcept, new string[] { "div", "span" })</code></div>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

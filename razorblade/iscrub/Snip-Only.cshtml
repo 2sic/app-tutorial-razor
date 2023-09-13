@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+  var exampleTagsOnly = "<div><h2><span>The cool title</span></h2></div>"; 
+}
+<div>
+  <strong>Scrub one tag: </strong>
+  <code>@Kit.Scrub.Only(exampleTagsOnly, "div")</code>
+</div>
+<div>
+  <strong>Scrub multiple tags: </strong>
+  <code>@Kit.Scrub.Only(exampleTagsOnly, new string[] 
+    { "div", "h2" })
+  </code>
+</div>
