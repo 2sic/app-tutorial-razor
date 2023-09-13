@@ -7,10 +7,10 @@
 </hide>
 
 
-@{
+@* @{
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
-}
+} *@
 
 
 <div @Sys.PageParts.InfoWrapper()>
@@ -19,10 +19,15 @@
     <h3>Show a variable</h3>
   </div>
 </div>
-<p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p>
+@* <p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p> *@
 
+@* TODO: @2dg - continue here
+Finish
+ *@
 
-@((snip = Sys.SourceCode.Intro()).SnipStart())
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razor-html" })
+
+@* @((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
      normalText = "this is text, it doesn't have tags";
      htmlText = "this string <em>has</em> html <strong>tags</strong>";
@@ -67,7 +72,7 @@
     @:</strong>
   }
 </div>
-@snip.SnipEnd()
+@snip.SnipEnd() *@
 
 
 @* Footer *@

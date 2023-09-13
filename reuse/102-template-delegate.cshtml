@@ -19,7 +19,11 @@
   </div>
 </div>
 
+@* TODO:: @2dm Link in Accordion Intro do not work   *@
 
+@* TODO: @2dg - continue here *@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "code-templatedelegates" })
+@* 
 <h2>HTML <code>Func&lt;thing, dynamic&gt;</code> Template Delegate</h2>
 <p>
   Template Delegates allow you to use inline HTML in your function. 
@@ -79,8 +83,7 @@
     @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
     @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
   </ul>
-@snip.SnipEnd()
-
+@snip.SnipEnd() *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

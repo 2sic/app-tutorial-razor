@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  //Initial Code
+  var normalText = "this is text, it doesn't have tags";
+  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+}
+
+<div>
+  @{ var makeBold = new System.Random().NextDouble() > 0.5; }
+  @if (makeBold) { 
+    @:<strong> 
+  }
+    This is randomly bold or not, depending on a random event. If it's bold, you'll see a <code>strong</code> tag around it, otherwise not.
+  @if (makeBold) { 
+    @:</strong>
+  }
+</div>

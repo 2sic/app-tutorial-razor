@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  //Initial Code
+  var normalText = "this is text, it doesn't have tags";
+  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+}
+
+<ul>
+  <li>@Html.Raw(normalText)</li>
+  <li>@Html.Raw(htmlText)</li>
+</ul>

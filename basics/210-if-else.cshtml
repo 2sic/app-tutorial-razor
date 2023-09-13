@@ -2,7 +2,6 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -15,55 +14,6 @@
 </div>
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razor-conditions" })
-@* 
-
-<h3>Basic <code>if</code></h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var aValue = "green";
-  }
-  @if (aValue == "green") {
-    <span>it's green </span>
-  }
-@snip.SnipEnd()
-
-
-<h3>If-Else</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var val2 = "blue";
-  }
-  @if (val2 == "green") {
-    <span>it's green </span>
-  } else {
-    <span>it's blue</span>
-  }
-@snip.SnipEnd()
-
-
-<h3>Using if-else and <code>&lt;text&gt;</code> tags</h3>
-<p>This is important, if you have an code block like an if, and you don't want a span-tag or similar in the output</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var val4 = "orange";
-  }
-  @if (val4 != "pink") {
-    <text>it's not pink</text>
-  }
-@snip.SnipEnd()
-
-
-<h3>Quick if-else using Ternary operator <code>? :</code></h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var val3 = "blue";
-  }
-  @(val3 == "red" ? "it's red" : "it's not red")
-@snip.SnipEnd() *@
 
 
 @* Footer *@

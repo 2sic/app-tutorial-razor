@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var normalText = "this is text, it doesn't have tags";
+  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<string, dynamic> BoldLi = @<li>
+    <strong>
+      @Html.Raw(item)
+    </strong>
+  </li>;
+}
+<ul>
+  @BoldLi(normalText)
+  @BoldLi(htmlText)
+  @BoldLi("this is just a bold line")
+</ul>
