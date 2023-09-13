@@ -2,6 +2,7 @@
 @using ToSic.Razor.Blade;
 
 @{
+  // Initial Code
   // demo of path with umlauts and japanese characters
   var kaizenUrl = "überschrift-small.png?name=改善";
   var path = App.Path + "/blade/assets/tag-img/";
@@ -11,3 +12,6 @@
 
 @Tag.Img().Src(kaizenFullPath)
 
+<pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
+
+@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)

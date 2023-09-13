@@ -20,11 +20,11 @@
     </div>
   </div>
 
-@* TODO: @2dg - move all to /razorblade/htmltags/Snip-Img-xxx.cshtml 
-  also merge the 825-picture samples into this
-*@
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-img" })
+  @* TODO:: @2dm View Image selection > Img goes above the Code Snippet
+  TODO:: @2dm Tag.Picture Titel are missing (825 Picture) *@
 
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-img" })
+@* 
 
 @((snip = Sys.SourceCode.Intro()).SnipStart())
   @{
@@ -52,7 +52,7 @@ And now the same thing with <code>Srcset</code> which allows high-density images
 
 @((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  @Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
-@snip.SnipEnd()
+@snip.SnipEnd() *@
 
 
 @* Footer *@
