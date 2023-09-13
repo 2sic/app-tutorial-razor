@@ -103,7 +103,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   public SnippetWithIntroSection OutputBoxAndSnippet(object item = null) {
-    return new SnippetWithIntroSection(this, Tag.H4("Output"));
+    return new SnippetWithIntroSection(this, Tag.H4("Executed Code"));
   }
 
 
@@ -620,7 +620,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       result,
       Comment(""),
       TagCount.Open(Tag.Div().Class("alert alert-info")),
-      Tag.H4("Output")
+      Tag.H4("Executed Code")
     ); }
 
     public override ITag GetBetween()
@@ -863,7 +863,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag GetStart(ITag contents) { return Tag.RawHtml(
       Comment(""),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
-      Tag.H4("Output")
+      Tag.H4("Executed Code")
     ); }
 
     public override ITag GetBetween() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
@@ -886,7 +886,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       "\n" + Indent2,
       TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter-left")),
       "\n" + Indent2,
-      Tag.H4("Output"),
+      Tag.H4("Executed Code"),
       Indent1
     ); }
 

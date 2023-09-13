@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@functions {
+  // Variable keeping the random number generator
+  private Random generator = new Random(DateTime.Now.Second);
+
+  // Get random number between 0 and 100
+  public int Random100() {
+    return generator.Next(0, 100);
+  }
+}
+<ul>
+  <li>Random number: @Random100()</li>
+  <li>Random number: @Random100()</li>
+</ul>

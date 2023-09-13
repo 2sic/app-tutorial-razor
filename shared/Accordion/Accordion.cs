@@ -37,11 +37,17 @@ public class Accordion: Custom.Hybrid.CodeTyped
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())
       : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { NameId = Name }));
 
+    var note = Item.IsNotEmpty("Note")
+      ? t.Div().Class("alert alert-warning").Wrap(Item.String("Note"))
+      : null;
+
     return t.RawHtml(
       "\n<!-- Accordion.Start(" + Name + ") -->\n",
       heading,
       "\n",
       Item.Html("Intro"),
+      "\n",
+      note,
       "\n",
       TagCount.Open(t.Div().Class("accordion").Id(Name))
     );
@@ -176,6 +182,10 @@ public class Section {
   }
 
   private IHtmlTag BodyStart() {
+    var note = Item != null && Item.IsNotEmpty("Note")
+      ? TagsSvc.Div().Class("alert alert-warning").Wrap(Item.String("Note"))
+      : null;
+
     return TagsSvc.RawHtml(
       "\n",
       Indent,
@@ -187,7 +197,10 @@ public class Section {
       Indent2,
       Acc.TagCount.Open(TagsSvc.Div().Class("accordion-body")),
       "\n",
-      (Item == null ? "" : Indent2 + Item.Html("Intro"))
+      (Item == null ? "" : Indent2 + Item.Html("Intro")),
+      "\n",
+      note,
+      "\n"
     );
   }
   #endregion

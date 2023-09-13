@@ -3,7 +3,6 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -12,111 +11,10 @@
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <h2>Reuse Code with <code>@@functions { }</code></h2>
-    <p>
-      Any kind of code to do some work such as figure out a string or calculate something
-      should be placed in a <strong>function</strong>. 
-      In Razor these are put inside a <em>functions</em> block.
-    </p>
   </div>
 </div>
 
-
-<h3>Basic Example: <code>function</code> returning random number</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @functions {
-    // Variable keeping the random number generator
-    private Random generator = new Random(DateTime.Now.Second);
-
-    // Get random number between 0 and 100
-    public int Random100() {
-      return generator.Next(0, 100);
-    }
-  }
-  <ul>
-    <li>Random number: @Random100()</li>
-    <li>Random number: @Random100()</li>
-  </ul>
-@snip.SnipEnd()
-
-
-<h3>Function with Parameters</h3>
-<p>This example passes a parameter into the function.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @functions {
-    // Simple string to string delegate
-    string MakeIsCool(string name) {
-      return name + " is cool 😎";
-    }
-  }
-  <ul>
-    <li>@MakeIsCool("iJungleboy")</li>
-    <li>@MakeIsCool("Douglas Adams")</li>
-  </ul>
-@snip.SnipEnd()
-
-
-<h3>Second Example: Multiple parameters</h3>
-<p>
-  This example using a <code>string</code> and a <code>bool</code> parameter.
-</p>
-<div class="alert alert-warning">
-  Note also that any HTML we return is not handled as expected. 
-  So we show an example with/without <code>@@Html.Raw</code>
-</div>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- @functions {
-  string MaybeCool(string name, bool isCool) {
-    return isCool ? name + " is <strong>cool 😎</strong>" : name + " is <em>ok 😉</em>";
-  }
-}
-<ul>
-  <li>@MaybeCool("iJungleboy", false)</li>
-  <li>@MaybeCool("Douglas Adams", true)</li>
-  <li>@Html.Raw(MaybeCool("iJungleboy", false))</li>
-  <li>@Html.Raw(MaybeCool("Douglas Adams", true))</li>
-</ul>
-@snip.SnipEnd()
-
-
-<h3>Third Example: Returning HTML</h3>
-<p>
-  This example is similar, but returns a <code>dynamic</code> HTML which is marked to be shown as HTML.
-</p>
-<div class="alert alert-warning">
-  Note this example correctly shows <strong>bold</strong> and <em>emphasis</em>.
-</div>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- @functions {
-  // Note the return type dynamic and the built-in HTML.Raw
-  dynamic MaybeCoolHtml(string name, bool isCool) {
-    return Html.Raw(isCool ? name + " is <strong>cool 😎</strong>" : name + " is <em>ok 😉</em>");
-  }
-}
-<ul>
-  <li>@MaybeCoolHtml("iJungleboy", false)</li>
-  <li>@MaybeCoolHtml("Douglas Adams", true)</li>
-</ul>
-@snip.SnipEnd()
-
-
-<h2>Better ways to Create HTML</h2>
-<p>
-  The above examples show how you can get things done, 
-  but of course writing HTML directly into a string doesn't look ideal. 
-  We can do better, using:
-</p>
-<ul>
-  <li>
-    @Sys.TutLink("Template Delegates", "reuse102")
-  </li>
-  <li>
-    @Sys.TutLink("Razor Blade Fluid API", "blade800")
-  </li>
-</ul>
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "code-functions" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

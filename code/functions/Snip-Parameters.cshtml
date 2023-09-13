@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@functions {
+  // Simple string to string delegate
+  string MakeIsCool(string name) {
+    return name + " is cool 😎";
+  }
+}
+<ul>
+  <li>@MakeIsCool("iJungleboy")</li>
+  <li>@MakeIsCool("Douglas Adams")</li>
+</ul>

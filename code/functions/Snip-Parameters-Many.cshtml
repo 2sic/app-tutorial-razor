@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@functions {
+  string MaybeCool(string name, bool isCool) {
+    return isCool ? name + " is <strong>cool 😎</strong>" : name + " is <em>ok 😉</em>";
+  }
+}
+<ul>
+  <li>@MaybeCool("iJungleboy", false)</li>
+  <li>@MaybeCool("Douglas Adams", true)</li>
+  <li>@Html.Raw(MaybeCool("iJungleboy", false))</li>
+  <li>@Html.Raw(MaybeCool("Douglas Adams", true))</li>
+</ul>
