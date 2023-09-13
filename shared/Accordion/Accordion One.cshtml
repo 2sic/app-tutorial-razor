@@ -3,14 +3,32 @@
 
 @* Bootstrap 5 Accordions *@
 @{
-  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
   var accSpecs = AsItems(App.Data["TutAccordion"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
 }
 
 @if (accSpecs != null) {
   if (accSpecs.Bool("HasVariants")) {
-    <div>
-      todo - menu
+    <div class="alert alert-info">
+      The samples can differ based on your Razor base class. <br>
+      @if (accordion.Variant == "typed") {
+        <a class="btn btn-success" href='#'>
+          Selected: Typed (Razor16+)
+        </a>
+        <a class="btn btn-primary"
+          href='@Link.To(parameters: MyPage.Parameters.Set("variant", "dynamic"))'>
+          Switch to Dynamic (Razor14 or below)
+        </a>
+      } else {
+        <br>
+        <a class="btn btn-primary"
+          href='@Link.To(parameters: MyPage.Parameters.Set("variant", "typed"))'>
+          Switch to Typed (Razor16+)
+        </a>
+        <a class="btn btn-success" href='#'>
+          Selected: Dynamic (Razor14 or below)
+        </a>
+      }
     </div>
   }
   @accordion.Start(accSpecs)
