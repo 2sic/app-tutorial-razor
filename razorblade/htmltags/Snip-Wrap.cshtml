@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+  var darkBox = Tag.Div()
+    .Class("alert alert-dark")
+    .Wrap(
+      "Did you know, that you can add text...",
+      Tag.Code("and tags"),
+      Tag.Div(
+        "as well as more ", 
+        Tag.B("tags"),
+        " and strings inside it?"
+      )
+        .Class("alert")
+        .Class("alert-danger")
+    );
+
+}
+@darkBox
+
+

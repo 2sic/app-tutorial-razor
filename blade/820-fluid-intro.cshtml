@@ -17,71 +17,13 @@
       </p>
     </div>
   </div>
-  <h3>Basic Principles</h3>
-
-<ol>
-  <li>
-    <strong>Quick, Safe Construction</strong> <br>
-    <code>@@Tag.Div()</code> will created typed objects to generate Html5. The <code>Div</code> can be any known Html5 tag, so 
-    <code>@@Tag.Img()</code>,
-    <code>@@Tag.Table()</code>,
-    <code>@@Tag.Br()</code>
-    will all work. <br>
-    @{
-      //2sxclint:disable:no-dot-target
-    }
-    👉 Here is the  @Tag.A("complete list").Href("http://razor-blade.net/api/ToSic.Razor.Blade.Tag.html").Target("_blank")
-  </li>
-  <li>
-    <strong>Wrap Text and Tags in the constructor</strong> <br>
-    Use <code>@@Tag.Div("hello!")</code>
-    to put content into a tag. You can also put tags inside tags like 
-    <code>@@Tag.Div(Tag.H3("a title"))</code>, and also add an unlimited list of things with
-    <code>@@Tag.Div(Tag.H3("Title"), Tag.P("some intro text"), ...)</code>
-  </li>
-  <li>
-    <strong>Add more Text & Tags later on</strong><br>
-    Sometimes your code will want to add content step-by-step. You can always do this using
-    <code>.Add(...)</code>, so you can write
-    <code>@@Tag.Div(Tag.H3("title")).Add(Tag.P("body"))</code>
-  </li>
-  <li>
-    <strong>Replace the contents completely</strong><br>
-    Maybe you've contstructed some tags but now the code needs to throw away the previous content and replace it. Use 
-    <code>.Wrap(...)</code> for this. So <br>
-    <code>@@Tag.Div(Tag.H3("...")).Wrap("just reset the content")</code> 
-    will completely replace the whole contents with the text.
-  </li>
-  <li>
-    <strong>Set Common Attributes</strong> <br>
-    Each tag object has many commands on it like 
-    <code>Id(...)</code>, 
-    <code>Class(...)</code>,
-    <code>Style(...)</code>,
-    <code>Title(...)</code>.
-    The result of these commands is always the original object, so you can chain these (fluid API). So you can write 
-    <code>@@Tag.Div().Id("myId").Class("row highlighted")</code>. <br>
-    <em>Important: Some attributes are extra smart, like Class or Style, which will SmartJoin the values if called multiple times. Read the special tutorial for that. </em>
-  </li>
-  <li>
-    <strong>Set Tag-Specific Attributes</strong><br>
-    All known html5 objects are supported, and return specially typed objects. So you can write
-    <code>@@Tag.Img().Src("...")</code> or 
-    <code>@@Tag.A().Href(...)</code>, but 
-    <del><code>@@Tag.Img().Href(...)</code></del> won't work. <br>
-    <em>Important: Some attributes are extra smart, like <code>Src</code> on <code>Img</code> or <code>Srcset</code> on <code>Source</code>. Read the special tutorial for that. </em>
-  </li>
-</ol>
-
-
-</trim>
 
 @* TODO: @2dg - move all to /razorblade/htmltags/Snip-xxx.cshtml 
   also merge the samples for 828 and 829 into this
 *@
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-htmltags" })
 
-
+@* 
 <trim>
 
   <h2>Demo Simple Tags like <code>h4</code> and <code>div</code></h2>
@@ -95,11 +37,7 @@
 
 </trim>
 
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @* this will place an HR in the page - not very useful, but just for a first example *@
-  @Tag.H3("Example 1: This title was code-generated")
 
-  @* now let's create a bootstrap-style box *@
   @Tag.Div("This div was coded").Class("alert alert-warning")
 
   @Tag.Div(
@@ -108,7 +46,6 @@
     Tag.Em("follows the title")
   ).Class("alert alert-warning")
 
-  @* Same example as 2a, but written in a more fluid way *@
   @Tag.Div().Class("alert alert-warning").Wrap(
     Tag.H4("Example 2b: This h4 title is inside the div"),
     "and this text in the div ",
@@ -162,8 +99,7 @@
 
   }
   @darkBox
-@snip.SnipEnd()
-
+@snip.SnipEnd() *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

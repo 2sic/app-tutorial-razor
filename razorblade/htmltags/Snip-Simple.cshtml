@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@* this will place an HR in the page - not very useful, but just for a first example *@
+@Tag.H3("Example 1: This title was code-generated")
+
+@* now let's create a bootstrap-style box *@
+@Tag.Div("This div was coded").Class("alert alert-warning")
+
+@Tag.Div(
+  Tag.H4("Example 2a: This h4 title is inside the div"),
+  "and this text in the div ",
+  Tag.Em("follows the title")
+).Class("alert alert-warning")
+
+@* Same example as 2a, but written in a more fluid way *@
+@Tag.Div().Class("alert alert-warning").Wrap(
+  Tag.H4("Example 2b: This h4 title is inside the div"),
+  "and this text in the div ",
+  Tag.Em("follows the title")
+)
+
+

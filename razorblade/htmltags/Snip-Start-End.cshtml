@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+  var successBox = Tag.Div().Class("alert alert-success");
+}
+@successBox.TagStart
+  This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
+  because it may be easier for you that way.
+@successBox.TagEnd
+
+

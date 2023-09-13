@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@(Tag.Div("This is the intro. ", 
+      Tag.B("I hope you like it"), 
+      Tag.I(" otherwise it's ok too"), 
+      " 😉"
+      )
+      .Id("wrapper")
+      .Class("alert")
+      .Class("alert-dark"))
+
+
