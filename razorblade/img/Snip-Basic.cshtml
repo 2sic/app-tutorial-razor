@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+
+@{
+  // demo of path with umlauts and japanese characters
+  var kaizenUrl = "überschrift-small.png?name=改善";
+  var path = App.Path + "/blade/assets/tag-img/";
+  var kaizenFullPath =  path + kaizenUrl;
+  var kaizenFullHd = kaizenFullPath.Replace("small", "large");
+}
+
+@Tag.Img().Src(kaizenFullPath)
+
