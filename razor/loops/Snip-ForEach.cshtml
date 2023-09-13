@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var pets = new string[] { "dog", "cat", "mouse"};
+  var owners = new string[] { "Daniel", "John", "Markus"};
+}
+
+<ul>
+  @foreach (var pet in pets) {
+    <li>@pet</li>
+  }
+</ul>

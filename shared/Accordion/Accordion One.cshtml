@@ -3,7 +3,7 @@
 
 @* Bootstrap 5 Accordions *@
 @{
-  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant"));
+  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
   var accSpecs = AsItems(App.Data["TutAccordion"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 }
 

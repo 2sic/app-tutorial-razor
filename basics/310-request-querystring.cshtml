@@ -43,44 +43,7 @@
   </div>
 </div>
 
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- <ul>
-    <li><a href='@Link.To(parameters: "?basics310=page")'>This page without additional url-parameter</a></li>
-    <li><a href='@Link.To(parameters: "?basics310=page&sort=ascending")'>This page with additional <code>sort=ascending</code></a></li>
-  </ul>
-@snip.SnipEnd()
-
-
-<h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#query-string")).SnipStart())
-  <ul>
-    <li>URL contains <code>sort</code> using null-check: 
-      @(MyPage.Parameters["sort"] != null)
-    </li>
-    <li>URL contains <code>sort</code> using <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a> (this will also return false, if sort is empty):
-      @Text.Has(MyPage.Parameters["sort"])
-    </li>
-    <li>Sort value from URL:
-      @MyPage.Parameters["sort"]
-    </li>
-    <li>
-      Put <code>sort</code> in a variable for further use:
-      @{
-        var sort = MyPage.Parameters["sort"];
-      }
-      @sort
-    </li>
-    <li>
-      Get sort from url, or if it doesn't exist, use a default value <code>descending</code> (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>):
-      @{
-        sort = Text.First(MyPage.Parameters["sort"], "descending");
-      }
-      @sort
-    </li>
-  </ul>
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "basics-linking" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

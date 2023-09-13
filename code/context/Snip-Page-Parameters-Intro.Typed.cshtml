@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+
+<p>Links to test the functionality</p>
+<ul>
+  <li><a href='@Link.To(parameters: MyPage.Parameters.Remove("sort"))'>This page without <code>sort</code> url-parameter</a></li>
+  <li><a href='@Link.To(parameters: MyPage.Parameters.Set("sort", "Ascending"))'>This page with additional <code>sort=ascending</code></a></li>
+</ul>
+
+<p>Reading the url parameters</p>
+<ul>
+  <li>URL contains <code>sort</code> w/null-check: <br>
+    @(MyPage.Parameters["sort"] != null)
+  </li>
+  <li>URL contains <code>sort</code>
+    using <code>IsNotEmpty</code>: <br>
+    @MyPage.Parameters.IsNotEmpty("sort")
+  </li>
+  <li>Sort value from URL: <br>
+    @MyPage.Parameters["sort"]
+  </li>
+  <li>
+    Put <code>sort</code> in a variable for further use: <br>
+    @{
+      var sort = MyPage.Parameters["sort"];
+    }
+    @sort
+  </li>
+  <li>
+    Get sort from url, or if it doesn't exist, 
+    use a default value <code>descending</code> 
+    (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>):
+    @{
+      sort = Text.First(MyPage.Parameters["sort"], "descending");
+    }
+    @sort
+  </li>
+</ul>

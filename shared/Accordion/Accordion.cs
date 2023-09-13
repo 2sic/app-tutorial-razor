@@ -18,15 +18,35 @@ public class Accordion: Custom.Hybrid.CodeTyped
   public IHtmlTag Start(ITypedItem item) {
     Item = item;
     Name = item.String("NameId");
+    if (!_variantExtension.Has()) {
+      var isTyped = (MyPage.Parameters["variant"] ?? "typed") == "typed";
+      _variantExtension = isTyped ? ".Typed" : ".Dyn";
+    }
     return StartInner();
   }
 
   private IHtmlTag StartInner() {
     var t = Kit.HtmlTags;
     var heading = t.H2(Item.String("Title", scrubHtml: "p")).Class("quick-ref");
+    // Add Toolbar
     heading = (Item.Id != 0)
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())
       : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { NameId = Name }));
+
+    // Add Variants Linking if necessary
+    if (Item.Bool("HasVariants")) {
+      var selected = MyPage.Parameters["variant"] ?? "typed";
+      var menu = t.Span().Class("tut-variant-menu");
+      menu = menu.Add(
+        "\n",
+        t.A("Typed").Href("?variant=typed").Class(selected == "typed" ? "active" : ""),
+        "\n - \n",
+        t.A("Dynamic (Razor14)").Href("?variant=dynamic").Class(selected == "dynamic" ? "active" : ""),
+        "\n"
+      );
+      // menu = menu.Add(t.A("Dynamic (Razor14)").Href("?variant=dynamic").Class(selected == "dynamic" ? "active" : ""));
+      heading = heading.Add(menu);
+    }
     return t.RawHtml(
       "\n<!-- Accordion.Start(" + Name + ") -->\n",
       heading,
