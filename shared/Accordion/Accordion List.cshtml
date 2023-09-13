@@ -1,14 +1,40 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 
-@* Bootstrap 5 Accordions *@
 @{
-  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant"));
+  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
   var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 }
 
-@foreach (var accSpecs in list.Children("Accordions")) {
-  @accordion.Start(accSpecs)
-    @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
-  @accordion.End()
+@if (list != null) {
+  if (list.IsNotEmpty("Accordions")) {
+    var accords = list.Children("Accordions");
+
+    // Check if any of the tutorials has variants - if yes, show the variant selector
+    var showVariantSelector = accords.Any(a => a.Bool("HasVariants"));
+    if (showVariantSelector) {
+      @Html.Partial("./Variant Selector.cshtml", new { Variant = accordion.Variant })
+    }
+
+
+    foreach (var accSpecs in accords) {
+      @Html.Partial("./Accordion One.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true })
+    }
+  } else {
+    <div @Kit.Toolbar.Default(list)>
+      Accordion list is empty.
+      Use Toolbar to edit
+    </div>
+  }
+} else if (MyUser.IsSystemAdmin) {
+  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutAccordionList", prefill: new {
+    NameId = MyModel.String("NameId")
+  })>
+    The Accordion LIST <strong>@MyModel.String("NameId")</strong> was not found.
+    <br />
+    This is something you probably want to create next.
+    Use the Toolbar to create.
+  </div>
 }
+
+<p>&nbsp;</p>

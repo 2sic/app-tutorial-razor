@@ -3,34 +3,21 @@
 
 @* Bootstrap 5 Accordions *@
 @{
-  var accSpecs = AsItems(App.Data["TutAccordion"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
-  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
+  var accSpecs = MyModel.Item("AccordionSpecs", required: false)
+    ?? AsItems(App.Data["TutAccordion"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  var accordion = MyModel.Code("Accordion", required: false)
+    ?? GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
+
+  var skipPageTools = MyModel.Bool("SkipPageTools", required: false);
 }
 
 @if (accSpecs != null) {
-  if (accSpecs.Bool("HasVariants")) {
-    <div class="alert alert-info">
-      The samples can differ based on your Razor base class. <br>
-      @if (accordion.Variant == "typed") {
-        <a class="btn btn-success" href='#'>
-          Selected: Typed (Razor16+)
-        </a>
-        <a class="btn btn-primary"
-          href='@Link.To(parameters: MyPage.Parameters.Set("variant", "dynamic"))'>
-          Switch to Dynamic (Razor14 or below)
-        </a>
-      } else {
-        <br>
-        <a class="btn btn-primary"
-          href='@Link.To(parameters: MyPage.Parameters.Set("variant", "typed"))'>
-          Switch to Typed (Razor16+)
-        </a>
-        <a class="btn btn-success" href='#'>
-          Selected: Dynamic (Razor14 or below)
-        </a>
-      }
-    </div>
+  // If we have variants, and the caller didn't explicitly say to skip page tools, then show them
+  if (!skipPageTools && accSpecs.Bool("HasVariants")) {
+    @Html.Partial("./Variant Selector.cshtml", new { Variant = accordion.Variant })
   }
+
+  // Show each accordion with all sections
   @accordion.Start(accSpecs)
     @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
   @accordion.End()

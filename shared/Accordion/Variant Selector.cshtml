@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+<div class="alert alert-info">
+  The samples can differ based on your Razor base class. <br>
+  @if (MyModel.String("Variant") == "typed") {
+    <a class="btn btn-success" href='#'>
+      Selected: Typed (Razor16+)
+    </a>
+    <a class="btn btn-primary"
+      href='@Link.To(parameters: MyPage.Parameters.Set("variant", "dynamic"))'>
+      Switch to Dynamic (Razor14 or below)
+    </a>
+  } else {
+    <br>
+    <a class="btn btn-primary"
+      href='@Link.To(parameters: MyPage.Parameters.Set("variant", "typed"))'>
+      Switch to Typed (Razor16+)
+    </a>
+    <a class="btn btn-success" href='#'>
+      Selected: Dynamic (Razor14 or below)
+    </a>
+  }
+</div>

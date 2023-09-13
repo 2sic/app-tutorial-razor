@@ -44,6 +44,18 @@
 </div>
 @* 2dg: neue info section part *@
 
+@* TODO: @2dg - continue here in /code/reuse
+  - merge reuse210, reuse 310, 320
+  - you'll need some instructions about handling the different variants
+    using .Dyn and .Razor
+ *@
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "code-reuse-page" })
+
+<pre>
+TODO: @@2DM - MUST FINISH THE rAZOR14 SWICHING ????
+
+</pre>
+
 <h2>Using Shared Helpers</h2>
 <p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
 

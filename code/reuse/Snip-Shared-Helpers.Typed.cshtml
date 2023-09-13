@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  // Use GetCode in RazorPro
+  var lightbox = GetCode("/shared/Fancybox.cs");
+}
+@lightbox.PreviewWithLightbox(App.Folder.Url + "/app-icon.png")
+<br>
+@lightbox.PreviewWithLightbox(App.Folder.Url + "/reuse/demo.png", 200, 100)

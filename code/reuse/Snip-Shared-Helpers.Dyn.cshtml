@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.Razor14
+
+@{
+  // Use CreateInstance in Razor12 and Razor14
+  var lightbox = CreateInstance("../../shared/Fancybox.cs");
+}
+@lightbox.PreviewWithLightbox(App.Path + "/app-icon.png")
+<br>
+@lightbox.PreviewWithLightbox(App.Path + "/reuse/demo.png", 200, 100)
