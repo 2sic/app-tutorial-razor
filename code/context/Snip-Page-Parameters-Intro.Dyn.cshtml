@@ -1,11 +1,17 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
 
+<p>
+  FYI: The current url parameters are <br>
+  <code>@CmsContext.Page.Parameters</code>
+</p>
+
 <p>Links to test the functionality</p>
 <ul>
   <li><a href='@Link.To(parameters: CmsContext.Page.Parameters.Remove("sort"))'>This page without <code>sort</code> url-parameter</a></li>
   <li><a href='@Link.To(parameters: CmsContext.Page.Parameters.Set("sort", "Ascending"))'>This page with additional <code>sort=ascending</code></a></li>
 </ul>
+
 
 <p>Reading the url parameters</p>
 <ul>
