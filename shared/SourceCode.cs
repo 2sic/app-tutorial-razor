@@ -961,6 +961,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     string snippetId = null, string title = null, string titlePath = null, 
     bool? expand = null, bool? wrap = null, bool? withIntro = null, bool? showTitle = null)
   {
+    var l = Log.Call<ITag>("file: '" + file + "'; SnippetId: '" + snippetId + "'");
     var debug = false;
     var path = Path;
     var errPath = Path;
@@ -976,30 +977,30 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       var specs = GetFileAndProcess(file, snippetId);
       path = specs.Path;  // update in case of error
       errPath = debug ? specs.FullPath : path;
-      title = title ?? "Source Code of " + (Text.Has(specs.File)
-        ? titlePath + specs.File
+      title = title ?? "Source Code of " + (Text.Has(specs.FileName)
+        ? titlePath + specs.FileName  // "Source code of .../Fancybox.cs"
         : "this " + specs.Type); // "this snippet" vs "this file"
       specs.Expand = expand ?? specs.Expand;
       specs.Wrap = wrap ?? specs.Wrap;
       specs.ShowIntro = withIntro ?? specs.ShowIntro;
       specs.ShowTitle = showTitle ?? specs.ShowTitle;
 
-      TurnOnSource(specs, specs.Path, specs.Wrap);
+      TurnOnSource(specs, specs.FileName, specs.Wrap);
 
-      return Tag.RawHtml(
+      return l(Tag.RawHtml(
         debug ? Tag.Div(errPath).Class("alert alert-info") : null,
         "\n<!-- Source Code -->\n",
         SourceBlock(specs, title),
         "\n<!-- /Source Code -->\n"
-      );
+      ), "ok");
     }
     catch
     {
       throw;
       return Tag.Div("Error showing " + errPath).Class("alert alert-warning");
-      return ShowError(path);
+      return l(ShowError(path), "error");
     }
-    return null;
+    // return null;
   }
 
   public bool FileContainsSnipCode(string file) {
@@ -1024,7 +1025,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     fileInfo.ShowTitle = !isSnippet;
     fileInfo.Type = isSnippet ? "snippet" : "file";
     fileInfo.DomAttribute = "source-code-" + MyContext.Module.Id;
-    if (string.IsNullOrEmpty(snippetId) && string.IsNullOrEmpty(fileInfo.File)) fileInfo.Expand = false;
+    // If no File name was specified, then it's the current file; don't expand
+    if (!snippetId.Has() && !file.Has()) fileInfo.Expand = false;
     _sourceInfoCache[cacheKey] = fileInfo;
     return fileInfo;
   }
@@ -1075,7 +1077,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   private void TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
-    var l = Log.Call("filePath:" + filePath + ", wrap:" + wrap);
+    var l = Log.Call("filePath:" + filePath + ", wrap:" + wrap + "; specs.Language: " + specs.Language);
     var language = "ace/mode/" + (specs.Language ?? (Text.Has(filePath)
       ? FindAce3LanguageName(filePath)
       : "html"));
@@ -1093,6 +1095,20 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
     );
     l("language=" + language);
+  }
+
+  /// <summary>
+  /// Determine the ace9 language of the file
+  /// </summary>
+  private string FindAce3LanguageName(string filePath) {
+    var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
+    switch (extension)
+    {
+      case "cs": return "csharp";
+      case "js": return "javascript";
+      case "json": return "json";
+      default: return "razor";
+    }
   }
 
 
@@ -1115,13 +1131,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   private SourceInfo GetFile(string filePath, string file, string fullPath = null) {
-    var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file);
+    var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file + "; fullPath: " + fullPath);
     fullPath = fullPath ?? GetFileFullPath(filePath, file);
     var cacheKey = fullPath.ToLowerInvariant();
     var contents = (_getFileCache.ContainsKey(cacheKey))
       ? _getFileCache[cacheKey]
       : System.IO.File.ReadAllText(fullPath);
-    return l(new SourceInfo { File = file, Path = filePath, FullPath = fullPath, Contents = contents }, Path);
+    var fileName = System.IO.Path.GetFileName(fullPath);
+    return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, Path);
   }
 
   private Dictionary<string, string> _getFileCache = new Dictionary<string, string>();
@@ -1144,7 +1161,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   internal class SourceInfo : ShowSourceSpecs {
-    public string File;
+    public string FileName;
     public string Path;
     public string FullPath;
     public string Contents;
@@ -1178,18 +1195,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     if (size < LineHeightPx) size = 600;
     return size;
-  }
-
-  // Determine the ace9 language of the file
-  private string FindAce3LanguageName(string filePath) {
-    var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
-    switch (extension)
-    {
-      case "cs": return "csharp";
-      case "js": return "javascript";
-      case "json": return "json";
-      default: return "razor";
-    }
   }
 
   #endregion

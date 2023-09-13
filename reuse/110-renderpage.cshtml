@@ -26,6 +26,9 @@
   </div>
 </div>
 
+@* TODO: @2dg - continue here in /razor/partial *@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razor-partial" })
+
 
 <h3>Just render the same, external file into here</h3>
 <p>This uses <code>@@Html.Partial</code> to get the file <code>line.cshtml</code> 3 times.</p>
