@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+
+@{
+  var afterLastExample = "This won't be shown @ this won't be shown @ this will be shown";
+}
+<strong>Result:</strong> @Text.AfterLast(afterLastExample, "@")

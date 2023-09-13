@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+
+@{
+  var beforeExample = "This will be shown @ this won't be shown";
+}
+<strong>Result:</strong> @Text.Before(beforeExample, "@")

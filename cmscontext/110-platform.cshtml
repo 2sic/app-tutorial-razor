@@ -26,6 +26,7 @@
     </div>
   </div>
 
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "code-context" })
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet")).SnipStart())
   <ol>

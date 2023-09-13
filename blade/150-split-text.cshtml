@@ -21,74 +21,7 @@
   </div>
 </div>
 
-@* TODO: @2dg - move all to /razorblade/text/Snip-xxx.cshtml *@
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-text" })
-
-
-<trim>
-<h3>Split Text after first key occurence</h3>
-<p>Using <code>Text.After(text, key)</code> only the text after the first found occurence of the <code>key</code> will be shown.</p>
-</trim>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var afterExample = "This won't be shown @ this will be shown";
-  }
-  <strong>Result:</strong> @Text.After(afterExample, "@")
-@snip.SnipEnd()
-
-
-<h3>Split Text after last key occurence</h3>
-<p>
-  Using <code>Text.AfterLast(text, key)</code> only the text after the last found occurence of the <code>key</code> will be shown.
-</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- @{
-    var afterLastExample = "This won't be shown @ this won't be shown @ this will be shown";
-  }
-  <strong>Result:</strong> @Text.AfterLast(afterLastExample, "@")
-@snip.SnipEnd()
-
-
-<h3>Split Text before first key occurence</h3>
-<p>Using <code>Text.Before(text, key)</code> only the text before the first found occurence of the <code>key</code> will be shown.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var beforeExample = "This will be shown @ this won't be shown";
-  }
-  <strong>Result:</strong> @Text.Before(beforeExample, "@")
-@snip.SnipEnd()
-
-
-<h3>Split Text before last key occurence</h3>
-<p>Using <code>Text.BeforeLast(text, key)</code> only the text before the last found occurence of the <code>key</code> will be shown.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var beforeLastExample = "This will be shown @ this will be shown @ this won't be shown";
-  }
-  <strong>Result:</strong> @Text.BeforeLast(beforeLastExample, "@")
-@snip.SnipEnd()
-
-
-
-<h3>Split Text between two key ocurrences</h3>
-<p>
-  Using <code>Text.Between(text, key1, key2, goToEndIfEndNotFound = false)</code> only the text between <code>key1</code> and <code>key2</code> will be shown.
-  With goToEndIfEndNotFound set to true, the text selection will grow till the end if the ending key can't be found.
-</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var betweenExample = "This won't be shown @ this will be shown # this won't be shown";
-  }
-  <strong>Result:</strong> @Text.Between(betweenExample, "@", "#")
-  <br><strong>Result:</strong> @Text.Between(betweenExample, "@", "notInText", true)
-@snip.SnipEnd()
-
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
