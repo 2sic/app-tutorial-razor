@@ -8,6 +8,11 @@
 }
 
 @if (accSpecs != null) {
+  if (accSpecs.Bool("HasVariants")) {
+    <div>
+      todo - menu
+    </div>
+  }
   @accordion.Start(accSpecs)
     @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
   @accordion.End()
