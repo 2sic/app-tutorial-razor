@@ -22,6 +22,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   private const string InDepthField = "InDepthExplanation";
   private const string InDepthTabName = "In-Depth Explanation";
+  private const string ResultTitle = "Result";
 
   #endregion
 
@@ -103,7 +104,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   public SnippetWithIntroSection OutputBoxAndSnippet(object item = null) {
-    return new SnippetWithIntroSection(this, Tag.H4("Executed Code"));
+    return new SnippetWithIntroSection(this, Tag.H4(ResultTitle));
   }
 
 
@@ -620,7 +621,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       result,
       Comment(""),
       TagCount.Open(Tag.Div().Class("alert alert-info")),
-      Tag.H4("Executed Code")
+      Tag.H4(ResultTitle)
     ); }
 
     public override ITag GetBetween()
@@ -863,7 +864,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public override ITag GetStart(ITag contents) { return Tag.RawHtml(
       Comment(""),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
-      Tag.H4("Executed Code")
+      Tag.H4(ResultTitle)
     ); }
 
     public override ITag GetBetween() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
@@ -886,11 +887,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       "\n" + Indent2,
       TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter-left")),
       "\n" + Indent2,
-      Tag.H4("Executed Code"),
+      Tag.H4("⬇️ " + ResultTitle + " | Source ➡️"),
+      "\n" + Indent2,
+      TagCount.Open(Tag.Div().Class("alert alert-info").Style("margin-right: 10px;")),
       Indent1
     ); }
 
     public override ITag GetBetween() { return Tag.RawHtml(
+      "\n" + Indent2,
+      TagCount.CloseDiv(),
       "\n" + Indent2 + "<!-- /split-left -->"
       + "\n" + Indent2,
       TagCount.CloseDiv(),
@@ -1138,7 +1143,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       ? _getFileCache[cacheKey]
       : System.IO.File.ReadAllText(fullPath);
     var fileName = System.IO.Path.GetFileName(fullPath);
-    return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, Path);
+    return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, fullPath);
   }
 
   private Dictionary<string, string> _getFileCache = new Dictionary<string, string>();

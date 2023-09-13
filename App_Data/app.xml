@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.06.00" ExportDate="2023-09-13T10:46:34.8497136+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.06.00" ExportDate="2023-09-13T17:30:19.2337307+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -3267,6 +3267,66 @@
     </AttributeSet>
     <AttributeSet StaticName="908119e9-7383-4550-bca5-08864f5af456" Name="TutAccordion" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
+        <Attribute StaticName="TitleForPicker" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="be4e64bc-4b50-4d5b-839d-494f86aaaeb5" Json="True" KeyNumber="5907">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="391fb889-3c2b-48c4-988a-ecdee308d5f5" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="TitleForPicker" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="126ef223-5343-4ca3-9bde-053484249bf0" Json="True" KeyNumber="5907">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="b8a5d41b-0f76-4ecb-8fc1-c267d21e7d65" Json="True" KeyNumber="5907">
+            <Value Key="InputFontFamily" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
         <Attribute StaticName="NameId" Type="String" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="11e3384d-c7e9-427a-bcef-aa676c4a0472" Json="True" KeyNumber="5888">
             <Value Key="CustomJavaScript" Value="" Type="String">
@@ -3329,7 +3389,7 @@
             </Value>
           </Entity>
         </Attribute>
-        <Attribute StaticName="Title" Type="String" IsTitle="true">
+        <Attribute StaticName="Title" Type="String" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1e16ab48-7ff6-4c9b-a3e5-220521e02f82" Json="True" KeyNumber="5889">
             <Value Key="CustomJavaScript" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
@@ -3746,6 +3806,7 @@
       <Attributes>
         <Attribute StaticName="NameId" Type="String" IsTitle="true">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5253074b-076f-489a-9243-06fac7fe0d89" Json="True" KeyNumber="5892">
+            <Value Key="Formulas" Value="08377096-f320-4c2f-8ea9-0c5d597a55d0" Type="Entity" />
             <Value Key="InputType" Value="string-url-path" Type="String" />
             <Value Key="Name" Value="NameId" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
@@ -18371,7 +18432,7 @@
       <Value Key="Title" Value="RazorBlade for Manipulating Html Strings" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Views" Value="bc7157d4-88f8-42bc-be8f-dff865e1c30f,1b2b356e-c605-47fc-97b8-d1b2b5c93a65,d0052bc8-c308-457e-8095-0349ab9ed9f2" Type="Entity" />
+      <Value Key="Views" Value="bc7157d4-88f8-42bc-be8f-dff865e1c30f,1b2b356e-c605-47fc-97b8-d1b2b5c93a65" Type="Entity" />
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="TutorialViewMetadata" EntityGUID="6b5ff29f-d41b-4b8f-a26c-69405e0704ce" KeyGuid="1b2b356e-c605-47fc-97b8-d1b2b5c93a65">
       <Value Key="Deprecated" Value="False" Type="Boolean">
@@ -19749,7 +19810,7 @@
       <Value Key="Location" Value="Site" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Name" Value="RB221 IScrub attributes" Type="String">
+      <Value Key="Name" Value="RB221 IScrub attributes (DELETE)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Path" Value="blade/221-iscrub-attributes.cshtml" Type="String">
@@ -28261,74 +28322,146 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="b853c203-14dc-4916-b870-8ab3b492e8c5">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;Common basics for working with Razor.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-razor-basics" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="3063edde-3d75-49ab-b763-557fb2f39ed2,d7018751-199f-4059-93de-8e3c695cf65b,6171e78d-4bef-4dc2-bb95-90292a590649,1bff57b8-ef1d-4bd3-8b55-a003692a8561,2b8c8908-79c1-4007-9e24-fbd74ca06ac3,d2935397-e8c2-4ebb-a05e-0892561d563e" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Razor Basics &lt;code&gt;@...&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="quickref-razor-basics - Razor Basics @..." Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="88cb83ce-be46-4024-bf28-f132569e4059">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;MyItem is the object which contains the first thing added by the editor on the current block.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-item" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="c4c14e57-1c71-494f-8300-9d9f66ea1a5c,e30848ea-4ac6-4655-aa35-daa1c4809d33,2ab49a4b-7542-4a7f-bc67-5ad5b15878d8,9933194e-998d-4827-8e00-3b1f95d3dee8,c2e7a2ed-b55c-4616-b3d6-df7d21801739,368fc1ac-7af2-4803-ba5e-200ca2f2db7c,e3a0b30c-f667-4c55-b670-d4bb6f6ec920,0f29113e-9d46-46ac-87c8-3fe74cfc4e0b" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Work with Content Items - &lt;code&gt;MyItem&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="quickref-item - Work with Content Items - MyItem" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="375acb62-cb97-46ee-81eb-68d8cad1741f">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-items" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="16c5285f-0ecc-4106-9e31-73c873a8131d,dab61c0f-7938-42bf-884a-4ec2427e77de,0da5f288-e812-4a6f-a5a6-9133b640658b" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Work with List of Items - &lt;code&gt;MyItems&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="quickref-items - Work with List of Items - MyItems" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="fc00f609-e1d2-4a04-80c0-a6873a7b321d">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-query" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="368485f1-c334-454c-9a0a-dd601fe33b6f,d739472c-99c4-42cd-84b2-fe988f942d1d,80acfcb5-2512-40c3-9b81-167acef1f9e5,d86690b6-e016-40ac-8d21-611c9931e830,980827b9-6e1d-4efb-9d2f-7eb277597ed2" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Data and Query - &lt;code&gt;MyData&lt;/code&gt;,&amp;nbsp;&lt;code&gt;App.GetQuery(...)&lt;/code&gt; and&amp;nbsp;&lt;code&gt;AsItems(...)&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="quickref-query - Data and Query - MyData,&amp;nbsp;App.GetQuery(...) and&amp;nbsp;AsItems(...)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="9f6219e2-27ec-4187-82e7-4aba8a2726dd">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-js" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="962ace2a-31dd-4ef5-b222-444dad725f2b,f9469de2-9138-43b4-bd60-dd462bad8f5f,b779fce3-5194-419c-ab99-31c16523e040,dd2e2c11-6ca2-4214-9adf-56d35cce3519,16347115-e27a-4d7d-8863-a29433d2ee78" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;JavaScript - Working with Razor and WebApi&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="quickref-js - JavaScript - Working with Razor and WebApi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="ec3a8d47-ccb0-4c9e-a600-206cb6810d4a">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-json" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="a509c8d4-0bef-4ffd-a305-8b1afc0d912a,2f300206-1642-4769-a31b-ebf88946efbe,4e996498-0397-4124-ad9b-5de07829c5a3,6d5fe1fa-45bc-4701-a51c-a13453b7f412,117ac3f5-c97d-4456-98e7-3d6f99333acc,ab4c5b17-38f0-4727-adad-aa1b9874f5a9,69b4d051-0c13-41c6-9112-fcda7054b81b,6c187ad5-1ada-486f-a57b-8fc734a087da" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;JSON&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="quickref-json - JSON" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28387,26 +28520,38 @@
       <Value Key="Tutorials" Value="1c3aafc0-bc29-4d15-bc81-0166dfb031a7,5c544240-7fe5-44f4-8fb6-4cf67e5aba41,87e4a181-67d8-449c-a098-a34c85e88f89,7e38e29e-06d6-49aa-a4a4-600d4845d5df,da3dceeb-da3a-4d81-951d-33d7d1dd16a4,faa369c9-6332-4cbc-9e5a-56ad706ad24a,3198cf52-34be-4576-b044-7f37b9ea7ddc" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="f7d70b00-4d01-4edd-9735-b10e31694df4">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-page" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="d25b2ffe-dc76-4b4d-ba82-e046dc5dcbbd,76090f30-06a0-4d9b-9205-5a652d569c9b,88ce6775-c7c5-40cf-8780-2c1eb4e7601d" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Page, Site, Platform and More&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="quickref-page - Page, Site, Platform and More" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="a8740fec-5e2e-4d90-ae3a-173d36714bca">
       <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,bc48caf4-8453-4cd0-90f1-d132b163103c,88cb83ce-be46-4024-bf28-f132569e4059,375acb62-cb97-46ee-81eb-68d8cad1741f,fc00f609-e1d2-4a04-80c0-a6873a7b321d,1f627760-f000-4e56-9838-d5a117b91169,f7d70b00-4d01-4edd-9735-b10e31694df4,9f6219e2-27ec-4187-82e7-4aba8a2726dd,ec3a8d47-ccb0-4c9e-a600-206cb6810d4a" Type="Entity" />
-      <Value Key="NameId" Value="quickref-typed" Type="String">
+      <Value Key="NameId" Value="quickref-typed-page" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="0ad69445-115a-414c-b818-11cf2d604507">
       <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,88cb83ce-be46-4024-bf28-f132569e4059,f7d70b00-4d01-4edd-9735-b10e31694df4" Type="Entity" />
-      <Value Key="NameId" Value="quickref-dyn" Type="String">
+      <Value Key="NameId" Value="quickref-dyn-page" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28477,14 +28622,26 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="bc48caf4-8453-4cd0-90f1-d132b163103c">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;Don't-Repeat-Yourself (DRY) by reusing code in Razor and helper C# files.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="code-reuse" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="fb1ddd99-8412-475a-b89f-9e41cd3cfe87,a77fa50b-b791-4e09-b328-4f09c69e4477,86ad70dc-fb54-4dc7-a8a6-676d32f71057,2f4bea95-9319-4cab-a46d-8a2a9b06dc89,04e28ea9-0d0d-4be7-94e6-0c99c4e37ad9" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Reuse Razor and CSharp Files&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="code-reuse - Reuse Razor and CSharp Files" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28506,14 +28663,26 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="1f627760-f000-4e56-9838-d5a117b91169">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;Settings can be configured at many levels, the most-local (eg. the App) would override the most global (eg. Presets).&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="quickref-settings" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="c7052d3d-36ff-4055-8f5b-963bcbfee52d" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Work with Settings and Resources&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="quickref-settings - Work with Settings and Resources" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28639,14 +28808,26 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="acf61674-aa58-4cd1-b609-99415777841f">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="items-inspect" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="e3a0b30c-f667-4c55-b670-d4bb6f6ec920" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Advanced Work with Items&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="items-inspect - Advanced Work with Items" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28722,14 +28903,23 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;&lt;code&gt;var Firstname = &quot;Terry&quot;&lt;/code&gt; and show with &lt;code&gt;@firstName&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="razor-variables" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Sections" Value="7e4e119e-16d7-4898-9f09-a66baa91f7e3,d6e80665-87d1-4e61-b532-db4ac5dbad18,b94221ab-c155-4198-8b5f-5384fe814ba3" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Basic set variable and show&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razor-variables - Basic set variable and show" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28754,10 +28944,16 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="d6e80665-87d1-4e61-b532-db4ac5dbad18">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="OutputAndSourceDisplay" Value="out-over-src" Type="String">
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputWidth" Value="33" Type="Number">
@@ -28771,10 +28967,16 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="b94221ab-c155-4198-8b5f-5384fe814ba3">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="OutputAndSourceDisplay" Value="out-src" Type="String">
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputWidth" Value="33" Type="Number">
@@ -28791,6 +28993,9 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -28802,6 +29007,9 @@
       </Value>
       <Value Key="Sections" Value="3761d820-fafe-4dd4-8dfb-2b338a599e25,813b87da-6b22-40cd-9cfc-f73f8fb90887,21bb641c-94cc-49fd-9ca7-dce00c6d71e1,f85dca69-379d-4612-a4fe-fa0931e77fd0" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Razor Conditions such as if, if-else and ? :&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razor-conditions - Razor Conditions such as if, if-else and ? :" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28877,6 +29085,9 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;Emojis or Emoticons are built into all mobile devices and modern desktops. The way they work is that they are actually a very long character code - which automatically works in UTF-8 documents. That is the default in asp.net, so you're good to go.&lt;/p&gt;&#xA;&lt;h2&gt;Just showing Emojis in Source-Code&lt;/h2&gt;&#xA;&lt;p&gt;Check out 🙈 🙉 🙊 ☔ 🎄 - I just pasted these into the source code from&amp;nbsp;&lt;a href=&quot;https://emojipedia.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;emojipedia&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2&gt;Showing Emojis instead of true/false&lt;/h2&gt;&#xA;&lt;p&gt;Below you'll see a helper I created called Boolmoji - it will show a ✔️ or ❌ instead of boolean values.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -28888,6 +29099,9 @@
       </Value>
       <Value Key="Sections" Value="f7e7c45c-61fa-4a3a-a329-4c148af1eaa7" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Working with 😃 Emojis / Emoticons&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razor-emojis - Working with 😃 Emojis / Emoticons" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28912,6 +29126,9 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -28923,6 +29140,9 @@
       </Value>
       <Value Key="Sections" Value="ea9b3410-0e4e-4c7a-867b-a87f71639889" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Safely Linking URLs with Umlauts and similar&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-urls - Safely Linking URLs with Umlauts and similar" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28950,6 +29170,9 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Intro" Value="&lt;p&gt;With &lt;code&gt;srcset&lt;/code&gt; on the &lt;code&gt;img&lt;/code&gt; tag you can tell the browser to load different images based on screen size. To really get the hang of this, best check out &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;the MDN docs&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h3&gt;What you need to know about &lt;code&gt;srcset&lt;/code&gt;&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Important: &lt;/strong&gt; If the browser already has a large image, it won't load smaller ones. So to see this in action, you have to start with a tiny browser window, loading the 250px - then make it larger to see bigger pictures load.&lt;/li&gt;&#xA;&lt;li&gt;The main picture in &lt;code&gt;src&lt;/code&gt; is used in all old browsers&lt;/li&gt;&#xA;&lt;li&gt;You can also use &lt;code&gt;srcset&lt;/code&gt; to specify different resolutions for retina displays.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Important: &lt;/strong&gt; the width specified in the &lt;code&gt;max-width&lt;/code&gt; is the view/page width, not the image width&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -28961,6 +29184,9 @@
       </Value>
       <Value Key="Sections" Value="302b9d7e-13fb-481e-bc8f-33390b1842ad,8cf0b75c-5fd8-44b1-b1ce-bcd3bf32b2b0,8cc4421d-8ce8-4fae-817a-b0f1ef400ac2,4455cde1-d6dd-4c88-96f9-97d5b7e1989e,48fa714c-bb88-498c-8c54-14a3bb8802e7,aa807b14-3a78-47df-82be-3f5a0884504f,d1a59776-8fb9-4198-a786-541eb23cb54d" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Responsive &lt;code&gt;img&lt;/code&gt; with &lt;code&gt;srcset&lt;/code&gt; and &lt;code&gt;sizes&lt;/code&gt; To Load Different Pictures&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="img-responsive - Responsive img with srcset and sizes To Load Different Pictures" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29135,6 +29361,9 @@
       <Value Key="Title" Value="&lt;p&gt;Working with Page URL Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="basics-linking - Working with Page URL Parameters" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="99034792-5869-41c4-9d04-ffae82d4597e">
       <Value Key="InDepthExplanation" Value="" Type="String">
@@ -29174,6 +29403,9 @@
       </Value>
       <Value Key="Sections" Value="c633a823-b219-4a42-b4d9-c73e5968eb55,7ced315f-3cd3-47dd-94d2-ad3f70f1a506,bcaf5169-d3cf-479a-b431-caab854f7d57" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Loops - &lt;code&gt;for&lt;/code&gt; and &lt;code&gt;foreach&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razor-loops - Loops - for and foreach" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29236,6 +29468,9 @@
       <Value Key="Title" Value="&lt;p&gt;razor-loops-for-two-array&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="razor-loops-for-two-array - razor-loops-for-two-array" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="bcaf5169-d3cf-479a-b431-caab854f7d57">
       <Value Key="InDepthExplanation" Value="" Type="String">
@@ -29295,6 +29530,9 @@
       </Value>
       <Value Key="Sections" Value="874fda08-6473-4a46-97de-35cf7d42585c,bdcf7e6e-a51e-40ff-ae14-9a40c8212a92,13c76928-8291-453a-875b-bc1bb9ac5f7a,9e314fb1-5321-448c-9d72-b71281af1043,70e635b2-e9e1-4584-bdd6-935744e4d5c8" Type="Entity" />
       <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Split Text after first key occurence&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-text - &#xA;Split Text after first key occurence&#xA;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29398,6 +29636,9 @@
       <Value Key="Title" Value="&lt;p&gt;Work with the Context (Page, Site, etc.)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="code-context - Work with the Context (Page, Site, etc.)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="34e5131d-bee8-424f-85bc-77436337be10">
       <Value Key="InDepthExplanation" Value="" Type="String">
@@ -29438,6 +29679,9 @@
       <Value Key="Title" Value="&lt;p&gt;razorblade-iscrub-Before-All&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-before-all - razorblade-iscrub-Before-All" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="d50ef45f-0358-4956-9a72-8c3d9ba948e1">
       <Value Key="InDepthExplanation" Value="" Type="String">
@@ -29476,6 +29720,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-all - " Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29558,6 +29805,9 @@
       <Value Key="Title" Value="&lt;p&gt;razorblade-iscrub-Before-All&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-before-all - razorblade-iscrub-Before-All" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="ab3803ab-6f7b-4a46-bbfa-99b2b1ae88bb">
       <Value Key="InDepthExplanation" Value="" Type="String">
@@ -29618,6 +29868,9 @@
       <Value Key="Title" Value="&lt;p&gt;razorblade-iscrub-All&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-all - razorblade-iscrub-All" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="2430bbbe-db96-4a0a-8cfb-43e9d3843eec">
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
@@ -29636,6 +29889,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-all - " Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29679,7 +29935,10 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="f762f45b-9dc2-495c-a441-6592ff8de9c0,58e0261e-e11e-487f-980c-7a3dfa80fb12,e03d7ea9-2218-4cb5-9b57-f89607d8689f,f80081bb-1965-4824-96b7-4eb6538583cb,f84729bf-8959-40d4-8ae6-2e265f6cfed5" Type="Entity" />
-      <Value Key="Title" Value="&lt;h2&gt;&lt;em&gt;RazorBlade&lt;/em&gt; IScrub.All(...), IScrub.Only(), IScrub.Except()&lt;/h2&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;&lt;em&gt;RazorBlade&lt;/em&gt; IScrub.All(...), IScrub.Only(), IScrub.Except()&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub - RazorBlade IScrub.All(...), IScrub.Only(), IScrub.Except()" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29770,6 +30029,9 @@
       </Value>
       <Value Key="Sections" Value="2417fd17-e028-4c7d-96a2-baffbd4c121f,37846b03-9b02-4864-b329-17d6089b8c69,deb21aec-5470-4300-9fbb-eec58bfa00f4,f4366953-b31e-4e8a-b415-490e0a2b61ff" Type="Entity" />
       <Value Key="Title" Value="&lt;p&gt;Reuse Code with &lt;code&gt;@functions { }&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="code-functions - Reuse Code with @functions { }" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29886,6 +30148,766 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-iscrub-simple-example" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="5df45aaa-c5e4-4fa1-9014-d7c761343a4e">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Using &lt;code&gt;IScrub.Classes(source)&lt;/code&gt; you can scrub all classes.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razorblade-iscrub-classes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Scrub classes&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-classes - &#xA;Scrub classes&#xA;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="6b88332e-2d6c-48cb-a1a2-a52b3f6ca836">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Using &lt;code&gt;IScrub.Classes(source)&lt;/code&gt; you can scrub all classes.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Scrub classes&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-iscrub-classes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="fe5bfc0c-34a8-4462-b148-17b1f19d085b">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Using &lt;code&gt;IScrub.Attributes(source, attributes)&lt;/code&gt; you can scrub attributes.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Scrub attributes&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-iscrub-attributes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="2d93ec18-e4fc-4694-9724-0f258a5ba6ad">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Using &lt;code&gt;IScrub.Styles(source)&lt;/code&gt; you can scrub all styles.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Scrub styles&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-iscrub-styles" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="f556e485-840f-4bae-a0b5-53307de66752">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;div&gt;Instead of trying to merge strings like &lt;br&gt;&lt;code&gt;&amp;lt;div&lt;/code&gt; and &lt;code&gt;id='@yourId'&lt;/code&gt; and &lt;code&gt;&amp;gt;&lt;/code&gt; followed by the content and closed by &lt;code&gt;&amp;lt;/div&amp;gt;&lt;/code&gt; &lt;br&gt;you would instead write: &lt;br&gt;&lt;code&gt;@Tag.Div(&quot;your content&quot;).Id(&quot;wrapper&quot;)&lt;/code&gt; &lt;br&gt;Here's what you get with an &lt;code&gt;@Tag.H4(...)&lt;/code&gt; and &lt;code&gt;@Tag.Div(...)&lt;/code&gt; and when you combine them...&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Demo Simple Tags like &lt;code&gt;h4&lt;/code&gt; and &lt;code&gt;div&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-htmltags-simple" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="ae408849-f3d1-4998-9740-614955ceaef8">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;The following example creates the same div as before, but is written in a more fluid style.&lt;/p&gt;&#xA;&lt;h3&gt;Example 3: Using &lt;code&gt;Tag.Div&lt;/code&gt;&lt;/h3&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Same example, but with other setup&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-htmltags-simple-othersetup" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="7024848a-b499-4224-9a09-e541d83865f9">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;div&gt;Now the real power start: using the &lt;code&gt;Wrap&lt;/code&gt; method, you can add more content to your tag - and this can be both text, more &lt;code&gt;Tag&lt;/code&gt; objects or even lists of &lt;code&gt;Tag&lt;/code&gt; objects. Wrap always replaces the content, and you could also use &lt;code&gt;Add(...)&lt;/code&gt; instead to append stuff.&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Example 4: Tag contents can also use &amp;lt;code&amp;gt;Wrap(...)&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Add(...)&amp;lt;/code&amp;gt;&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-htmltags-wrap" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="26a9ee20-b475-441e-b13b-f7d9ec6f9194">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Quick, Safe Construction&lt;/strong&gt;&lt;br&gt;&lt;code&gt;@Tag.Div()&lt;/code&gt;&amp;nbsp;will created typed objects to generate Html5. The&amp;nbsp;&lt;code&gt;Div&lt;/code&gt;&amp;nbsp;can be any known Html5 tag, so&amp;nbsp;&lt;code&gt;@Tag.Img()&lt;/code&gt;,&amp;nbsp;&lt;code&gt;@Tag.Table()&lt;/code&gt;,&amp;nbsp;&lt;code&gt;@Tag.Br()&lt;/code&gt;&amp;nbsp;will all work.&lt;br&gt;👉 Here is the&amp;nbsp;&lt;a href=&quot;http://razor-blade.net/api/ToSic.Razor.Blade.Tag.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;complete list&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Wrap Text and Tags in the constructor&lt;/strong&gt;&lt;br&gt;Use&amp;nbsp;&lt;code&gt;@Tag.Div(&quot;hello!&quot;)&lt;/code&gt;&amp;nbsp;to put content into a tag. You can also put tags inside tags like&amp;nbsp;&lt;code&gt;@Tag.Div(Tag.H3(&quot;a title&quot;))&lt;/code&gt;, and also add an unlimited list of things with&amp;nbsp;&lt;code&gt;@Tag.Div(Tag.H3(&quot;Title&quot;), Tag.P(&quot;some intro text&quot;), ...)&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Add more Text &amp;amp; Tags later on&lt;/strong&gt;&lt;br&gt;Sometimes your code will want to add content step-by-step. You can always do this using&amp;nbsp;&lt;code&gt;.Add(...)&lt;/code&gt;, so you can write&amp;nbsp;&lt;code&gt;@Tag.Div(Tag.H3(&quot;title&quot;)).Add(Tag.P(&quot;body&quot;))&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Replace the contents completely&lt;/strong&gt;&lt;br&gt;Maybe you've contstructed some tags but now the code needs to throw away the previous content and replace it. Use&amp;nbsp;&lt;code&gt;.Wrap(...)&lt;/code&gt;&amp;nbsp;for this. So&lt;br&gt;&lt;code&gt;@Tag.Div(Tag.H3(&quot;...&quot;)).Wrap(&quot;just reset the content&quot;)&lt;/code&gt;&amp;nbsp;will completely replace the whole contents with the text.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Set Common Attributes&lt;/strong&gt;&lt;br&gt;Each tag object has many commands on it like&amp;nbsp;&lt;code&gt;Id(...)&lt;/code&gt;,&amp;nbsp;&lt;code&gt;Class(...)&lt;/code&gt;,&amp;nbsp;&lt;code&gt;Style(...)&lt;/code&gt;,&amp;nbsp;&lt;code&gt;Title(...)&lt;/code&gt;. The result of these commands is always the original object, so you can chain these (fluid API). So you can write&amp;nbsp;&lt;code&gt;@Tag.Div().Id(&quot;myId&quot;).Class(&quot;row highlighted&quot;)&lt;/code&gt;.&lt;br&gt;&lt;em&gt;Important: Some attributes are extra smart, like Class or Style, which will SmartJoin the values if called multiple times. Read the special tutorial for that.&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Set Tag-Specific Attributes&lt;/strong&gt;&lt;br&gt;All known html5 objects are supported, and return specially typed objects. So you can write&amp;nbsp;&lt;code&gt;@Tag.Img().Src(&quot;...&quot;)&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;@Tag.A().Href(...)&lt;/code&gt;, but&amp;nbsp;&lt;del&gt;&lt;code&gt;@Tag.Img().Href(...)&lt;/code&gt;&lt;/del&gt;&amp;nbsp;won't work.&lt;br&gt;&lt;em&gt;Important: Some attributes are extra smart, like&amp;nbsp;&lt;code&gt;Src&lt;/code&gt;&amp;nbsp;on&amp;nbsp;&lt;code&gt;Img&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;Srcset&lt;/code&gt;&amp;nbsp;on&amp;nbsp;&lt;code&gt;Source&lt;/code&gt;. Read the special tutorial for that.&lt;/em&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razorblade-htmltags" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="f556e485-840f-4bae-a0b5-53307de66752,ae408849-f3d1-4998-9740-614955ceaef8,7024848a-b499-4224-9a09-e541d83865f9,1d586ba5-73b4-4b08-b0fa-e24d67f49134,3b2e8cb2-90c7-477c-9b7d-23b749418092,fcb4a4b0-9d48-4fb7-bfc5-aa92e1d1a3d8" Type="Entity" />
+      <Value Key="Title" Value="&lt;h3&gt;Basic Principles&lt;/h3&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-htmltags - Basic Principles" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="1d586ba5-73b4-4b08-b0fa-e24d67f49134">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;div&gt;A &lt;code&gt;Tag&lt;/code&gt; object also has a &lt;code&gt;.TagStart&lt;/code&gt; and &lt;code&gt;.TagEnd&lt;/code&gt; property, which just contains that part of the tag, allowing you to place these tags around your work.&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;The result &lt;code&gt;.TagStart&lt;/code&gt; and &lt;code&gt;.TagEnd&lt;/code&gt;&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-htmltags-start-end" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="3b2e8cb2-90c7-477c-9b7d-23b749418092">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Fist create a sample where a heading is from a variable H3&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-htmltags-custom-h3" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="fcb4a4b0-9d48-4fb7-bfc5-aa92e1d1a3d8">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Fist create a sample where a heading is from a variable em&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-htmltags-custom-em" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="5c36e2f1-e565-4fec-8642-325eb193f619">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razorblade-img-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;This file is called @kaizenUrl&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-img-basic - &#xA;This file is called @kaizenUrl&#xA;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="61e3a5d5-a77e-4689-8c57-f390baad608f">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;This file is called &amp;uuml;berschrift-small.png?name=改善&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-img-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="d04640cb-801f-4b63-b085-dfa7c1b2e217">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;div&gt;One of the magic bits of the Html5 tags is that they are smart. For example, url properties like &lt;code&gt;Src()&lt;/code&gt; or &lt;code&gt;Href()&lt;/code&gt; will safely encode if they are not yet encoded. This is super important for CMS solutions where the image file may easily contain umlaut characters or spaces. &lt;br&gt;&lt;em&gt;Note that it's &lt;code&gt;Srcset()&lt;/code&gt; and not &lt;code&gt;SrcSet&lt;/code&gt;. For consistency, everything is always lower case. &lt;/em&gt;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razorblade-img" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="61e3a5d5-a77e-4689-8c57-f390baad608f,8c116c28-efb7-459b-8ce3-a44affb95e60" Type="Entity" />
+      <Value Key="Title" Value="&lt;h2&gt;&lt;em&gt;RazorBlade&lt;/em&gt; Fluent Tag API &lt;code&gt;@Tag.Img().Src(...)&lt;/code&gt; and &lt;code&gt;Srcset(...)&lt;/code&gt; &lt;em&gt;v3&lt;/em&gt;&lt;/h2&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-img - RazorBlade Fluent Tag API @Tag.Img().Src(...) and Srcset(...) v3" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="4054a47e-013f-47e9-85b1-94efe72754ae">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razorblade-img-scr-path-big-img" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;View Images&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-img-scr-path-big-img - View Images" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="8c116c28-efb7-459b-8ce3-a44affb95e60">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;View Image&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razorblade-img-picture" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="14c1ecee-5807-45af-8661-5b84b0ede254">
+      <Value Key="Accordions" Value="5e558b0e-f888-4f0e-83f7-1452cb1755ca,1015dd4d-9ad1-4fe0-8313-4839d7ace0dc" Type="Entity" />
+      <Value Key="NameId" Value="razorblade-iscrub-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="391fb889-3c2b-48c4-988a-ecdee308d5f5" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="v2((data, context) =&gt; {&#xA;  var title = data.NameId + ' - ';&#xA;&#xA;  // Regex https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/&#xA;  return title + data.Title.replace(/(&lt;([^&gt;]+)&gt;)/gi, &quot;&quot;);&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="1015dd4d-9ad1-4fe0-8313-4839d7ace0dc">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;These demos show how to scrub attributes of html source.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razorblade-iscrub-attributes" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="6b88332e-2d6c-48cb-a1a2-a52b3f6ca836,fe5bfc0c-34a8-4462-b148-17b1f19d085b,2d93ec18-e4fc-4694-9724-0f258a5ba6ad" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;RazorBlade IScrub.Attributes(...), IScrub.Styles(), IScrub.Classes()&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razorblade-iscrub-attributes - RazorBlade IScrub.Attributes(...), IScrub.Styles(), IScrub.Classes()" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="fe8d9c49-27d8-4575-8f4e-01feb544e7f1">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="code-reuse-shared" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="fe88755d-0f73-40a9-996c-180407cc65ad,8c3530e2-12a8-4053-9547-f982f0036d44" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Using Shared Helpers / Libraries&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="code-reuse-shared - Using Shared Helpers / Libraries" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="TutAccordionList" EntityGUID="82893c9c-1c04-4a55-928e-acbbcb878925">
+      <Value Key="Accordions" Value="fe8d9c49-27d8-4575-8f4e-01feb544e7f1,d8c90d03-0309-4782-b32c-123e06b45884" Type="Entity" />
+      <Value Key="NameId" Value="code-reuse-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="fe88755d-0f73-40a9-996c-180407cc65ad">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;The example takes a cshtml file using &lt;code&gt;CreateInstance(...)&lt;/code&gt;and uses it as a central helpers library. The helper &lt;code&gt;PreviewWithLightbox&lt;/code&gt; will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Using Shared Helpers&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-shared-helpers" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="8c3530e2-12a8-4053-9547-f982f0036d44">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;code-reuse-shared-functions - copy from 310&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-shared-functions" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="bd3df373-4a15-469a-b0f3-4679b72c33d7">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;code-reuse-advanced-classname - copy #2 from 320&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-advanced-classname" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="d8c90d03-0309-4782-b32c-123e06b45884">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Starting with 2sxc 10.01 &lt;code&gt;CreateInstance()&lt;/code&gt;&amp;nbsp;can also be used with .cs files, from both razor pages as well as WebApi controllers. This allows you to create shared code which can be used in Razor and WebApi controllers.&lt;/p&gt;&#xA;&lt;p&gt;Note that in 2sxc 16.05 we recommend you use &lt;code&gt;GetCode()&lt;/code&gt; instead.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="code-reuse-advanced" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="bd3df373-4a15-469a-b0f3-4679b72c33d7,0f26ef9d-c98c-4f93-a5ca-815dcfcce3c8,cca19846-7da9-4019-8bf9-7e55168cf6f5" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Reuse Code with .cs Files (new in 2sxc 10.01) code-reuse-advanced - copy from 320&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="code-reuse-advanced - Reuse Code with .cs Files (new in 2sxc 10.01) code-reuse-advanced - copy from 320" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="0f26ef9d-c98c-4f93-a5ca-815dcfcce3c8">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;code-reuse-advanced-context - sample 3 from 320&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-advanced-context" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="cca19846-7da9-4019-8bf9-7e55168cf6f5">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;code-reuse-advanced-webapi - copy #4 from 320&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-advanced-webapi" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="9537e264-9fb5-4e5f-9b3b-a7cf3f8d3082">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Basic&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-html-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="100d549a-9acd-4def-8299-ce45ab8aa1de">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;This uses the basic &lt;code&gt;@variableName&lt;/code&gt; syntax. This will result in encoding html, so tags in that variable will be shown as html-source.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="razor-html" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="9537e264-9fb5-4e5f-9b3b-a7cf3f8d3082,79a82cd0-3a49-48ec-99e3-49e54d64dddd,c9aa8916-518d-4289-bd92-fdd627d9060e" Type="Entity" />
+      <Value Key="Title" Value="&lt;div&gt;&#xA;&lt;div&gt;Show a variable&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="razor-html - &#xA;Show a variable&#xA;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="79a82cd0-3a49-48ec-99e3-49e54d64dddd">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Encode using &lt;code&gt;@Html.Raw(...)&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-html-raw" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="c9aa8916-518d-4289-bd92-fdd627d9060e">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Sometimes you need to conditionally add tags, in which case Razor cannot verify that open/close of tags is correct. This would normally throw an error. so you need &lt;code&gt;@:&lt;/code&gt;.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Add &quot;uncontrolled&quot; html using &lt;code&gt;@:...&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-html-uncontrolled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="ef825530-9f51-40e1-ac76-fa1017b812b3">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Template Delegates allow you to use inline HTML in your function. To make this possible, a bit of magic happens automatically, so a limitations is that you cannot use named parameters. You only get one parameter called &lt;code&gt;item&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;h3&gt;Basic Example: &lt;code&gt;string&lt;/code&gt; generating Html&lt;/h3&gt;&#xA;&lt;p&gt;This example using a &lt;code&gt;string&lt;/code&gt; parameter. This is why the the first parameter in &lt;code&gt;Func&amp;lt;...&lt;/code&gt; is a string.&lt;/p&gt;&#xA;&lt;div class=&quot;alert alert-info&quot;&gt;Note that in the following code &lt;code&gt;item&lt;/code&gt; is the thing passed into the function.&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;HTML &lt;code&gt;Func&amp;lt;thing, dynamic&amp;gt;&lt;/code&gt; Template Delegate&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-delegate-generating" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="252119be-fbe7-46be-b237-6276eeb4d999">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;If you just need a quick simple snippet, Template Delegates are the way to go. They are very limited so only ideal for simple stuff. More complex stuff should use @Sys.TutLink(&quot;Razor Components with @Html.Partial and DynamicModel&quot;, &quot;reuse110&quot;).&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="code-templatedelegates" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="ef825530-9f51-40e1-ac76-fa1017b812b3,8ad11a01-9c56-47f9-9faa-c34b96d750ca" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;&amp;nbsp; &amp;nbsp;&lt;/p&gt;&#xA;&lt;h2&gt;HTML-functions = Code-Snippet with Template Delegates&lt;/h2&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="code-templatedelegates - &amp;nbsp; &amp;nbsp;&#xA;HTML-functions = Code-Snippet with Template Delegates" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="8ad11a01-9c56-47f9-9faa-c34b96d750ca">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;div&gt;&#xA;&lt;div&gt;&amp;nbsp;If you have multiple values, you often want to merge in into one object like this:&lt;/div&gt;&#xA;&lt;/div&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Complex Data with &lt;code&gt;Func&amp;lt;dynamic,dynamic&amp;gt;&lt;/code&gt; Template Delegate&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="code-reuse-delegate-dynamic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="08377096-f320-4c2f-8ea9-0c5d597a55d0" Json="True">
+      <Value Key="Enabled" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Formula" Value="// new formula syntax - see https://go.2sxc.org/formulas&#xA;v2((data, context) =&gt; {&#xA;  if (!data.NameId) return;&#xA;  if (!data.NameId.endsWith('-page')) return {&#xA;    value: {&#xA;      message: 'Here the NameId should always end in -page',&#xA;      severity: 'warning'&#xA;    }&#xA;  };&#xA;  return null;&#xA;});" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Target" Value="Field.Validation" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Field.Validation" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

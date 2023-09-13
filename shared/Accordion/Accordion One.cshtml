@@ -21,6 +21,8 @@
   @accordion.Start(accSpecs)
     @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
   @accordion.End()
+
+  // If it's empty, show info / toolbar to admin only
 } else if (MyUser.IsSystemAdmin) {
   <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutAccordion", prefill: new {
     NameId = MyModel.String("NameId")
