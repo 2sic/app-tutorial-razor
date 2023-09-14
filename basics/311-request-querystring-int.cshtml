@@ -32,6 +32,9 @@
   </div>
 </div>
 
+@* TODO: @2dg *@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "basics-linking-int" })
+
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#query-string")).SnipStart())
   @{

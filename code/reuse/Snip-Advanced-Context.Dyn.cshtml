@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:./FunctionsWithContext.cs
+!*@
+@{
+  var powerLib = CreateInstance("FunctionsWithContext.cs");
+}
+<div>
+  <img loading="lazy" src='@powerLib.QrPath("https://2sxc.org")' width="75px">
+</div>

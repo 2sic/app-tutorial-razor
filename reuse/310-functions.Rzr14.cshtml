@@ -6,15 +6,3 @@
   @{ dynamic snip = null; }
 </hide>
 
-<h1>Razor 14 code clone</h1>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("snippet"))
-  @{
-    // Use CreateInstance in Razor12 and Razor14
-    var lib = CreateInstance("SharedFunctions.cs");
-  }
-  <div>Hello from lib: @lib.SayHello()</div>
-  <div>
-    <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
-  </div>
-@snip.SnipEnd()

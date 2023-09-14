@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:./SharedFunctions.cs
+!*@
+@{
+  // Use GetCode in RazorPro
+  var lib = GetCode("SharedFunctions.cs");
+}
+<div>Hello from lib: @lib.SayHello()</div>
+<div>
+  <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
+</div>

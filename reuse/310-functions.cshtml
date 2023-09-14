@@ -24,22 +24,7 @@
     </div>
   </div>
 
-
-<h2>Using shared library of functions</h2>
-<trim>
-<p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet,file:SharedFunctions.cs")).SnipStart())
-  @{
-    // Use GetCode in RazorPro
-    var lib = GetCode("SharedFunctions.cs");
-  }
-  <div>Hello from lib: @lib.SayHello()</div>
-  <div>
-    <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
-  </div>
-@snip.SnipEnd()
+@* TODO:: 2dm Merge into 210-Helper, delete this view and file *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

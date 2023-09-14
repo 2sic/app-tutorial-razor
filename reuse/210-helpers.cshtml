@@ -17,58 +17,11 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Reuse Shared Razor Helpers</h2>
-    <p>
-      There are multiple ways to create shared Razor helpers:
-    </p>
-    <ul>
-      <li>
-        public functions returning html <br>
-        ⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅
-      </li>
-      <li>
-        the <code>@@helper</code> command <br>
-        👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔
-      </li>
-    </ul>
-    <p>
-      Razor helpers are functions that put HTML into the page. You can create them using either <br>
-      <code>@@functions { dynamic helpername() { ... } }</code> <br>
-      or <br>
-      <code>@@helper helpername() { ... } </code>
-    </p>
-    <p>
-      You can also share them by placing them into a separate file (just remember to mark them <code>public</code>). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use <code>CreateInstance</code> to get an object with these methods, and then use it. 
-    </p>
   </div>
 </div>
 @* 2dg: neue info section part *@
 
-@* TODO: @2dg - continue here in /code/reuse
-  - merge reuse210, reuse 310, 320
-  - you'll need some instructions about handling the different variants
-    using .Dyn and .Razor
- *@
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "code-reuse-page" })
-
-@*
-  Info @2dg - this is what it was before
-
-<h2>Using Shared Helpers</h2>
-<p>The example takes a cshtml file using <code>CreateInstance(...)</code>and uses it as a central helpers library. The helper <code>PreviewWithLightbox</code> will generate a thumbnail, include Fancybox3 (only the first time) and ensure you can click it for a full image. </p>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet,file:../shared/fancybox.cs")).SnipStart())
-  @{
-    // Use GetCode in RazorPro
-    var lightbox = GetCode("../shared/Fancybox.cs");
-  }
-  @lightbox.PreviewWithLightbox(App.Folder.Url + "/app-icon.png")
-  <br>
-  @lightbox.PreviewWithLightbox(App.Folder.Url + "/reuse/demo.png", 200, 100)
-@snip.SnipEnd()
-
-*@
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

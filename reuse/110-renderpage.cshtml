@@ -7,8 +7,6 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
-
-
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
@@ -26,7 +24,6 @@
   </div>
 </div>
 
-@* TODO: @2dg - continue here in /razor/partial *@
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razor-partial" })
 
 @* Footer *@
