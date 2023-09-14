@@ -10,13 +10,12 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>Interface ICmsPlatform</h2>
-    </div>
   </div>
+</div>
 
-@* TODO:: @2dm Sollte man hier auch die zeilen brechen damit der scroll effekt X weg ist  *@
+@* TODO:: @2dg die zeilen brechen damit der scroll effekt X weg ist  *@
 
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "code-context" })
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "code-context-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
