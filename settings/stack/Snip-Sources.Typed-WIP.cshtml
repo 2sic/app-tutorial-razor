@@ -1,0 +1,39 @@
+@inherits Custom.Hybrid.RazorTyped
+@*
+  TODO: AS OF 2023-09-14 there is no .GetSource on RazorTyped, so we won't show this sample for now
+*@
+<ul>
+  <li>
+    <div style='background-color: @AllSettings.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>AllSettings.Get("CustomColor")</code>:
+    @AllSettings.Get("CustomColor") 
+  </li>
+  <li>
+    @{ var source = AllSettings.GetSource("ViewCustom"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>View...Get("CustomColor")</code>:
+    @source.Get("CustomColor")
+  </li>
+  <li>
+    @{ source = AllSettings.GetSource("AppCustom"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>App...Get("CustomColor")</code>:
+    @source.Get("CustomColor") 
+  </li>
+  <li>
+    @{ source = AllSettings.GetSource("SiteCustom"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>Site...Get("CustomColor")</code>:
+    @source.Get("CustomColor") <br>
+    <em>Note: this will be empty, as Site doesn't have this setting</em>
+  </li>
+  <li>
+    @{ source = AllSettings.GetSource("Global"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>Global...Get("CustomColor")</code>:
+    @source.Get("CustomColor") <br>
+    <em>Note: this will be empty, as Site doesn't have this setting</em>
+  </li>
+</ul>
+
+<style> .color-box { width: 20px; height: 20px; float: left; } </style>

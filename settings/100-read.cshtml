@@ -5,15 +5,7 @@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
   @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
-  @Html.Partial("ShortIntro.cshtml")
 </hide>
-
-<trim>
-  <h2>Global/Site/App/View Settings</h2>
-  <p>
-    Settings can easily be read using the <code>Settings</code> object. It combines all the settings in the system to match what the code needs. 
-  </p>
-</trim>
 
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "settings-basics-page" })
 

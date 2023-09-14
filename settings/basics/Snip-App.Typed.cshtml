@@ -1,32 +1,36 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
+@*
+  Important: In Typed code, we recommend .Attribute(...), .Int(...).
+  It ensures it's safe for use in attributes or as a definite integer.
+*@
 <ul>
   <li>
-    @{ var colorPri = App.Settings.Get("PrimaryColor"); }
+    @{ var colorPri = App.Settings.Attribute("PrimaryColor"); }
     <div style="background-color: @colorPri" class="color-box"></div>
     &nbsp; App.Settings.PrimaryColor <br>
     @colorPri
   </li>
   <li>
-    @{ var colorSec = App.Settings.Get("SecondaryColor"); }
+    @{ var colorSec = App.Settings.Attribute("SecondaryColor"); }
     <div style="background-color: @colorSec" class="color-box"></div>
     &nbsp; App.Settings.SecondaryColor <br>
     @colorSec
   </li>
   <li>
-    @{ var colorQrF = App.Settings.Get("QrForegroundColor"); }
+    @{ var colorQrF = App.Settings.Attribute("QrForegroundColor"); }
     <div style="background-color: @colorQrF" class="color-box"></div>
     &nbsp; App.Settings.QrForegroundColor <br>
     @colorQrF
   </li>
   <li>
-    @{ var colorQrB = App.Settings.Get("QrBackgroundColor"); }
+    @{ var colorQrB = App.Settings.Attribute("QrBackgroundColor"); }
     <div style="background-color: @colorQrB" class="color-box"></div>
     &nbsp; App.Settings.QrBackgroundColor <br>
     @colorQrB
   </li>
   <li>
     App.Settings.QrDimension <br>
-    @App.Settings.Get("QrDimension")
+    @App.Settings.Int("QrDimension")
   </li>
 </ul>
 

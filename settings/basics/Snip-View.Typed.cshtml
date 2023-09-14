@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.RazorTyped
+<ul>
+  <li>
+    <div style='background-color: @AllSettings.Get("PrimaryColor")' class="color-box"></div>
+    &nbsp; Settings.PrimaryColor <br>
+    @AllSettings.Get("PrimaryColor")
+  </li>
+  <li>
+    <div style='background-color: @AllSettings.Get("SecondaryColor")' class="color-box"></div>
+    &nbsp; Settings.SecondaryColor <br>
+    @AllSettings.Get("SecondaryColor")
+  </li>
+  <li>
+    Settings.Tiles <br>
+    (for example to configure images side-by-side):
+    @AllSettings.Int("Tiles")
+  </li>
+</ul>
+
+<style> .color-box { width: 20px; height: 20px; float: left; } </style>

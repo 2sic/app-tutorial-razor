@@ -1,14 +1,16 @@
 @inherits Custom.Hybrid.Razor14
 <ul>
   <li>
-    <div style="background-color: @Settings.PrimaryColor" class="color-box"></div>
+    @{ var colorPri = Settings.Get("PrimaryColor"); }
+    <div style='background-color: @colorPri' class="color-box"></div>
     &nbsp; Settings.PrimaryColor <br>
-    @Settings.Get("PrimaryColor")
+    @colorPri
   </li>
   <li>
-    <div style="background-color: @Settings.SecondaryColor" class="color-box"></div>
+    @{ var colorSec = Settings.Get("SecondaryColor"); }
+    <div style='background-color: @colorSec' class="color-box"></div>
     &nbsp; Settings.SecondaryColor <br>
-    @Settings.Get("SecondaryColor")
+    @colorSec
   </li>
   <li>
     Settings.Tiles <br>
