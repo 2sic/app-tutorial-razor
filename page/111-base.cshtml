@@ -26,15 +26,11 @@
     </div>
   </div>
 
-
-@Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-
-@Sys.SourceCode.SnippetOnly().SnipStart()
-  @{
-    Kit.Page.SetBase();
-  }
-@Sys.SourceCode.SnipEnd()
-
+@*
+  Todo: @2dm, sollte hier auch den Source Code von ../shared/KitBaseClassInfoBox.cshtml gezeigt werden im Snip?
+*@
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "page-base" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
+

@@ -28,6 +28,8 @@
   </div>
 </div>
 
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "img-content" })
+@* 
 
  <h3>Image with Default Content Settings</h3>
 <p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
@@ -53,7 +55,7 @@
 <p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
 @((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@snip.SnipEnd()
+@snip.SnipEnd() *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

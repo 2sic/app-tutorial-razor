@@ -22,14 +22,7 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnly().SnipStart()
-  @{
-    // prefix the current title, description and keywords with additional values
-    Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
-    Kit.Page.SetDescription("Learn to use Razor Blade ");
-    Kit.Page.SetKeywords("Tutorial, Razor, Blade");
-  }
-@Sys.SourceCode.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "page-properties" })
 
 
 @* Footer *@

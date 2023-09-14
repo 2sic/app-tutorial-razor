@@ -36,8 +36,12 @@
     </div>
   </div>
 
+@*
+  Todo: @2dg - put in /img/basic/Snip-Properties.cshtml
+*@
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "img-page" })
 
-<trim>
+@* <trim>
   <h2>Standard <code>img</code> Image</h2>
   <p>
     This is used for showing an image, and we won't go into much detail, because you probably already know this one. 
@@ -51,7 +55,7 @@
     <div class="col-sm"><img loading="lazy" src="@App.Path/img/assets/koi-400.png"> <br> (png 11k - note the dithering)</div>
     <div class="col-sm"><img loading="lazy" src="@App.Path/img/assets/koi-400.webp"> <br> (webp 8k)</div>
   </div>
-@snip.SnipEnd()
+@snip.SnipEnd() *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

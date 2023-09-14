@@ -10,26 +10,18 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>IPageService</em> to Set Headers / Meta etc.</h2>
-      <div>
-        This page sets the title, description, keywords and some manual tags to the header. 
+    <h2><em>IPageService</em> to Set Headers / Meta etc.</h2>
+    <div>
+      This page sets the title, description, keywords and some manual tags to the header. 
 
-        Look at the resulting output-source to see the effect. 
-      </div>
+      Look at the resulting output-source to see the effect. 
     </div>
   </div>
-
+</div>
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnly().SnipStart()
-  @{
-    // prefix the current title, description and keywords with additional values
-    Kit.Page.AddToHead("<meta xyz>");
-    Kit.Page.AddMeta("somename", "somevalue");
-  }
-@Sys.SourceCode.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "page-headers" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

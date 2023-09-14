@@ -10,39 +10,16 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>IPageService</em> to add JSON-LD Headers </h2>
-      <div>
-        This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
-      </div>
+    <h2><em>IPageService</em> to add JSON-LD Headers </h2>
+    <div>
+      This page adds 2 JSON-LD tags to the html-head. View the page source to see it.
     </div>
   </div>
-
+</div>
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
 
-@Sys.SourceCode.SnippetOnly().SnipStart()
-  @{
-    // example adding a json-ld as a string
-    Kit.Page.AddJsonLd("{ \"@context\": \"https://schema.org/\" }");
-  }
-  @{
-    // creating a JSON-LD using an object - replicating googles example https://developers.google.com/search/docs/guides/intro-structured-data
-    var jsonLd = new Dictionary<string, object> {
-      { "@context", "https://schema.org"},
-      { "@type", "Organization"},
-      { "url", "http://www.example.com"},
-      { "name", "Unlimited Ball Bearings Corp."},
-      { "contactPoint", new Dictionary<string, object> {
-        {"@type", "ContactPoint"},
-        {"telephone", "+1-401-555-1212"},
-        {"contactType", "Customer service"}
-      }}
-    };
-
-    Kit.Page.AddJsonLd(jsonLd);
-  }
-@Sys.SourceCode.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "page-jsonld" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

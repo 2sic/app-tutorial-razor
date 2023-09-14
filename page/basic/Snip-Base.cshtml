@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@Html.Partial("../../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+
+@{
+  Kit.Page.SetBase();
+}
