@@ -3,37 +3,10 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
-<trim>
-  <h2>Use PageService.Activate to enable Features and Load JS/CSS</h2>
-  <p>
-    2sxc 12.04 helps with many advanced challenges like these:
-  </p>
-  <ol>
-    <li>Make sure that certain scripts are only loaded once (like jQuery or FancyBox)</li>
-    <li>Make sure that all apps use the same version of these scripts</li>
-    <li>Starting things in the right order</li>
-  </ol>
-
-  <h2>Simple Example</h2>
-  <p>
-    The following example will tell the page that <code>fancybox4</code> is required - which will automatically apply a lightbox to the image below. <br>
-    It uses the <code>WebResources</code> as configured in the Settings. By default, fancybox4 is already defined, but you can overide this or create your own WebResource definitions.
-  </p>
-</trim>
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    Kit.Page.Activate("fancybox4");
-    Kit.Page.Activate("fancybox4"); // even if called multiple times, it will only be activated once
-    var imgUrl = App.Path + "/settings/demo-banner.png";
-  }
-  <a data-fancybox='gallery' href="@imgUrl">
-    <img loading="lazy" src="@Link.Image(imgUrl, width: 200, height: 200)">
-  </a>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "code-pageservice-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
