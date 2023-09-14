@@ -3,7 +3,7 @@
 
 @{
   var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
-  var tutPage = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  var tutPage = AsItems(App.Data["TutorialPage"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 }
 
 @if (tutPage != null) {
@@ -11,6 +11,11 @@
     <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
     @tutPage.Html("Intro")
     @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
+    @if (tutPage.IsNotEmpty("Note")) {
+      <div class="alert alert-warning">
+        @tutPage.Html("Note")
+      </div>
+    }
   </div>
   
 
@@ -34,7 +39,7 @@
     </text>
   }
 } else if (MyUser.IsSystemAdmin) {
-  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutAccordionList", prefill: new {
+  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutorialPage", prefill: new {
     NameId = MyModel.String("NameId")
   })>
     The Accordion LIST <strong>@MyModel.String("NameId")</strong> was not found.
