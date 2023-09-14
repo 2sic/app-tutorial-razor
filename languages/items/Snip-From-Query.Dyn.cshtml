@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+@{
+  // Resize settings for the cover images
+  var flatSettings = Kit.Image.Settings(width: 100, height: 300, resizeMode: "max", scaleMode: "both");
+}
+<ul>
+  @foreach (var book in AsList(App.Data["Books"])) {
+    <li class="mb-4">
+      <div style="overflow: auto">
+        @if (Text.Has(book.Cover)) {
+          @Kit.Image.Img(book.Cover, settings: flatSettings, imgClass: "float-start pe-4")
+        }
+        <strong>@book.Title</strong> <br>
+        @Text.Ellipsis(book.Teaser, 100, suffix: "…")
+      </div>
+    </li>
+  }
+</ul>

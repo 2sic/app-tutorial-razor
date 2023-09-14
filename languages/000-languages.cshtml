@@ -4,7 +4,6 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -12,66 +11,10 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Going all Multilanguage / i18n</h2>
-    <p>
-      Everything in 2sxc is multi-language right from the start. It's important to understand that every field in 2sxc can be translated or not - and the lookup happens automatically. So the following examples will automatically show the correct value based on the language you're on. 
-    </p>
-    <p>
-      There are two important types of multi-language:
-    </p>
-    <ol>
-      <li>Multi-Language Resources - like messages / button labels etc.</li>
-      <li>Multi-Language Content - things the content editor will work with</li>
-    </ol>
   </div>
 </div>
 
-<div class="alert alert-warning">
-  If you installed the Tutorial App on your system these examples may not work. 
-  That's because Dnn / 2sxc must be have DE and EN activated <em>before</em> installing the tutorial app.
-  Otherwise it will only import the EN data and not import the DE data.
-</div>
-
-
-<h2>Multi-Language (i18n) Resources</h2>
-<p>
-  These are configured in the <a href="https://docs.2sxc.org/basics/app/resources.html" target="_blank">App Resources</a> 
-  or in the <a href="https://docs.2sxc.org/basics/configuration/index.html" target="_blank">global resources</a>. 
-</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    <li>The Greeting Text: <br>
-      @Html.Raw(Resources.Greeting)
-    </li>
-    <li>A button: <button type="button">@Resources.ButtonOrder</button> </li>
-  </ol>
-@snip.SnipEnd()
-
-
-<h2>Multi-Language (i18n) Content</h2>
-<p>
-  The editor can edit anything and choose which field to translate. In the following example, only one book is translated - and even the cover-image is translated. 
-</p>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  @{
-    var flatSettings = Kit.Image.Settings(width: 200, height: 300, resizeMode: "crop", scaleMode: "both");
-  }
-  <ul>
-    @foreach (var book in AsList(App.Data["Books"])) {
-      <li class="mb-4">
-        <div style="overflow: auto">
-          @if (Text.Has(book.Cover)) {
-            @Kit.Image.Img(book.Cover, settings: flatSettings, imgClass: "float-start pe-4")
-          }
-          <h3>@book.Title</h3> <br>
-          @Html.Raw(book.Teaser)
-        </div>
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "languages-page" })
 
 
 @* Footer *@

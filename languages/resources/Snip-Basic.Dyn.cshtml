@@ -1,0 +1,10 @@
+@inherits Custom.Hybrid.Razor14
+<ol>
+  <li>The Greeting Text: <br>
+    @Html.Raw(App.Resources.Get("Greeting"))
+  </li>
+  <li>
+    A button:
+    <button type="button">@App.Resources.Get("ButtonOrder")</button>
+  </li>
+</ol>
