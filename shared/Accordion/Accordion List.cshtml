@@ -10,7 +10,10 @@
   <div @Kit.Toolbar.Default(tutPage)>
     <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
     @tutPage.Html("Intro")
+    @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
   </div>
+  
+
   if (tutPage.IsNotEmpty("Accordions")) {
     var accords = tutPage.Children("Accordions");
 
