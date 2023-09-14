@@ -20,7 +20,7 @@
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
     <div @Kit.Toolbar.Empty(acs.Item).Edit()>
-      SysUserOnly: This section doesn't exist: @acs.TutorialId
+      SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@acc.Variant</em>
     </div>
   } else {
     <!-- this section '@acs.TutorialId' doesn't exist -->

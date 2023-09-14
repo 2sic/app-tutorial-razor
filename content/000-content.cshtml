@@ -4,96 +4,17 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
-
-  @* If we have ?Rzr14 in the url, show that code to verify it works *@
-  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
-    @Sys.SourceCode.ShowAltCodeFile(Html);
-    return;
-  }
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Working with Content</h2>
-    <p>In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it. The current content item (if it's just one) is always available on the variable called <code>Content</code>. It's a <code>dynamic</code> object, so you can just type things like <code>@@Content.FirstName</code> to access the properties.</p>
   </div>
 </div>
 
-<hide>
-@{
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
-  var MyItem = AsItem(MyData);
-  var MyItems = AsItems(MyData);
-}
-</hide>
-
-<h3>Show Content of the Current template</h3>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#demo1")).SnipStart())
-  @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
-  <ul>
-    <li>Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-    <li>Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
-    <li>Award: @MyItem.Child("Awards").String("Name")</li>
-  </ul>
-@snip.SnipEnd()
-
-
-<trim>
-<p>In this example, the Content-Item is of the type <code>Person</code>. It has properties like <code>Name, Birthday</code> etc. and a property called <code>Awards</code>. <code>Awards</code> refers to other items of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. Below we'll show some ways to show many items, if there are more than one.  
-</trim>
-
-<trim>
-
-<h3>Show all Items assigned to current template</h3>
-  <p>
-    If a view has many items assigned (called a list) these should be retrieved from <code>Data</code> - if you don't specify a stream, it's treated as <code>Data["Default"]</code>. You will usually want to convert it to a dynamic list using <code>AsList(...)</code>. This example also uses <code>Text.Has(...)</code> to only show a picture if it really has a mugshot. 
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#demo2")).SnipStart())
-  <ul>
-    @foreach (var person in MyItems) {
-      <li>
-        @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
-        @person.String("FirstName") @person.String("LastName")
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
-
-<trim>
-<h3>Show sub-items of current items</h3>
-
-  <p>
-    This example builds on the last one, and additionally shows awards these authors have won, which is on the <code>Awards</code> property.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#demo3")).SnipStart())
-  <ul>
-    @foreach (var person in MyItems) {
-      <li>
-        @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
-        @person.String("FirstName") @person.String("LastName")
-        @if (person.Children("Awards").Any()) {
-          // we just want the award names - to understand this, look at the LINQ tutorial
-          var awardNames = person.Children("Awards").Select(a => a.String("Name"));
-          <span>
-            (awards: @string.Join(",", awardNames))
-          </span>
-        }
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "block-read-all-page" })
 
 
 @* Footer *@

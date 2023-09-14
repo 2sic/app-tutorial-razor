@@ -3,12 +3,16 @@
 
 @{
   var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
-  var list = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  var tutPage = AsItems(App.Data["TutAccordionList"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 }
 
-@if (list != null) {
-  if (list.IsNotEmpty("Accordions")) {
-    var accords = list.Children("Accordions");
+@if (tutPage != null) {
+  <div @Kit.Toolbar.Default(tutPage)>
+    <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
+    @tutPage.Html("Intro")
+  </div>
+  if (tutPage.IsNotEmpty("Accordions")) {
+    var accords = tutPage.Children("Accordions");
 
     // Check if any of the tutorials has variants - if yes, show the variant selector
     var showVariantSelector = accords.Any(a => a.Bool("HasVariants"));
@@ -21,10 +25,10 @@
       @Html.Partial("./Accordion One.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true })
     }
   } else {
-    <div @Kit.Toolbar.Default(list)>
+    <text>
       Accordion list is empty.
       Use Toolbar to edit
-    </div>
+    </text>
   }
 } else if (MyUser.IsSystemAdmin) {
   <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutAccordionList", prefill: new {

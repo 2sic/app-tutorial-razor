@@ -31,7 +31,9 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   private IHtmlTag StartInner() {
     var t = Kit.HtmlTags;
-    var heading = t.H2(Item.String("Title", scrubHtml: "p")).Class("quick-ref");
+    var heading = t.H2().Class("quick-ref").Wrap(
+      Item.String("Title", scrubHtml: "p")
+    );
     // Add Toolbar
     heading = (Item.Id != 0)
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())
@@ -59,7 +61,6 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   public IHtmlTag End() {
     var end = TagCount.Close(DivEnd + "<!-- /Accordion -->");
-    // Kit.HtmlTags.RawHtml(DivEnd, "<!-- /Accordion -->", TagCount.Close());
     Item = null;
     return end;
   }
@@ -175,7 +176,13 @@ public class Section {
         .Data("bs-target", "#" + BodyId)
         .Attr("aria-expanded", "false")
         .Attr("aria-controls", BodyId)
-        .Wrap(Item.String("Title", scrubHtml: "p")),
+        .Wrap(
+          // TagsSvc.Span("test").Style("float: right"),
+          Item.String("Title", scrubHtml: "p"),
+          Acc.MyUser.IsSystemAdmin
+            ? TagsSvc.Span("ℹ️").Title("This is the snip '" + TutorialId + "'").Style("flex: 1 0 auto; text-align: right; margin-right: 40px;")
+            : null
+        ),
       "\n",
       Indent
     );
@@ -198,6 +205,8 @@ public class Section {
       Acc.TagCount.Open(TagsSvc.Div().Class("accordion-body")),
       "\n",
       (Item == null ? "" : Indent2 + Item.Html("Intro")),
+      "\n",
+      (Item == null ? "" : Indent2 + Item.Html("IntroMore" + (Acc.IsTyped ? "Typed" : "Dyn"))),
       "\n",
       note,
       "\n"

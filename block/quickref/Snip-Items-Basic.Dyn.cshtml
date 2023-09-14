@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+<hide-silent>
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyData` is the assigned query for this view
+  var Data = App.GetQuery("QuickRef-Persons-Selected");
+}
+</hide-silent>
+<h4>Loop persons which were added to this view</h4>
+<ul>
+@foreach (var person in AsList(Data)) {
+  <li>
+    @if (Text.Has(person.Mugshot)) {
+      @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 50, imgClass: "rounded-circle")
+    }
+    @person.FirstName @person.LastName
+  </li>
+}
+</ul>

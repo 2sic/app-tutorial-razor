@@ -4,95 +4,16 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
-
-  @* If we have ?Rzr14 in the url, show that code to verify it works *@
-  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
-    @Sys.SourceCode.ShowAltCodeFile(Html);
-    return;
-  }
 </hide>
 
-
-<h2>Working with Entity (Item) Values</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <p>
-        Every <em>item</em> a.k.a. <em>object</em> is called an <a href="https://docs.2sxc.org/specs/data/entities.html" target="_blank"><strong>Entity</strong></a>. 
-        Entities will have properties like <code>Name</code>, <code>ProductNumber</code> or <code>Birthday</code>, depending on the <a href="https://docs.2sxc.org/specs/data/content-types.html" target="_blank"><strong>Content-Type</strong></a> they represent. 
-      </p>
-      <h3>How your Razor Code receives Entities</h3>
-      <p>
-        When things are configured correctly, the right entities are given to your Razor-template so you can just show them or perform calculations as you need them. These are the common ways for the entities to be provided to your template:
-      </p>
-      <ol>
-        <li>
-          On simple templates, the UI allows users to add/edit content of a specific type (configured in the View). This content Entity is always available in your code in the variable called 
-          <code>MyItem</code> or <code>Content</code> on older Razors.
-        </li>
-        <li>
-          On templates which expect many items of the same type, <code>MyItem</code>/<code>Content</code> contains the first item only. 
-          To access all (for iterating and showing each one) the Entities are in a variable called <code>MyItems</code> (<code>Data</code> on older Razors).
-        </li>
-        <li>
-          If your code needs to find other data in the App, it can access it through <code>App.Data</code>.
-        </li>
-        <li>
-          If your code want to get Entities which have been pre-selected/filtered etc. through a query, it will get them from <code>Query</code>
-        </li>
-      </ol>
-      <p>
-        In this example the template is configured to contain an Entity of the type <code>Person</code> and has these fields:
-      </p>
-      <ul>
-        <li>FirstName: a string (text)</li>
-        <li>LastName: a string</li>
-        <li>Birthday: a date</li>
-        <li>Mugshot: a link to an image file</li>
-        <li>Awards: a reference to one or more other Entities which describe awards</li>
-      </ul>
-      <p>
-        So the following examples will show how to put the values in these fields into the HTML.
-      </p>
-      <p>
-        In the new typed <code>RazorPro</code> the current item is on a variable called <code>MyItem</code>.
-        It's a typed object, so to read properties you need to specify what you want it, eg. <code>@@MyItem.String("FirstName")</code>.
-        <br>
-        This sample also uses the <code>@@MyItem.Picture(...)</code> to automatically show a responsive image on the page.
-      </p>
-      <p>
-        In the dynamic Razor base classes lke <code>Razor14</code> the current item is always available on the variable called <code>Content</code>.
-        It's a <code>dynamic</code> object, so you can just type things like <code>@@Content.FirstName</code> to access the properties. 
-        <br>
-        This sample also uses the <code>@@Kit.Image.Img(...)</code> to automatically show a responsive image on the page.
-      </p>
-    </div>
   </div>
+</div>
 
-
-<h3>Show Entity Values</h3>
-<hide>
-@{
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
-  var MyItem = AsItem(MyData);
-}
-</hide>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet")).SnipStart())
-  @MyItem.Picture("Mugshot", settings: "Square", width: 100, imgClass: "rounded-circle")
-  <ul>
-    <li>Name: @MyItem.String("FirstName") @MyItem.String("LastName")</li>
-    <li>Birthday: @MyItem.DateTime("Birthday").ToString("d")</li>
-    <li>Award: @MyItem.Child("Awards").String("Name")</li>
-  </ul>
-@snip.SnipEnd()
-
-<trim>
-<p>Note that <code>Awards</code> refers to other Entities of the type <code>PersonAwards</code> and has properties like <code>Name</code>. The above example showed the award Name using <code>@@Content.Awards.Name</code> - which makes sense when you only expect one award. In other tutorials you'll see how to work with such related Entities if there are more than one.  
-</trim>
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "block-read-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

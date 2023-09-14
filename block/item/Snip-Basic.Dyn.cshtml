@@ -1,0 +1,21 @@
+@inherits Custom.Hybrid.Razor14
+<hide-silent>
+@{
+  // Patch so the tutorial works reliably even if the main module had data added which are not a person
+  // So we're simulating that `MyData` is the assigned query for this view
+  var Content = AsDynamic(App.GetQuery("QuickRef-Persons-Selected").List.First());
+}
+</hide-silent>
+@Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
+<ul>
+  <li>Name: @Content.FirstName @Content.LastName</li>
+  <li>Birthday: @Content.Birthday.ToString("d")</li>
+  <li>Award: @Content.Awards.Name</li>
+</ul>
+
+@*
+  Note that Awards refers to other Entities of the type PersonAwards and has properties like Name.
+  This example shows the award Name using @Content.Awards.Name.
+  This only makes sense when you expect one award.
+  In other tutorials you'll see how to work with such related Entities if there are more than one.
+*@

@@ -3,7 +3,7 @@
 @{
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
-  var MyItem = AsItem(MyData.GetStream("PersonAdams"));
+  var MyItem = AsItem(App.GetQuery("QuickRef-Persons-Selected"));
 }
 </hide-silent>
 
