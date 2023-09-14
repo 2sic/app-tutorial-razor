@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @*!
-Tut.Tabs=file:../../reuse/Box Typed.cshtml
+Tut.Tabs=file:../../razor/partial/Box Typed.cshtml
 
 Note: this is only typed, because the inner file is typed; the other code is identical 
 !*@
@@ -8,12 +8,12 @@ Note: this is only typed, because the inner file is typed; the other code is ide
 <h4>Call some external Razor files</h4>
 <ol>
   <li>
-    @Html.Partial("../../reuse/Box Typed.cshtml", new {
+    @Html.Partial("../../razor/partial/Box Typed.cshtml", new {
       Label = "Hello, this is the first line"
     })
   </li>
   <li>
-    @Html.Partial("../../reuse/Box Typed.cshtml", new {
+    @Html.Partial("../../razor/partial/Box Typed.cshtml", new {
       Label = "Second line!",
       Color = "red"
     })
@@ -23,6 +23,6 @@ Note: this is only typed, because the inner file is typed; the other code is ide
       var label = "Third line!"; // if variable name is the same...
       var color = "green";  // if variable name is the same...
     }
-    @Html.Partial("../../reuse/Box Typed.cshtml", new { label, color })
+    @Html.Partial("../../razor/partial/Box Typed.cshtml", new { label, color })
   </li>
 </ol>

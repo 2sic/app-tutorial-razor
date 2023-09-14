@@ -1,18 +1,18 @@
 @inherits Custom.Hybrid.Razor14
 @*!
-Tut.Tabs=file:../../reuse/box.cshtml
+Tut.Tabs=file:../../razor/partial/Box Dynamic.cshtml
 
 Note: this is only typed, because the inner file is typed; the other code is identical 
 !*@
 <h4>Call some external Razor files</h4>
 <ol>
   <li>
-    @Html.Partial("../../reuse/box.cshtml", new {
+    @Html.Partial("../../razor/partial/Box Dynamic.cshtml", new {
       Label = "Hello, this is the first line"
     })
   </li>
   <li>
-    @Html.Partial("../../reuse/box.cshtml", new {
+    @Html.Partial("../../razor/partial/Box Dynamic.cshtml", new {
       Label = "Second line!",
       Color = "red"
     })
@@ -22,6 +22,6 @@ Note: this is only typed, because the inner file is typed; the other code is ide
       var label = "Third line!"; // if variable name is the same...
       var color = "green";  // if variable name is the same...
     }
-    @Html.Partial("../../reuse/box.cshtml", new { label, color })
+    @Html.Partial("../../razor/partial/Box Dynamic.cshtml", new { label, color })
   </li>
 </ol>
