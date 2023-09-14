@@ -25,90 +25,9 @@
     </ol>
   </div>
 </div>
-<h2>The Unmodified Image</h2>
-<p>
-  For starters - this is the image we'll resize later on:
-</p>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  @{
-    var imgUrl = App.Path + "/settings/demo.png";
-  }
-
-  <img loading="lazy" src='@Link.Image(imgUrl)'>
-@snip.SnipEnd()
-
-<trim>
-  <h2>The <code>Link.Image(...)</code> Helper</h2>
-  <p>
-    Above you can see that you shouldn't do <code>src='@@imgUrl'</code> because it can cause trouble in a CMS - like when the image has special characters in the name. 
-    So you should always use <code>@@Link.Image(imgUrl)</code> instead. 
-    <br>
-    <br>
-    The <code>Link.Image</code> also makes it easy to create image urls containing the correct resize parameters. 
-    Even better: The parameters can be in a global setting for re-use across all apps and templates. 
-  </p>
-
-  <h2>Simple Examples with Parameters</h2>
-  <p>
-    Look at the source-code below to see how they are made. Note that we're adding a pink border around all <code>img</code> tags to make it easier to see the image bounds. 
-  </p>
-</trim>
 
 
-<h3>Resize to 200px Width</h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200)'>
-@snip.SnipEnd()
-
-
-<h3>Height: 150px</h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, height: 150)'>
-@snip.SnipEnd()
-
-
-<h3>Width: 200px, Height 150px</h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, height: 150)'>
-@snip.SnipEnd()
-
-
-
-<h2>Resize and Change Format to JPG</h2>
-
-<h3>200px, jpg</h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-   <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg")'>
-@snip.SnipEnd()
-
-
-<h3>200px, jpg, 15% quality only</h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 200, format: "jpg", quality: 15)'>
-@snip.SnipEnd()
-
-<h2>Resize Modes</h2>
-<p>
-  All of these examples are width 250px, height 150px
-</p>
-
-<h3>Resize mode <code>crop</code></h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
-@snip.SnipEnd()
-
-
-<h3>Resize Mode <code>max</code></h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "max")'>
-@snip.SnipEnd()
-
-
-<h3>Resize Mode <code>stretch</code></h3>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "stretch")'>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, Variant = ".Dyn", NameId = "img-settings" })
 
 <p>Other modes not demonstrated here, see <a href="https://imageresizing.net/docs/v4/reference" target="_blank">Image Resizer docs</a>.</p>
 

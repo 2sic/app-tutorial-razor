@@ -28,22 +28,7 @@
   </div>
 </div>
 
-
-<h3>Image with merged settings</h3>
-<p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  @{
-    var customImageSettings = AsDynamic(new {
-      Height = 100,
-      ResizeMode = "Stretch",
-      Quality = 50
-    });
-    // Merged settings, first one has highes priority
-    var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
-  }
-  <img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "img-mergin" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

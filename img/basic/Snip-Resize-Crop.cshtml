@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor14
+
+@{
+  var imgUrl = App.Path + "/settings/demo.png";
+}
+
+<img loading="lazy" src='@Link.Image(url: imgUrl, width: 250, height: 150, resizeMode: "crop")'>
