@@ -3,46 +3,17 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("../shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
-
-  @* If we have ?Rzr14 in the url, show that code to verify it works *@
-  @if (Sys.SourceCode.ShouldShowAltCodeFile()) {
-    @Sys.SourceCode.ShowAltCodeFile(Html);
-    return;
-  }
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Working with <em>number</em> URL Parameters</h2>
-    <p>
-      When you expect a number, you usually need to convert it to an <code>int</code> or similar for further use. Otherwise you'll be comparing numbers with strings. For example <code>if (3 == "3")</code> would return <code>false</code> - which is not what you usually want. <br>
-      Additionally, you usually want to ensure that if no parameter is found, you will have a default value - othertise you may run into errors.
-    </p>
-    <p>
-      Click on the links to change the url-parameters of this page and see the results below.
-    </p>
-    <ul>
-      @SubpageLink("This page without additional params", "")
-      @SubpageLink("put ?id=27 in the url", "id=27")
-    </ul>
   </div>
 </div>
 
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "basics-linking-int" })
-
-<hide>
-@functions {
-  dynamic SubpageLink(string label, string urlparams) {
-    return Tag.Li()
-      .Wrap(
-        Tag.A(label).Href(Link.To(parameters: "?basics311=page&" + urlparams))
-      );
-  }
-}
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "code-link-parameters-int-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -1,6 +1,19 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
-
+<hide-silent>
+<p>
+  Click on the links to change the url-parameters of this page and see the results below.
+</p>
+<ul>
+  <li>
+    <a href='@Link.To(parameters: MyPage.Parameters.Remove("id"))'>This page without id</a>
+  </li>
+  <li>
+    <a href='@Link.To(parameters: MyPage.Parameters.Set("id", 27))'>put ?id=27 in the url</a>
+  </li>
+</ul>
+<hr>
+</hide-silent>
 @{
   // This variable is a string, but could be null or empty
   var idAsString = MyPage.Parameters["id"];

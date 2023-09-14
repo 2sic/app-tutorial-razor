@@ -10,17 +10,6 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Reuse Shared Templates</h2>
-    <p>
-      Partial templates are <code>cshtml</code> files which you can use multiple times. Typically they will contain something which you need in many places, like a menu or a data-visualizer which gets data as a parameter, and then creates a different table each time. Here's how to use it with <code>Html.Partial(...)</code>.
-    </p>
-    <h3>Passing Parameters/Values</h3>
-    <p>
-      If you pass values to the Razor Control on older Base classes such as <code>Razor14</code>, the parameters arrive on the <code>DynamicModel</code> object.
-    </p>
-    <p>
-      On the new typed base class <code>RazorPro</code> it will be in the <code>MyModel</code> object (see examples below)
-    </p>
   </div>
 </div>
 
