@@ -29,7 +29,7 @@
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
-    @* 2sxclint:disable:no-inline-script *@
+    @*! 2sxclint:disable:no-inline-script !*@
   <script>
       function getOrdersFetch(moduleContext) {
         $2sxc(moduleContext).webApi.fetchJson('orders/get')
@@ -42,7 +42,7 @@
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
-    @* 2sxclint:disable:no-inline-script *@
+    @*! 2sxclint:disable:no-inline-script !*@
   <script>
     function postOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
@@ -54,7 +54,7 @@
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
-    @* 2sxclint:disable:no-inline-script *@
+    @*! 2sxclint:disable:no-inline-script !*@
   <script>
     function putOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
@@ -66,7 +66,7 @@
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
   <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
-    @* 2sxclint:disable:no-inline-script *@
+    @*! 2sxclint:disable:no-inline-script !*@
   <script>
     function deleteOrdersFetch(moduleContext) {
       $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
