@@ -107,12 +107,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return new SnippetWithIntroSection(this, Tag.H4(ResultTitle));
   }
 
-
-  /// <summary>
-  /// Lightweight "Just show a Snippet" object
-  /// </summary>
-  /// <returns></returns>
-  public SnippetOnlySection SnippetOnly() { return new SnippetOnlySection(this); }
+  // 2023-09-14 2dm - believe not used any more
+  // /// <summary>
+  // /// Lightweight "Just show a Snippet" object
+  // /// </summary>
+  // /// <returns></returns>
+  // public SnippetOnlySection SnippetOnly() { return new SnippetOnlySection(this); }
 
   /// <summary>
   /// Dummy SnipEnd for all use cases where the end doesn't need output but marks the end.
