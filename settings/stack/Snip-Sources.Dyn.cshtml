@@ -1,0 +1,36 @@
+@inherits Custom.Hybrid.Razor14
+<ul>
+  <li>
+    <div style='background-color: @Settings.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>Settings.Get("CustomColor")</code>:
+    @Settings.Get("CustomColor") 
+  </li>
+  <li>
+    @{ var source = Settings.GetSource("ViewCustom"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>View...Get("CustomColor")</code>:
+    @source.Get("CustomColor")
+  </li>
+  <li>
+    @{ source = Settings.GetSource("AppCustom"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>App...Get("CustomColor")</code>:
+    @source.Get("CustomColor") 
+  </li>
+  <li>
+    @{ source = Settings.GetSource("SiteCustom"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>Site...Get("CustomColor")</code>:
+    @source.Get("CustomColor") <br>
+    <em>Note: this will be empty, as Site doesn't have this setting</em>
+  </li>
+  <li>
+    @{ source = Settings.GetSource("Global"); }
+    <div style='background-color: @source.Get("CustomColor")' class="color-box"></div>
+    &nbsp; <code>Global...Get("CustomColor")</code>:
+    @source.Get("CustomColor") <br>
+    <em>Note: this will be empty, as Site doesn't have this setting</em>
+  </li>
+</ul>
+
+<style> .color-box { width: 20px; height: 20px; float: left; } </style>

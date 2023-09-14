@@ -15,63 +15,7 @@
   </p>
 </trim>
 
-<hr>
-<h3>View Settings</h3>
-<hide>
-  <p>The following settings were configured on this View - see <a href="https://docs.2sxc.org/basics/app/views/settings.html" target="_blank">docs</a></p>
-</hide>
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ul>
-    <li>
-      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.PrimaryColor"></div>
-      &nbsp; <code>@@Settings.PrimaryColor</code>: @Settings.PrimaryColor 
-    </li>
-    <li>
-      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.SecondaryColor"></div>
-      &nbsp; <code>@@Settings.SecondaryColor</code>: @Settings.SecondaryColor
-    </li>
-    <li><code>@@Settings.Tiles</code> (for example to configure images side-by-side): @Settings.Tiles</li>
-  </ul>
-@snip.SnipEnd()
-
-<h3>App Settings</h3>
-<hide>
-  <p>The following settings were configured on this App - see <a href="https://docs.2sxc.org/basics/app/settings.html" target="_blank">docs</a></p>
-</hide>
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ul>
-    <li>
-      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrForegroundColor"></div>
-      &nbsp; <code>@@Settings.QrForegroundColor</code>: @Settings.QrForegroundColor 
-    </li>
-    <li>
-      <div style="width: 20px; height: 20px; float: left; background-color: @Settings.QrBackgroundColor"></div>
-      &nbsp; <code>@@Settings.QrBackgroundColor</code>: @Settings.QrBackgroundColor
-    </li>
-    <li><code>@@Settings.QrDimension</code>: @Settings.QrDimension</li>
-  </ul>
-@snip.SnipEnd()
-
-<h3>Site ond Global (across Sites) Settings</h3>
-<hide>
-  <p>
-    The same concept applies to Site and Global settings - see <a href="https://r.2sxc.org/settings" target="_blank">docs</a></p>
-  <p>
-    <em>This demo app will be installed on many sites which don't have any settings, so there is no code to demo this.</em>
-  </p>
-</hide>
-
-<h3>Predefined System Settings</h3>
-<hide>
-  <p>
-    Each installation of 2sxc has predefined settings which you can also read - see <a href="https://r.2sxc.org/settings" target="_blank">docs</a></p>
-</hide>
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ul>
-    <li><code>@@Settings.Images.Content.Width</code>: @Settings.Images.Content.Width</li>
-    <li><code>@@Settings.Images.Content.AspectRatio</code>: @Settings.Images.Content.AspectRatio</li>
-  </ul>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "settings-basics-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

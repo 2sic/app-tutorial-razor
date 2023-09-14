@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+<ul>
+  <li>
+    <div style="background-color: @App.Settings.PrimaryColor" class="color-box"></div>
+    &nbsp; App.Settings.PrimaryColor <br>
+    @App.Settings.Get("PrimaryColor")
+  </li>
+  <li>
+    <div style="background-color: @App.Settings.SecondaryColor" class="color-box"></div>
+    &nbsp; App.Settings.SecondaryColor <br>
+    @App.Settings.Get("SecondaryColor")
+  </li>
+  <li>
+    <div style="background-color: @App.Settings.QrForegroundColor" class="color-box"></div>
+    &nbsp; App.Settings.QrForegroundColor <br>
+    @App.Settings.Get("QrForegroundColor")
+  </li>
+  <li>
+    <div style="background-color: @App.Settings.QrBackgroundColor" class="color-box"></div>
+    &nbsp; App.Settings.QrBackgroundColor <br>
+    @App.Settings.Get("QrBackgroundColor")
+  </li>
+  <li>
+    App.Settings.QrDimension <br>
+    @App.Settings.Get("QrDimension")
+  </li>
+</ul>
+
+<style> .color-box { width: 20px; height: 20px; float: left; } </style>
