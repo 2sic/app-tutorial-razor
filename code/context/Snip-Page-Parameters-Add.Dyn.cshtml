@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+
+@{
+  // Example using string
+  var newParamsFromString = CmsContext.Page.Parameters + "&name=2sxc";
+
+  // Page parameters using .Add(...) method
+  var newParamsFromAdd = CmsContext.Page.Parameters.Add("name", "2sxc");
+}
+<hide>
+<p>See adjusted page parameters: <code>@newParamsFromAdd</code></p>
+</hide>
+<p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
+<p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>

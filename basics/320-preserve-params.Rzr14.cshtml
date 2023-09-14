@@ -6,48 +6,5 @@
   @{ dynamic snip = null; }
 </hide>
 
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("current-params"))
-  @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
-  <ol>
-    <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
-    <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
-@snip.SnipEnd()
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("new-params"))
- @{
-    // Example using string
-    var newParamsFromString = CmsContext.Page.Parameters + "&name=2sxc";
-
-    // Page parameters using .Add(...) method
-    var newParamsFromAdd = CmsContext.Page.Parameters.Add("name", "2sxc");
-  }
-<hide>
-  <p>See adjusted page parameters: <code>@newParamsFromAdd</code></p>
-</hide>
-  <p>Current page URL with new parameter from string: @Link.To(parameters: newParamsFromString)</p>
-  <p>Current page URL with new parameter from <code>.Add(...)</code>: @Link.To(parameters: newParamsFromAdd)</p>
-@snip.SnipEnd()
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("remove-params"))
-  @{
-    var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
-  }
-  <hide>
-  <p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
-  </hide>
-  <p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
-@snip.SnipEnd()
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart("change-params"))
-  @{
-    var currentParamsChanged = CmsContext.Page.Parameters.Set("basics320", "2sxc");
-  }
-  <hide>
-  <p>See adjusted page parameters: <code>@currentParamsChanged</code></p>
-  </hide>
-  <p>Current page URL with changed parameter: @Link.To(parameters: currentParamsChanged)</p>
-@snip.SnipEnd()
-
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

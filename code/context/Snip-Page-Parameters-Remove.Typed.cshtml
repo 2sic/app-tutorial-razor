@@ -1,0 +1,10 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+
+@{
+  var currentParamsRemoved = MyPage.Parameters.Remove("basics320");
+}
+<hide>
+<p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
+</hide>
+<p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>

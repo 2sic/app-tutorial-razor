@@ -1,0 +1,10 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+
+@{
+  var currentParamsRemoved = CmsContext.Page.Parameters.Remove("basics320");
+}
+<hide>
+<p>See adjusted page parameters: <code>@currentParamsRemoved</code></p>
+</hide>
+<p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>

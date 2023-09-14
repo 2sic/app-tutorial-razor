@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+
+@{
+  // This variable is a string, but could be null or empty
+  var idAsString = MyPage.Parameters["id"];
+  // This converts the id parameter to int. First sample auto-falls back to 0, other to -1
+  var id = MyPage.Parameters.Int("id");
+  var idOrMinus1 = MyPage.Parameters.Int("id", fallback: -1);
+}
+<ul>
+  <li>
+    <strong>Raw id from URL:</strong> @idAsString <br>
+    Equal to string "27": @(idAsString == "27") <br>
+    Equal to number 27: (would throw error) <br>
+  </li>
+  <li>
+    <strong>Number id from URL:</strong> @id <br>
+    Equal to string "27": (would throw error) <br>
+    Equal to number 27: @(id == 27) <br>
+  </li>
+  <li>
+    <strong>Number id from URL or -1:</strong> @idOrMinus1 <br>
+    Equal to string "27": (would throw error) <br>
+    Equal to number 27: @(idOrMinus1 == 27) <br>
+  </li>
+</ul>
