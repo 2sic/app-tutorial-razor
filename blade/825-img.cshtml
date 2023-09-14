@@ -22,37 +22,13 @@
 
   @* TODO:: @2dm View Image selection > Img goes above the Code Snippet
 
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-img" })
-@* 
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-    // demo of path with umlauts and japanese characters
-    var kaizenUrl = "überschrift-small.png?name=改善";
-    var path = App.Path + "/blade/assets/tag-img/";
-    var kaizenFullPath =  path + kaizenUrl;
-    var kaizenFullHd = kaizenFullPath.Replace("small", "large");
+  <hide>
+<style>
+  picture, picture source, picture img {
+    width: 100%;
   }
-@snip.SnipEnd()
-
-
-This file is called @kaizenUrl <br>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @Tag.Img().Src(kaizenFullPath)
-@snip.SnipEnd()
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- <pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
-@snip.SnipEnd()
-
-And now the same thing with <code>Srcset</code> which allows high-density images: <br>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- @Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
-@snip.SnipEnd() *@
-
+</style>
+</hide>
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

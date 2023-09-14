@@ -13,7 +13,7 @@
   }
 </hide>
 
-@* Merge into plaform file *@
+@* TODO:: 2dm Merge into 110-platform, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -27,15 +27,6 @@
 
     </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet")).SnipStart())
-  <ol>
-    <li>
-      <code>.Id</code> of the current module: <strong>@MyContext.Module.Id</strong>
-    </li>
-  </ol>
-@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

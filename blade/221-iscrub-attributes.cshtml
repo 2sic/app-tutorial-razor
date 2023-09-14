@@ -18,50 +18,9 @@
   </div>
 </div>
 
-@* Merge into 210 iscrub *@
+@* TODO:: 2dm Merge into 210-iscrub-tags, delete this view and file *@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
-
-<trim>
-<h3>Scrub classes</h3>
-<p>Using <code>IScrub.Classes(source)</code> you can scrub all classes.</p>
-</trim>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var exampleClasses = "<div class='remove-me not-allowed'><strong class='not-allowed'>No</strong> classes allowed</div>";
-  }
-  <div><strong>Scrub all classes from source: </strong><code>@Kit.Scrub.Classes(exampleClasses)</code></div>
-@snip.SnipEnd()
-
-
-<trim>
-<h3>Scrub attributes</h3>
-<p>Using <code>IScrub.Attributes(source, attributes)</code> you can scrub attributes.</p>
-</trim>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-      var exampleAttributes = "<div remove-me not-allowed class='removed'>No attributes allowed</div>";
-    }
-  <div><strong>Scrub all attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes)</code></div>
-  <div><strong>Scrub one attribute from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, "remove-me")</code></div>
-  <div><strong>Scrub some attributes from source: </strong><code>@Kit.Scrub.Attributes(exampleAttributes, new string[] { "remove-me", "not-allowed" })</code></div>
-@snip.SnipEnd()
-
-
-<trim>
-<h3>Scrub styles</h3>
-<p>Using <code>IScrub.Styles(source)</code> you can scrub all styles.</p>
-</trim>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var exampleStyle = "<div style='background-color: red; width: 50px; height: 50px;'>No styles allowed</div>";
-  }
-  <div><strong>Scrub all styles from source: </strong><code>@Kit.Scrub.Styles(exampleStyle)</code></div>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

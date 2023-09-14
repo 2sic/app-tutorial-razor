@@ -19,30 +19,7 @@
     </div>
   </div>
 
-
-@* It is Merge into 825 img *@
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-    var path = App.Path + "/blade/assets/tag-img/";
-    var small = "überschrift-small.png";
-    var large = "überschrift-large.png";
-  }
-@snip.SnipEnd()
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @Tag.Picture(
-  Tag.Source().Srcset(path + large).Media("(min-width: 800px)"),
-  Tag.Img().Src(path + small))
-@snip.SnipEnd()
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <pre>@Tag.Picture(
-    Tag.Source().Srcset(path + large).Media("(min-width: 800px)"),
-    Tag.Img().Src(path + small)).ToString()
-  </pre>
-@snip.SnipEnd()
-
+@* TODO:: 2dm Merge into 825-img, delete this view and file *@
 
 <hide>
 <style>

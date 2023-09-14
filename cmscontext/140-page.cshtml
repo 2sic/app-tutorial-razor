@@ -13,7 +13,7 @@
   }
 </hide>
 
-@* Merge into plaform file *@
+@* TODO:: 2dm Merge into 110-platform, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -26,28 +26,6 @@
       <p>On the older <code>Razor14</code> or <code>Razor12</code> it's on <code>CmsContext.Page</code>.</p>
     </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "Rzr14#snippet")).SnipStart())
-  <ol>
-    <li>
-      <code>.Id</code> of the current page: <strong>@MyPage.Id</strong>
-      (<code>TabId</code> in DNN or <code>Page.PageId</code> in oqtane.)
-    </li>
-    <li>
-      <code>.Url</code> the page url with protocol: <strong>@MyPage.Url</strong>
-    </li>
-    <li>
-      <code>.Parameters</code> all the url parameters of the page <code>@MyPage.Parameters</code>
-    </li>
-    <li>
-      <code>.Parameters[name]</code> Access a specific parameter (in this case the parameter <code>c140</code> from the url)
-      <strong>
-        @MyPage.Parameters["c140"]
-      </strong>
-    </li>
-  </ol>
-@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
