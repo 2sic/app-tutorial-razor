@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor14
+
+@{
+  var imgUrl = App.Path + "/img/assets/demo1.png";
+  var imgUrl2 = App.Path + "/img/assets/demo2.png";
+  var customSettingsMax = AsDynamic(new {
+    Height = 300,
+    Width = 100,
+    ResizeMode = "Max"
+  });
+}
+<img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 1)'> - 
+<img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 10)'> -
+<img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 75)'>

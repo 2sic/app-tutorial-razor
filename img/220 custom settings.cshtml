@@ -12,6 +12,7 @@
 </hide>
 
 
+
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
@@ -23,52 +24,7 @@
   </div>
 </div>
 
-
-  <h3>Basic Bundle of Settings (Height, Width and ResizeMode Crop)</h3>
-  <p>This example uses the configuration as is, to create an image according to following specs</p>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  @{// Create a configuration bundle as a Dynamic object with these specs
-    var customSize = AsDynamic(new {
-      Height = 100,
-      Width = 500,
-      ResizeMode = "Crop"
-    });
-  }
-  <img loading="lazy" src='@Link.Image(imgUrl, customSize)'> - 
-  <img loading="lazy" src='@Link.Image(imgUrl2, customSize)'>
-@snip.SnipEnd()
-
-<h3>Another Example (ResizeMode Stretch)</h3>
-<p>This example uses the configuration as is, to create an image according to following specs</p>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  @{
-    var customSettingsStreched = AsDynamic(new {
-      Height = 300,
-      Width = 100,
-      ResizeMode = "Stretch"
-    });
-  }
-  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsStreched)'> - 
-  <img loading="lazy" src='@Link.Image(imgUrl2, customSettingsStreched)'>
-@snip.SnipEnd()
-
-<h3>Combine Config-Bundle with additional Params</h3>
-<p>This example uses a config-bundle, but also specifies additional parameters in <code>Link.Image(...)</code>.</p>
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  @{
-    var customSettingsMax = AsDynamic(new {
-      Height = 300,
-      Width = 100,
-      ResizeMode = "Max"
-    });
-  }
-  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 1)'> - 
-  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 10)'> -
-  <img loading="lazy" src='@Link.Image(imgUrl, customSettingsMax, format: "jpg", quality: 75)'>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "img-custom" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
