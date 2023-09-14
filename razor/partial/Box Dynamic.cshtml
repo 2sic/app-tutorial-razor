@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.Razor14
+@{
+  // pick up parameters which were passed in
+  var label = DynamicModel.Label;
+  var color = DynamicModel.Color as string ?? "black"; // default to "black" if not provided
+}
+<div style="border: solid 2px @color">
+  @label
+</div>

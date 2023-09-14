@@ -29,36 +29,7 @@
 @* TODO: @2dg - continue here in /razor/partial *@
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razor-partial" })
 
-
-<h3>Just render the same, external file into here</h3>
-<p>This uses <code>@@Html.Partial</code> to get the file <code>line.cshtml</code> 3 times.</p>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./line.cshtml")).SnipStart())
-  @Html.Partial("line.cshtml")
-  @Html.Partial("line.cshtml")
-  @Html.Partial("line.cshtml")
-@snip.SnipEnd()
-
-
-<h3>Passing in Parameters/Values</h3>
-<p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./box.cshtml")).SnipStart())
-  @Html.Partial("box.cshtml", new { Label = "Hello, this is the first line" })
-  @Html.Partial("box.cshtml", new { Label = "Second line!", Color = "red" })
-  @Html.Partial("box.cshtml", new { Label = "I'm last!", Color = "blue" })
-@snip.SnipEnd()
-
-
-<h3>Passing in Parameters/Values Pro</h3>
-<p>This is the same, but using the <code>RazorPro</code> (new v16). The called template will get the parameters on <code>MyModel</code> (see code below)</p>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./Box Typed.cshtml")).SnipStart())
-  @Html.Partial("box.cshtml", new { Label = "Hello, this is the first line" })
-  @Html.Partial("box.cshtml", new { Label = "Second line!", Color = "red" })
-  @Html.Partial("box.cshtml", new { Label = "I'm last!", Color = "blue" })
-@snip.SnipEnd()
-
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
+
+

@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:./Box Typed.cshtml
+!*@
+@Html.Partial("Box Typed.cshtml", new { Label = "Hello, this is the first line" })
+@Html.Partial("Box Typed.cshtml", new { Label = "Second line!", Color = "red" })
+@Html.Partial("Box Typed.cshtml", new { Label = "I'm last!", Color = "blue" })

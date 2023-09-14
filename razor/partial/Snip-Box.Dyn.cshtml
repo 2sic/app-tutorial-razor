@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./Box Dynamic.cshtml
+!*@
+@Html.Partial("Box Dynamic.cshtml", new { Label = "Hello, this is the first line" })
+@Html.Partial("Box Dynamic.cshtml", new { Label = "Second line!", Color = "red" })
+@Html.Partial("Box Dynamic.cshtml", new { Label = "I'm last!", Color = "blue" })

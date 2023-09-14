@@ -6,74 +6,14 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
-
-@* @{
-  var normalText = "this is text, it doesn't have tags";
-  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
-} *@
-
-
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <h3>Show a variable</h3>
   </div>
 </div>
-@* <p>This uses the basic <code>@@variableName</code> syntax. This will result in encoding html, so tags in that variable will be shown as html-source.</p> *@
-
-@* TODO: @2dg - continue here
-Finish
- *@
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razor-html" })
-
-@* @((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-     normalText = "this is text, it doesn't have tags";
-     htmlText = "this string <em>has</em> html <strong>tags</strong>";
-  }
-@snip.SnipEnd()
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-<ul>
-  <li>@normalText</li>
-  <li>@htmlText</li>
-</ul>
-@snip.SnipEnd()
-
-
-<trim>
-<h2>Encode using <code>@@Html.Raw(...)</code> </h2>
-</trim>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-<ul>
-  <li>@Html.Raw(normalText)</li>
-  <li>@Html.Raw(htmlText)</li>
-</ul>
-@snip.SnipEnd()
-
-
-<h2>Add "uncontrolled" html using <code>@@:...</code></h2>
-<p>
-  Sometimes you need to conditionally add tags, in which case Razor cannot verify that open/close of tags is correct.
-  This would normally throw an error. so you need <code>@@:</code>. 
-</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-<div>
-  @{ var makeBold = new System.Random().NextDouble() > 0.5; }
-  @if (makeBold) { 
-    @:<strong> 
-  }
-    This is randomly bold or not, depending on a random event. If it's bold, you'll see a <code>strong</code> tag around it, otherwise not.
-  @if (makeBold) { 
-    @:</strong>
-  }
-</div>
-@snip.SnipEnd() *@
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
