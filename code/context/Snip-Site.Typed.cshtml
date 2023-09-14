@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+
+<ol>
+  <li>
+    <code>.Id</code> of the current site (same as <code>PortalId</code> in DNN): <strong>@MyContext.Site.Id</strong>
+  </li>
+  <li>
+    <code>.Url</code> The site url with protocol: <strong>@MyContext.Site.Url</strong>
+  </li>
+  <li>
+    <code>.UrlRoot</code> The site url without a protocol: <strong>@MyContext.Site.UrlRoot</strong>
+  </li>
+</ol>

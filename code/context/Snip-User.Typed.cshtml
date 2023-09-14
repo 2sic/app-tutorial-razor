@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+
+<ol>
+  <li>
+    <code>.Id</code> of the current user: <strong>@MyUser.Id</strong>
+  </li>
+  <li>
+    <code>.IsSiteAdmin</code> <strong>@MyUser.IsSiteAdmin</strong> (check if the current user is a site admin) 
+  </li>
+  <li>
+    <code>.IsContentAdmin</code> <strong>@MyUser.IsSiteAdmin</strong> (check if the current user can edit content) 
+  </li>
+  <li>
+    <code>.IsSystemAdmin</code> <strong>@MyUser.IsSystemAdmin</strong> (check if the current user is a supe-user) 
+  </li>
+</ol>
