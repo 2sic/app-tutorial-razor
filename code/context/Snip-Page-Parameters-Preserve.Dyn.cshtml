@@ -3,5 +3,12 @@
 
 @{ var currentPageUrl = Link.To(parameters: CmsContext.Page.Parameters); }
 <ol>
-  <li><a href='@Link.To()'>Link to current page <em>without</em> Parameters: @Link.To()</a></li>
-  <li><a href='@currentPageUrl'>Link to current page preserving parameters @currentPageUrl</a></li>
+  <li>
+    <a href='@Link.To()'>Link to current page <em>without</em>
+    Parameters: @Link.To()</a>
+  </li>
+  <li>
+    <a href='@currentPageUrl'>Link to current page preserving 
+    parameters @currentPageUrl</a>
+  </li>
+</ol>
