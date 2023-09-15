@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor14
+<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<picture>
+  <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
+  <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
+  <img loading="lazy" style="width: 40%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
+</picture>

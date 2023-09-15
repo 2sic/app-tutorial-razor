@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var picFullControl = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+}
+<picture>
+  @foreach (var st in picFullControl.Sources)
+  {
+    @st
+  }
+  <img loading="lazy" src='@picFullControl.Src' style='width: 50%' class='border border-primary'>
+</picture>
+<hide-silent>
+@{
+  var previewString = "<picture> ";
+  foreach (var st in picFullControl.Sources) { previewString += st.ToString(); }
+  previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary' loading='lazy' >";
+  previewString += "</picture>";
+  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewString);
+}
+</hide-silent>

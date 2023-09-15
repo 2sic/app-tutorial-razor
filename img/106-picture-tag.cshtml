@@ -29,6 +29,12 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
 
+@*
+  TODO: @2dg - put in /img/picture/Snip-....cshtml
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".Dyn", NameId = "img-picture" })
+
 <hide>
   <h3>What you need to know about <code>picture</code></h3>
   <ol>
