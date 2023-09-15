@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-data-sources-use, delete this view and file *@
 
 <h2>Data Sources Tutorial - Basic Use</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -20,41 +21,6 @@
 
   </div>
 </div>
-
-<trim>
   
-  <h2>First Sample: Get Csv DataSource using Kit.Data</h2>
-  <p>
-    Use <code>Kit.Data.GetSource&lt;Csv&gt;</code> to create a DataSource reading CSV data.
-    This sample shows how to:
-  </p>
-  <ol>
-    <li>Use <code>Kit.Data.GetSource&lt;DataSourceName&lt;</code> to get the desired DataSource</li>
-    <li>Get a <code>Csv</code> DataSource from <code>ToSic.Eav.DataSources</code></li>
-    <li>When creating the source, also provide settings for <code>FilePath</code> and <code>Delimiter</code></li>
-    <li>Loop through the items</li>
-  </ol>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: new Dictionary<string, string> {
-  { "products.csv", "file:assets/products.csv.txt"}
-  })).SnipStart())
-  @{
-    // Create the data source and provide configuration in the options
-    var products = Kit.Data.GetSource<Csv>(parameters: new {
-      FilePath = App.RelativePath + "/data-sources-use/assets/products.csv.txt",
-      Delimiter = ";",
-    });
-  }
-  <h3>List of Data in the CSV DataSource (@products.List.Count())</h3>
-  <ul>
-    @foreach (var product in AsList(products)) {
-      <li>
-        @product.Name (@product.Description)
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

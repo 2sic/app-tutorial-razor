@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  var queryFirstNameDesc = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted", parameters: new {
+    Sort = "Desc",
+    Field = "FirstName"
+  });
+}
+<h3>List of Persons from the DataSource</h3>
+<ul>
+  @foreach (var person in AsList(queryFirstNameDesc)) {
+    <li>
+      @person.FirstName @person.LastName
+    </li>
+  }
+</ul>

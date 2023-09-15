@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  // First get the root data source - the App with all data
+  var appDs2 = Kit.Data.GetAppSource();
+
+  // Now create a Type-Filter and tell it to only keep Books / Authors
+  var books2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, parameters: new { TypeName = "Books" });
+  var authors2 = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs2, parameters: new { TypeName = "Persons" });
+
+  // The following lines are just spread for easier documentation
+  // Usually you would write in inline
+  var dataSourceLinks2 = books2.Link    // Get the link to the books
+    .Add(authors2.Link              // Add the author2 link
+      .Rename(inName: "Stream2"     // but rename the link so it's attached as "Stream2"
+    )
+  );
+  var merged2 = Kit.Data.GetSource<StreamMerge>(attach: dataSourceLinks2);
+}
+<h3>Statistics</h3>
+<ul>
+  <li>App Item Count (unfiltered): @appDs2.List.Count()</li>
+  <li>Books Item Count (filtered): @books2.List.Count()</li>
+  <li>Authors Item Count (filtered): @authors2.List.Count()</li>
+</ul>
+
+<h3>List of Persons from the DataSource</h3>
+<ul>
+  @foreach (var item in AsList(merged2)) {
+    <li>
+      @item.EntityTitle (@item.EntityType)
+    </li>
+  }
+</ul>

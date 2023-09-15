@@ -2,7 +2,9 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 @using ToSic.Eav.DataSources;
-
+@*!
+Tut.Tabs=file:../../DataSources/SplitOddEven.cs
+!*@
 @{
   var oddEven = Kit.Data.GetSource(name: "SplitOddEven", attach: App.Data["Persons"]);
   var all = oddEven.List;

@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  // First get the root data source - the App with all data
+  // Since we're in a Razor file it picks the current App based on the context
+  var appDs = Kit.Data.GetAppSource();
+
+  // Now create a Type-Filter and tell it to only keep Books
+  // * attach: Attach the App containing everything
+  // * parameters: Set the TypeName of the filter to only keep Books
+  var books = Kit.Data.GetSource<EntityTypeFilter>(attach: appDs, parameters: new { TypeName = "Books" });
+}
+<h3>Statistics</h3>
+<ul>
+  <li>App Item Count (unfiltered): @appDs.List.Count()</li>
+  <li>Books Item Count (filtered): @books.List.Count()</li>
+</ul>
+
+<h3>List of Persons from the DataSource</h3>
+<ul>
+  @foreach (var book in AsList(books)) {
+    <li>
+      @book.Title
+    </li>
+  }
+</ul>
