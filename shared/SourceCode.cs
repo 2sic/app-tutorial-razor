@@ -97,6 +97,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return tabDic;
   }
 
+  // todo: @2dm - almost done - once LINQ is migrated, this should be rechecked and removed
   public SnippetWithIntroSection Intro() {
     return new SnippetWithIntroSection(this, Tag.RawHtml(
         Tag.H4("Initial Code"),
@@ -264,9 +265,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     protected ITag TabsBeforeContent() {
       var tabNames = TabHandler.TabNames;
-      if (tabNames.Count() <= 1) return null;
       var active = TabHandler.ActiveTabName;
-      var l = ScParent.Log.Call<ITag>("active: " + active + "; tabs: " + tabNames.Count());
+      var l = Log.Call<ITag>("tabs (" + tabNames.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
+      // var l = ScParent.Log.Call<ITag>("active: " + active + "; tabs: " + tabNames.Count());
+      if (tabNames.Count() <= 1) return l(null, "no tabs");
       var firstName = tabNames.FirstOrDefault();
       var firstIsActive = active == null || active == firstName;
       var result = Tag.RawHtml(
@@ -821,6 +823,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     if (!code.Has() || code == "out-over-src")
       return new WrapOutOverSrc(section);
 
+    if (code == "src")
+      return new WrapSrcOnly(section);
+
     // Split - either a real split, or if width == 0, then 2 tabs
     if (code == "split") {
       if (item.Int("OutputWidth") != 0)
@@ -874,22 +879,41 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   /// <summary>
-  /// Show Out in box above src
+  /// Show Output inside a box above Source
   /// </summary>
   internal class WrapOutOverSrc: WrapOutSrcBase
   {
-    public WrapOutOverSrc(SectionBase section) : base(section, "WrapOutOverSrc", true)
-    {
+    public WrapOutOverSrc(SectionBase section) : base(section, "WrapOutOverSrc", true) {
     }
 
+
     public override ITag GetStart(ITag contents) { return Tag.RawHtml(
-      Comment(""),
+      "\n",
+      Comment("WrapOutOverSrc"),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
       Tag.H4(ResultTitle)
     ); }
 
     public override ITag GetBetween() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
   }
+
+  /// <summary>
+  /// Show Source only - output is expected to result in empty HTML
+  /// </summary>
+  internal class WrapSrcOnly: WrapOutSrcBase
+  {
+    public WrapSrcOnly(SectionBase section) : base(section, "WrapSrcOnly", true) {
+      TabSelected = SourceTabName;
+    }
+
+    public override ITag GetStart(ITag contents) { return Tag.RawHtml(
+      "\n",
+      Comment("WrapSrcOnly")
+    ); }
+
+    public override ITag GetBetween() { return Tag.RawHtml(Comment("/")); }
+  }
+
 
   internal class WrapOutSplitSrc: WrapOutSrcBase
   {
