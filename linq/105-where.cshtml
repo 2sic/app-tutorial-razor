@@ -8,6 +8,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-linq, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -15,53 +16,6 @@
     <h2>Simple Where(...) and Any()</h2>
   </div>
 </div>
-
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-   var persons = AsList(App.Data["Persons"]);
-  }
-@snip.SnipEnd()
-
-
-<h3>Where(FirstName == "Terry")</h3>
-<p>This filters the authors to only find Terry.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var person in persons.Where(p => p.FirstName == "Terry")) {
-      <li>@person.FirstName @person.LastName</li>
-    }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>Where(FirstName.Length > 5)</h3>
-<p>This filters the authors with long first names.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var person in persons.Where(p => p.FirstName.Length > 5)) {
-      <li>@person.FirstName @person.LastName</li>
-    }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>Any(FirstName.Length > 5 / 10)</h3>
-<p>This filters the authors with long first names.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    <li>
-      Persons with 5-char names or more: @persons.Any(p => p.FirstName.Length > 5)
-    </li>
-    <li>
-      Persons with 10-char names or more: @persons.Any(p => p.FirstName.Length > 10)
-    </li>
-  </ol>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

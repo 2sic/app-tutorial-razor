@@ -11,6 +11,7 @@
   }
 </hide>
 
+@* TODO:: @2dm Merge into 000-linq, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -19,18 +20,6 @@
     <p>This filters the authors with long first names.</p>
   </div>
 </div>
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    <li>
-      First: @persons.First().FirstName
-    </li>
-    <li>
-      Last: @persons.Last().FirstName
-    </li>
-  </ol>
-@snip.SnipEnd()
 
 
 @* Footer *@

@@ -11,39 +11,14 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <p>
-      Learn how to leverage LINQ (Language Integrated Query) of C# to sort, filter, group content-items. This demo uses the following data in app:
-    </p>
-    <ul>
-      <li><strong>Persons</strong> - various people who are used in the data. A person can also have one or many favorite books. </li>
-      <li><strong>Books</strong> - books people wrote or contributed to. Books have authors and </li>
-    </ul>
   </div>
 </div>
 
-<h2>Some notes before we start</h2>
-<p>
-  All our code uses some general stuff explained here:
-</p>
+@*
+  - All the samples are .Dyn - I'll later create the .Typed myself
+*@
 
-<ul>
-  <li>
-    to enable LINQ commands we always need: <br>
-    <code>@@using System.Linq</code></li>
-  <li>
-    most of the code starts by retrieving a list of <strong>Books</strong> and <strong>Authors</strong>. This is done using: <br>
-    <code>App.Data["Books"]</code></li>
-  <li>
-    Since we want to use <code>dynamic</code> types (which lets us write things like <code>book.Name</code>, we usually wrap it with: <br>
-    <code>AsList(App.Data["Books"])</code>
-  </li>
-  <li>
-    The compiler often can't guess object types we are using, we often need to cast lists to: <br>
-    <code>IEnumerable&lt;dynamic&gt;</code> <br>
-    The easiest way is to just run it through <code>AsList(original as object)</code>. <br>
-    The <code>as object</code> part necessary because of limitations in Razor. 
-  </li>
-</ul>
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "linq-basics-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

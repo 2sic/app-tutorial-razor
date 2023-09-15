@@ -16,6 +16,13 @@
   </div>
 </div>
 
+@*
+  TODO: @2dg
+  - add all LINQ tutorials here for 210, 220, 230, 310
+  - All the samples are .Dyn - I'll later create the .Typed myself
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "linq-relationships-page" })
 
 @((snip = Sys.SourceCode.Intro()).SnipStart())
   @{

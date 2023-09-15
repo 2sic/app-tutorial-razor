@@ -8,55 +8,14 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-linq, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <h2>Simple Sorting of Persons</h2>
   </div>
-
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-    var persons = AsList(App.Data["Persons"]);
-  }
-@snip.SnipEnd()
-
-
 </div>
-<h3>OrderBy(EntityId)</h3>
-<p>This example shows A-Z ordering by a property which exists on all entities: EntityId</p>
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var person in persons.OrderBy(p => p.EntityId)) {
-      <li>@person.FirstName @person.LastName (#@person.EntityId)</li>
-    }
-  </ol>
-@snip.SnipEnd()
-
-<h3>OrderBy(FirstName)</h3>
-<p>This example shows A-Z ordering by a property which exists only on Person-entities. This is simple with <code>dynamic</code> objects</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var person in persons.OrderBy(p => p.FirstName)) {
-      <li>@person.FirstName @person.LastName</li>
-    }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>OrderByDescending(Birthday)</h3>
-<p>This example shows Z-A ordering by a property.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var person in persons.OrderByDescending(p => p.Birthday)) {
-      <li>@person.FirstName @person.LastName (@person.Birthday.ToString("d"))</li>
-    }
-  </ol>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
