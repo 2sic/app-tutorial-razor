@@ -180,7 +180,7 @@ public class Section {
           // TagsSvc.Span("test").Style("float: right"),
           Item.String("Title", scrubHtml: "p"),
           Acc.MyUser.IsSystemAdmin
-            ? TagsSvc.Span("ℹ️").Title("This is the snip '" + TutorialId + "'").Style("flex: 1 0 auto; text-align: right; margin-right: 40px;")
+            ? TagsSvc.Span("ℹ️").Title("This is the snip '" + TutorialId + "'").Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
             : null
         ),
       "\n",
