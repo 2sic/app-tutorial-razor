@@ -357,6 +357,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (strResult.StartsWith("file:"))
         return ScParent.ShowFileContents(strResult.Substring(5), withIntro: false, showTitle: 
         true);
+
+      if (strResult.StartsWith("html-img:"))
+        return ScParent.ShowResultImg(strResult.Substring(9));
       // Optionally add tutorial links if defined in the item
       if (item == null) return result;
 
@@ -803,11 +806,16 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return l(SnipEndFinal(), "with tabs");
     }
 
-    public void SetTabContents(List<object> tabs) {
-      ScParent.Log.Add("Replace tab contents with (new): " + tabs.Count());
-      TabHandler.ReplaceTabContents(tabs);
+    /// <summary>
+    /// Public method to replace the tab contents from outside
+    /// </summary>
+    /// <param name="tabs"></param>
+    public void SetTabContents(params object[] tabs) {
+      if (tabs != null & tabs.Any()) {
+        ScParent.Log.Add("Replace tab contents with (new): " + tabs.Count());
+        TabHandler.ReplaceTabContents(tabs.ToList());
+      }
     }
-
   }
 
   #endregion

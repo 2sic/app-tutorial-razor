@@ -14,11 +14,11 @@
       var containsSnipCode = Sys.SourceCode.FileContainsSnipCode(acs.SectionFile);
       var snip = Sys.SourceCode.SnipFromItem(item: acs.Item, file: acs.SectionFile);
       if (containsSnipCode) {
-        @Html.Partial(acs.SectionFile, new { Sys, acs.Item, SnippetSection = snip })
+        @Html.Partial(acs.SectionFile, new { acs.Item, SnippetSection = snip })
       } else {
         // var snip = Sys.SourceCode.SnipFromItem(item: acs.Item, file: acs.SectionFile);
         @snip.SnipStart()
-          @Html.Partial(acs.SectionFile, new { Sys, acs.Item, SnippetSection = snip })
+          @Html.Partial(acs.SectionFile, new { acs.Item, SnippetSection = snip })
         @snip.SnipEnd()
       }
     @acs.End()
