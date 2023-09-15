@@ -8,6 +8,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 210-list, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -15,96 +16,6 @@
     <h2>Grouping by Authors, a List inside of Books</h2>
   </div>
 </div>
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-    var persons = AsList(App.Data["Persons"]);
-    var books = AsList(App.Data["Books"]);
-  }
-@snip.SnipEnd()
-
-
-<h3>GroupBy Authors - <em>bad example</em> ⚠️</h3>
-<p>This example will group the books by the <code>Authors</code> property. This example doesn't give us what we want, because authors that exist in sets and alone are grouped separately. </p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var group in books.GroupBy(b => b.Authors)) {
-      <li>
-        Group
-        <ul>
-          @foreach (var book in group) {
-            <li>
-              <strong>@book.Title</strong> by
-              @string.Join(",", AsList(book.Authors as object).Select(a => a.FirstName + " " + a.LastName))
-            </li>
-          }
-        </ul>
-      </li>
-    }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>GroupBy Authors - better example</h3>
-<p>Let's do it better, and group by each Author individually</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @{ 
-      var booksGroupedByAuthor = books
-        .SelectMany(b => AsList(b.Authors as object).Select(a => new { Book = b, Author = a }))
-        .GroupBy(set => set.Author);
-      
-      foreach (var group in booksGroupedByAuthor) {
-      <li>
-        Author: @group.Key.FirstName @group.Key.LastName
-        <ul>
-          @foreach (var set in group) {
-            <li>
-              <strong>@set.Book.Title</strong> by
-              @string.Join(",", AsList(set.Book.Authors as object).Select(a => a.FirstName + " " + a.LastName))
-            </li>
-          }
-        </ul>
-      </li>
-    }
-    }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>GroupBy Authors - Example starting with Authors</h3>
-<p>In this example, we'll start with the authors list. This is probably not ideal - as some people are not authors, but it's a good learning example. To find the books we have to navigate through <code>Parents(...)</code> because in our data-model, the books reference authors, not the authors to books.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var author in persons) {
-      // this line would work, if Books only had people in the Authors. 
-      // but it doesn't, there are also illustrators, which is why we use the second example instead
-      var peoplesBooks = author.Parents("Books");
-      var authorsBooks = author.Parents("Books", "Authors");
-
-      <li>
-        @author.FirstName @author.LastName
-        <ul>
-          @foreach (var book in authorsBooks) {
-            var coAuthors = AsList(book.Authors as object).Where(a => a != author);
-            <li>
-              <strong>@book.Title</strong> 
-              @if (coAuthors.Any()) {
-                <span>co-authored by 
-                  @string.Join(",", coAuthors.Select(a => a.FirstName + " " + a.LastName))
-                </span>
-              }
-            </li>
-          }
-        </ul>
-      </li>
-    }
-  </ol>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

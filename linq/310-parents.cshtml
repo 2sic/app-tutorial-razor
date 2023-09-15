@@ -8,6 +8,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 210-list, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -16,43 +17,6 @@
     <p>In this example, we'll start with the authors list. This is probably not ideal - as some people are not authors, but it's a good learning example. To find the books we have to navigate through <code>Parents(...)</code> because in our data-model, the books reference authors, not the authors to books.</p>
   </div>
 </div>
-
-@((snip = Sys.SourceCode.Intro()).SnipStart())
-  @{
-    var persons = AsList(App.Data["Persons"]);
-    var books = AsList(App.Data["Books"]);
-  }
-@snip.SnipEnd()
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ol>
-    @foreach (var author in persons) {
-      // this line would work, if Books only had people in the Authors. 
-      // but it doesn't, there are also illustrators, which is why we use the second example instead
-      var peoplesBooks = author.Parents("Books");
-      var authorsBooks = author.Parents("Books", "Authors");
-
-      <li>
-        @author.FirstName @author.LastName
-        <ul>
-          @foreach (var book in authorsBooks) {
-            var coAuthors = AsList(book.Authors as object).Where(a => a != author);
-            <li>
-              <strong>@book.Title</strong> 
-              @if (coAuthors.Any()) {
-                <span>co-authored by 
-                  @string.Join(",", coAuthors.Select(a => a.FirstName + " " + a.LastName))
-                </span>
-              }
-            </li>
-          }
-        </ul>
-      </li>
-    }
-  </ol>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

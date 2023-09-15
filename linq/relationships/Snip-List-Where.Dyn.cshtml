@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+
+@{
+  // Initial Code
+  var persons = AsList(App.Data["Persons"]);
+  var books = AsList(App.Data["Books"]);
+}
+@{
+  // this keeps all books whose authors have awards
+  var booksWithAwardedAuthors = books
+    .Where(b => AsList(b.Authors as object).Any(a => a.Awards.Count > 0));
+}
+<ol>
+  @foreach (var book in booksWithAwardedAuthors) {
+    var awards = AsList(book.Authors as object).SelectMany(a => AsList(a.Awards as object));
+    <li><strong>@book.Title</strong> 
+      with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
+    </li>
+  }
+</ol>

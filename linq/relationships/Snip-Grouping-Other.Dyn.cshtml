@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+
+@{
+  // Initial Code
+  var persons = AsList(App.Data["Persons"]);
+  var books = AsList(App.Data["Books"]);
+}
+<ol>
+  @foreach (var author in persons) {
+    // this line would work, if Books only had people in the Authors. 
+    // but it doesn't, there are also illustrators, 
+    // which is why we use the second example instead
+    var peoplesBooks = author.Parents("Books");
+    var authorsBooks = author.Parents("Books", "Authors");
+
+    <li>
+      @author.FirstName @author.LastName
+      <ul>
+        @foreach (var book in authorsBooks) {
+          var coAuthors = AsList(book.Authors as object)
+          .Where(a => a != author);
+          <li>
+            <strong>@book.Title</strong> 
+            @if (coAuthors.Any()) {
+              <span>co-authored by 
+                @string.Join(",", coAuthors
+                .Select(a => a.FirstName + " " + a.LastName))
+              </span>
+            }
+          </li>
+        }
+      </ul>
+    </li>
+  }
+</ol>

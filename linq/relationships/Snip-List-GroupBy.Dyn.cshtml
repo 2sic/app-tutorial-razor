@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+
+@{
+  // Initial Code
+  var persons = AsList(App.Data["Persons"]);
+  var books = AsList(App.Data["Books"]);
+}
+@{
+  var booksGroupedByAuthorAwards = books
+    .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
+}
+<ul>
+  @foreach (var group in booksGroupedByAuthorAwards) {
+    <li>
+      Authors with Awards: @group.Key
+      <ul>
+        @foreach (var book in group) {
+          <li>
+            @book.Title
+          </li>
+        }
+      </ul>
+    </li>
+  }
+</ul>
