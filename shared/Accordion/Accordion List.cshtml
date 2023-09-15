@@ -16,6 +16,13 @@
         @tutPage.Html("Note")
       </div>
     }
+    @* Show all the 'shared' notes *@
+    @foreach (var note in tutPage.Children("Notes")) {
+      <div class='alert alert-@note.Attribute("NoteType")'>
+        <h4>@note.String("Title")</h4>
+        @note.Html("Note")
+      </div>
+    }
   </div>
   
 
