@@ -267,7 +267,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       var tabNames = TabHandler.TabNames;
       var active = TabHandler.ActiveTabName;
       var l = Log.Call<ITag>("tabs (" + tabNames.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
-      // var l = ScParent.Log.Call<ITag>("active: " + active + "; tabs: " + tabNames.Count());
       if (tabNames.Count() <= 1) return l(null, "no tabs");
       var firstName = tabNames.FirstOrDefault();
       var firstIsActive = active == null || active == firstName;
@@ -406,6 +405,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       WrapOutSrcBase sourceWrap = null
     ) {
       ScParent = scParent;
+      Log = ScParent.Log;
       Item = item;
       Tabs = tabs ?? new Dictionary<string, string>();
       SourceWrap = sourceWrap;
@@ -424,6 +424,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     private bool _sourceAtEnd;
     public string ActiveTabName;
     private readonly WrapOutSrcBase SourceWrap;
+    private readonly ICodeLog Log;
 
     #region TabNames
 
@@ -431,7 +432,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     private List<string> _tabNames;
     protected virtual List<string> GetTabNames() {
       // Logging
-      var l = ScParent.Log.Call<List<string>>();
+      var l = Log.Call<List<string>>();
 
       // Build Names
       var names = GetTabNamesAndContentBase(useKeys: true)
@@ -454,8 +455,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     private List<object> GetTabNamesAndContentBase(bool useKeys) {
       // Logging
-      var log = ScParent.Log;
-      var l = log.Call<List<object>>("addOutput:" + _addOutput + 
+      var l = Log.Call<List<object>>("addOutput:" + _addOutput + 
         "; outputWith: " + _outputWithSource + 
         "; sourceAtEnd: " + _sourceAtEnd
       );
@@ -464,18 +464,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       // If we have source-wrap, that determines what tabs to add
       if (this.SourceWrap != null) {
-        log.Add("SourceWrap: " + SourceWrap);
+        Log.Add("SourceWrap: " + SourceWrap);
         list.AddRange(SourceWrap.Tabs);
       }
       // Old section, remove as soon as all specs come from the item
         else if (_addOutput) {
-          log.Add("addOutput - old");
+          Log.Add("addOutput - old");
           list.Add(_outputWithSource ? ResultAndSourceTabName : ResultTabName);
           if (!_outputWithSource && !_sourceAtEnd) list.Add(SourceTabName);
         }
 
       if (Tabs != null && Tabs.Any()) {
-        log.Add("Tab Count: " + Tabs.Keys.Count());
+        Log.Add("Tab Count: " + Tabs.Keys.Count());
         if (useKeys)
           list.AddRange(Tabs.Keys);
         else {
@@ -487,21 +487,21 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
 
       if (_sourceAtEnd && !_outputWithSource) {
-        log.Add("Add SourceTab:" + SourceTabName);
+        Log.Add("Add SourceTab:" + SourceTabName);
         list.Add(SourceTabName);
       }
 
       if (Item != null) {
         if (Item.IsNotEmpty(InDepthField)) {
-          log.Add(InDepthField);
+          Log.Add(InDepthField);
           list.Add(useKeys ? InDepthField : Item.String(InDepthField));
         }
         if (Item.IsNotEmpty("Notes")) {
-          log.Add("Notes");
+          Log.Add("Notes");
           list.Add(NotesTabName);
         }
         if (Item.IsNotEmpty("Tutorials")) {
-          log.Add("Tutorials");
+          Log.Add("Tutorials");
           list.Add(TutorialsTabName);
         }
       }
@@ -522,13 +522,15 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
     private List<object> _tabContents;
     public void ReplaceTabContents(List<object> replacement) {
+      var l = Log.Call("replacement: " + (replacement == null ? "null" : "" + replacement.Count()));
       _replaceTabContents = replacement;
       _tabContents = null;
+      l("ok");
     }
     private List<object> _replaceTabContents;
     protected virtual List<object> GetTabContents()
     {
-      var l = ScParent.Log.Call<List<object>>();
+      var l = Log.Call<List<object>>();
       var list = GetTabNamesAndContentBase(useKeys: false);
       return l(list, "tabContents: " + list.Count);
     }
@@ -799,6 +801,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
 
       return l(SnipEndFinal(), "with tabs");
+    }
+
+    public void SetTabContents(List<object> tabs) {
+      ScParent.Log.Add("Replace tab contents with (new): " + tabs.Count());
+      TabHandler.ReplaceTabContents(tabs);
     }
 
   }
