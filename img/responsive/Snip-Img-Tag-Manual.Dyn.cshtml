@@ -1,21 +1,17 @@
 @inherits Custom.Hybrid.Razor14
-<hide-silent>
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ var imgDemoHelper = GetCode("../ImgDemoHelpers.cs"); }
-</hide-silent>
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item, tabs: "Generated HTML"); }
-@snip.SnipStart()
-  <hide-silent>@imgDemoHelper.ShowCurrentSrc()</hide-silent>
-  @{
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
     var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
     var flatSettings = Kit.Image.Settings(Settings.Images.Content, aspectRatio: "8:1");
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
-  }
-  <img loading="lazy" src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
-@Sys.SourceCode.Invisible()
-  @{
-    // regenerate to match sample above
-    var imgTag = Kit.HtmlTags.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
-    var resultHtml = Sys.SourceCode.ShowResultImg(imgTag);
-  }
-@snip.SnipEnd(resultHtml)
+}
+ <img loading="lazy" src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+<hide-silent>
+@{
+  var imgTag = Kit.HtmlTags.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
+  DynamicModel.SnippetSection.SetTabContents("html-img:" + imgTag);
+}
+</hide-silent>

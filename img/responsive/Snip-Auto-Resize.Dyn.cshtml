@@ -1,18 +1,15 @@
 @inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
+}
+@Kit.Image.Img(tomatoPicUrl)
 <hide-silent>
-@{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-@{ var imgDemoHelper = GetCode("../ImgDemoHelpers.cs"); }
+@{
+  var previewTag = Kit.Image.Img(tomatoPicUrl);
+  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewTag);
+}
 </hide-silent>
-@{ var snip = Sys.SourceCode.QuickRef(item: DynamicModel.Item, tabs: "Generated HTML"); }
-@snip.SnipStart()
-  <hide-silent>@imgDemoHelper.ShowCurrentSrc()</hide-silent>
-  @{
-    var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
-  }
-  @Kit.Image.Img(tomatoPicUrl)
-@Sys.SourceCode.Invisible()
-  @{
-    var previewTag = Kit.Image.Img(tomatoPicUrl);
-    var resultHtml = Sys.SourceCode.ShowResultImg(previewTag);
-  }
-@snip.SnipEnd(resultHtml)
