@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-data-sources-home, delete this view and file *@
 
 <h2>Custom Dynamic DataSources - Configuration</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -21,33 +22,6 @@
     </p>
   </div>
 </div>
-
-<trim>
-  <h2>Custom DataSource with Configuration</h2>
-  <p>
-    This simple example will get a DataSource from a file, and pass some configuration options.
-    Specifically we'll give it the <code>AmountOfItems</code> and <code>FavoriteColor</code>.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/WithConfig.cs")).SnipStart())
-  @{
-    // Create the Dynamic DataSource with the name "WithConfig"
-    // and set some configuration options
-    var withConfig = Kit.Data.GetSource(name: "WithConfig", parameters: new {
-      AmountOfItems = 3,
-      FavoriteColor = "dark blue"
-    });
-  }
-  <h3>List of Data in the WithConfig DataSource (@withConfig.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(withConfig)) {
-      <li>
-        <strong>@item.Title</strong> - Favorite Color: @item.FavoriteColor
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

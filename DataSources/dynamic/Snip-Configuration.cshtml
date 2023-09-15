@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+@*!
+Tut.Tabs=file:../../DataSources/WithConfig.cs
+!*@
+ @{
+    // Create the Dynamic DataSource with the name "WithConfig"
+    // and set some configuration options
+    var withConfig = Kit.Data.GetSource(name: "WithConfig", parameters: new {
+      AmountOfItems = 3,
+      FavoriteColor = "dark blue"
+    });
+  }
+  <h3>List of Data in the WithConfig DataSource (@withConfig.List.Count())</h3>
+  <ul>
+    @foreach (var item in AsList(withConfig)) {
+      <li>
+        <strong>@item.Title</strong> - Favorite Color: @item.FavoriteColor
+      </li>
+    }
+  </ul>
