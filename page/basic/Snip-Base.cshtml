@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.RazorTyped
 
-@Html.Partial("../../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
-
+@Kit.Page.SetBase()
 @{
-  Kit.Page.SetBase();
+  // You can also set a custom base path
+  // It's commented out here, as it would affect all the links on the page
+  // Kit.Page.SetBase("../");
+
+  // FYI: The output is invisible - it's just a <base> tag in the HTML header
 }

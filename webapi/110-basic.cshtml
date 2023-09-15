@@ -20,11 +20,18 @@
         <li>using jQuery (not recommended any more, because we believe jQuery is dying)</li>
         <li>another example calling the endpoint using a parameter to calculate something so you can see how to use url parameters.</li>
       </ol>
-      <p>
-        Click to see the result of a WebApi call with the shared code:  
-      </p>
     </div>
   </div>
+
+@*
+  TODO: @2dg
+  - implement 110 in /webapi/basics
+  - 111 in /webapi/secure
+  - 112 in /webapi/rest
+
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "webapi-page" })
 
 
 @((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/BasicController.cs")).SnipStart())

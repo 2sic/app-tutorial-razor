@@ -10,26 +10,15 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>IPageService</em> set Base tag in header</h2>
-      <div>
-        This page sets the Base tag in the header. Look at the source of this page to see the result. <br>
-        There are two ways to do this:
-      </div>
-      <ul>
-        <li>
-          <code>Kit.Page.SetBase()</code> will auto-detect the current base. It's extra smart, so the result will also work on the home page of a portal.
-        </li>
-        <li>
-          <code>Kit.Page.SetBase("/some/page")</code> create the base tag with the specified url. 
-        </li>
-      </ul>
-    </div>
   </div>
+</div>
+
 
 @*
   Todo: @2dm, sollte hier auch den Source Code von ../shared/KitBaseClassInfoBox.cshtml gezeigt werden im Snip?
 *@
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "page-base" })
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "page-base-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
