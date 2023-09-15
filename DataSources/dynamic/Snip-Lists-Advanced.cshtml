@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  // Create the Dynamic DataSource with the name "DataFromWebService"
+  var weather = Kit.Data.GetSource(name: "DataFromWebService");
+}
+<h3>Data in the DataSource (@weather.List.Count())</h3>
+<ul>
+  @foreach (var item in AsList(weather)) {
+    <li>Current Temperature: @item.Temperature</li>
+    <li>WindSpeed: @item.WindSpeed</li>
+    <li>WindDirection: @item.WindDirection</li>
+  }
+</ul>

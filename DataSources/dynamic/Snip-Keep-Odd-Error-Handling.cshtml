@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  // Create the Dynamic DataSource "KeepOdd" and forget to attach the In
+  // note: debug:false is only used to ensure developers don't see a real exception
+  // this is just so the tutorial is easier to manage
+  var keepOdd = Kit.Data.GetSource(name: "KeepOdd", debug: false);
+}
+<h3>Data from the KeepOdd DataSource (@keepOdd.List.Count())</h3>
+<ul>
+  @foreach (var item in AsList(keepOdd)) {
+    <li>
+      <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
+      <br>
+      <strong>Message: </strong>
+      @item.Message
+    </li>
+  }
+</ul>

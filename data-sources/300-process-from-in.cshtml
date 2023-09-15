@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-data-sources-home, delete this view and file *@
 
 <h2>Custom Dynamic DataSources - Process In-Data</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -21,68 +22,6 @@
 
   </div>
 </div>
-
-<trim>
-  <h2>Keep Only Odd IDs</h2>
-  <p>
-    This example has a DataSource which receives data from an <em>upstream</em> source.
-    The upstream source is the list of all authors in this App.
-    Our DataSource will then filter this list, and only keep the authors with an odd ID.
-  </p>
-</trim>
-
-@* @Sys.SourceCode.R-esultStart("keepOdd", "KeepOdd.cs") *@
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../DataSources/KeepOdd.cs")).SnipStart())
-  @{
-    // Get the stream of all authors
-    var authors = App.Data["Persons"];
-    // Create the Dynamic DataSource "KeepOdd" and attach the authors to it
-    var keepOdd = Kit.Data.GetSource(name: "KeepOdd", attach: authors);
-  }
-  <h3>Data from the KeepOdd DataSource (@keepOdd.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(keepOdd)) {
-      <li>
-        <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-@* @Sys.SourceCode.R-esultEnd("file:../DataSources/KeepOdd.cs") *@
-
-<trim>
-  <h2>Error Handling if No In</h2>
-  <p>
-    If your DataSource requires attached data (<code>In</code>) you may get hard-to-debug errors.
-    Because of this, the sample also has error handling for this. 
-    The following code uses the <code>KeepOdd</code> but <em>forgets</em> to attach the in.
-  </p>
-</trim>
-
-@* @Sys.SourceCode.R-esultStart("keepOdd-errors", "KeepOdd.cs") *@
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../DataSources/KeepOdd.cs")).SnipStart())
-  @{
-    // Create the Dynamic DataSource "KeepOdd" and forget to attach the In
-    keepOdd = Kit.Data.GetSource(name: "KeepOdd");
-  }
-  <h3>Data from the KeepOdd DataSource (@keepOdd.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(keepOdd)) {
-      <li>
-        <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
-        <br>
-        <strong>Message: </strong>
-        @item.Message
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-@* @Sys.SourceCode.R-esultEnd("file:../DataSources/KeepOdd.cs") *@
-<trim>
-  <p>
-    Important: Note that the DataSource also has code to handle errors if the In was not attached.
-  </p>
-</trim>
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

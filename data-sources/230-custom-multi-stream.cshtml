@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-data-sources-home, delete this view and file *@
 
 <h2>Custom Dynamic DataSources - Multiple Lists/Streams</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -20,82 +21,6 @@
 
   </div>
 </div>
-
-<trim>
-  <h2>Two Streams: Default and Settings</h2>
-  <p>
-      The default stream is called <code>Default</code> so you don't need to specify it.
-      In the following example, we have a second stream called <code>Settings</code>.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/ListMultiStream.cs")).SnipStart())
-  @{
-    // Create the Dynamic DataSource with the name "ListMultiStream"
-    var multiStream = Kit.Data.GetSource(name: "ListMultiStream");
-    var settings = AsDynamic(multiStream["Settings"].List.FirstOrDefault());
-  }
-  <h3>Data in the stream "Settings"</h3>
-  <ul>
-    <li>PageSize: @settings.PageSize</li>
-    <li>ShowStuff: @settings.ShowStuff</li>
-  </ul>
-  <h3>List of Data in the Default stream (@multiStream.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(multiStream)) {
-      <li>
-        <strong>@item.Title</strong> (@item.EntityId / @item.EntityGuid) - Fav Number: @item.FavoriteNumber
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
-
-<trim>
-  <h2>Two Streams, Prepared at same time</h2>
-  <p>
-    In some cases it makes sense to provide multiple streams which were processed at the same time.
-    For example, when splitting data or when providing a stream <code>Folders</code> and <code>Files</code>
-    which are still related.
-    <br>
-    The following sample takes the original <code>Persons</code>
-    and splits them into odd/even streams in one preparation step.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/SplitOddEven.cs")).SnipStart())
-  @{
-    var oddEven = Kit.Data.GetSource(name: "SplitOddEven", attach: App.Data["Persons"]);
-    var all = oddEven.List;
-    var odd = oddEven["Odd"].List;
-    var even = oddEven["Even"].List;
-  }
-  <h3>List of Data in the All stream (@all.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(all)) {
-      <li>
-        <strong>@item.EntityTitle</strong> (#@item.EntityId)
-      </li>
-    }
-  </ul>
-  <h3>List of Data in the Odd stream (@odd.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(odd)) {
-      <li>
-        <strong>@item.EntityTitle</strong> (#@item.EntityId)
-      </li>
-    }
-  </ul>
-  <h3>List of Data in the Even stream (@even.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(even)) {
-      <li>
-        <strong>@item.EntityTitle</strong> (#@item.EntityId)
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

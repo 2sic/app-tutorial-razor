@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+	@* TODO:: @2dm Merge into 000-data-sources-home, delete this view and file *@
 
 <h2>Custom Dynamic DataSources - Get Data from Other DataSources</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -21,29 +22,6 @@
 
   </div>
 </div>
-
-<trim>
-  <h2>Retrieve all the Authors</h2>
-  <p>
-    The <code>Authors</code> DataSource demonstrates how to get all App data
-    and then filter it using an inner <code>EntityTypeFilter</code> DataSource.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/Authors.cs")).SnipStart())
-  @{
-    // Create the Dynamic DataSource with the name "Basic101"
-    var authors = Kit.Data.GetSource(name: "Authors");
-  }
-  <h3>Items in the DataSource (@authors.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(authors)) {
-      <li>
-        <strong>@item.EntityTitle</strong>
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

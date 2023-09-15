@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 000-data-sources-home, delete this view and file *@
 
 <h2>Custom Dynamic DataSources - Lists</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -23,45 +24,6 @@
 
   </div>
 </div>
-
-<trim>
-  <h2>Basic List</h2>
-  <p>
-    Return a list of items numbered 1...5 with random Guid identifier.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/ListBasic.cs")).SnipStart())
-  @{
-    // Create the Dynamic DataSource with the name "Basic101"
-    var basic101 = Kit.Data.GetSource(name: "ListBasic");
-  }
-  <h3>List of Data in the DataSource (@basic101.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(basic101)) {
-      <li>
-        <strong>@item.Title</strong> (@item.EntityId / @item.EntityGuid) - Fav Number: @item.FavoriteNumber
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
-<h2>Advanced List</h2>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/DataFromWebservice.cs")).SnipStart())
-  @{
-    // Create the Dynamic DataSource with the name "DataFromWebService"
-    var weather = Kit.Data.GetSource(name: "DataFromWebService");
-  }
-  <h3>Data in the DataSource (@weather.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(weather)) {
-      <li>Current Temperature: @item.Temperature</li>
-      <li>WindSpeed: @item.WindSpeed</li>
-      <li>WindDirection: @item.WindDirection</li>
-    }
-  </ul>
-@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

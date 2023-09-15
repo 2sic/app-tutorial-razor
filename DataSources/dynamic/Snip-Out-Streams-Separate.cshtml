@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  // Create the Dynamic DataSource with the name "ListMultiStream"
+  var multiStream = Kit.Data.GetSource(name: "ListMultiStream");
+  var settings = AsDynamic(multiStream["Settings"].List.FirstOrDefault());
+}
+<h3>Data in the stream "Settings"</h3>
+<ul>
+  <li>PageSize: @settings.PageSize</li>
+  <li>ShowStuff: @settings.ShowStuff</li>
+</ul>
+<h3>List of Data in the Default stream (@multiStream.List.Count())</h3>
+<ul>
+  @foreach (var item in AsList(multiStream)) {
+    <li>
+      <strong>@item.Title</strong> (@item.EntityId / @item.EntityGuid) - Fav Number: @item.FavoriteNumber
+    </li>
+  }
+</ul>

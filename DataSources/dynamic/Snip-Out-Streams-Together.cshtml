@@ -1,0 +1,35 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  var oddEven = Kit.Data.GetSource(name: "SplitOddEven", attach: App.Data["Persons"]);
+  var all = oddEven.List;
+  var odd = oddEven["Odd"].List;
+  var even = oddEven["Even"].List;
+}
+<h3>List of Data in the All stream (@all.Count())</h3>
+<ul>
+  @foreach (var item in AsList(all)) {
+    <li>
+      <strong>@item.EntityTitle</strong> (#@item.EntityId)
+    </li>
+  }
+</ul>
+<h3>List of Data in the Odd stream (@odd.Count())</h3>
+<ul>
+  @foreach (var item in AsList(odd)) {
+    <li>
+      <strong>@item.EntityTitle</strong> (#@item.EntityId)
+    </li>
+  }
+</ul>
+<h3>List of Data in the Even stream (@even.Count())</h3>
+<ul>
+  @foreach (var item in AsList(even)) {
+    <li>
+      <strong>@item.EntityTitle</strong> (#@item.EntityId)
+    </li>
+  }
+</ul>

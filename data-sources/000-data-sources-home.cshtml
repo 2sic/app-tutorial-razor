@@ -34,5 +34,12 @@
   </div>
 </div>
 
+@*
+  TODO: @2dg - move in all use-tutorials from 200-400
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "datasources-dynamic-page" })
+
+
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

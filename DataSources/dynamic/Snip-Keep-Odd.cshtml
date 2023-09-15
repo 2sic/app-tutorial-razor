@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+
+@{
+  // Get the stream of all authors
+  var authors = App.Data["Persons"];
+  // Create the Dynamic DataSource "KeepOdd" and attach the authors to it
+  var keepOdd = Kit.Data.GetSource(name: "KeepOdd", attach: authors);
+}
+<h3>Data from the KeepOdd DataSource (@keepOdd.List.Count())</h3>
+<ul>
+  @foreach (var item in AsList(keepOdd)) {
+    <li>
+      <strong>@item.EntityTitle</strong> (ID: @item.EntityId)
+    </li>
+  }
+</ul>

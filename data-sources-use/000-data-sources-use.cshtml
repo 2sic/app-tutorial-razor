@@ -7,32 +7,17 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
-
-<h2>Data Sources Tutorial - Use in C# Code</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <p>
-      <strong>DataSources</strong> are the magic backbone of 2sxc.
-      They can get data, filter it, sort it, and more.
-      These samples show you how to use them in code (instead of in VisualQuery).
-    </p>
-
-    <ul>
-      <li>
-        You can use the IDataService with <code>Kit.Data</code> in your C# code to get DataSource Objects. 
-        A common scenario is when you need to configure the parameters in ways that are not possible in the UI.
-      </li>
-      <li>
-        Such DataSources can also be linked together (<em>attached</em>) so the output of one DataSource
-        becomes the input of another.
-      </li>
-      <li>
-        You can also provide <code>options</code> to give each DataSource it's configuration.
-      </li>
-    </ul>
   </div>
 </div>
+
+@*
+  TODO: @2dg - move in all use-tutorials
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "datasources-use-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

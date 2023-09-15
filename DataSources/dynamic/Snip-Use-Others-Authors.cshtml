@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources; 
+
+@{
+  // Create the Dynamic DataSource with the name "Basic101"
+  var authors = Kit.Data.GetSource(name: "Authors");
+}
+<h3>Items in the DataSource (@authors.List.Count())</h3>
+<ul>
+  @foreach (var item in AsList(authors)) {
+    <li>
+      <strong>@item.EntityTitle</strong>
+    </li>
+  }
+</ul>
