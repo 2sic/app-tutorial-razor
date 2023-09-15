@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -7,7 +6,9 @@
   var persons = AsList(App.Data["Persons"]);
 }
 <ol>
-  @foreach (var person in persons.Where(p => p.FirstName == "Terry")) {
+  @foreach (var person in persons
+  .Where(p => p.FirstName == "Terry")) 
+  {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>

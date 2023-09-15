@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -13,7 +12,6 @@
     // we have to tell the compiler it's a dynamic list
     var authors = AsList(book.Authors as object)
       .Select(a => a.FirstName + " " + a.LastName);
-
     <li><strong>@book.Title</strong>
       by @string.Join(", ", authors.OrderBy(ln => ln)) 
     </li>

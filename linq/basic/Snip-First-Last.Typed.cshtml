@@ -1,16 +1,15 @@
-@inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
 
 @{
   // Initial Code
-  var persons = AsList(App.Data["Persons"]);
+  var persons = AsItems(App.Data.GetStream("Persons"));
 }
 <ol>
   <li>
-    First: @persons.First().FirstName
+    First: @persons.First().Get("FirstName")
   </li>
   <li>
-    Last: @persons.Last().FirstName
+    Last: @persons.Last().Get("FirstName")
   </li>
 </ol>

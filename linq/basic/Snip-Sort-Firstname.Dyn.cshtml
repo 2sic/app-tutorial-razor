@@ -1,12 +1,13 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
   var persons = AsList(App.Data["Persons"]);
 }
 <ol>
-  @foreach (var person in persons.OrderBy(p => p.FirstName)) {
+  @foreach (var person in persons
+    .OrderBy(p => p.FirstName))
+  {
     <li>@person.FirstName @person.LastName</li>
   }
 </ol>

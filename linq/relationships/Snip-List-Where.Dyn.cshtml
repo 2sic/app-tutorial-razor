@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -10,13 +9,16 @@
 @{
   // this keeps all books whose authors have awards
   var booksWithAwardedAuthors = books
-    .Where(b => AsList(b.Authors as object).Any(a => a.Awards.Count > 0));
+    .Where(b => AsList(b.Authors as object)
+    .Any(a => a.Awards.Count > 0));
 }
 <ol>
   @foreach (var book in booksWithAwardedAuthors) {
-    var awards = AsList(book.Authors as object).SelectMany(a => AsList(a.Awards as object));
+    var awards = AsList(book.Authors as object)
+      .SelectMany(a => AsList(a.Awards as object));
     <li><strong>@book.Title</strong> 
-      with @string.Join(",", awards.Select(a => a.Name)) (@awards.Count() awards) 
+      with @string.Join(",", awards.Select(a => a.Name)) 
+      (@awards.Count() awards) 
     </li>
   }
 </ol>

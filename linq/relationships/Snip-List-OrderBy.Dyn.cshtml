@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -8,11 +7,14 @@
   var books = AsList(App.Data["Books"]);
 }
 <ol>
-  @foreach (var book in books.OrderByDescending(p => p.Authors.Count)) {
+  @foreach (var book in books
+    .OrderByDescending(p => p.Authors.Count)) 
+  {
     var authors = AsList(book.Authors as object)
-    .Select(a => a.FirstName + " " + a.LastName);
+      .Select(a => a.FirstName + " " + a.LastName);
     <li><strong>@book.Title</strong> 
-      by @string.Join(",", authors.OrderBy(ln => ln)) (@book.Authors.Count author) 
+      by @string.Join(",", authors.OrderBy(ln => ln)) 
+      (@book.Authors.Count author) 
     </li>
   }
 </ol>

@@ -1,32 +1,32 @@
-@inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
 
 @{
   // Initial Code
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
+  var persons = AsItems(App.Data.GetStream("Persons"));
+  var books = AsItems(App.Data.GetStream("Books"));
 }
 <ol>
   @{ 
     var booksGroupedByAuthor = books
-      .SelectMany(b => AsList(b.Authors as object)
+      .SelectMany(b => AsItems(b.Children("Authors"))
       .Select(a => new { Book = b, Author = a }))
       .GroupBy(set => set.Author);
     
     foreach (var group in booksGroupedByAuthor) {
-    <li>
-      Author: @group.Key.FirstName @group.Key.LastName
-      <ul>
-        @foreach (var set in group) {
-          <li>
-            <strong>@set.Book.Title</strong> by
-            @string.Join(",", AsList(set.Book.Authors as object)
-            .Select(a => a.FirstName + " " + a.LastName))
-          </li>
-        }
-      </ul>
-    </li>
-  }
+      <li>
+        Author: @group.Key.String("FirstName") @group.Key.String("LastName")
+        <ul>
+          @foreach (var bundle in group) {
+            var names = AsItems(bundle.Book.Children("Authors"))
+              .Select(a => a.String("FirstName") + " " + a.String("LastName"));
+            <li>
+              <strong>@bundle.Book.Get("Title")</strong> by
+              @string.Join(",", names)
+            </li>
+          }
+        </ul>
+      </li>
+    }
   }
 </ol>

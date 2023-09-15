@@ -1,22 +1,21 @@
-@inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
 
 @{
   // Initial Code
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
+  var persons = AsItems(App.Data.GetStream("Persons"));
+  var books = AsItems(App.Data.GetStream("Books"));
 }
 <ol>
-  @foreach (var group in books.GroupBy(b => b.Authors)) {
+  @foreach (var group in books.GroupBy(b => b.Child("Authors"))) {
     <li>
       Group
       <ul>
         @foreach (var book in group) {
           <li>
-            <strong>@book.Title</strong> by
-            @string.Join(",", AsList(book.Authors as object)
-            .Select(a => a.FirstName + " " + a.LastName))
+            <strong>@book.Get("Title")</strong> by
+            @string.Join(",", AsItems(book.Children("Authors"))
+            .Select(a => a.String("FirstName") + " " + a.String("LastName")))
           </li>
         }
       </ul>

@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -8,9 +7,11 @@
 }
 <ol>
   <li>
-    Persons with 5-char names or more: @persons.Any(p => p.FirstName.Length > 5)
+    Persons with 5-char names or more: 
+    @persons.Any(p => p.FirstName.Length > 5)
   </li>
   <li>
-    Persons with 10-char names or more: @persons.Any(p => p.FirstName.Length > 10)
+    Persons with 10-char names or more: 
+    @persons.Any(p => p.FirstName.Length > 10)
   </li>
 </ol>

@@ -1,15 +1,15 @@
-@inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
 
 @{
   // Initial Code
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
+  var persons = AsItems(App.Data.GetStream("Persons"));
+  var books = AsItems(App.Data.GetStream("Books"));
 }
 @{
   var booksGroupedByAuthorAwards = books
-    .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
+    .GroupBy(b => (AsItems(b.Children("Authors"))
+    .Any(a => a.Children("Awards").Count() > 0)));
 }
 <ul>
   @foreach (var group in booksGroupedByAuthorAwards) {
@@ -18,7 +18,7 @@
       <ul>
         @foreach (var book in group) {
           <li>
-            @book.Title
+            @book.Get("Title")
           </li>
         }
       </ul>

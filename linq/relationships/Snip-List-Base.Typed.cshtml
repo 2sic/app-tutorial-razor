@@ -1,20 +1,16 @@
-@inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
 
 @{
   // Initial Code
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
+  var persons = AsItems(App.Data.GetStream("Persons"));
+  var books = AsItems(App.Data.GetStream("Books"));
 }
 <ol>
   @foreach (var book in books) {
-    // To work with a list coming off a dynamic object,
-    // we have to tell the compiler it's a dynamic list
-    var authors = AsList(book.Authors as object)
-      .Select(a => a.FirstName + " " + a.LastName);
-
-    <li><strong>@book.Title</strong>
+    var authors = AsItems(book.Children("Authors"))
+      .Select(a => a.String("FirstName") + " " + a.String("LastName"));
+    <li><strong>@book.Get("Title")</strong>
       by @string.Join(", ", authors.OrderBy(ln => ln)) 
     </li>
   }

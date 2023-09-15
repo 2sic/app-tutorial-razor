@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -15,18 +14,19 @@
       .GroupBy(set => set.Author);
     
     foreach (var group in booksGroupedByAuthor) {
-    <li>
-      Author: @group.Key.FirstName @group.Key.LastName
-      <ul>
-        @foreach (var set in group) {
-          <li>
-            <strong>@set.Book.Title</strong> by
-            @string.Join(",", AsList(set.Book.Authors as object)
-            .Select(a => a.FirstName + " " + a.LastName))
-          </li>
-        }
-      </ul>
-    </li>
-  }
+      <li>
+        Author: @group.Key.FirstName @group.Key.LastName
+        <ul>
+          @foreach (var set in group) {
+            var names = AsList(set.Book.Authors as object)
+              .Select(a => a.FirstName + " " + a.LastName);
+            <li>
+              <strong>@set.Book.Title</strong> by
+              @string.Join(",", names)
+            </li>
+          }
+        </ul>
+      </li>
+    }
   }
 </ol>

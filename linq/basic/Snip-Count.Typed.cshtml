@@ -1,11 +1,10 @@
-@inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
 
 @{
 // Initial Code
-  var persons = AsList(App.Data["Persons"]);
-  var books = AsList(App.Data["Books"]);
+  var persons = AsItems(App.Data.GetStream("Persons"));
+  var books = AsItems(App.Data.GetStream("Books"));
 }
 <ol>
   <li>
@@ -15,6 +14,7 @@
     All Books: @books.Count()
   </li>
   <li>
-    Books with Illustrators: @books.Where(b => (b.Illustrators.Count > 0).Count())
+    Books with Illustrators:
+    @books.Where(b => b.Children("Illustrators").Count() > 0).Count())
   </li>
 </ol>

@@ -1,5 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 @using System.Linq;
 
 @{
@@ -9,7 +8,8 @@
 }
 @{
   var booksGroupedByAuthorAwards = books
-    .GroupBy(b => (AsList(b.Authors as object).Any(a => a.Awards.Count > 0)));
+    .GroupBy(b => (AsList(b.Authors as object)
+    .Any(a => a.Awards.Count > 0)));
 }
 <ul>
   @foreach (var group in booksGroupedByAuthorAwards) {
