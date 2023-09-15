@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+
+@{
+  var titleWithIssues = "I said \"check this out!\" \n\n even 'different quotes' and line breaks work!";
+  var cls = "alert alert-";
+  cls += (DateTime.Now.Second % 2 == 0) ? "warning" : "primary";
+}
+<div @Tag.Attr("title", titleWithIssues) 
+  @Tag.Attr("class", cls)
+  @Tag.Attr("number", 27)>
+  <trim>
+  This is a simple demo showing how to add the <code>title</code> and <code>class</code> attribute using code. <br>
+  It switches between warning/primary depending of the second being odd or even. Refresh the page to see the difference. <br>
+  If you mouse-over, you'll also see the tooltips showing stuff which would cause trouble otherwise.
+  </trim>
+</div>
+
+

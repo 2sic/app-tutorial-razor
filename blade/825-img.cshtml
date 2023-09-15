@@ -20,15 +20,18 @@
     </div>
   </div>
 
-  @* TODO:: @2dm View Image selection > Img goes above the Code Snippet
+   @* TODO:: @2dm View Image selection > Img goes above the Code Snippet *@
 
-  <hide>
+ @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-img" }) 
+
+
+  @* <hide>
 <style>
   picture, picture source, picture img {
     width: 100%;
   }
 </style>
-</hide>
+</hide> *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

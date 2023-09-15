@@ -11,14 +11,18 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>RazorBlade</em> Basic Html5 <code>Tag</code> API Introduction <em>v3.0</em></h2>
-      <p>
-        This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.
-      </p>
-    </div>
   </div>
+</div>
 
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "razorblade-htmltags" })
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "razorblade-htmltags-page" })
+
+@*
+  TODO: @2dg
+  - where is 825img and 825picture? the original pages are already empty, but I don't see it >>
+// https://app-dev.2sxc.org/tutorial-razor/Home/blade825img/page
+  - move in SmartJoin 822 in new main section
+  - move in attributes 810 and 811 into new main section Attributes
+*@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

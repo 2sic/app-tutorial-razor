@@ -11,27 +11,10 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>RazorBlade</em> Fluent Tag API <code>TagStart</code>/<code>TagEnd</code> <em>v3</em></h2>
-      <div>
-        A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
-      </div>
-    </div>
+    moved - to delete 
+    @* TODO: @2dm *@
   </div>
-
-  @* File Merge in to 820 Fluid Intro *@
-
-
-<h3>The result</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var successBox = Tag.Div().Class("alert alert-success");
-  }
-  @successBox.TagStart
-    This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
-    because it may be easier for you that way.
-  @successBox.TagEnd
-@snip.SnipEnd()
+</div>
 
 
 @* Footer *@

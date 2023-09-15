@@ -7,6 +7,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
+@* TODO:: @2dm Merge into 820-fluid-intro, delete this view and file *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -17,28 +18,7 @@
       </div>
     </div>
   </div>
-
-
 <trim>
-
-<h2>Creating Attributes Containing JSON</h2>
-</trim>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // this is the object we want in the data-attribute
-    var myObj = new { 
-      Name = "razor", 
-      Description="This isn't your normal text - it has \n line breaks and apostrophes"
-    };
-  }
-  <div class="alert alert-secondary" @Tag.Attr("data-my", myObj)>
-    <trim>
-    This div has an attribute created using an object, because we wanted json. If you look at the source, youll find <code>@Tag.Attr("data-my", myObj)</code>
-    </trim>
-  </div>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
