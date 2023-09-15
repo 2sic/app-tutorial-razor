@@ -12,29 +12,13 @@
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
     <h2>2sxc UI - Toolbar Workflows</h2>
-    <p>
-      Toolbars will automatically do things like open a dialog or refresh the page when the dialog closes. 
-      But sometimes you want to override or change the default behavior - like:
-    </p>
-    <ol>
-      <li>Prevent refresh on dialog close - to retrieve the data in JS</li>
-      <li>Prevent creating new if a specific condition applies</li>
-    </ol>
-    <p>
-      This is what the Workflows are for. You can register custom <code>before</code> and <code>after</code> code to run, change specs or prevent the action from executing. 
-      <a href="https://r.2sxc.org/js-workflow" target="_blank">Read the workflow docs</a> or the 
-      <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">toolbar docs</a> to learn more about this. 
-    </p>
   </div>
 </div>
 
-<div class="alert alert-warning">
-  Important: Usually only editors see these toolbars - so saving won't work. 
-  Hover over the various boxes to see the result - like this: <br>
-  <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
-</div>
+
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "ui-toolbars-advanced-page" })
 
 </hide>
 
@@ -71,7 +55,7 @@
 <hide>
   <h2>More Stuff</h2>
   <div>
-    You can do much more - like change icons, call call-parameters etc. 
+    You can do much more - like change icons, add call-parameters etc. 
     Read the 
     <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">how-to</a> and the 
     <a href="https://docs.2sxc.org/specs/cms/toolbars/toolbar-builder.html" target="_blank">specs</a> for this.

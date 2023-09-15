@@ -14,7 +14,7 @@
 @if (accSpecs != null) {
   // If we have variants, and the caller didn't explicitly say to skip page tools, then show them
   if (!skipPageTools && accSpecs.Bool("HasVariants")) {
-    @Html.Partial("./Variant Selector.cshtml", new { Variant = accordion.Variant })
+    @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = null as string })
   }
 
   // Show each accordion with all sections

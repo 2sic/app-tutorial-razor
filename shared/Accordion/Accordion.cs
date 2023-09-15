@@ -19,15 +19,13 @@ public class Accordion: Custom.Hybrid.CodeTyped
   public IHtmlTag Start(ITypedItem item) {
     Item = item;
     Name = item.String("NameId");
-    if (!_variantExtension.Has()) {
-      var isTyped = (MyPage.Parameters["variant"] ?? "typed") == "typed";
-      _variantExtension = isTyped ? ".Typed" : ".Dyn";
-    }
+    if (!_variantExtension.Has())
+      _variantExtension = "." + Variant; // IsTyped ? ".Typed" : ".Dyn";
     return StartInner();
   }
 
-  public bool IsTyped  { get { return (MyPage.Parameters["variant"] ?? "typed") == "typed"; }}
-  public string Variant { get { return IsTyped ? "typed" : "dynamic"; }}
+  public bool IsTyped  { get { return Variant == "typed"; }}
+  public string Variant { get { return MyPage.Parameters["variant"] ?? "typed"; }}
 
   private IHtmlTag StartInner() {
     var t = Kit.HtmlTags;
@@ -75,8 +73,9 @@ public class Accordion: Custom.Hybrid.CodeTyped
       .Select(itm => {
         var tutorialId = itm.String("TutorialId");
         string fileName;
-        if (!CheckFile(appPath, backtrack, tutorialId, null, out fileName))
-          CheckFile(appPath, backtrack, tutorialId, _variantExtension, out fileName);
+        // first try special extension eg. .Typed.Cshtml
+        if (!CheckFile(appPath, backtrack, tutorialId, _variantExtension, out fileName))
+          CheckFile(appPath, backtrack, tutorialId, null, out fileName);
         return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
       })
       .ToList();
