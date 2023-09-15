@@ -1,0 +1,39 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+
+@{
+// Initial Code
+//The following code runs at the beginning and creates some variables/services used in the following samples.
+  var val1 = "John";
+  var val2 = "Michael";
+  var spc = "   ";
+  var fallback = "please-enter-name";
+  var nbsp = "&nbsp;";
+}
+
+<ol>
+    <li>
+      <code>Text.First(null, @val1, @fallback)</code> 
+      ⇒ @Text.First(null, val1, fallback)
+    </li>
+    <li>
+      <code>Text.First(null, @val1, @val2, @fallback)</code> 
+      ⇒ @Text.First(null, val1, val2, fallback)
+    </li>
+    <li>
+      <code>Text.First(null, @nbsp, @val1, @val2, @fallback)</code> 
+      ⇒ @Text.First(null, nbsp, val1, val2, fallback)
+    </li>
+    <li>
+      <code>Text.First(false, null, @nbsp, @val1, @val2, @fallback)</code> 
+      ⇒ @Text.First(false, null, nbsp, val1, val2, fallback)
+    </li>
+    <li>
+      <code>Text.First(null, null, @nbsp, @val1, @val2, "@spc", @fallback)</code> 
+      ⇒ @Text.First(null, null, nbsp, val1, val2, spc, fallback)
+    </li>
+    <li>
+      <code>Text.First(false, null, null, @nbsp, @val1, @val2, "@spc", @fallback)</code> 
+      ⇒ @Text.First(false, null, null, nbsp, val1, val2, spc, fallback)
+    </li>
+  </ol>

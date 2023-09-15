@@ -15,15 +15,8 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>RazorBlade</em> IScrub.All(...), IScrub.Only(), IScrub.Except()</h2>
-      <p>
-        These demos show how to strip all html from a string. You often need this in combination with @Sys.TutLink("crop or ellipsis", "blade110") to create teasers.
-      </p>
   </div>
 </div>
-
-
-@Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
 
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "razorblade-iscrub-page" })
 

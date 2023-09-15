@@ -1,0 +1,28 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+
+@{
+  var samples = new string[] {
+    "This        contains multi-spaces and \t\t\t tabs",
+    "This has \n  \n line-breaks"
+  };
+}
+
+<ol>
+  @foreach (var s in samples) {
+    <li>
+      <code>@Html.Raw(ShowHiddenCharacters(s))</code>
+    </li>
+  }
+</ol>
+
+<hide>
+@functions{
+  private string ShowHiddenCharacters(string original) {
+    return original
+      .Replace("\n", "↵")
+      .Replace(" ", "&nbsp;")
+      .Replace("\t", "↦");
+  }
+}
+</hide>
