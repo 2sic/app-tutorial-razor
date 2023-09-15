@@ -19,6 +19,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string SourceTabName = "Source Code";
   private const string ResultAndSourceTabName = "Output and Source";
   private const string TutorialsTabName = "Additional Tutorials";
+  private const string NotesTabName = "Notes";
 
   private const string InDepthField = "InDepthExplanation";
   private const string InDepthTabName = "In-Depth Explanation";
@@ -357,11 +358,27 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         true);
       // Optionally add tutorial links if defined in the item
       if (item == null) return result;
+
       if (strResult == TutorialsTabName) {
         var liLinks = Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
         var olLinks = Tag.Ol(liLinks);
         return olLinks;
       }
+
+      if (strResult == NotesTabName) {
+        if (!item.IsNotEmpty("Notes"))
+          return "Notes not found";
+
+        var notesHtml = item.Children("Notes").Select(tMd => Tag.RawHtml(
+          "\n    ",
+          Tag.Div().Class("alert alert-" + tMd.String("NoteType")).Wrap(
+            Tag.H4(tMd.String("Title")),
+            tMd.Html("Note")
+          ),
+          "\n"));
+        return notesHtml;
+      }
+
       return result;
     }
 
@@ -473,13 +490,17 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
 
       if (Item != null) {
-        if (Item.IsNotEmpty("Tutorials")) {
-          log.Add("Tutorials");
-          list.Add(TutorialsTabName);
-        }
         if (Item.IsNotEmpty(InDepthField)) {
           log.Add(InDepthField);
           list.Add(useKeys ? InDepthField : Item.String(InDepthField));
+        }
+        if (Item.IsNotEmpty("Notes")) {
+          log.Add("Notes");
+          list.Add(NotesTabName);
+        }
+        if (Item.IsNotEmpty("Tutorials")) {
+          log.Add("Tutorials");
+          list.Add(TutorialsTabName);
         }
       }
 
