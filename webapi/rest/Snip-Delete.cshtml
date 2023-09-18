@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/OrdersController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">
+  Quick Fetch DELETE "Orders"
+  </button> 
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  function deleteOrdersFetch(moduleContext) {
+    $2sxc(moduleContext).webApi
+    .fetchJson('orders/delete', null, 'DELETE')
+      .then(data => alert('Delete executed'));
+  }
+</script>

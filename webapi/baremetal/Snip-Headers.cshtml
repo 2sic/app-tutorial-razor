@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/VerifiedController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
+<button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+function showHeaders(moduleContext, optionalVerb) {
+  var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
+  alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
+    + JSON.stringify(headers, null, 2));
+}
+</script>

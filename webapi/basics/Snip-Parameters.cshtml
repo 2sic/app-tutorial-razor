@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/BasicController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="squareFetch(this, 7)">
+  Fetch Square 7
+  </button>
+  <button type="button" class="btn btn-primary" onclick="squareFetch(this, 27)">
+    Fetch Square 27
+    </button>
+    @*! 2sxclint:disable:no-inline-script !*@
+  <script>
+    function squareFetch(moduleContext, original) {
+      $2sxc(moduleContext).webApi
+      .fetchJson('basic/square?number=' + original)
+        .then(data => alert('The square of ' 
+        + original + '= ' + data));
+    }
+</script>

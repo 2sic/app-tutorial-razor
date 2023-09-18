@@ -10,6 +10,7 @@
   @{ dynamic snip = null; }
 </hide>
 
+@* TODO:: @2dm Merge into 110-basic, Delete File and view *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -21,21 +22,6 @@
 
     </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/VerifiedController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">
-    Call WebApi
-  </button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function apiWithVerification(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('verified/hello')
-        .then(data => alert(data));
-    }
-  </script>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

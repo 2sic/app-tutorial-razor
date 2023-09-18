@@ -10,6 +10,7 @@
   @{ dynamic snip = null; }
 </hide>
 
+@* TODO:: @2dm Merge into 110-basic, Delete File and view *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -25,56 +26,6 @@
       </p>
     </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">Quick Fetch GET "Orders"</button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-      function getOrdersFetch(moduleContext) {
-        $2sxc(moduleContext).webApi.fetchJson('orders/get')
-          .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-      }
-  </script>
-@snip.SnipEnd()
-
-@Html.Partial("MessageHybrid.cshtml") 
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="postOrdersFetch(this)">Quick Fetch POST "Orders"</button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function postOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/post', { amount: Math.floor(Math.random() * 100) })
-        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-    }
-  </script>
-@snip.SnipEnd()
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">Quick Fetch PUT "Orders"</button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function putOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/put', { amount: Math.floor(Math.random() * 100) }, 'PUT')
-        .then(data => alert('Result using quick Fetch: ' + JSON.stringify(data)));
-    }
-  </script>
-@snip.SnipEnd()
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/OrdersController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">Quick Fetch DELETE "Orders"</button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function deleteOrdersFetch(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('orders/delete', null, 'DELETE')
-        .then(data => alert('Delete executed'));
-    }
-  </script>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

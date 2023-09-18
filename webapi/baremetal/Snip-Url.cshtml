@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/VerifiedController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
+<button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
+<button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+function showUrl(moduleContext, url) {
+  var finalUrl = $2sxc(moduleContext).webApi.url(url);
+  alert('These is the full url for "' + url + '":\n' + finalUrl);
+}
+</script>

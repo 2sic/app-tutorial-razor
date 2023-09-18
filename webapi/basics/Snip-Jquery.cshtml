@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/BasicController.cs
+!*@
+<button type="button" class="btn btn-secondary" onclick="helloJQueryOld(this)">
+  jQuery Get Hello
+  </button>
+  @*! 2sxclint:disable:no-inline-script !*@
+  <script>
+  // jQuery versions (not recommended any more, will not work on pages without jQuery)
+  function helloJQueryOld(moduleContext) {
+    $2sxc(moduleContext).webApi
+    .get('app/auto/api/basic/hello')
+      .then(function (results) {
+        alert("Result using jQuery: " 
+        + results);      
+      });
+  }
+</script>

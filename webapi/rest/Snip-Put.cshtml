@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/OrdersController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="putOrdersFetch(this)">
+  Quick Fetch PUT "Orders"
+</button> 
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  function putOrdersFetch(moduleContext) {
+    $2sxc(moduleContext).webApi
+    .fetchJson('orders/put', 
+    { amount: Math.floor(Math.random() * 100) }, 'PUT')
+      .then(data => alert('Result using quick Fetch: ' 
+      + JSON.stringify(data)));
+  }
+</script>

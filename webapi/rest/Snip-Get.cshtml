@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/OrdersController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="getOrdersFetch(this)">
+  Quick Fetch GET "Orders"
+</button> 
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  function getOrdersFetch(moduleContext) {
+    $2sxc(moduleContext).webApi
+    .fetchJson('orders/get')
+      .then(data => alert('Result using quick Fetch: ' 
+      + JSON.stringify(data)));
+  }
+</script>

@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/BasicController.cs
+!*@
+<button type="button" class="btn btn-primary" onclick="helloFetchJson(this)">
+  Quick Fetch Json "Hello"
+  </button>
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  // Fetch using modern Browser Fetch-promises, with auto-get Json
+  // This is the recommended method if you expect JSON, because it's simpler
+  // This also uses the shortest API syntax `controller/method`
+  function helloFetchJson(moduleContext) {
+    $2sxc(moduleContext).webApi
+    .fetchJson('basic/hello')
+      .then(data => alert('Result using quick Fetch JSON: ' 
+      + data));
+  }
+</script>

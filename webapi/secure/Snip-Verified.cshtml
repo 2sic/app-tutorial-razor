@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:../../api/VerifiedController.cs
+!*@
+<button type="button" class="btn btn-primary" 
+  onclick="apiWithVerification(this)">
+  Call WebApi
+</button> 
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  function apiWithVerification(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('verified/hello')
+      .then(data => alert(data));
+  }
+</script>
