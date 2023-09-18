@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.Razor14
+<div class="alert alert-light" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "custom&title=Show%20Message?call=showMsg2&id=42",
+})>
+  <h3>Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
+</div>
+<script>
+  function showMsg2(context, event) {
+    console.log(context, event);
+    alert('hello from my Message - got this id:' + context.button.command.params.id);
+  }
+</script>

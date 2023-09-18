@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor14
+@{
+  var buttonGroupToolbar = Kit.Toolbar.Default()
+    .Group() // new in v14.07.05
+    .New("BlogPost",ui:"color=red&title=Blog-Post")
+    .New("Category", ui:"color=green&title=Category");
+}
+<div class="alert alert-light" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "+group=my",
+  "+new&group=my&color=red&title=Blog-Post?contentType=BlogPost",
+  "+new&group=my&color=green&title=Category?contentType=Category",
+})>
+  <h3>Add a button-group just for my buttons</h3>
+</div>

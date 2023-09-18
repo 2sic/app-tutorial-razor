@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  var categoryButtonsToolbar = Kit.Toolbar.Default()
+    .New("BlogPost", ui:"color=red&title=Blog-Post")
+    .New("Category", ui:"color=green&title=Category");
+}
+<div class="alert alert-light" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "+new&color=red&title=Blog-Post?contentType=BlogPost",
+  "+new&color=green&title=Category?contentType=Category",
+})>
+  <h3>New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+</div>

@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.Razor14
+<div class="alert alert-light" @Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message").For(Content)>
+  <h3>New syntax: Just call <code>showMsg1()</code> </h3>
+</div>
+<script>
+  function showMsg1() {
+    alert('hello from my button!');
+  }
+</script>

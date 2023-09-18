@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.Razor14
+<div class="alert alert-light" @Edit.TagToolbar(Content, toolbar: new[] { 
+  "custom&title=Show%20Message?call=showMsg1",
+})>
+  <h3>Old syntax: Just call <code>showMsg1()</code> </h3>
+</div>
+<script>
+  function showMsg1() {
+    alert('hello from my button!');
+  }
+</script>
