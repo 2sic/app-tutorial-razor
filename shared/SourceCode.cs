@@ -318,7 +318,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         string name;
         // Find Name and Log Stuff
 
-        name = names.ElementAt(nameCount);// BsTabs.GetTabName(nameCount);// + 1));
+        name = names.ElementAt(nameCount);
         nameCount++;
         var msg = "tab name: " + name + " (" + nameCount + ")";
         Log.Add(msg);
@@ -726,11 +726,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public FormulaSection(SourceCode sourceCode, object specs): base(sourceCode, null, null)
     {
       // If specs is a string, look it up in the DB, otherwise use the given object
-      Specs = specs is string ? ScParent.Formulas.Specs(specs as string) : specs;
+      Specs = (specs is string ? ScParent.Formulas.Specs(specs as string) : specs) as ITypedItem;
       TabHandler = new TabHandlerFormula(sourceCode, null, null, Specs);
     }
 
-    public object Specs;
+    public ITypedItem Specs;
 
     /// <summary>
     /// Show the entire formula as configured in the Specs
@@ -765,10 +765,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   internal class TabHandlerFormula: TabHandlerBase
   {
-    public TabHandlerFormula(SourceCode scParent, ITypedItem item, Dictionary<string, string> tabs, object specs) : base(scParent, item, tabs, addOutput: false, outputWithSource: false, sourceAtEnd: false, activeTabName: ResultTabName) {
+    public TabHandlerFormula(SourceCode scParent, ITypedItem item, Dictionary<string, string> tabs, ITypedItem specs) : base(scParent, item, tabs, addOutput: false, outputWithSource: false, sourceAtEnd: false, activeTabName: ResultTabName) {
       Specs = specs;
     }
-    public object Specs;
+    public ITypedItem Specs;
 
     protected override List<string> GetTabNames()
     {
@@ -834,25 +834,24 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     public override ITag SnipStart(string snippetId = null) {
       InitSnippetAndTabId(snippetId);
-      var header = TabsBeforeContent();
-      return header;// SourceWrap.GetStart(header);
+      return TabsBeforeContent();
     }
 
     public override ITag SnipEnd() { return SnipEndFinal(); }
 
-    /// <summary>
-    /// End Snip, but manually specify the content to be added
-    /// </summary>
-    public ITag SnipEnd(params object[] generated) {
-      var l = Log.Call<ITag>(TabHandler.TabContentsDebug);
-
-      if (generated != null && generated.Any()) {
-        Log.Add("Replace tab contents with: " + generated.Count());
-        TabHandler.ReplaceTabContents(generated.ToList());
-      }
-
-      return l(SnipEndFinal(), "with tabs");
-    }
+    // 2023-09-18 2dm - believe it's not used any more
+    // /// <summary>
+    // /// End Snip, but manually specify the content to be added
+    // /// </summary>
+    // public ITag SnipEnd(params object[] tabs) {
+    //   var l = Log.Call<ITag>(TabHandler.TabContentsDebug);
+    //   SetTabContents(tabs);
+    //   // if (tabs != null && tabs.Any()) {
+    //   //   Log.Add("Replace tab contents with: " + tabs.Count());
+    //   //   TabHandler.ReplaceTabContents(tabs.ToList());
+    //   // }
+    //   return l(SnipEndFinal(), "with tabs");
+    // }
 
     /// <summary>
     /// Public method to replace the tab contents from outside
@@ -945,7 +944,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
 
 
-    public override ITag OutputOpen(/*ITag contents*/) { return Tag.RawHtml(
+    public override ITag OutputOpen() { return Tag.RawHtml(
       "\n",
       Comment(nameOfClass),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
@@ -1000,8 +999,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
     private int FirstWidth;
 
-    public override ITag OutputOpen(/*ITag result */) { return Tag.RawHtml(
-      // result,
+    public override ITag OutputOpen() { return Tag.RawHtml(
       Comment("", "Splitter"),
       Indent1,
       TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter").Class("splitter-group")),
