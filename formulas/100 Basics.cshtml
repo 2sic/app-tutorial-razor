@@ -10,21 +10,6 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Create Your First Formula</h2>
-    <p>We'll show you how customize your 2sxc edit forms using formulas</p>
-    <p>In this tutorial you'll learn how to:</p>
-    <ul>
-      <li>
-        Create new formulas for your content fields
-      </li>
-      <li>
-        Choose the correct target type
-      </li>
-      <li>
-        Add the formula script 
-      </li>
-    </ul>
-    @Html.Partial("./Part NowUsingV2.cshtml")
   </div>
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
@@ -35,8 +20,8 @@
 
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "formulas-basic-page" })
 
-
-@Sys.SourceCode.Formula("basic-intro").ShowAll()
+@* 
+@Sys.SourceCode.Formula("basic-intro").ShowAll() *@
 
 
 

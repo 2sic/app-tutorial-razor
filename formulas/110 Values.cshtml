@@ -10,34 +10,31 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Formulas affecting Values</h2>
-    <p>We'll show you examples where formulas can be applied to set the Value in many ways. </p>
-    @Html.Partial("./Part NowUsingV2.cshtml")
   </div>
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
 @* Fill Field If Empty *@
-@Sys.SourceCode.Formula("value-set-if-empty").ShowAll()
+@* @Sys.SourceCode.Formula("value-set-if-empty").ShowAll() *@
 
 
 @* Combine Values of Fields *@
-@Sys.SourceCode.Formula("value-combine").ShowAll()
+@* @Sys.SourceCode.Formula("value-combine").ShowAll() *@
 
 @* Get Value from WebApi *@
-@Sys.SourceCode.Formula("ValueFromWebApi").ShowAll()
+@* @Sys.SourceCode.Formula("ValueFromWebApi").ShowAll() *@
 
 @* Set many values from one field *@
-@Sys.SourceCode.Formula("value-set-many").ShowAll()
+@* @Sys.SourceCode.Formula("value-set-many").ShowAll() *@
 
 
-<h2>Date Examples</h2>
+@* <h2>Date Examples</h2> *@
 
 @* Date Examples #1 *@
-@Sys.SourceCode.Formula("value-date-prefill").ShowAll()
+@* @Sys.SourceCode.Formula("value-date-prefill").ShowAll() *@
 
 @* Date Examples #2 *@
-@Sys.SourceCode.Formula("value-date-calculate").ShowAll()
+@* @Sys.SourceCode.Formula("value-date-calculate").ShowAll() *@
 
 
 

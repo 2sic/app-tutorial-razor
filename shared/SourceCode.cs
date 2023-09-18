@@ -28,6 +28,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string ResultTitle = "Result";
   private const string ViewConfigCode = "ViewConfig";
   private const string ViewConfigTabName = "View Configuration";
+  private const string FormulaField = "Formula";
+  private const string FormulasTabName = "Formulas";
 
   #endregion
 
@@ -420,6 +422,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         );
       }
 
+      // handle case Formulas
+      if (strResult == FormulasTabName) {
+        var formulaSpecs = item.Child(FormulaField);
+        return ScParent.Formulas.Show(formulaSpecs, false);
+      }
+
       // Other cases - just return original - could be the label or a prepared string
       return result;
     }
@@ -727,6 +735,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     {
       // If specs is a string, look it up in the DB, otherwise use the given object
       Specs = (specs is string ? ScParent.Formulas.Specs(specs as string) : specs) as ITypedItem;
+      SourceWrap = new WrapFormula(this, Specs);
       TabHandler = new TabHandlerFormula(sourceCode, null, null, Specs);
     }
 
@@ -736,26 +745,38 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// Show the entire formula as configured in the Specs
     /// </summary>
     /// <returns></returns>
-    public ITag ShowAll() {
-      var result = Tag.RawHtml(
-        ScParent.Formulas.Header(Specs),
-        SnipStart(), //"formula-" + Guid.NewGuid().ToString()),
-        ScParent.Formulas.Intro(Specs),
-        SnipEnd()
-      );
-      return result;
-    }
+    public ITag ShowAll() { return Tag.RawHtml(
+      ScParent.Formulas.Header(Specs),
+      SnipStart(),
+      SnipEnd()
+    ); }
 
 
     public override ITag SnipStart(string snippetId = null) {
-      // Neutralize snippetId, set TabPrefix etc.
       InitSnippetAndTabId(snippetId);
-      // Activate toolbar for anonymous so it will always work in demo-mode
-      ScParent.Sys.ToolbarHelpers.EnableEditForAll();
       return TabsBeforeContent();
     }
 
     public override ITag SnipEnd() { return SnipEndFinal(); }
+  }
+
+  internal class WrapFormula: Wrap
+  {
+    public WrapFormula(SectionBase sb, ITypedItem specs = null) : base(sb, "WrapFormula") {
+      FormulaSpecs = specs ?? Section.Item.Child("Formula");
+      if (FormulaSpecs == null) throw new Exception("Formula section needs a Formula item");
+      this.Tabs = new List<string> { ResultTabName, FormulasTabName };
+      this.TabSelected = ResultTabName;
+    }
+    public ITypedItem FormulaSpecs;
+
+    public override ITag OutputOpen() {
+      // Activate toolbar for anonymous so it will always work in demo-mode
+      Section.ScParent.Sys.ToolbarHelpers.EnableEditForAll();
+      return Tag.RawHtml(
+        Section.ScParent.Formulas.Intro(FormulaSpecs)
+      );
+    }
   }
 
   internal class TabHandlerFormula: TabHandlerBase
@@ -769,7 +790,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     {
       var names = new List<string>();
       names.Add(ResultTabName);
-      names.Add("Formulas");
+      names.Add(FormulasTabName);
       var showSource = ScParent.Formulas.ShowSnippet(Specs);
       if (showSource) names.Add(SourceTabName);
       return names;
@@ -823,6 +844,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     ) : base(sourceCode, item, tabs, sourceFile: file)
     {
       if (item == null) throw new Exception("Item should never be null");
+      // throw new Exception("test 2dm " + item.Type.Name);
       SourceWrap = sourceCode.GetSourceWrap(this, item);
       TabHandler = new TabHandlerBase(sourceCode, item, tabs, sourceWrap: SourceWrap);
     }
@@ -870,6 +892,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     // Figure out the type based on the item or it's parent
     string code = null;
     if (item != null) {
+      if (item.String("TutorialType") == "formula")
+        return new WrapFormula(section, null);
+
       if (item.IsNotEmpty("OutputAndSourceDisplay"))
         code = item.String("OutputAndSourceDisplay");
       else {
