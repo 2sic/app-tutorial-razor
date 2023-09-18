@@ -235,6 +235,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       Item = item;
       TabHandler = new TabHandlerBase(sourceCode, item, tabs);
       SourceFile = sourceFile;
+      ViewConfig = new ViewConfiguration(sourceCode, this);
     }
     internal SourceCode ScParent;
     private dynamic BsTabs;
@@ -247,7 +248,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     internal TabHandlerBase TabHandler;
     internal ITypedItem Item;
     internal string SourceFile;
-    internal ViewConfiguration ViewConfig = new ViewConfiguration();
+    public ViewConfiguration ViewConfig;
 
     /// <summary>
     /// The SnippetId must be provided here, so it can be found in the source code later on
@@ -798,7 +799,27 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// <summary>
   /// How the view is supposedly configured
   /// </summary>
-  internal class ViewConfiguration {
+  public class ViewConfiguration {
+
+    #region Constructor and Main Objects
+
+    internal ViewConfiguration(SourceCode sourceCode, SectionBase section) {
+      // ScParent = sourceCode;
+      Log = sourceCode.Log;
+      App = sourceCode.App;
+      Section = section;
+      TabHandler = section.TabHandler;
+    }
+    internal ToSic.Sxc.Apps.IAppTyped App;
+    // internal SourceCode ScParent;
+    internal ICodeLog Log;
+    internal SectionBase Section;
+    internal TabHandlerBase TabHandler;
+
+    #endregion
+
+    #region Main Infos and Generate ViewConfig-Tab
+
     public string ContentType;
     public IEntity DemoItem;
     public List<IEntity> ContentList;
@@ -809,13 +830,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public bool IsList;
     public string QueryName;
 
-
     public ITag TabContents() {
       var configList = Tag.Ul();
       if (ContentType.Has()) configList.Add(Tag.Li("Content/Item ContentType: ", Tag.Strong(ContentType)));
       if (DemoItem != null) configList.Add(Tag.Li("Content/Item Demo-Data: ", Tag.Strong(DemoItem.Get("EntityTitle")), " (ID: " + DemoItem.EntityId + ")"));
 
-      // List & Header
+      // List
       if (IsList) configList.Add(Tag.Li("Content/Item IsList: ", Tag.Strong(IsList.ToString())));
       if (ContentList != null) configList.Add(
         Tag.Li(
@@ -831,6 +851,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           )
         )
       );
+
+      // Header
       if (HeaderType.Has()) configList.Add(Tag.Li("Header Type: ", Tag.Strong(HeaderType)));
       if (HeaderItem != null) configList.Add(Tag.Li("Header Item: ", Tag.Strong(HeaderItem.Get("EntityTitle")), " (ID: " + HeaderItem.EntityId + ")"));
 
@@ -840,6 +862,100 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       // TODO: Query
       return configList;
     }
+
+    #endregion
+  
+    #region Public Helpers to Simulate View Content
+
+    /// <summary>
+    /// Helper to get either the query or the type
+    /// </summary>
+    private IEnumerable<IEntity> GetListForSimulate(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEnumerable<IEntity>>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
+      // Prepare: Verify the Tab "ViewConfig" was specified
+      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
+        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
+
+      IEnumerable<IEntity> data = null;
+
+      // Case 1: Get Content-Type
+      if (type != null) {
+        data = App.Data[type].List;
+        if (!data.Any()) throw new Exception("Trying to simulate view content - but type returned no data");
+      }
+
+      // Case 2: Get a query, possibly a stream
+      if (query != null) {
+        var q = App.GetQuery(query);
+        data = q.GetStream(stream).List; // should work for both null and "some-name"
+        if (!data.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
+      }
+
+      if (nameId != null) {
+        var ent = data.First(e => e.Get<string>("NameId") == nameId);
+        data = new List<IEntity> { ent };
+      }
+
+      // TODO: get by nameid
+      return l(data, "ok");
+    }
+
+    public IEntity Content(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEntity>();
+      var list = GetListForSimulate(type, nameId, query, stream);
+      var first = list.First();
+      ContentType = first.Type.Name;
+      ContentList = list.Take(1).ToList();
+      return l(first, "ok");
+    }
+
+    public IEntity Header(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEntity>();
+      var list = GetListForSimulate(type, nameId, query, stream);
+      var first = list.First();
+      HeaderType = first.Type.Name;
+      HeaderItem = first;
+      return l(first, "ok");
+    }
+
+    public IEnumerable<IEntity> List(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEnumerable<IEntity>>();
+
+      // Prepare: Set common ViewConfig props
+      IsList = true;
+      
+      var list = GetListForSimulate(type, nameId, query, stream);
+      ContentType = list.First().Type.Name;
+      ContentList = list.ToList();
+      return l(list, "ok");
+    }
+    public IDataSource Query(string query = null, string stream = null) {
+      var l = Log.Call<IDataSource>();
+
+      // Prepare: Verify the Tab "ViewConfig" was specified
+      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
+        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
+
+      var q = App.GetQuery(query);
+      QueryName = query;
+      return l(q, "ok");
+    }
+
+    public IEnumerable<IEntity> SimulateViewPresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEnumerable<IEntity>>();
+
+      var list = GetListForSimulate(type, nameId, query, stream);
+      PresentationType = list.First().Type.Name;
+
+      if (list.Count() < myItems.Count()) {
+        var pad = padWithNull ? (IEntity)null : list.First();
+        list = list.Concat(Enumerable.Repeat(pad, myItems.Count() - list.Count()));
+      }
+      PresentationList = list.ToList();
+      return l(list, "ok");
+    }
+
+    #endregion
   }
 
   #endregion
@@ -926,61 +1042,22 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
 
     public IEntity SimulateViewContent(string type = null, string nameId = null, string query = null, string stream = null) {
-      var l = Log.Call<IEntity>();
-      var list = GetListForSimulate(type, nameId, query, stream);
-      var first = list.First();
-      ViewConfig.ContentType = first.Type.Name;
-      ViewConfig.ContentList = list.Take(1).ToList();
-      return l(first, "ok");
+      return ViewConfig.Content(type, nameId, query, stream);
     }
+  
     public IEntity SimulateViewHeader(string type = null, string nameId = null, string query = null, string stream = null) {
-      var l = Log.Call<IEntity>();
-      var list = GetListForSimulate(type, nameId, query, stream);
-      var first = list.First();
-      ViewConfig.HeaderType = first.Type.Name;
-      ViewConfig.HeaderItem = first;
-      return l(first, "ok");
+      return ViewConfig.Header(type, nameId, query, stream);
     }
 
     public IEnumerable<IEntity> SimulateViewList(string type = null, string nameId = null, string query = null, string stream = null) {
-      var l = Log.Call<IEnumerable<IEntity>>();
-
-      // Prepare: Set common ViewConfig props
-      ViewConfig.IsList = true;
-      
-      var list = GetListForSimulate(type, nameId, query, stream);
-      ViewConfig.ContentType = list.First().Type.Name;
-      ViewConfig.ContentList = list.ToList();
-      return l(list, "ok");
+      return ViewConfig.List(type, nameId, query, stream);
     }
     public IDataSource SimulateViewQuery(string query = null, string stream = null) {
-      var l = Log.Call<IDataSource>();
-
-      // Prepare: Verify the Tab "ViewConfig" was specified
-      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
-        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
-
-      var q = ScParent.App.GetQuery(query);
-      ViewConfig.QueryName = query;
-      return l(q, "ok");
+      return ViewConfig.Query(query, stream);
     }
 
-
     public IEnumerable<IEntity> SimulateViewPresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
-      var l = Log.Call<IEnumerable<IEntity>>();
-
-      // Prepare: Set common ViewConfig props
-      ViewConfig.IsList = true;
-      
-      var list = GetListForSimulate(type, nameId, query, stream);
-      ViewConfig.PresentationType = list.First().Type.Name;
-
-      if (list.Count() < myItems.Count()) {
-        var pad = padWithNull ? (IEntity)null : list.First();
-        list = list.Concat(Enumerable.Repeat(pad, myItems.Count() - list.Count()));
-      }
-      ViewConfig.PresentationList = list.ToList();
-      return l(list, "ok");
+      return ViewConfig.SimulateViewPresList(myItems, padWithNull, type, nameId, query, stream);
     }
 
   }
