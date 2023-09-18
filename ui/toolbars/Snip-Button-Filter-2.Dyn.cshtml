@@ -5,21 +5,32 @@
     .ToArray();
 
   var toolbarTop3 = Kit.Toolbar.Empty()
-    .Data("Books", filter: new { Authors = firstThreeAuthorIds });
+    .Data("Books", filter: new 
+      { Authors = firstThreeAuthorIds }
+    );
 }
 <div class="alert alert-light" @toolbarTop3>
-  <h3><code>Data</code> buttons returning books which has any of 3 authors</h3>
+  <h3><code>Data</code> 
+    buttons returning books which has any of 3 authors
+  </h3>
 </div>
 
 @{
   var authorsToolbar = Kit.Toolbar.Empty();
   foreach (var auth in AsList(App.Data["Persons"])) {
     authorsToolbar = authorsToolbar.Data("Books",
-      ui: new { Title = "Books by " + auth.FirstName + " " + auth.LastName},
-      filter: new { Authors = new int[] { auth.EntityId } }
+      ui: new { Title = "Books by " 
+        + auth.FirstName 
+        + " " 
+        + auth.LastName},
+      filter: new { Authors = new int[] 
+        { auth.EntityId } 
+       }
     );
   }
 }
 <div class="alert alert-light" @authorsToolbar>
-  <h3>Many <code>Data</code> buttons each filtering for one related author</h3>
+  <h3>Many <code>Data</code> 
+    buttons each filtering for one related author
+  </h3>
 </div>

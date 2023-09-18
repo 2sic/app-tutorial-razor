@@ -1,19 +1,29 @@
 @inherits Custom.Hybrid.Razor14
 @{
   var categoryButtonsTweak = Kit.Toolbar.Default()
-    .New("BlogPost", tweak: b=>b.Color("red").Tooltip("Blog-Post"))
-    .New("Category", tweak: b=>b.Color("green").Tooltip("Category"));
+    .New("BlogPost", 
+      tweak: b=>b.Color("red").Tooltip("Blog-Post"))
+    .New("Category",
+      tweak: b=>b.Color("green").Tooltip("Category"));
 }
-<div class="alert alert-light" @categoryButtonsTweak.For(Content)>
-  <h3>(tweak): New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+<div class="alert alert-light" 
+  @categoryButtonsTweak.For(Content)>
+  <h3>(tweak): New <code>BlogPost</code> is red,
+    <code>Category</code> is green
+  </h3>
 </div>
 
 @{
   var categoryButtonsToolbar = Kit.Toolbar.Default()
-    .New("BlogPost", ui:"color=red&title=Blog-Post")
-    .New("Category", ui:"color=green&title=Category");
+    .New("BlogPost",
+      ui:"color=red&title=Blog-Post")
+    .New("Category",
+      ui:"color=green&title=Category");
 }
-<div class="alert alert-light" @categoryButtonsToolbar.For(Content)>
-  <h3>New <code>BlogPost</code> is red, <code>Category</code> is green</h3>
+<div class="alert alert-light" 
+  @categoryButtonsToolbar.For(Content)>
+  <h3>New <code>BlogPost</code> is red,
+    <code>Category</code> is green
+  </h3>
 </div>
  

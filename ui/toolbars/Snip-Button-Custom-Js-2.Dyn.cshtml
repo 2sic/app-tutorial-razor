@@ -2,12 +2,16 @@
 @{
   var customJsParamsToolbar = Kit.Toolbar.Default().Code("showMsg2", parameters:"id=42", ui:"title=Show%20Message");
 }
-<div class="alert alert-light" @customJsParamsToolbar.For(Content)>
-  <h3>New syntax: Just call <code>showMsg2()</code> and use the parameter <code>id=42</code> </h3>
+<div class="alert alert-light" 
+  @customJsParamsToolbar.For(Content)>
+  <h3>Just call <code>showMsg2()</code>
+    and use the parameter <code>id=42</code>
+  </h3>
 </div>
 <script>
   function showMsg2(context, event) {
     console.log(context, event);
-    alert('hello from my Message - got this id:' + context.button.command.params.id);
+    alert('hello from my Message - got this id:' 
+    + context.button.command.params.id);
   }
 </script>

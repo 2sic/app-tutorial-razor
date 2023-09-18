@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.Razor14
-<div class="alert alert-light" @Kit.Toolbar.Empty(Content).New(ui: new { color = "orange"})>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty(Content).New(ui: new { color = "orange"})>
   <h3><code>ui</code> as inline object </h3>
 </div>
 
@@ -10,7 +11,8 @@
     Title = "This is the prepared object"
   };
 }
-<div class="alert alert-light" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared)>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty(Content).New(ui: uiPrepared)>
   <h3><code>ui</code> as prepared object </h3>
 </div>
 
@@ -18,6 +20,7 @@
   // this uses uiPrepared from the previous example
   var uiObjMerged = new object[] { uiPrepared, new { Color ="purple"}};
 }
-<div class="alert alert-light" @Kit.Toolbar.Empty(Content).New(ui: uiPrepared).New(ui: uiObjMerged)>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty(Content).New(ui: uiPrepared).New(ui: uiObjMerged)>
   <h3><code>ui</code> as prepared object merged with other object</h3>
 </div>

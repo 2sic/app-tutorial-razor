@@ -1,12 +1,14 @@
 @inherits Custom.Hybrid.RazorTyped
-<div class="alert alert-light" @Kit.Toolbar.Default(MyItem)>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default(MyItem)>
   <p>
     <code>@@Kit.Toolbar.Default(MyItem)</code>
     with a pre-set content-item
   </p>
 </div>
 
-<div class="alert alert-light" @Kit.Toolbar.Default().For(MyItem)>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default().For(MyItem)>
   <p>
     <code>@@Kit.Toolbar.Default().For(MyItem)</code>
     with a content-item which can be set later

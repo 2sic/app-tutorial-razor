@@ -2,11 +2,14 @@
 @{
   var multipleGroupsToolbar = Kit.Toolbar.Default()
     .Group()
-    .New("BlogPost", ui:"color=red&title=Blog-Post")
+    .New("BlogPost",
+      ui:"color=red&title=Blog-Post")
     .Group()
-    .New("Category", ui:"color=green&title=Category");
+    .New("Category",
+      ui:"color=green&title=Category");
 }
-<div class="alert alert-light" @multipleGroupsToolbar.For(Content)>
+<div class="alert alert-light" 
+  @multipleGroupsToolbar.For(Content)>
   <h3>Add two button-groups</h3>
 </div>
 

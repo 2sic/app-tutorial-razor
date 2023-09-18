@@ -1,5 +1,10 @@
 @inherits Custom.Hybrid.RazorTyped
-<div class="alert alert-light" @Kit.Toolbar.Empty().Data("Books", tweak: b=>b.Filter("Title", "Good Omens"))>
-  <h3><code>Data</code> button with <em>string</em> <code>filter</code> (tweak) </h3>
-  <p>This will find all books with the title <em>Good Omens</em></p>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().Data("Books", tweak: b => b.Filter("Title", "Good Omens"))>
+  <h3><code>Data</code> button with <em>string</em> 
+    <code>filter</code> (tweak)
+  </h3>
+  <p>This will find all books with the title 
+    <em>Good Omens</em>
+  </p>
 </div>
