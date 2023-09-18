@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=Generated HTML
+!*@
+@{/*!*/
+  var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc();
+/*!*/}
+@{
+  var fallbackAltText = "Fallback";
+  var imageFieldWithAltText = Content.Field("Image");
+  var optimalAltText = Text.First(imageFieldWithAltText.Metadata.Description, fallbackAltText);
+}
+<div>
+  <p><strong>Image with optimal alt text (@optimalAltText)</strong></p>
+  <div style="width: 25%;">
+    @Kit.Image.Picture(imageFieldWithAltText, imgAltFallback: optimalAltText)
+  </div>
+</div>
+@{/*!*/
+  var resultHtml = Kit.Image.Picture(Content.Field("Image"), imgAltFallback: optimalAltText);
+  DynamicModel.SnippetSection.SetTabContents("html-img:" + resultHtml);
+/*!*/}

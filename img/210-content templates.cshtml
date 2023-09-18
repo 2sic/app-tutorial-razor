@@ -5,9 +5,6 @@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
   @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
-  @{
-    var imgUrl = App.Path + "/settings/demo.png";
-  }
 </hide>
 
 
@@ -29,33 +26,6 @@
 </div>
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "img-content" })
-@* 
-
- <h3>Image with Default Content Settings</h3>
-<p>This example uses the configuration as is, to create an image according to specs in <code>Settings.Images.Content</code></p>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content)'>
-@snip.SnipEnd()
-
-<h3>Image with <code>factor</code> <em>1/3rd</em> or <em>0.25</em> the Content Settings</h3>
-<p>This example uses the <code>Settings.Images.Content</code> 
-  settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).</p>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: "1/3")'> - 
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, factor: 0.25)'>
-@snip.SnipEnd()
-
-<h3>Image with Settings, Custom Width & Height</h3>
-<p>In this example we use a custom width, but want to use other specs like <em>quality</em> or <em>resizeMode</em> from the Settings.</p>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@snip.SnipEnd()
-
-<h3>Image with Settings, Custom Width & Reset Height</h3>
-<p>In this example uses a custom width and explicitly doesn't want to set the height (so it's automatic)</p>
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
-  <img loading="lazy" src='@Link.Image(imgUrl, Settings.Images.Content, width: 100, height: 50)'>
-@snip.SnipEnd() *@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

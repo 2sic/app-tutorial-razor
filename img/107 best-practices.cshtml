@@ -31,6 +31,14 @@
 
 @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
 
+@*
+  TODO: @2dg - put in /img/tips/Snip-....cshtml
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".Dyn", NameId = "img-tips" })
+
+
+
 <h2>Image with URL vs. Field in <code>img</code> tag</h2>
 <p>
   As learned in the previous tutorials the <code>img</code> tag can be created out of URLs.
@@ -197,3 +205,4 @@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
+

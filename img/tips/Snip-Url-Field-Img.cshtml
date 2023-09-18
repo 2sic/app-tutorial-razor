@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  @GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()
+/*!*/}
+<div class="row">
+  <div class="col-md">
+    <p><strong>Picture from <code>Content.Image</code></strong></p>
+    @* Picture from Content.Image *@
+    @Kit.Image.Img(Content.Image)
+  </div>
+  <div class="col-md">
+    <p><strong>Picture from <code>Field</code> containing crop anchor and alt text</strong></p>
+    @* Picture from Field containing crop anchor and alt text *@
+    @Kit.Image.Img(Content.Field("Image"))
+  </div>
+</div>
+@{/*! Tut.Tabs=Generated HTML Left,Generated HTML Right */
+  DynamicModel.SnippetSection.SetTabContents(
+    "html-img:" + Kit.Image.Img(Content.Image),
+    "html-img:" + Kit.Image.Img(Content.Field("Image"))
+  );
+/*!*/}

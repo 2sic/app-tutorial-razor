@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML Left,Generated HTML Right
+!*@
+@{/*!*/
+  var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  @GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()
+/*!*/}
+<div class="row">
+  <div class="col-md">
+    <p><strong>Picture default recipe</strong></p>
+    @* Picture using the default *@
+    @Kit.Image.Picture(Content.Field("Image"))
+  </div>
+  <div class="col-md">
+    <p><strong>Picture with variants for 2x and 3x of the image size</strong></p>
+    @{
+      var customRecipe = Kit.Image.Recipe("2*, 3*");
+    }
+    @* Picture using recipe with 2x and 3x variants *@
+    @Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe)
+  </div>
+</div>
+@{/*!*/
+  DynamicModel.SnippetSection.SetTabContents(
+    "html-img:" + Kit.Image.Picture(Content.Field("Image")),
+    "html-img:" + Kit.Image.Picture(Content.Field("Image"), recipe: customRecipe)
+    );
+/*!*/}

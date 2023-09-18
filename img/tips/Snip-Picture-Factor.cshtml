@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML Left,Generated HTML Right
+!*@
+@{/*!*/
+  var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
+  @GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()
+/*!*/}
+<div class="row">
+  <div class="col-md">
+    <p><strong>Picture using the factor <code>0.5</code></strong></p>
+    @Kit.Image.Picture(Content.Field("Image"), factor: 0.5)
+  </div>
+  <div class="col-md">
+    <p><strong>Picture using the factor <code>5</code></strong></p>
+    @Kit.Image.Picture(Content.Field("Image"), factor: 5)
+  </div>
+</div>
+@{/*!*/
+  DynamicModel.SnippetSection.SetTabContents(
+    "html-img:" + Kit.Image.Picture(Content.Field("Image"), factor: 0.5),
+    "html-img:" + Kit.Image.Picture(Content.Field("Image"), factor: 5)
+  );
+/*!*/}
