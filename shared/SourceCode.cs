@@ -156,7 +156,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     var src = GetFileAndProcess(file).Contents;
     if (src.Contains("Tut.Tabs=")) {
       var tabsLine = Text.After(src, "Tut.Tabs=");
-      var tabsString = Text.Before(Text.Before(tabsLine, "\n"), "*/");
+      var tabsBeforeEol = Text.Before(tabsLine, "\n");
+      var tabsString = Text.Before(tabsBeforeEol, "*/") ?? tabsBeforeEol;
       if (!tabsString.Has()) return null;
       var tabs = tabsString.Split(',')
         .Select(t => {
@@ -799,8 +800,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     public ITag TabContents() {
       var configList = Tag.Ul();
-      if (ContentType.Has()) configList.Add(Tag.Li("Content/Item ContentType: " + ContentType));
-      if (ContentItem != null) configList.Add(Tag.Li("Content/Item Demo-Item: " + ContentItem.Get("EntityTitle") + " (ID: " + ContentItem.EntityId + ")"));
+      if (ContentType.Has()) configList.Add(Tag.Li("Content/Item ContentType: ", Tag.Strong(ContentType)));
+      if (ContentItem != null) configList.Add(Tag.Li("Content/Item Demo-Item: ", Tag.Strong(ContentItem.Get("EntityTitle")), " (ID: " + ContentItem.EntityId + ")"));
       return configList;
     }
   }
