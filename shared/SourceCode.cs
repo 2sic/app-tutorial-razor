@@ -859,7 +859,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
     }
 
-    public IEnumerable<IEntity> SimulateViewContent(string type = null, string query = null, string stream = null) {
+    public IEntity SimulateViewContent(string type = null, string query = null, string stream = null) {
       // Prepare: Verify the Tab "ViewConfig" was specified
       if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
@@ -872,12 +872,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (query != null) {
         var q = ScParent.App.GetQuery("QuickRef-Persons-Selected");
         var s = q.GetStream(stream).List; // should work for both null and "some-name"
-        if (s.Any()) {
-          var first = s.First();
-          ViewConfig.ContentType = first.Type.Name;
-          ViewConfig.ContentItem = first;
-        }
-        return s;
+        if (!s.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
+        var first = s.First();
+        ViewConfig.ContentType = first.Type.Name;
+        ViewConfig.ContentItem = first;
+        return first;
       }
       return null;
     }
