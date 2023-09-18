@@ -18,10 +18,12 @@ public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
 
   public ViewConfigurationSimulation Setup(dynamic tabHandler) {
     TabHandler = tabHandler;
+    Fancybox = GetCode("./Fancybox.cs");
     return this;
   }
 
   internal dynamic TabHandler;
+  private dynamic Fancybox;
 
   #endregion
 
@@ -74,21 +76,16 @@ public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
       if (qInfoEntity != null) {
         var qInfo = AsItem(qInfoEntity);
         queryDetails = queryDetails.Add(
-          t.H5("Details for " + qInfo.String("Title")),
-          qInfo.String("Description")
+          t.H5("Details for " + qInfo.String("Title")).Attr(Kit.Toolbar.Empty().Edit(qInfo)),
+          qInfo.String("Description"),
+          Fancybox.Gallery(qInfo, "Images")
         );
-        var qImages = qInfo.Folder("Images");
-        if (qImages.Files.Any()) {
-          // TODO: add lightbox
-          var imgList = qImages.Files.Select(f => Kit.Image.Picture(f, width: 200)).ToArray();
-          queryDetails = queryDetails.Add(imgList);
-        }
       } else {
-        // TODO: @2dm - add toolbar if no info yet
+        // add toolbar if no info yet
+        queryDetails = queryDetails.Add(t.P("No details yet for " + QueryName).Attr(Kit.Toolbar.Empty().New("TutorialObjectInfo", prefill: new { NameId = qInfoKey })));
       }
     }
 
-    // TODO: Query
     return t.RawHtml(cList, queryDetails);
   }
 

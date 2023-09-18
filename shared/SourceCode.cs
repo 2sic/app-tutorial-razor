@@ -389,10 +389,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
         var notesHtml = item.Children("Notes").Select(tMd => Tag.RawHtml(
           "\n    ",
-          Tag.Div().Class("alert alert-" + tMd.String("NoteType")).Wrap(
-            Tag.H4(tMd.String("Title")),
-            tMd.Html("Note")
-          ),
+          Tag.Div().Class("alert alert-" + tMd.String("NoteType"))
+            .Attr(ScParent.Kit.Toolbar.Empty().Edit(tMd))
+            .Wrap(
+              Tag.H4(tMd.String("Title")),
+              tMd.Html("Note"),
+              ScParent.Sys.Fancybox.Gallery(tMd, "Images")
+            ),
           "\n"));
         return notesHtml;
       }
@@ -444,8 +447,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         : activeTabName ?? ResultTabName;
     }
     public readonly Dictionary<string, string> Tabs;
-    public readonly SourceCode ScParent;
-    public ITypedItem Item { get; private set; }
+    protected readonly SourceCode ScParent; // also used in Formulas
+    private ITypedItem Item { get; set; }
     private bool _addOutput;
     private bool _outputWithSource;
     private bool _sourceAtEnd;
@@ -809,7 +812,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (item == null) throw new Exception("Item should never be null");
       var splitter = sourceCode.GetSourceWrap(this, item);
       SourceWrap = splitter;
-      TabHandler = new TabHandlerBase(sourceCode, item, tabs, addOutput: true, sourceWrap: SourceWrap);
+      TabHandler = new TabHandlerBase(sourceCode, item, tabs, sourceWrap: SourceWrap);
     }
 
     public override ITag SnipStart(string snippetId = null) {
@@ -868,8 +871,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     if (!code.Has() || code == "out-over-src")
       return new WrapOutOverSrc(section);
 
-    if (code == "src")
-      return new WrapSrcOnly(section);
+    // Basic src / out only
+    if (code == "src") return new WrapSrcOnly(section);
+    if (code == "out") return new WrapOutOnly(section);
 
     // Split - either a real split, or if width == 0, then 2 tabs
     if (code == "split") {
@@ -879,6 +883,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       wrap.TabSelected = SourceTabName;
       return wrap;
     }
+    
     // SourceWrapIntro
     // SourceWrapIntroWithSource
     return new WrapOutSrcBase(section, null, false);
@@ -917,7 +922,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         : new List<string> { ResultTabName, SourceTabName };
       TabSelected = combined ? ResultAndSourceTabName : ResultTabName;
     }
-    public readonly List<string> Tabs;
+    public List<string> Tabs { get; protected set; }
     public string TabSelected {get; set;}
     protected readonly SectionBase Section;
     public virtual ITag GetBetween() { return null; }
@@ -928,13 +933,33 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   internal class WrapOutOverSrc: WrapOutSrcBase
   {
-    public WrapOutOverSrc(SectionBase section) : base(section, "WrapOutOverSrc", true) {
+    private const string nameOfClass = "WrapOutOverSrc";
+    public WrapOutOverSrc(SectionBase section) : base(section, nameOfClass, true) {
     }
 
 
     public override ITag GetStart(ITag contents) { return Tag.RawHtml(
       "\n",
-      Comment("WrapOutOverSrc"),
+      Comment(nameOfClass),
+      TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
+      Tag.H4(ResultTitle)
+    ); }
+
+    public override ITag GetBetween() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
+  }
+
+  internal class WrapOutOnly: WrapOutSrcBase
+  {
+    private const string nameOfClass = "WrapOutOnly";
+    public WrapOutOnly(SectionBase section) : base(section, nameOfClass, true) {
+      Tabs = new List<string> { ResultTabName };// 
+      TabSelected = ResultTabName;
+    }
+
+
+    public override ITag GetStart(ITag contents) { return Tag.RawHtml(
+      "\n",
+      Comment(nameOfClass),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
       Tag.H4(ResultTitle)
     ); }
