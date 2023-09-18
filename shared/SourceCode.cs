@@ -31,6 +31,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string FormulaField = "Formula";
   private const string FormulasTabName = "Formulas";
 
+  private const string IgnoreSourceFile = "ignore";
+
   #endregion
 
   #region Init / Dependencies
@@ -158,7 +160,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   }
 
   private string TryToGetTabsFromSource(string file) {
-    if (!file.Has()) return null;
+    if (!file.Has() || file == IgnoreSourceFile) return null;
     var srcPath = file.Replace("\\", "/").BeforeLast("/");
     var src = GetFileAndProcess(file).Contents;
     if (src.Contains("Tut.Tabs=")) {
