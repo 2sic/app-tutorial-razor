@@ -1,10 +1,10 @@
 @inherits Custom.Hybrid.RazorTyped
-<hide-silent>
-@{
+@{/*! Tut.Tabs=ViewConfig */
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
   // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
-  var MyItem = AsItem(App.GetQuery("QuickRef-Persons-Selected"));
-}
+  var tutCode = MyModel.Code("Tutorial");
+  var MyItem = AsItem(tutCode.SimulateViewContent(query: "QuickRef-Persons-Selected") as object);
+/*!*/}
 </hide-silent>
 <h4>Use <code>.Child("Awards")</code> to get one</h4>
 <ol>
@@ -31,4 +31,3 @@
     <li>Award: @award.String("Name")</li>
   }
 </ol>
-
