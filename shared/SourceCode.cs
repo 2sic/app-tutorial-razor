@@ -1,3 +1,4 @@
+using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
@@ -24,6 +25,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string InDepthField = "InDepthExplanation";
   private const string InDepthTabName = "In-Depth Explanation";
   private const string ResultTitle = "Result";
+  private const string ViewConfigCode = "ViewConfig";
+  private const string ViewConfigTabName = "View Configuration";
 
   #endregion
 
@@ -153,7 +156,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     var src = GetFileAndProcess(file).Contents;
     if (src.Contains("Tut.Tabs=")) {
       var tabsLine = Text.After(src, "Tut.Tabs=");
-      var tabsString = Text.Before(tabsLine, "\n");
+      var tabsString = Text.Before(Text.Before(tabsLine, "\n"), "*/");
       if (!tabsString.Has()) return null;
       var tabs = tabsString.Split(',')
         .Select(t => {
@@ -242,6 +245,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     internal TabHandlerBase TabHandler;
     internal ITypedItem Item;
     internal string SourceFile;
+    internal ViewConfiguration ViewConfig = new ViewConfiguration();
 
     /// <summary>
     /// The SnippetId must be provided here, so it can be found in the source code later on
@@ -351,24 +355,29 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     // Take a result and if it has a special prefix, process that
     private object FlexibleResult(object result, ITypedItem item = null)
     {
-      // If it's a string such as "file:abc.cshtml" then resolve that first
+      // If it's not a string, then it must be something prepared, typically IHtmlTags; return that
       var strResult = result as string;
       if (strResult == null) return result; 
+
+      // If it's a string such as "file:abc.cshtml" then resolve that first
       if (strResult.StartsWith("file:"))
         return ScParent.ShowFileContents(strResult.Substring(5), withIntro: false, showTitle: 
         true);
 
+      // Handle case "html-img:..."
       if (strResult.StartsWith("html-img:"))
         return ScParent.ShowResultImg(strResult.Substring(9));
       // Optionally add tutorial links if defined in the item
       if (item == null) return result;
 
+      // Handle case Tutorials
       if (strResult == TutorialsTabName) {
         var liLinks = Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
         var olLinks = Tag.Ol(liLinks);
         return olLinks;
       }
 
+      // Handle case Tutorials
       if (strResult == NotesTabName) {
         if (!item.IsNotEmpty("Notes"))
           return "Notes not found";
@@ -383,6 +392,16 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         return notesHtml;
       }
 
+      // Handle Case ViewConfig
+      if (strResult == ViewConfigCode) {
+        return Tag.Div().Wrap(
+          Tag.H4(ViewConfigTabName),
+          Tag.P("This is how this view would be configured for this sample."),
+          ViewConfig.TabContents()
+        );
+      }
+
+      // Other cases - just return original - could be the label or a prepared string
       return result;
     }
 
@@ -450,6 +469,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     protected List<string> OptimizeTabNames(List<string> original) {
       return original.Select(n => {
         if (n == "R14" || n == "Rzr14") return "Razor14 and older";
+        if (n == ViewConfigCode) return ViewConfigTabName;
         if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
         if (n == InDepthField) return InDepthTabName;
         return n;
@@ -765,6 +785,27 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #endregion
 
+  #region ViewConfiguration
+
+  /// <summary>
+  /// How the view is supposedly configured
+  /// </summary>
+  internal class ViewConfiguration {
+    public string ContentType;
+    public IEntity ContentItem;
+    public string PresentationType;
+    public string PresentationItem;
+    public bool IsList;
+
+    public ITag TabContents() {
+      var configList = Tag.Ul();
+      if (ContentType.Has()) configList.Add(Tag.Li("Content/Item ContentType: " + ContentType));
+      if (ContentItem != null) configList.Add(Tag.Li("Content/Item Demo-Item: " + ContentItem.Get("EntityTitle") + " (ID: " + ContentItem.EntityId + ")"));
+      return configList;
+    }
+  }
+
+  #endregion
   
 
   #region Reference / CheatSheet
@@ -815,6 +856,29 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         ScParent.Log.Add("Replace tab contents with (new): " + tabs.Count());
         TabHandler.ReplaceTabContents(tabs.ToList());
       }
+    }
+
+    public IEnumerable<IEntity> SimulateViewContent(string type = null, string query = null, string stream = null) {
+      // Prepare: Verify the Tab "ViewConfig" was specified
+      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
+        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
+
+      // Case 1: Get Content-Type
+      // TODO:
+
+
+      // Case 2: Get a query, possibly a stream
+      if (query != null) {
+        var q = ScParent.App.GetQuery("QuickRef-Persons-Selected");
+        var s = q.GetStream(stream).List; // should work for both null and "some-name"
+        if (s.Any()) {
+          var first = s.First();
+          ViewConfig.ContentType = first.Type.Name;
+          ViewConfig.ContentItem = first;
+        }
+        return s;
+      }
+      return null;
     }
   }
 
