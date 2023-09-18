@@ -799,15 +799,33 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   internal class ViewConfiguration {
     public string ContentType;
-    public IEntity ContentItem;
+    public IEntity DemoItem;
+    public List<IEntity> ContentList;
     public string PresentationType;
     public string PresentationItem;
+    public string HeaderType;
+    public IEntity HeaderItem;
     public bool IsList;
 
     public ITag TabContents() {
       var configList = Tag.Ul();
       if (ContentType.Has()) configList.Add(Tag.Li("Content/Item ContentType: ", Tag.Strong(ContentType)));
-      if (ContentItem != null) configList.Add(Tag.Li("Content/Item Demo-Item: ", Tag.Strong(ContentItem.Get("EntityTitle")), " (ID: " + ContentItem.EntityId + ")"));
+      if (DemoItem != null) configList.Add(Tag.Li("Content/Item Demo-Data: ", Tag.Strong(DemoItem.Get("EntityTitle")), " (ID: " + DemoItem.EntityId + ")"));
+
+      // List & Header
+      if (IsList) configList.Add(Tag.Li("Content/Item IsList: ", Tag.Strong(IsList.ToString())));
+      if (ContentList != null) configList.Add(
+        Tag.Li(
+          "Content/Item Data: ",
+          Tag.Ol(
+            ContentList.Select(ent => Tag.Li(Tag.Strong(ent.Get("EntityTitle")), " (ID: " + ent.EntityId + ")"))
+          )
+        )
+      );
+      if (HeaderType.Has()) configList.Add(Tag.Li("Header Type: ", Tag.Strong(HeaderType)));
+      if (HeaderItem != null) configList.Add(Tag.Li("Header Item: ", Tag.Strong(HeaderItem.Get("EntityTitle")), " (ID: " + HeaderItem.EntityId + ")"));
+
+      // TODO: HEADER
       return configList;
     }
   }
@@ -865,36 +883,62 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
     }
 
-    public IEntity SimulateViewContent(string type = null, string nameId = null, string query = null, string stream = null) {
-      var l = Log.Call<IEntity>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
+    private IEnumerable<IEntity> GetListForSimulate(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEnumerable<IEntity>>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
       // Prepare: Verify the Tab "ViewConfig" was specified
       if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 
       // Case 1: Get Content-Type
       if (type != null) {
-        var data = ScParent.App.Data[type];
+        var data = ScParent.App.Data[type].List;
         if (!data.Any()) throw new Exception("Trying to simulate view content - but type returned no data");
         // TODO: get by nameid
-        var first = data.First();
-        ViewConfig.ContentType = type;
-        ViewConfig.ContentItem = first;
-        return l(first, "ok");
+        return l(data, "ok");
       }
 
       // Case 2: Get a query, possibly a stream
       if (query != null) {
-        var q = ScParent.App.GetQuery("QuickRef-Persons-Selected");
-        var s = q.GetStream(stream).List; // should work for both null and "some-name"
-        if (!s.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
-        var first = s.First();
-        ViewConfig.ContentType = first.Type.Name;
-        ViewConfig.ContentItem = first;
-        return l(first, "ok");
+        var q = ScParent.App.GetQuery(query);
+        var data = q.GetStream(stream).List; // should work for both null and "some-name"
+        if (!data.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
+        return l(data, "ok");
       }
-      return l(null, "null");
+      return l(null, null);
     }
+
+    public IEntity SimulateViewContent(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEntity>();
+      var list = GetListForSimulate(type, nameId, query, stream);
+      var first = list.First();
+      ViewConfig.ContentType = first.Type.Name;
+      ViewConfig.ContentList = list.Take(1).ToList();
+      return l(first, "ok");
+    }
+    public IEntity SimulateViewHeader(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEntity>();
+      var list = GetListForSimulate(type, nameId, query, stream);
+      var first = list.First();
+      ViewConfig.HeaderType = first.Type.Name;
+      ViewConfig.HeaderItem = first;
+      return l(first, "ok");
+    }
+
+    public IEnumerable<IEntity> SimulateViewList(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEnumerable<IEntity>>();
+
+      // Prepare: Set common ViewConfig props
+      ViewConfig.IsList = true;
+      
+      var list = GetListForSimulate(type, nameId, query, stream);
+      ViewConfig.ContentType = list.First().Type.Name;
+      ViewConfig.ContentList = list.ToList();
+      return l(list, "ok");
+    }
+
   }
+
+
 
   #endregion
 
