@@ -1,8 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @{/*! Tut.Tabs=Generated HTML Left,Generated HTML Right,ViewConfig */
   var tutCode = DynamicModel.Tutorial;
-  var Content = AsDynamic(tutCode.SimulateViewContent(type: "ImgDemoData") as object);
-  @GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()
+  var Content = AsDynamic(tutCode.SimulateViewContent(type: "ImgDemoData", nameId: "car-oldtimer") as object);
 /*!*/}
 <div class="row">
   <div class="col-md">

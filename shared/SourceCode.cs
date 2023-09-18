@@ -901,22 +901,28 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 
+      IEnumerable<IEntity> data = null;
+
       // Case 1: Get Content-Type
       if (type != null) {
-        var data = ScParent.App.Data[type].List;
+        data = ScParent.App.Data[type].List;
         if (!data.Any()) throw new Exception("Trying to simulate view content - but type returned no data");
-        // TODO: get by nameid
-        return l(data, "ok");
       }
 
       // Case 2: Get a query, possibly a stream
       if (query != null) {
         var q = ScParent.App.GetQuery(query);
-        var data = q.GetStream(stream).List; // should work for both null and "some-name"
+        data = q.GetStream(stream).List; // should work for both null and "some-name"
         if (!data.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
-        return l(data, "ok");
       }
-      return l(null, null);
+
+      if (nameId != null) {
+        var ent = data.First(e => e.Get<string>("NameId") == nameId);
+        data = new List<IEntity> { ent };
+      }
+
+      // TODO: get by nameid
+      return l(data, "ok");
     }
 
     public IEntity SimulateViewContent(string type = null, string nameId = null, string query = null, string stream = null) {

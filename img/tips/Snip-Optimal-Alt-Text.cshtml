@@ -2,8 +2,7 @@
 @using ToSic.Razor.Blade;
 @{/*! Tut.Tabs=Generated HTML,ViewConfig */
   var tutCode = DynamicModel.Tutorial;
-  var Content = AsDynamic(tutCode.SimulateViewContent(type: "ImgDemoData") as object);
-  @GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()
+  var Content = AsDynamic(tutCode.SimulateViewContent(type: "ImgDemoData", nameId: "car-oldtimer") as object);
 /*!*/}
 @{
   var fallbackAltText = "Fallback";
