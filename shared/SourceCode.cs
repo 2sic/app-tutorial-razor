@@ -303,8 +303,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       // If we have any results, add them here; Very often there are none left
       foreach (var m in results) {
+        string name;
         // Find Name and Log Stuff
-        var name = names.ElementAt(nameCount);// BsTabs.GetTabName(nameCount);// + 1));
+
+        name = names.ElementAt(nameCount);// BsTabs.GetTabName(nameCount);// + 1));
         nameCount++;
         var msg = "tab name: " + name + " (" + nameCount + ")";
         Log.Add(msg);
@@ -503,8 +505,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         if (useKeys)
           list.AddRange(Tabs.Keys);
         else {
-          if (_replaceTabContents != null)
+          if (_replaceTabContents != null) {
             list.AddRange(_replaceTabContents);
+            // If the tabs have more entries - eg "ViewConfiguration" - then add that at the end as well
+            if (Tabs.Values.Count() > _replaceTabContents.Count())
+              list.AddRange(Tabs.Values.Skip(_replaceTabContents.Count()));
+          }
           else
             list.AddRange(Tabs.Values);
         }
@@ -548,7 +554,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public void ReplaceTabContents(List<object> replacement) {
       var l = Log.Call("replacement: " + (replacement == null ? "null" : "" + replacement.Count()));
       _replaceTabContents = replacement;
-      _tabContents = null;
+      _tabContents = null;  // Reset so it will be regenerated
       l("ok");
     }
     private List<object> _replaceTabContents;
@@ -838,10 +844,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// End Snip, but manually specify the content to be added
     /// </summary>
     public ITag SnipEnd(params object[] generated) {
-      var l = ScParent.Log.Call<ITag>(TabHandler.TabContentsDebug);
+      var l = Log.Call<ITag>(TabHandler.TabContentsDebug);
 
       if (generated != null && generated.Any()) {
-        ScParent.Log.Add("Replace tab contents with: " + generated.Count());
+        Log.Add("Replace tab contents with: " + generated.Count());
         TabHandler.ReplaceTabContents(generated.ToList());
       }
 
@@ -854,19 +860,27 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     /// <param name="tabs"></param>
     public void SetTabContents(params object[] tabs) {
       if (tabs != null & tabs.Any()) {
-        ScParent.Log.Add("Replace tab contents with (new): " + tabs.Count());
+        Log.Add("Replace tab contents with (new): " + tabs.Count());
         TabHandler.ReplaceTabContents(tabs.ToList());
       }
     }
 
-    public IEntity SimulateViewContent(string type = null, string query = null, string stream = null) {
+    public IEntity SimulateViewContent(string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEntity>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
       // Prepare: Verify the Tab "ViewConfig" was specified
       if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 
       // Case 1: Get Content-Type
-      // TODO:
-
+      if (type != null) {
+        var data = ScParent.App.Data[type];
+        if (!data.Any()) throw new Exception("Trying to simulate view content - but type returned no data");
+        // TODO: get by nameid
+        var first = data.First();
+        ViewConfig.ContentType = type;
+        ViewConfig.ContentItem = first;
+        return l(first, "ok");
+      }
 
       // Case 2: Get a query, possibly a stream
       if (query != null) {
@@ -876,9 +890,9 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         var first = s.First();
         ViewConfig.ContentType = first.Type.Name;
         ViewConfig.ContentItem = first;
-        return first;
+        return l(first, "ok");
       }
-      return null;
+      return l(null, "null");
     }
   }
 
