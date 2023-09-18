@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
-@*!
-Tut.Tabs=Generated HTML
-!*@
-@{/*!*/
-  var Content = AsList(App.Data["ImgDemoData"]).FirstOrDefault();
-  GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc();
+@{/*! Tut.Tabs=Generated HTML,ViewConfig */
+  var tutCode = DynamicModel.Tutorial;
+  var Content = AsDynamic(tutCode.SimulateViewContent(type: "ImgDemoData") as object);
+  @GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()
 /*!*/}
 @{
   var fallbackAltText = "Fallback";
