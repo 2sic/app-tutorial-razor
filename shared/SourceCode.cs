@@ -384,8 +384,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       // Handle case Tutorials
       if (strResult == NotesTabName) {
-        if (!item.IsNotEmpty("Notes"))
-          return "Notes not found";
+        if (!item.IsNotEmpty("Notes")) return "Notes not found";
 
         var notesHtml = item.Children("Notes").Select(tMd => Tag.RawHtml(
           "\n    ",
@@ -952,7 +951,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   {
     private const string nameOfClass = "WrapOutOnly";
     public WrapOutOnly(SectionBase section) : base(section, nameOfClass, true) {
-      Tabs = new List<string> { ResultTabName };// 
+      Tabs = new List<string> { ResultTabName };
       TabSelected = ResultTabName;
     }
 

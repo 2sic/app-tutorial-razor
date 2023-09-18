@@ -29,47 +29,15 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
+@*
+  TODO: @2dm
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "formulas-basic-page" })
+
 
 @Sys.SourceCode.Formula("basic-intro").ShowAll()
 
-
-
-<h3>How to Add a New Formula</h3>
-<p>
-  For this example we'll create a formula, that makes the description field visible, once the title has been set.
-  <br>
-  First: Enter the Debug mode by pressing <code>CTRL</code>, <code>Shift</code>, <code>Alt</code> and <code>clicking</code> on a 2sxc dialog.
-  <br>
-  Navigate to the items of your content type in 2sxc.
-  Click on a item and press the Formulas button.
-</p>
-
-@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-open.png", 300, 200)
-
-<p>
-  This should bring up the formulas editor.
-  Select the attribute from the dropdown, on which the formula should be set.
-</p>
-@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-attribute.png", 300, 200)
-
-<p>
-  Select the formula target from the next dropdown.
-  Depending on the chosen attribute available targets can vary due to the content type.
-</p>
-@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-target.png", 300, 200)
-
-<p>
-  Click on edit to make the formula function editable.
-</p>
-@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-edit.png", 300, 150)
-
-<p>
-  Now you can write your formula function and test it by clicking on the run button.
-  You will see a change in the current edit form and the result after running it.
-</p>
-@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/formulas-run.png", 300, 200)
-
-<p>You can access other attributes using the passed data. See <a href="https://docs.2sxc.org/js-code/edit-form/formulas/data.html">data</a> and <a href="https://docs.2sxc.org/js-code/edit-form/formulas/context.html">context</a> object docs for additional information.</p>
 
 
 @* Footer *@
