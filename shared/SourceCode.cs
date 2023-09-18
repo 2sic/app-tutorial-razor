@@ -802,7 +802,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public IEntity DemoItem;
     public List<IEntity> ContentList;
     public string PresentationType;
-    public string PresentationItem;
+    public List<IEntity> PresentationList;
     public string HeaderType;
     public IEntity HeaderItem;
     public bool IsList;
@@ -818,7 +818,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         Tag.Li(
           "Content/Item Data: ",
           Tag.Ol(
-            ContentList.Select(ent => Tag.Li(Tag.Strong(ent.Get("EntityTitle")), " (ID: " + ent.EntityId + ")"))
+            ContentList.Select((ent, i) => Tag.Li(
+              Tag.Strong(ent.Get("EntityTitle")),
+              " (ID: " + ent.EntityId + ")",
+              PresentationList != null && PresentationList.Count() > 0
+                ? " - Presentation: " + PresentationList.ElementAt(i).Get("EntityTitle") + " (ID: " + PresentationList.ElementAt(i).EntityId + ")"
+                : null
+            ))
           )
         )
       );
@@ -933,6 +939,22 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       var list = GetListForSimulate(type, nameId, query, stream);
       ViewConfig.ContentType = list.First().Type.Name;
       ViewConfig.ContentList = list.ToList();
+      return l(list, "ok");
+    }
+    public IEnumerable<IEntity> SimulateViewPresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
+      var l = Log.Call<IEnumerable<IEntity>>();
+
+      // Prepare: Set common ViewConfig props
+      ViewConfig.IsList = true;
+      
+      var list = GetListForSimulate(type, nameId, query, stream);
+      ViewConfig.PresentationType = list.First().Type.Name;
+
+      if (list.Count() < myItems.Count()) {
+        var pad = padWithNull ? (IEntity)null : list.First();
+        list = list.Concat(Enumerable.Repeat(pad, myItems.Count() - list.Count()));
+      }
+      ViewConfig.PresentationList = list.ToList();
       return l(list, "ok");
     }
 

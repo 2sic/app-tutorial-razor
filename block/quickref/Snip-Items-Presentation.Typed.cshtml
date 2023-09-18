@@ -1,22 +1,21 @@
 @inherits Custom.Hybrid.RazorTyped
-<hide-silent>
-@{
+@{/*! Tut.Tabs=ViewConfig */
   // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyItems`, `Presentation` etc. work like on a normal view
-  var data = App.GetQuery("QuickRef-Content-Simulation");
-  var MyItems = AsItems(data.GetStream("Default"));
-  var prepPres = AsItems(data.GetStream("Presentation"));
+  // So we're simulating that `MyData` is the assigned query for this view
+  var tutCode = MyModel.Code("Tutorial");
+  var itemEntities = tutCode.SimulateViewList(query: "QuickRef-Content-Simulation");
+  var MyItems = AsItems(itemEntities as object);
+  var prepPres = AsItems(tutCode.SimulateViewPresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
   var presCount = 0;
-}
-</hide-silent>
+/*!*/}
 <ul>
   @foreach (var item in MyItems) {
     var pres = item.Presentation;
     <hide-silent>
-      @{
-        /* Silent patching for tutorial only, as it's not a standalone view */ 
-        pres = prepPres.Skip(presCount++).FirstOrDefault() ?? prepPres.First();
-      }
+    @{
+      /* Silent patching for tutorial only, as it's not a standalone view */ 
+      pres = prepPres.Skip(presCount++).First();
+    }
     </hide-silent>
     var hType = pres.String("HeadingType");
     var title = item.Title + (pres.Bool("Highlight") ? " 🌟" : "");
