@@ -1,17 +1,16 @@
 @inherits Custom.Hybrid.RazorTyped
-<hide-silent>
-@{
-  var data = App.GetQuery("QuickRef-Content-Simulation");
-  var MyItem = AsItem(data.GetStream("Default"));
-  var prepPres = AsItem(data.GetStream("Presentation"));
-}
-</hide-silent>
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
+  var MyItem = AsItem(itemEntities as object);
+  var prepPres = AsItem(viewCnf.PresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
+/*!*/}
 <h4>A Person on <code>MyItem</code></h4>
 @{
   var itemPres = MyItem.Presentation;
 }
 <hide-silent>
-  @{ itemPres = prepPres; /* Silent patching for tutorial only, as it's not a standalone view */ }
+@{ itemPres = prepPres; /* Silent patching for tutorial only, as it's not a standalone view */ }
 </hide-silent>
 <p>
   Note that the following should be @itemPres.String("Color") (probably green)

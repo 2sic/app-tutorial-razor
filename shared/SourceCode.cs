@@ -1011,9 +1011,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
     }
 
-    public IEnumerable<IEntity> SimulateViewList(string type = null, string nameId = null, string query = null, string stream = null) {
-      return ViewConfig.List(type, nameId, query, stream);
-    }
     public IDataSource SimulateViewQuery(string query = null, string stream = null) {
       return ViewConfig.Query(query, stream);
     }

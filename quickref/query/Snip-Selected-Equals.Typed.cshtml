@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*! Tut.Tabs=ViewConfig */
-  var tutCode = MyModel.Code("Tutorial");
-  var MyData = tutCode.SimulateViewQuery(query: "QuickRef-Persons-Selected") as ToSic.Eav.DataSource.IDataSource;
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyData = viewCnf.Query(query: "QuickRef-Persons-Selected") as ToSic.Eav.DataSource.IDataSource;
 /*!*/}
 @{
   var selected = AsItem(MyData.GetStream("Selected"));

@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
-<hide-silent>
-@{
-  var Data = App.GetQuery("QuickRef-Persons-Selected");
-}
-</hide-silent>
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Data = viewCnf.Query(query: "QuickRef-Persons-Selected");
+/*!*/}
 <h4>Loop persons which were added to this view</h4>
 <ul>
 @foreach (var person in AsList(Data)) {
