@@ -17,12 +17,6 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-@{ var specs = Sys.SourceCode.Formulas.Specs(
-  title: "Group visibility",
-  instructions: "This formula determines the visibility of the Advanced settings group. The group becomes visible, when the Advanced toggle is active.",
-  contentType: "FormulasVisibleGroup",
-  field: "AdvancedSettings"
-);}
 @Sys.SourceCode.Formula("group-visible").ShowAll()
 
 

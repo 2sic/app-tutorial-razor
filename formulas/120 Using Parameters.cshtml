@@ -44,61 +44,21 @@
 @Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
 <p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
 
+@((snip = Sys.SourceCode.Formula("parameters-ephemeral")).ShowAll())
 
-<h3>Ephemeral field </h3>
-@((snip = Sys.SourceCode.Formula("parameters-ephemeral")).SnipStart())
-  Button which doesn't tell the form anything:
-  @Kit.Toolbar.Empty().New("FormulasEphemeral", ui: Sys.SourceCode.Formulas.Icon()).AsTag()
-  <br>
-  Button which will tell the form to show advanced:
-  @Kit.Toolbar.Empty().New("FormulasEphemeral",
-    ui: Sys.SourceCode.Formulas.Icon(),
-    prefill:"VarShowAdvanced=true"
-  ).AsTag()
-<hide-silent>
-<p>
-  <code>VarShowAdvanced</code> is an ephemeral field and thus not saved in the database. 
-  This formula determines the visibility of the Advanced Settings group. 
-  The group becomes visible, when the VarShowAdvanced toggle is active.
-  <br>
-  <em>Click on the (Σ) button above to see the edit-UI with the formula. </em>
-</p>
-</hide-silent>
-@snip.SnipEnd()
-
-
+<hr>
 
 <h3>Configure edit form UI using parameters</h3>
 <p>
-  In 2sxc v14 we added <code>data.parameters.*</code> which contains all parameters given in the prefill.
+  In 2sxc v15 we added <code>data.parameters.*</code> which contains all parameters given in the <code>FormParameters</code>.
 </p>
 <p>
   By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This
   enables a editing experience matching the page context.
 </p>
 
-@((snip = Sys.SourceCode.Formula("parameters-basic")).SnipStart())
-  <code>prefill:showAdvanced=true</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters",
-    ui: Sys.SourceCode.Formulas.Icon(),
-    prefill: "showAdvanced=true"
-  ).AsTag()
-  <br>
-  <code>prefill:showAdvanced=false</code>:
-  @Kit.Toolbar.Empty().New("FormulasParameters",
-    ui: Sys.SourceCode.Formulas.Icon(),
-    prefill: "showAdvanced=false"
-  ).AsTag()
-<hide-silent>
-  <p>
-    <code>showAdvanced</code> is a parameter, that was passed with the toolbar prefill.
-    This formula determines the visibility of the Advanced Settings group.
-    The group becomes visible, when the passed <code>showAdvanced</code> parameter is true.
-    <br>
-    <em>Click on the (Σ) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
-  </p>
-</hide-silent>
-@snip.SnipEnd()
+@Sys.SourceCode.Formula("parameters-basic").ShowAll()
+
 
 
 

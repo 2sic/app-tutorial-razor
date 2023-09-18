@@ -53,12 +53,30 @@ public class SourceCodeFormulas: Custom.Hybrid.CodeTyped
   }
 
   public ITag Intro(ITypedItem item) {
-    var wrapper = Tag.RawHtml(Tag.H3(
-      item.IsNotEmpty("TitleInResults")
+    // Start wrapper with title / instructions
+    var wrapper = Tag.RawHtml(
+      Tag.H3(item.IsNotEmpty("TitleInResults")
         ? item.String("TitleInResults") + " " 
-        : "Try it: "),
-      DemoToolbar(item, null, item.String("Parameters")).AsTag()
+        : "Try it: "
+      )
     );
+
+    // Create buttons for each line of parameters
+    if (item.IsNotEmpty("Parameters")) {
+      var parameters = item.String("Parameters");
+      // Split parameters by lines
+      var list = parameters.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+      foreach (var line in list) {
+        // split the line into label and value separated by "|"
+        var parts = line.Split('|');
+        var hasLabel = parts.Length > 1;
+        var label = parts[0] + " ";
+        var value = hasLabel ? parts[1] : parts[0];
+        wrapper = wrapper.Add(hasLabel ? label : null, Tag.Code(value), " ", DemoToolbar(item, null, value).AsTag(), Tag.Br());
+      }
+    } else {
+      wrapper = wrapper.Add(DemoToolbar(item, null, null).AsTag());
+    }
     
     if (item.IsNotEmpty("Instructions"))
       wrapper = wrapper.Add(item.String("Instructions"), Tag.Br());
@@ -112,7 +130,7 @@ public class SourceCodeFormulas: Custom.Hybrid.CodeTyped
   
   // also used in the 100 basics formula tests
   public dynamic DemoToolbar(ITypedItem item, string moreUi = null, string moreParams = null) {
-    return Kit.Toolbar.Empty().New(item.String("ContentType"), ui: new object[] { new { icon = iconSvg }, moreUi }, parameters: item.String("Parameters"));
+    return Kit.Toolbar.Empty().New(item.String("ContentType"), ui: new object[] { new { icon = iconSvg }, moreUi }, parameters: moreParams);
   }
 
 }

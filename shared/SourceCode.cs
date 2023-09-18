@@ -739,7 +739,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public ITag ShowAll() {
       var result = Tag.RawHtml(
         ScParent.Formulas.Header(Specs),
-        SnipStart("formula-" + Guid.NewGuid().ToString()),
+        SnipStart(), //"formula-" + Guid.NewGuid().ToString()),
         ScParent.Formulas.Intro(Specs),
         SnipEnd()
       );
@@ -755,12 +755,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return TabsBeforeContent();
     }
 
-    public override ITag SnipEnd()
-    {
-      var l = ScParent.Log.Call<ITag>();
-      var result = SnipEndFinal();
-      return l(result, "ok");
-    }
+    public override ITag SnipEnd() { return SnipEndFinal(); }
   }
 
   internal class TabHandlerFormula: TabHandlerBase
