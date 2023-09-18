@@ -29,34 +29,6 @@
 
 <h2>Standard TagToolbar</h2>
 
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./130-toolbar-workflow.js")).SnipStart())
-  @{
-      var standardToolbar = Kit.Toolbar.Empty().New("UiEmptyHelloWorld").Settings(show: "always");
-    }
-  <div class="alert alert-primary" style="width: 100%;">
-    <div id='tagWithToolbar' @standardToolbar>
-      Float over this box to get a (+) button. 
-      When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
-      Instead, you'll see console messages that a custom JS took over the process.
-    </div>
-  </div>
-@snip.SnipEnd()
-
-
-<h2>Standard Inline Toolbar</h2>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./130-toolbar-workflow.js")).SnipStart())
-  <div class="alert alert-primary" style="width: 100%;">
-      <div id='inlineToolbar'>
-        @Kit.Toolbar.Empty().New("UiEmptyHelloWorld").AsTag()
-        When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
-        Instead, you'll see console messages that a custom JS took over the process.
-      </div>
-    </div>
-
-@snip.SnipEnd()
-
-
 <hide>
   <h2>More Stuff</h2>
   <div>

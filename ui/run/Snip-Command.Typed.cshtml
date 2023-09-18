@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:../160-cms-run-commands.js
+!*@
+<div class="alert alert-primary" style="width: 50%;">
+    The following command will open an edit dialog. 
+    When you click it and close the dialog again, the page will <em>not refresh</em>. <br>
+    Instead, you'll see console messages that a custom JS took over the process. <br>
+
+    <a href="#" onclick="openAndCancelRefreshAfterwards(this, event, 'new', { contentType: 'UiEmptyHelloWorld'})">👉 Run open command</a>
+</div>
+
+<script src="@App.Folder.Url/ui/160-cms-run-commands.js" @Kit.Page.AssetAttributes()></script>
