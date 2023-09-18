@@ -1,12 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
-<hide-silent>
-@{
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyData` is the assigned query for this view
-  var MyData = App.GetQuery("QuickRef-Persons-Selected");
-}
-</hide-silent>
-
+@{/*! Tut.Tabs=ViewConfig */
+  var tutCode = MyModel.Code("Tutorial");
+  var MyData = tutCode.SimulateViewQuery(query: "QuickRef-Persons-Selected") as ToSic.Eav.DataSource.IDataSource;
+/*!*/}
 <h4>Loop persons in Query of this view</h4>
 <ul>
   @foreach (var person in AsItems(MyData)) {

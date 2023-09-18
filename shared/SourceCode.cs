@@ -1,4 +1,5 @@
 using ToSic.Eav.Data;
+using ToSic.Eav.DataSource;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
@@ -806,6 +807,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public string HeaderType;
     public IEntity HeaderItem;
     public bool IsList;
+    public string QueryName;
+
 
     public ITag TabContents() {
       var configList = Tag.Ul();
@@ -831,7 +834,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (HeaderType.Has()) configList.Add(Tag.Li("Header Type: ", Tag.Strong(HeaderType)));
       if (HeaderItem != null) configList.Add(Tag.Li("Header Item: ", Tag.Strong(HeaderItem.Get("EntityTitle")), " (ID: " + HeaderItem.EntityId + ")"));
 
-      // TODO: HEADER
+      // Query
+      if (QueryName.Has()) configList.Add(Tag.Li("Query: ", Tag.Strong(QueryName)));
+
+      // TODO: Query
       return configList;
     }
   }
@@ -941,6 +947,19 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       ViewConfig.ContentList = list.ToList();
       return l(list, "ok");
     }
+    public IDataSource SimulateViewQuery(string query = null, string stream = null) {
+      var l = Log.Call<IDataSource>();
+
+      // Prepare: Verify the Tab "ViewConfig" was specified
+      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
+        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
+
+      var q = ScParent.App.GetQuery(query);
+      ViewConfig.QueryName = query;
+      return l(q, "ok");
+    }
+
+
     public IEnumerable<IEntity> SimulateViewPresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
       var l = Log.Call<IEnumerable<IEntity>>();
 
