@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*! Tut.Tabs=ViewConfig */
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyData` is the assigned query for this view
-  var tutCode = MyModel.Code("Tutorial");
-  var itemEntities = tutCode.SimulateViewList(query: "QuickRef-Content-Simulation");
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
   var MyItems = AsItems(itemEntities as object);
-  var prepPres = AsItems(tutCode.SimulateViewPresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
+  var prepPres = AsItems(viewCnf.PresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
   var presCount = 0;
 /*!*/}
 <ul>

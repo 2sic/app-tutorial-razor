@@ -941,7 +941,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       return l(q, "ok");
     }
 
-    public IEnumerable<IEntity> SimulateViewPresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
+    public IEnumerable<IEntity> PresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
       var l = Log.Call<IEnumerable<IEntity>>();
 
       var list = GetListForSimulate(type, nameId, query, stream);
@@ -1011,53 +1011,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       }
     }
 
-    private IEnumerable<IEntity> GetListForSimulate(string type = null, string nameId = null, string query = null, string stream = null) {
-      var l = Log.Call<IEnumerable<IEntity>>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
-      // Prepare: Verify the Tab "ViewConfig" was specified
-      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
-        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
-
-      IEnumerable<IEntity> data = null;
-
-      // Case 1: Get Content-Type
-      if (type != null) {
-        data = ScParent.App.Data[type].List;
-        if (!data.Any()) throw new Exception("Trying to simulate view content - but type returned no data");
-      }
-
-      // Case 2: Get a query, possibly a stream
-      if (query != null) {
-        var q = ScParent.App.GetQuery(query);
-        data = q.GetStream(stream).List; // should work for both null and "some-name"
-        if (!data.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
-      }
-
-      if (nameId != null) {
-        var ent = data.First(e => e.Get<string>("NameId") == nameId);
-        data = new List<IEntity> { ent };
-      }
-
-      // TODO: get by nameid
-      return l(data, "ok");
-    }
-
-    public IEntity SimulateViewContent(string type = null, string nameId = null, string query = null, string stream = null) {
-      return ViewConfig.Content(type, nameId, query, stream);
-    }
-  
-    public IEntity SimulateViewHeader(string type = null, string nameId = null, string query = null, string stream = null) {
-      return ViewConfig.Header(type, nameId, query, stream);
-    }
-
     public IEnumerable<IEntity> SimulateViewList(string type = null, string nameId = null, string query = null, string stream = null) {
       return ViewConfig.List(type, nameId, query, stream);
     }
     public IDataSource SimulateViewQuery(string query = null, string stream = null) {
       return ViewConfig.Query(query, stream);
-    }
-
-    public IEnumerable<IEntity> SimulateViewPresList(IEnumerable<IEntity> myItems, bool padWithNull = true, string type = null, string nameId = null, string query = null, string stream = null) {
-      return ViewConfig.SimulateViewPresList(myItems, padWithNull, type, nameId, query, stream);
     }
 
   }

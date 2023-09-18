@@ -1,9 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*! Tut.Tabs=ViewConfig */
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyData` is the assigned query for this view
-  var tutCode = MyModel.Code("Tutorial");
-  var MyItems = AsItems(tutCode.SimulateViewList(query: "QuickRef-Persons-Selected") as object);
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyItems = AsItems(viewCnf.List(query: "QuickRef-Persons-Selected") as object);
 /*!*/}
 <h4>Loop persons which were added to this view</h4>
 <ul>

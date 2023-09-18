@@ -1,9 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*! Tut.Tabs=ViewConfig */
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyItem` is a person, even if in the tutorial setup it may not be
-  var tutCode = MyModel.Code("Tutorial");
-  var MyItem = AsItem(tutCode.SimulateViewContent(query: "QuickRef-Persons-Selected") as object);
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyItem = AsItem(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
 /*!*/}
 <h4>Douglas Adams, the current item (MyItem)</h4>
 @{

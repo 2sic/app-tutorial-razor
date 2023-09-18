@@ -1,9 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @{/*! Tut.Tabs=ViewConfig */
-  // Patch so the tutorial works reliably even if the main module had data added which are not a person
-  // So we're simulating that `MyData` is the assigned query for this view
-  var tutCode = DynamicModel.Tutorial;
-  var Content = AsDynamic(tutCode.SimulateViewContent(query: "QuickRef-Persons-Selected") as object);
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
 /*!*/}
 @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")
 <ul>
