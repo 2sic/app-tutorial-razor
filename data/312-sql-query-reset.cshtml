@@ -29,7 +29,9 @@
 </div>
 
 
-@((snip = Sys.SourceCode.Intro()).SnipStart())
+<h3>Files from the current Portal</h3>
+
+@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
  @{
     // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
     var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
@@ -38,19 +40,7 @@
     // This case doesn't set parameters, so we're using the defaults (current site)
     var query = Kit.Data.GetQuery(queryName);
     var currentFiles = AsList(query);
-
-    // Get a fresh query, so we can use again with other parameters
-    query = Kit.Data.GetQuery(queryName, parameters: new { 
-      SiteId = CmsContext.Platform.Name == "Dnn" ? 0 : 1
-    });
-    var rootFiles = AsList(query);
   }
-@snip.SnipEnd()
-
-
-<h3>Files from the current Portal</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
   <ul>
    @foreach (var file in currentFiles) {
     <li>@file.Name</li>
@@ -64,6 +54,14 @@
 <h3>Files from the root portal</h2>
 
 @((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
+  @{
+    // Get a fresh query, so we can use again with other parameters
+    var rootFilesQuery = Kit.Data.GetQuery(queryName, parameters: new { 
+      SiteId = CmsContext.Platform.Name == "Dnn" ? 0 : 1
+    });
+
+    var rootFiles = AsList(rootFilesQuery);
+  }
   <ul>
    @foreach (var file in rootFiles) {
     <li>@file.Name</li>

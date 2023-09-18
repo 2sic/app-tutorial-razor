@@ -24,7 +24,7 @@
 
 <h3>Content-Type Information</h3>
 
-@((snip = Sys.SourceCode.Intro()).SnipStart())
+@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   @{
     var type = AsEntity(Content).Type;
     var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
@@ -32,10 +32,6 @@
     // Check the metadata for the DropdownValues in the type @string-dropdown
     var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
   }
-@snip.SnipEnd()
-
-
-@((snip = Sys.SourceCode.TabsWithSnippet()).SnipStart())
   <ol>
     <li>Type object: <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html" target="_blank">@type 🔗</a></li>
     <li>Type Name: "@type.Name"</li>
