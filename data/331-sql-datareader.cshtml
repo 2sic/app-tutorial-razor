@@ -12,6 +12,7 @@
   @* @2dm TODO Oqtane *@
 </hide>
 
+@* TODO:: @2dm Merged into 310 SLQ-Query Delete File and View *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -22,35 +23,6 @@
     </p>
   </div>
 </div>
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // load the sql connection name from Web.Config
-    // the default connection string for DNN is SiteSqlServer
-    var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
-
-    var con = new SqlConnection(conString);
-    con.Open();
-
-    // You should always write parameters using the @-syntaxt,
-    // and never write them directly into the SQL using string-concatenation
-    // to protect yourself from SQL injection attacks
-    var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
-    command.Parameters.Add("@PortalId", CmsContext.Site.Id);
-    var myReader = command.ExecuteReader();
-  }
-  <ol>
-    @while (myReader.Read())
-    {
-      <li>@myReader["FileName"]</li>
-    }
-  </ol>
-  @{
-    myReader.Close();
-  }
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

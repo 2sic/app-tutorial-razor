@@ -21,149 +21,15 @@
   </div>
 </div>
 
-<trim>
-  <h2>Tree Referencing Children</h2>
-  <p>
-    The <code>TreeBasic</code> DataSource creates a list of entities which point to the <em>children</em>.
-    This is a simple example how to establish relationships between generated data.
-  </p>
-  <p>
-    In this example, every entity has a <code>SubItems</code> property, which contains the IDs of the related <em>children</em>.
-    IDs are a common way to declare relationships, but there are other options as well.
-  </p>
-</trim>
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeBasic.cs")).SnipStart())
-  @{
-    var tree = Kit.Data.GetSource(name: "TreeBasic");
-    var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
-    var rootSubItems = AsList(root.SubItems as object);
-  }
-  <h3>Example Reading some Data</h3>
-  <ul>
-    <li>Root name: @root.Title</li>
-    <li>Root ID: @root.EntityId</li>
-    <li>Item count in <em>field</em> <code>SubItems</code>: @rootSubItems.Count()</li>
-    <li>Title of first child: @rootSubItems.First().EntityTitle</li>
-    <li>
-      Looping through children of Root
-      <ul>
-        @foreach(var child in AsList(root.SubItems as object)) {
-          <li>@child.EntityTitle</li>
-        }
-      </ul>
-    </li>
-  </ul>
-  
-  @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems" })
+@*
+  TODO: @2dg
+  - Add 500 - datasources-relationships-...Typed version open
+  - Add 600 in another accordion datasources-factory-...
+  - remember to use mechanisms to query is known and visible in ViewConfig
 
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-@snip.SnipEnd()
+*@
 
-
-
-<trim>
-  <h2>Tree with Children and Parents</h2>
-  <p>
-    The previous example only allowed navigating <em>down</em> from parent to children.
-    To allow the children to know the parent, we can also provide that relationship.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeBasicWithParents.cs")).SnipStart())
-  @{
-    tree = Kit.Data.GetSource(name: "TreeBasicWithParents");
-    root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
-  }
-  @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
-
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-@snip.SnipEnd()
-
-
-
-<trim>
-  <h2>Relationships without ID #1</h2>
-  <p>
-    The previous example used the <code>Id</code> number of items to establish a relationship.
-    But there are many cases, where no ID-number exists.
-    For example, data coming from a WebService or files might just have a string identifier.
-  </p>
-  <p>
-    The following example establishes the relationship based on a <code>Path</code> string:
-  </p>
-  <ul>
-    <li>Each item has a <code>Path</code> which is a reliably identifier</li>
-    <li>To tell the relationship manager that we have more keys, we must add a <code>RelationshipKeys</code> property</li>
-    <li>The <code>RelationshipKeys</code> can have many keys for advanced reasons, so it's an <code>array</code></li>
-    <li>In this example, we just add the <code>Path</code> to the list of keys</li>
-    <li>In this example, the <em>parent</em> supplies a list of paths which it expects to have as children</li>
-  </ul>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeChildPaths.cs")).SnipStart())
-  @{
-    tree = Kit.Data.GetSource(name: "TreeChildPaths");
-    root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
-  }
-  @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
-
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-@snip.SnipEnd()
-
-
-
-
-<trim>
-  <h2>Relationships without ID #2</h2>
-  <p>
-    The previous example used the <code>Path</code> of children to establish a relationship.
-    But in real life, it's often the <em>other way around</em>.
-    Usually the children know what parent they belong to. 
-    The following example establishes the relationship based on a <em>Parent Path</em> string:
-  </p>
-  <ul>
-    <li>In this example, we just add the <code>parent path</code> to the list of keys</li>
-    <li>Since the <code>own path</code> is used to establish the relationship, it will find all items which have the <code>own path</code> as a relationship key</li>
-  </ul>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeParentPaths.cs")).SnipStart())
-  @{
-    tree = Kit.Data.GetSource(name: "TreeParentPaths");
-    root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
-  }
-  @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
-
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Items", Data = tree })
-@snip.SnipEnd()
-
-
-
-<trim>
-  <h2>Multiple Relationships like Folders and Files</h2>
-  <p>
-    This is a very advanced example, where we create different types of data on different streams and establish relationships.
-  </p>
-  <li>The folders and files all just know about their own data, and about the parent</li>
-  <li>Folders find their subfolders by asking for all items having a key like <code>folder-in:/101</code></li>
-  <li>Folders find their subfiles by asking for all items having a key like <code>file-in:/101</code></li>
-  <li>Folders and files find their parent by asking for all (one expected) items having a key like <code>folder:/</code></li>
-  <li></li>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/TreeFoldersAndFiles.cs")).SnipStart())
-  @{
-    tree = Kit.Data.GetSource(name: "TreeFoldersAndFiles");
-    root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
-  }
-  @Html.Partial("./helpers/Show Tree.cshtml", new { Title = "Show Tree of Data", Root = root, SubNodeNames = "Folders,Files", ParentField = "Parent" })
-
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of All Items", Data = tree })
-
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Folders", Data = tree["Folders"] })
-
-  @Html.Partial("./helpers/Show Data List.cshtml", new { Title = "Flat List of Files", Data = tree["Folders"] })
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "datasources-advanced-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

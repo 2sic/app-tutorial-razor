@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using System.Configuration
+@using System.Data
+@using System.Data.SqlClient
+@{
+  // load the sql connection name from Web.Config
+  // the default connection string for DNN is SiteSqlServer
+  var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
+
+  var con = new SqlConnection(conString);
+  con.Open();
+
+  // You should always write parameters using the @-syntaxt,
+  // and never write them directly into the SQL using string-concatenation
+  // to protect yourself from SQL injection attacks
+  var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
+  command.Parameters.Add("@PortalId", CmsContext.Site.Id);
+  var myReader = command.ExecuteReader();
+}
+<ol>
+  @while (myReader.Read())
+  {
+    <li>@myReader["FileName"]</li>
+  }
+</ol>
+@{
+  myReader.Close();
+}

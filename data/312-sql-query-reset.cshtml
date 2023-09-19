@@ -8,6 +8,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merged into 310 SLQ-Query, Fancybox open *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -27,48 +28,6 @@
 
   </div>
 </div>
-
-
-<h3>Files from the current Portal</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
- @{
-    // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-    var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
-
-    // get the query and ask for the "Default" results as a dynamic List
-    // This case doesn't set parameters, so we're using the defaults (current site)
-    var query = Kit.Data.GetQuery(queryName);
-    var currentFiles = AsList(query);
-  }
-  <ul>
-   @foreach (var file in currentFiles) {
-    <li>@file.Name</li>
-  }
-  </ul>
-@snip.SnipEnd()
-
-  </div>
-</div>
-
-<h3>Files from the root portal</h2>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // Get a fresh query, so we can use again with other parameters
-    var rootFilesQuery = Kit.Data.GetQuery(queryName, parameters: new { 
-      SiteId = CmsContext.Platform.Name == "Dnn" ? 0 : 1
-    });
-
-    var rootFiles = AsList(rootFilesQuery);
-  }
-  <ul>
-   @foreach (var file in rootFiles) {
-    <li>@file.Name</li>
-  }
-  </ul>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -12,6 +12,8 @@
   @* @2dm TODO Oqtane *@
 </hide>
 
+@* TODO:: @2dm Merged into 310 SLQ-Query Delete File and View *@
+
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -22,48 +24,6 @@
     </p>
   </div>
 </div>
-
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // load the sql connection name from Web.Config
-    // the default connection string for DNN is SiteSqlServer
-    var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
-
-    // You should always write parameters using the @-syntaxt,
-    // and never write them directly into the SQL using string-concatenation
-    // to protect yourself from SQL injection attacks
-    const string sqlCommand = "Select Top 10 * from Files Where PortalId = @PortalId";
-
-    // create an adapter object, tell it what to do, and load results into fileTable
-    var adapter = new SqlDataAdapter(sqlCommand, conString);
-    adapter.SelectCommand.Parameters.AddWithValue("@PortalId", CmsContext.Site.Id);
-    var fileTable = new DataTable();
-    adapter.Fill(fileTable);
-  }
-  <ol>
-    @foreach (DataRow row in fileTable.Rows)
-    {
-      <li>@row["FileName"]</li>
-    }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>The top 10 files found in this portal with reverse sorting</h3>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // This applies a default-view with more parameters
-    fileTable.DefaultView.Sort = "FileName DESC";
-  }
-  <ol>
-    @foreach (DataRow row in fileTable.DefaultView.ToTable().Rows)
-    {
-      <li>@row["FileName"]</li>
-    }
-  </ol>
-@snip.SnipEnd()
 
 
 @* Footer *@

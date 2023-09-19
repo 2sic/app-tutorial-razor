@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+@{/*! Tut.Tabs=file:../WithConfig.cs, ViewConfig */
+/*!*/}
+@{
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyData = viewCnf.Query(query: "DynamicDataSourceWithConfig") as ToSic.Eav.DataSource.IDataSource;
+}
+<h3>Data in the Query (@MyData.List.Count())</h3>
+<ul>
+  @foreach (var item in AsItems(MyData)) {
+    <li>
+      <strong>@item.Get("Title")</strong> - Favorite Color: @item.Get("FavoriteColor")
+    </li>
+  }
+</ul>

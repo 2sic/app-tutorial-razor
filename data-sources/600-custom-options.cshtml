@@ -9,6 +9,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merge into 500-relationships, delete file and view *@
 
 <h2>Custom Dynamic DataSources - Factory Options</h2>
 <div @Sys.PageParts.InfoWrapper()>
@@ -39,27 +40,5 @@
     </p>
   </div>
 </div>
-
-<trim>
-  <h2>Convert with Custom DataFactoryOptions</h2>
-  <p>
-    This example will change how the automatic ID is generated, what the ContentTypeName is, and which field to use for the EntityTitle.
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: "file:../DataSources/FactoryOptions.cs")).SnipStart())
-  @{
-    var dsWithOptions = Kit.Data.GetSource(name: "FactoryOptions");
-  }
-  <h3>Data in the DataSource (@dsWithOptions.List.Count())</h3>
-  <ul>
-    @foreach (var item in AsList(dsWithOptions)) {
-      <li>
-        <strong>@item.EntityTitle</strong> (id: @item.EntityId, type: @item.EntityType)
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

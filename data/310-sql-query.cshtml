@@ -28,30 +28,13 @@
   </div>
 </div>
 
+@*
+  TODO: @2dg
+  - Add 310, 311, 312, 330, 331
+  - remember to use mechanisms to query is known and visible in ViewConfig
+*@
 
-<h3>Current Portal</h3>
-<p>
-  In this example PortalId uses the preset <code>[Site:Id]</code> which is <code>@CmsContext.Site.Id</code>
-</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-    var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
-
-    // Get the query and ask for the "Default" results as a dynamic List
-    var query = Kit.Data.GetQuery(queryName);
-    var files = AsList(query);
-  }
-  <ol>
-    @foreach (var file in files) {
-    <li>
-      @file.Name
-    </li>
-  }
-  </ol>
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "data-query-sql-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

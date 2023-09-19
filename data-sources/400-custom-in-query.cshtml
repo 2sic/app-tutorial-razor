@@ -26,6 +26,15 @@
   </div>
 </div>
 
+@*
+  TODO: @2dg
+  - Add 400
+  - remember to use mechanisms to query is known and visible in ViewConfig
+  - Querstion to @2dm: how to make sure that the query is visible in the ViewConfig?
+*@
+
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "datasources-inquery-page" })
+
 <trim>
   <h2>Query using Authors and KeepOdd</h2>
   <p>

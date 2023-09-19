@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+@{
+  var dsWithOptions = Kit.Data.GetSource(name: "FactoryOptions");
+}
+<h3>Data in the DataSource (@dsWithOptions.List.Count())</h3>
+<ul>
+  @foreach (var item in AsList(dsWithOptions)) {
+    <li>
+      <strong>@item.EntityTitle</strong> (id: @item.EntityId, type: @item.EntityType)
+    </li>
+  }
+</ul>

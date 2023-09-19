@@ -1,0 +1,36 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+@{/*! Tut.Tabs=file:../TreeBasic.cs*/
+/*!*/}
+@{
+  var tree = Kit.Data.GetSource(name: "TreeBasic");
+
+  // TODO:: add FirstOrDefault
+  var root = AsItem(tree.List);
+  @* var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1)); *@
+
+  var rootSubItems = AsItems(root.Child("SubItems"));
+}
+<h3>Example Reading some Data</h3>
+<ul>
+  <li>Root name: @root.Title</li>
+  <li>Root ID: @root.Id</li>
+  <li>Item count in <em>field</em> <code>SubItems</code>: @rootSubItems.Count()</li>
+  <li>Title of first child: @rootSubItems.First().Title</li>
+  <li>
+    Looping through children of Root
+    <ul>
+      @foreach(var child in AsItems(root.Child("SubItems"))) {
+        <li>@child.Title</li>
+      }
+    </ul>
+  </li>
+</ul>
+
+@Html.Partial("../../data-sources/helpers/Show Tree.cshtml", 
+  new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems" })
+
+@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+  new { Title = "Flat List of Items", Data = tree })

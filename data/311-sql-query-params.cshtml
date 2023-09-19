@@ -8,6 +8,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
+@* TODO:: @2dm Merged into 310 SLQ-Query, Fancybox open *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -29,33 +30,6 @@
 
   </div>
 </div>
-
-
-<h3>Root Portal</h3>
-<p>In this example we will set the PortalId for the SQL query.</p>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-    var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
-
-    // Prepare the a parameter before we access the query to get data
-    var rootPortal = CmsContext.Platform.Name == "Dnn" ? 0 : 1;
-
-    // Get the query
-    var query = Kit.Data.GetQuery(queryName, parameters: new {
-      SiteId = rootPortal
-    });
-
-  }
-  <ol>
-    @foreach (var file in AsList(query)) {
-    <li>
-     @file.Name
-    </li>
-  }
-  </ol>
-@snip.SnipEnd()
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
