@@ -12,51 +12,11 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Working with JSON Data</h2>
-    <p>
-      JSON data can be tricky. The easiest way is to convert it to a dynamic object using <code>AsDynamic(string)</code>. Then you can easily use it in your code. 
-    </p>
   </div>
 </div>
 
 
-<h3>Show properties and sub-properties - case insensitive</h3>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./demo.json")).SnipStart())
-  @{
-      var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/json/demo.json");
-      var thing = AsDynamic(someJson);
-    }
-  <ul>
-    <li>Title: @thing.Title</li>
-    <li>Description: @thing.IsCool</li>
-    <li>Sub-item title: @thing.SubItem.Title</li>
-    <li>Is this a list/array? @thing.IsList </li>
-    <li>Are the tags a list? @thing.Tags.IsList </li>
-  </ul>
-@snip.SnipEnd()
-
-
-<h3>Loop through a list of @thing.Tags.Count tags</h3>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./demo.json")).SnipStart())
-  <ol>
-  @foreach (var tag in thing.Tags) {
-    <li>@tag</li>
-  }
-  </ol>
-@snip.SnipEnd()
-
-
-<h3>Loop through a list of @thing.Count properties</h3>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./demo.json")).SnipStart())
-  <ol>
-  @foreach (var prop in thing) {
-    <li><strong>@prop</strong> (@thing[prop].GetType()) = @thing[prop]</li>
-  }
-  </ol>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "json-use-page" })
 
 
 @* Footer *@

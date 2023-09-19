@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./demo.json
+!*@
+@{
+  var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/json/use/demo.json");
+  var thing = AsDynamic(someJson);
+}
+<ul>
+  <li>Title:
+    @thing.Title
+  </li>
+  <li>IsCool:
+    @thing.IsCool
+  </li>
+  <li>Sub-item title:
+    @thing.SubItem.Title
+  </li>
+  <li>Is this a list/array?
+    @thing.IsList 
+  </li>
+  <li>Are the tags a list?
+    @thing.Tags.IsList 
+  </li>
+</ul>
