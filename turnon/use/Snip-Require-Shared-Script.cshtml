@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./200-multi-file.js
+!*@
+@{
+  // Create unique DOM attribute with Module Id
+  var domAttribute = "turn-on-req-script-" + CmsContext.Module.Id;
+}
+
+@* Inject attribute into DIV, to make it accessible for query *@
+<a @domAttribute href='https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' data-caption="System script used here">
+    <img loading="lazy" class="img-fluid" src='https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80'/>
+</a>
+
+@* 
+  Wait for the system script to load, 
+  then execute the window.turnOnTutorial202.init function 
+  and pass the domAttribute as JSON 
+*@
+
+@* activate turnOn *@
+@Kit.Page.TurnOn("window.turnOnTutorial202.init()",
+  data: new { domAttribute },
+  require: "window.Fancybox"
+)
+
+@* activate Fancybox *@
+@Kit.Page.Activate("fancybox4")
+
+@* Include local JavaScript file *@
+<script src="@App.Path/turnon/use/202-system-scripts.js" @Kit.Page.AssetAttributes()></script>

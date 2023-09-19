@@ -20,7 +20,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     Item = item;
     Name = item.String("NameId");
     if (!_variantExtension.Has())
-      _variantExtension = "." + Variant; // IsTyped ? ".Typed" : ".Dyn";
+      _variantExtension = "." + Variant;
     return StartInner();
   }
 
@@ -29,9 +29,18 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
   private IHtmlTag StartInner() {
     var t = Kit.HtmlTags;
-    var heading = t.H2().Class("quick-ref").Wrap(
+
+    var heading = t.Div();
+    if (Item.IsNotEmpty("Logo"))
+      heading = heading.Add(
+        t.Img().Src(Item.Url("Logo")).Class("logo").Style("float: right; margin-left: 10px; width: 400px")
+      );
+
+    heading = heading.Add(t.H2().Class("quick-ref").Wrap(
       Item.String("Title", scrubHtml: "p")
-    );
+    ));
+
+
     // Add Toolbar
     heading = (Item.Id != 0)
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())

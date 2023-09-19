@@ -4,7 +4,7 @@
   // Simple init with Data object
   function init(data) {
     // Example element gets found in the DOM
-    const exampleElement = document.querySelector("#turn-on-example")
+    const exampleElement = document.querySelector("#turn-on-params-world")
     // Parameters get displayed in the DOM
     exampleElement.innerText = `turnOn has passed the parameters: ${data.greeting} ${data.name}!`;
   }

@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./120-anonymous-object.js
+!*@
+@* Inject attribute into DIV, to make it accessible for query *@
+<div id="turn-on-example-complex-object">
+  turnOn hasn't started yet.
+</div>
+
+@{
+  
+  // Create an anonymous object and define example settings 
+  var data = new {
+    domId = "turn-on-example-complex-object",
+    style = new {
+      backgroundColor = "mediumpurple",
+      height = 100,
+      width = 400
+    }
+  };
+}
+
+@* Passes the exampleObject as parameter in a JSON format and executes the window.turnOnTutorial120.init function *@
+@Kit.Page.TurnOn("window.turnOnTutorial120.init()", data: data)
+
+<script src="@App.Path/turnon/use/120-anonymous-object.js" @Kit.Page.AssetAttributes()></script>
+

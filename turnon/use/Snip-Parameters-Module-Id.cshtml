@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./111-module.js
+!*@
+@{
+  // Create unique DOM attribute with Module Id
+  var uniqueDomAttribute = "turn-on-example-" + CmsContext.Module.Id;
+}
+
+@* Inject attribute into DIV, to make it accessible for query *@
+<div @uniqueDomAttribute>
+  turnOn hasn't passed any parameters.
+</div>
+
+
+  @* This tutorial uses turnOn, see turnOn tutorials *@
+@{
+  var data = new {
+    domAttribute = uniqueDomAttribute
+  };
+}
+
+@Kit.Page.TurnOn("window.turnOnTutorial111.init()", data: data)
+
+<script src="@App.Path/turnon/use/111-module.js" @Kit.Page.AssetAttributes()></script>
