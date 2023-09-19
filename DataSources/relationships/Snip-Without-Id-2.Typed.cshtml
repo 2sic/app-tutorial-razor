@@ -6,11 +6,11 @@
 /*!*/}
 @{
   var tree = Kit.Data.GetSource(name: "TreeParentPaths");
-  var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
+  var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 
-@Html.Partial("../../data-sources/helpers/Show Tree.cshtml",
+@Html.Partial("../../data-sources/helpers/Show Tree.Typed.cshtml",
   new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
 
-@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+@Html.Partial("../../data-sources/helpers/Show Data List.Typed.cshtml", 
   new { Title = "Flat List of Items", Data = tree })

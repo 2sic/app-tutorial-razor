@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq;
+@using ToSic.Razor.Blade;
+
+@{
+  var node = AsItem(MyModel.Item("Root"));
+  var subNodeName = MyModel.String("SubNodeNames");
+  var parentField = MyModel.String("ParentField", fallback: "");
+
+  var title = MyModel.String("Title");
+}
+<h3>@title</h3>
+<ul>
+  @Html.Partial("./Show Tree Node.Typed.cshtml", new { Node = node, SubNodeNames = subNodeName, ParentField = parentField, Depth = 10 })
+</ul>

@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq;
+@using ToSic.Razor.Blade;
+
+@{
+  var title = MyModel.String("Title");
+  var showCount = MyModel.Bool("ShowCount") != false;
+  var list = AsItem(MyModel.Item("Data"));
+}
+
+<h3>
+  @title
+  @if (showCount) {
+    @list.Count()
+  }
+</h3>
+<ul>
+  @foreach (var item in list) {
+    <li>
+      <strong>@item.Title</strong> (#@item.Id)
+    </li>
+  }
+</ul>

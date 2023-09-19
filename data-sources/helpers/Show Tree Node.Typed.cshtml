@@ -1,0 +1,50 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq;
+@using ToSic.Razor.Blade;
+
+@{
+
+  var node = AsItem(MyModel.Item("Node"));
+  var subNodesNames = MyModel.String("SubNodeNames").Split(',');
+  var parentField = MyModel.String("ParentField", fallback: "");
+  var depth = MyModel.Int("Depth");
+}
+
+@if (depth < 0) {
+  <span>ERROR: Depth too deep</span>
+  return;
+}
+
+<li>
+  Item: 
+  <strong>@node.Title</strong> (id: @node.Id)
+  @if (Text.Has(parentField)) {
+    var parentItem = AsItems(node.Children(parentField) as object).FirstOrDefault();
+    if (parentItem != null) {
+      <br>
+      <em>
+        Parent (field @parentField): @parentItem.Title (id: @parentItem.Id)
+      </em>
+    }
+  }
+  @foreach (var subNodeName in subNodesNames)
+  {
+    if (Text.Has(subNodeName)) {
+      var subNodes = AsItem(node.Children("subNodeName"));
+      if (subNodes.Dyn()) {
+        <ul>
+          <li>
+            Sub-Items on field <strong><em>@subNodeName</em></strong> - found @subNodes.Count()
+            <ul>
+              @foreach (var subNode in AsItems(subNodes)) {
+                @Html.Partial("./Show Tree Node.Typed.cshtml", new { Node = subNode, SubNodeNames =  MyModel.String("SubNodeNames"), ParentField = MyModel.String("ParentField", fallback: ""), Depth = depth - 1 })
+              }
+            </ul>
+          </li>
+        </ul>
+      }
+    } else {
+      <em>no sub node name</em>
+    }
+  }
+</li>

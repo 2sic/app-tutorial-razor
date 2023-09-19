@@ -7,9 +7,7 @@
 @{
   var tree = Kit.Data.GetSource(name: "TreeBasic");
 
-  // TODO:: add FirstOrDefault
-  var root = AsItem(tree.List);
-  @* var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1)); *@
+  var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 
   var rootSubItems = AsItems(root.Child("SubItems"));
 }
@@ -29,8 +27,9 @@
   </li>
 </ul>
 
-@Html.Partial("../../data-sources/helpers/Show Tree.cshtml", 
+@* TODO:: Typed model  *@
+@Html.Partial("../../data-sources/helpers/Show Tree.Typed.cshtml", 
   new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems" })
 
-@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+@Html.Partial("../../data-sources/helpers/Show Data List.Typed.cshtml", 
   new { Title = "Flat List of Items", Data = tree })
