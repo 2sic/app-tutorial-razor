@@ -11,5 +11,11 @@
 }
 <h3>@title</h3>
 <ul>
-  @Html.Partial("./Show Tree Node.Typed.cshtml", new { Node = node, SubNodeNames = subNodeName, ParentField = parentField, Depth = 10 })
+  @Html.Partial("./Show Tree Node.Typed.cshtml", new {
+    Node = node,
+    SubNodeNames = subNodeName,
+    ParentField = parentField,
+    Depth = 10 // ,
+    // ShowCount = true
+  })
 </ul>

@@ -19,8 +19,9 @@
   Item: 
   <strong>@node.Title</strong> (id: @node.Id)
   @if (Text.Has(parentField)) {
-    var parentItem = AsItems(node.Children(parentField) as object).FirstOrDefault();
-    if (parentItem != null) {
+    // if (parentItem != null) {
+    if (node.IsNotEmpty(parentField)) {
+      var parentItem = node.Child(parentField, required: false);
       <br>
       <em>
         Parent (field @parentField): @parentItem.Title (id: @parentItem.Id)
@@ -30,14 +31,20 @@
   @foreach (var subNodeName in subNodesNames)
   {
     if (Text.Has(subNodeName)) {
-      var subNodes = AsItem(node.Children("subNodeName"));
-      if (subNodes.Dyn()) {
+      var subNodes = node.Children(subNodeName, required: false);
+      if (subNodes.Any()) {
         <ul>
           <li>
             Sub-Items on field <strong><em>@subNodeName</em></strong> - found @subNodes.Count()
             <ul>
               @foreach (var subNode in AsItems(subNodes)) {
-                @Html.Partial("./Show Tree Node.Typed.cshtml", new { Node = subNode, SubNodeNames =  MyModel.String("SubNodeNames"), ParentField = MyModel.String("ParentField", fallback: ""), Depth = depth - 1 })
+                @Html.Partial("./Show Tree Node.Typed.cshtml", new {
+                  Node = subNode,
+                  SubNodeNames =  MyModel.String("SubNodeNames"),
+                  ParentField = MyModel.String("ParentField", fallback: ""),
+                  Depth = depth - 1 //,
+                  // ShowCount = true
+                })
               }
             </ul>
           </li>

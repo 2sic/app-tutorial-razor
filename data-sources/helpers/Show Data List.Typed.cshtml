@@ -4,8 +4,8 @@
 
 @{
   var title = MyModel.String("Title");
-  var showCount = MyModel.Bool("ShowCount") != false;
-  var list = AsItem(MyModel.Item("Data"));
+  var showCount = true; // MyModel.Get("ShowCount", required: false) != false;
+  var list = MyModel.Items("Data");
 }
 
 <h3>

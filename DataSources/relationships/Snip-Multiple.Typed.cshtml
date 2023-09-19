@@ -6,7 +6,7 @@
 /*!*/}
 @{
   var tree = Kit.Data.GetSource(name: "TreeFoldersAndFiles");
-  var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
+  var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 
 @Html.Partial("../../data-sources/helpers/Show Tree.Typed.cshtml",
