@@ -3,15 +3,17 @@
 @using System.Linq;
 @{
   // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
-  var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
+  var queryName = "SqlTop10Files" + MyContext.Platform.Name;
 
   // get the query and ask for the "Default" results as a dynamic List
   // This case doesn't set parameters, so we're using the defaults (current site)
   var query = Kit.Data.GetQuery(queryName);
-  var currentFiles = AsList(query);
+  var currentFiles = AsItems(query);
 }
 <ul>
   @foreach (var file in currentFiles) {
-  <li>@file.Name</li>
+  <li>
+    @file.Get("Name")
+  </li>
 }
 </ul>

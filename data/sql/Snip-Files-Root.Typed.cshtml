@@ -3,15 +3,17 @@
 @using System.Linq;
 @{
   // Get a fresh query, so we can use again with other parameters
-  var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
+  var queryName = "SqlTop10Files" + MyContext.Platform.Name;
   var rootFilesQuery = Kit.Data.GetQuery(queryName, parameters: new { 
-    SiteId = CmsContext.Platform.Name == "Dnn" ? 0 : 1
+    SiteId = MyContext.Platform.Name == "Dnn" ? 0 : 1
   });
 
-  var rootFiles = AsList(rootFilesQuery);
+  var rootFiles = AsItems(rootFilesQuery);
 }
 <ul>
   @foreach (var file in rootFiles) {
-  <li>@file.Name</li>
+  <li>
+    @file.Get("Name")
+  </li>
 }
 </ul>

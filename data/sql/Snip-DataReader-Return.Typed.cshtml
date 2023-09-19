@@ -16,7 +16,7 @@
   // and never write them directly into the SQL using string-concatenation
   // to protect yourself from SQL injection attacks
   var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
-  command.Parameters.Add("@PortalId", CmsContext.Site.Id);
+  command.Parameters.Add("@PortalId", MyContext.Site.Id);
   var myReader = command.ExecuteReader();
 }
 <ol>

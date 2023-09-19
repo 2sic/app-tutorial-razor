@@ -16,7 +16,7 @@
 
   // create an adapter object, tell it what to do, and load results into fileTable
   var adapter = new SqlDataAdapter(sqlCommand, conString);
-  adapter.SelectCommand.Parameters.AddWithValue("@PortalId", CmsContext.Site.Id);
+  adapter.SelectCommand.Parameters.AddWithValue("@PortalId", MyContext.Site.Id);
   var fileTable = new DataTable();
   adapter.Fill(fileTable);
   fileTable.DefaultView.Sort = "FileName DESC";
