@@ -21,6 +21,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   private const string SourceTabName = "Source Code";
   private const string ResultAndSourceTabName = "Output and Source";
   private const string TutorialsTabName = "Additional Tutorials";
+  private const string NotesFieldName = "Notes";
   private const string NotesTabName = "Notes";
 
   private const string InDepthField = "InDepthExplanation";
@@ -398,11 +399,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         return olLinks;
       }
 
-      // Handle case Tutorials
+      // Handle case Notes
       if (strResult == NotesTabName) {
-        if (!item.IsNotEmpty("Notes")) return "Notes not found";
+        if (!item.IsNotEmpty(NotesFieldName)) return "Notes not found";
 
-        var notesHtml = item.Children("Notes").Select(tMd => Tag.RawHtml(
+        var notesHtml = item.Children(NotesFieldName).Select(tMd => Tag.RawHtml(
           "\n    ",
           Tag.Div().Class("alert alert-" + tMd.String("NoteType"))
             .Attr(ScParent.Kit.Toolbar.Empty().Edit(tMd))

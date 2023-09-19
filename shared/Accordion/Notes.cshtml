@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@{
+  var item = MyModel.Item("Item");
+
+  if (item == null || item.IsEmpty("Notes")) {
+    return;
+  }
+
+  // Show all the 'shared' notes 
+  foreach (var note in item.Children("Notes")) {
+    <div class='alert alert-@note.Attribute("NoteType")'>
+      <h4>@note.String("Title")</h4>
+      @note.Html("Note")
+    </div>
+  }
+}

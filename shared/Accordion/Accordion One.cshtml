@@ -19,6 +19,7 @@
 
   // Show each accordion with all sections
   @accordion.Start(accSpecs)
+    @Html.Partial("./Notes.cshtml", new { Item = accSpecs })
     @Html.Partial("./Accordion Sections.cshtml", new { accordion } )
   @accordion.End()
 

@@ -28,7 +28,7 @@
       }
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
-    <div @Kit.Toolbar.Empty(acs.Item).Edit()>
+    <div @Kit.Toolbar.Empty(acs.Item).Edit().New()>
       SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@acc.Variant</em>
     </div>
   } else {

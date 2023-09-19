@@ -17,6 +17,7 @@
       </div>
     }
     @* Show all the 'shared' notes *@
+    @* TODO: REPLACE WITH Html.Partial("./Notes.cshtml", new { Item = tutPage }) *@
     @foreach (var note in tutPage.Children("Notes")) {
       <div class='alert alert-@note.Attribute("NoteType")'>
         <h4>@note.String("Title")</h4>
