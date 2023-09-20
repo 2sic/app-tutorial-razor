@@ -4,27 +4,10 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
-<h2>Query Content-Blocks</h2>
-<p>
-  In this example, we'll see what content-blocks are in the system, and where they are in use. 
-</p>
-<div class="alert alert-info">
-  You are on portal <strong>@CmsContext.Site.Id</strong> - this sample has hard-wired IDs for portal 59 (our dev-environment) and 24 (the tutorials on 2sxc.org). If one of these is detected, it will show the stats for a portal we know on that system, otherwise from the current app - which won't show much, since this tutorial app doesn't have many content-blocks. 
-</div>
-
-@((snip = Sys.SourceCode.TabsWithSnippet(tabs: new Dictionary<string, string> {
-  { "Full Dnn Code", "file:110-content-blocks.dnn.cshtml" }
-  })).SnipStart())
-  @if (CmsContext.Platform.Name == "Oqtane") {
-    @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
-  } else {
-    @Html.Partial("110-content-blocks.dnn.cshtml")
-  }
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "block-inspect-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
