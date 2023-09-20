@@ -3,7 +3,6 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -11,55 +10,10 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Switch to view by URL</h2>
-    <h3>Create and configure views</h3>
-    <p>
-      To make the views accessible through URL first follow the standard creation process...
-      <ol>
-        <li>Create a new view using FAB on the views panel.</li>
-        <li>In the view configuration enter a view name.</li>
-        <li>Create and or select a template file.</li>
-      </ol>
-    </p>
   </div>
 </div>
 
-
-<div class="row">
-  <div class="col-md-6">
-    <h4>Specify the URL path</h4>
-    <p>
-      See example configuration on the image to the right/bottom: <br><br>
-      <i>The option Hidden in View Selection isn't relevant for this example.</i> <br>
-      Make sure to specify a key value pair to follow <a target="blank" href="https://en.wikipedia.org/wiki/Query_string#Structure">the query string conventions</a> to make passing parameters easier. <br><br>
-      For example you could set <code>items/page</code> as value for Name in URL Path. Using this example the view would be only accessible through the specified name. <br>
-      To access the view regardless of the second parameter you can use the wildcard <code>view1/.*</code> as shown in the example. 
-      The wildcard can also become useful for specifying parameters which define the views content/behaviour as for example a detail view. 
-    </p>
-  </div>
-  <div class="col-md-6">
-    <img loading="lazy" class="w-100" src="@App.Path/basics/view-switch/assets/view-configuration.png" alt="Screenshot from view configuration">
-  </div>
-</div>
-<h3>Make URL pointing to view</h3>
-<p>
-  For this tutorial we have set up two example views, see: <a target="blank" href='@Link.To(parameters: "view1=page")'>View 1</a>, <a target="blank" href='@Link.To(parameters: "view2=page")'>View 2</a>. <br>
-  As seen in the example above we've made two views with the routes <code>view1/.*</code> and <code>view2/.*</code>. <br>
-  To generate the URL we'll use <code>Link.To(parameters: ...)</code> which will build the url from the specified parameters. 
-</p>
-</hide>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-      // Name of route view1 using query string conventions
-      var view1Parameters = "view1=page";
-
-      // Name of route view2 using query string conventions
-      var view2Parameters = "view2=hello";
-    }
-  <p>Link to view1 <a target="blank" href="@Link.To(parameters: view1Parameters)">@Link.To(parameters: view1Parameters)</a></p>
-  <p>Link to view2 <a target="blank" href="@Link.To(parameters: view2Parameters)">@Link.To(parameters: view2Parameters)</a></p>
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "basics-viewswitch-page" })
 
 
 @* Footer *@

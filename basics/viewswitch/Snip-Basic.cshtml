@@ -1,0 +1,36 @@
+@inherits Custom.Hybrid.Razor14
+@*! Simulate View Switching
+Tut.Tabs=file:./View-First.cshtml,file:./View-Second.cshtml
+*@
+@{
+  // todo: add to view info
+  if (CmsContext.Page.Parameters.IsNotEmpty("view1")) {
+    @Html.Partial("./View-First.cshtml")
+    return;
+  }
+  if (CmsContext.Page.Parameters.IsNotEmpty("view2")) {
+    @Html.Partial("./View-Second.cshtml")
+    return;
+  }
+}
+@* !*@
+<h3>Make URL pointing to view</h3>
+@{
+    // We often want to preserve current url-params
+    // For the tutorial it's essential, otherwise the Tutorial doesn't know where we are
+    var urlParams = CmsContext.Page.Parameters;
+    var view1Parameters = urlParams.Set("view1", "whatever");
+    var view2Parameters = urlParams.Set("view2", "nice");
+  }
+<p>
+  Link to view1
+  <a href='@Link.To(parameters: view1Parameters)'>
+    @Link.To(parameters: view1Parameters)
+  </a>
+</p>
+<p>
+  Link to view2
+  <a href='@Link.To(parameters: view2Parameters)'>
+    @Link.To(parameters: view2Parameters)
+  </a>
+</p>
