@@ -63,9 +63,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   /// <param name="tabs"></param>
   /// <returns></returns>
+  // TODO: ONLY 7 LEFT 2023-08-20; ALL DELEGATED; AFTERWARDS REMOVE
   public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) {
     return new TabsWithSnippetsSection(this, tabs, combineOutputAndSource: false);
   }
+  // TODO: ONLY 7 LEFT 2023-08-20; ALL DELEGATED; AFTERWARDS REMOVE
   public TabsWithSnippetsSection TabsWithSnippet(string tabs) { return TabsWithSnippet(TabStringToDic(tabs)); }
 
   public TabsWithSnippetsSection TabsOutputAndSource(Dictionary<string, string> tabs = null) {
@@ -118,16 +120,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   //   );
   // }
 
+  // TODO: ca. 5 left, 2 for @2dm
   public SnippetWithIntroSection OutputBoxAndSnippet(object item = null) {
     return new SnippetWithIntroSection(this, Tag.H4(ResultTitle));
   }
-
-  // 2023-09-14 2dm - believe not used any more
-  // /// <summary>
-  // /// Lightweight "Just show a Snippet" object
-  // /// </summary>
-  // /// <returns></returns>
-  // public SnippetOnlySection SnippetOnly() { return new SnippetOnlySection(this); }
 
   /// <summary>
   /// Dummy SnipEnd for all use cases where the end doesn't need output but marks the end.
@@ -401,7 +397,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       // Handle case Notes
       if (strResult == NotesTabName) {
-        if (!item.IsNotEmpty(NotesFieldName)) return "Notes not found";
+        if (item.IsEmpty(NotesFieldName)) return NotesTabName + " not found";
 
         var notesHtml = item.Children(NotesFieldName).Select(tMd => Tag.RawHtml(
           "\n    ",
@@ -414,6 +410,17 @@ public class SourceCode: Custom.Hybrid.CodeTyped
             ),
           "\n"));
         return notesHtml;
+      }
+
+      // handle case In-Depth Explanations
+      if (strResult == InDepthTabName) {
+        if (item.IsEmpty(InDepthField)) return InDepthTabName + " not found";
+        return Tag.RawHtml(
+          "\n",
+          item.String(InDepthField),
+          ScParent.Sys.Fancybox.Gallery(item, "InDepthImages"),
+          "\n"
+        );
       }
 
       // Handle Case ViewConfig
@@ -551,10 +558,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (Item != null) {
         if (Item.IsNotEmpty(InDepthField)) {
           Log.Add(InDepthField);
-          list.Add(useKeys ? InDepthField : Item.String(InDepthField));
+          list.Add(InDepthTabName); // useKeys ? InDepthField : Item.String(InDepthField));
         }
-        if (Item.IsNotEmpty("Notes")) {
-          Log.Add("Notes");
+        if (Item.IsNotEmpty(NotesFieldName)) {
+          Log.Add(NotesFieldName);
           list.Add(NotesTabName);
         }
         if (Item.IsNotEmpty("Tutorials")) {
