@@ -2,34 +2,16 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys })  
 </hide>
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Hybrid Razor - Detect Platform</h2>
-    <p>
-      Razor is mostly <code>HTML</code> + <code>C#</code>. 
-      But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
-      This is where <code>CmsContext.Platform.Name</code> is used. 
-      Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
-    </p>
   </div>
 </div>
 
-</p>
-
-<hr>
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  You are running "@CmsContext.Platform.Name"
-@snip.SnipEnd()
-
-<hide>
-@* 2sxclint:disable:no-dnn-namespaces *@
-</hide>
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "hybrid-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -1,0 +1,7 @@
+@inherits Custom.Hybrid.Razor14
+
+@{#if NETCOREAPP}
+  This is Oqtane (a .net core app) version: @Oqtane.Shared.Constants.Version
+@{#else}
+  This is DNN (not a .net core app) version: @DotNetNuke.Application.DotNetNukeContext.Current.Application.Version
+@{#endif}
