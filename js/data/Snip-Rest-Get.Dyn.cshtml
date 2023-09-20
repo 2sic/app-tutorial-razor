@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:.././200-get-data.js
+!*@
+<table id="example-content" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>Poems</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+@{
+  var data = new {
+    moduleId = CmsContext.Module.Id
+  };
+}
+
+@Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: data)
+
+<script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>

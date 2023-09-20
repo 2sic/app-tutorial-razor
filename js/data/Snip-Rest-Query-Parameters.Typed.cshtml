@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:.././230-query-parameters.js
+!*@
+<button id="mod-@MyContext.Module.Id-object" type="button" class="btn btn-primary">Get Query with parameters (object)</button>
+<button id="mod-@MyContext.Module.Id-string" type="button" class="btn btn-primary">Get Query with parameters (string)</button>
+<button id="mod-@MyContext.Module.Id-stream-params" type="button" class="btn btn-primary">Get Query Stream with parameters</button>
+<button id="mod-@MyContext.Module.Id-streams-params" type="button" class="btn btn-primary">Get Query Streams with parameters</button>
+
+  @* This tutorial uses turnOn, see turnOn tutorials *@
+@{
+  var demoAuthorId = AsItem(MyData["RandomAuthor"]).Id;
+  var data = new {
+    moduleId = MyContext.Module.Id,
+    demoAuthorId = demoAuthorId,
+  };
+}
+
+@Kit.Page.TurnOn("window.tutQueryParameters.init()", data: data)
+
+<script src="@MyContext.View.Path/230-query-parameters.js"></script>
+

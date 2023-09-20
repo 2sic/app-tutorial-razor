@@ -1,0 +1,56 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:.././300-edit.js
+!*@
+@{
+  var randomName = "SuperPoet " + new Random().Next(1000);
+}
+<table id="example-content" class="table">
+  <trim>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birth date</th>
+        <th>Poems</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+  </trim>
+  <tbody>
+    @foreach (var poet in AsItems(App.Data["PoetsToEdit"])) {
+      <tr>
+        <td>@poet.Get("Name")</td>
+        <td>@poet.DateTime("BirthDate").ToShortDateString()</td>
+        <td data-poet="@poet.Id">@poet.Get("Poems")</td>
+        <td>
+          <button type="button" class="btn btn-primary" onclick="window.editPoets.updateCount(@poet.Id)">Update Poems</button>
+          <button type="button" class="btn btn-primary" onclick="window.editPoets.delete(@poet.Id)">Delete Poet</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <input id="name" class="form-control" placeholder="Name" value="@randomName">
+  </div>
+  <div class="col-md-3">
+    <input type="date" id="birthdate" class="form-control" min="1938-01-01" max="1949-01-01" placeholder="Birthdate" value="2021-01-01">
+  </div>
+  <div class="col-md-3">
+    <input type="number" id="poems" min="0" class="form-control" placeholder="Poems" value="@(new Random().Next(999))">
+  </div>
+  <button type="button" class="btn btn-primary" onclick="window.editPoets.add()" >Add poet</button>
+</div>
+
+@* This tutorial uses turnOn, see turnOn tutorials *@
+@{
+  var data = new {
+    moduleId = MyContext.Module.Id
+  };
+}
+@Kit.Page.TurnOn("window.editPoets.init()", data: data)
+
+<script src="@MyContext.View.Path/300-edit.js"></script>

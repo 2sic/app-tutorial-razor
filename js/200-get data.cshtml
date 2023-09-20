@@ -15,53 +15,9 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>Use the sxc data API to get backend data</h2>
-      <p>This page uses the sxc data API to get data from the backend and display it in a table with JavaScript.</p>
-      <br>
-      In this tutorial you'll learn how to:
-      <ul>
-        <li>
-          Create a <code>$2sxc</code> object using the current Module Id
-        </li>
-        <li>
-          Use the correct data source using <code>.data()</code>
-        </li>
-        <li>
-          Read data using the <code>.getOne(id)</code> query method
-        </li>
-        <li>
-          Read data using the <code>.getAll()</code> query method
-        </li>
-      </ul>
-      <br>
-      Look at the content below to see the effect. 
-    </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./200-get-data.js")).SnipStart())
-  <table id="example-content" class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Birthdate</th>
-        <th>Poems</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  @{
-    var data = new {
-      moduleId = CmsContext.Module.Id
-    };
-  }
-
-  @Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: data)
-
-  <script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>
-@snip.SnipEnd()
-
+</div>
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "js-data-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
