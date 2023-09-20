@@ -10,6 +10,7 @@
   @{ dynamic snip = null; }
 </hide>
 
+@* TODO:: @2dm merged into 310-app-data delete this file and view *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -24,31 +25,6 @@
       </p>
     </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/HybridController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="callBasicHello(this)">
-    Get Hello
-  </button> 
-  <button type="button" class="btn btn-primary" onclick="callSquare(this, 7)">
-    Square 7
-  </button> <button type="button" class="btn btn-primary" onclick="callSquare(this, 27)">
-    Square 27
-  </button>
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function callBasicHello(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('app/auto/api/hybrid/hello')
-        .then(function (results) { alert(results); });
-    }
-
-    function callSquare(moduleContext, original) {
-      $2sxc(moduleContext).webApi.fetchJson('app/auto/api/hybrid/square?number=' + original)
-        .then(function (results) { alert(results); });
-    }
-  </script>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

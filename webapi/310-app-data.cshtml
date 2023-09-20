@@ -22,66 +22,15 @@
   </div>
 </div>
 
+@*
+  TODO: @2dg
+  - pls split the samples below into 2 samples
+  - all should have the BooksController.cs as tab
+  - then add 410 as well
+  - also add 800
+*@
 
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/BooksController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="getPersons(this)">
-    Get Persons Custom
-  </button> 
-  <button type="button" class="btn btn-primary" onclick="getBooks(this)">
-    Get Books Custom
-  </button>
-  <br>
-  <br>
-  <button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
-    Persons with Auto-Convert
-  </button> 
-  <button type="button" class="btn btn-primary" onclick="getPersonsAutoPreserveCasing(this)">
-    Persons with Auto-Convert, preserve casing
-  </button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function getPersons(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('books/persons')
-        .then(function(data) {
-          alert('Found ' + data.length + ' persons. \n'
-            + 'The first one is "' + data[0].FirstName + ' ' + data[0].LastName + '"\n\n'
-            + 'The raw JSON: \n' + JSON.stringify(data)
-          );
-        });
-    }
-    function getBooks(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('books/books')
-        .then(function(results) {
-          alert('Found ' + results.length + ' books. \n'
-            + 'The first one is "' + results[0].Title + '"\n\n'
-            + 'The raw JSON: \n' + JSON.stringify(results)
-            );
-        });
-    }
-    function getPersonsAuto(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
-        .then(function(results) {
-          alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
-            + 'The first one is "' + results[0].firstName + ' ' + results[0].lastName + '"\n\n'
-            + 'The raw JSON: \n' + JSON.stringify(results)
-          );
-        });
-    }
-
-    function getPersonsAutoPreserveCasing(moduleContext) {
-      $2sxc(moduleContext).webApi.fetchJson('books/PersonsAutoPreserveCasing')
-        .then(function(results) {
-          alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
-            + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
-            + 'The raw JSON: \n' + JSON.stringify(results)
-          );
-        });
-    }
-    
-  </script>
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "webapi-appdata-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

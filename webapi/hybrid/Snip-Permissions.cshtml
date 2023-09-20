@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=file:../../api/HybridController.cs */
+/*!*/}
+<button type="button" class="btn btn-primary" onclick="callSquare(this, 7)">
+  Square 7
+</button> <button type="button" class="btn btn-primary" onclick="callSquare(this, 27)">
+  Square 27
+</button>
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  function callSquare(moduleContext, original) {
+    $2sxc(moduleContext).webApi.fetchJson('app/auto/api/hybrid/square?number=' + original)
+      .then(function (results) { alert(results); });
+  }
+</script>

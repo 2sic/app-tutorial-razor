@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=file:../../api/BooksController.cs */
+/*!*/}
+<button type="button" class="btn btn-primary" onclick="getPersonsAutoPreserveCasing(this)">
+  Persons with Auto-Convert, preserve casing
+</button> 
+  @*! 2sxclint:disable:no-inline-script !*@
+<script>
+  function getPersonsAutoPreserveCasing(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('books/PersonsAutoPreserveCasing')
+      .then(function(results) {
+        alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
+          + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(results)
+        );
+      });
+  }
+</script>

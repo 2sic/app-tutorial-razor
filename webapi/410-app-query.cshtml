@@ -10,6 +10,7 @@
   @{ dynamic snip = null; }
 </hide>
 
+@* TODO:: @2dm merged into 310-app-data delete this file and view *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -24,30 +25,6 @@
       </p>
     </div>
   </div>
-
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/AuthorsQueryController.cs")).SnipStart())
-  @{
-    var authorId = AsDynamic(App.Data["Persons"].First()).EntityId;
-  }
-  <button type="button" class="btn btn-primary" onclick="getAuthor(this, @authorId)">
-    Get Author #@authorId
-  </button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-    function getAuthor(moduleContext, authorId) {
-      $2sxc(moduleContext).webApi.fetchJson('authorsquery/get?authorId=' + authorId)
-        .then(function (author) {
-          alert('Found author: '
-            + author.FirstName + ' ' + author.LastName 
-            + ' (with ' + author.Books.length + ' books) \n\n'
-            + 'The raw JSON: \n' + JSON.stringify(author)
-            );
-        });    
-      }
-  </script>
-@snip.SnipEnd()
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
