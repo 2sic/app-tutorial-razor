@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+@*! Simulate View Switching
+Tut.Tabs=file:./Snip-Query-Details.Dyn.cshtml, ViewConfig
+*@
+@{/*! */
+  // Slightly complex setup, so the tutorial knows what query we're using in the details-view
+  // It requires a valid ID, so that it can inform the user about the data in the query
+  var realPersonId = App.Data.GetStream("Persons").First().EntityId;
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  viewCnf.Query(query: "Data-ViewSwitch-Query-Details", parameters: new { id = realPersonId });
+/*!*/}
+@{
+  // Invisible code, simulate view switching
+  if (CmsContext.Page.Parameters.IsNotEmpty("Id")) {
+    @Html.Partial("./Snip-Query-Details.Dyn.cshtml", new { Tutorial = DynamicModel.Tutorial })
+    return;
+  }
+}
+@* !*@
+<h4>List of Persons</h4>
+<ul>
+  @foreach (var person in AsList(App.Data["Persons"])) {
+    <li>
+      <a href='@Link.To(parameters: CmsContext.Page.Parameters.Set("id", person.EntityId))'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.06.00" ExportDate="2023-09-20T08:47:08.5882508+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.06.00" ExportDate="2023-09-20T13:51:42.4866422+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -5295,6 +5295,13 @@
             </Value>
           </Entity>
         </Attribute>
+        <Attribute StaticName="GroupInDepth" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="bb1aecc0-4c4c-4965-bd47-3b1273a6cc16" Json="True" KeyNumber="5951">
+            <Value Key="InputType" Value="empty-default" Type="String" />
+            <Value Key="Name" Value="GroupInDepth" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
         <Attribute StaticName="InDepthExplanation" Type="String" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0e717fc8-35cf-4890-9947-7ee5e5d515dc" Json="True" KeyNumber="5903">
             <Value Key="CustomJavaScript" Value="" Type="String">
@@ -5367,6 +5374,13 @@
             <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="InDepthImages" Type="Hyperlink" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b133f9ee-3ab9-4be1-9c83-660d374d45a0" Json="True" KeyNumber="5952">
+            <Value Key="InputType" Value="hyperlink-library" Type="String" />
+            <Value Key="Name" Value="InDepthImages" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
       </Attributes>
@@ -10694,89 +10708,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="ViewNameInUrl" Value="data621/.*" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="29a24f31-9489-4bd6-b874-833fcb6b110b" Json="True">
-      <Value Key="AllowEdit" Value="True" Type="Boolean" />
-      <Value Key="Description" Value="" Type="String" />
-      <Value Key="Name" Value="Data621-Author-From-Query-d621d" Type="String" />
-      <Value Key="StreamsOut" Value="ListContent,Default" Type="String" />
-      <Value Key="StreamWiring" Value="2f548ad0-54ba-4b2f-a726-5158bddb9f65:Persons&gt;cd3a669a-a3d2-4349-befd-935d52fbea93:Default&#xD;&#xA;cd3a669a-a3d2-4349-befd-935d52fbea93:Default&gt;Out:Default" Type="String" />
-      <Value Key="TestParameters" Value="[QueryString:Data621id]=10682" Type="String" />
-      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="2f548ad0-54ba-4b2f-a726-5158bddb9f65" Json="True" KeyGuid="29a24f31-9489-4bd6-b874-833fcb6b110b">
-      <Value Key="Description" Value="" Type="String" />
-      <Value Key="Name" Value="App" Type="String" />
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 340,&#xD;&#xA;  &quot;Left&quot;: 160&#xD;&#xA;}" Type="String" />
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="cd3a669a-a3d2-4349-befd-935d52fbea93" Json="True" KeyGuid="29a24f31-9489-4bd6-b874-833fcb6b110b">
-      <Value Key="Description" Value="" Type="String" />
-      <Value Key="Name" Value="ItemIdFilter" Type="String" />
-      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String" />
-      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 160,&#xD;&#xA;  &quot;Left&quot;: 200&#xD;&#xA;}" Type="String" />
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="8ad74448-7ef2-4227-b818-2c48dc814361" Json="True" KeyGuid="cd3a669a-a3d2-4349-befd-935d52fbea93">
-      <Value Key="EntityIds" Value="[QueryString:data621id]" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="120fbac9-64b6-45c3-a0b3-fe9cbf95a094" Json="True">
-      <Value Key="ContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Icon" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Identifier" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IsHidden" Value="True" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListContentTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ListPresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Location" Value="Site" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Name" Value="D621b - Details with query" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Path" Value="data/621-b-details.cshtml" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Pipeline" Value="29a24f31-9489-4bd6-b874-833fcb6b110b" Type="Entity" />
-      <Value Key="PresentationTypeStaticName" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="PublishData" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingDisabled" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="SearchIndexingStreams" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="StreamsToPublish" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Type" Value="C# Razor" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="UseForList" Value="False" Type="Boolean">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewController" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ViewNameInUrl" Value="data621id/.*" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -32888,6 +32819,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -32910,6 +32842,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="blade-text-first-2-value" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -37049,7 +36984,7 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;Test&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="" Type="String">
@@ -37751,13 +37686,22 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="f275587f-23e3-4e14-8536-7ec4f3ea088e">
-      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;Data can have relationships to other data, allowith code to navigate from one to the other.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="datasources-advanced-page" Type="String">
@@ -37970,13 +37914,22 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="b26d4a76-eac7-4995-9a79-fe71ad3bd85d">
-      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;In the previous examples, the custom DataSources simply returned anonymous objects. This is great, but sometimes you need more control. Some examples: For example,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;All the data has the same Content Type Name &lt;code&gt;unspecified&lt;/code&gt;. This would prevent you from filtering the data by Content Type Name when you're using multiple dynamic sources.&lt;/li&gt;&#xA;&lt;li&gt;By default, all data with ID 0 (zero) would get an automatic ID assigned - counting up from one. But in rare cases, an ID 0 is really expected.&lt;/li&gt;&#xA;&lt;li&gt;The title field name is &lt;code&gt;Title&lt;/code&gt; by default. But in some cases you would prefer &lt;code&gt;Name&lt;/code&gt; or something else.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;To handle all this, you can use special FactoryOptions which configure how the data is converted to a real &lt;code&gt;IEntity&lt;/code&gt;.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="datasources-factory" Type="String">
@@ -40372,7 +40325,7 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;This page uses the sxc data API to create data for the backend.&lt;/p&gt;&#xA;&lt;p&gt;In this tutorial you'll learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Create data using the&amp;nbsp;&lt;code&gt;.create(...)&lt;/code&gt;&amp;nbsp;method&lt;/li&gt;&#xA;&lt;li&gt;Update data using the&amp;nbsp;&lt;code&gt;.update(...)&lt;/code&gt;&amp;nbsp;method&lt;/li&gt;&#xA;&lt;li&gt;Delete data using the&amp;nbsp;&lt;code&gt;.delete(...)&lt;/code&gt;&amp;nbsp;method&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Look at the content below to see the effect.&lt;/p&gt;" Type="String">
@@ -40443,7 +40396,7 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;This page uses the sxc data API to create metadata in the backend.&lt;/p&gt;&#xA;&lt;p&gt;In this tutorial you'll learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Create metadata for other entities using the javascript&amp;nbsp;&lt;code&gt;.create(..., ...)&lt;/code&gt;&amp;nbsp;method&lt;/li&gt;&#xA;&lt;li&gt;Delete existing items (so the demo doesn't grow uncontrollably) using the&amp;nbsp;&lt;code&gt;.delete(...)&lt;/code&gt;&amp;nbsp;method&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Look at the content below to see the effect.&lt;/p&gt;" Type="String">
@@ -40514,7 +40467,7 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;In some advanced cases you want to find out information about a specific content-type.&lt;/p&gt;" Type="String">
@@ -40571,7 +40524,7 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;data-contenttype-details&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Content-Type Information&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-contenttype-details" Type="String">
@@ -40585,7 +40538,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;Read more about &lt;a href=&quot;https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html#ToSic_Eav_Data_IContentType_Attributes&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;attributes in the docs 🔗&lt;/a&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -40603,7 +40556,7 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;data-contenttype-properties&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Properties / Attributes&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-contenttype-properties" Type="String">
@@ -40710,10 +40663,10 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="02b1fd7a-aac2-4488-a8d6-cc6e857bab07">
-      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets&amp;nbsp;&lt;code&gt;Persons&lt;/code&gt;&amp;nbsp;data from the&amp;nbsp;&lt;code&gt;App.Data[&quot;Persons&quot;]&lt;/code&gt;&amp;nbsp;and just loops through them. This is similar to the example in the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/content/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;content&lt;/a&gt;&amp;nbsp;tutorial, except that the data comes from the&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;&amp;nbsp;instead of the current&amp;nbsp;&lt;em&gt;instance&lt;/em&gt;&amp;nbsp;&lt;code&gt;Data&lt;/code&gt;.&lt;/p&gt;" Type="String">
@@ -40734,7 +40687,7 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="aa141679-e70b-49b3-868d-102ce3164cab,b13322ec-8265-47b0-a0e6-b2eac4ce8308" Type="Entity" />
@@ -40770,7 +40723,7 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;data-appdata-persons&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Persons&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-appdata-persons" Type="String">
@@ -40784,7 +40737,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;Queries are pre-build for things like &quot;get all authors and the books of the author in the URL&quot; or similar (&lt;a href=&quot;https://2sxc.org/en/Learn/Visual-Query-Designer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;more&lt;/a&gt;). These are configured in the App administration. The query &lt;code&gt;AuthorsWithBooks&lt;/code&gt; (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the &lt;code&gt;Authors&lt;/code&gt; Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the &lt;code&gt;Current&lt;/code&gt; stream as well as the &lt;code&gt;CurrentBooks&lt;/code&gt; of that author.&lt;br&gt;&lt;br&gt;&lt;a href=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/query-authors-with-books.png&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; data-fancybox=&quot;gallery&quot;&gt;&lt;img style=&quot;width: 400px;&quot; src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/query-authors-with-books.png&quot; alt=&quot;query-authors-with-books&quot; width=&quot;400&quot; height=&quot;200&quot; data-cmsid=&quot;file:query-authors-with-books.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -40802,7 +40755,7 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;data-appdata-query-authors-and-books (220)&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Example from Query&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-appdata-query-authors-and-books" Type="String">
@@ -40947,6 +40900,935 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="6a84e911-de1e-49a3-9cb9-73e8bea55d36">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. Please note that the DNN API isn't very consistent - so sometimes things use&amp;nbsp;&lt;code&gt;ID&lt;/code&gt;, sometimes&amp;nbsp;&lt;code&gt;Id&lt;/code&gt;, so best really verify the exact names as spelled in the API.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="data-dnn-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="758634ad-402f-4170-9670-f5b78f0d1764" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Use DNN APIs to get DNN Data&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="data-dnn-page - Use DNN APIs to get DNN Data" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="758634ad-402f-4170-9670-f5b78f0d1764">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. Please note that the DNN API isn't very consistent - so sometimes things use &lt;code&gt;ID&lt;/code&gt;, sometimes &lt;code&gt;Id&lt;/code&gt;, so best really verify the exact names as spelled in the API.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Get the Tab (Pages) List from DNN APIs&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-dnn-tab-list" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="95b5308d-8017-4d80-b396-abaf913c6f94">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Base&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-csv-query-base" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="536add1a-74d3-46e3-8b59-0e31983e1376">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;This is similar to the previous example, except that the CSV file can be uploaded again and again in the App-Settings UI. So the path isn't hard-coded. &lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Example from CSV which was uploaded as an App Setting&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-csv-query-settings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="bcbec2e2-049a-4207-8f37-826f22389e18">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/4sK-vJoEB0KPN4JvIjieGA/Intro/query-products-csv.png&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; data-fancybox=&quot;gallery&quot;&gt;&lt;img style=&quot;width: 400px;&quot; src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/4sK-vJoEB0KPN4JvIjieGA/Intro/query-products-csv.png&quot; alt=&quot;query-products-csv&quot; width=&quot;400&quot; height=&quot;200&quot; data-cmsid=&quot;file:query-products-csv.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="data-csv-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="95b5308d-8017-4d80-b396-abaf913c6f94,536add1a-74d3-46e3-8b59-0e31983e1376" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Example from CSV&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="data-csv-page - Example from CSV" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="647c0b83-d32b-49b4-b310-60fd266363fc">
+      <Value Key="DefaultStateIsOpen" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;In this example, we'll get app-data from the WebApi.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="webapi-appdata-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="&lt;p&gt;&lt;strong&gt;Important: WebApi using&amp;nbsp;&lt;code&gt;[JsonFormatter]&lt;/code&gt;&amp;nbsp;🆕 in 2sxc 16&lt;/strong&gt;&lt;br&gt;The&amp;nbsp;&lt;code&gt;[JsonFormatter]&lt;/code&gt;&amp;nbsp;has a few effects. It auto-defaults to camelCase (but you can modify this if you need to preserve casing). It will also auto-convert entities to a standard JSON format.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="e5366dbf-4a01-4b22-a6b4-d66fb78dbdc7,988c7f72-0270-45d4-b2b5-54a045c3013e,fd2fae10-8380-4876-8072-a92d90169eba,496db736-6445-46a7-a737-448fa3f0c273,e152d9d1-208a-40d3-8f15-2c13edcbbfdd,be4812f9-82c8-4b1d-a399-dace59a7423d,e81022ee-3315-4208-abb1-548eb23694f5" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;App.Data WebApi Examples&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="webapi-appdata-page - App.Data WebApi Examples" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="e5366dbf-4a01-4b22-a6b4-d66fb78dbdc7">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;In this example, we'll get app-data from the WebApi.&lt;/p&gt;&#xA;&lt;p&gt;Click to see the result of a WebApi call with the shared code:&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;App.Data WebApi Examples Persons&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-appdata-persons-custom" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="988c7f72-0270-45d4-b2b5-54a045c3013e">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;In this example, we'll get app-data from the WebApi.&lt;/p&gt;&#xA;&lt;p&gt;Click to see the result of a WebApi call with the shared code:&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;App.Data WebApi Examples Books&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-appdata-books-custom" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="fd2fae10-8380-4876-8072-a92d90169eba">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;webapi-appdata-persons-default&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-appdata-persons-default" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="496db736-6445-46a7-a737-448fa3f0c273">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;webapi-appdata-persons-preserve-casing&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-appdata-persons-preserve-casing" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="e152d9d1-208a-40d3-8f15-2c13edcbbfdd">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;webapi-appdata-query-custom (410)&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-appdata-query-custom" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="be4812f9-82c8-4b1d-a399-dace59a7423d">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;webapi-hybrid-strings (800 - parts of it)&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-hybrid-strings" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="e81022ee-3315-4208-abb1-548eb23694f5">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;webapi-hybrid-permissions (800, parts of it)&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="webapi-hybrid-permissions" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="6a8cb104-69dd-496c-a45f-100375907948">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example splits the list/details templates into 3 files, which is easier to manage. File 1 choses what should happen, file 2 contains the list, and file 3 the details.&lt;/p&gt;&#xA;&lt;p&gt;Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/linq/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LINQ Tutorials&lt;/a&gt;.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Basic List Details using Code - with separate Details-File&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-listdetails-coded" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="92c99e02-e46c-4022-bdcc-6069eaddaadd">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="data-listdetails-coded-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="6a8cb104-69dd-496c-a45f-100375907948" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Basic List Details using Code - with separate Details-File&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="data-listdetails-coded-page - Basic List Details using Code - with separate Details-File" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="9b3c759a-5f50-4867-a95b-a1d24628589e">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;In this example, we'll assume your template needs &lt;a href=&quot;https://getbootstrap.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bootstrap5&lt;/a&gt; as the preferred CSS framework. Note that this works for other frameworks as well, with minor modifications. But if it's used on any page, you may have one of the following situations:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Bootstrap5 could already be included - so you shouldn't do anything&lt;/li&gt;&#xA;&lt;li&gt;A different CSS framework is included - so you should include Bootstrap5 automatically&lt;/li&gt;&#xA;&lt;li&gt;The current CSS framework can't be detected, so to be safe, you should include Bootstrap 5 as well, until the theme is updated to broadcast what it's using&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This page shows how to handle these problems with almost no code. Note that we've place the code in a separate file and use a helper to achieve this, as this allows us to re-use the code in multiple templates. &lt;br&gt;&lt;em&gt;BTW: to see that this works, try switching the theme of this page to one without a &lt;code&gt;koi.json&lt;/code&gt; or one with a different css-framework.&lt;/em&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="file:6428" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="koi-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="a25bd025-0ae6-4b3b-907a-ad36d25ad96a,9a3ca64c-0e71-4554-9602-27ecf4ea0100,37109f5f-aa60-44ce-bdfe-0bd22495d67e" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Auto-Include Bootstrap5 If Not Already Included&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="koi-page - Auto-Include Bootstrap5 If Not Already Included" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="9d8cfc0f-78ee-41fd-8ba8-37e672e90c47">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="&lt;p&gt;Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example even has the list &amp;amp; details view in the same file - but usually you don't want that - so check the next examples afterwards.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Basic List Details using Code&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-listdetails-combined" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="f68a5760-b3ce-4b51-b5af-e66534337e91">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="data-listdetails-combined-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="9d8cfc0f-78ee-41fd-8ba8-37e672e90c47" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;Basic List Details using Code&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="data-listdetails-combined-page - Basic List Details using Code" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="12a5b83b-8fdf-4aa7-87a8-30fc1c394111">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="data-listdetails-viewswitch-basic-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="375d25e7-ae40-4fd3-a8a4-55fd4779ab48" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;List Details using Automatic View-Switching&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="data-listdetails-viewswitch-basic-page - List Details using Automatic View-Switching" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="375d25e7-ae40-4fd3-a8a4-55fd4779ab48">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;The previous examples showed you how to do things &quot;manually&quot;. In this example, the 2sxc-view configuration says that the main view should come when&amp;nbsp;&lt;code&gt;id&lt;/code&gt; is in the url, and that the details view should come, when &lt;code&gt;id&lt;/code&gt;&amp;nbsp; (for details) is in the url. This automatic view switching makes life easier and code shorter:).&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="35692895-bec9-4354-bf31-06db07ffd086" Type="Entity" />
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;List Details using Automatic View-Switching&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-viewswitch-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="a25bd025-0ae6-4b3b-907a-ad36d25ad96a">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Auto-Include Bootstrap5 If Not Already Included&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="koi-basics-include-if-missing" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="76cc1fe2-5a5f-4f37-9d53-2534f25d59c6">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;The previous examples showed you how to do auto-switch views. This example makes the code even easier, by telling the details-view to pick up the details-item from a query. You can see the query and how it's configured to the right.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="35692895-bec9-4354-bf31-06db07ffd086" Type="Entity" />
+      <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;List Details using Automatic View-Switching and Query&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="data-viewswitch-query" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutAccordion" EntityGUID="a3646362-0060-44b5-848d-b029a6b4c1ff">
+      <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="HasVariants" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Logo" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NameId" Value="data-viewswitch-query-page" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Sections" Value="76cc1fe2-5a5f-4f37-9d53-2534f25d59c6" Type="Entity" />
+      <Value Key="Title" Value="&lt;p&gt;List Details using Automatic View-Switching and Query&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="data-viewswitch-query-page - List Details using Automatic View-Switching and Query" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="9a3ca64c-0e71-4554-9602-27ecf4ea0100">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;In this example, we'll assume your template needs &lt;a href=&quot;https://getbootstrap.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bootstrap5&lt;/a&gt; as the preferred CSS framework. And we'll also assume, that you don't want to @Sys.TutLink(&quot;auto-include it&quot;, &quot;koi110&quot;), but instead want to warn the admin, to ensure he can correct the situation. This is what you want to do, when you believe the Admin should optimize the output, and prevent accidentally loading Bootstrap multiple times.&lt;/p&gt;&#xA;&lt;p&gt;This page shows how to handle these problems with almost no code. We'll also show what you can do, so only admins see the message. &lt;br&gt;&lt;em&gt;BTW: to see that this works, try switching the theme of this page to one without a &lt;code&gt;koi.json&lt;/code&gt; or one with a different css-framework.&lt;/em&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Show Warning if Bootstrap5 not Included or Unclear&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="koi-basics-alert-if-missing" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="37109f5f-aa60-44ce-bdfe-0bd22495d67e">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;In this example, we'll assume you have a Bootstrap3 and a Bootstrap4 template in the folders &lt;code&gt;bs3/_Line.cshtml&lt;/code&gt; and the same in &lt;code&gt;bs4/_Line.cshtml&lt;/code&gt;. We'll use Koi to load the right template file.&lt;/p&gt;&#xA;&lt;p&gt;You can see in the source-codes that BS3 uses &lt;code&gt;pull-left&lt;/code&gt; and another class on the blockquote tag than BS4.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Switch between template files based on Bootstrap Version&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="koi-basics-switch-folder" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="b98eacce-566f-42ce-ac37-3870a1b79e3e" AttributeSetName="TutorialNote" EntityGUID="35692895-bec9-4354-bf31-06db07ffd086">
+      <Value Key="CshtmlFile" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Images" Value="" Type="Hyperlink" />
+      <Value Key="NameId" Value="view-switch-url-params" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="&lt;p&gt;This requires the view configuration to be set to activate the details view if &lt;code&gt;id&lt;/code&gt;&amp;nbsp;is specified in the url, using &lt;code&gt;id/.*&lt;/code&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteSource" Value="note" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteType" Value="info" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="View-Switching based on URL Parameters" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="view-switch-url-params - View-Switching based on URL Parameters" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="e4a16465-dd2a-4989-a97d-d030f5adb93e" Json="True" KeyGuid="332d00dd-6066-4ee5-ad03-57a36ed4015f">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="App" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.App, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 340,&#xD;&#xA;  &quot;Left&quot;: 420&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="4db1eae0-604b-40e3-bd1d-c36680f494ab" Json="True" KeyGuid="332d00dd-6066-4ee5-ad03-57a36ed4015f">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="ItemIdFilter" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="ToSic.Eav.DataSources.EntityIdFilter, ToSic.Eav.DataSources" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 160,&#xD;&#xA;  &quot;Left&quot;: 380&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="|Config ToSic.Eav.DataSources.EntityIdFilter" AttributeSetName="ToSic.Eav.DataSources.EntityIdFilter" EntityGUID="5d326bcd-d7a3-4236-8669-bda714e04f85" Json="True" KeyGuid="4db1eae0-604b-40e3-bd1d-c36680f494ab">
+      <Value Key="EntityIds" Value="[Params:id]" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="332d00dd-6066-4ee5-ad03-57a36ed4015f" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="Data-ViewSwitch-Query-Details" Type="String" />
+      <Value Key="Params" Value="Id=[QueryString:ID]" Type="String" />
+      <Value Key="StreamsOut" Value="ListContent,Default" Type="String" />
+      <Value Key="StreamWiring" Value="e4a16465-dd2a-4989-a97d-d030f5adb93e:Persons&gt;4db1eae0-604b-40e3-bd1d-c36680f494ab:Default&#xD;&#xA;4db1eae0-604b-40e3-bd1d-c36680f494ab:Default&gt;Out:Default" Type="String" />
+      <Value Key="TestParameters" Value="[QueryString:id]=20069" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="bea8c8c2-ae6c-40ec-90ed-223d93612da3" AttributeSetName="TutorialObjectInfo" EntityGUID="8235e662-3f89-4fe4-8684-fec39531d136">
+      <Value Key="Description" Value="&lt;p&gt;This query gets a single person for the view which shows the details. It will look for the person matching the ID in the url.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Images" Value="" Type="Hyperlink" />
+      <Value Key="NameId" Value="query-data-viewswitch-query-details" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Query: Data-ViewSwitch-Query-Details" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -40980,14 +41862,17 @@
     <File Id="6176" RelativePath="adam\Tutorial-Razor\OHvewb1sE0uF6ZvJcA2faQ\Image\Formulas Tutorials.jpg" />
     <File Id="6414" RelativePath="adam\Tutorial-Razor\kOvGrIG810q3-FGHe07iUQ\Image\2sxc-quickref-razor-typed.jpg" />
     <File Id="6424" RelativePath="adam\Tutorial-Razor\lzbWQg-CsUStjix8J0gkKg\Logo\turn-on.svg" />
+    <File Id="6428" RelativePath="adam\Tutorial-Razor\mnU8m1BfZ0ipW6HSRihYng\Logo\koi.png" />
     <File Id="6415" RelativePath="adam\Tutorial-Razor\_KYUPoF5lUWYTePmQMorvw\Note\hover-example.jpg" />
     <File Id="6103" RelativePath="adam\Tutorial-Razor\2lw0P5Npd0et1HeG_6HZHA\Image\app-icon.png" />
+    <File Id="6427" RelativePath="adam\Tutorial-Razor\4sK-vJoEB0KPN4JvIjieGA\Intro\query-products-csv.png" />
     <File Id="6423" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\01-formulas-open.png" />
     <File Id="6421" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\02-formulas-attribute.png" />
     <File Id="6422" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\03-formulas-target.png" />
     <File Id="6420" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\04-formulas-edit.png" />
     <File Id="6419" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\05-formulas-run.png" />
     <File Id="6417" RelativePath="adam\Tutorial-Razor\6cecZ_IQ30a110FfCQck1Q\Images\use-in-visual-query.jpg" />
+    <File Id="6426" RelativePath="adam\Tutorial-Razor\7CIzsWWCsEeg5rLqxM6DCA\Intro\query-authors-with-books.png" />
     <File Id="5984" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\Per Anhalter.jpg" />
     <File Id="6099" RelativePath="adam\Tutorial-Razor\EfPWrTxVJUO28sgaeOjq3Q\Image\app-icon.png" />
     <File Id="6418" RelativePath="adam\Tutorial-Razor\El9vl3tjpkaPvXrldB7YXg\Images\app-data-sources.jpg" />
@@ -40997,6 +41882,7 @@
     <File Id="6416" RelativePath="adam\Tutorial-Razor\I62N_l17HU6eCmZ5w72-pQ\Images\query-screenshot.png" />
     <File Id="6097" RelativePath="adam\Tutorial-Razor\j_JhYiXpkEyhEc3YNKzftA\Image\app-icon.png" />
     <File Id="6425" RelativePath="adam\Tutorial-Razor\KjilZ0eE1kicnje7UzgnwA\Intro\ephemeral.jpg" />
+    <File Id="6430" RelativePath="adam\Tutorial-Razor\lShpNcm-VEO_MQbbB__Qhg\Images\view-switching-with-url-parameters.png" />
     <File Id="6095" RelativePath="adam\Tutorial-Razor\oemnwEUKSUmao3JExQd75A\Image\app-icon.png" />
     <File Id="6101" RelativePath="adam\Tutorial-Razor\ROEcJLCX40m6vu4w0iogag\Image\app-icon.png" />
     <File Id="6096" RelativePath="adam\Tutorial-Razor\SjaSfr5aXk2ziKpsl56oqQ\Image\app-icon.png" />
@@ -41005,6 +41891,7 @@
     <File Id="6098" RelativePath="adam\Tutorial-Razor\u2PgemEJYEaL9yM3DnOLEg\Image\app-icon.png" />
     <File Id="6105" RelativePath="adam\Tutorial-Razor\xg6dySq8Aku2g4CY6b-OMw\Image\look-up-system.svg" />
     <File Id="6102" RelativePath="adam\Tutorial-Razor\-YQYgfVpPUGFd3ci9FOd2g\Image\app-icon.png" />
+    <File Id="6433" RelativePath="adam\Tutorial-Razor\YuY1gok_5E-GhP7DlTHRNg\Images\Data-ViewSwitch-Query-Details.png" />
   </PortalFiles>
   <PortalFolders>
     <Folder Id="13466" RelativePath="adam/Tutorial-Razor/FP6nrGBJZUKPRnldQOMQEQ/CsvFile/" />
@@ -41037,10 +41924,13 @@
     <Folder Id="13796" RelativePath="adam/Tutorial-Razor/OHvewb1sE0uF6ZvJcA2faQ/Image/" />
     <Folder Id="14074" RelativePath="adam/Tutorial-Razor/kOvGrIG810q3-FGHe07iUQ/Image/" />
     <Folder Id="14092" RelativePath="adam/Tutorial-Razor/lzbWQg-CsUStjix8J0gkKg/Logo/" />
+    <Folder Id="14100" RelativePath="adam/Tutorial-Razor/mnU8m1BfZ0ipW6HSRihYng/Logo/" />
     <Folder Id="14076" RelativePath="adam/Tutorial-Razor/_KYUPoF5lUWYTePmQMorvw/Note/" />
     <Folder Id="13654" RelativePath="adam/Tutorial-Razor/2lw0P5Npd0et1HeG_6HZHA/Image/" />
+    <Folder Id="14098" RelativePath="adam/Tutorial-Razor/4sK-vJoEB0KPN4JvIjieGA/Intro/" />
     <Folder Id="14087" RelativePath="adam/Tutorial-Razor/5vCHQdDArke38qk5hGmItQ/Images/" />
     <Folder Id="14080" RelativePath="adam/Tutorial-Razor/6cecZ_IQ30a110FfCQck1Q/Images/" />
+    <Folder Id="14096" RelativePath="adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/" />
     <Folder Id="13646" RelativePath="adam/Tutorial-Razor/EfPWrTxVJUO28sgaeOjq3Q/Image/" />
     <Folder Id="14082" RelativePath="adam/Tutorial-Razor/El9vl3tjpkaPvXrldB7YXg/Images/" />
     <Folder Id="13648" RelativePath="adam/Tutorial-Razor/G5TPkrD7q0GZE3BvTx790w/Image/" />
@@ -41049,6 +41939,7 @@
     <Folder Id="14078" RelativePath="adam/Tutorial-Razor/I62N_l17HU6eCmZ5w72-pQ/Images/" />
     <Folder Id="13642" RelativePath="adam/Tutorial-Razor/j_JhYiXpkEyhEc3YNKzftA/Image/" />
     <Folder Id="14094" RelativePath="adam/Tutorial-Razor/KjilZ0eE1kicnje7UzgnwA/Intro/" />
+    <Folder Id="14104" RelativePath="adam/Tutorial-Razor/lShpNcm-VEO_MQbbB__Qhg/Images/" />
     <Folder Id="13638" RelativePath="adam/Tutorial-Razor/oemnwEUKSUmao3JExQd75A/Image/" />
     <Folder Id="13650" RelativePath="adam/Tutorial-Razor/ROEcJLCX40m6vu4w0iogag/Image/" />
     <Folder Id="13640" RelativePath="adam/Tutorial-Razor/SjaSfr5aXk2ziKpsl56oqQ/Image/" />
@@ -41056,6 +41947,7 @@
     <Folder Id="13644" RelativePath="adam/Tutorial-Razor/u2PgemEJYEaL9yM3DnOLEg/Image/" />
     <Folder Id="13658" RelativePath="adam/Tutorial-Razor/xg6dySq8Aku2g4CY6b-OMw/Image/" />
     <Folder Id="13652" RelativePath="adam/Tutorial-Razor/-YQYgfVpPUGFd3ci9FOd2g/Image/" />
+    <Folder Id="14106" RelativePath="adam/Tutorial-Razor/YuY1gok_5E-GhP7DlTHRNg/Images/" />
     <Folder Id="3089" RelativePath="adam/Tutorial-Razor/" />
     <Folder Id="3104" RelativePath="adam/Tutorial-Razor/_EnbtOtUMkyquoNoNkt1fA/" />
     <Folder Id="14075" RelativePath="adam/Tutorial-Razor/_KYUPoF5lUWYTePmQMorvw/" />
@@ -41063,11 +41955,15 @@
     <Folder Id="3106" RelativePath="adam/Tutorial-Razor/22bmCywVk0qU5fr-bOpx7A/" />
     <Folder Id="13692" RelativePath="adam/Tutorial-Razor/2KtgHisOY0eRfmdPKx6r_w/" />
     <Folder Id="13653" RelativePath="adam/Tutorial-Razor/2lw0P5Npd0et1HeG_6HZHA/" />
+    <Folder Id="14097" RelativePath="adam/Tutorial-Razor/4sK-vJoEB0KPN4JvIjieGA/" />
     <Folder Id="13609" RelativePath="adam/Tutorial-Razor/5-h-02WsiUmfG7OINaHkdA/" />
     <Folder Id="14083" RelativePath="adam/Tutorial-Razor/5vCHQdDArke38qk5hGmItQ/" />
+    <Folder Id="14101" RelativePath="adam/Tutorial-Razor/5yVdN0Cu00-opFX9R3mrSA/" />
+    <Folder Id="14102" RelativePath="adam/Tutorial-Razor/5yVdN0Cu00-opFX9R3mrSA/InDepthImages/" />
     <Folder Id="14079" RelativePath="adam/Tutorial-Razor/6cecZ_IQ30a110FfCQck1Q/" />
     <Folder Id="12749" RelativePath="adam/Tutorial-Razor/6v4UsTVA_Uelntqmn0zE-g/" />
     <Folder Id="12750" RelativePath="adam/Tutorial-Razor/6v4UsTVA_Uelntqmn0zE-g/Icon/" />
+    <Folder Id="14095" RelativePath="adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/" />
     <Folder Id="3090" RelativePath="adam/Tutorial-Razor/7md5eRsHbU6B0iHeIzYLCQ/" />
     <Folder Id="13605" RelativePath="adam/Tutorial-Razor/a_Z8_xHE-0CkN2Ur9mtdrA/" />
     <Folder Id="13230" RelativePath="adam/Tutorial-Razor/adiaEW1BykWZKUdeiaMcyw/" />
@@ -41104,7 +42000,9 @@
     <Folder Id="12758" RelativePath="adam/Tutorial-Razor/L3sxVguakEC1kYr0vulGtg/Icon/" />
     <Folder Id="13611" RelativePath="adam/Tutorial-Razor/lkGB9HUfF0WmN5nx_A9vZQ/" />
     <Folder Id="3100" RelativePath="adam/Tutorial-Razor/lkSe34OoCkek0zycr6nENQ/" />
+    <Folder Id="14103" RelativePath="adam/Tutorial-Razor/lShpNcm-VEO_MQbbB__Qhg/" />
     <Folder Id="14091" RelativePath="adam/Tutorial-Razor/lzbWQg-CsUStjix8J0gkKg/" />
+    <Folder Id="14099" RelativePath="adam/Tutorial-Razor/mnU8m1BfZ0ipW6HSRihYng/" />
     <Folder Id="3094" RelativePath="adam/Tutorial-Razor/n97Ml8Vl10mZADcbKmmBKw/" />
     <Folder Id="13637" RelativePath="adam/Tutorial-Razor/oemnwEUKSUmao3JExQd75A/" />
     <Folder Id="13795" RelativePath="adam/Tutorial-Razor/OHvewb1sE0uF6ZvJcA2faQ/" />
@@ -41136,6 +42034,7 @@
     <Folder Id="10560" RelativePath="adam/Tutorial-Razor/YjBw9OeCIkC5x4Pqo-_q9w/" />
     <Folder Id="10561" RelativePath="adam/Tutorial-Razor/YjBw9OeCIkC5x4Pqo-_q9w/Mugshot/" />
     <Folder Id="13651" RelativePath="adam/Tutorial-Razor/-YQYgfVpPUGFd3ci9FOd2g/" />
+    <Folder Id="14105" RelativePath="adam/Tutorial-Razor/YuY1gok_5E-GhP7DlTHRNg/" />
     <Folder Id="7241" RelativePath="adam/Tutorial-Razor/YZBfU9ZNkEO6-T2rK559yA/" />
     <Folder Id="7242" RelativePath="adam/Tutorial-Razor/YZBfU9ZNkEO6-T2rK559yA/Notes/" />
     <Folder Id="13226" RelativePath="adam/Tutorial-Razor/zGON-h81e0iSGjFE0J6hsA/" />

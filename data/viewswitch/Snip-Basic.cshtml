@@ -1,11 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 @*! Simulate View Switching
-Tut.Tabs=Snip-ViewSwitch-Details.Dyn.cshtml
+Tut.Tabs=file:./Snip-Basic-Details.Dyn.cshtml
 *@
 @{
   // todo: add to view info
   if (CmsContext.Page.Parameters.IsNotEmpty("Id")) {
-    @Html.Partial("./Snip-ViewSwitch-Details.Dyn.cshtml")
+    @Html.Partial("./Snip-Basic-Details.Dyn.cshtml")
     return;
   }
 }

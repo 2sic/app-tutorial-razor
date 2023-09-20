@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor14
+@*! *@
+@{
+  @* var urlParams = CmsContext.Page.Parameters;
+  var urlId = urlParams["id"];
+  int id = Int32.Parse(urlId);
+
+  // find the person with this Id using LINQ
+  var Content = AsList(App.Data["Persons"])
+    .First(p => p.EntityId == id); *@
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "Data-ViewSwitch-Query-Details")  as object);
+}
+@* !*@
+<h2>Details using Automatic View-Switching</h2>
+<p>
+  You now see the details page. The code is even shorter, because it is using a query, which already does the <em>look-for-id</em>. The image to the right shows where this configuration is applied to the view. 
+</p>
+</trim>
+
+<img loading="lazy" src="@Content.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
+<h3>Details of @Content.FirstName @Content.LastName</h3>
+<a href='@Link.To(parameters: CmsContext.Page.Parameters.Remove("Id"))'>back to list</a>

@@ -96,7 +96,7 @@ public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
   /// <summary>
   /// Helper to get either the query or the type
   /// </summary>
-  private IEnumerable<IEntity> GetListForSimulate(string type = null, string nameId = null, string query = null, string stream = null) {
+  private IEnumerable<IEntity> GetListForSimulate(string type = null, string nameId = null, string query = null, string stream = null, object parameters = null) {
     var l = Log.Call<IEnumerable<IEntity>>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
     // Prepare: Verify the Tab "ViewConfig" was specified
     // throw new Exception("th:" + TabHandler);
@@ -114,7 +114,7 @@ public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
 
     // Case 2: Get a query, possibly a stream
     if (query != null) {
-      var q = App.GetQuery(query);
+      var q = App.GetQuery(query, parameters: parameters);
       data = q.GetStream(stream).List; // should work for both null and "some-name"
       if (!data.Any()) throw new Exception("Trying to simulate view content - but query returned no data");
     }
@@ -128,9 +128,9 @@ public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
     return l(data, "ok");
   }
 
-  public IEntity Content(string type = null, string nameId = null, string query = null, string stream = null) {
+  public IEntity Content(string type = null, string nameId = null, string query = null, string stream = null, object parameters = null) {
     var l = Log.Call<IEntity>();
-    var list = GetListForSimulate(type, nameId, query, stream);
+    var list = GetListForSimulate(type, nameId, query, stream, parameters: parameters);
     var first = list.First();
     ContentType = first.Type.Name;
     ContentList = list.Take(1).ToList();
@@ -157,14 +157,14 @@ public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
     ContentList = list.ToList();
     return l(list, "ok");
   }
-  public IDataSource Query(string query = null, string stream = null) {
+  public IDataSource Query(string query = null, string stream = null, object parameters = null) {
     var l = Log.Call<IDataSource>();
 
     // Prepare: Verify the Tab "ViewConfig" was specified
     if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
       throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 
-    var q = App.GetQuery(query);
+    var q = App.GetQuery(query, parameters: parameters);
     QueryName = query;
     return l(q, "ok");
   }
