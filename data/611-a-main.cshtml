@@ -22,19 +22,11 @@
   </div>
 </div>
 
+@*
+  TODO: @2dm - must get view switching to work (simulated!)
+*@
 
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./611-list.cshtml,file:./611-details.cshtml")).SnipStart())
-  @{
-    // check if we have a url-parameter called "id" with a value - defaults to 0 if not found
-    int id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
-  }
-  @if (id == 0) {
-    @Html.Partial("611-list.cshtml")
-  } else {
-    @Html.Partial("611-details.cshtml", new { Id = id })
-  }
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-viewswitch-coded-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
