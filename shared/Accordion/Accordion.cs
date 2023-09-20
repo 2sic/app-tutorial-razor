@@ -102,7 +102,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
 
     var realName = "Snip-" + rest + variant + ".cshtml";
     var filePath = System.IO.Path.Combine(appPath, topPath, secondPath, realName);
-    var fullPath = Sys.SourceCode.GetFullPath(filePath);
+    var fullPath = Sys.SourceCode.FileHandler.GetFullPath(filePath);
     if (System.IO.File.Exists(fullPath)) {
       fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);
       return true;

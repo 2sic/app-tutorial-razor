@@ -14,7 +14,7 @@
       // Check if the file has it's own snip.Start/snip.End
       // in which case we don't wrap it here, as the file will do the wrapping
       // this is for more complex samples, which also generate contents for the tabs
-      var containsSnipCode = runCode && Sys.SourceCode.FileContainsSnipCode(acs.SectionFile);
+      var containsSnipCode = runCode && Sys.SourceCode.FileHandler.FileContainsSnipCode(acs.SectionFile);
       var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
       if (containsSnipCode) {
         @Html.Partial(codeFile, new { item, SnippetSection = snip, Tutorial = snip })

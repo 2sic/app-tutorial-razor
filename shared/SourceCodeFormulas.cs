@@ -101,7 +101,7 @@ public class SourceCodeFormulas: Custom.Hybrid.CodeTyped
       foreach (var formula in formulas) {
         wrapper.Add(
           Tag.P(Tag.Strong(formula.Title), " (Formula-Target: " + formula.String("Target") + ")"),
-          SourceCode.ShowResultJs(formula.String("Formula"))
+          SourceCode.FileHandler.ShowResultJs(formula.String("Formula"))
         );
       }
       mainWrapper.Add(wrapper);
