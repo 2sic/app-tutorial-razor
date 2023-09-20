@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=file:../../shared/Bootstrap5.cs */
+/*!*/}
+@{  
+  var bsCheck = CreateInstance("../../shared/Bootstrap5.cs");  
+  bsCheck.EnsureBootstrap5();
+}
+@bsCheck.WarnAboutMissingOrUnknownBootstrap()
+@*! *@
+The result is invisible; bootstrap5 is auto-added if not already present.
+@* !*@

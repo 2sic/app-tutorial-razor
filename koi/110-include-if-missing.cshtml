@@ -33,16 +33,7 @@
   </div>
 </div>
 
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../shared/Bootstrap5.cs")).SnipStart())
-  @{  
-    var bsCheck = CreateInstance("../shared/Bootstrap5.cs");  
-    bsCheck.EnsureBootstrap5();
-  }
-@Sys.SourceCode.Invisible()
-  The result is invisible.
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "koi-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
