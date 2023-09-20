@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // the ID is already given by the caller, so we just get that
+  var id = MyModel.Int("Id");
+
+  // find the person with this Id using LINQ
+  var person = AsItems(App.Data.GetStream("Persons"))
+    .First(p => p.Id == id);
+}
+@* 
+  TODO: @2dm - imgStyle
+*@
+@person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "float-left")
+@* <img loading="lazy" src='@person.Picture("Mugshot", settings: "Square", width: 50)' width="50px" style="border-radius: 50%" class="float-left"> *@
+<h3>Details of @person.Get("FirstName") @person.Get("LastName")</h3>
+<a href='@Link.To(parameters: MyPage.Parameters.Remove("id"))'>back to list</a>

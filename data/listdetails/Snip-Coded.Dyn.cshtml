@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./coded-list.cshtml,file:./coded-details.cshtml
+!*@
+@{
+  // check if we have a url-parameter called "id" with a value - defaults to 0 if not found
+  int id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
+}
+@if (id == 0) {
+  @Html.Partial("Coded-List.cshtml")
+} else {
+  @Html.Partial("Coded-Details.cshtml", new { Id = id })
+}

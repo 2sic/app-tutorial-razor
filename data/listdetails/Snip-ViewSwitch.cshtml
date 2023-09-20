@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor14
+@*! Simulate View Switching
+Tut.Tabs=Snip-ViewSwitch-Details.Dyn.cshtml
+*@
+@{
+  // todo: add to view info
+  if (CmsContext.Page.Parameters.IsNotEmpty("Id")) {
+    @Html.Partial("./Snip-ViewSwitch-Details.Dyn.cshtml")
+    return;
+  }
+}
+@* !*@
+<h4>List of main view</h4>
+<ul>
+  @foreach (var person in AsList(App.Data["Persons"])) {
+    <li>
+      <a href='@Link.To(parameters: CmsContext.Page.Parameters.Set("id", person.EntityId))'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>

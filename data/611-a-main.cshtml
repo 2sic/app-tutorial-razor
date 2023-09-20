@@ -4,7 +4,6 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null;}
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
@@ -12,21 +11,10 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Basic List Details using Code - with separate Details-File</h2>
-    <p>
-      Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example splits the list/details templates into 3 files, which is easier to manage. File 1 choses what should happen, file 2 contains the list, and file 3 the details. 
-    </p>
-    <p>
-      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @Sys.TutLink("LINQ Tutorials", "linq").
-    </p>
   </div>
 </div>
 
-@*
-  TODO: @2dm - must get view switching to work (simulated!)
-*@
-
-@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-viewswitch-coded-page" })
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-listdetails-coded-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

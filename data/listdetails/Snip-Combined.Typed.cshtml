@@ -1,0 +1,26 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@{
+  var persons = AsItems(App.Data.GetStream("Persons"));
+}
+@* check if we have a url-parameter called "id" with a value *@
+@if (MyPage.Parameters.IsEmpty("id")) {
+  <h3>List of Persons</h3>
+  <ul>
+    @foreach (var person in persons) {
+      <li>
+        <a href='@Link.To(parameters: MyPage.Parameters.Set("id", person.Id))'>
+          @person.Get("FirstName") @person.Get("LastName")
+        </a>
+      </li>
+    }
+  </ul>
+} else {
+  // find the person with this Id using LINQ
+  int id = MyPage.Parameters.Int("id");
+  var person = persons.First(p => p.Id == id);
+
+  <img loading="lazy" src='@person.Url("Mugshot")?w=50&h=50&mode=crop' width="50px" style="border-radius: 50%" class="float-left">
+  <h3>Details of @person.Get("FirstName") @person.Get("LastName")</h3>
+  <a href='@Link.To(parameters: MyPage.Parameters.Remove("id"))'>back to list</a>
+}

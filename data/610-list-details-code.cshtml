@@ -12,49 +12,11 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Basic List Details using Code</h2>
-    <p>
-      Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example even has the list & details view in the same file - but usually you don't want that - so check the next examples afterwards. 
-    </p>
-    <p>
-      Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the @Sys.TutLink("LINQ Tutorials", "linq").
-    </p>
   </div>
 </div>
 
 
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    var persons = AsList(App.Data["Persons"]);
-
-    // Get the current url params so we can use it and also modify it in details links
-    var urlParams = CmsContext.Page.Parameters;
-
-    // check if we have a url-parameter called "id" with a value
-    // if we do, switch on showDetails and filter the persons to only one
-    var urlId = urlParams["id"];
-  }
-  @if (!Text.Has(urlId)) {
-    <h3>List of Persons</h3>
-    <ul>
-      @foreach (var person in persons) {
-        <li>
-          <a href='@Link.To(parameters: urlParams.Set("id", person.EntityId.ToString()))'>
-            @person.FirstName @person.LastName
-          </a>
-        </li>
-      }
-    </ul>
-  } else {
-    // find the person with this Id using LINQ
-    int id = Kit.Convert.ToInt(urlId);
-    var person = persons.First(p => p.EntityId == id);
-
-    <img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
-    <h3>Details of @person.FirstName @person.LastName</h3>
-    <a href='@Link.To(parameters: urlParams.Remove("id"))'>back to list</a>
-  }
-@snip.SnipEnd()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-listdetails-combined-page" })
 
 
 @* Footer *@

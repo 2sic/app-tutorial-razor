@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.Razor14
+
+<h4>Details View (automically activated)</h4>
+<p>
+  You now see the details page. It was automatically shown, because the url contains <code>id</code>.
+  The image to the right shows where this configuration applied. 
+</p>
+@{
+  var urlParams = CmsContext.Page.Parameters;
+  var urlId = urlParams["id"];
+  int id = Int32.Parse(urlId);
+
+  // find the person with this Id using LINQ
+  var person = AsList(App.Data["Persons"])
+    .First(p => p.EntityId == id);
+}
+
+<img loading="lazy" src="@person.Mugshot?w=50&h=50&mode=crop" width="50px" style="border-radius: 50%" class="float-left">
+<h3>Details of @person.FirstName @person.LastName</h3>
+<a href='@Link.To(parameters: urlParams.Remove("Id"))'>back to list</a>
