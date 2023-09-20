@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.Razor14
+@*! *@
+@{#if NETCOREAPP}
+  @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
+@{#else}
+@* !*@
+@{
+  // get the pages
+  var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
+  var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
+}
+
+<ul>
+  @foreach (DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
+    <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
+      <a href="@dnnPage.FullUrl" target="_blank">
+        @dnnPage.TabName (#@dnnPage.TabID)
+      </a>
+    </li>
+  }
+</ul>
+@*! *@
+@{#endif}
+@* !*@

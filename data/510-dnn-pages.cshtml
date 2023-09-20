@@ -18,38 +18,10 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Example from DNN Data</h2>
-    <p>
-      DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. 
-      Please note that the DNN API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
-    </p>
   </div>
 </div>
 
-
-@{#if NETCOREAPP}
-  @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
-@{#else}
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  @{
-    // get the pages
-    var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
-    var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
-  }
-
-  <ul>
-    @foreach (DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
-      <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
-        <a href="@dnnPage.FullUrl" target="_blank">
-          @dnnPage.TabName (#@dnnPage.TabID)
-        </a>
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
-@{#endif}
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-dnn-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
