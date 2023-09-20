@@ -14,27 +14,5 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-@* Fill Field If Empty *@
-@* @Sys.SourceCode.Formula("value-set-if-empty").ShowAll() *@
-
-
-@* Combine Values of Fields *@
-@* @Sys.SourceCode.Formula("value-combine").ShowAll() *@
-
-@* Get Value from WebApi *@
-@* @Sys.SourceCode.Formula("ValueFromWebApi").ShowAll() *@
-
-@* Set many values from one field *@
-@* @Sys.SourceCode.Formula("value-set-many").ShowAll() *@
-
-
-@* <h2>Date Examples</h2> *@
-
-@* Date Examples #1 *@
-@* @Sys.SourceCode.Formula("value-date-prefill").ShowAll() *@
-
-@* Date Examples #2 *@
-@* @Sys.SourceCode.Formula("value-date-calculate").ShowAll() *@
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

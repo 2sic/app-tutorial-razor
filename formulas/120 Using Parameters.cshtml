@@ -3,7 +3,6 @@
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
@@ -11,24 +10,15 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Formulas with parameters or App Settings</h2>
-    <p>We'll show you how to use page parameters with formulas</p>
-    <p>In this tutorial you'll learn how to:</p>
-    <ul>
-      <li>
-        Use emphemeral fields
-      </li>
-      <li>
-        Use <code>data.parameters</code> in your formulas <em>new in v14</em>
-      </li>
-    </ul>
-    @Html.Partial("./Part NowUsingV2.cshtml")
   </div>
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "formulas-advanced-page" })
 
+@*
+  TODO: @2dm - get the formulascontroller into the tabs through config
+*@
 
 @* From 200 Rest and webapi *@
 @Sys.SourceCode.ShowFile("../api/FormulasController.cs")
