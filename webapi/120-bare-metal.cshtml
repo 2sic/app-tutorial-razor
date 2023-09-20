@@ -10,6 +10,7 @@
   @{ dynamic snip = null; }
 </hide>
 
+@* TODO:: @2dm merged into 110-basic, delte this file and view  *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -26,49 +27,6 @@
       </p>
     </div>
   </div>
-
-  <h3>Headers</h3>
-  <p>
-    This will show you the headers which will probably be needed for a request:
-  </p>
-</trim>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/VerifiedController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
-  <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
-  <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
-  <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-  function showHeaders(moduleContext, optionalVerb) {
-    var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);
-    alert('These are the headers used if the verb is "' + (optionalVerb ?? '') + '":\n' 
-      + JSON.stringify(headers, null, 2));
-  }
-  </script>
-@snip.SnipEnd()
-
-@Html.Partial("MessageHybrid.cshtml") 
-
-
-<h3>URL</h3>
-<p>
-  Resolve URLs to endpoints and similar
-</p>
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:../api/VerifiedController.cs")).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/hello')">Url for: basic/hello</button>
-  <button type="button" class="btn btn-primary" onclick="showUrl(this, 'app/auto/api/basic/hello')">Url: app/auto/api/basic/hello</button>
-  <button type="button" class="btn btn-primary" onclick="showUrl(this, 'basic/square?number=2742')">Url: basic/square?number=2742</button>
-    @*! 2sxclint:disable:no-inline-script !*@
-  <script>
-  function showUrl(moduleContext, url) {
-    var finalUrl = $2sxc(moduleContext).webApi.url(url);
-    alert('These is the full url for "' + url + '":\n' + finalUrl);
-  }
-  </script>
-@snip.SnipEnd()
-
 
 @*
 TODO: @2dm examples with url-parameters object
