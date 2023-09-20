@@ -2,7 +2,10 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 @using ToSic.Eav.DataSources;
-
+@{/*! Tut.Tabs=ViewConfig */
+	var viewCnf = DynamicModel.Tutorial.ViewConfig;
+	var Content = AsDynamic(viewCnf.Content(query: "GetQueryDemoAuthorsSorted") as ToSic.Eav.DataSource.IDataSource);
+/*!*/}
 @{
   var queryNoParams = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted");
 }
