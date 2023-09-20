@@ -56,79 +56,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #endregion
 
-  #region All Main Entry Points to Show Snippets in Various Ways
-
-  /// <summary>
-  /// Show tabs with snippets, resulting in Output / Source Code
-  /// </summary>
-  /// <param name="tabs"></param>
-  /// <returns></returns>
-  // TODO: ONLY 7 LEFT 2023-08-20; ALL DELEGATED; AFTERWARDS REMOVE
-  public TabsWithSnippetsSection TabsWithSnippet(Dictionary<string, string> tabs = null) {
-    return new TabsWithSnippetsSection(this, tabs, combineOutputAndSource: false);
-  }
-  // TODO: ONLY 7 LEFT 2023-08-20; ALL DELEGATED; AFTERWARDS REMOVE
-  public TabsWithSnippetsSection TabsWithSnippet(string tabs) { return TabsWithSnippet(TabStringToDic(tabs)); }
-
-  public TabsWithSnippetsSection TabsOutputAndSource(Dictionary<string, string> tabs = null) {
-    return new TabsWithSnippetsSection(this, tabs, combineOutputAndSource: true);
-  }
-
-  public TabsWithSnippetsSection TabsOutputAndSource(string tabs) { return TabsOutputAndSource(TabStringToDic(tabs)); }
-
-  /// <summary>
-  /// Convert a CSV string to dictionary.
-  /// It handles special cases such as 
-  /// * "Rzr14" which will be converted to the Razor14 file name
-  /// * "file:*" which will be optimized for title
-  /// </summary>
-  /// <param name="tabs"></param>
-  /// <returns></returns>
-  private Dictionary<string, string> TabStringToDic(string tabs) {
-    var tabList = (tabs ?? "").Split(',').Select(t => t.Trim()).ToArray();
-    var tabDic = tabList
-      .Where(t => t.Has())
-      .Select(t => {
-        // Pre-Split if possible
-        var pair = t.Split('|');
-        var hasLabel = pair.Length > 1;
-        var pVal = hasLabel ? pair[1] : pair[0];
-        var pLabel = pair[0];
-
-        // Figure out the parts
-        var isRzr14 = t.StartsWith("Rzr14");
-        var label = hasLabel 
-          ? pLabel
-          : isRzr14 ? "Rzr14" : ((t.StartsWith("file:")) ? Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":") : t);
-        var value = isRzr14 ? ("file:./" + AltCodeFileRzr14() + Text.After(pVal, "Rzr14")) : pVal;
-        return new {
-          isRzr14,
-          label,
-          value,
-          t
-        };
-      })
-      .ToDictionary(t => t.label, t => t.value);
-    return tabDic;
-  }
-
-  // todo: @2dm - almost done - once LINQ is migrated, this should be rechecked and removed
-  // public SnippetWithIntroSection Intro() {
-  //   return new SnippetWithIntroSection(this, Tag.RawHtml(
-  //       Tag.H4("Initial Code"),
-  //       Tag.P("The following code runs at the beginning and creates some variables/services used in the following samples."))
-  //   );
-  // }
-
-  // TODO: ca. 5 left, 2 for @2dm
-  public SnippetWithIntroSection OutputBoxAndSnippet(object item = null) {
-    return new SnippetWithIntroSection(this, Tag.H4(ResultTitle));
-  }
-
-  /// <summary>
-  /// Dummy SnipEnd for all use cases where the end doesn't need output but marks the end.
-  /// </summary>
-  public ITag SnipEnd() { return null; }
+  #region All Available Entry Points to Show Snippets in Various Ways
 
   /// <summary>
   /// QuickRef section - only to be used in the Quick Reference
@@ -145,15 +73,49 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     return l(result, "ok - count: " + tabDic.Count());
   }
 
-  public QuickRefSection SnipFromItem(object item, string file = null)
+  /// <summary>
+  /// Create a Snip/Section object from an Item (ITypedItem).
+  /// Only used in Accordion
+  /// </summary>
+  /// <param name="item">The configuration item</param>
+  /// <param name="file">The file from which it will be relative to</param>
+  /// <returns></returns>
+  public QuickRefSection SnipFromItem(ITypedItem item, string file = null)
   {
     var l = Log.Call<QuickRefSection>("file: " + file);
     // If we have a file, we should try to look up the tabs
     var tabCsv = TryToGetTabsFromSource(file);
     Log.Add("tabs: '" + tabCsv + "'");
     var tabs = TabStringToDic(tabCsv);
-    var result = new QuickRefSection(this, tabs, item: item as ITypedItem, file: file);
+    var result = new QuickRefSection(this, tabs, item: item, file: file);
     return l(result, "ok - count: " + tabs.Count());
+  }
+
+
+  private Dictionary<string, string> TabStringToDic(string tabs) {
+    var tabList = (tabs ?? "").Split(',').Select(t => t.Trim()).ToArray();
+    var tabDic = tabList
+      .Where(t => t.Has())
+      .Select(t => {
+        // Pre-Split if possible
+        var pair = t.Split('|');
+        var hasLabel = pair.Length > 1;
+        var pVal = hasLabel ? pair[1] : pair[0];
+        var pLabel = pair[0];
+
+        // Figure out the parts
+        var label = hasLabel 
+          ? pLabel
+          : ((t.StartsWith("file:")) ? Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":") : t);
+        var value = pVal;
+        return new {
+          label,
+          value,
+          t
+        };
+      })
+      .ToDictionary(t => t.label, t => t.value);
+    return tabDic;
   }
 
   private string TryToGetTabsFromSource(string file) {
@@ -217,15 +179,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     );
   }
 
-
   #endregion
 
-  #region Formula
-
-
-  public FormulaSection Formula(object specs) { return new FormulaSection(this, specs); }
-
-  #endregion
 
   #region SectionBase
 
@@ -451,6 +406,48 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         .Replace("\\", "-");
     }
   }
+  #endregion
+
+  #region Reference / CheatSheet
+
+  public class QuickRefSection: SectionBase
+  {
+    internal QuickRefSection(
+      SourceCode sourceCode,
+      Dictionary<string, string> tabs,
+      ITypedItem item = null,
+      string file = null
+    ) : base(sourceCode, item, tabs, sourceFile: file)
+    {
+      if (item == null) throw new Exception("Item should never be null");
+      // throw new Exception("test 2dm " + item.Type.Name);
+      SourceWrap = sourceCode.GetSourceWrap(this, item);
+      TabHandler = new TabHandlerBase(sourceCode, item, tabs, sourceWrap: SourceWrap);
+    }
+
+    public override ITag SnipStart(string snippetId = null) {
+      InitSnippetAndTabId(snippetId);
+      return TabsBeforeContent();
+    }
+
+    public override ITag SnipEnd() { return SnipEndFinal(); }
+
+    /// <summary>
+    /// Public method to replace the tab contents from outside
+    /// </summary>
+    /// <param name="tabs"></param>
+    public void SetTabContents(params object[] tabs) {
+      if (tabs != null & tabs.Any()) {
+        Log.Add("Replace tab contents with (new): " + tabs.Count());
+        TabHandler.ReplaceTabContents(tabs.ToList());
+      }
+    }
+  }
+
+
+
+  #endregion
+
 
   public class TabHandlerBase
   {
@@ -505,7 +502,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
     protected List<string> OptimizeTabNames(List<string> original) {
       return original.Select(n => {
-        if (n == "R14" || n == "Rzr14") return "Razor14 and older";
         if (n == ViewConfigCode) return ViewConfigTabName;
         if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
         if (n == InDepthField) return InDepthTabName;
@@ -611,164 +607,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   }
 
-  #endregion
 
-
-  #region TabsWithSnippetsSection
-
-  public class TabsWithSnippetsSection: SectionBase
-  {
-    public TabsWithSnippetsSection(SourceCode sourceCode, Dictionary<string, string> tabs, bool combineOutputAndSource): base(sourceCode, null, tabs)
-    {
-      _combineOutputAndSource = combineOutputAndSource;
-      TabHandler = new TabHandlerBase(sourceCode, null, tabs, addOutput: true,
-        outputWithSource: combineOutputAndSource, sourceAtEnd: true,
-        activeTabName: combineOutputAndSource ? ResultAndSourceTabName : SourceTabName);
-      if (combineOutputAndSource)
-        SourceWrap = new SourceWrapIntroWithSource(this);
-    }
-
-    private bool _combineOutputAndSource;
-
-    public override ITag SnipStart(string snippetId = null) {
-      var l = ScParent.Log.Call<ITag>("snippetId: " + snippetId + "; tabs: " + TabHandler.TabNamesDebug);
-      // Neutralize snippetId, set TabPrefix etc.
-      InitSnippetAndTabId(snippetId);
-      var tabsStartHtml = TabsBeforeContent();
-      // if (SourceWrap != null)
-      //   tabsStartHtml = SourceWrap.GetStart(tabsStartHtml);
-      return l(tabsStartHtml, "ok");
-    }
-
-    public override ITag SnipEnd() { return SnipEnd(null); }
-
-    /// <summary>
-    /// End Snip, but manually specify the content to be added
-    /// </summary>
-    public ITag SnipEnd(params object[] generated) {
-      var l = ScParent.Log.Call<ITag>(TabHandler.TabContentsDebug);
-
-      if (generated != null && generated.Any()) {
-        ScParent.Log.Add("Replace tab contents with: " + generated.Count());
-        TabHandler.ReplaceTabContents(generated.ToList());
-      }
-
-      return l(SnipEndFinal(), "with tabs");
-    }
-
-  }
-
-  internal class SourceWrapIntroWithSource : Wrap
-  {
-    public SourceWrapIntroWithSource(SectionBase sb) : base(sb, "SourceWrapIntroWithSource") { }
-
-    public override ITag OutputOpen() { return Tag.RawHtml(
-      Comment("Intro-"),
-      null,
-      Comment(""),
-      TagCount.Open(Tag.Div().Class("alert alert-info")),
-      Tag.H4(ResultTitle)
-    ); }
-    // public override ITag GetStart(ITag result) { return Tag.RawHtml(
-    //   Comment("Intro-"),
-    //   result,
-    //   Comment(""),
-    //   TagCount.Open(Tag.Div().Class("alert alert-info")),
-    //   Tag.H4(ResultTitle)
-    // ); }
-
-    public override ITag OutputClose() { return Tag.RawHtml(Comment("|"), TagCount.CloseDiv()); }
-  }
-
-  #endregion
-
-  #region SnippetWithIntroSection - Should be obsolete soon
-
-  public class SnippetWithIntroSection: SectionBase
-  {
-    public SnippetWithIntroSection(SourceCode sourceCode, ITag intro): base(sourceCode, null, null) {
-      SourceWrap = new WrapAllIntroInside(this, intro);
-    }
-
-    public override ITag SnipStart(string snippetId = null) {
-      InitSnippetAndTabId(snippetId);
-      return SourceWrap.OutputOpen();
-    }
-    public override ITag SnipEnd() {
-      return Tag.RawHtml(SourceWrap.OutputClose(), ScParent.ShowSnippet(SnippetId));
-    }
-  }
-
-  // goal is to separate wrapping of output/intro into own class
-  // so that we can remove the snippetwithintrosection
-  // and instead switch between the "wrappers"
-  // - so finish moving wrap-logic - incl. close-between etc.
-  // to the WrapOutSrcBase etc.
-  // so the final class can just call the various Start/End/Between etc.
-  internal class WrapAllIntroInside : Wrap
-  {
-    public WrapAllIntroInside(SectionBase sb, ITag intro) : base(sb, "WrapAllIntroInside") {
-      Intro = intro;
-    }
-    private ITag Intro;
-    public override ITag OutputOpen() { return Tag.RawHtml(
-      TagCount.Open(Tag.Div().Class("alert alert-info")),
-      Intro
-    ); }
-
-    public override ITag OutputClose() { return Tag.RawHtml(
-      Comment("/"),
-      TagCount.CloseDiv()
-    ); }
-  }
-
-  #endregion
-
-  #region class SectionBase, SnippetWithIntroSection, SnippetOnlySection, Formula
-
-
-
-  public class SnippetOnlySection: SectionBase
-  {
-    public SnippetOnlySection(SourceCode sourceCode): base(sourceCode, null, null) { }
-
-    public override ITag SnipStart(string snippetId = null) {
-      InitSnippetAndTabId(snippetId);
-      return ScParent.ShowSnippet(SnippetId);
-    }
-  }
-
-
-  public class FormulaSection: SectionBase
-  {
-    public FormulaSection(SourceCode sourceCode, object specs): base(sourceCode, null, null)
-    {
-      // If specs is a string, look it up in the DB, otherwise use the given object
-      Specs = (specs is string ? ScParent.Formulas.Specs(specs as string) : specs) as ITypedItem;
-      SourceWrap = new WrapFormula(this, Specs);
-      TabHandler = new TabHandlerFormula(sourceCode, null, null, Specs);
-    }
-
-    public ITypedItem Specs;
-
-    /// <summary>
-    /// Show the entire formula as configured in the Specs
-    /// </summary>
-    /// <returns></returns>
-    public ITag ShowAll() { return Tag.RawHtml(
-      ScParent.Formulas.Header(Specs),
-      SnipStart(),
-      SnipEnd()
-    ); }
-
-
-    public override ITag SnipStart(string snippetId = null) {
-      InitSnippetAndTabId(snippetId);
-      return TabsBeforeContent();
-    }
-
-    public override ITag SnipEnd() { return SnipEndFinal(); }
-  }
+  #region class SectionBase, SnippetOnlySection, Formula
 
   internal class WrapFormula: Wrap
   {
@@ -789,44 +629,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     }
   }
 
-  internal class TabHandlerFormula: TabHandlerBase
-  {
-    public TabHandlerFormula(SourceCode scParent, ITypedItem item, Dictionary<string, string> tabs, ITypedItem specs) : base(scParent, item, tabs, addOutput: false, outputWithSource: false, sourceAtEnd: false, activeTabName: ResultTabName) {
-      Specs = specs;
-    }
-    public ITypedItem Specs;
-
-    protected override List<string> GetTabNames()
-    {
-      var names = new List<string>();
-      names.Add(ResultTabName);
-      names.Add(FormulasTabName);
-      var showSource = ScParent.Formulas.ShowSnippet(Specs);
-      if (showSource) names.Add(SourceTabName);
-      return names;
-    }
-
-    protected override List<object> GetTabContents()
-    {
-      var l = ScParent.Log.Call<List<object>>("Formulas");
-      string lMsg;
-      List<object> result = new List<object> { ResultTabName };
-      if (Specs == null) {
-        lMsg = "no specs, no snippets";
-      } else {
-        lMsg = "with specs";
-        result.Add(ScParent.Formulas.Show(Specs, false));
-      }
-
-      if (ScParent.Formulas.ShowSnippet(Specs)) {
-        lMsg += ", with source";
-        result.Add(SourceTabName);
-      }
-
-      return l(result, lMsg);
-    }
-  }
-
   #endregion
 
   #region Counter / Identifiers
@@ -842,59 +644,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   #endregion
   
 
-  #region Reference / CheatSheet
-
-  public class QuickRefSection: SectionBase
-  {
-    internal QuickRefSection(
-      SourceCode sourceCode,
-      Dictionary<string, string> tabs,
-      ITypedItem item = null,
-      string file = null
-    ) : base(sourceCode, item, tabs, sourceFile: file)
-    {
-      if (item == null) throw new Exception("Item should never be null");
-      // throw new Exception("test 2dm " + item.Type.Name);
-      SourceWrap = sourceCode.GetSourceWrap(this, item);
-      TabHandler = new TabHandlerBase(sourceCode, item, tabs, sourceWrap: SourceWrap);
-    }
-
-    public override ITag SnipStart(string snippetId = null) {
-      InitSnippetAndTabId(snippetId);
-      return TabsBeforeContent();
-    }
-
-    public override ITag SnipEnd() { return SnipEndFinal(); }
-
-    // 2023-09-18 2dm - believe it's not used any more
-    // /// <summary>
-    // /// End Snip, but manually specify the content to be added
-    // /// </summary>
-    // public ITag SnipEnd(params object[] tabs) {
-    //   var l = Log.Call<ITag>(TabHandler.TabContentsDebug);
-    //   SetTabContents(tabs);
-    //   // if (tabs != null && tabs.Any()) {
-    //   //   Log.Add("Replace tab contents with: " + tabs.Count());
-    //   //   TabHandler.ReplaceTabContents(tabs.ToList());
-    //   // }
-    //   return l(SnipEndFinal(), "with tabs");
-    // }
-
-    /// <summary>
-    /// Public method to replace the tab contents from outside
-    /// </summary>
-    /// <param name="tabs"></param>
-    public void SetTabContents(params object[] tabs) {
-      if (tabs != null & tabs.Any()) {
-        Log.Add("Replace tab contents with (new): " + tabs.Count());
-        TabHandler.ReplaceTabContents(tabs.ToList());
-      }
-    }
-  }
-
-
-
-  #endregion
 
   #region SourceWrappers
 
@@ -1354,24 +1103,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   #endregion
 
-  #region Support Rrz14 Debugging
-
-  public bool ShouldShowAltCodeFile()
-  {
-    return MyPage.Parameters.ContainsKey("Rzr14");
-  }
-
-  public ITag ShowAltCodeFile(dynamic html) {
-    var altFile = AltCodeFileRzr14();
-    return Tag.RawHtml(Tag.H1("Show Rzr"), Tag.Code(altFile), html.Partial(altFile));
-  }
-
-  public string AltCodeFileRzr14()
-  {
-    return Text.AfterLast(Path, "/").Replace(".cshtml", ".Rzr14.cshtml");
-  }
-
-  #endregion
 }
 
 /// <summary>
