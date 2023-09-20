@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<ul>
+  @foreach (var person in AsItems(App.Data["Persons"])) {
+    <li>
+      @if (Text.Has(person.Url("Mugshot"))) {
+        <img loading="lazy" src='@Link.Image(person.Url("Mugshot"), width: 50, height: 50, resizeMode: "crop")' width="50px" style="border-radius: 50%">
+      }
+      @person.Get("FirstName")  @person.Get("LastName")
+    </li>
+  }
+</ul>

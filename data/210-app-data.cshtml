@@ -8,30 +8,16 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
-
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Basic Example from App.Data</h2>
-    <p>The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets <code>Persons</code> data from the <code>App.Data["Persons"]</code> and just loops through them. This is similar to the example in the @Sys.TutLink("content", "content") tutorial, except that the data comes from the <code>App.Data</code> instead of the current <em>instance</em> <code>Data</code>.</p>
   </div>
 </div>
 
-
-@((snip = Sys.SourceCode.OutputBoxAndSnippet()).SnipStart())
-  <ul>
-    @foreach (var person in AsList(App.Data["Persons"])) {
-      <li>
-        @if (Text.Has(person.Mugshot)) {
-          <img loading="lazy" src='@Link.Image(person.Mugshot, width: 50, height: 50, resizeMode: "crop")' width="50px" style="border-radius: 50%">
-        }
-        @person.FirstName  @person.LastName
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-appdata-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
+
+@Kit.Page.Activate("fancybox4");
 

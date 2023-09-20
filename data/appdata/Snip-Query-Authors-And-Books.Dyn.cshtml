@@ -1,0 +1,44 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@{
+  // get the query
+  var query = Kit.Data.GetQuery("AuthorsWithBooks");
+
+  // get all authors from the stream "Authors" in the query
+  var allAuthors = AsList(query["Authors"]);
+
+  // get the current author (if available) from the stream Current
+  var current = AsDynamic(query["Current"].FirstOrDefault());
+
+  // get the books of the current author (if available) from stream CurrentBook
+  var books = AsList(query["CurrentBooks"]);
+
+  // Get the current url params so we can derive from it for details links
+  var urlParams = CmsContext.Page.Parameters;
+}
+<ul>
+  @foreach (var person in allAuthors) {
+    <!-- this li will have class=selected if it's the current one -->
+    <li class='@(person == current ? "selected" : "")'>
+      <!-- this creates a link to the current page and author=id -->
+      <a href='@Link.To(parameters: urlParams.Set("authorId", person.EntityId.ToString()))'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>
+@if (current != null) {
+  if (Text.Has(current.Mugshot)) {
+    <img loading="lazy" src="@current.Mugshot?w=100&h=100&mode=crop" width="100px" class="person float-right float-end">
+  }
+  <h3>Current Author: @current.FirstName @current.LastName</h3>
+  <strong>Books</strong>
+  <ol>
+    @foreach (var book in books) {
+      <li>@book.Title</li>
+    }
+  </ol>
+} else {
+  <h3>No author selected - click on an author above</h3>
+}

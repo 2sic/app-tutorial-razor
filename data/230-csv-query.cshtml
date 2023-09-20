@@ -21,41 +21,13 @@
   </div>
 </div>
 
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: "file:./assets/products.csv.txt")).SnipStart())
-  @{
-    // get the query
-    var query = Kit.Data.GetQuery("ProductsFromCSV");
-
-    // get the data from the query
-    var products = AsList(query);
-
-    // get the current product or the default - the query always selects one
-    var current = AsList(query["Current"]).FirstOrDefault();
-
-    // Get the current url params so we can derive from it for details links
-    var urlParams = CmsContext.Page.Parameters;
-  }
-  <ul>
-    @foreach (var product in products) {
-      <!-- this li will have class=selected if it's the current one -->
-      <li class='@(product == current ? "selected" : "")'>
-        <!-- this creates a link to the current page and product=id -->
-        <a href='@Link.To(parameters: urlParams.Set("product", product.EntityId.ToString()))'>
-          @product.Name (#@product.Id)
-        </a>
-        @if (current == product) {
-          <br>
-          <em>
-            @current.Description 
-            (<a href="@product.Link" target="_blank">find out more</a>)
-          </em>
-        }
-      </li>
-    }
-  </ul>
-@snip.SnipEnd()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "data-csv-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
+@* TODO:: @2dm, move the image into viewConfig *@
+@Kit.Page.Activate("fancybox4");
+
+<p>Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar 
+  
+  (<a href="https://2sxc.org/en/Learn/Visual-Query-Designer" target="_blank" rel="noopener">more</a>). These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the <code>Current</code> stream as well as the <code>CurrentBooks</code> of that author.<br><br><a href="/Portals/tutorial-razor/adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/query-authors-with-books.png" target="_blank" rel="noopener" data-fancybox="gallery"><img style="width: 400px;" src="/Portals/tutorial-razor/adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/query-authors-with-books.png" alt="query-authors-with-books" width="400" height="200" data-cmsid="file:query-authors-with-books.png"></a></p>
