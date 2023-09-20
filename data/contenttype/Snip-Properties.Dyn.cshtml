@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using System.Collections.Generic;
+@using ToSic.Eav.Data;
+@{
+  var type = AsEntity(Content).Type;
+}
+<ul>
+    @foreach (var attr in type.Attributes) {
+    <li>
+      @* This will get the label from the metadata entity *@
+      @(attr.Metadata.GetBestValue<string>("Name", "@All"))
+      (@attr.Name, <code>@attr.Type</code> = typeId @((int)attr.Type))
+    </li>
+  }
+</ul>>

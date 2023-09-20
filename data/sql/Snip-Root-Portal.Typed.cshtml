@@ -1,6 +1,10 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @using System.Linq;
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyItem = AsItem(viewCnf.Content(query: "SqlTop10Files" + MyContext.Platform.Name) as ToSic.Eav.DataSource.IDataSource);
+/*!*/}
 @{
   // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
   var queryName = "SqlTop10Files" + MyContext.Platform.Name;
