@@ -27,45 +27,11 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-<h3>Ephemeral fields explained</h3>
-<p>Sometimes you need fields which controle the Form UI without being real data. Some examples:</p>
-<ul>
-  <li>Toggles which show/hide other fields or field groups</li>
-  <li>Hidden calculations which will consolidate other field values to determine if something else is required</li>
-</ul>
-
-<p>We don't want to save these fields as the data is not relevant, and often the value should be calculated upon opening
-  the form - so it's important that they are reset.</p>
-
-<h3>Create an Ephemeral field</h3>
-<p>An Ephemeral field is just a normal field with an additional configuration.</p>
-<h4>Configure an Epemeral field</h4>
-<p>To configure a field to not save and be temporary / ephemeral, use this setting:</p>
-@Sys.Fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
-<p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
-
-@((snip = Sys.SourceCode.Formula("parameters-ephemeral")).ShowAll())
-
-<hr>
-
-<h3>Configure edit form UI using parameters</h3>
-<p>
-  In 2sxc v15 we added <code>data.parameters.*</code> which contains all parameters given in the <code>FormParameters</code>.
-</p>
-<p>
-  By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This
-  enables a editing experience matching the page context.
-</p>
-
-@Sys.SourceCode.Formula("parameters-basic").ShowAll()
+@Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "formulas-advanced-page" })
 
 
-
-
-@Sys.SourceCode.Formula("use-settings").ShowAll()
-
-
-
+@* From 200 Rest and webapi *@
+@Sys.SourceCode.ShowFile("../api/FormulasController.cs")
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

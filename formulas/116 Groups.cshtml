@@ -17,20 +17,7 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-@Sys.SourceCode.Formula("group-visible").ShowAll()
-
-
-@Sys.SourceCode.Formula("group-name").ShowAll()
-
-
-@Sys.SourceCode.Formula("group-name-emoji").ShowAll()
-
-
-@Sys.SourceCode.Formula("group-helptext").ShowAll()
-
-
-@Sys.SourceCode.Formula("group-run-once").ShowAll()
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "formulas-group" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

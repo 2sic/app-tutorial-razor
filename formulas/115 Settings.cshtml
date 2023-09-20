@@ -32,19 +32,7 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-
-@Sys.SourceCode.Formula("fieldsettings-visible").ShowAll()
-
-
-@Sys.SourceCode.Formula("fieldsettings-required").ShowAll()
-
-
-@Sys.SourceCode.Formula("fieldsettings-disabled").ShowAll()
-
-
-
-@* Errors and Warnings *@
-@Sys.SourceCode.Formula("fieldsettings-warning").ShowAll()
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "formulas-settigns" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

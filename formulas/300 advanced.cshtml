@@ -6,7 +6,6 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
-
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
@@ -25,16 +24,7 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-
-
-
-@Sys.SourceCode.Formula("features").ShowAll()
-
-
-@Sys.SourceCode.Formula("user-info").ShowAll()
-
-
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "formulas-advanced" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

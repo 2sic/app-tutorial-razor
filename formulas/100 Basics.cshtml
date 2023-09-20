@@ -14,24 +14,7 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-@*
-  TODO: @2dg - I already did this - but look at the data etc. to understand
-  - there is a new field TutorialType which can be set to Formula
-  - then you can select a formula
-
-  - Pls repeat for 114 (own page)
-  - 115
-  - 116
-  - 120 with 200
-  - 300
-*@
-
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "formulas-basic-page" })
-
-@* 
-@Sys.SourceCode.Formula("basic-intro").ShowAll() *@
-
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -6,6 +6,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
+@* TODO:: @2dm Merged into 120, delte this file and view *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -18,23 +19,6 @@
     @Html.Partial("./Part NowUsingV2.cshtml")
   </div>
 </div>
-
-
-@* Get Value from WebApi *@
-<h2>Get Data for a Field from a Web API</h2>
-@Sys.SourceCode.Formula("ValueFromWebApi").ShowAll()
-
-
-@* Dropdown Values From WebAPI *@
-@Sys.SourceCode.Formula("DropdownFromWebApi").ShowAll()
-
-
-@* Dropdown Values From WebAPI App.Data *@
-@Sys.SourceCode.Formula("DropdownFromWebApiData").ShowAll()
-
-
-@Sys.SourceCode.ShowFile("../api/FormulasController.cs")
-
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

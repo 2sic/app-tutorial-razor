@@ -17,19 +17,7 @@
 </div>
 @Html.Partial("../shared/WarnAnonymousIfFeatureIsOff.cshtml")
 
-@* Change Dropdown Values *@
-@Sys.SourceCode.Formula("dropdown-country-office").ShowAll()
-
-@* Change Dropdown Values #2 *@
-@Sys.SourceCode.Formula("dropdown-expand-options").ShowAll()
-
-@* Dropdown Values From WebAPI *@
-@Sys.SourceCode.Formula("DropdownFromWebApi").ShowAll()
-
-@* Dropdown Values From WebAPI App.Data *@
-@Sys.SourceCode.Formula("DropdownFromWebApiData").ShowAll()
-
-<hr>
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "formulas-dropdowns" })
 
 @Sys.SourceCode.ShowFile("../api/FormulasController.cs")
 
