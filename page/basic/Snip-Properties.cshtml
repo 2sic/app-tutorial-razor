@@ -3,6 +3,15 @@
 @{
   // prefix the current title, description and keywords with additional values
   Kit.Page.SetTitle("Title changed from the razor using Razor Blade! original: ");
+
+  // Descriptions
   Kit.Page.SetDescription("Learn to use Razor Blade ");
-  Kit.Page.SetKeywords("Tutorial, Razor, Blade");
+  // If multiple Descriptions are added, they are pre-pended.
+  // Reasoning is that if eg. the page first adds a description, and a module adds a description, the modules description will be more relevant.
+  Kit.Page.SetDescription("Json LD Tutorial - "); 
+
+  // Keywords
+  Kit.Page.SetKeywords("2sxc, Tutorial, KeywordSet1");
+  // TODO: @2dm - behavior seems inconsistent / wrong?
+  Kit.Page.SetKeywords("Tutorial, Razor, Blade, KeywordSet2");
 }

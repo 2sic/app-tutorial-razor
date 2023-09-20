@@ -1,5 +1,31 @@
 @inherits Custom.Hybrid.Razor14
+<hide-silent>
+@functions {
+  dynamic SubpageLink(string label, string root, string key, string value) {
+    var parameters = CmsContext.Page.Parameters;
+    return Kit.HtmlTags.Li().Class(parameters[key] == value ? "selected" : "")
+      .Wrap(
+        Kit.HtmlTags.A(label).Href(@Link.To(parameters: parameters.Set(key, value)))
+      );
+  }
 
+  dynamic SubpageLink(string label, string value) {
+    return SubpageLink(label, "blade340=page", "mode", value);
+  }
+}
+<div>
+  This page sets various icon headers according to best practices. 
+
+  Look at the html-header in the output-source to see the effect. <br>
+  The following links will set different icons depending on what you need.
+</div>
+<ul>
+  @SubpageLink("Just add single icon", "one")
+  @SubpageLink("Add default set incl. favicon and apple-touch", "set")
+  @SubpageLink("Add default set without favicon", "nofav")
+  @SubpageLink("Add default set with custom favicon (recommended)", "pngfav")
+</ul>
+</hide-silent>
 @{
   // use url parameter to decide which icon(s) to show, and default to "set"
   var mode = CmsContext.Page.Parameters["mode"];
