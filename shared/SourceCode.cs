@@ -103,9 +103,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         var pLabel = pair[0];
 
         // Figure out the parts
-        var label = hasLabel 
-          ? pLabel
-          : ((t.StartsWith("file:")) ? Text.AfterLast(t, "/") ?? Text.AfterLast(t, ":") : t);
+        var label = hasLabel ? pLabel : t; 
         var value = pVal;
         return new {
           label,
@@ -417,6 +415,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           if (n == ViewConfigCode) return ViewConfigTabName;
           if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
           if (n == InDepthField) return InDepthTabName;
+          if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
           return n;
         })
         .ToList();
@@ -447,6 +446,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           }
           else list.AddRange(Tabs.Values);
         }
+        // Else custom tabs in configuration
+      } else if (Item.IsNotEmpty("Tabs")) {
+        Log.Add("Tabs: " + Item.String("Tabs"));
+        list.AddRange(Item.String("Tabs").Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Select(t => t.Trim()));
       }
 
       if (Item != null) {

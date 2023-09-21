@@ -16,13 +16,6 @@
 
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "formulas-advanced-page" })
 
-@*
-  TODO: @2dm - get the formulascontroller into the tabs through config
-*@
-
-@* From 200 Rest and webapi *@
-@Sys.SourceCode.ShowFile("../api/FormulasController.cs")
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
 @Kit.Page.Activate("fancybox4");

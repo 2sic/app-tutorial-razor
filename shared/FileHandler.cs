@@ -178,7 +178,10 @@ public class FileHandler: Custom.Hybrid.CodeTyped
     path = path ?? Path;
     var fullPath = GetFileFullPath(path, file);
     var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
-    if (_sourceInfoCache.ContainsKey(cacheKey)) return _sourceInfoCache[cacheKey];
+    // When getting cached, we must re-wrap to get a new randomID
+    // otherwise the source-display will get confused with muliple displays of the same file
+    if (_sourceInfoCache.ContainsKey(cacheKey))
+      return new SourceInfo(_sourceInfoCache[cacheKey]);
     var fileInfo = GetFile(path, file, fullPath);
     fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
     fileInfo.Size = Size(null, fileInfo.Processed);
@@ -310,6 +313,19 @@ public class FileHandler: Custom.Hybrid.CodeTyped
     public ShowSourceSpecs() {
       RandomId = "source" + Guid.NewGuid().ToString();
     }
+    // public static ShowSourceSpecs CloneWithNewId(ShowSourceSpecs o) {
+    //   return new ShowSourceSpecs {
+    //     Processed = o.Processed,
+    //     Size = o.Size,
+    //     Language = o.Language,
+    //     Type = o.Type,
+    //     DomAttribute = o.DomAttribute,
+    //     ShowIntro = o.ShowIntro,
+    //     ShowTitle = o.ShowTitle,
+    //     Expand = o.Expand,
+    //     Wrap = o.Wrap
+    //   }
+    // }
     public string Processed;
     public int Size;
     public string Language;
@@ -323,6 +339,23 @@ public class FileHandler: Custom.Hybrid.CodeTyped
   }
 
   internal class SourceInfo : ShowSourceSpecs {
+    public SourceInfo() { }
+    public SourceInfo(SourceInfo o) {
+      Processed = o.Processed;
+      Size = o.Size;
+      Language = o.Language;
+      Type = o.Type;
+      DomAttribute = o.DomAttribute;
+      ShowIntro = o.ShowIntro;
+      ShowTitle = o.ShowTitle;
+      Expand = o.Expand;
+      Wrap = o.Wrap;
+      // field only in SourceInfo
+      FileName = o.FileName;
+      Path = o.Path;
+      FullPath = o.FullPath;
+      Contents = o.Contents;
+    }
     public string FileName;
     public string Path;
     public string FullPath;
