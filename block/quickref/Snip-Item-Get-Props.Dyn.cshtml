@@ -3,6 +3,7 @@
 @{/*! Tut.Tabs=ViewConfig */
   var viewCnf = DynamicModel.Tutorial.ViewConfig;
   var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
+  var Data = viewCnf.Query(query: "QuickRef-Persons-Selected");
 /*!*/}
 <h4>Douglas Adams, the current Content-item</h4>
 @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 100, imgClass: "rounded-circle")

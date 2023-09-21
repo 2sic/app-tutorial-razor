@@ -9,7 +9,7 @@
 @foreach (var person in AsList(Data)) {
   <li>
     @if (Text.Has(person.Mugshot)) {
-      @Kit.Image.Img(Content.Field("Mugshot"), settings: "Square", width: 50, imgClass: "rounded-circle")
+      @Kit.Image.Img(person.Field("Mugshot"), settings: "Square", width: 50, imgClass: "rounded-circle")
     }
     @person.FirstName @person.LastName
   </li>

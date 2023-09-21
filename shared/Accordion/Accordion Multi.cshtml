@@ -1,9 +1,17 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
-
 @{
-  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
-  var tutPage = AsItems(App.Data["TutorialPage"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  // Check for Recursions, to prevent infinite loops!
+  var recursions = MyModel.Int("Recursions", required: false, fallback: 0) + 1;
+  if (recursions > 5) {
+    throw new Exception("Recursion limit reached");
+  }
+}
+@{
+  var accordion = MyModel.Code("Accordion", required: false)
+    ?? GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
+  var tutPage = MyModel.Item("TutorialGroup", required: false) 
+    ?? AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 }
 
 @if (tutPage != null) {
@@ -17,13 +25,7 @@
       </div>
     }
     @* Show all the 'shared' notes *@
-    @* TODO: REPLACE WITH Html.Partial("./Notes.cshtml", new { Item = tutPage }) *@
-    @foreach (var note in tutPage.Children("Notes")) {
-      <div class='alert alert-@note.Attribute("NoteType")'>
-        <h4>@note.String("Title")</h4>
-        @note.Html("Note")
-      </div>
-    }
+    @Html.Partial("./Notes.cshtml", new { Item = tutPage })
   </div>
   
 
@@ -38,7 +40,7 @@
 
 
     foreach (var accSpecs in accords) {
-      @Html.Partial("./Accordion One.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true })
+      @Html.Partial("./Accordion One.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true, recursions })
     }
   } else {
     <text>
@@ -46,8 +48,9 @@
       Use Toolbar to edit
     </text>
   }
-} else if (MyUser.IsSystemAdmin) {
-  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutorialPage", prefill: new {
+}
+else if (MyUser.IsSystemAdmin) {
+  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutorialGroup", prefill: new {
     NameId = MyModel.String("NameId")
   })>
     The Accordion LIST <strong>@MyModel.String("NameId")</strong> was not found.

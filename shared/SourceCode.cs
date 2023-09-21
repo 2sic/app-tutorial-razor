@@ -532,7 +532,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       if (item.IsNotEmpty("OutputAndSourceDisplay"))
         code = item.String("OutputAndSourceDisplay");
       else {
-        var parent = AsItem(item.Parents(type: "TutAccordion"));
+        var parent = AsItem(item.Parents(type: "TutorialGroup"));
         if (parent != null && parent.IsNotEmpty("OutputAndSourceDisplay"))
           code = parent.String("OutputAndSourceDisplay");
       }

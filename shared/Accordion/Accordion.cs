@@ -44,7 +44,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     // Add Toolbar
     heading = (Item.Id != 0)
       ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())
-      : heading.Attr(Kit.Toolbar.Empty().New("TutAccordion", prefill: new { NameId = Name }));
+      : heading.Attr(Kit.Toolbar.Empty().New("TutorialGroup", prefill: new { NameId = Name }));
 
     var note = Item.IsNotEmpty("Note")
       ? t.Div().Class("alert alert-warning").Wrap(Item.String("Note"))
