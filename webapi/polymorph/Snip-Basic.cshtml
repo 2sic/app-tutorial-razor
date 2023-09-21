@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=Source of Live_api|file:../../live/api/DemoController.cs, Source of Dev_api|file:../../dev/api/DemoController.cs */
+/*!*/}
+<button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
+  Get Hello from live
+</button> 
+<button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
+  Get Hello from dev
+</button> 
+  @*! 2sxclint:disable:no-inline-script !*@
+  <script>
+  function callBasicHello(moduleContext, edition) {
+    $2sxc(moduleContext).webApi.fetchJson('app/auto/' + edition + '/api/demo/hello')
+      .then(data => alert(data));
+  }
+</script>

@@ -11,20 +11,7 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>2sxc Toolbar Customization</h2>
-    <div>
-      Since you can do so many things customizing the toolbar, we created a bunch of small examples for you. Note that we are basically providing a list of commands how the toolbar should be modified. You should also 
-      <a href="https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html" target="_blank">read the docs</a> to learn more about this. 
-    </div>
   </div>
-</div>
-
-<div class="alert alert-warning">
-  Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (&hellip;). <br>
-  The toolbars would usually only appear on hover, but the Tutorial runs in Demo-Mode so you can see them right away. 
-  The old samples still only work on hover. <br>
-  Hover over the various boxes to see the result - like this: <br>
-  <img loading="lazy" src="@App.Path/ui/assets/hover-example.jpg" width="100%">
 </div>
 
 @Sys.ToolbarHelpers.AutoShowAllToolbarsStart()

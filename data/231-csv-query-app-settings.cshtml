@@ -13,13 +13,6 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Example from CSV which was uploaded as an App Setting</h2>
-    <p>
-      This is similar to the previous example, except that the CSV file 
-      can be uploaded again and again in the App-Settings UI. So the path isn't hard-coded.  
-      <br>
-    </p>
-    @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
   </div>
 </div>
 @* Footer *@

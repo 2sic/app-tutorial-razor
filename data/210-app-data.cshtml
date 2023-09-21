@@ -8,6 +8,7 @@
   @Html.Partial("header.cshtml", new { Sys = Sys })
 </hide>
 
+
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
@@ -19,5 +20,5 @@
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
 
-@Kit.Page.Activate("fancybox4");
+@Kit.Page.Activate("fancybox4")
 

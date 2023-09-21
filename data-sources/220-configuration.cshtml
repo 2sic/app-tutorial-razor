@@ -11,15 +11,9 @@
 
 @* TODO:: @2dm Merge into 000-data-sources-home, delete this view and file *@
 
-<h2>Custom Dynamic DataSources - Configuration</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <p>
-      Often you will need a DataSource that accepts some kind of parameters (configuration).
-      The code must have <code>[Configuration]</code> attributes on the properties that should be configurable.
-      When calling <code>GetSource(...)</code> use <code>options: new { ... }</code> to set the values.
-    </p>
   </div>
 </div>
 

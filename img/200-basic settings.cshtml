@@ -11,18 +11,6 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Use the ImageResizer for Server-Side Resizing</h2>
-    <p>
-      2sxc comes with a built-in image resizer. 
-      V12 and before used <a href="https://imageresizing.net/" target="_blank">ImageResizer.net</a>, 
-      while v13 now uses <a href="https://www.imageflow.io/" target="_blank">imageflow</a>. 
-      They work the same way. 
-    </p>
-    <p>The core principles:</p>
-    <ol>
-      <li>Add parameters like <code>?w=200</code> or <code>?w=200&h=150</code> to the url, so the server knows what size to deliver</li>
-      <li>Additional parameters like <code>mode=crop</code> specify how to handle scenarios where the size doesn't match what you need</li>
-    </ol>
   </div>
 </div>
 

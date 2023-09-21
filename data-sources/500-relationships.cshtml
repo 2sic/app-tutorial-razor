@@ -9,17 +9,12 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
-
-<h2>Custom Dynamic DataSources - Data Relationships</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <p>
-      Data can have relationships to other data, allowith code to navigate from one to the other.
-    </p>
-
   </div>
 </div>
+
 @Html.Partial("../Shared/Accordion/Accordion List.cshtml", new { Sys, NameId = "datasources-advanced-page" })
 
 @* Footer *@

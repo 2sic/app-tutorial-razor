@@ -15,18 +15,8 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>Very basic WebApi Examples</h2>
-      <p>
-        In this example, we'll assume your WebApi controller is called <code>Orders</code> (so the file is called <code>OrdersController.cs</code> and has a class called <code>OrdersController</code>). It's located in <code>/api</code> which is the default location for WebApi controllers. <br>
-        We'll show various usages of the http methods with the new <code>webApi.fetch(...)</code>
-      </p>
-
-      <p>
-        Click to see the result of a WebApi call with the shared code:  
-      </p>
     </div>
   </div>
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
-

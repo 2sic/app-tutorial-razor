@@ -12,23 +12,7 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2><em>RazorBlade</em> Text.Has(...) <em>v1.1</em></h2>
-      <p>
-        These demos show how to really check if a variable has text using Text.Has. This combines checks for...
-      </p>
-      <ul>
-        <li>null</li>
-        <li>empty</li>
-        <li>only html-nbsp</li>
-        <li>only html character #160 (also nbsp)</li>
-        <li>only new-line</li>
-      </ul>
     </div>
   </div>
-
-  <div class="alert alert-success mt-2" role="alert">
-    Note that these examples use @Sys.TutLink("functions", "reuse=home"),  @Sys.TutLink("emojis", "html210") and @Sys.TutLink("RazorBlade Fluent API", "blade800") so click on the links if you don't understand that.
-  </div>
-
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

@@ -11,33 +11,9 @@
 
 @* TODO:: @2dm Merge into 500-relationships, delete file and view *@
 
-<h2>Custom Dynamic DataSources - Factory Options</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <p>
-      In the previous examples, the custom DataSources simply returned anonymous objects. 
-      This is great, but sometimes you need more control.
-      Some examples: 
-      For example, 
-    </p>
-    <ul>
-      <li>
-        All the data has the same Content Type Name <code>unspecified</code>.
-        This would prevent you from filtering the data by Content Type Name when you're using multiple dynamic sources. 
-      </li>
-      <li>
-        By default, all data with ID 0 (zero) would get an automatic ID assigned - counting up from one. 
-        But in rare cases, an ID 0 is really expected. 
-      </li>
-      <li>
-        The title field name is <code>Title</code> by default. 
-        But in some cases you would prefer <code>Name</code> or something else.
-      </li>
-    </ul>
-    <p>
-      To handle all this, you can use special FactoryOptions which configure how the data is converted to a real <code>IEntity</code>.
-    </p>
   </div>
 </div>
 @* Footer *@

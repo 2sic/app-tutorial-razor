@@ -13,14 +13,9 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>App.Data WebApi Examples</h2>
-      <p>In this example, we'll get app-data from the WebApi.</p>
-
-      <p>Click to see the result of a WebApi call with the shared code:</p>
-
-      @Html.Partial("./Part NowUsingJsonFormatter.cshtml")
   </div>
 </div>
+
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "webapi-appdata-page" })
 

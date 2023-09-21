@@ -14,44 +14,10 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-      <h2>WebApi with Polymorph Editions</h2>
-      <p>
-        You often need to make changes on a live site (open-heart-surgery) without affecting the users. For this, you should have two copies of the API Controller - one live, and one staging. This is done by doing the following: 
-      </p>
-      <ol>
-        <li>Place the live, tested controller in <code>/live/api/</code> and make sure your JavaScript accesses this</li>
-        <li>Place a copy in <code>/staging/api/</code> or something similar (you can use other path names as well) and make your development JavaScript access that endpoint</li>
-        <li>Then you can develop without hurting the live output.</li>
-        <li>Once it's stable, you then deploy by copying the new controller to <code>/live/api/</code></li>
-      </ol>
-
-      <p>
-        Click to see the result of the two calls, one to live, one to staging:
-      </p>
     </div>
   </div>
 
-
-@((snip = Sys.SourceCode.TabsOutputAndSource(tabs: new Dictionary<string, string> {
-  { "Source of Live_api", "file:../live/api/DemoController.cs" },
-  { "Source of Dev_api", "file:../dev/api/DemoController.cs" }
-  })).SnipStart())
-  <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'live')">
-    Get Hello from live
-  </button> 
-  <button type="button" class="btn btn-primary" onclick="callBasicHello(this, 'dev')">
-    Get Hello from dev
-  </button> 
-    @*! 2sxclint:disable:no-inline-script !*@
-    <script>
-    function callBasicHello(moduleContext, edition) {
-      $2sxc(moduleContext).webApi.fetchJson('app/auto/' + edition + '/api/demo/hello')
-        .then(data => alert(data));
-    }
-  </script>
-@snip.SnipEnd()
-
-
+@Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "webapi-polymorph-page" })
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })

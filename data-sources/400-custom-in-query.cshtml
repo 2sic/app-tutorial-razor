@@ -9,19 +9,9 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
-
-<h2>Custom Dynamic DataSources - Use in Visual Query</h2>
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <p>
-      Dynamic DataSources can also be used in Queries.
-      The following examples show how to use them.
-    </p>
-
-  <div class="row">
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data-sources/assets/app-data-sources.jpg", 200, 100, "float-left", label: "Dynamic DataSources in Visual Query")</div>
-  </div>
 
   </div>
 </div>
