@@ -2,6 +2,8 @@
 @*!
 Tut.Tabs=file:../../api/OrdersController.cs
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
 <button type="button" class="btn btn-primary" onclick="deleteOrdersFetch(this)">
   Quick Fetch DELETE "Orders"
   </button> 

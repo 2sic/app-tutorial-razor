@@ -1,9 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 <hide>
-  @{
-  // Tell the page that we need the 2sxc Js APIs
-  Kit.Page.Activate("2sxc.JsCore"); 
-  }
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
   @Html.Partial("header.cshtml", new { Sys = Sys })
