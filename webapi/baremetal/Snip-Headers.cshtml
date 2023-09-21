@@ -1,12 +1,17 @@
 @inherits Custom.Hybrid.Razor14
 @*!
 Tut.Tabs=file:../../api/VerifiedController.cs
+
+2sxclint:disable:no-inline-script
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 <button type="button" class="btn btn-primary" onclick="showHeaders(this)">Default headers</button>
 <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'GET')">Headers for GET</button>
 <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'POST')">...for POST</button>
 <button type="button" class="btn btn-primary" onclick="showHeaders(this, 'PUT')">...for PUT</button>
-  @*! 2sxclint:disable:no-inline-script !*@
+
 <script>
 function showHeaders(moduleContext, optionalVerb) {
   var headers = $2sxc(moduleContext).webApi.headers(optionalVerb);

@@ -3,6 +3,9 @@
 @*!
 Tut.Tabs=file:.././300-edit.js
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 @{
   var randomName = "SuperPoet " + new Random().Next(1000);
 }
@@ -46,11 +49,8 @@ Tut.Tabs=file:.././300-edit.js
 </div>
 
 @* This tutorial uses turnOn, see turnOn tutorials *@
-@{
-  var data = new {
-    moduleId = MyContext.Module.Id
-  };
-}
-@Kit.Page.TurnOn("window.editPoets.init()", data: data)
+@Kit.Page.TurnOn("window.editPoets.init()", data: new {
+  moduleId = MyContext.Module.Id
+})
 
 <script src="@MyContext.View.Path/300-edit.js"></script>

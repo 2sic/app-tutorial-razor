@@ -3,6 +3,9 @@
 @*!
 Tut.Tabs=file:.././230-query-parameters.js
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 <button id="mod-@MyContext.Module.Id-object" type="button" class="btn btn-primary">Get Query with parameters (object)</button>
 <button id="mod-@MyContext.Module.Id-string" type="button" class="btn btn-primary">Get Query with parameters (string)</button>
 <button id="mod-@MyContext.Module.Id-stream-params" type="button" class="btn btn-primary">Get Query Stream with parameters</button>

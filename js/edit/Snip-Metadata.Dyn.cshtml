@@ -3,6 +3,9 @@
 @*!
 Tut.Tabs=file:.././310-create-metadata.js
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 <table id="example-content" class="table">
   <thead>
     <tr>
@@ -36,12 +39,9 @@ Tut.Tabs=file:.././310-create-metadata.js
 </table>
 
 @* This tutorial uses turnOn, see turnOn tutorials *@
-@{
-  var data = new {
-    moduleId = CmsContext.Module.Id
-  };
-}
-@Kit.Page.TurnOn("window.sxcDataTutorial240.init()", data: data)
+@Kit.Page.TurnOn("window.sxcDataTutorial240.init()", data: new {
+  moduleId = CmsContext.Module.Id
+})
 
 
 <script src="@CmsContext.View.Path/310-create-metadata.js" @Kit.Page.AssetAttributes()></script>

@@ -1,10 +1,5 @@
 @using ToSic.Razor.Blade;
 @inherits Custom.Hybrid.Razor14
-@{
-  // Tell the page that we need the 2sxc Js APIs
-  Kit.Page.Activate("2sxc.JsCore"); 
-  var demoAuthorId = AsList(Data["RandomAuthor"]).FirstOrDefault().EntityId;
-}
 <hide>
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }

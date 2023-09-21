@@ -3,16 +3,16 @@
 @*!
 Tut.Tabs=file:.././220-query.js
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 <button id="mod-@MyContext.Module.Id-load-all" type="button" class="btn btn-primary">Get entire Query</button>
 <button id="mod-@MyContext.Module.Id-author" type="button" class="btn btn-primary">Get Stream <code>Author</code></button>
 <button id="mod-@MyContext.Module.Id-streams" type="button" class="btn btn-primary">Get Streams <code>Author</code> and <code>Books</code></button>
 
 @* This tutorial uses turnOn, see turnOn tutorials *@
-@{
-  var data = new {
-    moduleId = MyContext.Module.Id
-  };
-}
-@Kit.Page.TurnOn("window.tutQuery.init()", data: data)
+@Kit.Page.TurnOn("window.tutQuery.init()", data: new {
+  moduleId = MyContext.Module.Id
+})
 
 <script src="@MyContext.View.Path/220-query.js"></script>

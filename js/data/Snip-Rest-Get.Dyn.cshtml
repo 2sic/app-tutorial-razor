@@ -3,6 +3,9 @@
 @*!
 Tut.Tabs=file:.././200-get-data.js
 !*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
 <table id="example-content" class="table">
   <thead>
     <tr>
@@ -14,12 +17,9 @@ Tut.Tabs=file:.././200-get-data.js
   <tbody></tbody>
 </table>
 
-@{
-  var data = new {
-    moduleId = CmsContext.Module.Id
-  };
-}
-
-@Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: data)
+@* This tutorial uses turnOn, see turnOn tutorials *@
+@Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: new {
+  moduleId = MyContext.Module.Id
+})
 
 <script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>
