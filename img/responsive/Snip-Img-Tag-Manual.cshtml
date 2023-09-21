@@ -9,9 +9,7 @@ Tut.Tabs=Generated HTML
     var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
 }
  <img loading="lazy" src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
-<hide-silent>
-@{
+@{/*!*/
   var imgTag = Kit.HtmlTags.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
-  DynamicModel.SnippetSection.SetTabContents("html-img:" + imgTag);
-}
-</hide-silent>
+  DynamicModel.Tutorial.SetTabContents("html-img:" + imgTag);
+/*!*/}

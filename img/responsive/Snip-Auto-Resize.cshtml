@@ -7,9 +7,7 @@ Tut.Tabs=Generated HTML
   var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
 }
 @Kit.Image.Img(tomatoPicUrl)
-<hide-silent>
-@{
+@{/*!*/
   var previewTag = Kit.Image.Img(tomatoPicUrl);
-  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewTag);
-}
-</hide-silent>
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewTag);
+/*!*/}

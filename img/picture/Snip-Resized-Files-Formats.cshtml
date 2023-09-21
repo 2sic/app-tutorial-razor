@@ -6,10 +6,8 @@ Tut.Tabs=Generated HTML
 @{
   var jellyfishUrl = App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg";
 }
- @Kit.Image.Picture(jellyfishUrl)
-<hide-silent>
-@{
+@Kit.Image.Picture(jellyfishUrl)
+@{/*!*/
   var previewTag = Kit.Image.Img(jellyfishUrl);
-  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewTag);
-}
-</hide-silent>
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewTag);
+/*!*/}

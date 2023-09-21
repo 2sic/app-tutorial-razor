@@ -13,12 +13,10 @@ Tut.Tabs=Generated HTML
   }
   <img loading="lazy" src='@picFullControl.Src' style='width: 50%' class='border border-primary'>
 </picture>
-<hide-silent>
-@{
+@{/*!*/
   var previewString = "<picture> ";
   foreach (var st in picFullControl.Sources) { previewString += st.ToString(); }
   previewString += "<img src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary' loading='lazy' >";
   previewString += "</picture>";
-  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewString);
-}
-</hide-silent>
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewString);
+/*!*/}

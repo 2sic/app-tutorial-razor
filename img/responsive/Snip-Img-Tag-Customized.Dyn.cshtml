@@ -8,10 +8,8 @@ Tut.Tabs=Generated HTML
     var flatSettings = Kit.Image.Settings("Content", aspectRatio: "8:1");
     var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
 }
-@imgControlled.Img.Id("Some-Id").Style("Width: 75%")
-<hide-silent>
-@{
+@imgControlled.Img.Id("Some-Id").Style("width: 75%")
+@{/*!*/
   var previewTag = imgControlled;
-  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewTag);
-}
-</hide-silent>
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewTag);
+/*!*/}

@@ -6,15 +6,14 @@ Tut.Tabs=Generated HTML
 @{
     var tomatoPicUrl = App.Folder.Url +  "/img/assets/pexels-pixabay-533288.jpg";
     var flatSettings = Kit.Image.Settings("Content", aspectRatio: "8:1");
-    var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAttributes = new {
+    // Note: `imgAttributes` is new in v16.07
+    var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAttributes: new {
       id = "Some-Id",
-      style = "Width: 75%"
+      style = "width: 75%"
     });
 }
 @imgControlled
-<hide-silent>
-@{
+@{/*!*/
   var previewTag = imgControlled;
-  DynamicModel.SnippetSection.SetTabContents("html-img:" + previewTag);
-}
-</hide-silent>
+  MyModel.Code("Tutorial").SetTabContents("html-img:" + previewTag);
+/*!*/}
