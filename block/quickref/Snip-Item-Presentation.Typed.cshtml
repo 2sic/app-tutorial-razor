@@ -9,9 +9,9 @@
 @{
   var itemPres = MyItem.Presentation;
 }
-<hide-silent>
-@{ itemPres = prepPres; /* Silent patching for tutorial only, as it's not a standalone view */ }
-</hide-silent>
+@{/*! Silent patching for tutorial only, as it's not a standalone view  */
+ itemPres = prepPres;
+/*!*/}
 <p>
   Note that the following should be @itemPres.String("Color") (probably green)
 </p>

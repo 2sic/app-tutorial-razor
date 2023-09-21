@@ -7,10 +7,8 @@
   var person = AsItems(App.Data.GetStream("Persons"))
     .First(p => p.Id == id);
 }
-@* 
-  TODO: @2dm - imgStyle
-*@
-@person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "float-left")
-@* <img loading="lazy" src='@person.Picture("Mugshot", settings: "Square", width: 50)' width="50px" style="border-radius: 50%" class="float-left"> *@
+@person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "float-left", imgAttributes: new {
+  style = "border-radius: 50%"
+})
 <h3>Details of @person.Get("FirstName") @person.Get("LastName")</h3>
 <a href='@Link.To(parameters: MyPage.Parameters.Remove("id"))'>back to list</a>
