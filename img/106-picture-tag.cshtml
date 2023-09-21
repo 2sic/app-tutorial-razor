@@ -3,26 +3,15 @@
   @using ToSic.Razor.Blade;
   @* Sys must always be an exact copy of this line, so that we could search/replace *@
   @{ var Sys = GetCode("/shared/Helpers.cs").Init(this); }
-  @{ dynamic snip = null; }
   @Html.Partial("header.cshtml", new { Sys = Sys })
-  @{
-    /* Internal remarks for the tutorial developers
-      To reall see the images loading they must have different names in each tutorial.
-      Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
-      */
-    var imgDemoHelper = GetCode("ImgDemoHelpers.cs");
-  }
 </hide>
 
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    </div>
   </div>
-
-
-@Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
+</div>
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".Dyn", NameId = "img-picture" })
 

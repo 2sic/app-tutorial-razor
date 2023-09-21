@@ -14,6 +14,8 @@
   }
 </hide>
 
+@* TODO:: @2dm Title and Description ? *@
+@* https://app-dev.2sxc.org/tutorial-razor/language/de-DE/Home/img105/page *@
 
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
@@ -27,18 +29,8 @@
         <li><code>img</code> for your standard image</li>
         <li>enhancing images with size-detection using <code>srcset</code> and <code>sizes</code></li>
       </ol>
-    </div>
   </div>
-  <div class="alert alert-info">
-    These examples are optimized. 
-    The browser will only load new images, if they are larger than the previous one. 
-    So to see the effect, you must make the browser very small (narrow), reload the page, and then drag it wider. 
-    <br>
-    <br>
-    Some examples show the currently loaded URL below it, and the difference may be very small as it changes. So look closely 🔍
-  </div>
-  @Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Image", Service = "IImageService" })
-
+</div>
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, Variant = ".Dyn", NameId = "img-responsive" })
 

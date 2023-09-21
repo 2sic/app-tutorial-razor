@@ -10,11 +10,8 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    </div>
   </div>
-
-
-@Html.Partial("../shared/KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+</div>
 
 @Html.Partial("../Shared/Accordion/Accordion One.cshtml", new { Sys, NameId = "page-properties" })
 
