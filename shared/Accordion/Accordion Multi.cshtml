@@ -6,57 +6,45 @@
   if (recursions > 5) {
     throw new Exception("Recursion limit reached");
   }
-}
-@{
-  var accordion = MyModel.Code("Accordion", required: false)
-    ?? GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false));
-  var tutPage = MyModel.Item("TutorialGroup", required: false) 
-    ?? AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+
+  var accordion = MyModel.Code("Accordion", required: false);
+  var tutPage = MyModel.Item("TutorialGroup", required: false);
 }
 
-@if (tutPage != null) {
-  <div @Kit.Toolbar.Default(tutPage)>
-    <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
-    @tutPage.Html("Intro")
-    @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
-    @if (tutPage.IsNotEmpty("Note")) {
-      <div class="alert alert-warning">
-        @tutPage.Html("Note")
-      </div>
-    }
-    @* Show all the 'shared' notes *@
-    @Html.Partial("./Notes.cshtml", new { Item = tutPage })
-  </div>
-  
-
-  if (tutPage.IsNotEmpty("Accordions")) {
-    var accords = tutPage.Children("Accordions");
-
-    // Check if any of the tutorials has variants - if yes, show the variant selector
-    var showVariantSelector = accords.FirstOrDefault(a => a.Bool("HasVariants"));
-    if (showVariantSelector != null) {
-      @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = showVariantSelector.String("Variants") })
-    }
-
-
-    foreach (var accSpecs in accords) {
-      @Html.Partial("./Accordion One.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true, recursions })
-    }
-  } else {
-    <text>
-      Accordion list is empty.
-      Use Toolbar to edit
-    </text>
+@* Multi-Header - should probably be moved out to become an consistent page header *@
+<div @Kit.Toolbar.Default(tutPage)>
+  <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
+  @tutPage.Html("Intro")
+  @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
+  @if (tutPage.IsNotEmpty("Note")) {
+    <div class="alert alert-warning">
+      @tutPage.Html("Note")
+    </div>
   }
-}
-else if (MyUser.IsSystemAdmin) {
-  <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutorialGroup", prefill: new {
-    NameId = MyModel.String("NameId")
-  })>
-    The Accordion LIST <strong>@MyModel.String("NameId")</strong> was not found.
-    <br />
-    This is something you probably want to create next.
-    Use the Toolbar to create.
+  @* Show all the 'shared' notes *@
+  @Html.Partial("./Notes.cshtml", new { Item = tutPage })
+</div>
+
+@if (tutPage.IsNotEmpty("Accordions")) {
+  var accords = tutPage.Children("Accordions");
+
+  // Check if any of the tutorials has variants - if yes, show the variant selector
+  var showVariantSelector = tutPage.Bool("HasVariants") 
+    ? tutPage 
+    : accords.FirstOrDefault(a => a.Bool("HasVariants"));
+  if (showVariantSelector != null) {
+    @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = showVariantSelector.String("Variants") })
+  }
+
+  // Show each accordions one-by-one
+  foreach (var accSpecs in accords) {
+    @Html.Partial("./Section Block.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true, recursions })
+  }
+} else {
+  <div>
+    Accordion list is empty.
+    This is not expected, as the Multi-View should only be loaded when there are accordions.
+    Use Toolbar to edit
   </div>
 }
 

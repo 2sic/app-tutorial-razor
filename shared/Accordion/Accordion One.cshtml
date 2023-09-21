@@ -1,5 +1,11 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
+@*
+  This is the main entry point for the tutorial group.
+  It will either
+  - Switch to multi-accordion-view
+  - Show the accordion itself with all the sections inside
+*@
 @{
   // Check for Recursions, to prevent infinite loops!
   var recursions = MyModel.Int("Recursions", required: false, fallback: 0) + 1;
@@ -7,37 +13,20 @@
     throw new Exception("Recursion limit reached");
   }
 }
-
-@* Bootstrap 5 Accordions *@
 @{
   // Get the accordion specs - Either the "Page" or the Section inside the page
-  var accSpecs = MyModel.Item("AccordionSpecs", required: false)
-    ?? AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  var accSpecs = AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 
     // Reuse existing Accordion code or generate new
-    var accordion = MyModel.Code("Accordion", required: false)
-      ?? GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
+    var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
 }
 
 @if (accSpecs != null) {
   // Check if this is a "Page" - WIP
   if (accSpecs.IsNotEmpty("Accordions")) {
-    var tutPage = accSpecs;
     @Html.Partial("./Accordion Multi.cshtml", new { TutorialGroup = accSpecs, recursions, accordion });
-    return;
   } else {
-    // Skip Variant Selector if it was already done before
-    // If we have variants, and the caller didn't explicitly say to skip page tools, then show them
-    var skipPageTools = MyModel.Bool("SkipPageTools", required: false);
-    if (!skipPageTools && accSpecs.Bool("HasVariants")) {
-      @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = null as string })
-    }
-
-    // Show each accordion with all sections
-    @accordion.Start(accSpecs)
-      @Html.Partial("./Notes.cshtml", new { Item = accSpecs, recursions })
-      @Html.Partial("./Accordion Sections.cshtml", new { accordion, recursions } )
-    @accordion.End()
+    @Html.Partial("./Section Block.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = false, recursions })
   }
   // If it's empty, show info / toolbar to admin only
 } else if (MyUser.IsSystemAdmin) {
