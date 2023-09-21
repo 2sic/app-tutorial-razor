@@ -1,8 +1,5 @@
 @inherits Custom.Hybrid.Razor14
-<hide-silent>
-@{ var imgDemoHelper = GetCode("../ImgDemoHelpers.cs"); }
-</hide-silent>
-<hide-silent>@imgDemoHelper.ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("../ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
 <img loading="lazy" class="img-fluid" alt="Image SrcSet Demo"
   src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg"
   srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
