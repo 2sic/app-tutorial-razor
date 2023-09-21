@@ -3,7 +3,7 @@
 @using System.Linq;
 @{/*! Tut.Tabs=file:../assets/products.csv.txt, ViewConfig */
   var viewCnf = DynamicModel.Tutorial.ViewConfig;
-  var Content = AsDynamic(viewCnf.Content(query: "ProductsFromCSV")  as ToSic.Eav.DataSource.IDataSource);
+  viewCnf.Query("ProductsFromCSV" + CmsContext.Platform.Name);
 /*!*/}
 @{
   // get the query

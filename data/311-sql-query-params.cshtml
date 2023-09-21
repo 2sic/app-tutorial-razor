@@ -13,21 +13,6 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>SQL from a App Query, setting Params</h2>
-    <p>
-      The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
-      <code>Select Top 10 * from Files Where SiteId = [Params:SiteId]</code> <br>
-      Here we override the parameter <code>SiteId=1</code>. 
-    </p>
-
-  <div class="row">
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", 200, 200, "float-left", label: "Query Tree") </div>
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", 200, 200, "float-left", label: "Query Configuration with Params and Test-Values")</div>
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", 200, 200, "float-left", label: "SQL Query using Params")
-  </div>
-
-  </div>
-
   </div>
 </div>
 

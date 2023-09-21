@@ -13,19 +13,6 @@
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Run an App Query multiple times on the same page</h2>
-    <p>
-      The previous examples showed how to use a <code>Query</code>. 
-      Now we want to run the query twice, which requires a <code>Reset()</code>. <br/>
-      Note that the parameter <code>SiteId</code> is preset to be <code>[Site:Id]</code>. 
-    </p>
-
-  <div class="row">
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", 200, 200, "float-left", label: "Query Tree") </div>
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", 200, 200, "float-left", label: "Query Configuration with Params and Test-Values")</div>
-    <div class="col-4">@Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", 200, 200, "float-left", label: "SQL Query using Params")</div>
-  </div>
-
   </div>
 </div>
 

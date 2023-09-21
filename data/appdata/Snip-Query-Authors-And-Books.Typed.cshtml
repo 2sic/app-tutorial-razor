@@ -1,8 +1,11 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @using System.Linq;
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  viewCnf.Query("AuthorsWithBooks" + MyContext.Platform.Name);
+/*!*/}
 @{
-
   // get the query
   var query = Kit.Data.GetQuery("AuthorsWithBooks");
 

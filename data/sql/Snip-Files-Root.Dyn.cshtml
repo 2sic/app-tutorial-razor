@@ -3,7 +3,7 @@
 @using System.Linq;
 @{/*! Tut.Tabs=ViewConfig */
 	var viewCnf = DynamicModel.Tutorial.ViewConfig;
-	var Content = AsDynamic(viewCnf.Content(query: "SqlTop10Files" + MyContext.Platform.Name) as ToSic.Eav.DataSource.IDataSource);
+	viewCnf.Query("SqlTop10Files" + CmsContext.Platform.Name);
 /*!*/}
 @{
   // Get a fresh query, so we can use again with other parameters

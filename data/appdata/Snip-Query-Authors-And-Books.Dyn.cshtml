@@ -1,6 +1,10 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using System.Linq;
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  viewCnf.Query("AuthorsWithBooks" + CmsContext.Platform.Name);
+/*!*/}
 @{
   // get the query
   var query = Kit.Data.GetQuery("AuthorsWithBooks");

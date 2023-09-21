@@ -8,16 +8,9 @@
   @Html.Partial("header.cshtml", new { Sys = Sys }) 
 </hide>
 
-
 <div @Sys.PageParts.InfoWrapper()>
   @Html.Partial("../shared/DefaultInfoSection.cshtml")
   <div @Sys.PageParts.InfoIntro()>
-    <h2>Example from CSV</h2>
-    <p>
-      CSV files are often used so website-owners can upload data from another system. This example shows us getting the CSV-file through a query and visualizing it here. 
-      <br>
-    </p>
-    @Sys.Fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
   </div>
 </div>
 
@@ -25,9 +18,5 @@
 
 @* Footer *@
 @Html.Partial("../Shared/Layout/FooterWithSource.cshtml", new { Sys = Sys })
-@* TODO:: @2dm, move the image into viewConfig *@
-@Kit.Page.Activate("fancybox4");
 
-<p>Queries are pre-build for things like "get all authors and the books of the author in the URL" or similar 
-  
-  (<a href="https://2sxc.org/en/Learn/Visual-Query-Designer" target="_blank" rel="noopener">more</a>). These are configured in the App administration. The query <code>AuthorsWithBooks</code> (shown to the right) is used in this example. Below you'll see us first iterate through all the items in the <code>Authors</code> Stream. If an author was clicked on (which places the author-id in the url), the query will also return the current Author in the <code>Current</code> stream as well as the <code>CurrentBooks</code> of that author.<br><br><a href="/Portals/tutorial-razor/adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/query-authors-with-books.png" target="_blank" rel="noopener" data-fancybox="gallery"><img style="width: 400px;" src="/Portals/tutorial-razor/adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/query-authors-with-books.png" alt="query-authors-with-books" width="400" height="200" data-cmsid="file:query-authors-with-books.png"></a></p>
+
