@@ -3,8 +3,8 @@
 @using System.Linq;
 @using ToSic.Eav.DataSources;
 @{/*! Tut.Tabs=ViewConfig */
-	var viewCnf = DynamicModel.Tutorial.ViewConfig;
-	var Content = AsDynamic(viewCnf.Content(query: "GetQueryDemoAuthorsSorted") as ToSic.Eav.DataSource.IDataSource);
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  viewCnf.Query("GetQueryDemoAuthorsSorted" + CmsContext.Platform.Name);
 /*!*/}
 @{
   var queryFirstNameDesc = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted", parameters: new {
@@ -20,3 +20,5 @@
     </li>
   }
 </ul>
+
+@* TODO:: @2dm Query Img *@
