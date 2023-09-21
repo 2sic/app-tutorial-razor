@@ -78,15 +78,15 @@ public class FileHandler: Custom.Hybrid.CodeTyped
   #region Show Source Block
 
   /// <summary>
-  /// Just show the source of a file, ATM only used in 2 formulas samples, should be changed as tabbed-contents from config
+  /// Not used any more!
   /// ...then remove
   /// </summary>
   /// <param name="file"></param>
   /// <param name="titlePath"></param>
   /// <returns></returns>
-  public ITag ShowFile(string file, string titlePath = null) {
-    return ShowFileContents(file, titlePath: titlePath);
-  }
+  // public ITag ShowFile(string file, string titlePath = null) {
+  //   return ShowFileContents(file, titlePath: titlePath);
+  // }
 
   /// <summary>
   /// just show a snippet - used in SourceCode.cs
