@@ -15,10 +15,10 @@
 }
 @{
   // Get the accordion specs - Either the "Page" or the Section inside the page
-  var accSpecs = AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
+  var accSpecs = MyModel.Item("TutPage", required: false) ?? AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 
-    // Reuse existing Accordion code or generate new
-    var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
+  // Reuse existing Accordion code or generate new
+  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
 }
 
 @if (accSpecs != null) {
@@ -33,7 +33,7 @@
   <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutorialGroup", prefill: new {
     NameId = MyModel.String("NameId")
   })>
-    The Accordion Set <strong>@MyModel.String("NameId")</strong> was not found.
+    The Tutorial Group <strong>@MyModel.String("NameId")</strong> was not found.
     <br />
     This is something you probably want to create next.
     Use the Toolbar to create.

@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq;
+@using ToSic.Razor.Blade;
+@{
+  var Sys = MyModel.Code("Sys");
+  var hdHlp = GetCode("../Layout/HeaderHelpers.cs");
+
+  var tutPage = MyModel.Item("TutPage");
+
+  var segment = MyModel.Item("Segment");
+  var title = segment.String("SegmentTitle");
+  var sectionName = segment.String("SegmentName");
+  var sectionLink = "#" + segment.String("NameId");
+
+  // Toolbar
+  var segmentToolbar = Kit.Toolbar.Empty()
+    .Edit(segment)
+    .Settings(hover: "left");
+}
+
+<div @segmentToolbar class="mb-2">
+  @* TODO: atm not yet implemented *@
+  @if (MyModel.IsNotEmpty("FeatureIconPath")) {
+    @hdHlp.AddFeatureLogo(MyModel.String("FeatureIconPath"), MyModel.String("FeatureLink"))
+  }
+
+  @Html.Partial("../Layout/Header.Part Title and Assets.cshtml", new { Sys, title })
+  
+  @Html.Partial("../Layout/Header.Part Breadcrumb.cshtml", new { Sys, Topic = sectionName, TopicUrl = sectionLink })
+</div>
+
+@* Assets, Page Headers, OpenGraph etc. *@
+@Html.Partial("../Layout/Header.Part OpenGraph.cshtml", new { Sys = Sys })
+@Html.Partial("../Layout/Header.Part Assets.cshtml")

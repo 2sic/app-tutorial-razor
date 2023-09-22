@@ -1,6 +1,5 @@
 @inherits Custom.Hybrid.Razor14
 @{
-  // var tutorialSet = DynamicModel.TutorialSet;
   var tutorialSet = AsDynamic(DynamicModel.TutorialSet);
   if (tutorialSet == null) {
     return;
@@ -51,20 +50,27 @@
     <img loading="lazy" src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
   </div>
   <div class='tutorial-group pt-3' data-accordion-child="@tutorialSet.NameId">
-    <ol>
-      @foreach (var tutView in AsList(tutorialSet.Views ?? tutorialSet.Tutorials)) {
+    @if (tutorialSet.TutorialGroups.EntityId != 0) {
+      @Html.Partial("./Home-Segment-List.cshtml", new { Sys, Segment = tutorialSet })
+    @* <ol>
+      @foreach (var tutGrp in AsList(tutorialSet.TutorialGroups)) {
         // Used for wip section - in this case we don't have a tutView
-        if (AsDynamic(tutView).Title != null) {
-          <li>@AsDynamic(tutView).Title</li>
+        if (tutGrp.Title != null) {
+          <li>@tutGrp.Title</li>
           continue;
         }
+        @Sys.TutorialLiFromView(tutGrp)
+      }
+    </ol>       *@
+    }
+
+
+    @* New Setup with TutorialGroup *@
+    <hr>
+    <ol>
+      @foreach (var tutView in AsList(tutorialSet.Views)) {
         @Sys.TutorialLiFromView(tutView)
       }
     </ol>
   </div>
 </div>
-
-@* Show All Sub Sections *@
-@foreach (var section in AsList(DynamicModel.SubSections)) {
-  @Html.Partial("home-Section.cshtml", new { TutorialSet = section, IsSubSection = true } )
-}

@@ -32,49 +32,48 @@
     })
     .GroupBy(g => g.Group);
   }
+  @* <div>
+    2dm: Sections: @sections.Count() <br>
+    2dm: groups: @grouped.Count() <br>
+  </div> *@
 
   @foreach (var sectionGroup in grouped)
   {
+    var mainSection = sectionGroup.First().Section;
+    var subSections = sectionGroup.Skip(1).Select(s => { return s.Section; });
+    var subSectionList = AsList(subSections);
+
     @Html.Partial("Home-Section.cshtml", new { 
-      TutorialSet = sectionGroup.First().Section, 
-      IsSubSection = false,
-      SubSections = sectionGroup.Skip(1).Select(s => { return s.Section; }) 
+      TutorialSet = mainSection, 
+      IsSubSection = false
+      // SubSections = subSections 
     })
+    @* <div>test 2dm before loop - subsections: @subSectionList.Count()</div> *@
+    foreach (var section in subSectionList) {
+      @* <div>test 2dm inside new loop</div> *@
+      @Html.Partial("home-Section.cshtml", new { TutorialSet = section, IsSubSection = true } )
+    }
     // Create a thicker line after sub-sections
     <hr style='height: 4px'>
   }
 
   @* Show the other links which are still ideas etc. and don't exist as views *@
-  @{
-    var wipSection = new {
-      NameId = "wip",
-      Title = "Next Tutorials (Work-In-Progress)",
-      Introduction = "We'll create some more tutorials in 2022, incl. the following",
-      Tutorials = new[] {
-        new { Title = "Typed.IsEmpty / IsNotEmpty"},
-        new { Title = "Typed.ContainsKey / Typed.Keys()"},
-        new { Title = "Typed.Mock"},
-        // many more
-        new { Title = "---"},
-        new { Title = "UI Formulas" },
-        new { Title = "Linking around in dnn" },
-        new { Title = "Using js/css and image resources in the app folder" },
-        new { Title = "Using app settings and resources" },
-        new { Title = "Navigation links" },
-        new { Title = "Leveraging Connect.Koi" },
-        new { Title = "Permission examples" },
-        new { Title = "In-Page Editing experience" },
-        new { Title = "Customizing Search Results" },
-        new { Title = "Work with icon-fonts, font-awesome etc." },
-        new { Title = "More data examples, working with users, SQL-write, PetaPoco etc." },
-        new { Title = "Working with DataSources in all kinds of ways" },
-        new { Title = "Using data from other apps" },
-        new { Title = "Customizing search from data" },
-        new { Title = "Custom dynamic WebApi" },
-      }
-    };
-  }
-  @Html.Partial("Home-Section.cshtml", new { TutorialSet = wipSection })
+  <h3>Future Tutorials (Work-In-Progress)</h3>
+  <ol>
+        <li>Typed.Mock</li>
+        <li>Linking around in dnn</li>
+        <li>Using js/css and image resources in the app folder</li>
+        <li>Navigation links</li>
+        <li>Permission examples</li>
+        <li>In-Page Editing experience</li>
+        <li>Customizing Search Results</li>
+        <li>Work with icon-fonts, font-awesome etc.</li>
+        <li>More data examples, working with users, SQL-write, PetaPoco etc.</li>
+        <li>Working with DataSources in all kinds of ways</li>
+        <li>Using data from other apps</li>
+        <li>Customizing search from data</li>
+        <li>Custom dynamic WebApi</li>    
+  </ol>
 </div>
 
 @Html.Partial("./home.PartAssets.cshtml")

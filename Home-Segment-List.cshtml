@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  var Sys = MyModel.Code("Sys");
+  var item = MyModel.Item("Segment");
+}
+
+<ol>
+  @foreach (var tutGrp in item.Children("TutorialGroups")) {
+    @Sys.TutPageLink(tutGrp)
+  }
+</ol>
