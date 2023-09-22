@@ -219,8 +219,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         BsTabs.TabList(TabPrefix, tabNames, active),
         // Tab bodies - must open the first one
         BsTabs.TabContentGroupOpen(),
-        // Open the first tab-body item as the snippet is right after this
-        BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), firstIsActive),
+        // Open the first tab-body item IF the snippet is right after this
+        (firstName == ResultTabName || firstName == ResultAndSourceTabName)
+          ? BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), firstIsActive)
+          : null,
         // If we have a source-wrap, add it here
         outputOpen
       );
@@ -264,12 +266,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         // Special case: Source-and-Result Tab
         if (name == ResultAndSourceTabName) {
           Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
-          html = html.Add(
-            SourceWrap != null ? SourceWrap.OutputClose() : null,
-            SourceWrap != null ? SourceWrap.SourceOpen() : null,
-            ScParent.FileHandler.ShowSnippet(SnippetId, item: Item, file: SourceFile),
-            SourceWrap != null ? SourceWrap.SourceClose() : null
-          );
+          html = html.Add(SourceWrap != null ? SourceWrap.OutputClose() : null, SourceWrapped());
           // Reliably close the "Content" section IF it had been opened
           html = html.Add(BsTabs.TabContentClose());
           continue;
@@ -280,15 +277,12 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         // Special case: Source Tab
         if (m == SourceTabName) {
           Log.Add("Contents of: " + SourceTabName);
-          html = html.Add(BsTabs.TabContent(TabPrefix, nameId,
-            ScParent.FileHandler.ShowSnippet(SnippetId, item: Item, file: SourceFile),
-            isActive: active == SourceTabName)
-          );
+          html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
           continue;
         }
 
         // Other: Normal predefined content
-          Log.Add("Contents of: " + name + "; nameId: " + nameId);
+        Log.Add("Contents of: " + name + "; nameId: " + nameId);
         var body = FlexibleResult(m, Item);
         var isActive = active == nameId;
         html = html.Add(BsTabs.TabContent(TabPrefix, nameId, body, isActive: isActive));
@@ -296,6 +290,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       html = html.Add(BsTabs.TabContentGroupClose());
       return l(html, "ok");
+    }
+
+    private ITag SourceWrapped() {
+      var snippet = ScParent.FileHandler.ShowSnippet(SnippetId, item: Item, file: SourceFile) as ITag;
+      return SourceWrap == null
+        ? snippet
+        : Tag.RawHtml(SourceWrap.SourceOpen(), snippet, SourceWrap.SourceClose());
     }
 
     // Take a result and if it has a special prefix, process that
@@ -549,27 +550,25 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     if (code == "split") {
       if (item.Int("OutputWidth") != 0)
         return new WrapOutSplitSrc(section);
-      var wrap = new Wrap(section, null, false);
+      var wrap = new Wrap(section, "WrapInsteadOfSplit");
       wrap.TabSelected = SourceTabName;
       return wrap;
     }
     
     // SourceWrapIntro
     // SourceWrapIntroWithSource
-    return new Wrap(section, null, false);
+    return new Wrap(section, "UnknownWrapperAutoDefault");
   }
 
   public class Wrap
   {
     public const string Indent1 = "      ";
     public const string Indent2 = "        ";
-    public Wrap(TutorialSection sb, string name, bool combined = false) {
+    public Wrap(TutorialSection sb, string name, bool combined = false, string tabsCsv = null) {
       Section = sb;
       Name = name ?? "Wrap";
-      Tabs = combined
-        ? new List<string> { ResultAndSourceTabName }
-        : new List<string> { ResultTabName, SourceTabName };
-      TabSelected = combined ? ResultAndSourceTabName : ResultTabName;
+      Tabs = (tabsCsv != null) ? tabsCsv.Split(',').ToList() : new List<string> { ResultTabName, SourceTabName };
+      TabSelected = Tabs.First();
       TagCount = new TagCount(Name, true);
     }
     protected readonly TutorialSection Section;
@@ -594,7 +593,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   internal class WrapOutOverSrc: Wrap
   {
     private const string nameOfClass = "WrapOutOverSrc";
-    public WrapOutOverSrc(TutorialSection section) : base(section, nameOfClass, true) {
+    public WrapOutOverSrc(TutorialSection section) : base(section, nameOfClass, tabsCsv: ResultAndSourceTabName) {
     }
 
 
@@ -610,16 +609,13 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
   internal class WrapOutOnly: Wrap
   {
-    private const string nameOfClass = "WrapOutOnly";
-    public WrapOutOnly(TutorialSection section) : base(section, nameOfClass, true) {
-      Tabs = new List<string> { ResultTabName };
-      TabSelected = ResultTabName;
-    }
+    public WrapOutOnly(TutorialSection section) : base(section, "WrapOutOnly", tabsCsv: ResultTabName)
+    { }
 
 
     public override ITag OutputOpen() { return Tag.RawHtml(
       "\n",
-      Comment(nameOfClass),
+      Comment(""),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
       Tag.H4(ResultTitle)
     ); }
@@ -632,22 +628,25 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   /// </summary>
   internal class WrapSrcOnly: Wrap
   {
-    public WrapSrcOnly(TutorialSection section) : base(section, "WrapSrcOnly", true) {
-      TabSelected = SourceTabName;
-    }
+    public WrapSrcOnly(TutorialSection section) : base(section, "WrapSrcOnly", tabsCsv: SourceTabName)
+    { }
 
-    public override ITag OutputOpen() { return Tag.RawHtml(
+    // public override ITag SourceOpen()
+    // {
+    //   return base.SourceOpen();
+    // }
+    public override ITag SourceOpen() { return Tag.RawHtml(
       "\n",
-      Comment("WrapSrcOnly")
+      Comment("")
     ); }
 
-    public override ITag OutputClose() { return Tag.RawHtml(Comment("/")); }
+    public override ITag SourceClose() { return Tag.RawHtml(Comment("/")); }
   }
 
 
   internal class WrapOutSplitSrc: Wrap
   {
-    public WrapOutSplitSrc(TutorialSection section) : base(section, "WrapOutSplitSrc", true)
+    public WrapOutSplitSrc(TutorialSection section) : base(section, "WrapOutSplitSrc", tabsCsv: ResultAndSourceTabName)
     {
       FirstWidth = section.Item.Int("OutputWidth", fallback: 50);
     }
