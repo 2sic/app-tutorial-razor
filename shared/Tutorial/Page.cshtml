@@ -11,21 +11,11 @@
 
   var Sys = GetCode("../Helpers.cs").Init(this);
 }
-@* <div>
-  info 2dm Segment: @segment
-</div> *@
-@Html.Partial("./Header.cshtml", new { Sys = Sys, segment, tutPage })
+@Html.Partial("./Header.cshtml", new { Sys, segment, tutPage })
 
 @* Get the toolbar for: < previous | # Current | Next > *@
 @Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
 
-
-@* <div class="row mb-5">
-  @Html.Partial("../DefaultInfoSection.cshtml")
-  <div class="col-lg-7">
-    intro here...
-  </div>
-</div> *@
 
 @Html.Partial("../Accordion/Accordion One.cshtml", new { Sys, tutPage, NameId = tutorialGroup })
 
@@ -33,3 +23,6 @@
 @* Footer *@
 @* Get the toolbar for: < previous | # Current | Next > *@
 @Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
+
+
+@Html.Partial("./Part OpenGraph.cshtml", new { Sys, tutPage })

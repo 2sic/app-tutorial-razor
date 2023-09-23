@@ -10,19 +10,13 @@
   }
 
   @* Adding Metadata for Opengraph sharing *@
-
-  var viewSharingMdType = Sys.TutViewSharingMetadataType as string;
   var viewMd = AsList(md.OfType(viewMdType) as object).FirstOrDefault();
-  var sharingMd = AsList(md.OfType(viewSharingMdType) as object).FirstOrDefault();
-
-  if (viewMd == null || sharingMd == null) {
-    return;
-  }
+  if (viewMd == null) { return; }
 
   @* meta variables *@
-  var metaTitle = sharingMd != null ? Tags.Strip(sharingMd.Title) : Tags.Strip(viewMd.LinkTitle);
-  var metaDescription = sharingMd != null ? Tags.Strip(sharingMd.Description) : Tags.Strip(viewMd.LinkTeaser);
-  var metaImageUrl = sharingMd != null ? sharingMd.Image != "" ? Link.Image(sharingMd.Image, height: 630, width: 1200, type: "full") : "" : "";
+  var metaTitle = Tags.Strip(viewMd.LinkTitle);
+  var metaDescription = Tags.Strip(viewMd.LinkTeaser);
+  var metaImageUrl = "";
   var metaUrlTarget = Link.To(parameters: CmsContext.Page.Parameters);
 
   // Add open graph meta information

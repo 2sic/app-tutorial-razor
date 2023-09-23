@@ -9,7 +9,6 @@ public class Helpers: Custom.Hybrid.CodeTyped
 {
   public string TutorialSectionType = "TutorialSection";
   public string TutViewMetadataType = "TutorialViewMetadata";
-  public string TutViewSharingMetadataType = "TutorialViewSharing";
 
   public Helpers Init(Razor14 page) {
     Path = page.Path;

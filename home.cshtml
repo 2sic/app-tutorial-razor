@@ -9,11 +9,12 @@
   Kit.Page.SetBase();
   Kit.Page.SetTitle(pageTitle + " - 2sxc Razor Tutorials for Dnn / Oqtane");
 
-  var newConfig = Kit.Toolbar
-    .Metadata(CmsContext.View, "TutorialViewSharing")
-    .Settings(hover: "left");
+  var homeMdData = AsDynamic(App.Data.GetStream("TutorialGroup").FirstOrDefault(tg => tg.Get<string>("NameId") == "home-page"));
 
-  @Html.Partial("./Shared/Layout/Header.Part OpenGraph.cshtml", new { Sys = Sys})
+  var newConfig = Kit.Toolbar.Empty().Settings(hover: "left")
+    .Edit(homeMdData as object, tweak: t => t.Note("Edit Sharing Data for this virtual page"));
+
+  @Html.Partial("./Shared/Tutorial/Part OpenGraph.cshtml", new { Sys, tutPage = homeMdData })
 }
 
 <div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
