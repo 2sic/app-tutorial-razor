@@ -10,10 +10,10 @@
   var bsCheck = GetCode("../Bootstrap5.cs");
   bsCheck.EnsureBootstrap5();
 
-  var hdHlp = GetCode("./HeaderHelpers.cs");
+  var hdHlp = GetCode("../Tutorial/HeaderHelpers.cs");
 }
 
-@hdHlp.AddFeatureLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+@hdHlp.AddMainLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
 <h1 class="col-auto p-0" @Edit.TagToolbar()>
   @title
 </h1>

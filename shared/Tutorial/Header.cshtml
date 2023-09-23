@@ -22,7 +22,7 @@
   @if (segment.IsNotEmpty("FeatureSet")) {
     var fs = segment.Child("FeatureSet");
     if (fs.IsNotEmpty("Icon")) {
-      @hdHlp.AddFeatureLogo(fs.Url("Icon"), fs.Url("Link"))
+      @hdHlp.AddFeatureIconFromSegment(fs.Url("Icon"), fs.Url("Link"))
     }
   }
 
@@ -32,5 +32,4 @@
 </div>
 
 @* Assets, Page Headers, OpenGraph etc. *@
-@* @Html.Partial("../Layout/Header.Part OpenGraph.cshtml", new { Sys = Sys }) *@
 @Html.Partial("../Layout/Header.Part Assets.cshtml")
