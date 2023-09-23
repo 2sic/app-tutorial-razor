@@ -46,13 +46,5 @@
     @if (tutorialSet.TutorialGroups.EntityId != 0) {
       @Html.Partial("./Home-Segment-List.cshtml", new { Sys, Segment = tutorialSet })
     }
-
-    @* Old Setup with Views *@
-    <hr>
-    <ol>
-      @foreach (var tutView in AsList(tutorialSet.Views)) {
-        @Sys.TutorialLiFromView(tutView)
-      }
-    </ol>
   </div>
 </div>
