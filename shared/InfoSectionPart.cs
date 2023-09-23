@@ -78,12 +78,12 @@ public class InfoSectionPart: Custom.Hybrid.Code14
 
     var result = Tag.RawHtml();
     foreach (var dataEl in data) {
-      var viewUrl = GetView(dataEl);
+      var tutUrl = dataEl.EntityType == "TutorialGroup" ? Sys.TutPageUrlFromDyn(dataEl) as string : null; // GetView(dataEl);
       string section = Field.ToLowerInvariant();
       var url = (section == SectRequirements || section == SectResources)
           ? dataEl.Link
-          : (section == SectRelated && viewUrl != null)
-            ? Kit.Link.To(parameters: viewUrl.ViewNameInUrl.Replace(".*", "page"))
+          : (section == SectRelated && tutUrl != null)
+            ? tutUrl // Kit.Link.To(parameters: tutUrl.ViewNameInUrl.Replace(".*", "page"))
             : "unknown info-section";
       result = result.Add(Tag.Li().Attr(ItemToolbar.For(dataEl)).Wrap(
         Tag.A(dataEl.Title).Href(url).Target("_blank")
@@ -108,14 +108,14 @@ public class InfoSectionPart: Custom.Hybrid.Code14
     }
   }
 
-  private dynamic GetView(dynamic Data) {
-    var ViewList = AsList(App.Data["2SexyContent-Template"] as object);
-    var View = ViewList.FirstOrDefault(view => view.Metadata == Data);
-    if (View != null)
-      return View;
-    else
-      return null;
-  }
+  // private dynamic GetView(dynamic Data) {
+  //   var ViewList = AsList(App.Data["2SexyContent-Template"] as object);
+  //   var View = ViewList.FirstOrDefault(view => view.Metadata == Data);
+  //   if (View != null)
+  //     return View;
+  //   else
+  //     return null;
+  // }
 }
 
 // The next line is for 2sxc-internal quality checks, you can ignore this

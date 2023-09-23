@@ -319,9 +319,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       // Handle case Tutorials
       if (strResult == TutorialsTabName) {
-        var liLinks = Item.Children("Tutorials").Select(tMd => "\n    " + ScParent.Sys.TutorialLiFromViewMd(tMd) + "\n");
-        var olLinks = Tag.Ol(liLinks);
-        return olLinks;
+        var liLinks = Item.Children("RefTutorials").Select(tutPage => "\n    " + ScParent.Sys.TutPageLink(tutPage) + "\n");
+        return Tag.Ol(liLinks);
       }
 
       // Handle case Notes
@@ -462,7 +461,8 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           Log.Add(NotesFieldName);
           list.Add(NotesTabName);
         }
-        if (Item.IsNotEmpty("Tutorials")) {
+        // TODO: OLD / NEW
+        if (Item.IsNotEmpty("RefTutorials")) {
           Log.Add("Tutorials");
           list.Add(TutorialsTabName);
         }

@@ -41,9 +41,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
 
   public IHtmlTag TutPageLink(ITypedItem tutPage) {
     var label = tutPage.String(tutPage.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: "p") + " ";
-    // var link = Link.To(parameters: MyPage.Parameters.Set("tut", tutPage.String("NameId").Replace("-page", "")));
     var result = Tag.Li()
-      .Style("background-color: aliceblue") // for dev/debug
       .Attr(Kit.Toolbar.Empty().Edit(tutPage))
       .Wrap(
         Tag.Strong(
@@ -57,7 +55,9 @@ public class Helpers: Custom.Hybrid.CodeTyped
       result = result.Add(Tag.Br(), Text.Ellipsis(tutPage.String("Intro", scrubHtml: true), 250));
     }
     return result;
-    //    return null;
+  }
+  public string TutPageUrlFromDyn(object dynTutPage) {
+    return TutPageUrl(AsItem(dynTutPage));
   }
 
   public string TutPageUrl(ITypedItem tutPage) {
@@ -111,7 +111,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
         newText: "",
         deprecated: false)
       : TutorialViewLink(
-        label: Kit.Scrub.Only(viewMd.String("LinkTitle"), "p"),
+        label: "Old: " + Kit.Scrub.Only(viewMd.String("LinkTitle"), "p"),
         target: urlPattern,
         description: viewMd.String("LinkTeaser"),
         newText: viewMd.String("LinkEmphasis"),

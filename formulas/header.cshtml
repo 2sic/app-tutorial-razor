@@ -1,6 +1,0 @@
-@inherits Custom.Hybrid.Razor14
-@Html.Partial("../Shared/Layout/Header.cshtml", new { Sys = DynamicModel.Sys, Title = "Formulas Tutorials", Name = "Formulas", Link = "#formulas", FeatureIconPath = "formulas/assets/formulas.svg", FeatureUrl = "https://docs.2sxc.org/js-code/edit-form/formulas/" })
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
-
-@* disable the quick-e, because it will appear since our settings activates all *@
-<div quick-edit-config='{ "enable": false }'></div>

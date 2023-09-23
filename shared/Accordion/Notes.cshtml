@@ -9,9 +9,13 @@
 
   // Show all the 'shared' notes 
   foreach (var note in item.Children("Notes")) {
-    <div class='alert alert-@note.Attribute("NoteType")'>
-      <h4>@note.String("Title")</h4>
-      @note.Html("Note")
-    </div>
+    if (note.String("NoteSource") == "cshtml") {
+      @Html.Partial("../../" + note.String("CshtmlFile"))
+    } else {
+      <div class='alert alert-@note.Attribute("NoteType")'>
+        <h4>@note.String("Title")</h4>
+        @note.Html("Note")
+      </div>
+    }
   }
 }

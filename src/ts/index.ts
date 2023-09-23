@@ -3,6 +3,7 @@ import { initAccordion } from './lib-2sxc-accordion';
 import { AccordionOptions } from './lib-2sxc-accordion-options';
 import { initRevealers } from './snippets';
 import { initSplit } from './split';
+import { createImgDemo } from './imgDemo';
 declare let ace: any;
 
 function initSourceCode({ domAttribute, aceOptions  }: { domAttribute: string, aceOptions: { sourceCodeId: string, language: string, wrap: boolean } }) {  
@@ -54,3 +55,6 @@ winAny.snippets.initRevealers ??= initRevealers;
 // Get splitter ready
 winAny.splitter ??= {};
 winAny.splitter.init ??= initSplit;
+
+// Get the imgDemo ready
+createImgDemo();
