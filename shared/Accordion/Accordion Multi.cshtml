@@ -11,8 +11,10 @@
   var tutPage = MyModel.Item("TutorialGroup", required: false);
 }
 
+@Html.Partial("./Introduction.cshtml", new { accordion, tutPage })
+
 @* Multi-Header - should probably be moved out to become an consistent page header *@
-<div @Kit.Toolbar.Default(tutPage)>
+@* <div @Kit.Toolbar.Default(tutPage)>
   <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
   @tutPage.Html("Intro")
   @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
@@ -21,9 +23,8 @@
       @tutPage.Html("Note")
     </div>
   }
-  @* Show all the 'shared' notes *@
   @Html.Partial("./Notes.cshtml", new { Item = tutPage })
-</div>
+</div> *@
 
 @if (tutPage.IsNotEmpty("Accordions")) {
   var accords = tutPage.Children("Accordions");

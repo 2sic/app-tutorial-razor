@@ -21,46 +21,16 @@ public class Accordion: Custom.Hybrid.CodeTyped
     Name = item.String("NameId");
     if (!_variantExtension.Has())
       _variantExtension = "." + Variant;
-    return StartInner();
+    var t = Kit.HtmlTags;
+
+    return t.RawHtml(
+      "\n<!-- Accordion.Start(" + Name + ") -->\n",
+      TagCount.Open(t.Div().Class("accordion").Id(Name))
+    );
   }
 
   public bool IsTyped  { get { return Variant == "typed"; }}
   public string Variant { get { return MyPage.Parameters["variant"] ?? "typed"; }}
-
-  private IHtmlTag StartInner() {
-    var t = Kit.HtmlTags;
-
-    var heading = t.Div();
-    if (Item.IsNotEmpty("Logo"))
-      heading = heading.Add(
-        t.Img().Src(Item.Url("Logo")).Class("logo").Style("float: right; margin-left: 10px; width: 400px")
-      );
-
-    heading = heading.Add(t.H2().Class("quick-ref").Wrap(
-      Item.String("Title", scrubHtml: "p")
-    ));
-
-
-    // Add Toolbar
-    heading = (Item.Id != 0)
-      ? heading.Attr(Kit.Toolbar.Empty(Item).Edit().New())
-      : heading.Attr(Kit.Toolbar.Empty().New("TutorialGroup", prefill: new { NameId = Name }));
-
-    var note = Item.IsNotEmpty("Note")
-      ? t.Div().Class("alert alert-warning").Wrap(Item.String("Note"))
-      : null;
-
-    return t.RawHtml(
-      "\n<!-- Accordion.Start(" + Name + ") -->\n",
-      heading,
-      "\n",
-      Item.Html("Intro"),
-      "\n",
-      note,
-      "\n",
-      TagCount.Open(t.Div().Class("accordion").Id(Name))
-    );
-  }
 
   public string Name { get; private set; }
 

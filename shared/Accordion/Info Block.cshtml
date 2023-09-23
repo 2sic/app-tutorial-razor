@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Linq;
+@{
+  var Sys = GetCode("/Shared/Helpers.cs");
+  var tutPage = MyModel.Item("TutPage");
+  if (tutPage == null) {
+    return;
+  }
+
+  if (tutPage.IsEmpty("RefSharedSpecs")) {
+    return;
+  }
+
+  var specsItem = tutPage.Child("RefSharedSpecs");
+  var specs = specsItem.Dyn;
+
+  var infoSection = Sys.InfoSection;
+}
+
+<div @Sys.PageParts.InfoBoxWrapper()>
+  @infoSection.Part(specs, "Requirements").Section(specs.Requirements)
+  @infoSection.Part(specs, "Resources").Section(specs.Resources)
+  @infoSection.Part(specs, "Related").Section(specs.Related)
+</div>

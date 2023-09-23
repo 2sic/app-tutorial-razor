@@ -20,11 +20,12 @@
 @Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
 
 
-<div @Sys.PageParts.InfoWrapper()>
+@* <div class="row mb-5">
   @Html.Partial("../DefaultInfoSection.cshtml")
-  <div @Sys.PageParts.InfoIntro()>
+  <div class="col-lg-7">
+    intro here...
   </div>
-</div>
+</div> *@
 
 @Html.Partial("../Accordion/Accordion One.cshtml", new { Sys, tutPage, NameId = tutorialGroup })
 

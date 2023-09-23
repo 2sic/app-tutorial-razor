@@ -22,8 +22,9 @@
   }
 
   // Show each accordion with all sections
+  @Html.Partial("./Introduction.cshtml", new { accordion, tutPage = accSpecs })
   @accordion.Start(accSpecs)
-    @Html.Partial("./Notes.cshtml", new { Item = accSpecs, recursions })
+    @* @Html.Partial("./Notes.cshtml", new { Item = accSpecs, recursions }) *@
     @Html.Partial("./Sections.cshtml", new { accordion, recursions } )
   @accordion.End()
   // If it's empty, show info / toolbar to admin only

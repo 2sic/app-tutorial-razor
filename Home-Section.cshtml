@@ -1,21 +1,13 @@
 @inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
 @{
   var tutorialSet = AsDynamic(DynamicModel.TutorialSet);
-  if (tutorialSet == null) {
-    return;
-  }
-
+  if (tutorialSet == null) { return; }
 
   var Sys = GetCode("/Shared/Helpers.cs");
 
-  var featureLogoFallback = App.Path + "/app-icon.png";
-  var featureLogoPath = tutorialSet.FeatureLogo != "" && tutorialSet.FeatureLogo != null 
-    ? tutorialSet.FeatureLogo 
-    : featureLogoFallback;
-
-  if (featureLogoPath != featureLogoFallback && featureLogoPath.IndexOf("/") == -1) {
-    featureLogoPath = App.Path + "/img/assets/" + featureLogoPath;
-  }
+  var featLogo = tutorialSet.FeatureSet.Icon;
+  var featureLogoPath = Text.Has(featLogo) ? featLogo : App.Path + "/app-icon.png";
 }
 
 @* Show a heading section to introduce a new main topic *@
@@ -40,7 +32,7 @@
       <div class="col-auto">
         <div class="icon-wrapper"><img loading="lazy" class="img-fluid" src='@featureLogoPath'></div>
       </div>
-      <div class="ml-3 col" @Edit.TagToolbar(tutorialSet)>
+      <div class="ml-3 col" @Kit.Edit.TagToolbar(tutorialSet)>
         <h2 class='co-no-icon'>@Html.Raw(tutorialSet.Title)</h2>
         @Html.Raw(tutorialSet.Introduction)
       </div>
@@ -50,22 +42,12 @@
     <img loading="lazy" src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
   </div>
   <div class='tutorial-group pt-3' data-accordion-child="@tutorialSet.NameId">
+    @* New Setup with TutorialGroup *@
     @if (tutorialSet.TutorialGroups.EntityId != 0) {
       @Html.Partial("./Home-Segment-List.cshtml", new { Sys, Segment = tutorialSet })
-    @* <ol>
-      @foreach (var tutGrp in AsList(tutorialSet.TutorialGroups)) {
-        // Used for wip section - in this case we don't have a tutView
-        if (tutGrp.Title != null) {
-          <li>@tutGrp.Title</li>
-          continue;
-        }
-        @Sys.TutorialLiFromView(tutGrp)
-      }
-    </ol>       *@
     }
 
-
-    @* New Setup with TutorialGroup *@
+    @* Old Setup with Views *@
     <hr>
     <ol>
       @foreach (var tutView in AsList(tutorialSet.Views)) {

@@ -3,7 +3,7 @@
 @using ToSic.Razor.Blade;
 @{
   var Sys = MyModel.Code("Sys");
-  var hdHlp = GetCode("../Layout/HeaderHelpers.cs");
+  var hdHlp = GetCode("./HeaderHelpers.cs");
 
   var tutPage = MyModel.Item("TutPage");
 
@@ -19,9 +19,11 @@
 }
 
 <div @segmentToolbar class="mb-2">
-  @* TODO: atm not yet implemented *@
-  @if (MyModel.IsNotEmpty("FeatureIconPath")) {
-    @hdHlp.AddFeatureLogo(MyModel.String("FeatureIconPath"), MyModel.String("FeatureLink"))
+  @if (segment.IsNotEmpty("FeatureSet")) {
+    var fs = segment.Child("FeatureSet");
+    if (fs.IsNotEmpty("Icon")) {
+      @hdHlp.AddFeatureLogo(fs.Url("Icon"), fs.Url("Link"))
+    }
   }
 
   @Html.Partial("../Layout/Header.Part Title and Assets.cshtml", new { Sys, title })
