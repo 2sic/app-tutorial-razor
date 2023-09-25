@@ -8,7 +8,6 @@ using ToSic.Sxc.Data;
 public class Helpers: Custom.Hybrid.CodeTyped
 {
   public string TutorialSectionType = "TutorialSection";
-  // public string TutViewMetadataType = "TutorialViewMetadata";
 
   public Helpers Init(Razor14 page) {
     Path = page.Path;
@@ -25,17 +24,11 @@ public class Helpers: Custom.Hybrid.CodeTyped
   public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("SourceCode.cs").Init(this, Path)); } }
   private dynamic _sourceCode;
 
-  public dynamic PageParts { get { return _pageParts ?? (_pageParts = GetCode("PageParts.cs").Init(this)); } }
-  private dynamic _pageParts;
-
   public dynamic Fancybox { get { return _fancybox ?? (_fancybox = GetCode("Fancybox.cs")); } }
   private dynamic _fancybox;
 
   public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs")).Init(this); } }
   private dynamic _tlbHelpers;
-
-  // public dynamic InfoSection { get { return _infs ?? (_infs = GetCode("InfoSection.cs")).Init(this); } }
-  // private dynamic _infs;
 
   #region New Links to the new setup
 
