@@ -319,7 +319,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
       // Handle case Tutorials
       if (strResult == TutorialsTabName) {
-        var liLinks = Item.Children("RefTutorials").Select(tutPage => "\n    " + ScParent.Sys.TutPageLink(tutPage) + "\n");
+        var liLinks = Item.Children("Tutorials").Select(tutPage => "\n    " + ScParent.Sys.TutPageLink(tutPage) + "\n");
         return Tag.Ol(liLinks);
       }
 
@@ -462,7 +462,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
           list.Add(NotesTabName);
         }
         // TODO: OLD / NEW
-        if (Item.IsNotEmpty("RefTutorials")) {
+        if (Item.IsNotEmpty("Tutorials")) {
           Log.Add("Tutorials");
           list.Add(TutorialsTabName);
         }
@@ -576,8 +576,33 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public string TabSelected {get; set;}
     protected TagCount TagCount;
     protected string Name;
-    public virtual ITag OutputOpen() { return Tag.RawHtml(Comment("") + Indent1); }
-    public virtual ITag OutputClose() { return Tag.RawHtml(Comment("/")); }
+    private bool ToolbarForAnonymous { get { return _toolbarForAnon ?? (_toolbarForAnon = Section.Item.Bool("ToobarsForAnonymous")).Value; } }
+    private bool? _toolbarForAnon;
+    public virtual ITag OutputOpen() {
+      // Special feature for Toolbar Demos
+      var noteToolbar = Tag.RawHtml();
+      if (ToolbarForAnonymous) {
+        Section.ScParent.Sys.ToolbarHelpers.EnableEditForAll();
+        Section.ScParent.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
+        noteToolbar = noteToolbar.Add(Indent1, Comment("", "toolbar for anonymous")); // + "<!-- toolbar for anonymous -->\n";
+      }
+      return Tag.RawHtml(
+        noteToolbar,
+        Comment(""),
+        Indent1
+      );
+    }
+    public virtual ITag OutputClose() {
+      var noteToolbar = Tag.RawHtml();
+      if (ToolbarForAnonymous) {
+        Section.ScParent.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
+        noteToolbar = noteToolbar.Add(Indent1, Comment("/", "toolbar for anonymous")); // + "<!-- toolbar for anonymous -->\n";
+      }
+      return Tag.RawHtml(
+        noteToolbar,
+        Comment("/")
+      );
+    }
 
     public virtual ITag SourceOpen() { return Tag.RawHtml(Comment("")); }
     public virtual ITag SourceClose() { return Tag.RawHtml(Comment("/")); }
@@ -598,13 +623,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
 
     public override ITag OutputOpen() { return Tag.RawHtml(
-      "\n",
-      Comment(nameOfClass),
+      base.OutputOpen(),
+      // "\n",
+      // Comment(nameOfClass),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
       Tag.H4(ResultTitle)
     ); }
 
-    public override ITag OutputClose() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
+    public override ITag OutputClose() { return Tag.RawHtml(base.OutputClose(), TagCount.CloseDiv()); }
   }
 
   internal class WrapOutOnly: Wrap
@@ -614,13 +640,14 @@ public class SourceCode: Custom.Hybrid.CodeTyped
 
 
     public override ITag OutputOpen() { return Tag.RawHtml(
-      "\n",
-      Comment(""),
+      base.OutputOpen(),
+      // "\n",
+      // Comment(""),
       TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
       Tag.H4(ResultTitle)
     ); }
 
-    public override ITag OutputClose() { return Tag.RawHtml(Comment("/"), TagCount.CloseDiv()); }
+    public override ITag OutputClose() { return Tag.RawHtml(base.OutputClose(), TagCount.CloseDiv()); }
   }
 
   /// <summary>
@@ -631,10 +658,6 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     public WrapSrcOnly(TutorialSection section) : base(section, "WrapSrcOnly", tabsCsv: SourceTabName)
     { }
 
-    // public override ITag SourceOpen()
-    // {
-    //   return base.SourceOpen();
-    // }
     public override ITag SourceOpen() { return Tag.RawHtml(
       "\n",
       Comment("")
@@ -653,6 +676,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     private int FirstWidth;
 
     public override ITag OutputOpen() { return Tag.RawHtml(
+      base.OutputOpen(),
       Comment("", "Splitter"),
       Indent1,
       TagCount.Open(Tag.Div().Id(Section.TabPrefix + "-splitter").Class("splitter-group")),
@@ -667,6 +691,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
     ); }
 
     public override ITag OutputClose() { return Tag.RawHtml(
+      base.OutputClose(),
       "\n" + Indent2,
       TagCount.CloseDiv(),
       "\n" + Indent2 + "<!-- /split-left -->"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-09-23T18:08:19.8757532+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-09-25T10:13:14.2724814+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -4370,7 +4370,7 @@
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
-        <Attribute StaticName="RefResources" Type="Entity" IsTitle="false">
+        <Attribute StaticName="XxxRefResources" Type="Entity" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="4cd1f45e-7c65-40f5-93eb-111bf509b5ec" Json="True" KeyNumber="5974">
             <Value Key="CustomJavaScript" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
@@ -4526,7 +4526,7 @@
             </Value>
           </Entity>
         </Attribute>
-        <Attribute StaticName="RefTutorials" Type="Entity" IsTitle="false">
+        <Attribute StaticName="Tutorials" Type="Entity" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f379e810-ae74-4ec0-b078-31dc07dba735" Json="True" KeyNumber="5975">
             <Value Key="CustomJavaScript" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
@@ -4549,7 +4549,7 @@
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="RefTutorials" Type="String">
+            <Value Key="Name" Value="Tutorials (Additional to link to)" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Notes" Value="" Type="String">
@@ -4680,6 +4680,123 @@
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="GroupSpecialFeatures" Type="Empty" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="05856924-4375-4ea9-a0d3-3732ed54e01e" Json="True" KeyNumber="5991">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="empty-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Special Features - Activate special features for the test to work" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="81eb5db1-6a8e-4ade-817c-e085bd742dd9" Json="True" KeyNumber="5991">
+            <Value Key="DefaultCollapsed" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="PageActivate" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="083d7511-c54d-4c01-b938-95a30a03b2ae" Json="True" KeyNumber="5992">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Page.Activate Keys (CSV) - NOT YET IMPLEMENTED" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="ef6cac0c-4fbb-4544-ad26-2c560f9ebb4b" Json="True" KeyNumber="5992">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="03328bce-44f1-482f-8553-449e36ca1593" Json="True" KeyNumber="5992">
+            <Value Key="InputFontFamily" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="ToobarsForAnonymous" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="ae21a029-3a07-4b43-8a21-a75a635f98a5" Json="True" KeyNumber="5993">
+            <Value Key="InputType" Value="boolean-default" Type="String" />
+            <Value Key="Name" Value="ToobarsForAnonymous" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
           </Entity>
         </Attribute>
       </Attributes>
@@ -12116,6 +12233,7 @@
       <Value Key="Title" Value="Reuse templates Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="52909f1b-b7d2-4c9b-b5b5-b205c317bb88" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="cb32bd0f-d595-4868-9625-f97a252d91ba" AttributeSetName="TutorialResource" EntityGUID="8b3d8b37-2354-4ff2-87d7-5027399b8345">
       <Value Key="Link" Value="https://docs.microsoft.com/en-us/dotnet/api/system.func-2?view=net-6.0" Type="Hyperlink">
@@ -12185,7 +12303,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="4143ee08-e608-40dc-9868-484ef9784498">
-      <Value Key="Resources" Value="4b7b8481-dd73-4412-97a3-c8fa7270fed4,969b876b-543e-477a-8e77-68492a75da48" Type="Entity" />
+      <Value Key="Resources" Value="4b7b8481-dd73-4412-97a3-c8fa7270fed4,969b876b-543e-477a-8e77-68492a75da48,4d459e80-4967-4e89-8ca8-e7e08f984820" Type="Entity" />
       <Value Key="Title" Value="Reuse Shared Razor Helpers Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -12321,6 +12439,7 @@
       <Value Key="Title" Value="Data Introduction Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="b98ce947-094f-4584-a3a4-5da272007eb0">
       <Value Key="Requirements" Value="6edbce69-e482-46ed-be06-fe411828570e" Type="Entity" />
@@ -12328,6 +12447,7 @@
       <Value Key="Title" Value="Data Specs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="00d8c3ef-b764-417d-8271-93007f7d6990" Type="Entity" />
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e4270019-2aef-494a-a7d1-7c8e981fba60" AttributeSetName="TutorialSpecs" EntityGUID="0631e838-a4a8-4ace-9ef6-989297b98fa4">
       <Value Key="Requirements" Value="6edbce69-e482-46ed-be06-fe411828570e" Type="Entity" />
@@ -16358,7 +16478,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="008b92c0-8a6c-46cc-bb5c-16f5524e41f3,002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16368,6 +16487,7 @@
       <Value Key="TutorialId" Value="block-quickref-item-get-props" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="008b92c0-8a6c-46cc-bb5c-16f5524e41f3,002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16395,7 +16515,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="008b92c0-8a6c-46cc-bb5c-16f5524e41f3,002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16405,6 +16524,7 @@
       <Value Key="TutorialId" Value="block-quickref-item-children" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="008b92c0-8a6c-46cc-bb5c-16f5524e41f3,002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16495,7 +16615,6 @@
       <Value Key="OutputWidth" Value="0" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="14aa8673-4fd2-4175-8066-62b79c90e159" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16505,6 +16624,7 @@
       <Value Key="TutorialId" Value="quickref-razor-variables" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="14aa8673-4fd2-4175-8066-62b79c90e159" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16532,7 +16652,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="f405a3bb-2e9a-4be5-9be6-4676c5eb0810" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16542,6 +16661,7 @@
       <Value Key="TutorialId" Value="quickref-razor-if" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="f405a3bb-2e9a-4be5-9be6-4676c5eb0810" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16569,7 +16689,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="34c54543-a0c8-4837-8c86-282e7d2f0774" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16579,6 +16698,7 @@
       <Value Key="TutorialId" Value="quickref-razor-loop" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="34c54543-a0c8-4837-8c86-282e7d2f0774" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16606,7 +16726,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="100d549a-9acd-4def-8299-ce45ab8aa1de" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16616,6 +16735,7 @@
       <Value Key="TutorialId" Value="quickref-razor-html-raw" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="100d549a-9acd-4def-8299-ce45ab8aa1de" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16643,7 +16763,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="efca780b-38bb-4da4-83fe-36bc5a0ece1f" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16653,6 +16772,7 @@
       <Value Key="TutorialId" Value="quickref-razor-emoji" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="efca780b-38bb-4da4-83fe-36bc5a0ece1f" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16867,7 +16987,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="001045a8-f783-42e4-aec8-43b484e846fa,00893c9c-1c04-4a55-928e-acbbcb878925,72cb66bb-738f-4172-ab38-d9341d0bb5e1" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16877,6 +16996,7 @@
       <Value Key="TutorialId" Value="quickref-razor-functions" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="001045a8-f783-42e4-aec8-43b484e846fa,00893c9c-1c04-4a55-928e-acbbcb878925,72cb66bb-738f-4172-ab38-d9341d0bb5e1" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16904,7 +17024,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="52909f1b-b7d2-4c9b-b5b5-b205c317bb88" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16914,6 +17033,7 @@
       <Value Key="TutorialId" Value="quickref-razor-partials-basic" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="52909f1b-b7d2-4c9b-b5b5-b205c317bb88" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16941,7 +17061,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="52909f1b-b7d2-4c9b-b5b5-b205c317bb88" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16951,6 +17070,7 @@
       <Value Key="TutorialId" Value="quickref-razor-partials-parameters" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="52909f1b-b7d2-4c9b-b5b5-b205c317bb88" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16978,7 +17098,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="00893c9c-1c04-4a55-928e-acbbcb878925" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16988,6 +17107,7 @@
       <Value Key="TutorialId" Value="quickref-razor-shared-code" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="00893c9c-1c04-4a55-928e-acbbcb878925" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17132,7 +17252,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="008b92c0-8a6c-46cc-bb5c-16f5524e41f3,002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17142,6 +17261,7 @@
       <Value Key="TutorialId" Value="block-quickref-item-presentation" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="008b92c0-8a6c-46cc-bb5c-16f5524e41f3,002eaeee-cf42-45e0-a9d3-8772cfd8480b" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17393,7 +17513,6 @@
       <Value Key="OutputWidth" Value="25" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="58c9195a-bf75-419d-b675-11a165c55854,a1161d9f-acd3-4fd7-9dba-704e4edcdb84,6a1757a2-c7fb-40dd-8742-d96c32782e23,9a535043-05b4-4dd6-abdc-05a0b5451b0f" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17403,6 +17522,7 @@
       <Value Key="TutorialId" Value="quickref-page-set" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="58c9195a-bf75-419d-b675-11a165c55854,a1161d9f-acd3-4fd7-9dba-704e4edcdb84,6a1757a2-c7fb-40dd-8742-d96c32782e23,9a535043-05b4-4dd6-abdc-05a0b5451b0f" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17431,7 +17551,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="0c4c1114-642f-40ff-9e60-3225baa5fb6d,bf038131-b4f7-4dd7-b5b3-8461ce68defa" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17441,6 +17560,7 @@
       <Value Key="TutorialId" Value="quickref-page-opengraph" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="0c4c1114-642f-40ff-9e60-3225baa5fb6d,bf038131-b4f7-4dd7-b5b3-8461ce68defa" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17468,7 +17588,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="f1894808-ad7b-49b3-92d0-d2dc79d9ca6d" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17478,6 +17597,7 @@
       <Value Key="TutorialId" Value="quickref-context-all" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="f1894808-ad7b-49b3-92d0-d2dc79d9ca6d" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17559,7 +17679,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="00893c9c-1c04-4a55-928e-acbbcb878925" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17569,6 +17688,7 @@
       <Value Key="TutorialId" Value="quickref-razor-shared-code-objects" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="00893c9c-1c04-4a55-928e-acbbcb878925" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17721,7 +17841,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="00b24448-b5c7-4e9d-8a1b-a1cf6abe3a97" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17731,6 +17850,7 @@
       <Value Key="TutorialId" Value="settings-quickref-summary" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="00b24448-b5c7-4e9d-8a1b-a1cf6abe3a97" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -18531,19 +18651,42 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="69b82a2f-fcf8-42b5-86e5-620d8ee899ba" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Automatic Resize with Full Control&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="img-responsive-img-tag-manual" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -19589,7 +19732,6 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefTutorials" Value="001045a8-f783-42e4-aec8-43b484e846fa,00c13efe-e571-48e2-9f24-48934a6fb3a9" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -19599,6 +19741,7 @@
       <Value Key="TutorialId" Value="code-functions-return-html" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Tutorials" Value="001045a8-f783-42e4-aec8-43b484e846fa,00c13efe-e571-48e2-9f24-48934a6fb3a9" Type="Entity" />
       <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -20537,7 +20680,7 @@
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;If you just need a quick simple snippet, Template Delegates are the way to go. They are very limited so only ideal for simple stuff. More complex stuff should use @Sys.TutLink(&quot;Razor Components with @Html.Partial and DynamicModel&quot;, &quot;reuse110&quot;).&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;If you just need a quick simple snippet, Template Delegates are the way to go. They are very limited so only ideal for simple stuff.&amp;nbsp;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -20880,7 +21023,8 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;To remove a parameter you can use the &lt;code&gt;.Remove(key)&lt;/code&gt; method or modify the string containing parameters.&lt;/p&gt;&#xA;&lt;p&gt;See current page parameters: &lt;code&gt;@MyPage.Parameters&lt;/code&gt;&lt;/p&gt;" Type="String">
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;To remove a parameter you can use the &lt;code&gt;.Remove(key)&lt;/code&gt; method or modify the string containing parameters.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -20896,6 +21040,12 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="&lt;p&gt;Remove Parameters&lt;/p&gt;" Type="String">
@@ -20904,12 +21054,16 @@
       <Value Key="TutorialId" Value="code-context-page-parameters-remove" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="dcfd0839-e0d6-4821-b7c2-fb845fa5b741">
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;To change a parameter you can use the &lt;code&gt;.Set(key, value)&lt;/code&gt; method or modify the string containing parameters.&lt;/p&gt;&#xA;&lt;p&gt;See current page parameters: &lt;code&gt;@MyPage.Parameters&lt;/code&gt;&lt;/p&gt;" Type="String">
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;To change a parameter you can use the &lt;code&gt;.Set(key, value)&lt;/code&gt; method or modify the string containing parameters.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -20927,10 +21081,19 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Change Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="code-context-page-parameters-change" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -20977,22 +21140,42 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Notes" Value="dd03d67f-1ec2-4b9a-abdc-e7bb847cf517" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Simple Intro-Sample Showing Some Values&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="block-item-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -21190,12 +21373,17 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefResources" Value="03843ade-cdd5-44ae-9699-0d36dfc616e5" Type="Entity" />
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="RefSharedSpecs" Value="a5b6b6ef-89bc-48c8-a332-6558977c2b9e" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="&lt;p&gt;SetBase&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="page-basic-base" Type="String">
@@ -21281,12 +21469,17 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RefResources" Value="9e310b17-aa38-4f2c-8c9d-05e20971a511" Type="Entity" />
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="RefSharedSpecs" Value="a5b6b6ef-89bc-48c8-a332-6558977c2b9e" Type="Entity" />
       <Value Key="Tabs" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="&lt;p&gt;Icons&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="page-basic-icons" Type="String">
@@ -21334,7 +21527,11 @@
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="RefSharedSpecs" Value="9d9237da-6ae2-499d-b22d-e90e0823ec05" Type="Entity" />
       <Value Key="Sections" Value="6fcfd90b-82c4-40dd-818d-23a932d0d804" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;&lt;em&gt;IPageService&lt;/em&gt; AddIcon to Html Headers&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21903,6 +22100,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;This example uses the &lt;code&gt;Settings.Images.Content&lt;/code&gt; settings but expects it to be half that size (for 2-columns) or a third the size (for 3 columns).&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21921,10 +22119,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;Image with &lt;code&gt;factor&lt;/code&gt; &lt;em&gt;1/3rd&lt;/em&gt; or &lt;em&gt;0.25&lt;/em&gt; the Content Settings&lt;/p&gt;" Type="String">
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Image with &lt;code&gt;factor&lt;/code&gt; &lt;em&gt;1/3rd&amp;nbsp; &lt;/em&gt;or&amp;nbsp; &lt;em&gt;0.25&amp;nbsp;&lt;/em&gt; the Content Settings&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="img-basic-content-factor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -22626,9 +22836,10 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutAccordionSection" EntityGUID="7a362f2e-7c0c-46d5-b5e1-6d269d695dc5">
-      <Value Key="InDepthExplanation" Value="" Type="String">
+      <Value Key="InDepthExplanation" Value="&lt;p&gt;Other modes not demonstrated here, see&amp;nbsp;&lt;a href=&quot;https://imageresizing.net/docs/v4/reference&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Image Resizer docs&lt;/a&gt;.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -22647,10 +22858,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Resize Mode &lt;code&gt;stretch&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="img-basic-resize-stretch" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -23816,6 +24039,24 @@
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsPage" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="NameId" Value="languages-resources" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -23826,10 +24067,19 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="a4585c74-10d8-493f-946f-9ecb4adbd9c6" Type="Entity" />
-      <Value Key="Title" Value="&lt;p&gt;languages-resources&lt;/p&gt;" Type="String">
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="languages-resources - languages-resources" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Multi-Language (i18n) Resources&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="languages-resources - Multi-Language (i18n) Resources" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="XxxLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26358,6 +26608,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26376,10 +26627,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;Initial Setup, No Configuration Old Syntax&lt;/p&gt;" Type="String">
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Initial Setup, No Configuration&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-default-nodata" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26387,6 +26650,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26405,10 +26669,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;Initial Setup, No Configuration New Syntax&lt;/p&gt;" Type="String">
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Initial Setup - for current Item&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-default-data" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26557,6 +26833,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26575,10 +26852,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Standard TagToolbar&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-workflows-tag" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26586,6 +26875,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26604,10 +26894,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Workflow on Standard Inline Toolbar&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-workflows-inline" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26875,6 +27177,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26893,10 +27196,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Add two buttons&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-basic" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26904,6 +27219,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26922,10 +27238,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Add &lt;code&gt;new&lt;/code&gt; button with colors&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-color" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26933,6 +27261,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26951,10 +27280,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Add &lt;code&gt;new&lt;/code&gt; at the end of button-list&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-end" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26962,6 +27303,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -26980,10 +27322,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Remove &lt;code&gt;more&lt;/code&gt; button&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-more-none" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26991,6 +27345,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27009,10 +27364,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Use empty toolbar template and add &lt;code&gt;edit&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-edit" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27050,6 +27417,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27068,10 +27436,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Button with SVG Icon&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-icons" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27079,6 +27459,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;We've introduced a new feature to allow add notes to buttons - which we'll demo with the new info button. Mouse over it to see the effect.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27097,10 +27478,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Add Info-Button with Note (v15.08+)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-info-and-note" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27138,6 +27531,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27156,10 +27550,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Edit button is now red&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-edit-color" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27167,6 +27573,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27185,10 +27592,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;New &lt;code&gt;BlogPost&lt;/code&gt; is red, &lt;code&gt;Category&lt;/code&gt; is green&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-color" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27196,6 +27615,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27214,10 +27634,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Always show &lt;code&gt;Delete&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-delete" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27255,6 +27687,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27273,10 +27706,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-paramters-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-ui" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27284,6 +27729,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27302,10 +27748,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-parameters-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-ui-icon" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27343,6 +27801,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27361,10 +27820,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-filter-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-data-filter-title" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27372,6 +27843,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27390,10 +27862,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-filter-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-data-filter-ids" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27443,6 +27927,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27461,10 +27946,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-groups-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-group-add" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27472,6 +27969,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27490,10 +27988,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-groups-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-group-add2" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27531,6 +28041,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27549,10 +28060,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-hover-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-hover-left" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27560,6 +28083,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27578,10 +28102,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-hover-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-hover-left-more-end" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27589,6 +28125,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27607,10 +28144,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-custom-js-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-js-alert" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -27618,6 +28167,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -27636,10 +28186,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-custom-js-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-js-alert-params" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -30706,6 +31268,7 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;This example shows a dummy-field which doesn't allow editing, but will just show a message.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -30724,7 +31287,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Basic Hello-World Custom Field&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-hello-world" Type="String">
@@ -30794,6 +31366,7 @@
       <Value Key="InDepthExplanation" Value="&lt;p&gt;You can learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;connector.loadScript(...)&lt;/code&gt;&amp;nbsp;to load a js library&lt;/li&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;connector.data&lt;/code&gt;&amp;nbsp;to get the&amp;nbsp;&lt;code&gt;value&lt;/code&gt;&amp;nbsp;and update it&lt;/li&gt;&#xA;&lt;li&gt;How to only update the data if you really change it (so users can cancel the dialog without being asked)&lt;/li&gt;&#xA;&lt;li&gt;How to save&amp;nbsp;&lt;code&gt;null&lt;/code&gt;&amp;nbsp;to explicitly not save or reset a value&lt;/li&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;disconnectedCallback()&lt;/code&gt;&amp;nbsp;to destroy inner objects&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;2sxc 11 makes it very easy to create custom input fields using standard&amp;nbsp;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Web_Components&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;WebComponents&lt;/a&gt;. This example shows a color picker using&amp;nbsp;&lt;a href=&quot;https://simonwep.github.io/pickr/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pickr&lt;/a&gt;, a cool JS library.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -30812,7 +31385,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom Color-Picker Input Field&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-color-picker" Type="String">
@@ -30826,6 +31408,7 @@
       <Value Key="InDepthExplanation" Value="&lt;p&gt;This example contains the json-exported content-type in the folder &lt;code&gt;/system/field-string-app-color-pickr-pro/.data/contenttypes/&lt;/code&gt;&amp;nbsp;so you could just copy the extension folder to another app and use it from there.&lt;/p&gt;&#xA;&lt;p&gt;So in this tutorial you'll learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;To see how the UI changes based on field configuration&lt;/li&gt;&#xA;&lt;li&gt;How to access such pre-configured settings with&amp;nbsp;&lt;code&gt;connector.field.settings&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;The Content-Type for configuration is included in the extension folder&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;Input fields may expect some configuration - like default colors or WebApi endpoints. To enable such a configuration, we need a Content-Type which defines all the fields that can be configured. This can be in the app-data, or it can be stored in a subfolder of the field-extension, to make redestribution easier.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -30844,7 +31427,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom Color-Picker Input Field - Configurable&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-color-picker-configurable" Type="String">
@@ -30858,6 +31450,7 @@
       <Value Key="InDepthExplanation" Value="&lt;p&gt;You can learn how to:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;connector.loadScript(...)&lt;/code&gt;&amp;nbsp;to load the builtin WYSIWYG&lt;/li&gt;&#xA;&lt;li&gt;...and wait for the callback to ensure it's ready&lt;/li&gt;&#xA;&lt;li&gt;Create a inner&amp;nbsp;&lt;code&gt;field-string-wysiwyg&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Set the mode to&amp;nbsp;&lt;code&gt;edit&lt;/code&gt;&amp;nbsp;(instead of&amp;nbsp;&lt;code&gt;preview&lt;/code&gt;)&lt;/li&gt;&#xA;&lt;li&gt;Attach the&amp;nbsp;&lt;code&gt;connector&lt;/code&gt;&amp;nbsp;so the inner object has it as well&lt;/li&gt;&#xA;&lt;li&gt;Attach the&amp;nbsp;&lt;code&gt;reconfigure&lt;/code&gt;&amp;nbsp;object&lt;/li&gt;&#xA;&lt;li&gt;Create your own&amp;nbsp;&lt;code&gt;Reconfigurator&lt;/code&gt;&amp;nbsp;which can make changes&lt;/li&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;configureOptions&lt;/code&gt;&amp;nbsp;to set a different toolbar&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;Creating an own WYSIWYG would be super difficult. This is why we decided to create a simple API where you can use the existing WYSIWYG and just reconfigure it. For the configuration you will need to understand the TinyMCE API and the names of our callbacks, but then it's really easy.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -30876,7 +31469,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom Micro-WYSIWYG Input Field&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-wysiwyg-light" Type="String">
@@ -30890,6 +31492,7 @@
       <Value Key="InDepthExplanation" Value="&lt;p&gt;You can learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;addTranslations()&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Use&amp;nbsp;&lt;code&gt;configureOptions(...)&lt;/code&gt;&amp;nbsp;to extend the toolbar&lt;/li&gt;&#xA;&lt;li&gt;Use configureAddOns to change button options for the image&lt;/li&gt;&#xA;&lt;li&gt;Run code when the editor is running&amp;nbsp;&lt;code&gt;init&lt;/code&gt; to add button definitions&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;This example show how we customize more of TinyMCE.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -30908,7 +31511,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom WYSIWYG with Additional Button&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-wysiwyg-add-button" Type="String">
@@ -32437,7 +33049,8 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example splits the list/details templates into 3 files, which is easier to manage. File 1 choses what should happen, file 2 contains the list, and file 3 the details.&lt;/p&gt;&#xA;&lt;p&gt;Since we'll look for the desired item in code, we'll use LINQ. To learn more about that, check out the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/linq/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LINQ Tutorials&lt;/a&gt;.&lt;/p&gt;" Type="String">
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;Very often you have a list of items, and then a details-page showing just one item. In this example, we'll just use code to do this (so no visual query) - just so you understand the principle. This example splits the list/details templates into 3 files, which is easier to manage. File 1 choses what should happen, file 2 contains the list, and file 3 the details.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -32455,7 +33068,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Basic List Details using Code - with separate Details-File&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-listdetails-coded" Type="String">
@@ -33008,7 +33630,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="InDepthImages" Value="" Type="Hyperlink" />
-      <Value Key="Intro" Value="&lt;p&gt;For this tutorial we have set up two example views, see: &lt;a href=&quot;/desktopmodules/tosic_sexycontent/dist/ng-edit/@Link.To(parameters: &amp;quot;view1=page&amp;quot;)&quot; target=&quot;blank&quot;&gt;View 1&lt;/a&gt;, &lt;a href=&quot;/desktopmodules/tosic_sexycontent/dist/ng-edit/@Link.To(parameters: &amp;quot;view2=page&amp;quot;)&quot; target=&quot;blank&quot;&gt;View 2&lt;/a&gt;. &lt;br&gt;As seen in the example above we've made two views with the routes &lt;code&gt;view1/.*&lt;/code&gt; and &lt;code&gt;view2/.*&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To generate the URL we'll use&amp;nbsp;&lt;code&gt;Link.To(parameters: ...)&lt;/code&gt; which will build the url from the specified parameters.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;For this tutorial we have set up two example views, see: &lt;a href=&quot;/tutorial-razor/Home/variant/dyn/tut/basics-viewswitch/view1/whatever&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;View 1&lt;/a&gt;, &lt;a href=&quot;/tutorial-razor/Home/variant/dyn/tut/basics-viewswitch/view2/nice&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;View 2&lt;/a&gt;. &lt;br&gt;As seen in the example above we've made two views with the routes &lt;code&gt;view1/.*&lt;/code&gt; and &lt;code&gt;view2/.*&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;To generate the URL we'll use&amp;nbsp;&lt;code&gt;Link.To(parameters: ...)&lt;/code&gt; which will build the url from the specified parameters.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -33027,7 +33649,16 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Basic View-Switch with 2 Optional Views&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="basics-viewswitch-basic" Type="String">
@@ -33894,7 +34525,7 @@
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;Above you can see that you shouldn't do &lt;code&gt;src='@@imgUrl'&lt;/code&gt; because it can cause trouble in a CMS - like when the image has special characters in the name. So you should always use &lt;code&gt;@@Link.Image(imgUrl)&lt;/code&gt; instead. &lt;br&gt;&lt;br&gt;The &lt;code&gt;Link.Image&lt;/code&gt; also makes it easy to create image urls containing the correct resize parameters. Even better: The parameters can be in a global setting for re-use across all apps and templates.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;Above you can see that you shouldn't do &lt;code&gt;src='@imgUrl'&lt;/code&gt; because it can cause trouble in a CMS - like when the image has special characters in the name. So you should always use &lt;code&gt;@Link.Image(imgUrl)&lt;/code&gt; instead. &lt;br&gt;&lt;br&gt;The &lt;code&gt;Link.Image&lt;/code&gt; also makes it easy to create image urls containing the correct resize parameters. Even better: The parameters can be in a global setting for re-use across all apps and templates.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -33949,7 +34580,7 @@
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;In Razor page URLs are generated using&amp;nbsp;&lt;code&gt;Link.To(...)&lt;/code&gt;. By default calling&amp;nbsp;&lt;code&gt;Link.To()&lt;/code&gt;&amp;nbsp;without any parameters returns the base URL of the site. In this case it would be:&amp;nbsp;&lt;code&gt;https://app-dev.2sxc.org/tutorial-razor/&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The key to retrieving the current page URL is to pass the current page parameters.&amp;nbsp;&lt;code&gt;Link.To(parameters: ...)&lt;/code&gt;&amp;nbsp;will then construct the URL based on the passed parameters.&lt;br&gt;Current page parameters are found in&amp;nbsp;&lt;code&gt;CmsContext.Page.Parameters&lt;/code&gt;.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -34667,7 +35298,7 @@
       <Value Key="NameId" Value="ui-toolbars-page" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Note" Value="&lt;p&gt;Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (&amp;hellip;). &lt;br&gt;The toolbars would usually only appear on hover, but the Tutorial runs in Demo-Mode so you can see them right away. The old samples still only work on hover. &lt;br&gt;Hover over the various boxes to see the result - like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/qDUZx3Fvv0y84E79sFgVGw/Note/hover-example.jpg&quot; alt=&quot;hover-example&quot; data-cmsid=&quot;file:hover-example.jpg&quot;&gt;&lt;/p&gt;" Type="String">
+      <Value Key="Note" Value="&lt;p&gt;Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (&amp;hellip;). &lt;br&gt;The toolbars would usually only appear on hover, but the Tutorial runs in Demo-Mode so you can see them right away. The old samples still only work on hover. &lt;br&gt;Hover over the various boxes to see the result - like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img style=&quot;width: 50%; display: block; margin-left: auto; margin-right: auto;&quot; src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/qDUZx3Fvv0y84E79sFgVGw/Note/hover-example.jpg&quot; alt=&quot;hover-example&quot; data-cmsid=&quot;file:hover-example.jpg&quot;&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
@@ -35338,7 +35969,7 @@
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;If you want to work with &lt;strong&gt;data&lt;/strong&gt; (like from a database) instead of &lt;strong&gt;block-content&lt;/strong&gt; (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;the current App, using &lt;code&gt;App.Data[...]&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;a query in the App, using &lt;code&gt;Kit.Data.GetQuery(...)&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;a SQL database - either through an &lt;code&gt;App Query&lt;/code&gt;, from a &lt;code&gt;DataSource&lt;/code&gt; or from a &lt;code&gt;SqlReader&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;a CSV file - either through an &lt;code&gt;App Query&lt;/code&gt;, from a &lt;code&gt;DataSource&lt;/code&gt; or from your own code&lt;/li&gt;&#xA;&lt;li&gt;DNN objects like the users - either through an &lt;code&gt;App Query&lt;/code&gt;, from a &lt;code&gt;DataSource&lt;/code&gt;, from DNN-objects or from your own code&lt;/li&gt;&#xA;&lt;li&gt;a JSON or XML file - usually loaded from your own code&lt;/li&gt;&#xA;&lt;li&gt;a WebService - usually loaded from your own code&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Once you have the data, you will usually want to loop-and-show, which is easiest using &lt;code&gt;dynamic&lt;/code&gt; objects, so you can just type things like &lt;code&gt;@@Content.FirstName&lt;/code&gt; to show the properties.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;If you want to work with &lt;strong&gt;data&lt;/strong&gt; (like from a database) instead of &lt;strong&gt;block-content&lt;/strong&gt; (which are data items assigned to one instance) you need to get it from somewhere and then loop through it. Typical data comes from:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;the current App, using &lt;code&gt;App.Data[...]&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;a query in the App, using &lt;code&gt;Kit.Data.GetQuery(...)&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;a SQL database - either through an &lt;code&gt;App Query&lt;/code&gt;, from a &lt;code&gt;DataSource&lt;/code&gt; or from a &lt;code&gt;SqlReader&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;a CSV file - either through an &lt;code&gt;App Query&lt;/code&gt;, from a &lt;code&gt;DataSource&lt;/code&gt; or from your own code&lt;/li&gt;&#xA;&lt;li&gt;DNN objects like the users - either through an &lt;code&gt;App Query&lt;/code&gt;, from a &lt;code&gt;DataSource&lt;/code&gt;, from DNN-objects or from your own code&lt;/li&gt;&#xA;&lt;li&gt;a JSON or XML file - usually loaded from your own code&lt;/li&gt;&#xA;&lt;li&gt;a WebService - usually loaded from your own code&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Once you have the data, you will usually want to loop-and-show, which is easiest using &lt;code&gt;dynamic&lt;/code&gt; objects, so you can just type things like &lt;code&gt;@Content.FirstName&lt;/code&gt; to show the properties.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -35530,6 +36161,54 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="b98eacce-566f-42ce-ac37-3870a1b79e3e" AttributeSetName="TutorialNote" EntityGUID="dd03d67f-1ec2-4b9a-abdc-e7bb847cf517">
+      <Value Key="CshtmlFile" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Images" Value="" Type="Hyperlink" />
+      <Value Key="NameId" Value="note" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="&lt;p&gt;Note that&amp;nbsp;&lt;code&gt;Awards&lt;/code&gt;&amp;nbsp;refers to other Entities of the type&amp;nbsp;&lt;code&gt;PersonAwards&lt;/code&gt;&amp;nbsp;and has properties like&amp;nbsp;&lt;code&gt;Name&lt;/code&gt;. The above example showed the award Name using&amp;nbsp;&lt;code&gt;@Content.Awards.Name&lt;/code&gt;&amp;nbsp;- which makes sense when you only expect one award. In other tutorials you'll see how to work with such related Entities if there are more than one.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteSource" Value="note" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteType" Value="info" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="note - " Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="b98eacce-566f-42ce-ac37-3870a1b79e3e" AttributeSetName="TutorialNote" EntityGUID="69b82a2f-fcf8-42b5-86e5-620d8ee899ba">
+      <Value Key="CshtmlFile" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Images" Value="" Type="Hyperlink" />
+      <Value Key="NameId" Value="credits-img" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="&lt;p&gt;&lt;strong&gt;Credits:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Koi fish Photo by&amp;nbsp;&lt;a href=&quot;https://unsplash.com/@agusprianto?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;agus prianto&lt;/a&gt;&amp;nbsp;on&amp;nbsp;&lt;a href=&quot;https://unsplash.com/s/photos/colorful-shrimp?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Unsplash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Jellyfish Photo by&amp;nbsp;&lt;a href=&quot;https://unsplash.com/@kkkaran?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Karan Karnik&lt;/a&gt;&amp;nbsp;on&amp;nbsp;&lt;a href=&quot;https://unsplash.com/s/photos/sea-life?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Unsplash&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteSource" Value="note" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteType" Value="info" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="credits-img - " Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -35596,6 +36275,7 @@
     <File Id="6428" RelativePath="adam\Tutorial-Razor\mnU8m1BfZ0ipW6HSRihYng\Logo\koi.png" />
     <File Id="6095" RelativePath="adam\Tutorial-Razor\oemnwEUKSUmao3JExQd75A\Image\app-icon.png" />
     <File Id="6443" RelativePath="adam\Tutorial-Razor\PhSb4w4zoUGkxca29H40_Q\Images\Snag_aac875.png" />
+    <File Id="6468" RelativePath="adam\Tutorial-Razor\qDUZAHFvv0y84E79sFgVGw\Note\hover-example.jpg" />
     <File Id="6435" RelativePath="adam\Tutorial-Razor\qDUZx3Fvv0y84E79sFgVGw\Note\hover-example.jpg" />
     <File Id="6101" RelativePath="adam\Tutorial-Razor\ROEcJLCX40m6vu4w0iogag\Image\app-icon.png" />
     <File Id="6096" RelativePath="adam\Tutorial-Razor\SjaSfr5aXk2ziKpsl56oqQ\Image\app-icon.png" />
@@ -35667,6 +36347,7 @@
     <Folder Id="14100" RelativePath="adam/Tutorial-Razor/mnU8m1BfZ0ipW6HSRihYng/Logo/" />
     <Folder Id="13638" RelativePath="adam/Tutorial-Razor/oemnwEUKSUmao3JExQd75A/Image/" />
     <Folder Id="14121" RelativePath="adam/Tutorial-Razor/PhSb4w4zoUGkxca29H40_Q/Images/" />
+    <Folder Id="14165" RelativePath="adam/Tutorial-Razor/qDUZAHFvv0y84E79sFgVGw/Note/" />
     <Folder Id="14110" RelativePath="adam/Tutorial-Razor/qDUZx3Fvv0y84E79sFgVGw/Note/" />
     <Folder Id="13650" RelativePath="adam/Tutorial-Razor/ROEcJLCX40m6vu4w0iogag/Image/" />
     <Folder Id="13640" RelativePath="adam/Tutorial-Razor/SjaSfr5aXk2ziKpsl56oqQ/Image/" />
@@ -35767,6 +36448,7 @@
     <Folder Id="13796" RelativePath="adam/Tutorial-Razor/OHvewb1sE0uF6ZvJcA2faQ/Image/" />
     <Folder Id="14137" RelativePath="adam/Tutorial-Razor/P1-c9etEk0qmwbI9EikYkw/" />
     <Folder Id="14120" RelativePath="adam/Tutorial-Razor/PhSb4w4zoUGkxca29H40_Q/" />
+    <Folder Id="14164" RelativePath="adam/Tutorial-Razor/qDUZAHFvv0y84E79sFgVGw/" />
     <Folder Id="14109" RelativePath="adam/Tutorial-Razor/qDUZx3Fvv0y84E79sFgVGw/" />
     <Folder Id="12761" RelativePath="adam/Tutorial-Razor/remqfHKydkSiV94l-NYG4Q/" />
     <Folder Id="12762" RelativePath="adam/Tutorial-Razor/remqfHKydkSiV94l-NYG4Q/Icon/" />

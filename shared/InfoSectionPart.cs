@@ -78,12 +78,12 @@ public class InfoSectionPart: Custom.Hybrid.Code14
 
     var result = Tag.RawHtml();
     foreach (var dataEl in data) {
-      var tutUrl = dataEl.EntityType == "TutorialGroup" ? Sys.TutPageUrlFromDyn(dataEl) as string : null; // GetView(dataEl);
+      var tutUrl = dataEl.EntityType == "TutorialGroup" ? Sys.TutPageUrlFromDyn(dataEl) as string : null;
       string section = Field.ToLowerInvariant();
       var url = (section == SectRequirements || section == SectResources)
           ? dataEl.Link
           : (section == SectRelated && tutUrl != null)
-            ? tutUrl // Kit.Link.To(parameters: tutUrl.ViewNameInUrl.Replace(".*", "page"))
+            ? tutUrl
             : "unknown info-section";
       result = result.Add(Tag.Li().Attr(ItemToolbar.For(dataEl)).Wrap(
         Tag.A(dataEl.Title).Href(url).Target("_blank")
