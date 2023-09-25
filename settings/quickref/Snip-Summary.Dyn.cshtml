@@ -1,0 +1,36 @@
+@inherits Custom.Hybrid.Razor14
+
+<h4>Get some App Setting / Resources</h4>
+<ol>
+  <li>Setting CustomColor: <br>
+    <code>@App.Settings.CustomColor</code>
+  </li>
+  <li>Setting CsvFile: <br>
+    <code>@App.Settings.CsvFile</code> <br>
+    <code>@App.Settings.CsvFile</code>
+  </li>
+  <li>Resource ButtonOrder: <br>
+    <button type="button">@App.Resources.ButtonOrder</button>
+  </li>
+</ol>
+
+<h4>Get <em>Global</em> Settings</h4>
+<ol>
+  <li>Settings.Get("Images.Content.Width") <br>
+    <code>@Settings.Get("Images.Content.Width")</code>
+  </li>
+  <li>The same with prefix <code>Settings</code> <br>
+    <code>@Settings.Get("Images.Content.Width")</code>
+  </li>
+  <li>GoogleMaps.DefaultCoordinates <br>
+    <code>@Settings.Get("GoogleMaps.DefaultCoordinates")</code>
+  </li>
+  <li>GoogleMaps.DefaultCoordinates as Typed <br>
+    @{
+      var json = Settings.Get("GoogleMaps.DefaultCoordinates");
+      var coords = AsDynamic(json);
+    }
+    Lat: @coords.Latitude <br>
+    Lng: @coords.Longitude
+  </li>
+</ol>

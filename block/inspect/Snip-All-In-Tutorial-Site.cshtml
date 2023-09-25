@@ -2,11 +2,11 @@
 @*!
 Tut.Tabs=Full Dnn Code|file:../../block/inspect/110-content-blocks.dnn.cshtml
 !*@
-<hidden-silent>
+<hide-silent>
   <div class="alert alert-info">
     You are on portal <strong>@CmsContext.Site.Id</strong> - this sample has hard-wired IDs for portal 59 (our dev-environment) and 24 (the tutorials on 2sxc.org). If one of these is detected, it will show the stats for a portal we know on that system, otherwise from the current app - which won't show much, since this tutorial app doesn't have many content-blocks. 
   </div>
-</hidden-silent>
+</hide-silent>
 @if (CmsContext.Platform.Name == "Oqtane") {
   @Html.Partial("../shared/MessageOqtaneDisabled.cshtml")
 } else {
