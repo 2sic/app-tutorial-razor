@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+@{/*! Tut.Tabs=ViewConfig */
+	var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected")  as object);
+/*!*/}
+<h4>Douglas Adams on <code>Content</code></h4>
+<p>
+  Note: The Biography contains a LOT of HTML...
+</p>
+@{
+  // scrubHtml will clean up Html tags; there are more options
+  var bio = Kit.Scrub.All(Content.Biography);
+
+  // Text.Ellipsis uses RazorBlade
+  var teaser = Text.Ellipsis(bio, 100);
+}
+<p>
+  <strong>Teaser</strong> (using .Raw() for Umlauts): <br>
+  <em>@Html.Raw(teaser)</em>
+</p>
+<hr>
+<div>
+  <strong>Now as rich HTML</strong> <br>
+  (drag size to see responsiv behavior) <br>
+  @Html.Raw(Content.Biography)
+</div>

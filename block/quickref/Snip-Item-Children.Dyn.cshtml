@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected")  as object);
+/*!*/}
+</hide-silent>
+<h4>Use <code>.Awards</code> to get one</h4>
+<ol>
+  <li>Award ID:          @Content.Awards.Id</li>
+  <li>Award Name:        @Content.Awards.Name</li>
+  <li>Award Name (Path): @Content.Awards.Name</li>
+</ol>
+
+<hide-silent>
+@* <p>Use ContainsKey(…), IsEmpty(…), IsNotEmpty(…)</p> *@
+  @* TODO:: @2dm  *@
+@* <ol>
+  <li>ContainsKey("Awards"):  @Content.ContainsKey("Awards")</li>
+  <li>ContainsKey("Awards2"): @Content.ContainsKey("Awards2")</li>
+  <li>IsEmpty("Awards"):      @Content.IsEmpty("Awards")</li>
+  <li>IsNotEmpty("Awards"):   @Content.IsNotEmpty("Awards")</li>
+  <li>IsEmpty("Awards.Name"): @Content.IsEmpty("Awards.Name")</li>
+  <li>IsEmpty("Awards2.Name"): @Content.IsEmpty("Awards2.Name")</li>
+  <li>IsEmpty("Awards.NameX"): @Content.IsEmpty("Awards.NameX")</li>
+</ol> *@
+</hide-silent>
+
+<h4>Use <code>.Awards</code> to get all</h4>
+<span>Award Count:       @Content.Awards.Count</span>
+<ol>
+  @foreach(var award in AsList(Content.Awards as object)) {
+    <li>Award: @award.Name</li>
+  }
+</ol>
