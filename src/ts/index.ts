@@ -4,6 +4,7 @@ import { AccordionOptions } from './lib-2sxc-accordion-options';
 import { initRevealers } from './snippets';
 import { initSplit } from './split';
 import { createImgDemo } from './imgDemo';
+import { initToggleAll } from './accordions';
 declare let ace: any;
 
 function initSourceCode({ domAttribute, aceOptions  }: { domAttribute: string, aceOptions: { sourceCodeId: string, language: string, wrap: boolean } }) {  
@@ -58,3 +59,7 @@ winAny.splitter.init ??= initSplit;
 
 // Get the imgDemo ready
 createImgDemo();
+
+winAny.tutAccordions ??= {};
+winAny.tutAccordions.init ??= initToggleAll;
+

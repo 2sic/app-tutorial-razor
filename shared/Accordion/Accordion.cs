@@ -148,7 +148,7 @@ public class Section {
       "\n",
       Indent2,
       TagsSvc.Button()
-        .Class("accordion-button collapsed")
+        .Class("accordion-button " + (Show ? "" : "collapsed"))
         .Type("button")
         .Data("bs-toggle", "collapse")
         .Data("bs-target", "#" + BodyId)

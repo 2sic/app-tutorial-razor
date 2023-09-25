@@ -34,8 +34,8 @@ public class Helpers: Custom.Hybrid.CodeTyped
   public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs")).Init(this); } }
   private dynamic _tlbHelpers;
 
-  public dynamic InfoSection { get { return _infs ?? (_infs = GetCode("InfoSection.cs")).Init(this); } }
-  private dynamic _infs;
+  // public dynamic InfoSection { get { return _infs ?? (_infs = GetCode("InfoSection.cs")).Init(this); } }
+  // private dynamic _infs;
 
   #region New Links to the new setup
 
@@ -56,9 +56,9 @@ public class Helpers: Custom.Hybrid.CodeTyped
     }
     return result;
   }
-  public string TutPageUrlFromDyn(object dynTutPage) {
-    return TutPageUrl(AsItem(dynTutPage));
-  }
+  // public string TutPageUrlFromDyn(object dynTutPage) {
+  //   return TutPageUrl(AsItem(dynTutPage));
+  // }
 
   public string TutPageUrl(ITypedItem tutPage) {
     if (tutPage == null) return null;
@@ -68,7 +68,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
   #endregion
 
 
-
+  // TODO: find usages (especially in app.xml) and correct
   
   public IHtmlTag TutLink(string label, string target) {
     return Tag.A(label).Href(Link.To(parameters: GetTargetUrl(target)));

@@ -3,23 +3,24 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
 using System.Linq;
+using ToSic.Sxc.Data;
 using ToSic.Sxc.Edit.Toolbar;
 
 // Class to generate shared parts on the page
 // Such as navigations etc.
 // Should itself not have much code, it's more central API to access everything
-public class InfoSectionPart: Custom.Hybrid.Code14
+public class InfoSectionPart: Custom.Hybrid.CodeTyped
 {
   #region Init / Dependencies
   
-  public InfoSectionPart Init(dynamic sys, dynamic parent, string field) {
+  public InfoSectionPart Init(dynamic sys, ITypedItem parent, string field) {
     Sys = sys;
     Parent = parent;
     Field = field;
     return this;
   }
   public dynamic Sys = null;
-  public dynamic Parent = null;
+  public ITypedItem Parent = null;
   public string Field = null;
 
   #endregion
@@ -46,13 +47,13 @@ public class InfoSectionPart: Custom.Hybrid.Code14
   }
   private IToolbarBuilder _itmTlb;
 
-  public ITag Section(IEnumerable<dynamic> data) {
+  public ITag Section(IEnumerable<ITypedItem> items) {
     var section = Field.ToLowerInvariant();
     var icon = section == SectRequirements
       ? "fa-exclamation-circle"
       : "fa-info-circle";
 
-    if (!data.Any() && !CmsContext.User.IsSiteAdmin)
+    if (!items.Any() && !MyUser.IsSiteAdmin)
       return null;
 
     var typeToAdd = NewItemType();
@@ -69,24 +70,22 @@ public class InfoSectionPart: Custom.Hybrid.Code14
           Tag.I().Class("fas " + icon),
           Tag.Span(Field).Class("ml-2 ms-2")
         ),
-        LinksInSection(data)
+        LinksInSection(items)
       );
   }
 
-  public ITag LinksInSection(IEnumerable<dynamic> data) {
-    if (data == null) return null;
-
+  private ITag LinksInSection(IEnumerable<ITypedItem> items) {
     var result = Tag.RawHtml();
-    foreach (var dataEl in data) {
-      var tutUrl = dataEl.EntityType == "TutorialGroup" ? Sys.TutPageUrlFromDyn(dataEl) as string : null;
+    foreach (var dataEl in items) {
+      var tutUrl = dataEl.Type.Name == "TutorialGroup" ? Sys.TutPageUrl(dataEl) as string : null;
       string section = Field.ToLowerInvariant();
       var url = (section == SectRequirements || section == SectResources)
-          ? dataEl.Link
+          ? dataEl.Url("Link")
           : (section == SectRelated && tutUrl != null)
             ? tutUrl
             : "unknown info-section";
       result = result.Add(Tag.Li().Attr(ItemToolbar.For(dataEl)).Wrap(
-        Tag.A(dataEl.Title).Href(url).Target("_blank")
+        Tag.A(dataEl.String("Title", scrubHtml: "p")).Href(url).Target("_blank")
       ));
     }
     var divs = Tag.Div().Class("list-group list-group-flush")
@@ -103,19 +102,10 @@ public class InfoSectionPart: Custom.Hybrid.Code14
     switch (section) {
       case SectResources: return "TutorialResource";
       case SectRequirements: return "TutorialRequirement";
-      case SectRelated: return "TutorialSnippet";
+      // case SectRelated: return "TutorialSnippet";
       default: return null;
     }
   }
-
-  // private dynamic GetView(dynamic Data) {
-  //   var ViewList = AsList(App.Data["2SexyContent-Template"] as object);
-  //   var View = ViewList.FirstOrDefault(view => view.Metadata == Data);
-  //   if (View != null)
-  //     return View;
-  //   else
-  //     return null;
-  // }
 }
 
 // The next line is for 2sxc-internal quality checks, you can ignore this

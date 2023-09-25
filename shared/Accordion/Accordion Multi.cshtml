@@ -13,19 +13,6 @@
 
 @Html.Partial("./Introduction.cshtml", new { accordion, tutPage })
 
-@* Multi-Header - should probably be moved out to become an consistent page header *@
-@* <div @Kit.Toolbar.Default(tutPage)>
-  <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
-  @tutPage.Html("Intro")
-  @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
-  @if (tutPage.IsNotEmpty("Note")) {
-    <div class="alert alert-warning">
-      @tutPage.Html("Note")
-    </div>
-  }
-  @Html.Partial("./Notes.cshtml", new { Item = tutPage })
-</div> *@
-
 @if (tutPage.IsNotEmpty("Accordions")) {
   var accords = tutPage.Children("Accordions");
 

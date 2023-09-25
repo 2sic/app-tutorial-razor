@@ -3,14 +3,28 @@
 @{
   var accordion = MyModel.Code("Accordion");
   var tutPage = MyModel.Item("TutPage");
+  var nameId = tutPage.String("NameId");
+  var Sys = GetCode("/Shared/Helpers.cs");
 }
 @* Multi-Header - should probably be moved out to become an consistent page header *@
 
-<div class="row mb-5">
-</div>
-
 <div class="row mb-5" @Kit.Toolbar.Empty(tutPage).Edit().Settings(hover: "left")>
-  @Html.Partial("./Info Block.cshtml", new { tutPage })
+  <div @Sys.PageParts.InfoBoxWrapper()>
+    @if (tutPage != null && tutPage.IsNotEmpty("RefSharedSpecs")) {
+      var specs = tutPage.Child("RefSharedSpecs");
+      @GetCode("/Shared/InfoSectionPart.cs").Init(Sys, specs, "Requirements").Section(specs.Children("Requirements"))
+      @GetCode("/Shared/InfoSectionPart.cs").Init(Sys, specs, "Resources").Section(specs.Children("Resources"))
+      @GetCode("/Shared/InfoSectionPart.cs").Init(Sys, specs, "Related").Section(specs.Children("Tutorials"))
+    }
+
+    @* Only show the collapse / open Accordions button if we have any inner sections *@
+    @if (tutPage.IsNotEmpty("Sections")) {
+      <a href="#" id='accordion-toggle-@nameId' data-id="@nameId" class="btn-collapse btn btn-outline-primary mt-2 float-end" style="width: 120px">
+      </a>
+      @Kit.Page.TurnOn("window.tutAccordions.init()", data: new { nameId, isOpen = tutPage.Bool("DefaultStateIsOpen") })
+    }
+  </div>
+
   <div class="col-lg-7">
     <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
     @tutPage.Html("Intro")
