@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 @{
   var firstThreeAuthorIds = AsList(App.Data["Persons"])
     .Select(author => author.EntityId)
@@ -34,3 +38,6 @@
     buttons each filtering for one related author
   </h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

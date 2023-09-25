@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 @{
   var multipleGroupsToolbar = Kit.Toolbar.Default().Group()
     .New("BlogPost",
@@ -11,3 +15,6 @@
   @multipleGroupsToolbar.For(MyItem)>
   <h3>Add two button-groups</h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

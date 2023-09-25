@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 <div class="alert alert-light" 
   @Kit.Toolbar.Default().Code("showMsg1",ui:"title=Show%20Message")
     .For(Content)>
@@ -9,3 +13,6 @@
     alert('hello from my button!');
   }
 </script>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

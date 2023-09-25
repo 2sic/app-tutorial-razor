@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 <div class="alert alert-light"
   @Kit.Toolbar.Default().Edit("-").Edit(tweak: b=>b.Color("red"))
     .For(Content)>
@@ -10,3 +14,6 @@
     .Edit(ui:"color=red").For(Content)>
   <h3>Edit button is now red</h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

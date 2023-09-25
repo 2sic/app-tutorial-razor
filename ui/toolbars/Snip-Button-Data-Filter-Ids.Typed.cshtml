@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 @{
   var firstThreeAuthorIds = AsItems(App.Data.GetStream("Persons"))
     .Select(author => author.Id)
@@ -34,3 +38,6 @@
     for one related author
   </h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

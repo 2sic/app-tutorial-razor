@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 <div class="alert alert-light" 
   @Kit.Toolbar.Default(Content)>
   <h3>New syntax</h3>
@@ -16,3 +20,6 @@
     with a content-item which can be set later
   </p>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

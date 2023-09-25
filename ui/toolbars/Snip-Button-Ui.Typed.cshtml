@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 <div class="alert alert-light" 
   @Kit.Toolbar.Empty(MyItem).New(ui: "color=orange")>
   <h3><code>ui</code> as inline string </h3>
@@ -23,3 +27,6 @@
     use/merge to ui configurations
   </p>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

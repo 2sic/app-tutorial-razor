@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 <div class="alert alert-light" 
 @Kit.Toolbar.Default().New(tweak: b=>b.Color("pink,black"))
   .For(MyItem)>
@@ -6,3 +10,6 @@
     Add <code>new</code> button with colors 
   </h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

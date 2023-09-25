@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 @{
   var toolbarWithInfoAndNotes = Kit.Toolbar.Empty()
     .Info(link: "https://www.2sxc.org/", 
@@ -12,3 +16,6 @@
      Button with SVG Icon 
   </h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

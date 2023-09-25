@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 @{
   // icon from https://fonts.google.com/icons?icon.query=func
   var svgIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>";
@@ -35,3 +39,6 @@
   @Kit.Toolbar.Empty(Content).New(ui: uiSvgIconColored)>
   <h3>(only): Button with SVG Icon and color </h3>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

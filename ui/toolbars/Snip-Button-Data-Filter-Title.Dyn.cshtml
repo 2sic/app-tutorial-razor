@@ -1,4 +1,8 @@
 @inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
 <div class="alert alert-light" 
   @Kit.Toolbar.Empty().Data("Books", tweak: b=>b.Filter("Title", "Good Omens"))>
   <h3><code>Data</code> button with <em>string</em> 
@@ -28,3 +32,6 @@
     <em>Good Omens</em>
   </p>
 </div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}
