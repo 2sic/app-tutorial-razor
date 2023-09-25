@@ -412,9 +412,11 @@ public class SourceCode: Custom.Hybrid.CodeTyped
         .Select(s => s as string)
         .Where(s => s != null)
         .Select(n => {
+          // If a known tab identifier, return the nice name
           if (n == ViewConfigCode) return ViewConfigTabName;
-          if (n.EndsWith(".csv.txt")) return n.Replace(".csv.txt", ".csv");
           if (n == InDepthField) return InDepthTabName;
+          // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
+          if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
           if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
           return n;
         })
