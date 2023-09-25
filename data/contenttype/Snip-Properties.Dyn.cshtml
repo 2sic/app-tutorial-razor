@@ -1,8 +1,8 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
-@using System.Linq;
-@using System.Collections.Generic;
-@using ToSic.Eav.Data;
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
+/*!*/}
 @{
   var type = AsEntity(Content).Type;
 }

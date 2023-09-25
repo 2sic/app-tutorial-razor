@@ -1,7 +1,4 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
-@using System.Linq;
-@using System.Collections.Generic;
 @using ToSic.Eav.Data;
 @* TODO: make it get a Content of the expected type *@
 @{/*! Tut.Tabs=ViewConfig */
@@ -16,7 +13,6 @@
   var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
 }
 <ol>
-  <li>Type object: <a href="https://docs.2sxc.org/api/dot-net/ToSic.Eav.Data.IContentType.html" target="_blank">@type 🔗</a></li>
   <li>Type Name: "@type.Name"</li>
   <li>Type Internal Name: "@type.StaticName"</li>
   <li>Type of the Awards field: "@attributes.First(t => t.Name == "Awards").Type"</li>

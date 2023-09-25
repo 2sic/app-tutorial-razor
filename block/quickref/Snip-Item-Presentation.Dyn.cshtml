@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
+  var Content = AsDynamic(itemEntities as object);
+  var prepPres = AsDynamic(viewCnf.PresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
+/*!*/}
+<h4>A Person on <code>Content</code></h4>
+@{
+  var itemPres = Content.Presentation;
+}
+@{/*! Silent patching for tutorial only, as it's not a standalone view  */
+ itemPres = prepPres;
+/*!*/}
+<p>
+  Note that the following should be @itemPres.Color (probably green)
+</p>
+<p style='color: @itemPres.Color'>
+  @Content.Title
+</p>

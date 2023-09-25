@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected")  as object);
+/*!*/}
+<h4>Douglas Adams, the current item (MyItem)</h4>
+<p>Use <code>.Url(…)</code> to resolve file references such as <code>file:72</code></p>
+<ol>
+  <li>Mugshot field Value:  @Content.Mugshot</li>
+  <li>Mugshot URL:          @Content.Mugshot</li>
+  <li>
+    Mugshot Picture <br>
+    @Kit.Image.Picture(Content.Mugshot, settings: "Square", width: 100, imgClass: "rounded-circle")
+  </li>
+</ol>

@@ -1,0 +1,33 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected")  as object);
+/*!*/}
+<h4>Douglas Adams, the current item (Content)</h4>
+@{
+  var folder = AsAdam(Content, "Mugshot") as ToSic.Sxc.Adam.IFolder;
+  var file = folder.Files.First();
+  var sizeInfo = file.SizeInfo;
+}
+<ol>
+  <li>File name:        @file.Name</li>
+  <li>File extension:   @file.Extension</li>
+  <li>Size (bytes):     @file.Size</li>
+  <li>SizeInfo:         @sizeInfo.BestSize.ToString("#.#") @sizeInfo.BestUnit</li>
+</ol>
+
+<p>Every file-field is actually a folder...</p>
+
+<ol>
+  <li>Files count:    @folder.Files.Count()</li>
+  <li>Sub-Folders:    @folder.Folders.Count()</li>
+</ol>
+<p>
+  ...which could hold many files. 
+  If you want to show them, you need <code>Kit.Image...</code></p>
+<ol>
+  @foreach (var f in folder.Files) {
+    <li>@f.Name <br> @Kit.Image.Picture(f, width: 100)</li>
+  }
+</ol>
