@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits Custom.Hybrid.Razor14
 @*!
 Tut.Tabs=file:../../reuse/ReturnObjects.cs
 !*@
@@ -19,23 +19,19 @@ Tut.Tabs=file:../../reuse/ReturnObjects.cs
 <p>
   The only way to get values from an anonymous object 
   created elsewhere is using 
-  <code>AsTyped(... as object)</code>.
-  Everything else will 🚫.
+  <code>AsDynamic(... as object)</code>.
+  Everything else will cause difficulties.
 </p>
 @{
   // Various ways to (try) to get values from an anonymous object
   var anon = lib.GetAnonymous();
-  var anonDyn = anon as dynamic;
-  var aTypedDyn = AsTyped(anon);
-  var aTyped = AsTyped(anon as object);
+  var dynAnon = AsDynamic(anon);
 }
 <ol>
   <li>Anon: @anon</li>
   <li>Anon Type: @anon.GetType()</li>
-  <li>aTyped.Name ✅: @aTyped.Get("Name")</li>
-  <li>Anon.Name 🚫: @TryGet(() => anon.Name)</li>
-  <li>anonDyn.Name 🚫: @TryGet(() => anonDyn.Name)</li>
-  <li>aTypedDyn.Name 🚫: @TryGet(() => aTypedDyn.Get("Name"))</li>
+  <li>anon.Name 🚫: @TryGet(() => anon.Name)</li>
+  <li>dynAnon.Name ✅: @dynAnon.Name</li>
 </ol>
 
 <h4>Working with <code>ITyped</code> objects</h4>
@@ -44,32 +40,28 @@ Tut.Tabs=file:../../reuse/ReturnObjects.cs
   But you must still ensure that Razor knows the type.
 </p>
 @{
-  var typedDyn = lib.GetTyped();          // Razor sees this as dynamic
-  var typed = AsTyped(typedDyn as object);// this is now typed
+  // If we know what type it is, we can force-cast it
+  var typedDyn = (ToSic.Sxc.Data.ITyped)lib.GetTyped();
 }
 <ol>
-  <li>Name ✅: @typed.Get("Name")</li>
-  <li>Name (string) ✅: @typed.String("Name")</li>
+  <li>Name ✅: @typedDyn.String("Name")</li>
 </ol>
 
 <h4>Working with real objects</h4>
 <p>
-  If the returned object is based on a class, things are a bit easier.
+  If the returned object is based on a class defined inside the code, things are a bit easier.
 </p>
 @{
   // Various ways to (try) to get values from real object
   // note that for Razor, the type is `dynamic`
   var person = lib.GetPerson();
-  var pTypedDyn = AsTyped(person);
-  var pTyped = AsTyped(person as object);
+  var dynPerson = AsDynamic(person);
 }
 <ol>
   <li>Person: @person</li>
   <li>Person Type: @person.GetType()</li>
   <li>Person.Name ✅: @person.Name</li>
-  <li>pTyped.Get("Name") ✅: @pTyped.Get("Name")</li>
-  <li>pTyped.String("Name") ✅: @pTyped.String("Name")</li>
-  <li>pTypedDyn.Get("Name") 🚫: @TryGet(() => pTypedDyn.Get("Name"))</li>
+  <li>dynPerson.Get("Name") ✅: @TryGet(() => dynPerson.Get("Name"))</li>
 </ol>
 
 
