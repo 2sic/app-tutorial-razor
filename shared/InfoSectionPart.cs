@@ -103,7 +103,7 @@ public class InfoSectionPart: Custom.Hybrid.Code14
     switch (section) {
       case SectResources: return "TutorialResource";
       case SectRequirements: return "TutorialRequirement";
-      case SectRelated: return "TutorialViewMetadata";
+      case SectRelated: return "TutorialSnippet";
       default: return null;
     }
   }

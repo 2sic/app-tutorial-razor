@@ -8,7 +8,7 @@ using ToSic.Sxc.Data;
 public class Helpers: Custom.Hybrid.CodeTyped
 {
   public string TutorialSectionType = "TutorialSection";
-  public string TutViewMetadataType = "TutorialViewMetadata";
+  // public string TutViewMetadataType = "TutorialViewMetadata";
 
   public Helpers Init(Razor14 page) {
     Path = page.Path;
