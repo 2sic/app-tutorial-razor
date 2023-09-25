@@ -62,7 +62,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
 
   public string TutPageUrl(ITypedItem tutPage) {
     if (tutPage == null) return null;
-    return Link.To(parameters: MyPage.Parameters.Set("tut", tutPage.String("NameId").Replace("-page", "")));
+    return Link.To(parameters: MyPage.Parameters.Set("tut", tutPage.String("NameId").BeforeLast("-Page")));
   }
 
   #endregion
