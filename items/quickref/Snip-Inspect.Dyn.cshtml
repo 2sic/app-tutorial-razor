@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected")  as object);
+/*!*/}
+@functions {
+  // quick helper to make the output nicer
+  string Boolmoji(bool value) { return value ? "✅" : "🔲"; }
+}
+@{
+  var keys = new [] { "LastName", "IsAlive", "Haters", "Birthday",
+    "FirstName", "Awards", "Sex", "Mugshot", "Biography" };
+}
+<h4>Inspect the fields of an Item</h4>
+<ol>
+  @foreach(var key in keys) {
+    var value = Content.Get(key);
+    <li>
+      @Boolmoji(value != null || (value is string && Text.Has(value)))
+      @key:
+      @value
+    </li>
+  }
+</ol>
+
+<h4>Let's do some manual inspection</h4>
+<ol>
+  <li>@Boolmoji(Text.Has(Content.Firstname)) "FirstName" exits and not empty?</li>
+  <li>@Boolmoji(Text.Has(Content.hello)) "FirstName" exits and not empty?</li>
+</ol>

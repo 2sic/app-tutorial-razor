@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@*! *@
+@using System.Collections.Generic;
+@* !*@
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
+  var Data = AsList(itemEntities as object);
+  var prepPres = AsList(viewCnf.PresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object).ToList();
+  var presCount = 0;
+/*!*/}
+<ul>
+  @foreach (var item in AsList(Data)) {
+    var pres = item.Presentation;
+    <hide-silent>
+    @{
+      /* Silent patching for tutorial only, as it's not a standalone view */ 
+      pres = prepPres.Skip(presCount++).First();
+    }
+    </hide-silent>
+    var hType = pres.HeadingType;
+    var title = item.Title + (pres.Highlight == true ? " 🌟" : "");
+    <li>
+      Create a heading tag the size specified in Presentation
+      @if (Text.Has(hType)) {
+        @Kit.HtmlTags.Custom(hType).Wrap(title)
+      } else {
+        @title
+      }
+      <br>
+      <em>FYI: Heading @(Text.Has(hType) ? "none" : hType)</em>
+      <div style='color: @pres.Color'>
+        @item.Html("Contents")
+      </div>
+    </li>
+  }
+</ul>

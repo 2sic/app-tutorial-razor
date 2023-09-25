@@ -1,12 +1,12 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits Custom.Hybrid.Razor14
 @{/*! Tut.Tabs=ViewConfig */
-  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
   viewCnf.Query("QuickRef-GetQuery");
 /*!*/}
 @{
   // Get a query to be executed when accessed
   // It has 2 streams: Default and Authors
-  var query = App.GetQuery("QuickRef-GetQuery");
+  var query = App.Query["QuickRef-GetQuery"];
 
   // Get the stream Authors (this exists)
   var authors = query.GetStream("Authors");
@@ -43,4 +43,3 @@
   <li>Players || Authors: @pOrA.Count()</li>
 </ol>
 
-@* TODO:: Query Img *@

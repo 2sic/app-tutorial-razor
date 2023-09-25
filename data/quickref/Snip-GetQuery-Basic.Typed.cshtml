@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*! Tut.Tabs=ViewConfig */
   var viewCnf = MyModel.Code("Tutorial").ViewConfig;
-  viewCnf.Query("QuickRef-GetQuery" + MyContext.Platform.Name);
+  viewCnf.Query("QuickRef-GetQuery");
 /*!*/}
 @{
   // Get a query to be executed when accessed
@@ -21,5 +21,3 @@
     <li>@author.Title</li>
   }
 </ol>
-
-@* TODO:: Query Img *@

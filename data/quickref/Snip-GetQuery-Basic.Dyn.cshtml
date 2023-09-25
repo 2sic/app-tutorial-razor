@@ -1,0 +1,23 @@
+ @inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=ViewConfig */
+    var viewCnf = DynamicModel.Tutorial.ViewConfig;
+    viewCnf.Query("QuickRef-GetQuery");
+/*!*/}
+@{
+  // Get a query to be executed when accessed
+  // It has 2 streams: Default and Authors
+  var query = App.Query["QuickRef-GetQuery"];
+}
+<h4>Get Books from the <code>Default</code> stream</h4>
+<ol>
+  @foreach(var book in AsList(query)) {
+    <li>@book.EntityTitle</li>
+  }
+</ol>
+
+<h4>Get Authors from the <code>Authors</code> stream</h4>
+<ol>
+  @foreach(var author in AsList(query.GetStream("Authors"))) {
+    <li>@author.EntityTitle</li>
+  }
+</ol>

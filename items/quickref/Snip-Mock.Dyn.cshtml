@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@{
+  // Create a mock item, to be used if nothing else is found
+  var mockPerson = AsDynamic(new {
+    FirstName = "John",
+    LastName = "Doe"
+  });
+
+  // Let's pretend the query may have a stream or may not
+  var stream = Data.GetStream("Guys", emptyIfNotFound: true);
+
+  // Get the item, or the mock if nothing is found
+  var guyFromStream = AsDynamic(stream);
+  // If EntityId is 0, then this indicates a virtual placeholder
+  // This is a bit clumsy - which is why we recommond the typed methods
+  var guy = (guyFromStream.EntityId == 0) ? guyFromStream : mockPerson;
+}
+<h4>Inspect the fields of an Item</h4>
+<ol>
+  <li>
+    @(Text.Has(guy.FirstName) ? "✅" : "🔲")
+    FirstName: @guy.FirstName
+  </li>
+  <li>
+    @(Text.Has(guy.LastName) ? "✅" : "🔲")
+    LastName: @guy.LastName
+  </li>
+</ol>
