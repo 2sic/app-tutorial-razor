@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor14
+@{
+  // Simple JSON string containing fibonacci numbers
+  var jFibonacci = "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]";
+
+  // Convert the JSON to int[]
+  var fibonacci = Kit.Json.To<int[]>(jFibonacci);
+}
+<ul>
+  @foreach(var f in fibonacci) {
+    <li><code>@f</code></li>
+  }
+</ul>
