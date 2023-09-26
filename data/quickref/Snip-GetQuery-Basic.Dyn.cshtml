@@ -1,7 +1,8 @@
  @inherits Custom.Hybrid.Razor14
 @{/*! Tut.Tabs=ViewConfig */
-    var viewCnf = DynamicModel.Tutorial.ViewConfig;
-    viewCnf.Query("QuickRef-GetQuery");
+  // 2sxclint:disable:no-App.Query - necessary for demo
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  viewCnf.Query("QuickRef-GetQuery");
 /*!*/}
 @{
   // Get a query to be executed when accessed

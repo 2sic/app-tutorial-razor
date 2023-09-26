@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// 2sxclint:disable:no-EntityTitle-in-quotes
+
+
 // Class to generate shared parts on the page
 // Such as navigations etc.
 // Should itself not have much code, it's more central API to access everyhing

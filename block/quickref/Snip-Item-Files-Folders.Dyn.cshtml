@@ -1,6 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq
 @{/*! Tut.Tabs=ViewConfig */
+  // 2sxclint:disable:no-AsAdam-calls
   var viewCnf = DynamicModel.Tutorial.ViewConfig;
   var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected")  as object);
 /*!*/}

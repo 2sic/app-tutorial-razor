@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*! Tut.Tabs=ViewConfig */
+  // 2sxclint:disable:no-Presentation-in-quotes - it's just used as a stream-name
   var viewCnf = MyModel.Code("Tutorial").ViewConfig;
   var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
   var MyItem = AsItem(itemEntities as object);

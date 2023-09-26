@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+// 2sxclint:disable:no-Presentation-in-quotes - it's just used as a css-class below
+
 // Shared / re-used code to create bootstrap tabs
 public class BootstrapTabs: Custom.Hybrid.Code14
 {
