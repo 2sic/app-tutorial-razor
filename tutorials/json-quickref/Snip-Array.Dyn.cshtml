@@ -1,20 +1,19 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits Custom.Hybrid.Razor14
 @*!
 Tut.Tabs=file:json/cities.json
 !*@
 @{
   // Variables for the tests
-  string jsonRoot = App.Folder.PhysicalPath + "/json/quickref/json";
-}
-@{
+  string jsonRoot = App.PhysicalPath + "/tutorials/json-quickref/json";
+
   // Simple JSON strings which could come from a file or web service
   var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
 
   // Convert the JSON to ITyped
-  var cities = Kit.Json.ToTypedList(jCities);
+  var cities = AsDynamic(jCities);
 }
 <ol>
   @foreach (var city in cities) {
-    <li>Name: <code>@city.String("Name")</code></li>
+    <li>Name: <code>@city.Name</code></li>
   }
 </ol>

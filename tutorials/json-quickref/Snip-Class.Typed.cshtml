@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @*!
 Tut.Tabs=file:json/cities.json
 !*@
@@ -12,7 +12,7 @@ Tut.Tabs=file:json/cities.json
   }
 }
 @{
-  string jsonRoot = App.PhysicalPath + "/json/quickref/json";
+  string jsonRoot = App.Folder.PhysicalPath + "/tutorials/json-quickref/json";
   var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
 
   // Convert the JSON to City

@@ -63,7 +63,20 @@ public class Accordion: Custom.Hybrid.CodeTyped
     return names;
   }
 
+  private static string[] MovedTutorials = new [] {
+    "block",
+    "context",
+    "json",
+    "languages",
+    "linq",
+    "query",
+    "page",
+    "razor",
+    "settings",
+  };
+
   private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
+    var l = Log.Call<bool>("tutorialId: " + tutorialId);
     var topPath = Text.Before(tutorialId, "-");
     var rest = Text.After(tutorialId, "-");
     var secondPath = Text.Before(rest, "-");
@@ -72,8 +85,18 @@ public class Accordion: Custom.Hybrid.CodeTyped
     if (!Text.Has(secondPath))
       throw new Exception("Second path is empty, original was '" + tutorialId + "'");
 
+    // New 2023-09-26 2dm - moving all snips to an own folder
+    // if (topPath == "settings") {
+    if (MovedTutorials.Contains(topPath)) {
+      topPath = "tutorials/" + topPath + "-" + secondPath;
+      secondPath = "";
+    }
+
+
     var realName = "Snip-" + rest + variant + ".cshtml";
     var filePath = System.IO.Path.Combine(appPath, topPath, secondPath, realName);
+    Log.Add("filePath: " + filePath);
+
     var fullPath = Sys.SourceCode.FileHandler.GetFullPath(filePath);
     if (System.IO.File.Exists(fullPath)) {
       fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);

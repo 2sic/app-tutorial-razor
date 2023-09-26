@@ -1,17 +1,17 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @*!
 Tut.Tabs=file:json/dude-marc.json,file:json/dude-frank.json
 !*@
 @{
-  string jsonRoot = App.PhysicalPath + "/json/quickref/json";
+  string jsonRoot = App.Folder.PhysicalPath + "/tutorials/json-quickref/json";
 
   // Simple JSON strings which could come from a file or web service
   var jMarc = System.IO.File.ReadAllText(jsonRoot + "/dude-marc.json");
   var jFrank = System.IO.File.ReadAllText(jsonRoot + "/dude-frank.json");
 
   // Convert the JSON to ITyped
-  var marc = AsDynamic(jMarc);
-  var frank = AsDynamic(jFrank);
+  var marc = Kit.Json.ToTyped(jMarc);
+  var frank = Kit.Json.ToTyped(jFrank);
   var year = DateTime.Now.Year;
 }
 <h4>Marc</h4>
@@ -20,20 +20,20 @@ Tut.Tabs=file:json/dude-marc.json,file:json/dude-frank.json
     <code>@marc.ToString()</code>
   </li>
   <li>name <code>.String("Name")</code>
-    <code>@marc.Name</code>
+    <code>@marc.String("Name")</code>
   </li>
-  <li>age: <code>@marc.Age</code></li>
+  <li>age: <code>@marc.Get("Age")</code></li>
   <li>birth year:
-    <code>@(year - marc.Age)</code>
+    <code>@(year - marc.Int("Age"))</code>
   </li>
   <li>car make (will be null):
-    <code>@(marc == null ? null : marc.Car == null ? null : marc.Car.Make)</code>
+    <code>@marc.String("Car.Make", required: false)</code>
   </li>
   <li>
     Friends using <code>AsTypedList(...)</code>
     <ul>
-      @foreach (var friend in marc.Friends) {
-        <li>@friend.Name</li>
+      @foreach (var friend in AsTypedList(marc.Get("friends"))) {
+        <li>@friend.String("Name")</li>
       }
     </ul>      
   </li>
@@ -44,12 +44,12 @@ Tut.Tabs=file:json/dude-marc.json,file:json/dude-frank.json
     <code>@frank.ToString()</code>
   </li>
   <li>#2 name:
-    <code>@frank.Name</code>
+    <code>@frank.String("Name")</code>
   </li>
   <li>#2 car make:
-    <code>@frank.Car.Make</code>
+    <code>@frank.String("Car.Make")</code>
   </li>
   <li>#2 car ToString():
-    <code>@(frank.Car == null ? null : frank.Car.ToString())</code>
+    <code>@frank.Get("Car").ToString()</code>
   </li>
 </ol>
