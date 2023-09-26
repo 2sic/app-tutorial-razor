@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.RazorTyped
+
+<h1>Manage Tutorials</h1>
+<p>
+  This is an overview over all tutorials / snippets to better manage them and keep an overview.
+</p>
+@if (!MyUser.IsSiteAdmin) {
+  <div class="alert alert-warning">
+    This is only for site admins. Log on to see more.
+  </div>
+  return;
+}
+
+@{
+  var homeList = AsItem(App.Data.GetStream("Tutorial"));
+  var sectionsInHome = homeList.Children("Sections");
+  var allTutGroups = AsItems(App.Data.GetStream("TutorialGroup"));
+}
+
+<ol>
+  @foreach(var sect in sectionsInHome) {
+    <li>
+      <strong>
+        Section: @sect.String("Title", scrubHtml: true)  (@sect.Id | #@sect.Title | @sect.String("NameId"))
+      </strong>
+      @if (sect.IsNotEmpty("TutorialGroups")) {
+        <ul>
+          @foreach (var tg in sect.Children("TutorialGroups")) {
+            <li>
+              @Html.Partial("./Part TutorialGroupContents.cshtml", new { TutorialGroup = tg, Recursion = 0 })
+            </li>
+          }
+        </ul>
+      }
+    </li>
+  }
+</ol>
