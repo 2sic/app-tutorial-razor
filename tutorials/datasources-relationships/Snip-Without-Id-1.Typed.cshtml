@@ -2,12 +2,13 @@
 @using ToSic.Razor.Blade;
 @using System.Linq;
 @using ToSic.Eav.DataSources;
-@{/*! Tut.Tabs=file:../TreeBasicWithParents.cs*/
+@{/*! Tut.Tabs=file:../../DataSources/TreeChildPaths.cs */
 /*!*/}
 @{
-  var tree = Kit.Data.GetSource(name: "TreeBasicWithParents");
+  var tree = Kit.Data.GetSource(name: "TreeChildPaths");
   var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
+
 @Html.Partial("../../data-sources/helpers/Show Tree.Typed.cshtml",
   new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
 

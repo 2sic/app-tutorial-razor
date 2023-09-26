@@ -66,6 +66,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
   private static string[] MovedTutorials = new [] {
     "block",
     "context",
+    "datasources",
     "json",
     "languages",
     "linq",
