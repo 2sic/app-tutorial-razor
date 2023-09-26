@@ -1,7 +1,7 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @*!
-Tut.Tabs=file:.././310-create-metadata.js
+Tut.Tabs=file:./js/create-metadata.js
 !*@
 @* Make sure anonymous users have the 2sxc JS API *@
 @Kit.Page.Activate("2sxc.JsCore")
@@ -15,20 +15,20 @@ Tut.Tabs=file:.././310-create-metadata.js
     </tr>
   </thead>
   <tbody>
-    @foreach (var poet in AsItems(App.Data["Poets"])) {
-      var membershipMd = AsItems(poet.Metadata.OfType("DeadPoetSocietyMembership"));
+    @foreach (var poet in AsList(App.Data["Poets"])) {
+      var membershipMd = AsList(poet.Metadata.OfType("DeadPoetSocietyMembership") as object);
       <tr>
-        <td>@poet.Get("Name")</td>
+        <td>@poet.Name</td>
         <td>
           @if (membershipMd.Any()) {
             foreach (var membership in membershipMd) {
               <span>
-                @membership.Get("MembershipNumber")
-                <a href="#" onclick="window.sxcDataTutorial240.del(@membership.Id)">delete</a>
+                @membership.MembershipNumber
+                <a href="#" onclick="window.sxcDataTutorial240.del(@membership.EntityId)">delete</a>
               </span>
             }
           } else {
-            <button type="button" class="btn btn-primary" onclick='window.sxcDataTutorial240.add("@poet.Guid")'>
+            <button type="button" class="btn btn-primary" onclick='window.sxcDataTutorial240.add("@poet.EntityGuid")'>
               add membership (metadata)
             </button>
           }
@@ -40,7 +40,8 @@ Tut.Tabs=file:.././310-create-metadata.js
 
 @* This tutorial uses turnOn, see turnOn tutorials *@
 @Kit.Page.TurnOn("window.sxcDataTutorial240.init()", data: new {
-  moduleId = MyContext.Module.Id
+  moduleId = CmsContext.Module.Id
 })
 
-<script src="@App.Folder.Url/310-create-metadata.js" @Kit.Page.AssetAttributes()></script>
+
+<script src="@App.Path/tutorials/js-edit/js/create-metadata.js" @Kit.Page.AssetAttributes()></script>

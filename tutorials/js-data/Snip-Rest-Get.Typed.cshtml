@@ -1,7 +1,7 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @*!
-Tut.Tabs=file:.././200-get-data.js
+Tut.Tabs=file:./js/get-data.js
 !*@
 @* Make sure anonymous users have the 2sxc JS API *@
 @Kit.Page.Activate("2sxc.JsCore")
@@ -19,7 +19,7 @@ Tut.Tabs=file:.././200-get-data.js
 
 @* This tutorial uses turnOn, see turnOn tutorials *@
 @Kit.Page.TurnOn("window.sxcDataTutorial200.init()", data: new {
-  moduleId = CmsContext.Module.Id
+  moduleId = MyContext.Module.Id
 })
 
-<script src="@App.Path/js/200-get-data.js" @Kit.Page.AssetAttributes()></script>
+<script src="@App.Folder.Url/tutorials/js-data/js/get-data.js" @Kit.Page.AssetAttributes()></script>

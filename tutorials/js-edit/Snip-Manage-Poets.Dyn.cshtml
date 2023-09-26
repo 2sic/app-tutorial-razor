@@ -1,7 +1,7 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @*!
-Tut.Tabs=file:.././300-edit.js
+Tut.Tabs=file:./js/edit.js
 !*@
 @* Make sure anonymous users have the 2sxc JS API *@
 @Kit.Page.Activate("2sxc.JsCore")
@@ -21,14 +21,14 @@ Tut.Tabs=file:.././300-edit.js
     </thead>
   </trim>
   <tbody>
-    @foreach (var poet in AsItems(App.Data["PoetsToEdit"])) {
+    @foreach (var poet in AsList(App.Data["PoetsToEdit"])) {
       <tr>
-        <td>@poet.Get("Name")</td>
-        <td>@poet.DateTime("BirthDate").ToShortDateString()</td>
-        <td data-poet="@poet.Id">@poet.Get("Poems")</td>
+        <td>@poet.Name</td>
+        <td>@poet.BirthDate.ToShortDateString()</td>
+        <td data-poet="@poet.EntityId">@poet.Poems</td>
         <td>
-          <button type="button" class="btn btn-primary" onclick="window.editPoets.updateCount(@poet.Id)">Update Poems</button>
-          <button type="button" class="btn btn-primary" onclick="window.editPoets.delete(@poet.Id)">Delete Poet</button>
+          <button type="button" class="btn btn-primary" onclick="window.editPoets.updateCount(@poet.EntityId)">Update Poems</button>
+          <button type="button" class="btn btn-primary" onclick="window.editPoets.delete(@poet.EntityId)">Delete Poet</button>
         </td>
       </tr>
     }
@@ -50,7 +50,7 @@ Tut.Tabs=file:.././300-edit.js
 
 @* This tutorial uses turnOn, see turnOn tutorials *@
 @Kit.Page.TurnOn("window.editPoets.init()", data: new {
-  moduleId = MyContext.Module.Id
+  moduleId = CmsContext.Module.Id
 })
 
-<script src="@App.Folder.Url/js/300-edit.js"></script>
+<script src="@App.Path/tutorials/js-edit/js/edit.js"></script>
