@@ -5,29 +5,29 @@ using System.Linq;
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
 
-public class Helpers: Custom.Hybrid.CodeTyped
+public class Sys: Custom.Hybrid.CodeTyped
 {
   // public string TutorialSectionType = "TutorialSection";
 
-  public Helpers Init(Razor14 page) {
+  public Sys Init(Razor14 page) {
     Path = page.Path;
     return this;
   }
 
-  public Helpers Init(RazorTyped page) {
+  public Sys Init(RazorTyped page) {
     Path = page.Path;
     return this;
   }
 
   public string Path {get;set;}
 
-  public object SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("SourceCode.cs").Init(this, Path)); } }
+  public object SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("./source/SourceCode.cs").Init(this, Path)); } }
   private object _sourceCode;
 
-  public object Fancybox { get { return _fancybox ?? (_fancybox = GetCode("Fancybox.cs")); } }
+  public object Fancybox { get { return _fancybox ?? (_fancybox = GetCode("../Shared/Fancybox.cs")); } }
   private object _fancybox;
 
-  public object ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs")); } }
+  public object ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("./ToolbarHelpers.cs")); } }
   private object _tlbHelpers;
 
   #region New Links to the new setup

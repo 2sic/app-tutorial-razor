@@ -4,7 +4,7 @@
   var tutorialSet = AsDynamic(DynamicModel.TutorialSet);
   if (tutorialSet == null) { return; }
 
-  var Sys = GetCode("/Shared/Helpers.cs");
+  var Sys = GetCode("../Sys.cs");
 
   var featLogo = tutorialSet.FeatureSet.Icon;
   var featureLogoPath = Text.Has(featLogo) ? featLogo : App.Path + "/app-icon.png";

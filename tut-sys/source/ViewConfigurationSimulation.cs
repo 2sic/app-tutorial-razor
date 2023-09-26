@@ -12,16 +12,16 @@ using System.Linq;
 
 // Class to generate shared parts on the page
 // Such as navigations etc.
-// Should itself not have much code, it's more central API to access everyhing
+// Should itself not have much code, it's more central API to access everything
 public class ViewConfigurationSimulation: Custom.Hybrid.CodeTyped
 {
   #region Constructor and Main Objects
 
   private const string ViewConfigCode = "ViewConfig";
 
-  public ViewConfigurationSimulation Setup(dynamic tabHandler) {
+  public ViewConfigurationSimulation Setup(dynamic sys, dynamic tabHandler) {
     TabHandler = tabHandler;
-    Fancybox = GetCode("./Fancybox.cs");
+    Fancybox = sys.Fancybox;
     return this;
   }
 

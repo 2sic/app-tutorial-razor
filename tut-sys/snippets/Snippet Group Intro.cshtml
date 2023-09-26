@@ -4,7 +4,7 @@
   var accordion = MyModel.Code("Accordion");
   var tutPage = MyModel.Item("TutPage");
   var nameId = tutPage.String("NameId");
-  var Sys = GetCode("/Shared/Helpers.cs");
+  var Sys = GetCode("../Sys.cs");
 
   var hasSpecs = tutPage.IsNotEmpty("RefSharedSpecs");
   var rightCols = hasSpecs ? 5 : 2;
@@ -42,7 +42,7 @@
       </div>
     }
     @* Show all the 'shared' notes *@
-    @Html.Partial("./Intro Notes.cshtml", new { Item = tutPage })
+    @Html.Partial("./Notes.cshtml", new { Item = tutPage })
   </div>
 </div>
 <!-- /TutorialGroup Header -->

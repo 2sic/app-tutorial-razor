@@ -9,7 +9,7 @@
   // Find the parent, which has Segment Title, Link, etc.
   var segment = tutPage.Parents(type: "TutorialSection").FirstOrDefault();
 
-  var Sys = GetCode("../../shared/Helpers.cs").Init(this);
+  var Sys = GetCode("../Sys.cs").Init(this);
 }
 @Html.Partial("./Header.cshtml", new { Sys, segment, tutPage })
 

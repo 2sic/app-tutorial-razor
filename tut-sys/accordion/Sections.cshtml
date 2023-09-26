@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @{
-  var Sys = GetCode("/shared/Helpers.cs").Init(this);
+  var Sys = GetCode("../Sys.cs").Init(this);
 
   // The accordion is an external helper file, so we must treat it as dyn-amic
   var acc = MyModel.Code("Accordion");

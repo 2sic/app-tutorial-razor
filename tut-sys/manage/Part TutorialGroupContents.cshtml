@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{
-  var Sys = GetCode("/shared/Helpers.cs").Init(this);
+  var Sys = GetCode("../Sys.cs").Init(this);
   var tg = MyModel.Item("TutorialGroup");
   var recursion = MyModel.Int("Recursion");
   if (recursion > 3) {

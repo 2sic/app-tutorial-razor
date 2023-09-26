@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @using System.Linq;
 @{
-  var Sys = GetCode("/Shared/Helpers.cs");
+  var Sys = GetCode("../Sys.cs");
 
   // Set Title etc.
   var pageTitle = Content.Title + " (" + App.Configuration.Version + ")";

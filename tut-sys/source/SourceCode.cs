@@ -158,7 +158,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       SourceWrap = sourceCode.GetSourceWrap(this, item);
       TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
       SourceFile = sourceFile;
-      ViewConfig = ScParent.GetCode("./ViewConfigurationSimulation.cs").Setup(this.TabHandler);
+      ViewConfig = ScParent.GetCode("./ViewConfigurationSimulation.cs").Setup(ScParent.Sys, this.TabHandler);
     }
     internal SourceCode ScParent;
     private dynamic BsTabs;
