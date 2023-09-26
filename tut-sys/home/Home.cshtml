@@ -13,12 +13,12 @@
   var newConfig = Kit.Toolbar.Empty().Settings(hover: "left")
     .Edit(homeMdData as object, tweak: t => t.Note("Edit Sharing Data for this virtual page"));
 
-  @Html.Partial("./Shared/Tutorial/Part OpenGraph.cshtml", new { Sys, tutPage = homeMdData })
+  @Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage = homeMdData })
 }
 
 <div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
   <div @Edit.TagToolbar(newConfig)>
-    @Html.Partial("./Shared/Layout/Header.Part Title and Assets.cshtml", new { Sys = Sys, Title = pageTitle })
+    @Html.Partial("../layout/Title and Assets.cshtml", new { Sys = Sys, Title = pageTitle })
   </div>
   @Html.Raw(Content.Teaser)
 

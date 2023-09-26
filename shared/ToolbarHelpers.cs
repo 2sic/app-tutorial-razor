@@ -5,14 +5,6 @@ using ToSic.Sxc.Demo;
 // - This class should have the same name as the file it's in
 public class ToolbarHelpers : Custom.Hybrid.Code14 
 {
-  #region Init / Dependencies
-  
-  public ToolbarHelpers Init(object sys) {
-    return this;
-  }
-
-  #endregion
-
   // Todo: replace the EnableEditForAnonymous with this everywhere and make it private
   public void EnableEditForAll() {
     EnableEditForAnonymous();

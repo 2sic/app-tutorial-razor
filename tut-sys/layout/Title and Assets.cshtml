@@ -7,10 +7,10 @@
   Kit.Page.SetTitle(title + " - 2sxc Razor Tutorials for Dnn / Oqtane");
 
   // Initialized shared assets on every page
-  var bsCheck = GetCode("../Bootstrap5.cs");
+  var bsCheck = GetCode("../../Shared/Bootstrap5.cs");
   bsCheck.EnsureBootstrap5();
 
-  var hdHlp = GetCode("../Tutorial/HeaderHelpers.cs");
+  var hdHlp = GetCode("./HeaderHelpers.cs");
 }
 
 @hdHlp.AddMainLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")

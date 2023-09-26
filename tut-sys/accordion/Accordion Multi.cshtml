@@ -11,7 +11,7 @@
   var tutPage = MyModel.Item("TutorialGroup", required: false);
 }
 
-@Html.Partial("./Introduction.cshtml", new { accordion, tutPage })
+@Html.Partial("../snippets/Snippet Group Intro.cshtml", new { accordion, tutPage })
 
 @if (tutPage.IsNotEmpty("Accordions")) {
   var accords = tutPage.Children("Accordions");

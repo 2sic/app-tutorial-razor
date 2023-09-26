@@ -7,7 +7,7 @@ using ToSic.Sxc.Data;
 
 public class Helpers: Custom.Hybrid.CodeTyped
 {
-  public string TutorialSectionType = "TutorialSection";
+  // public string TutorialSectionType = "TutorialSection";
 
   public Helpers Init(Razor14 page) {
     Path = page.Path;
@@ -27,7 +27,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
   public object Fancybox { get { return _fancybox ?? (_fancybox = GetCode("Fancybox.cs")); } }
   private object _fancybox;
 
-  public object ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs").Init(this)); } }
+  public object ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs")); } }
   private object _tlbHelpers;
 
   #region New Links to the new setup

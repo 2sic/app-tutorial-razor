@@ -9,7 +9,7 @@
   // Find the parent, which has Segment Title, Link, etc.
   var segment = tutPage.Parents(type: "TutorialSection").FirstOrDefault();
 
-  var Sys = GetCode("../Helpers.cs").Init(this);
+  var Sys = GetCode("../../shared/Helpers.cs").Init(this);
 }
 @Html.Partial("./Header.cshtml", new { Sys, segment, tutPage })
 
@@ -23,4 +23,4 @@
 @* Get the toolbar for: < previous | # Current | Next > *@
 @Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
 
-@Html.Partial("./Part OpenGraph.cshtml", new { Sys, tutPage })
+@Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage })

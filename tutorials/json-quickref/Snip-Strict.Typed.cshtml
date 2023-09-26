@@ -6,7 +6,7 @@ Tut.Tabs=file:json/dude.json
 <hide-silent>
 @functions {
   // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
-  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("/Shared/TestHelpers.cs")); }}
+  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("/tut-sys/TestHelpers.cs")); }}
   private object _testHelpers;
 
   public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }

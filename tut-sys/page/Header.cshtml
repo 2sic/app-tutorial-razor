@@ -3,7 +3,7 @@
 @using ToSic.Razor.Blade;
 @{
   var Sys = MyModel.Code("Sys");
-  var hdHlp = GetCode("./HeaderHelpers.cs");
+  var hdHlp = GetCode("../layout/HeaderHelpers.cs");
 
   var tutPage = MyModel.Item("TutPage");
 
@@ -26,10 +26,10 @@
     }
   }
 
-  @Html.Partial("../Layout/Header.Part Title and Assets.cshtml", new { Sys, title })
+  @Html.Partial("../Layout/Title and Assets.cshtml", new { Sys, title })
   
-  @Html.Partial("../Layout/Header.Part Breadcrumb.cshtml", new { Sys, Topic = sectionName, TopicUrl = sectionLink })
+  @Html.Partial("../Layout/Breadcrumb.cshtml", new { Sys, Topic = sectionName, TopicUrl = sectionLink })
 </div>
 
 @* Assets, Page Headers, OpenGraph etc. *@
-@Html.Partial("../Layout/Header.Part Assets.cshtml")
+@Html.Partial("../Layout/Assets.cshtml")
