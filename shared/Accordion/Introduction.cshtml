@@ -24,9 +24,11 @@
 
     @* Only show the collapse / open Accordions button if we have any inner sections *@
     @if (tutPage.IsNotEmpty("Sections")) {
-      <a href="#" id='accordion-toggle-@nameId' data-id="@nameId" class="btn-collapse btn btn-outline-primary mt-3 me-3 position-absolute bottom-0 end-0" style="width: 120px">
-      </a>
-      @Kit.Page.TurnOn("window.tutAccordions.init()", data: new { nameId, isOpen = tutPage.Bool("DefaultStateIsOpen") })
+      <div class="text-end">
+        <a href="#" id='accordion-toggle-@nameId' data-id="@nameId" class="btn-collapse btn btn-outline-primary" style="width: 120px"></a>
+        @Kit.Page.TurnOn("window.tutAccordions.init()", data: new { nameId, isOpen = tutPage.Bool("DefaultStateIsOpen") })
+      </div>
+      
     }
   </div>
 
