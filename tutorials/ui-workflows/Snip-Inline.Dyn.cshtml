@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @*!
-Tut.Tabs=file:../130-toolbar-workflow.js
+Tut.Tabs=file:./js/toolbar-workflow.js
 !*@
 <div class="alert alert-primary" style="width: 100%;">
   <div id='inlineToolbar'>
@@ -9,3 +9,10 @@ Tut.Tabs=file:../130-toolbar-workflow.js
     Instead, you'll see console messages that a custom JS took over the process.
   </div>
 </div>
+
+@* This tutorial uses turnOn, see turnOn tutorials *@
+@Kit.Page.TurnOn("window.toolbarWorkflow.initInlineToolbar()", data: new {
+  data = "inlineToolbar"
+})
+
+<script src="@App.Path/tutorials/ui-workflows/js/toolbar-workflow.js" @Kit.Page.AssetAttributes()></script>

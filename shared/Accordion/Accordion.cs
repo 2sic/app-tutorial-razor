@@ -83,6 +83,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     "razorblade",
     "settings",
     "turnon",
+    "ui",
   };
 
   private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
