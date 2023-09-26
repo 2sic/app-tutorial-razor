@@ -85,6 +85,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     "settings",
     "turnon",
     "ui",
+    "webapi",
   };
 
   private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
