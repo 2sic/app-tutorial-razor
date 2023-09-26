@@ -68,6 +68,8 @@ public class Accordion: Custom.Hybrid.CodeTyped
     "block",
     "context",
     "datasources",
+    "hybrid",
+    "items",
     "js",
     "json",
     "koi",
