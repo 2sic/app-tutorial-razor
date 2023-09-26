@@ -4,15 +4,10 @@
 
 > This is a [2sxc](https://2sxc.org) App for [DNN ☢️](https://www.dnnsoftware.com/) and [Oqtane 💧](https://www.oqtane.org/)
 
-This is a tutorial for using Razor in DNN, and also helps you leverage additional APIs like
+It contains around 500 snippets of code, which is executed when you look at it.
+This guarantees that the code actually works.
 
-* DNN
-* 2sxc
-* Connect.Koi
-* Razor Blade
-* Image Resizer
-
-You'll find a live, running copy of this tutorial on [2sxc.org/dnn-tutorials/razor](https://2sxc.org/dnn-tutorials/en/razor).
+You'll find a live, running copy of this tutorial on <https://go.2sxc.org/tut>.
 
 You can also download the latest copy of this App directly from the [releases](./releases) and install it in a DNN with 2sxc, to play around with the code yourself.
 
@@ -60,8 +55,12 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
   * Removed _ from Filenames
   * Enhanced Kit.Image with `imgAltFallback`
   * Replaced turnOn Tag with `Kit.Page.TurnOn`
-* v16.07.00 2023-09
+* v16.07.00 2023-09-25
   * Restructured the entire system so each Snip is standalone in an own file
   * Build new infrastructure for Snips to exist in variants
   * Almost all infrastructure code is now typed
   * Added more than 100 tutorials for Typed
+* v16.07.01 2023-09-26
+  * reorganized so the snippets are all in the `/tutorials` folder
+  * removed unused images
+  * tested on Oqtane

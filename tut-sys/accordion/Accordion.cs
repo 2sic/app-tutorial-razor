@@ -99,7 +99,6 @@ public class Accordion: Custom.Hybrid.CodeTyped
       throw new Exception("Second path is empty, original was '" + tutorialId + "'");
 
     // New 2023-09-26 2dm - moving all snips to an own folder
-    // if (topPath == "settings") {
     if (MovedTutorials.Contains(topPath)) {
       topPath = "tutorials/" + topPath + "-" + secondPath;
       secondPath = "";
