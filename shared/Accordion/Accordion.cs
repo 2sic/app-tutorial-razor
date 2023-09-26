@@ -78,6 +78,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     "query",
     "page",
     "razor",
+    "razorblade",
     "settings",
     "turnon",
   };
