@@ -1,50 +1,54 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @{
-  var tutorialSet = AsDynamic(DynamicModel.TutorialSet);
+  var tutorialSet = MyModel.Item("TutorialSet");
   if (tutorialSet == null) { return; }
 
-  var Sys = GetCode("../Sys.cs");
+  var Sys = MyModel.Code("Sys");
 
-  var featLogo = tutorialSet.FeatureSet.Icon;
-  var featureLogoPath = Text.Has(featLogo) ? featLogo : App.Path + "/app-icon.png";
+  var featureLogoPath = tutorialSet.IsNotEmpty("FeatureSet.Icon")
+    ? tutorialSet.Url("FeatureSet.Icon")
+    : App.Folder.Url + "/app-icon.png";
+
+  var isSubSection = MyModel.Bool("IsSubSection", required: false);
+  var nameId = tutorialSet.Attribute("NameId");
+  var category = tutorialSet.Child("Category");
 }
 
 @* Show a heading section to introduce a new main topic *@
-@{
-  var category = AsList(tutorialSet.Category as object).FirstOrDefault();
-}
-@if (category != null) {
-  <div @Edit.TagToolbar(category)>
+@* @if (category != null) {
+  <div @Kit.Toolbar.Default(category)>
     <br>
     <h2>@category.Title</h2>
     <br>
   </div>
-}
+} *@
 
-@if (DynamicModel.IsSubSection == true) {
-  <hr>
-}
+@* @if (isSubSection) { *@
+  @* <hr> *@
+@* } *@
 
-<div class='tutorial-item (DynamicModel.IsSubSection == true ? "sub-section" : "")'>
-  <div class='tutorial-title' data-accordion-parent="@tutorialSet.NameId">
+<div class='tutorial-item (isSubSection == true ? "sub-section" : "")'>
+  <div class='tutorial-title' data-accordion-parent='@nameId'>
     <div class="row">
       <div class="col-auto">
         <div class="icon-wrapper"><img loading="lazy" class="img-fluid" src='@featureLogoPath'></div>
       </div>
       <div class="ml-3 col" @Kit.Edit.TagToolbar(tutorialSet)>
-        <h2 class='co-no-icon'>@Html.Raw(tutorialSet.Title)</h2>
-        @Html.Raw(tutorialSet.Introduction)
+        <h2 class='co-no-icon'>@tutorialSet.Html("Title")</h2>
+        @tutorialSet.Html("Introduction")
       </div>
     </div>
     @* Up / Down arrows as SVG - hidden by default, become visible based on CSS *@
-    <img loading="lazy" src="@App.Path/assets/svg/arrow-up.svg" class="fa-chevron-up">
-    <img loading="lazy" src="@App.Path/assets/svg/arrow-down.svg" class="fa-chevron-down">
+    <img loading="lazy" src="@App.Folder.Url/assets/svg/arrow-up.svg" class="fa-chevron-up">
+    <img loading="lazy" src="@App.Folder.Url/assets/svg/arrow-down.svg" class="fa-chevron-down">
   </div>
-  <div class='tutorial-group pt-3' data-accordion-child="@tutorialSet.NameId">
+  <div class='tutorial-group pt-3' data-accordion-child="@nameId">
     @* New Setup with TutorialGroup *@
-    @if (tutorialSet.TutorialGroups.EntityId != 0) {
+    @if (tutorialSet.IsNotEmpty("TutorialGroups")) {
       @Html.Partial("./Home-Segment-List.cshtml", new { Sys, Segment = tutorialSet })
     }
   </div>
 </div>
+
+<hr>

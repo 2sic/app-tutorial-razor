@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 @{
 
@@ -9,7 +9,7 @@
     attrChild = "data-accordion-child"    // This attribute contains a key which is used in the #-fragment for navigating to a section
   };
   var data = new {
-    domId = DynamicModel.DomId,
+    // domId = MyModel.Int("DomId"),
     options = accordionOptions
   };
 
@@ -20,7 +20,7 @@
 @* Activate font-Awesome 5 from the global resources and activate https://r.2sxc.org/turnon *@
 @Kit.Page.Activate("FontAwesome5")
 
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
-<script src="@App.Path/dist/scripts.min.js?v=2023-09-25" @Kit.Page.AssetAttributes()></script>
+<link rel="stylesheet" href="@App.Folder.Url/dist/styles.min.css" @Kit.Page.AssetAttributes()>
+<script src="@App.Folder.Url/dist/scripts.min.js?v=2023-09-25" @Kit.Page.AssetAttributes()></script>
 
 @Kit.Page.TurnOn("window.razorTutorial.initAccordion()", data: data)

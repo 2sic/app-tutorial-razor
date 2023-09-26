@@ -1,83 +1,65 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using System.Linq;
+@using ToSic.Sxc.Data;
 @{
   var Sys = GetCode("../Sys.cs");
 
+  var sequence = AsItem(App.Data.GetStream("TutorialSequence"));
+
   // Set Title etc.
-  var pageTitle = Content.Title + " (" + App.Configuration.Version + ")";
+  var pageTitle = sequence.String("Title") + " (" + App.Configuration.Version + ")";
   Kit.Page.SetBase();
   Kit.Page.SetTitle(pageTitle + " - 2sxc Razor Tutorials for Dnn / Oqtane");
 
-  var homeMdData = AsDynamic(App.Data.GetStream("TutorialGroup").FirstOrDefault(tg => tg.Get<string>("NameId") == "home-page"));
+  // Get Sharing Data and set OpenGraph headers
+  var homeShareData = AsItem(App.Data.GetStream("TutorialGroup").FirstOrDefault(tg => tg.Get<string>("NameId") == "home-page"));
+  @Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage = homeShareData })
 
-  var newConfig = Kit.Toolbar.Empty().Settings(hover: "left")
-    .Edit(homeMdData as object, tweak: t => t.Note("Edit Sharing Data for this virtual page"));
-
-  @Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage = homeMdData })
+  var shareToolbar = Kit.Toolbar.Empty()
+    .Settings(hover: "left")
+    .Edit(homeShareData, tweak: t => t.Note("Edit Sharing Data for this virtual page"));
 }
 
-<div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
-  <div @Edit.TagToolbar(newConfig)>
-    @Html.Partial("../layout/Title and Assets.cshtml", new { Sys = Sys, Title = pageTitle })
-  </div>
-  @Html.Raw(Content.Teaser)
+@* Header with Title and various toolbars *@
+<div @shareToolbar>
+  @Html.Partial("../layout/Title and Assets.cshtml", new { Sys, Title = pageTitle })
+</div>
+@sequence.Html("Teaser")
 
-  @* Show all the sections - they are in the demo-data of the current view *@
+@* The actual sequence with accordions *@
+<div class="tutorial-wrapper" @Kit.Toolbar.Default(sequence)>
+
   @{
-    var group = "";
-    var sections = AsList(Content.Sections as object);
-    var grouped = sections.Select(s => {
-      group = (s.Subsection == true) ? group : s.NameId;
-      return new { Group = group, Section = s };
-    })
-    .GroupBy(g => g.Group);
+    ITypedItem currentCategory = null;
   }
-  @* <div>
-    2dm: Sections: @sections.Count() <br>
-    2dm: groups: @grouped.Count() <br>
-  </div> *@
-
-  @foreach (var sectionGroup in grouped)
-  {
-    var mainSection = sectionGroup.First().Section;
-    var subSections = sectionGroup.Skip(1).Select(s => { return s.Section; });
-    var subSectionList = AsList(subSections);
-
-    @Html.Partial("Home-Section.cshtml", new { 
-      TutorialSet = mainSection, 
-      IsSubSection = false
-      // SubSections = subSections 
-    })
-    @* <div>test 2dm before loop - subsections: @subSectionList.Count()</div> *@
-    foreach (var section in subSectionList) {
-      @* <div>test 2dm inside new loop</div> *@
-      @Html.Partial("home-Section.cshtml", new { TutorialSet = section, IsSubSection = true } )
+  @foreach (var section in sequence.Children("Sections")) {
+    var category = section.Child("Category");
+    if (category != null && !category.Equals(currentCategory)) {
+      currentCategory = category;
+      <h2 class="mt-5" @Kit.Toolbar.Empty().Edit(category)>@category.Title</h2>
+      <hr>
     }
-    // Create a thicker line after sub-sections
-    <hr style='height: 4px'>
+    @Html.Partial("home-Section.cshtml", new { Sys, TutorialSet = section, IsSubSection = false })
   }
-
-  @* Show the other links which are still ideas etc. and don't exist as views *@
-  <h3>Future Tutorials (Work-In-Progress)</h3>
-  <ol>
-    <li>Typed.Mock</li>
-    <li>Linking around in dnn</li>
-    <li>Using js/css and image resources in the app folder</li>
-    <li>Navigation links</li>
-    <li>Permission examples</li>
-    <li>In-Page Editing experience</li>
-    <li>Customizing Search Results</li>
-    <li>Work with icon-fonts, font-awesome etc.</li>
-    <li>More data examples, working with users, SQL-write, PetaPoco etc.</li>
-    <li>Working with DataSources in all kinds of ways</li>
-    <li>Using data from other apps</li>
-    <li>Customizing search from data</li>
-  </ol>
 </div>
 
-@Html.Partial("./home.PartAssets.cshtml")
 
-@if (CmsContext.User.IsSiteAdmin) {
+@* Show the other links which are still ideas etc. and don't exist as views *@
+<h3 class="mt-6">Future Tutorials (Work-In-Progress)</h3>
+<ol>
+  <li>Linking around in dnn</li>
+  <li>Navigation links</li>
+  <li>Permission examples</li>
+  <li>Work with icon-fonts, font-awesome etc.</li>
+  <li>Using data from other apps</li>
+  <li>Customizing Search Results</li>
+  <li>Customizing search from data</li>
+</ol>
+
+
+@Html.Partial("./Home Assets.cshtml")
+
+@if (MyUser.IsSiteAdmin) {
   <br>
   <div class="alert alert-info">
     <a href='@Link.To(parameters: "manage=default")'>Manage the Tutorials</a>

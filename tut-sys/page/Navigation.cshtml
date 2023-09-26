@@ -7,13 +7,12 @@
   var Sys = MyModel.Code("Sys");
   var segment = MyModel.Item("Segment");
   var tutPage = MyModel.Item("TutPage");
-}
-@{
+
   // Enable Fa5 for icons
   Kit.Page.Activate("FontAwesome5");
 
   // Get current datasets
-  var sortedTutorialSections = AsItem(App.Data["Tutorial"]).Children("Sections").ToList();
+  var sortedTutorialSections = AsItem(App.Data["TutorialSequence"]).Children("Sections").ToList();
   var tutorialSectionIndex = segment != null ? sortedTutorialSections.FindIndex(section => section.Id == segment.Id) : 0;
 
   if (segment == null) {

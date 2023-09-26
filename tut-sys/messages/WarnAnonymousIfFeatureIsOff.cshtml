@@ -1,8 +1,6 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @{
-  var ServiceName = DynamicModel.ServiceName;
-  var Service = DynamicModel.Service;
-  var alertType = CmsContext.User.IsSystemAdmin ? "info" : "danger";
+  var alertType = MyUser.IsSystemAdmin ? "info" : "danger";
 }
 @if (Kit.Feature.IsEnabled("PublicEditForm") == false) {
   <div class="alert alert-@alertType">

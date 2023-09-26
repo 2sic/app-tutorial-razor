@@ -1,9 +1,8 @@
-@inherits Custom.Hybrid.Razor14
-@* This is a shared, re-used fragment *@
+@inherits Custom.Hybrid.RazorTyped
 @{
-  var Sys = DynamicModel.Sys;
-  var topicHome = DynamicModel.Topic;
-  var topicUrl = DynamicModel.TopicUrl;
+  var Sys = MyModel.Code("Sys");
+  var topicHome = MyModel.String("Topic");
+  var topicUrl = MyModel.String("TopicUrl");
 }
 
 <a href='@Link.To()'>Tutorial Home</a>

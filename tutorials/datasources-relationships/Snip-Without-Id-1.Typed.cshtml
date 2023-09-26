@@ -9,8 +9,8 @@
   var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 
-@Html.Partial("../../tut-sys/show/data/Show Tree.Typed.cshtml",
+@Html.Partial("../../tut-sys/show/data/Show Tree.cshtml",
   new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
 
-@Html.Partial("../../tut-sys/show/data/Show Data List.Typed.cshtml", 
+@Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
   new { Title = "Flat List of Items", Data = tree })

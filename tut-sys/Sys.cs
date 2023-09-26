@@ -7,8 +7,6 @@ using ToSic.Sxc.Data;
 
 public class Sys: Custom.Hybrid.CodeTyped
 {
-  // public string TutorialSectionType = "TutorialSection";
-
   public Sys Init(Razor14 page) {
     Path = page.Path;
     return this;

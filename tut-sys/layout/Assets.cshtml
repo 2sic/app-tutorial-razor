@@ -1,17 +1,14 @@
-@inherits Custom.Hybrid.Razor14
-@{
-
-  if (Kit.Css.IsUnknown) {
-    @* Include bootstrap 5 if the framework isn't known - then this file is still called, and we add Bootstrap to the page *@
-    @Kit.Page.Activate(condition: Kit.Css.IsUnknown, features: "Bootstrap5")
-    <div class="alert alert-warning">This Tutorial uses Bootstrap 5, without Bootstrap 5 there will be display errors</div>
-  }
+@inherits Custom.Hybrid.RazorTyped
+@if (Kit.Css.IsUnknown) {
+  @* Include bootstrap 5 if the framework isn't known - then this file is still called, and we add Bootstrap to the page *@
+  @Kit.Page.Activate(condition: Kit.Css.IsUnknown, features: "Bootstrap5")
+  <div class="alert alert-warning">This Tutorial uses Bootstrap 5, without Bootstrap 5 there will be display errors</div>
 }
 
 
 @* Script Contains ACE9 init code + Accordion JS *@
-<script src="@App.Path/dist/scripts.min.js?v=2023-09-25" @Kit.Page.AssetAttributes()></script>
-<link rel="stylesheet" href="@App.Path/dist/styles.min.css" @Kit.Page.AssetAttributes()>
+<script src="@App.Folder.Url/dist/scripts.min.js?v=2023-09-25" @Kit.Page.AssetAttributes()></script>
+<link rel="stylesheet" href="@App.Folder.Url/dist/styles.min.css" @Kit.Page.AssetAttributes()>
 
 <script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8" @Kit.Page.AssetAttributes(priority: 200)></script>
 <script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" @Kit.Page.AssetAttributes(priority: 201)></script>
@@ -63,10 +60,3 @@
   }
 
 </style>
-
-@* 
-  Activate Headings which should reveal snippets on this page
-  Should ideally be in this header, because it ensures it will only be called once per page
-  This should also work in Oqtane
-@Kit.Page.TurnOn("window.snippets.initRevealers()")
-*@
