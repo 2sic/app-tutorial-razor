@@ -1,11 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @*!
-Tut.Tabs=file:./SharedFunctions.cs
+Tut.Tabs=file:../../shared/SharedFunctions.cs
 !*@
 @{
   // Use CreateInstance in Razor12 and Razor14
-  var lib = CreateInstance("SharedFunctions.cs");
+  var lib = CreateInstance("../../shared/SharedFunctions.cs");
 }
 <div>Hello from lib: @lib.SayHello()</div>
 <div>

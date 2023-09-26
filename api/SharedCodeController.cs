@@ -16,7 +16,7 @@ public class SharedCodeController : Custom.Hybrid.Api14 // see https://r.2sxc.or
   [AllowAnonymous]
   public string Hello()
   {
-    var shared = CreateInstance("../FunctionsBasic.cs");
+    var shared = CreateInstance("../shared/FunctionsBasic.cs");
     return shared.SayHello();
   }
 }
