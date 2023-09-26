@@ -4,6 +4,11 @@
 @using System.Configuration
 @using System.Data
 @using System.Data.SqlClient
+@*! *@
+@{#if NETCOREAPP}
+  @Html.Partial("../../shared/MessageOqtaneDisabled.cshtml")
+@{#else}
+@* !*@
 @{
   // load the sql connection name from Web.Config
   // the default connection string for DNN is SiteSqlServer
@@ -29,3 +34,6 @@
   myReader.Close();
 }
 @*! 2sxclint:disable:no-read-method - it's just used on SQL !*@
+@*! *@
+@{#endif}
+@* !*@
