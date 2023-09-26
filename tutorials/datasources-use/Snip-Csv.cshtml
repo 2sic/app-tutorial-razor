@@ -3,12 +3,12 @@
 @using System.Linq;
 @using ToSic.Eav.DataSources;
 @*!
-Tut.Tabs=file:./products.csv.txt
+Tut.Tabs=file:../../assets/data/products.csv.txt
 !*@
 @{
   // Create the data source and provide configuration in the options
   var products = Kit.Data.GetSource<Csv>(parameters: new {
-    FilePath = App.RelativePath + "/tutorials/datasources-use/products.csv.txt",
+    FilePath = App.RelativePath + "/asstes/data/products.csv.txt",
     Delimiter = ";",
   });
 }
