@@ -9,14 +9,14 @@
   var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 
-@Html.Partial("../../data-sources/helpers/Show Tree.cshtml",
+@Html.Partial("../../tut-sys/show/data/Show Tree.cshtml",
   new { Title = "Show Tree of Data", Root = root, SubNodeNames = "Folders,Files", ParentField = "Parent" })
 
-@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+@Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
   new { Title = "Flat List of All Items", Data = tree })
 
-@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+@Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
   new { Title = "Flat List of Folders", Data = tree["Folders"] })
 
-@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+@Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
   new { Title = "Flat List of Files", Data = tree["Folders"] })

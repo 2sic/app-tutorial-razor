@@ -25,8 +25,8 @@
   </li>
 </ul>
 
-@Html.Partial("../../data-sources/helpers/Show Tree.cshtml", 
+@Html.Partial("../../tut-sys/show/data/Show Tree.cshtml", 
   new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems" })
 
-@Html.Partial("../../data-sources/helpers/Show Data List.cshtml", 
+@Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
   new { Title = "Flat List of Items", Data = tree })
