@@ -2,9 +2,10 @@
 @*!
 Tut.Tabs=Generated HTML
 !*@
-<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
 @{
-  var picFullControl = Kit.Image.Picture(App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg");
+  var imgPath = App.Path + "/assets/img-resize";
+  var picFullControl = Kit.Image.Picture(imgPath + "/jellyfish-2000.jpg");
 }
 <picture>
   @foreach (var st in picFullControl.Sources)
@@ -16,7 +17,7 @@ Tut.Tabs=Generated HTML
 @{/*!*/
   var previewString = "<picture> ";
   foreach (var st in picFullControl.Sources) { previewString += st.ToString(); }
-  previewString += "<img loading="lazy" src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary'>";
+  previewString += "<img loading='lazy' src='" + picFullControl.Src + "' style='width: 50%' class='border border-primary'>";
   previewString += "</picture>";
   DynamicModel.Tutorial.SetTabContents("html-img:" + previewString);
 /*!*/}

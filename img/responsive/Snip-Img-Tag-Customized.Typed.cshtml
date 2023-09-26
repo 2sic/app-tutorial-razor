@@ -2,15 +2,16 @@
 @*!
 Tut.Tabs=Generated HTML
 !*@
-<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
 @{
-    var tomatoPicUrl = App.Folder.Url +  "/img/assets/pexels-pixabay-533288.jpg";
-    var flatSettings = Kit.Image.Settings("Content", aspectRatio: "8:1");
-    // Note: `imgAttributes` is new in v16.07
-    var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAttributes: new {
-      id = "Some-Id",
-      style = "width: 75%"
-    });
+  var imgPath = App.Folder.Url + "/assets/img-resize";
+  var tomatoPicUrl = imgPath +  "/tomatoes.jpg";
+  var flatSettings = Kit.Image.Settings("Content", aspectRatio: "8:1");
+  // Note: `imgAttributes` is new in v16.07
+  var imgControlled = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, imgAttributes: new {
+    id = "Some-Id",
+    style = "width: 75%"
+  });
 }
 @imgControlled
 @{/*!*/

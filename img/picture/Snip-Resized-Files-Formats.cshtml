@@ -2,9 +2,10 @@
 @*!
 Tut.Tabs=Generated HTML
 !*@
-<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
 @{
-  var jellyfishUrl = App.Path + "/img/assets/jellyfish-img-srcset-2000.jpg";
+  var imgPath = App.Path + "/assets/img-resize";
+  var jellyfishUrl = imgPath + "/jellyfish-2000.jpg";
 }
 @Kit.Image.Picture(jellyfishUrl)
 @{/*!*/

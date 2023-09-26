@@ -2,9 +2,10 @@
 @*!
 Tut.Tabs=Generated HTML
 !*@
-<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
 @{
-  var tomatoPicUrl = App.Path +  "/img/assets/pexels-pixabay-533288.jpg";
+  var imgPath = App.Path + "/assets/img-resize";
+  var tomatoPicUrl = imgPath +  "/tomatoes.jpg";
 }
 @Kit.Image.Img(tomatoPicUrl)
 @{/*!*/

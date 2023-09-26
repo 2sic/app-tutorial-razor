@@ -1,7 +1,10 @@
 @inherits Custom.Hybrid.Razor14
-<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+}
 <picture>
-  <source type="image/webp" srcset="@App.Path/img/assets/koi-400.webp">
-  <source type="image/png" srcset="@App.Path/img/assets/koi-400.png">
-  <img loading="lazy" style="width: 40%;" src="@App.Path/img/assets/jellyfish-1000.jpg">
+  <source type="image/webp" srcset="@imgPath/koi-400.webp">
+  <source type="image/png" srcset="@imgPath/koi-400.png">
+  <img loading="lazy" style="width: 40%;" src="@imgPath/jellyfish-1000.jpg">
 </picture>

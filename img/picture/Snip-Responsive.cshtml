@@ -1,15 +1,18 @@
 @inherits Custom.Hybrid.Razor14
-<hide-silent>@GetCode("/img/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+}
 <picture>
-  <source type="image/webp" srcset="@App.Path/img/assets/koi-img-srcset-2000.webp 2000w,
-        @App.Path/img/assets/koi-img-srcset-1000.webp 1000w,
-        @App.Path/img/assets/koi-img-srcset-500.webp 500w,
-        @App.Path/img/assets/koi-img-srcset-250.webp 250w,"
+  <source type="image/webp" srcset="@imgPath/koi-2000.webp 2000w,
+        @imgPath/koi-1000.webp 1000w,
+        @imgPath/koi-500.webp 500w,
+        @imgPath/koi-250.webp 250w,"
     sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
-  <source type="image/png" srcset="@App.Path/img/assets/jellyfish-img-srcset-2000.jpg 2000w,
-        @App.Path/img/assets/jellyfish-img-srcset-1000.jpg 1000w,
-        @App.Path/img/assets/jellyfish-img-srcset-500.jpg 500w,
-        @App.Path/img/assets/jellyfish-img-srcset-250.jpg 250w,"
+  <source type="image/png" srcset="@imgPath/jellyfish-2000.jpg 2000w,
+        @imgPath/jellyfish-1000.jpg 1000w,
+        @imgPath/jellyfish-500.jpg 500w,
+        @imgPath/jellyfish-250.jpg 250w,"
     sizes="(max-width: 300px) 250px, (max-width: 600px) 500px, (max-width: 1200px) 1000px, 2000px">
-  <img loading="lazy" class="img-fluid" src="@App.Path/img/assets/jellyfish-img-srcset-1000.jpg" alt="Picture srcset demo">
+  <img loading="lazy" class="img-fluid" src="@imgPath/jellyfish-1000.jpg" alt="Picture srcset demo">
 </picture>

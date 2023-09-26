@@ -15,7 +15,6 @@ Tutorial Group: @tg.Title [Accs: @tg.Children("Accordions").Count() | Snips: @tg
   <a href='@Sys.TutPageUrl(tg)' target="_blank">📤</a>
 }
 <br>
-@Html.Partial("./Part WithNotes.cshtml", new { Item = tg })
 
 @if (tg.IsNotEmpty("Accordions") || tg.IsNotEmpty("Sections")) {
   <ol>
@@ -27,7 +26,6 @@ Tutorial Group: @tg.Title [Accs: @tg.Children("Accordions").Count() | Snips: @tg
     @foreach (var sc in tg.Children("Sections")) {
       <li>
         Section: @sc.Title
-        @Html.Partial("./Part WithNotes.cshtml", new { Item = sc })
       </li>
     }
   </ol>

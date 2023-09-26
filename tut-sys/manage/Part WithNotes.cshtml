@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  var noteHolder = MyModel.Item("Item");
+}
+
+@if (noteHolder.IsNotEmpty("Notes")) {
+  <ol>
+    @foreach (var note in noteHolder.Children("Notes")) {
+      <li>
+        📒 TutorialNote: @note.Title (@note.String("NameId"))
+      </li>
+    }
+  </ol>
+}
