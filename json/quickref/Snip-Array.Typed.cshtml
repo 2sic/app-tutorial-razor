@@ -14,7 +14,7 @@ Tut.Tabs=file:json/cities.json
   var cities = Kit.Json.ToTypedList(jCities);
 }
 <ol>
-  @foreach(var city in cities) {
+  @foreach (var city in cities) {
     <li>Name: <code>@city.String("Name")</code></li>
   }
 </ol>

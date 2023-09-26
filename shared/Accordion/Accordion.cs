@@ -4,6 +4,8 @@ using System.Linq;
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
 
+// 2sxclint:disable:avoid-dynamic
+
 public class Accordion: Custom.Hybrid.CodeTyped
 {
   public Accordion Setup(object sys, string variantExtension, ITypedItem item = null) {

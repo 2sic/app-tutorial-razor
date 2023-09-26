@@ -6,7 +6,7 @@
   string Boolmoji(bool value) { return value ? "✔️" : "❌"; }
 
   // Create a row (TR) containing data about a Text.Has example
-  dynamic RowEmojified(string label, string value) {
+  object RowEmojified(string label, string value) {
     var valueForShowing = value == null 
       ? "null" 
       : "\"" + value.Replace("\n", "\\n").Replace("\t", "\\t") + "\"";

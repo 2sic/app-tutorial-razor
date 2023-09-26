@@ -72,7 +72,7 @@ public class BootstrapTabs: Custom.Hybrid.Code14
     return Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5");
   }
 
-  public dynamic TabContentGroupOpen() {
+  public object TabContentGroupOpen() {
     _tabContentGroupIsOpen = true;
     return Tag.RawHtml(
       "\n" + Indent + "<!-- TabContentGroupOpen -->\n",

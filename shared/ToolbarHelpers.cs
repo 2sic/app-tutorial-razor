@@ -7,11 +7,9 @@ public class ToolbarHelpers : Custom.Hybrid.Code14
 {
   #region Init / Dependencies
   
-  public ToolbarHelpers Init(dynamic sys) {
-    Sys = sys;
+  public ToolbarHelpers Init(object sys) {
     return this;
   }
-  public dynamic Sys = null;
 
   #endregion
 

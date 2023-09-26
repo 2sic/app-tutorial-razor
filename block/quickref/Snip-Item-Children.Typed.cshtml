@@ -25,7 +25,7 @@
 <h4>Use <code>.Children("Awards")</code> to get all</h4>
 <span>Award Count:       @MyItem.Children("Awards").Count()</span>
 <ol>
-  @foreach(var award in MyItem.Children("Awards")) {
+  @foreach (var award in MyItem.Children("Awards")) {
     <li>Award: @award.String("Name")</li>
   }
 </ol>

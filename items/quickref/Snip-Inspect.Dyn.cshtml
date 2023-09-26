@@ -14,7 +14,7 @@
 }
 <h4>Inspect the fields of an Item</h4>
 <ol>
-  @foreach(var key in keys) {
+  @foreach (var key in keys) {
     var value = Content.Get(key);
     <li>
       @Boolmoji(value != null || (value is string && Text.Has(value)))

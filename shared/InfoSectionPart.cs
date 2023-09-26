@@ -6,6 +6,8 @@ using System.Linq;
 using ToSic.Sxc.Data;
 using ToSic.Sxc.Edit.Toolbar;
 
+// 2sxclint:disable:avoid-dynamic
+
 // Class to generate shared parts on the page
 // Such as navigations etc.
 // Should itself not have much code, it's more central API to access everything

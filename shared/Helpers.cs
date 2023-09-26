@@ -21,14 +21,14 @@ public class Helpers: Custom.Hybrid.CodeTyped
 
   public string Path {get;set;}
 
-  public dynamic SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("SourceCode.cs").Init(this, Path)); } }
-  private dynamic _sourceCode;
+  public object SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("SourceCode.cs").Init(this, Path)); } }
+  private object _sourceCode;
 
-  public dynamic Fancybox { get { return _fancybox ?? (_fancybox = GetCode("Fancybox.cs")); } }
-  private dynamic _fancybox;
+  public object Fancybox { get { return _fancybox ?? (_fancybox = GetCode("Fancybox.cs")); } }
+  private object _fancybox;
 
-  public dynamic ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs")).Init(this); } }
-  private dynamic _tlbHelpers;
+  public object ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("ToolbarHelpers.cs").Init(this)); } }
+  private object _tlbHelpers;
 
   #region New Links to the new setup
 
@@ -73,7 +73,7 @@ public class Helpers: Custom.Hybrid.CodeTyped
     return target;
   }
 
-  public dynamic Highlighted(string specialText) {
+  public IHtmlTag Highlighted(string specialText) {
     if (specialText == null) { return null; }
     return Tag.Span(specialText).Class("text-warning");
   }

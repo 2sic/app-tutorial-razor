@@ -16,7 +16,7 @@ using System.Linq;                        // this enables .First() or .Select(x 
 public class AuthorsQueryController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
-  public dynamic Get(int authorId)
+  public object Get(int authorId)
   {
     var query = Kit.Data.GetQuery("AuthorsWithBooks", parameters: new {
       AuthorId = authorId

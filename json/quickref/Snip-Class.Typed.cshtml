@@ -19,7 +19,7 @@ Tut.Tabs=file:json/cities.json
   var cities = Kit.Json.To<City[]>(jCities);
 }
 <ul>
-  @foreach(var city in cities) {
+  @foreach (var city in cities) {
     <li>
       <code>@city.Name</code>: @city.ZipCode
       @if (city.PartnerCities != null) {
