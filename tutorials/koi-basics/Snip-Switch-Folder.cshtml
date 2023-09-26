@@ -1,5 +1,5 @@
 @inherits Custom.Hybrid.Razor14
-@{/*! Tut.Tabs=bs3/Alert.Cshtml|file:../../koi/bs3/Alert.cshtml,bs4/Alert.Cshtml|file:../../koi/bs4/Alert.cshtml,bs5/Alert.Cshtml|file:../../koi/bs5/Alert.cshtml */
+@{/*! Tut.Tabs=bs3/Alert.Cshtml|file:./bs3/Alert.cshtml,bs4/Alert.Cshtml|file:./bs4/Alert.cshtml,bs5/Alert.Cshtml|file:./bs5/Alert.cshtml */
 /*!*/}
 @*
   This page is just an entry point for your code. It will do the following:
@@ -12,4 +12,4 @@
 @{ 
   var folder = Kit.Css.Is("bs5") ? "bs5" : Kit.Css.Is("bs4") ? "bs4" : "bs3";
 }
-@Html.Partial("../" + folder + "/Alert.cshtml")
+@Html.Partial("./" + folder + "/Alert.cshtml")

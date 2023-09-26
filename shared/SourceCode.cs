@@ -129,9 +129,10 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       var tabs = tabsString.Split(',')
         .Select(t => {
           var entry = t.Trim();
-          if (!entry.StartsWith("file:")) return t;
+          if (!entry.Contains("file:")) return t;
+          var prefix = Text.Before(entry, "file:");
           var fileName = Text.After(entry, "file:");
-          return "file:" + srcPath + "/" + fileName;
+          return prefix + "file:" + srcPath + "/" + fileName;
         })
         .ToArray();
       return string.Join(",", tabs);
