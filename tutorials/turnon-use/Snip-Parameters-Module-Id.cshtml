@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @*!
-Tut.Tabs=file:./111-module.js
+Tut.Tabs=file:./js/111-module.js
 !*@
 @{
   // Create unique DOM attribute with Module Id
@@ -22,4 +22,4 @@ Tut.Tabs=file:./111-module.js
 
 @Kit.Page.TurnOn("window.turnOnTutorial111.init()", data: data)
 
-<script src="@App.Path/turnon/use/111-module.js" @Kit.Page.AssetAttributes()></script>
+<script src="@App.Path/tutorials/turnon-use/js/111-module.js" @Kit.Page.AssetAttributes()></script>

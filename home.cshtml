@@ -76,3 +76,10 @@
 </div>
 
 @Html.Partial("./home.PartAssets.cshtml")
+
+@if (CmsContext.User.IsSiteAdmin) {
+  <br>
+  <div class="alert alert-info">
+    <a href='@Link.To(parameters: "manage=default")'>Manage the Tutorials</a>
+  </div>
+}

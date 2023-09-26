@@ -77,6 +77,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     "page",
     "razor",
     "settings",
+    "turnon",
   };
 
   private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
