@@ -1,11 +1,13 @@
 @inherits Custom.Hybrid.Razor14
 @{/*!*/
+  // 2sxclint:disable:toolbars-should-not-use-filter
   var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
   tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
 /*!*/}
 @{
   var firstThreeAuthorIds = AsList(App.Data["Persons"])
     .Select(author => author.EntityId)
+    .Take(3)
     .ToArray();
 
   var toolbarTop3 = Kit.Toolbar.Empty()
