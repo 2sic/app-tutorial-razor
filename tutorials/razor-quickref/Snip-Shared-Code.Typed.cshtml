@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:../../shared/SharedFunctions.cs
+!*@
+@{
+  // helper library to say hello & create QR codes
+  var qrLib = GetCode("../../shared/SharedFunctions.cs");
+}
+<h4>Call some Code in External CSharp Files</h4>
+<ol>
+  <li>Hello from shared lib: @qrLib.SayHello()</li>
+  <li>
+    QR Code from shared lib <br>
+    <img loading="lazy" src='@qrLib.QrPath("https://2sxc.org")' width="75px">
+  </li>
+</ol>

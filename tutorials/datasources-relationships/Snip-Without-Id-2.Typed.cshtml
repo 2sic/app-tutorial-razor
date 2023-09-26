@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@using ToSic.Eav.DataSources;
+@{/*! Tut.Tabs=file:../../DataSources/TreeParentPaths.cs */
+/*!*/}
+@{
+  var tree = Kit.Data.GetSource(name: "TreeParentPaths");
+  var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
+}
+
+@Html.Partial("../../tut-sys/show/data/Show Tree.Typed.cshtml",
+  new { Title = "Show Tree of Data", Root = root, SubNodeNames = "SubItems", ParentField = "Parent" })
+
+@Html.Partial("../../tut-sys/show/data/Show Data List.Typed.cshtml", 
+  new { Title = "Flat List of Items", Data = tree })

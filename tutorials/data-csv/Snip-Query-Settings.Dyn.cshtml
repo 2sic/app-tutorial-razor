@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@using System.Linq;
+@{/*! Tut.Tabs=file:../../assets/data/products.csv.txt,ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  viewCnf.Query("ProductsFromCSV" + CmsContext.Platform.Name);
+/*!*/}
+@{
+  // get the query
+  var query = Kit.Data.GetQuery("ProductsFromCsvInAppSettings");
+
+  // get the data from the query
+  var products = AsList(query);
+
+  // get the current author (if available) from the stream Current
+  var current = AsList(query["Current"]).FirstOrDefault();
+
+  // Get the current url params so we can derive from it for details links
+  var urlParams = CmsContext.Page.Parameters;
+}
+<ul>
+  @foreach (var product in products) {
+    <!-- this li will have class=selected if it's the current one -->
+    <li class='@(product == current ? "selected" : "")'>
+      <!-- this creates a link to the current page and product=id -->
+      <a href='@Link.To(parameters: urlParams.Set("product", product.EntityId.ToString()))'>
+        @product.Name (#@product.Id)
+      </a>
+      @if (current == product) {
+        <br>
+        <em>
+          @current.Description 
+          (<a href="@product.Link" target="_blank">find out more</a>)
+        </em>
+      }
+    </li>
+  }
+</ul>

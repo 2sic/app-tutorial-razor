@@ -1,0 +1,46 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:./js/create-metadata.js
+!*@
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+
+<table id="example-content" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Memberships</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var poet in AsItems(App.Data["Poets"])) {
+      var membershipMd = AsItems(poet.Metadata.OfType("DeadPoetSocietyMembership"));
+      <tr>
+        <td>@poet.Get("Name")</td>
+        <td>
+          @if (membershipMd.Any()) {
+            foreach (var membership in membershipMd) {
+              <span>
+                @membership.Get("MembershipNumber")
+                <a href="#" onclick="window.sxcDataTutorial240.del(@membership.Id)">delete</a>
+              </span>
+            }
+          } else {
+            <button type="button" class="btn btn-primary" onclick='window.sxcDataTutorial240.add("@poet.Guid")'>
+              add membership (metadata)
+            </button>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+@* This tutorial uses turnOn, see turnOn tutorials *@
+@Kit.Page.TurnOn("window.sxcDataTutorial240.init()", data: new {
+  moduleId = MyContext.Module.Id
+})
+
+<script src="@App.Folder.Url/tutorials/js-edit/js/create-metadata.js" @Kit.Page.AssetAttributes()></script>

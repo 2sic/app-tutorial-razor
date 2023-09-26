@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+
+@{
+  // Activate the feature Fancybox4
+  // even if called multiple times, it will only be activated once
+  Kit.Page.Activate("fancybox4");
+  Kit.Page.Activate("fancybox4");
+  var imgUrl = App.Path + "/tutorials/code-pageservice/demo-banner.png";
+}
+<p>
+  Click on the image to see Fancybox in action!
+</p>
+<a data-fancybox='gallery' href="@imgUrl">
+  <img loading="lazy" src="@Link.Image(imgUrl, width: 200, height: 200)">
+</a>

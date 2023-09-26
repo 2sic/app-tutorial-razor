@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Collections;
+@*!
+Tut.Tabs=file:./demo.json
+!*@
+@{
+  var someJson = System.IO.File.ReadAllText(App.Folder.PhysicalPath + "/tutorials/json-use/demo.json");
+  var thing = Kit.Json.ToTyped(someJson);
+}
+<ol>
+  @foreach (var prop in thing.Keys()) {
+    <li>
+      <strong>@prop</strong> (@thing.Get(prop).GetType()) <br>
+      = @thing.Get(prop)
+    </li>
+  }
+</ol>

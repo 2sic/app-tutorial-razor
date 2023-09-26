@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+@{
+  var buttonGroupToolbar = Kit.Toolbar.Default()
+    .Group() // new in v14.07.05
+    .New("BlogPost",
+      ui:"color=red&title=Blog-Post")
+    .New("Category", 
+      ui:"color=green&title=Category");
+}
+<div class="alert alert-light" 
+  @buttonGroupToolbar.For(Content)>
+  <h3>Add a button-group just for 
+    my buttons (v14.07.05+)
+  </h3>
+</div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

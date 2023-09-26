@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.Razor14
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+}
+<img loading="lazy" class="img-fluid" alt="Image SrcSet Demo"
+  src="@imgPath/jellyfish-1000.jpg"
+  srcset="@imgPath/jellyfish-2000.jpg 2000w,
+          @imgPath/jellyfish-1000.jpg 1000w,
+          @imgPath/jellyfish-500.jpg 500w,
+          @imgPath/jellyfish-250.jpg 250w,">

@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default(Content)>
+  <h3>New syntax</h3>
+  <p>
+    <code>@@Kit.Toolbar.Default(Content)</code>
+    with a pre-set content-item
+  </p>
+</div>
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default().For(Content)>
+  <h3>New syntax</h3>
+  <p>
+    <code>@@Kit.Toolbar.Default().For(Content)</code>
+    with a content-item which can be set later
+  </p>
+</div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

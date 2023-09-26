@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./demo.json
+!*@
+@{
+  var someJson = System.IO.File.ReadAllText(App.PhysicalPath + "/tutorials/json-use/demo.json");
+  var thing = AsDynamic(someJson);
+}
+<ol>
+  @foreach (var prop in thing) {
+    <li>
+      <strong>@prop</strong> (@thing[prop].GetType()) <br>
+      = @thing[prop]
+    </li>
+  }
+</ol>

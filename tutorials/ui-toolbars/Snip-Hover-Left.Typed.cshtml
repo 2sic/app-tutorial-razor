@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default(MyItem).Settings(hover:"left")>
+  <h3>Hover Left</h3>
+</div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

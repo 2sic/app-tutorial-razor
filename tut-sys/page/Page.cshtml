@@ -1,0 +1,26 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@{
+  var myParams = MyPage.Parameters;
+  var tutorialGroup = myParams.IsNotEmpty("tut") ? myParams.String("tut") + "-page" : MyModel.String("TutorialGroupId");
+
+  var tutPage = AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == tutorialGroup);
+
+  // Find the parent, which has Segment Title, Link, etc.
+  var segment = tutPage.Parents(type: "TutorialSection").FirstOrDefault();
+
+  var Sys = GetCode("../Sys.cs").Init(this);
+}
+@Html.Partial("./Header.cshtml", new { Sys, segment, tutPage })
+
+@* Get the toolbar for: < previous | # Current | Next > *@
+@Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
+
+
+@Html.Partial("../Accordion/Accordion One.cshtml", new { Sys, tutPage, NameId = tutorialGroup })
+
+@* Footer *@
+@* Get the toolbar for: < previous | # Current | Next > *@
+@Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
+
+@Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage })

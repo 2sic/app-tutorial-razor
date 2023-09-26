@@ -1,0 +1,27 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./js/201-await-function.js
+!*@
+@{  
+  // Create unique DOM attribute with Module Id
+  var domAttribute = "turn-on-require-fn-" + CmsContext.Module.Id;
+}
+
+@* Inject attribute into DIV, to make it accessible for query *@
+<div @domAttribute></div>
+
+@* 
+  Wait for function to return true, 
+  then execute the window.turnOnTutorial201.init function 
+  and pass the domAttribute as JSON 
+*@
+@Kit.Page.TurnOn("window.turnOnTutorial201.init()",
+  data: new { domAttribute },
+  require: "window.turnOnTutorial201.ready()"
+)
+
+@* Include thirdparty library from CDN *@
+<script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
+
+@* Include local JavaScript file *@
+<script src="@App.Path/tutorials/turnon-use/js/201-await-function.js" @Kit.Page.AssetAttributes()></script>

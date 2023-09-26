@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:../../shared/Fancybox.cs
+!*@
+@{
+  // Use GetCode in RazorTyped and path which is either
+  // - absolute to App root
+  // - relative to current file
+  var lightbox = GetCode("/shared/Fancybox.cs");
+}
+@* Url to app root folder is in App.Folder.Url *@
+@lightbox.PreviewWithLightbox(App.Folder.Url + "/app-icon.png")
+<br>
+@lightbox.PreviewWithLightbox(App.Folder.Url + "/assets/img-resize/basic-banner.png", 200, 100)

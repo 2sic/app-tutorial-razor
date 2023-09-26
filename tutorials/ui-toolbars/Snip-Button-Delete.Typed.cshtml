@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default().Delete().For(MyItem)>
+<h3>Always show <code>Delete</code></h3>
+  <p>Note that you'll have to hit the ellipsis 
+    a few times to see it.
+  </p>
+</div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}
+

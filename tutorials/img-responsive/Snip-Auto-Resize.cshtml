@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+  var tomatoPicUrl = imgPath +  "/tomatoes.jpg";
+}
+@Kit.Image.Img(tomatoPicUrl)
+@{/*!*/
+  var previewTag = Kit.Image.Img(tomatoPicUrl);
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewTag);
+/*!*/}

@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default()>
+  <div><code>@@Kit.Toolbar.Default()</code> 
+    without any Data
+  </div>
+</div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

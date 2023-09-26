@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@{
+  // Check for Recursions, to prevent infinite loops!
+  var recursions = MyModel.Int("Recursions", required: false, fallback: 0) + 1;
+  if (recursions > 5) {
+    throw new Exception("Recursion limit reached");
+  }
+}
+@{
+  // Get the accordion specs - Either the "Page" or the Section inside the page
+  var accSpecs = MyModel.Item("AccordionSpecs");
+
+  // Reuse existing Accordion code or generate new
+  var accordion = MyModel.Code("Accordion");
+
+  // Skip Variant Selector if it was already done before
+  // If we have variants, and the caller didn't explicitly say to skip page tools, then show them
+  var skipPageTools = MyModel.Bool("SkipPageTools", required: false);
+  if (!skipPageTools && accSpecs.Bool("HasVariants")) {
+    @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = null as string })
+  }
+
+  // Show each accordion with all sections
+  @Html.Partial("../snippets/Snippet Group Intro.cshtml", new { accordion, tutPage = accSpecs })
+  @accordion.Start(accSpecs)
+    @Html.Partial("./Sections.cshtml", new { accordion, recursions } )
+  @accordion.End()
+  // If it's empty, show info / toolbar to admin only
+}

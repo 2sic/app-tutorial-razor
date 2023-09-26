@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor14
+
+@{// Create a configuration bundle as a Dynamic object with these specs
+  var imgUrl = App.Path + "/assets/img-resize/basic-logo.png";
+  var imgUrl2 = App.Path + "/assets/img-resize/basic-banner.png";
+  var customSize = AsDynamic(new {
+    Height = 100,
+    Width = 500,
+    ResizeMode = "Crop"
+  });
+}
+<img loading="lazy" src='@Link.Image(imgUrl, customSize)'> - 
+<img loading="lazy" src='@Link.Image(imgUrl2, customSize)'>

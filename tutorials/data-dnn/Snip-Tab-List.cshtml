@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+@*! *@
+@{#if NETCOREAPP}
+  @Html.Partial("../../tut-sys/messages/MessageOqtaneDisabled.cshtml")
+@{#else}
+@* !*@
+@{
+  // get the pages
+  var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
+  var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
+}
+
+<ul>
+  @foreach (DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
+    <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
+      <a href="@dnnPage.FullUrl" target="_blank">
+        @dnnPage.TabName (#@dnnPage.TabID)
+      </a>
+    </li>
+  }
+</ul>
+@*! *@
+@{#endif}
+@* !*@
+@*!
+  Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
+  2sxclint:disable:no-dnn-namespaces
+  @2dm TODO Oqtane 
+!*@

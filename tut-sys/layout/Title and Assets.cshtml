@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.Razor14
+@{
+  var Sys = DynamicModel.Sys;
+  var title = DynamicModel.Title;
+
+  // Set Browser page Title
+  Kit.Page.SetTitle(title + " - 2sxc Razor Tutorials for Dnn / Oqtane");
+
+  // Initialized shared assets on every page
+  var bsCheck = GetCode("../../Shared/Bootstrap5.cs");
+  bsCheck.EnsureBootstrap5();
+
+  var hdHlp = GetCode("./HeaderHelpers.cs");
+}
+
+@hdHlp.AddMainLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+<h1 class="col-auto p-0" @Edit.TagToolbar()>
+  @title
+</h1>
+
+@Kit.Page.Activate("2sxc.JsCore")
+<link rel='stylesheet' href='@App.Path/assets/styles.css' @Kit.Page.AssetAttributes() />

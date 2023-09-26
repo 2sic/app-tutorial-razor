@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+  var jellyfishUrl = imgPath + "/jellyfish-2000.jpg";
+}
+ @Kit.Image.Picture(jellyfishUrl, imgAlt: "This is the ALT text", imgClass: "dummy-class")
+@{/*!*/
+  var previewTag = Kit.Image.Img(jellyfishUrl, imgAlt: "This is the ALT text", imgClass: "dummy-class");
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewTag);
+/*!*/}

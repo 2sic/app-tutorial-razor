@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:json/cities.json
+!*@
+@{
+  // Variables for the tests
+  string jsonRoot = App.Folder.PhysicalPath + "/tutorials/json-quickref/json";
+}
+@{
+  // Simple JSON strings which could come from a file or web service
+  var jCities = System.IO.File.ReadAllText(jsonRoot + "/cities.json");
+
+  // Convert the JSON to ITyped
+  var cities = Kit.Json.ToTypedList(jCities);
+}
+<ol>
+  @foreach (var city in cities) {
+    <li>Name: <code>@city.String("Name")</code></li>
+  }
+</ol>

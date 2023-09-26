@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./js/110-parameters.js
+!*@
+<div id="turn-on-params-world">
+  turnOn Example 1 hasn't started yet.
+</div>
+<div id="turn-on-example-deconstruct">
+  turnOn Example 2 hasn't started yet.
+</div>
+
+@* Passes the parameters Hello for greeting and World for name in a JSON format and executes the window.turnOnTutorial110.init function *@
+
+  @* This tutorial uses turnOn, see turnOn tutorials *@
+@{
+  var data = new {
+    greeting = "Hello",
+    name = "World"
+  };
+
+    var dataDemo = new {
+    greeting = "Hello",
+    name = "Moon"
+  };
+}
+@Kit.Page.TurnOn("window.turnOnTutorial110.init()", data: data)
+@Kit.Page.TurnOn("window.turnOnTutorial110.demoDeconstruct()", data: dataDemo)
+
+<script src="@App.Path/tutorials/turnon-use/js/110-parameters.js" @Kit.Page.AssetAttributes()></script>

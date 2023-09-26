@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@{/*! Tut.Tabs=bs3/Alert.Cshtml|file:./bs3/Alert.cshtml,bs4/Alert.Cshtml|file:./bs4/Alert.cshtml,bs5/Alert.Cshtml|file:./bs5/Alert.cshtml */
+/*!*/}
+@*
+  This page is just an entry point for your code. It will do the following:
+  1. Check if it can detect the CSS framework used by the theme
+    - if yes, it will use that
+    - otherwise it will fallback to assume it's bootstrap 4 = "bs4"
+    - note that the BS4 edition has an additional check for unknown frameworks
+  2. Then it will load the real cshtml-template from the matching edition-folder
+*@
+@{ 
+  var folder = Kit.Css.Is("bs5") ? "bs5" : Kit.Css.Is("bs4") ? "bs4" : "bs3";
+}
+@Html.Partial("./" + folder + "/Alert.cshtml")

@@ -1,0 +1,87 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=file:./ReturnObjects.cs
+2sxclint:disable:avoid-dynamic
+!*@
+<hide-silent>
+@functions {
+  // Special accessors to shared code - required this setup so we can pass Func<...> to TryGet
+  private dynamic TestHelpers { get { return  _testHelpers ?? (_testHelpers = GetCode("/tut-sys/TestHelpers.cs")); }}
+  private object _testHelpers;
+
+  public object TryGet(Func<object> func) { return TestHelpers.TryGet(func); }
+}  
+</hide-silent>
+@{
+  // helper library which will return object
+  var lib = GetCode("./ReturnObjects.cs");
+}
+<h4>Working with anonymous objects</h4>
+<p>
+  The only way to get values from an anonymous object 
+  created elsewhere is using 
+  <code>AsDynamic(... as object)</code>.
+  Everything else will cause difficulties.
+</p>
+@{
+  // Various ways to (try) to get values from an anonymous object
+  var anon = lib.GetAnonymous();
+  var dynAnon = AsDynamic(anon);
+}
+<ol>
+  <li>Anon: @anon</li>
+  <li>Anon Type: @anon.GetType()</li>
+  <li>anon.Name 🚫: @TryGet(() => anon.Name)</li>
+  <li>dynAnon.Name ✅: @dynAnon.Name</li>
+</ol>
+
+<h4>Working with <code>ITyped</code> objects</h4>
+<p>
+  If the returned object is based on <code>ITyped</code>, things are a bit easier.
+  But you must still ensure that Razor knows the type.
+</p>
+@{
+  // If we know what type it is, we can force-cast it
+  var typedDyn = (ToSic.Sxc.Data.ITyped)lib.GetTyped();
+}
+<ol>
+  <li>Name ✅: @typedDyn.String("Name")</li>
+</ol>
+
+<h4>Working with real objects</h4>
+<p>
+  If the returned object is based on a class defined inside the code, things are a bit easier.
+</p>
+@{
+  // Various ways to (try) to get values from real object
+  // note that for Razor, the type is `dynamic`
+  var person = lib.GetPerson();
+  var dynPerson = AsDynamic(person);
+}
+<ol>
+  <li>Person: @person</li>
+  <li>Person Type: @person.GetType()</li>
+  <li>Person.Name ✅: @person.Name</li>
+  <li>dynPerson.Get("Name") ✅: @TryGet(() => dynPerson.Get("Name"))</li>
+</ol>
+
+
+<h4>Working with dictionaries</h4>
+@{
+  var dicDyn = lib.GetDictionary();
+  var dic = dicDyn as System.Collections.Generic.Dictionary<string, string>;
+}
+<p>
+  If the returned object is based on a dictionary, things are a bit easier.
+  This is because <code>dynamic</code> will be able to work with it, but it's not type safe.
+</p>
+<ol>
+  <li>dicDyn: @dicDyn</li>
+  <li>dicDyn Type: @dicDyn.GetType()</li>
+  <li>dicDyn Count ✅: @dicDyn.Count</li>
+  <li>dicDyn["Name"] ✅: @dicDyn["Name"]</li>
+  <li>dic: @dic</li>
+  <li>dic Type: @dic.GetType()</li>
+  <li>dic Count ✅: @dic.Count</li>
+  <li>dic["Name"] ✅: @dic["Name"]</li>
+</ol>

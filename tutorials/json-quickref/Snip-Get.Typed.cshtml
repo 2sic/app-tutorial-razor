@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:./json/dude.json
+!*@
+@{
+  // Variables for the tests
+  string jsonRoot = App.Folder.PhysicalPath + "/tutorials/json-quickref/json";
+
+  // Simple JSON strings which could come from a file or web service
+  var jDude = System.IO.File.ReadAllText(jsonRoot + "/dude.json");
+
+  // Convert the JSON to ITyped
+  var dude = Kit.Json.ToTyped(jDude);
+}
+<ol>
+  <li>
+    <code>.Get("name")</code>: @dude.Get("Name")
+  </li>
+  <li>
+    <code>.Get("NAME")</code> (insensitive): @dude.Get("NAME")
+  </li>
+</ol>

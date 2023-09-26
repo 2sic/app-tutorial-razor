@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+@{
+  // icon from https://fonts.google.com/icons?icon.query=func
+  var svgIcon = "<svg xmlns='http://www.w3.org/2000/svg' height='48' width='48'><path d='M12 40v-3.15L25.75 24 12 11.15V8h24v5H19.8l11.75 11L19.8 35H36v5Z'/></svg>";
+}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New(tweak: b=>b.Icon(svgIcon))
+    .For(MyItem)>
+  <h3>(tweak): Button with SVG Icon </h3>
+</div>
+@{
+  var uiWithSvgIcon = new {
+    Icon = svgIcon
+  };
+}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty(MyItem).New(ui: uiWithSvgIcon)>
+  <h3>(tweak): Button with SVG Icon </h3>
+</div>
+
+@{
+  // icon from https://fonts.google.com/icons?icon.query=func
+  var uiSvgIconColored = new {
+    Icon = svgIcon,
+    color = "darkgreen"
+  };
+}
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

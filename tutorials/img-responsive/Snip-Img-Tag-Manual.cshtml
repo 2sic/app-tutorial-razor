@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+  var tomatoPicUrl = imgPath +  "/tomatoes.jpg";
+  var flatSettings = Kit.Image.Settings("Content", aspectRatio: "8:1");
+  var imgFullControl = Kit.Image.Img(tomatoPicUrl, settings: flatSettings);
+}
+ <img loading="lazy" src="@imgFullControl.Src" srcset="@imgFullControl.SrcSet" title="Hover to see this">
+@{/*!*/
+  var imgTag = Kit.HtmlTags.Img().Src(imgFullControl.Src).Srcset(imgFullControl.SrcSet).Title("Hover to see this");
+  DynamicModel.Tutorial.SetTabContents("html-img:" + imgTag);
+/*!*/}

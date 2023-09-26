@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.Razor14
+@{/*!*/
+  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
+  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default().New(tweak: b=>b.Color("pink,black"))
+      .For(Content)>
+  <h3>New syntax (tweak): 
+    Add <code>new</code> button with colors 
+  </h3>
+</div>
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Default(Content).New(ui:"color=pink,black")>
+  <h3>(string): 
+    Add <code>new</code> button with colors 
+  </h3>
+</div>
+
+<div class="alert alert-light" 
+@Kit.Toolbar.Default(Content).New(ui: new {
+  color = "blue,white"
+  })>
+  <h3>(object):
+    Add <code>new</code> button with colors 
+  </h3>
+</div>
+@{/*!*/
+  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+/*!*/}

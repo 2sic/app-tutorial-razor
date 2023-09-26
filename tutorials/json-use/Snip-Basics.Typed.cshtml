@@ -1,0 +1,26 @@
+@inherits Custom.Hybrid.RazorTyped
+@using System.Collections;
+@*!
+Tut.Tabs=file:./demo.json
+!*@
+@{
+  var someJson = System.IO.File.ReadAllText(App.Folder.PhysicalPath + "/tutorials/json-use/demo.json");
+  var thing = Kit.Json.ToTyped(someJson);
+}
+<ul>
+  <li>Title:
+    @thing.String("Title")
+  </li>
+  <li>IsCool:
+    @thing.Bool("IsCool")
+  </li>
+  <li>Sub-item title:
+    @thing.String("SubItem.Title")
+  </li>
+  <li>Is this a list/array?
+    @(thing is IEnumerable)
+  </li>
+  <li>Are the tags a list?
+    @(thing.Get("Tags") is IEnumerable)
+  </li>
+</ul>

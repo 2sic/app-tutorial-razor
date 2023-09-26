@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.Razor14
+@*!
+Tut.Tabs=Generated HTML
+!*@
+<hide-silent>@GetCode("/tut-sys/ImgDemoHelpers.cs").ShowCurrentSrc()</hide-silent>
+@{
+  var imgPath = App.Path + "/assets/img-resize";
+  var tomatoPicUrl = imgPath +  "/tomatoes.jpg";
+  var flatSettings = Kit.Image.Settings("Content", aspectRatio: "8:1");
+}
+@Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400")
+@{/*!*/
+  var previewTag = Kit.Image.Img(tomatoPicUrl, settings: flatSettings, recipe: "1600,1200,1000,900,800,700,600,500,400");
+  DynamicModel.Tutorial.SetTabContents("html-img:" + previewTag);
+/*!*/}

@@ -1,0 +1,39 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@{
+  // Check for Recursions, to prevent infinite loops!
+  var recursions = MyModel.Int("Recursions", required: false, fallback: 0) + 1;
+  if (recursions > 5) {
+    throw new Exception("Recursion limit reached");
+  }
+
+  var accordion = MyModel.Code("Accordion", required: false);
+  var tutPage = MyModel.Item("TutorialGroup", required: false);
+}
+
+@Html.Partial("../snippets/Snippet Group Intro.cshtml", new { accordion, tutPage })
+
+@if (tutPage.IsNotEmpty("Accordions")) {
+  var accords = tutPage.Children("Accordions");
+
+  // Check if any of the tutorials has variants - if yes, show the variant selector
+  var showVariantSelector = tutPage.Bool("HasVariants") 
+    ? tutPage 
+    : accords.FirstOrDefault(a => a.Bool("HasVariants"));
+  if (showVariantSelector != null) {
+    @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = showVariantSelector.String("Variants") })
+  }
+
+  // Show each accordions one-by-one
+  foreach (var accSpecs in accords) {
+    @Html.Partial("./Section Block.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true, recursions })
+  }
+} else {
+  <div>
+    Accordion list is empty.
+    This is not expected, as the Multi-View should only be loaded when there are accordions.
+    Use Toolbar to edit
+  </div>
+}
+
+<p>&nbsp;</p>

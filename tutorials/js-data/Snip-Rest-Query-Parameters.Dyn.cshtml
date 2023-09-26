@@ -1,0 +1,35 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@{/*! Tut.Tabs=file:./js/query-parameters.js,ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  var Data = viewCnf.Query(query: "AuthorsWithBooks") as ToSic.Eav.DataSource.IDataSource;
+/*!*/}
+@* Make sure anonymous users have the 2sxc JS API *@
+@Kit.Page.Activate("2sxc.JsCore")
+@{ var btnPrefix = "mod-" + CmsContext.Module.Id; }
+
+<button id="@btnPrefix-object" type="button" class="btn btn-primary">
+  Get Query with parameters (object)
+</button>
+<button id="@btnPrefix-string" type="button" class="btn btn-primary">
+  Get Query with parameters (string)
+</button>
+<button id="@btnPrefix-stream-params" type="button" class="btn btn-primary">
+  Get Query Stream with parameters
+</button>
+<button id="@btnPrefix-streams-params" type="button" class="btn btn-primary">
+  Get Query Streams with parameters
+</button>
+
+@* This tutorial uses turnOn, see turnOn tutorials *@
+@{
+  var demoAuthorId = Data["RandomAuthor"].List.FirstOrDefault().EntityId;
+  var data = new {
+    moduleId = CmsContext.Module.Id,
+    demoAuthorId = demoAuthorId,
+  };
+}
+
+@Kit.Page.TurnOn("window.tutQueryParameters.init()", data: data)
+
+<script src="@App.Path/tutorials/js-data/js/query-parameters.js"></script>

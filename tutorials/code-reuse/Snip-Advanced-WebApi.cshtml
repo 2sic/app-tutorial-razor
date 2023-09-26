@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade;
+@*!
+Tut.Tabs=file:../../api/SharedCodeController.cs,file:../../shared/FunctionsBasic.cs
+2sxclint:disable:no-inline-script
+!*@
+<p>
+  Click to see the result of a WebApi call with the shared code:
+  <button type="button" class="btn btn-primary" onclick="callApiWithSharedCode(this)">
+    Call WebApi
+  </button>
+</p>
+
+<script>
+  function callApiWithSharedCode(context) {
+    $2sxc(context).webApi.fetchJson('app/auto/api/sharedcode/hello')
+      .then(function (results) {
+        console.log(results);
+        alert(results);
+      });
+    return false;
+  }
+</script>
