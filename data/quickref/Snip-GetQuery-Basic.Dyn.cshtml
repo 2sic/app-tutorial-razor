@@ -11,14 +11,14 @@
 }
 <h4>Get Books from the <code>Default</code> stream</h4>
 <ol>
-  @foreach(var book in AsList(query)) {
+  @foreach (var book in AsList(query)) {
     <li>@book.EntityTitle</li>
   }
 </ol>
 
 <h4>Get Authors from the <code>Authors</code> stream</h4>
 <ol>
-  @foreach(var author in AsList(query.GetStream("Authors"))) {
+  @foreach (var author in AsList(query.GetStream("Authors"))) {
     <li>@author.EntityTitle</li>
   }
 </ol>

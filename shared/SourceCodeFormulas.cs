@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+// 2sxclint:disable:avoid-dynamic
+
 public class SourceCodeFormulas: Custom.Hybrid.CodeTyped
 {
   #region Init / Dependencies

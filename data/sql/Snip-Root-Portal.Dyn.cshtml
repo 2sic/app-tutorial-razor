@@ -9,7 +9,7 @@
   // Different query in DNN / Oqtane - eg. "SqlTop10FilesDnn"
   var queryName = "SqlTop10Files" + CmsContext.Platform.Name;
 
-  // Get the query and ask for the "Default" results as a dynamic List
+  // Get the query and ask for the "Default" results as a List of Dynamic objects
   var query = Kit.Data.GetQuery(queryName);
   var files = AsList(query);
 }

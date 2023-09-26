@@ -16,7 +16,7 @@ using ToSic.Eav.DataFormats.EavLight; // For Auto-Conversion (see below)
 public class BooksController : Custom.Hybrid.Api14 // see https://r.2sxc.org/CustomWebApi
 {
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
-  public dynamic Persons()
+  public object Persons()
   {
     // we could do: return App.Data["Persons"];
     // but the raw data is difficult to use, so we'll improve it
@@ -33,21 +33,21 @@ public class BooksController : Custom.Hybrid.Api14 // see https://r.2sxc.org/Cus
 
   [HttpGet]
   [JsonFormatter]                           // this will auto-convert Entities to JSON
-  public dynamic PersonsAuto()
+  public object PersonsAuto()
   {
     return App.Data["Persons"];
   }
 
   [HttpGet]
   [JsonFormatter(Casing = Casing.Preserve)] // auto-convert but preserve casing
-  public dynamic PersonsAutoPreserveCasing()
+  public object PersonsAutoPreserveCasing()
   {
     return App.Data["Persons"];
   }
   
 
   [HttpGet]
-  public dynamic Books()
+  public object Books()
   {
     return AsList(App.Data["Books"])
       .Select(b => new {

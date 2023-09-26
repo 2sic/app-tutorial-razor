@@ -28,7 +28,7 @@
 <h4>Use <code>.Awards</code> to get all</h4>
 <span>Award Count:       @Content.Awards.Count</span>
 <ol>
-  @foreach(var award in AsList(Content.Awards as object)) {
+  @foreach (var award in AsList(Content.Awards as object)) {
     <li>Award: @award.Name</li>
   }
 </ol>

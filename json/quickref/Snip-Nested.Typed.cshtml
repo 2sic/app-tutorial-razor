@@ -32,7 +32,7 @@ Tut.Tabs=file:json/dude-marc.json,file:json/dude-frank.json
   <li>
     Friends using <code>AsTypedList(...)</code>
     <ul>
-      @foreach(var friend in AsTypedList(marc.Get("friends"))) {
+      @foreach (var friend in AsTypedList(marc.Get("friends"))) {
         <li>@friend.String("Name")</li>
       }
     </ul>      

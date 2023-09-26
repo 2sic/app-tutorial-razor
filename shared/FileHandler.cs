@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+// 2sxclint:disable:avoid-dynamic
+
 public class FileHandler: Custom.Hybrid.CodeTyped
 {
   #region Constants

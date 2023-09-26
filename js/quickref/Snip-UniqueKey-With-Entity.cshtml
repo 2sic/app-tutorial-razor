@@ -4,7 +4,7 @@
   var books = AsItems(App.Data["Books"]);
 }
 <ol>
-  @foreach(var book in books) {
+  @foreach (var book in books) {
     <li>
       Title: <code>@book.Title</code> - UniqueKey: <code>@Kit.Key.UniqueKeyWith(book)</code>
     </li>

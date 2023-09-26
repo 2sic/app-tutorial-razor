@@ -1,11 +1,13 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*!*/
+  // 2sxclint:disable:toolbars-should-not-use-filter - TODO: @2dm - change this in typed when bug is fixed
   var tlbControl = GetCode("/Shared/ToolbarHelpers.cs");
   tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
 /*!*/}
 @{
   var firstThreeAuthorIds = AsItems(App.Data.GetStream("Persons"))
     .Select(author => author.Id)
+    .Take(3)
     .ToArray();
 
   var toolbarTop3 = Kit.Toolbar.Empty()

@@ -8,8 +8,8 @@
 }
 <ol>
   @foreach (var book in books) {
-    // To work with a list coming off a dynamic object,
-    // we have to tell the compiler it's a dynamic list
+    // To work with a list coming off a dyn  object,
+    // we have to tell the compiler it's a list
     var authors = AsList(book.Authors as object)
       .Select(a => a.FirstName + " " + a.LastName);
     <li><strong>@book.Title</strong>

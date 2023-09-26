@@ -26,7 +26,7 @@ public class FormulasController : Custom.Hybrid.Api14 // see https://r.2sxc.org/
 
   // Note: Persons just copied from Books Controller to test functionality
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
-  public dynamic Persons()
+  public object Persons()
   {
     return AsList(App.Data["Persons"])
       .ToDictionary(x => x.EntityId.ToString(), p => p.FirstName + " " + p.LastName);

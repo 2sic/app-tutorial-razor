@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 <hide-silent>
 @functions {
-  dynamic SubpageLink(string label, string root, string key, string value) {
+  object SubpageLink(string label, string root, string key, string value) {
     var parameters = CmsContext.Page.Parameters;
     return Kit.HtmlTags.Li().Class(parameters[key] == value ? "selected" : "")
       .Wrap(
@@ -9,7 +9,7 @@
       );
   }
 
-  dynamic SubpageLink(string label, string value) {
+  object SubpageLink(string label, string value) {
     return SubpageLink(label, "blade340=page", "mode", value);
   }
 }

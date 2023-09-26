@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 // 2sxclint:disable:no-EntityTitle-in-quotes
-
+// 2sxclint:disable:avoid-dynamic
 
 // Class to generate shared parts on the page
 // Such as navigations etc.
