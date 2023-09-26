@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-09-26T19:43:06.9708962+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-09-26T21:19:39.8725989+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -3635,87 +3635,6 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
-    <AttributeSet StaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" Name="Tutorial" Scope="Default" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="Title" Type="String" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="604f0972-201a-438d-9832-928cbb63cf00" Json="True" KeyNumber="5156">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="Title" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Teaser" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="bc195dfb-6b41-4202-8ede-57b90276c174" Json="True" KeyNumber="5157">
-            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
-            <Value Key="Name" Value="Teaser" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Sections" Type="Entity" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8ae346bb-014c-4824-832b-e615c2dfa3c7" Json="True" KeyNumber="5158">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="entity-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Sections" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="7143ed8d-12e7-4930-8be8-59eab8c2992a" Json="True" KeyNumber="5158">
-            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableCreate" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableDelete" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableEdit" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableRemove" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EntityType" Value="TutorialSection" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Prefill" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-      </Attributes>
-    </AttributeSet>
     <AttributeSet StaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" Name="TutorialCategory" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
         <Attribute StaticName="Title" Type="String" IsTitle="true">
@@ -6683,6 +6602,87 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="MoreFields" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Prefill" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" Name="TutorialSequence" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="604f0972-201a-438d-9832-928cbb63cf00" Json="True" KeyNumber="5156">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Teaser" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="bc195dfb-6b41-4202-8ede-57b90276c174" Json="True" KeyNumber="5157">
+            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
+            <Value Key="Name" Value="Teaser" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Sections" Type="Entity" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8ae346bb-014c-4824-832b-e615c2dfa3c7" Json="True" KeyNumber="5158">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="entity-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Sections" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="7143ed8d-12e7-4930-8be8-59eab8c2992a" Json="True" KeyNumber="5158">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableDelete" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EntityType" Value="TutorialSection" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Prefill" Value="" Type="String">
@@ -10038,8 +10038,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-Template" AttributeSetName="2SexyContent-Template" EntityGUID="af52c092-9882-4837-b75c-e01c268a288e" Json="True">
-      <Value Key="ContentDemoEntity" Value="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa" Type="Entity" />
-      <Value Key="ContentTypeStaticName" Value="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" Type="String">
+      <Value Key="ContentTypeStaticName" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Icon" Value="" Type="Hyperlink">
@@ -11806,7 +11805,7 @@
       </Value>
       <Value Key="TutorialGroups" Value="42d63697-820f-44b1-ad8e-2c7c2748242a" Type="Entity" />
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" AttributeSetName="Tutorial" EntityGUID="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8" AttributeSetName="TutorialSequence" EntityGUID="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa">
       <Value Key="Sections" Value="6df1175f-5bd4-45d1-8b2b-ea7b373a0b5c,64438582-e47f-4f4c-92c9-c2fb908ee0a2,b8feb34c-3943-482b-838b-2dfc7809cb99,c3e1292f-1642-4882-b9ff-1081c0082098,b8b9dac0-bf11-4f3c-8535-24427da6ceb1,011f7090-4128-4e03-bcae-4c3b0b087547,ff7cf66b-c411-40fb-a437-652bf66b5dac,550d8c38-444c-4a4f-ba6f-0831ab2086bc,df11c290-8098-4978-87f9-1efc3aaac8ef,2aa08895-dc7d-4f37-b8db-f9997b92a406,1e4bb8ba-62f2-434b-bc8f-b9c7869053af,2445655f-7b19-4278-935d-2e178ddea9db,ab1c46f0-2108-4e72-8c60-93e16e0d2d17,40fc5b62-0a07-4cfe-af3b-aa26be7acf21,090041ff-e961-4eaf-b06a-ef47525d2739,80ea5703-b2ab-44d5-958e-7b48ef67488c,d37ee8e7-ac65-4989-9f1b-b38835a1e474,f4814196-1f75-4517-a637-99f1fc0f6f65,c9d06c64-eec2-4d23-a3d0-850ba0e87844,a1bcce0f-18f2-4e49-ba53-7c9561dc9686,563b1165-c4a7-4f30-abc1-ebff878b7707,2b4ba48a-e977-47eb-9a52-a075e40cd268,145ff852-3ebb-4314-b544-45b9c5e15baf,42804ec7-323f-407d-83e4-2eae4ae37f66,b82c3889-0c7d-4b01-96bc-11bd13ca3932,7b3da2ae-9413-4fdf-a642-76188cb1f4fd,c5674d1b-87fc-4bf8-9c1e-e21f4d661805,4dedde89-0138-42a9-92cb-0226ba0c4228" Type="Entity" />
       <Value Key="Teaser" Value="&lt;p&gt;Below you'll find a list of topics this tutorial covers. The easiest way to work with it is to look at an example, then look at the code shown below the examples.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -30415,12 +30414,15 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3" Type="Entity" />
+      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3,2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="488a53b5-abad-4877-b974-80b5b48f380f" Type="Entity" />
       <Value Key="Sections" Value="53c53c45-db6c-41c3-8690-82b33795ce0d,ec17a7e7-76f9-4856-aa9d-17441ba3b2cc,0ddb21ee-638f-4312-8e08-d6112bae3275,8c755439-17b1-407b-971d-e629cdd6e198" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Formulas for Pickers / DropDowns&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -30849,12 +30851,15 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3" Type="Entity" />
+      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3,2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="488a53b5-abad-4877-b974-80b5b48f380f" Type="Entity" />
       <Value Key="Sections" Value="962b9657-c7e7-42f2-aa23-1ac296342cc3,005643bd-3d44-43f1-b37d-6cb16d907b5b,5d8d9dc1-fcef-44f1-a920-de3cf8ab971b,ce8a8e96-9627-415f-a434-edd21a75ea22" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Formulas affecting Field Settings&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -31248,12 +31253,15 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3" Type="Entity" />
+      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3,2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="488a53b5-abad-4877-b974-80b5b48f380f" Type="Entity" />
       <Value Key="Sections" Value="4c54a6a2-9bca-4168-aa57-3f1d0a3a8e57,12dcfc01-1b7e-4d45-acde-7586df118f36,a38d5de7-d343-445b-bf26-81fc81724517,a232689d-2dbe-4ca2-87bd-7ed5ab5ed439,55b31ee9-3556-4807-9072-5daa10d46a08" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Formulas affecting Groups of Fields&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -31367,12 +31375,15 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3" Type="Entity" />
+      <Value Key="Notes" Value="e3aaad44-faa5-4acf-b49d-0a615e6f2be3,2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="488a53b5-abad-4877-b974-80b5b48f380f" Type="Entity" />
       <Value Key="Sections" Value="00b93e81-4c33-491e-8133-5850e764665a,948ab26e-2ca7-45a9-a56a-3525504e0a67" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Advanced Formula APIs&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -31916,7 +31927,7 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Notes" Value="e2ff5575-5b99-4fdf-8087-5431d021a41e" Type="Entity" />
+      <Value Key="Notes" Value="e2ff5575-5b99-4fdf-8087-5431d021a41e,2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -35878,6 +35889,7 @@
       <Value Key="Note" Value="&lt;p&gt;Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (…). &lt;br&gt;The toolbars would usually only appear on hover, but the Tutorial runs in Demo-Mode so you can see them right away. The old samples still only work on hover. &lt;br&gt;Hover over the various boxes to see the result - like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img style=&quot;width: 50%; display: block; margin-left: auto; margin-right: auto;&quot; src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/qDUZAHFvv0y84E79sFgVGw/Note/hover-example.jpg&quot; alt=&quot;hover-example&quot; data-cmsid=&quot;file:hover-example.jpg&quot;&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Notes" Value="2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -35933,7 +35945,7 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Notes" Value="3e14a6fc-7981-4595-984d-e3e640ca2bbf" Type="Entity" />
+      <Value Key="Notes" Value="3e14a6fc-7981-4595-984d-e3e640ca2bbf,2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -36043,6 +36055,7 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Notes" Value="2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -36176,10 +36189,14 @@
       <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="Notes" Value="2dd278b6-52ac-4b06-bf7f-493f890f09fa" Type="Entity" />
       <Value Key="OutputAndSourceDisplay" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="05103e11-8b25-4598-b394-978f3444d269" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Formulas using Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -36976,6 +36993,59 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="hybrid-razor-preprocessor-limitations - Important Limitations to Preprocessors in Razor" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="b98eacce-566f-42ce-ac37-3870a1b79e3e" AttributeSetName="TutorialNote" EntityGUID="2dd278b6-52ac-4b06-bf7f-493f890f09fa">
+      <Value Key="CshtmlFile" Value="/tut-sys/messages/WarnAnonymousIfFeatureIsOff.cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Images" Value="" Type="Hyperlink" />
+      <Value Key="NameId" Value="warn-if-publiceditform-disabled" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteSource" Value="cshtml" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteType" Value="warning" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TitleForPicker" Value="warn-if-publiceditform-disabled - " Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="4d368e79-d3ad-4a3f-94e9-1dce632cc18f" Json="True" KeyString="17ca6dd5-5bb6-46d2-9e01-71c45d88dab8">
+      <Value Key="AdditionalSettings" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Tutorial Sequence" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
