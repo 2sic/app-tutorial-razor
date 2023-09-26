@@ -71,6 +71,7 @@ public class Accordion: Custom.Hybrid.CodeTyped
     "data",
     "datasources",
     "hybrid",
+    "img",
     "items",
     "js",
     "json",
