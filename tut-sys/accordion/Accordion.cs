@@ -112,10 +112,10 @@ public class Accordion: Custom.Hybrid.CodeTyped
     var fullPath = Sys.SourceCode.FileHandler.GetFullPath(filePath);
     if (System.IO.File.Exists(fullPath)) {
       fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);
-      return true;
+      return l(true, "exists");
     }
     fileName = null;
-    return false;
+    return l(false, "not found");
   }
 
   private const string AutoPartName = "auto-part-";

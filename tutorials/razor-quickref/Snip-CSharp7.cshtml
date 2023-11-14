@@ -1,0 +1,59 @@
+@inherits Custom.Hybrid.Razor14
+<h2>C# 6 Features</h2>
+<p>
+  Demonstrates C# 6 features in Razor views.
+</p>
+<h3>Call various properties / functions C# 6</h3>
+<ol>
+  <li>Expression bodied Function: @GetAge()</li>
+  <li>Expression bodied Property: @Age</li>
+  <li>Auto property initializer: @AgeProperty</li>
+  <li>Read-Only property initializer: @AgeReadOnlyProp</li>
+</ol>
+@functions {
+  // expression bodied function - C# 6.0
+  public string GetAge() => "62";
+
+  // expression bodied properties - C# 6.0
+  public int Age => 62;
+
+  // Auto property initializers - C# 6.0
+  public int AgeProperty { get; set; } = 62;
+  public int AgeReadOnlyProp { get; } = 62;
+
+  // Index initializers - C# 6.0
+  public Dictionary<string, string> Dict => new Dictionary<string, string>() {
+    ["key1"] = "value1",
+    ["key2"] = "value2",
+    ["key2"] = "value3"  // this will overwrite the previous value
+  };
+}
+
+@{
+  const int old = 60;
+  const string isOld = "this guy is old";
+  const string notOld = "this guy is not old";
+  var age = 62;
+
+  string testNull = null;
+  var length = testNull?.Length;
+
+  var array = new[] { 1, 2, 3 };
+  var first = array?[0];
+
+  var message = $"this is a {nameof(age)}";
+}
+<p>
+  Show old/not old based on Terry's age using
+  <code>@@if</code> and <code>@@else</code>:
+  @if (age > old) {
+    @isOld
+  } else {
+    @notOld
+  }
+</p>
+<p>
+  Ternare show old/not old based on age <code>? ... : </code>:
+  @(age > old ? isOld : notOld)
+</p>
+
