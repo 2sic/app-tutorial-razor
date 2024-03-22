@@ -88,7 +88,7 @@ namespace AppCode.Source
           // Tab bodies - must open the first one
           BsTabs.TabContentGroupOpen(),
           // Open the first tab-body item IF the snippet is right after this
-          (firstName == Constants.ResultTabName || firstName == Constants.ResultAndSourceTabName)
+          (firstName == ResultTabName || firstName == ResultAndSourceTabName)
             ? BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), firstIsActive)
             : null,
           // If we have a source-wrap, add it here
@@ -124,15 +124,15 @@ namespace AppCode.Source
           html = html.Add("<!-- " + msg + "-->");
 
           // Special: if it's the ResultTab (usually the first) - close
-          if (name == Constants.ResultTabName) {
-            Log.Add("Contents of: " + Constants.ResultTabName);
+          if (name == ResultTabName) {
+            Log.Add("Contents of: " + ResultTabName);
             if (SourceWrap != null) html = html.Add(SourceWrap.OutputClose());
             html = html.Add(BsTabs.TabContentClose());
             continue;
           }
 
           // Special case: Source-and-Result Tab
-          if (name == Constants.ResultAndSourceTabName) {
+          if (name == ResultAndSourceTabName) {
             Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
             html = html.Add(SourceWrap != null ? SourceWrap.OutputClose() : null, SourceWrapped());
             // Reliably close the "Content" section IF it had been opened
@@ -143,9 +143,9 @@ namespace AppCode.Source
           var nameId = Name2TabId(name);
 
           // Special case: Source Tab
-          if (m == Constants.SourceTabName) {
-            Log.Add("Contents of: " + Constants.SourceTabName);
-            html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == Constants.SourceTabName));
+          if (m == SourceTabName) {
+            Log.Add("Contents of: " + SourceTabName);
+            html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
             continue;
           }
 
@@ -186,16 +186,16 @@ namespace AppCode.Source
         if (item == null) return result;
 
         // Handle case Tutorials
-        if (strResult == Constants.TutorialsTabName) {
+        if (strResult == TutorialsTabName) {
           var liLinks = Item.Children("Tutorials").Select(tutPage => "\n    " + ScParent.Sys.TutPageLink(tutPage) + "\n");
           return Tag.Ol(liLinks);
         }
 
         // Handle case Notes
-        if (strResult == Constants.NotesTabName) {
-          if (item.IsEmpty(Constants.NotesFieldName)) return Constants.NotesTabName + " not found";
+        if (strResult == NotesTabName) {
+          if (item.IsEmpty(NotesFieldName)) return NotesTabName + " not found";
 
-          var notesHtml = item.Children(Constants.NotesFieldName).Select(tMd => Tag.RawHtml(
+          var notesHtml = item.Children(NotesFieldName).Select(tMd => Tag.RawHtml(
             "\n    ",
             Tag.Div().Class("alert alert-" + tMd.String("NoteType"))
               .Attr(ScParent.Kit.Toolbar.Empty().Edit(tMd))
@@ -209,8 +209,8 @@ namespace AppCode.Source
         }
 
         // handle case In-Depth Explanations
-        if (strResult == Constants.InDepthTabName) {
-          if (item.IsEmpty(Constants.InDepthField)) return InDepthTabName + " not found";
+        if (strResult == InDepthTabName) {
+          if (item.IsEmpty(InDepthField)) return InDepthTabName + " not found";
           return Tag.RawHtml(
             "\n",
             item.String(InDepthField),

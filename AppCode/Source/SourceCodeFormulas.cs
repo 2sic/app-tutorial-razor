@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ToSic.Sxc.Edit.Toolbar;
+using AppCode.Data;
 
 namespace AppCode.Source
 {
@@ -24,11 +25,10 @@ namespace AppCode.Source
     #region Predefined Samples
 
     public ITypedItem Specs(string sampleId) {
-      var list = AsItems(App.Data["TutFormulaSample"]);
+      var list = App.Data.GetAll<TutFormulaSample>(); // AsItems(App.Data["TutFormulaSample"]);
 
-      var found = list.FirstOrDefault(s => string.Equals(s.String("TutorialId"), sampleId, StringComparison.InvariantCultureIgnoreCase));
-      if (found == null)
-        throw new Exception("Sample " + sampleId + " not found");
+      var found = list.FirstOrDefault(s => string.Equals(s.TutorialId, sampleId, StringComparison.InvariantCultureIgnoreCase))
+        ?? throw new Exception("Sample " + sampleId + " not found");
       return found;
     }
 

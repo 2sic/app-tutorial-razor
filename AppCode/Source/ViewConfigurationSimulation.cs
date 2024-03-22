@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AppCode.Output;
 using AppCode.Tutorial;
+using AppCode.Data;
 
 // 2sxclint:disable:no-EntityTitle-in-quotes
 
@@ -76,12 +77,14 @@ namespace AppCode.Source
         cList = cList.Add(t.Li("Query: ", t.Strong(QueryName)));
 
         var qInfoKey = "query-" + QueryName.ToLowerInvariant();
-        var qInfoEntity = App.Data["TutorialObjectInfo"].List.FirstOrDefault(i => i.Get<string>("NameId").ToLowerInvariant() == qInfoKey);
-        if (qInfoEntity != null) {
-          var qInfo = AsItem(qInfoEntity);
+
+        var qInfo = App.Data
+          .GetAll<TutorialObjectInfo>()
+          .FirstOrDefault(i => i.NameId.ToLowerInvariant() == qInfoKey);
+        if (qInfo != null) {
           queryDetails = queryDetails.Add(
-            t.H5("Details for " + qInfo.String("Title")).Attr(Kit.Toolbar.Empty().Edit(qInfo)),
-            qInfo.String("Description"),
+            t.H5("Details for " + qInfo.Title).Attr(Kit.Toolbar.Empty().Edit(qInfo)),
+            qInfo.Description,
             Fancybox.Gallery(qInfo, "Images")
           );
         } else {

@@ -22,7 +22,7 @@ namespace AppCode.Source
     public string TabSelected {get; set;}
     protected TagCount TagCount;
     protected string Name;
-    private bool ToolbarForAnonymous { get { return _toolbarForAnon ?? (_toolbarForAnon = Section.Item.Bool("ToobarsForAnonymous")).Value; } }
+    private bool ToolbarForAnonymous => _toolbarForAnon ??= (_toolbarForAnon = Section.Item.Bool("ToobarsForAnonymous")).Value;
     private bool? _toolbarForAnon;
     public virtual ITag OutputOpen() {
       // Special feature for Toolbar Demos
