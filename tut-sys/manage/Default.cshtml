@@ -1,5 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
-
+@using AppCode.Tutorial
 <h1>Manage Tutorials</h1>
 <p>
   This is an overview over all tutorials / snippets to better manage them and keep an overview.
@@ -12,7 +12,7 @@
 }
 
 @{
-  var homeList = AsItem(App.Data.GetStream("Tutorial"));
+  var homeList = AsItem(App.Data.GetStream("TutorialSequence"));
   var sectionsInHome = homeList.Children("Sections");
   var allTutGroups = AsItems(App.Data.GetStream("TutorialGroup"));
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
+using AppCode.Source;
+using AppCode.Output;
 
 public class Sys: Custom.Hybrid.CodeTyped
 {
@@ -19,14 +21,14 @@ public class Sys: Custom.Hybrid.CodeTyped
 
   public string Path {get;set;}
 
-  public object SourceCode { get { return _sourceCode ?? (_sourceCode = GetCode("./source/SourceCode.cs").Init(this, Path)); } }
-  private object _sourceCode;
+  public SourceCode SourceCode => _sourceCode ??= GetService<SourceCode>().Init(this, Path);
+  private SourceCode _sourceCode;
 
-  public object Fancybox { get { return _fancybox ?? (_fancybox = GetCode("../Shared/Fancybox.cs")); } }
-  private object _fancybox;
+  public Fancybox Fancybox => _fancybox ??= GetService<Fancybox>(); // (_fancybox = GetCode("../Shared/Fancybox.cs")); } }
+  private Fancybox _fancybox;
 
-  public object ToolbarHelpers { get { return _tlbHelpers ?? (_tlbHelpers = GetCode("./ToolbarHelpers.cs")); } }
-  private object _tlbHelpers;
+  public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
+  private ToolbarHelpers _tlbHelpers;
 
   #region New Links to the new setup
 

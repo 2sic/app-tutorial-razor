@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AppCode.Source;
 
 // 2sxclint:disable:avoid-dynamic
 
@@ -41,18 +42,18 @@ public class SourceCode: Custom.Hybrid.CodeTyped
   public SourceCode Init(dynamic sys, string path) {
     Sys = sys;
     Path = path;
-    BsTabs = GetCode("BootstrapTabs.cs");
+    BsTabs = GetService<BootstrapTabs>();
     return this;
   }
   public TagCount TagCount = new TagCount("SourceCode", true);
   public dynamic Sys {get;set;}
   public string Path { get; set; }
-  private dynamic BsTabs {get;set;}
+  private BootstrapTabs BsTabs {get;set;}
 
-  public dynamic Formulas { get { return _formulas ?? (_formulas = GetCode("SourceCodeFormulas.cs")).Init(this); } }
+  public SourceCodeFormulas Formulas { get { return _formulas ?? (_formulas = GetService<SourceCodeFormulas>() /* GetCode("SourceCodeFormulas.cs")*/).Init(this); } }
   private dynamic _formulas;
 
-  public dynamic FileHandler { get { return _fileHandler ?? (_fileHandler = GetCode("FileHandler.cs")).Init(Path); } }
+  public FileHandler FileHandler { get { return _fileHandler ?? (_fileHandler = GetService<FileHandler>()).Init(Path) ; } }
   private dynamic _fileHandler;
 
   #endregion
@@ -158,7 +159,7 @@ public class SourceCode: Custom.Hybrid.CodeTyped
       SourceWrap = sourceCode.GetSourceWrap(this, item);
       TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
       SourceFile = sourceFile;
-      ViewConfig = ScParent.GetCode("./ViewConfigurationSimulation.cs").Setup(ScParent.Sys, this.TabHandler);
+      ViewConfig = ScParent.GetService<ViewConfigurationSimulation>().Setup(ScParent.Sys, this.TabHandler);
     }
     internal SourceCode ScParent;
     private dynamic BsTabs;

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AppCode.Source;
 
 // 2sxclint:disable:avoid-dynamic
 
@@ -26,11 +27,11 @@ public class FileHandler: Custom.Hybrid.CodeTyped
 
   public FileHandler Init(string path) {
     Path = path;
-    SourceProcessor = GetCode("./SourceProcessor.cs");
+    SourceProcessor = GetService<SourceProcessor>();
     return this;
   }
   public string Path { get; set; }
-  private dynamic SourceProcessor { get; set; }
+  private /* dynamic */ SourceProcessor SourceProcessor { get; set; }
 
   #endregion
 
@@ -142,7 +143,7 @@ public class FileHandler: Custom.Hybrid.CodeTyped
       path = specs.Path;  // update in case of error
       errPath = debug ? specs.FullPath : path;
       title = title ?? "Source Code of " + (Text.Has(specs.FileName)
-        ? titlePath + specs.FileName  // "Source code of .../Fancybox.cs"
+        ? titlePath + specs.FileName  // "Source code of .../SomeCodeFile.cs"
         : "this " + specs.Type); // "this snippet" vs "this file"
       specs.Expand = expand ?? specs.Expand;
       specs.Wrap = wrap ?? specs.Wrap;

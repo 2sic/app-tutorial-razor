@@ -1,8 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
-@using System.Linq;
-@using ToSic.Sxc.Data;
+@using System.Linq
+@using ToSic.Sxc.Data
+@using AppCode.Tutorial
 @{
-  var Sys = GetCode("../Sys.cs");
+  var Sys = GetService<Sys>(); //.Init(this);
 
   var sequence = AsItem(App.Data.GetStream("TutorialSequence"));
 

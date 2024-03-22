@@ -1,5 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
+@using ToSic.Razor.Blade
+@using AppCode.Tutorial
 @{
   var myParams = MyPage.Parameters;
   var tutorialGroup = myParams.IsNotEmpty("tut") ? myParams.String("tut") + "-page" : MyModel.String("TutorialGroupId");
@@ -9,7 +10,7 @@
   // Find the parent, which has Segment Title, Link, etc.
   var segment = tutPage.Parents(type: "TutorialSection").FirstOrDefault();
 
-  var Sys = GetCode("../Sys.cs").Init(this);
+  var Sys = GetService<Sys>().Init(this);
 }
 @Html.Partial("./Header.cshtml", new { Sys, segment, tutPage })
 
