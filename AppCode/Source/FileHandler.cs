@@ -1,18 +1,10 @@
 using ToSic.Eav.Data;
-using ToSic.Eav.DataSource;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
-using ToSic.Sxc.Code;
 using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using AppCode.Source;
-
-// 2sxclint:disable:avoid-dynamic
 
 namespace AppCode.Source
 {
@@ -33,7 +25,7 @@ namespace AppCode.Source
       return this;
     }
     public string Path { get; set; }
-    private /* dynamic */ SourceProcessor SourceProcessor { get; set; }
+    private SourceProcessor SourceProcessor { get; set; }
 
     #endregion
 

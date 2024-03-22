@@ -1,10 +1,8 @@
 using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 // 2sxclint:disable:no-Presentation-in-quotes - it's just used as a css-class below
 

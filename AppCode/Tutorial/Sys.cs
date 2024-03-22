@@ -1,7 +1,4 @@
 using Custom.Hybrid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
 using AppCode.Source;
@@ -27,7 +24,7 @@ namespace AppCode.Tutorial
     public SourceCode SourceCode => _sourceCode ??= GetService<SourceCode>().Init(this, Path);
     private SourceCode _sourceCode;
 
-    public Fancybox Fancybox => _fancybox ??= GetService<Fancybox>(); // (_fancybox = GetCode("../Shared/Fancybox.cs")); } }
+    public Fancybox Fancybox => _fancybox ??= GetService<Fancybox>();
     private Fancybox _fancybox;
 
     public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();

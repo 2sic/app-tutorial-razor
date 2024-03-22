@@ -1,14 +1,13 @@
 using ToSic.Eav.Data;
 using ToSic.Eav.DataSource;
 using ToSic.Razor.Blade;
-using ToSic.Razor.Html5;
-using ToSic.Razor.Markup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AppCode.Output;
+using AppCode.Tutorial;
 
 // 2sxclint:disable:no-EntityTitle-in-quotes
-// 2sxclint:disable:avoid-dynamic
 
 namespace AppCode.Source
 {
@@ -21,14 +20,14 @@ namespace AppCode.Source
 
     private const string ViewConfigCode = "ViewConfig";
 
-    public ViewConfigurationSimulation Setup(dynamic sys, dynamic tabHandler) {
+    public ViewConfigurationSimulation Setup(Sys sys, TabManager tabHandler) {
       TabHandler = tabHandler;
       Fancybox = sys.Fancybox;
       return this;
     }
 
-    internal dynamic TabHandler;
-    private dynamic Fancybox;
+    internal TabManager TabHandler;
+    private Fancybox Fancybox;
 
     #endregion
 
@@ -105,7 +104,7 @@ namespace AppCode.Source
       var l = Log.Call<IEnumerable<IEntity>>("type: " + type + "; nameId: " + nameId + "; query: " + query + "; stream: " + stream);
       // Prepare: Verify the Tab "ViewConfig" was specified
       // throw new Exception("th:" + TabHandler);
-      var th = TabHandler as dynamic;
+      var th = TabHandler;
       if (th.Tabs == null || !th.Tabs.ContainsKey(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 

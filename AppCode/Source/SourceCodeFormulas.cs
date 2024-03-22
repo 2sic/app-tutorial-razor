@@ -1,14 +1,10 @@
 using ToSic.Razor.Blade;
-using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
 using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-
-// 2sxclint:disable:avoid-dynamic
+using ToSic.Sxc.Edit.Toolbar;
 
 namespace AppCode.Source
 {
@@ -16,12 +12,12 @@ namespace AppCode.Source
   {
     #region Init / Dependencies
 
-    public SourceCodeFormulas Init(dynamic sourceCode) {
+    public SourceCodeFormulas Init(SourceCode sourceCode) {
       SourceCode = sourceCode;
       return this;
     }
 
-    private dynamic SourceCode { get; set; }
+    private SourceCode SourceCode { get; set; }
 
     #endregion
 
@@ -133,7 +129,7 @@ namespace AppCode.Source
     public string IconSvg() { return iconSvg; }
     
     // also used in the 100 basics formula tests
-    public dynamic DemoToolbar(ITypedItem item, string moreUi = null, string moreParams = null) {
+    public IToolbarBuilder DemoToolbar(ITypedItem item, string moreUi = null, string moreParams = null) {
       return Kit.Toolbar.Empty().New(item.String("ContentType"), ui: new object[] { new { icon = iconSvg }, moreUi }, parameters: moreParams);
     }
 
