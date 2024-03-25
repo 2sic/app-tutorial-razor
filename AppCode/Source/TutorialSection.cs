@@ -140,7 +140,7 @@ namespace AppCode.Source
           // Special case: Source-and-Result Tab
           if (name == ResultAndSourceTabName) {
             Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
-            html = html.Add(SourceWrap != null ? SourceWrap.OutputClose() : null, SourceWrapped());
+            html = html.Add(SourceWrap?.OutputClose(), SourceWrapped());
             // Reliably close the "Content" section IF it had been opened
             html = html.Add(BsTabs.TabContentClose());
             continue;
@@ -149,7 +149,7 @@ namespace AppCode.Source
           var nameId = Name2TabId(name);
 
           // Special case: Source Tab
-          if (m == SourceTabName) {
+          if (m as string == SourceTabName) {
             Log.Add("Contents of: " + SourceTabName);
             html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
             continue;

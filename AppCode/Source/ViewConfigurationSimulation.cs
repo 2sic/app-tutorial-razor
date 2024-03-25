@@ -67,8 +67,11 @@ namespace AppCode.Source
       );
 
       // Header
-      if (HeaderType.Has()) cList = cList.Add(t.Li("Header Type: ", t.Strong(HeaderType)));
-      if (HeaderItem != null) cList = cList.Add(t.Li("Header Item: ", t.Strong(HeaderItem.Get("EntityTitle")), " (ID: " + HeaderItem.EntityId + ")"));
+      if (HeaderType.Has())
+        cList = cList.Add(t.Li("Header Type: ", t.Strong(HeaderType)));
+
+      if (HeaderItem != null)
+        cList = cList.Add(t.Li("Header Item: ", t.Strong(HeaderItem.Get("EntityTitle")), " (ID: " + HeaderItem.EntityId + ")"));
 
       // Query - with details and images
       var queryDetails = t.RawHtml();
@@ -80,6 +83,7 @@ namespace AppCode.Source
         var qInfo = App.Data
           .GetAll<TutorialObjectInfo>()
           .FirstOrDefault(i => i.NameId.ToLowerInvariant() == qInfoKey);
+
         if (qInfo != null) {
           queryDetails = queryDetails.Add(
             t.H5("Details for " + qInfo.Title).Attr(Kit.Toolbar.Empty().Edit(qInfo)),
@@ -88,7 +92,10 @@ namespace AppCode.Source
           );
         } else {
           // add toolbar if no info yet
-          queryDetails = queryDetails.Add(t.P("No details yet for " + QueryName).Attr(Kit.Toolbar.Empty().New("TutorialObjectInfo", prefill: new { NameId = qInfoKey })));
+          queryDetails = queryDetails.Add(
+            t.P("No details yet for " + QueryName)
+              .Attr(Kit.Toolbar.Empty().New("TutorialObjectInfo", prefill: new { NameId = qInfoKey }))
+          );
         }
       }
 
