@@ -1,6 +1,6 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor<string>
 @{
-  var title = MyModel.String("Title");
+  var title = Model; // MyModel.String("Title");
 
   // Set Browser page Title
   Kit.Page.SetTitle(title + " - 2sxc Razor Tutorials for Dnn / Oqtane");
@@ -9,10 +9,10 @@
   var bsCheck = GetCode("../../Shared/Bootstrap5.cs");
   bsCheck.EnsureBootstrap5();
 
-  var hdHlp = GetCode("./HeaderHelpers.cs");
+  var hdHlp = new AppCode.Razor.HeaderHelpers();
 }
 
-@hdHlp.AddMainLogo("app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
+@hdHlp.AddMainLogo(App, "app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")
 <h1 class="col-auto p-0" @Kit.Toolbar.Default()>
   @title
 </h1>

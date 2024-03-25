@@ -1,16 +1,16 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor<NavigationModel>
 @using System.Linq
 @using ToSic.Razor.Blade
+@using AppCode.Razor
 @{
-  var Sys = MyModel.Code("Sys");
-  var hdHlp = GetCode("../layout/HeaderHelpers.cs");
+  var hdHlp = new HeaderHelpers();
 
-  var tutPage = MyModel.Item("TutPage");
+  var tutPage = Model.TutGroup;
 
-  var segment = MyModel.Item("Segment");
-  var title = segment.String("SegmentTitle");
-  var sectionName = segment.String("SegmentName");
-  var sectionLink = "#" + segment.String("NameId");
+  var segment = Model.Section;
+  var title = segment.SegmentTitle;
+  var sectionName = segment.SegmentName;
+  var sectionLink = "#" + segment.NameId;
 
   // Toolbar
   var segmentToolbar = Kit.Toolbar.Empty()
@@ -20,15 +20,15 @@
 
 <div @segmentToolbar class="mb-2">
   @if (segment.IsNotEmpty("FeatureSet")) {
-    var fs = segment.Child("FeatureSet");
+    var fs = segment.FeatureSet;
     if (fs.IsNotEmpty("Icon")) {
-      @hdHlp.AddFeatureIconFromSegment(fs.Url("Icon"), fs.Url("Link"))
+      @hdHlp.AddFeatureIconFromSegment(fs.Icon, fs.Link)
     }
   }
 
-  @Html.Partial("../Layout/Title and Assets.cshtml", new { Sys, title })
+  @Html.Partial("../Layout/Title and Assets.cshtml", title)
   
-  @Html.Partial("../Layout/Breadcrumb.cshtml", new { Sys, Topic = sectionName, TopicUrl = sectionLink })
+  @Html.Partial("../Layout/Breadcrumb.cshtml", new { Topic = sectionName, TopicUrl = sectionLink })
 </div>
 
 @* Assets, Page Headers, OpenGraph etc. *@

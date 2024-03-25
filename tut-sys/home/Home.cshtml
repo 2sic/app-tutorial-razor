@@ -1,11 +1,10 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor
 @using System.Linq
 @using ToSic.Sxc.Data
+@using AppCode.Data
 @using AppCode.Tutorial
 @{
-  var Sys = GetService<Sys>(); //.Init(this);
-
-  var sequence = AsItem(App.Data.GetStream("TutorialSequence"));
+  var sequence = App.Data.GetAll<TutorialSequence>().First();
 
   // Set Title etc.
   var pageTitle = sequence.String("Title") + " (" + App.Configuration.Version + ")";
@@ -13,8 +12,8 @@
   Kit.Page.SetTitle(pageTitle + " - 2sxc Razor Tutorials for Dnn / Oqtane");
 
   // Get Sharing Data and set OpenGraph headers
-  var homeShareData = AsItem(App.Data.GetStream("TutorialGroup").FirstOrDefault(tg => tg.Get<string>("NameId") == "home-page"));
-  @Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage = homeShareData })
+  var homeShareData = App.Data.GetAll<TutorialGroup>().FirstOrDefault(tg => tg.NameId == "home-page");
+  SetOpenGraph(homeShareData);
 
   var shareToolbar = Kit.Toolbar.Empty()
     .Settings(hover: "left")
@@ -23,7 +22,7 @@
 
 @* Header with Title and various toolbars *@
 <div @shareToolbar>
-  @Html.Partial("../layout/Title and Assets.cshtml", new { Sys, Title = pageTitle })
+  @Html.Partial("../layout/Title and Assets.cshtml", pageTitle)
 </div>
 @sequence.Html("Teaser")
 
@@ -33,8 +32,8 @@
   @{
     ITypedItem currentCategory = null;
   }
-  @foreach (var section in sequence.Children("Sections")) {
-    var category = section.Child("Category");
+  @foreach (var section in sequence.Sections) {
+    var category = section.Category;
     if (category != null && !category.Equals(currentCategory)) {
       currentCategory = category;
       <h2 class="mt-5" @Kit.Toolbar.Empty().Edit(category)>@category.Title</h2>

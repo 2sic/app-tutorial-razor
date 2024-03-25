@@ -1,4 +1,4 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor
 @using ToSic.Razor.Blade
 @using AppCode.Data
 @using AppCode.Razor
@@ -12,20 +12,20 @@
   var tutPage = App.Data.GetAll<TutorialGroup>().FirstOrDefault(i => i.String("NameId") == tutorialGroup);
 
   // Find the parent, which has Segment Title, Link, etc.
-  var segment = tutPage.Parents(type: "TutorialSection").FirstOrDefault();
+  var segment = tutPage.Parent<TutorialSection>();
 
-  var Sys = GetService<Sys>().Init(this);
+  var headNavData = new NavigationModel { Sys = Sys, Section = segment, TutGroup = tutPage };
+
+  SetOpenGraph(tutPage);
 }
-@Html.Partial("./Header.cshtml", new { Sys, segment, tutPage })
+@Html.Partial("./Header.cshtml", headNavData)
 
 @* Get the toolbar for: < previous | # Current | Next > *@
-@Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
+@Html.Partial("./Navigation.cshtml", headNavData)
 
 
 @Html.Partial("../Accordion/Accordion One.cshtml", new AccordionOneModel { Sys = Sys, TutPage = tutPage, NameId = tutorialGroup })
 
 @* Footer *@
 @* Get the toolbar for: < previous | # Current | Next > *@
-@Html.Partial("./Navigation.cshtml", new { Sys, segment, tutPage })
-
-@Html.Partial("../layout/OpenGraph.cshtml", new { Sys, tutPage })
+@Html.Partial("./Navigation.cshtml", headNavData)

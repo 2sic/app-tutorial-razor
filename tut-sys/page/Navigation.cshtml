@@ -1,35 +1,39 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor<NavigationModel>
 @using System.Linq
-@using ToSic.Sxc.Data;
+@using ToSic.Sxc.Data
+@using AppCode.Data
+@using AppCode.Razor
 @{
-  // Expect the calling page to give us it's Sys object
-  // which contains a lot of shared functionality
-  var Sys = MyModel.Code("Sys");
-  var segment = MyModel.Item("Segment");
-  var tutPage = MyModel.Item("TutPage");
-
   // Enable Fa5 for icons
   Kit.Page.Activate("FontAwesome5");
 
-  // Get current datasets
-  var sortedTutorialSections = AsItem(App.Data["TutorialSequence"]).Children("Sections").ToList();
-  var tutorialSectionIndex = segment != null ? sortedTutorialSections.FindIndex(section => section.Id == segment.Id) : 0;
-
-  if (segment == null) {
+  if (Model.Section == null) {
     return;
   }
 
+  // Expect the calling page to give us it's Sys object
+  // which contains a lot of shared functionality
+  var Sys = Model.Sys;
+  var currentSection = Model.Section;
+  var tutPage = Model.TutGroup;
+
+  // Get current datasets
+  var sortedTutorialSections = App.Data.GetAll<TutorialSequence>().First().Sections.ToList();
+  var sectionIndex = currentSection != null
+    ? sortedTutorialSections.FindIndex(section => section.Id == currentSection.Id)
+    : 0;
+
 
   // Get List information
-  var tutGroups = segment.Children("TutorialGroups").ToList();
+  var tutGroups = currentSection.TutorialGroups.ToList();
   var currentIndex = tutGroups.FindIndex(tg => tg.Id == tutPage.Id);
-  var homeTarget = Link.To(parameters: MyPage.Parameters.Remove("tut")) + "#" + segment.String("NameId");
+  var homeTarget = Link.To(parameters: MyPage.Parameters.Remove("tut")) + "#" + currentSection.NameId;
 
   // Previous Tutorial
   var prev = currentIndex > 0 
     ? tutGroups[currentIndex - 1] 
-    : tutorialSectionIndex > 0 
-      ? sortedTutorialSections[tutorialSectionIndex - 1].Children("TutorialGroups").LastOrDefault() 
+    : sectionIndex > 0 
+      ? sortedTutorialSections[sectionIndex - 1].Children("TutorialGroups").LastOrDefault() 
       : null;
 
   // Previous Tutorial Metadata
@@ -38,41 +42,46 @@
   // Next Tutorial
   var next = currentIndex < tutGroups.Count() - 1 
     ? tutGroups[currentIndex + 1] 
-    : tutorialSectionIndex < sortedTutorialSections.Count() - 1
-      ? sortedTutorialSections[tutorialSectionIndex + 1].Children("TutorialGroups").FirstOrDefault() 
+    : sectionIndex < sortedTutorialSections.Count() - 1
+      ? sortedTutorialSections[sectionIndex + 1].Children("TutorialGroups").FirstOrDefault() 
       : null;
 
 
   // Next Tutorial Metadata
   var nextTutorialTarget = Sys.TutPageUrl(next) ?? homeTarget;
+}
+<div class="alert alert-dark container-fluid">
+  <div class="row justify-content-between">
 
-  <div class="alert alert-dark container-fluid">
-    <div class="row justify-content-between">
-      <div class="col-4 text-truncate">
-        <a href="@previousTutorialTarget" class="row">
-          <div class="col-auto">
-            <i class="fas fa-chevron-left"></i>
-          </div>
-          <div class="col text-truncate">
-            @(Html.Raw(prev != null ? prev.String(prev.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: true) : "Home"))
-          </div>
-        </a>
-      </div>
-      <div class="col-4 text-center text-truncate">
-        <strong>
-          #@(currentIndex + 1) @Html.Raw(tutPage.String(tutPage.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: true))
-        </strong>
-      </div>
-      <div class="col-4 text-end text-right">
-        <a href="@nextTutorialTarget" class="row">
-          <div class="col text-truncate">
-            @(Html.Raw(next != null ? next.String(next.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: true): "Home"))
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-chevron-right"></i>
-          </div>
-        </a>
-      </div>
+    @* Link to Previous *@
+    <div class="col-4 text-truncate">
+      <a href="@previousTutorialTarget" class="row">
+        <div class="col-auto">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="col text-truncate">
+          @(Html.Raw(prev != null ? prev.String(prev.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: true) : "Home"))
+        </div>
+      </a>
+    </div>
+
+    @* Current Tutorial Title *@
+    <div class="col-4 text-center text-truncate">
+      <strong>
+        #@(currentIndex + 1) @Html.Raw(tutPage.String(tutPage.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: true))
+      </strong>
+    </div>
+
+    @* Link to Next *@
+    <div class="col-4 text-end text-right">
+      <a href="@nextTutorialTarget" class="row">
+        <div class="col text-truncate">
+          @(Html.Raw(next != null ? next.String(next.IsNotEmpty("LinkTitle") ? "LinkTitle" : "Title", scrubHtml: true): "Home"))
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </a>
     </div>
   </div>
-}
+</div>

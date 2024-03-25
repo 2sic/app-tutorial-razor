@@ -18,24 +18,24 @@
   }
 
   // Get the accordion specs - Either the "Page" or the Section inside the page
-  var accSpecs = Model.TutPage;
+  var tutGroup = Model.TutPage;
 
   // Get Accordion code
-  var accordion = GetService<Accordion>().Setup(Model.Sys, /* Model.Variant */ "", item: accSpecs);
+  var accordion = GetService<Accordion>().Setup(Model.Sys, /* Model.Variant */ "", item: tutGroup);
 }
 
-@if (accSpecs != null) {
+@if (tutGroup != null) {
   // Check if this is a "Page" - WIP
-  if (accSpecs.IsNotEmpty("Accordions")) {
+  if (tutGroup.IsNotEmpty("Accordions")) {
     @Html.Partial("./Accordion Multi.cshtml", new AccordionMultiModel {
-      TutorialGroup = accSpecs,
+      TutorialGroup = tutGroup,
       Recursions = recursions,
       Accordion = accordion
     });
   } else {
     @Html.Partial("./Section Block.cshtml", new SectionBlockModel {
       Accordion = accordion,
-      TutorialGroup = accSpecs,
+      TutorialGroup = tutGroup,
       SkipPageTools = false,
       Recursions = recursions
     })

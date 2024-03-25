@@ -1,4 +1,4 @@
-@inherits AppCode.Razor.AppRazor<ShowSectionModel>
+@inherits AppCode.Razor.AppRazor<Accordion>
 @using ToSic.Razor.Blade
 @using AppCode.Razor
 @using AppCode.Source
@@ -7,12 +7,12 @@
   var Sys = GetService<Sys>().Init(this);
 
   // The accordion is an external helper file, so we must treat it as dyn-amic
-  var acc = Model.Accordion;
+  var acc = Model;
 }
 @foreach (Section acs in acc.Sections(Path, backtrack: "../..")) {
   var item = acs.Item;
   var runCode = item.IsEmpty("Formula");
-  var codeFile = runCode ? acs.SectionFile as string : "ignore";
+  var codeFile = runCode ? acs.SectionFile : "ignore";
   if (codeFile != null) {
     @acs.Start()
       // Check if the file has it's own snip.Start/snip.End
