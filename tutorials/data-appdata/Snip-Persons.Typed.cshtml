@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
-@using System.Linq;
+@using ToSic.Razor.Blade
+@using System.Linq
 <ul>
   @foreach (var person in AsItems(App.Data["Persons"])) {
     <li>
