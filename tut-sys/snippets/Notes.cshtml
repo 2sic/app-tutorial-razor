@@ -1,21 +1,22 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor<AppCode.Data.TutorialGroup>
 @using ToSic.Razor.Blade
+@using AppCode.Data
 @{
-  var item = MyModel.Item("Item");
+  var tutGroup = Model;
 
-  if (item == null || item.IsEmpty("Notes")) {
+  if (tutGroup == null || tutGroup.IsEmpty("Notes")) {
     return;
   }
 
   // Show all the 'shared' notes 
-  foreach (var note in item.Children("Notes")) {
-    if (note.String("NoteSource") == "cshtml") {
+  foreach (var note in tutGroup.Notes) {
+    if (note.NoteSource == "cshtml") {
       <div @Kit.Toolbar.Empty().Edit(note)>
-        @Html.Partial("../../" + note.String("CshtmlFile"))
+        @Html.Partial("../../" + note.CshtmlFile)
       </div>
     } else {
       <div class='alert alert-@note.Attribute("NoteType")'>
-        <h4>@note.String("Title")</h4>
+        <h4>@note.Title</h4>
         @note.Html("Note")
       </div>
     }

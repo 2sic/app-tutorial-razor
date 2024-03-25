@@ -1,6 +1,7 @@
 @inherits AppCode.Razor.AppRazor<SnippetIntroModel>
 @using ToSic.Razor.Blade
 @using AppCode.Razor
+@using AppCode.Source
 @using AppCode.Tutorial
 @{
   var accordion = Model.Accordion;
@@ -19,9 +20,9 @@
   <div class="col-lg-@rightCols order-1 position-relative">
     @if (tutPage != null && hasSpecs) {
       var specs = tutPage.RefSharedSpecs;
-      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Requirements").Section(specs.Requirements)
-      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Resources").Section(specs.Resources)
-      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Related").Section(specs.Tutorials)
+      @(GetService<InfoSectionPart>().Init(Sys, specs, "Requirements").Section(specs.Requirements))
+      @(GetService<InfoSectionPart>().Init(Sys, specs, "Resources").Section(specs.Resources))
+      @(GetService<InfoSectionPart>().Init(Sys, specs, "Related").Section(specs.Tutorials))
     }
 
     @* Only show the collapse / open Accordions button if we have any inner sections *@
@@ -44,7 +45,7 @@
       </div>
     }
     @* Show all the 'shared' notes *@
-    @Html.Partial("./Notes.cshtml", new { Item = tutPage })
+    @Html.Partial("./Notes.cshtml", tutPage )
   </div>
 </div>
 <!-- /TutorialGroup Header -->
