@@ -13,21 +13,15 @@
   var codeFile = runCode ? acs.SectionFile : "ignore";
   if (codeFile != null) {
     @acs.Start()
-      // Check if the file has it's own snip.Start/snip.End
-      // in which case we don't wrap it here, as the file will do the wrapping
-      // this is for more complex samples, which also generate contents for the tabs
-      var containsSnipCode = runCode; // && Sys.SourceCode.FileHandler.FileContainsSnipCode(acs.SectionFile);
+
       var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
       var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
-      if (containsSnipCode) {
-        @Html.Partial(codeFile, data)
-      } else {
-        @snip.SnipStart()
-          if (runCode) {
-            @Html.Partial(codeFile, data)
-          }
-        @snip.SnipEnd()
-      }
+
+      @snip.SnipStart()
+        if (runCode) {
+          @Html.Partial(codeFile, data)
+        }
+      @snip.SnipEnd()
 
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
