@@ -90,27 +90,30 @@ namespace AppCode.Source
       return tabDic;
     }
 
-    private string TryToGetTabsFromSource(string file) {
+    private string TryToGetTabsFromSource(string file)
+    {
       if (!file.Has() || file == Constants.IgnoreSourceFile) return null;
       var srcPath = file.Replace("\\", "/").BeforeLast("/");
-      var src = FileHandler.GetFileContents(file) as string;
-      if (src.Contains("Tut.Tabs=")) {
-        var tabsLine = Text.After(src, "Tut.Tabs=");
-        var tabsBeforeEol = Text.Before(tabsLine, "\n");
-        var tabsString = Text.Before(tabsBeforeEol, "*/") ?? tabsBeforeEol;
-        if (!tabsString.Has()) return null;
-        var tabs = tabsString.Split(',')
-          .Select(t => {
-            var entry = t.Trim();
-            if (!entry.Contains("file:")) return t;
-            var prefix = Text.Before(entry, "file:");
-            var fileName = Text.After(entry, "file:");
-            return prefix + "file:" + srcPath + "/" + fileName;
-          })
-          .ToArray();
-        return string.Join(",", tabs);
-      }
-      return null;
+      var src = FileHandler.GetFileContents(file);
+      if (!src.Contains("Tut.Tabs="))
+        return null;
+
+      var tabsLine = Text.After(src, "Tut.Tabs=");
+      var tabsBeforeEol = Text.Before(tabsLine, "\n");
+      var tabsString = Text.Before(tabsBeforeEol, "*/") ?? tabsBeforeEol;
+      if (!tabsString.Has()) return null;
+      var tabs = tabsString.Split(',')
+        .Select(t =>
+        {
+          var entry = t.Trim();
+          if (!entry.Contains("file:")) return t;
+          var prefix = Text.Before(entry, "file:");
+          var fileName = Text.After(entry, "file:");
+          return prefix + "file:" + srcPath + "/" + fileName;
+        })
+        .ToArray();
+      var result = string.Join(",", tabs);
+      return result;
     }
 
     #endregion

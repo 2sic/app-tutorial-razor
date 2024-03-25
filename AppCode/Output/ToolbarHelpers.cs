@@ -42,13 +42,5 @@ namespace AppCode.Output
       return "";
     }
 
-    public string ToolbarsAutoShowStart(ToSic.Sxc.Services.IToolbarService toolbarService) {
-      toolbarService.ActivateDemoMode(ui: "show=always");
-      return null;
-    }
-    public string ToolbarsAutoShowEnd(ToSic.Sxc.Services.IToolbarService toolbarService) {
-      toolbarService.ActivateDemoMode(ui: null);
-      return null;
-    }
   }
 }
