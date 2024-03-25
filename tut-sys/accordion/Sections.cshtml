@@ -1,14 +1,16 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor<ShowSectionModel>
 @using ToSic.Razor.Blade
+@using AppCode.Razor
+@using AppCode.Source
 @using AppCode.Tutorial
 @{
   var Sys = GetService<Sys>().Init(this);
 
   // The accordion is an external helper file, so we must treat it as dyn-amic
-  var acc = MyModel.Code("Accordion");
+  var acc = Model.Accordion;
 }
-@foreach (var acs in acc.Sections(Path, backtrack: "../..")) {
-  var item = AsItem(acs.Item as object);
+@foreach (Section acs in acc.Sections(Path, backtrack: "../..")) {
+  var item = acs.Item;
   var runCode = item.IsEmpty("Formula");
   var codeFile = runCode ? acs.SectionFile as string : "ignore";
   if (codeFile != null) {
@@ -34,6 +36,6 @@
       SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@acc.Variant</em>
     </div>
   } else {
-    <!-- this section '@acs.TutorialId' doesn't exist -->
+    <!-- this section "@acs.TutorialId" does not exist -->
   }
 }

@@ -1,10 +1,11 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor<SnippetIntroModel>
 @using ToSic.Razor.Blade
+@using AppCode.Razor
 @using AppCode.Tutorial
 @{
-  var accordion = MyModel.Code("Accordion");
-  var tutPage = MyModel.Item("TutPage");
-  var nameId = tutPage.String("NameId");
+  var accordion = Model.Accordion;
+  var tutPage = Model.TutorialGroup;
+  var nameId = tutPage.NameId;
   var Sys = GetService<Sys>();
 
   var hasSpecs = tutPage.IsNotEmpty("RefSharedSpecs");
@@ -17,17 +18,17 @@
 <div class="row mb-3 mt-3" @Kit.Toolbar.Empty(tutPage).Edit().Settings(hover: "left")>
   <div class="col-lg-@rightCols order-1 position-relative">
     @if (tutPage != null && hasSpecs) {
-      var specs = tutPage.Child("RefSharedSpecs");
-      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Requirements").Section(specs.Children("Requirements"))
-      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Resources").Section(specs.Children("Resources"))
-      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Related").Section(specs.Children("Tutorials"))
+      var specs = tutPage.RefSharedSpecs;
+      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Requirements").Section(specs.Requirements)
+      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Resources").Section(specs.Resources)
+      @GetCode("./InfoSectionPart.cs").Init(Sys, specs, "Related").Section(specs.Tutorials)
     }
 
     @* Only show the collapse / open Accordions button if we have any inner sections *@
     @if (tutPage.IsNotEmpty("Sections")) {
       <div class="text-end">
         <a href="#" id='accordion-toggle-@nameId' data-id="@nameId" class="btn-collapse btn btn-outline-primary" style="width: 120px"></a>
-        @Kit.Page.TurnOn("window.tutAccordions.init()", data: new { nameId, isOpen = tutPage.Bool("DefaultStateIsOpen") })
+        @Kit.Page.TurnOn("window.tutAccordions.init()", data: new { nameId, isOpen = tutPage.DefaultStateIsOpen })
       </div>
       
     }

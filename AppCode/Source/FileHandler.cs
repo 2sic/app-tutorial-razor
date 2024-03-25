@@ -88,21 +88,15 @@ namespace AppCode.Source
     /// <summary>
     /// just show a snippet - used in SourceCode.cs
     /// </summary>
-    public ITag ShowSnippet(string snippetId, ITypedItem item = null, string file = null) {
-      if (file != null)
-        return ShowFileContents(file, snippetId, withIntro: false, showTitle: false, expand: true);
-      return ShowFileContents(null, snippetId, expand: true);
-    }
+    public ITag ShowSnippet(string snippetId, ITypedItem item = null, string file = null)
+      => file != null
+        ? ShowFileContents(file, snippetId, withIntro: false, showTitle: false, expand: true)
+        : ShowFileContents(null, snippetId, expand: true);
 
-    public ITag GetTabFileContents(string file)
-    {
-      return ShowFileContents(file, withIntro: false, showTitle: true);
-    }
+    public ITag GetTabFileContents(string file) => ShowFileContents(file, withIntro: false, showTitle: true);
 
     // Used in SourceCode.cs to see if it has tabs
-    public string GetFileContents(string file){
-      return GetFileAndProcess(file).Contents;
-    }
+    public string GetFileContents(string file) => GetFileAndProcess(file).Contents;
 
     /// <summary>
     /// 

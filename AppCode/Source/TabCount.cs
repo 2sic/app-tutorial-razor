@@ -4,7 +4,6 @@ namespace AppCode.Source
 {
   /// <summary>
   /// Helper class to count tags and add comments
-  /// Duplicated in Accordion.cs and SourceCode.cs
   /// Try to keep in sync
   /// </summary>
   public class TagCount {

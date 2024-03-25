@@ -1,5 +1,9 @@
-@inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
+@inherits AppCode.Razor.AppRazor<AccordionOneModel>
+@using ToSic.Razor.Blade
+@using AppCode.Data
+@using AppCode.Razor
+@using AppCode.Source
+@using AppCode.Tutorial
 @*
   This is the main entry point for the tutorial group.
   It will either
@@ -8,32 +12,40 @@
 *@
 @{
   // Check for Recursions, to prevent infinite loops!
-  var recursions = MyModel.Int("Recursions", required: false, fallback: 0) + 1;
+  var recursions = Model.Recursions + 1;
   if (recursions > 5) {
     throw new Exception("Recursion limit reached");
   }
-}
-@{
-  // Get the accordion specs - Either the "Page" or the Section inside the page
-  var accSpecs = MyModel.Item("TutPage", required: false) ?? AsItems(App.Data["TutorialGroup"]).FirstOrDefault(i => i.String("NameId") == MyModel.String("NameId"));
 
-  // Reuse existing Accordion code or generate new
-  var accordion = GetCode("./Accordion.cs").Setup(MyModel.Code("Sys"), MyModel.String("Variant", required: false), item: accSpecs);
+  // Get the accordion specs - Either the "Page" or the Section inside the page
+  var accSpecs = Model.TutPage;
+
+  // Get Accordion code
+  var accordion = GetService<Accordion>().Setup(Model.Sys, /* Model.Variant */ "", item: accSpecs);
 }
 
 @if (accSpecs != null) {
   // Check if this is a "Page" - WIP
   if (accSpecs.IsNotEmpty("Accordions")) {
-    @Html.Partial("./Accordion Multi.cshtml", new { TutorialGroup = accSpecs, recursions, accordion });
+    @Html.Partial("./Accordion Multi.cshtml", new AccordionMultiModel {
+      TutorialGroup = accSpecs,
+      Recursions = recursions,
+      Accordion = accordion
+    });
   } else {
-    @Html.Partial("./Section Block.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = false, recursions })
+    @Html.Partial("./Section Block.cshtml", new SectionBlockModel {
+      Accordion = accordion,
+      TutorialGroup = accSpecs,
+      SkipPageTools = false,
+      Recursions = recursions
+    })
   }
   // If it's empty, show info / toolbar to admin only
 } else if (MyUser.IsSystemAdmin) {
   <div class="alert alert-danger" @Kit.Toolbar.Empty().New("TutorialGroup", prefill: new {
-    NameId = MyModel.String("NameId")
+    NameId = Model.NameId
   })>
-    The Tutorial Group <strong>@MyModel.String("NameId")</strong> was not found.
+    The Tutorial Group <strong>@Model.NameId</strong> was not found.
     <br />
     This is something you probably want to create next.
     Use the Toolbar to create.

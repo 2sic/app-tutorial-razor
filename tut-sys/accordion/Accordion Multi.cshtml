@@ -1,32 +1,41 @@
-@inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
+@inherits AppCode.Razor.AppRazor<AccordionMultiModel>
+@using ToSic.Razor.Blade
+@using AppCode.Data
+@using AppCode.Razor
 @{
   // Check for Recursions, to prevent infinite loops!
-  var recursions = MyModel.Int("Recursions", required: false, fallback: 0) + 1;
+  var recursions = Model.Recursions + 1; 
   if (recursions > 5) {
     throw new Exception("Recursion limit reached");
   }
 
-  var accordion = MyModel.Code("Accordion", required: false);
-  var tutPage = MyModel.Item("TutorialGroup", required: false);
+  var accordion = Model.Accordion;
+  var tutPage = Model.TutorialGroup;
 }
 
-@Html.Partial("../snippets/Snippet Group Intro.cshtml", new { accordion, tutPage })
+@Html.Partial("../snippets/Snippet Group Intro.cshtml", new SnippetIntroModel { Accordion = accordion, TutorialGroup = tutPage })
 
 @if (tutPage.IsNotEmpty("Accordions")) {
-  var accords = tutPage.Children("Accordions");
-
   // Check if any of the tutorials has variants - if yes, show the variant selector
-  var showVariantSelector = tutPage.Bool("HasVariants") 
+  var showVariantSelector = tutPage.HasVariants 
     ? tutPage 
-    : accords.FirstOrDefault(a => a.Bool("HasVariants"));
+    : tutPage.Accordions.FirstOrDefault(a => a.HasVariants);
+
   if (showVariantSelector != null) {
-    @Html.Partial("./Variant Selector.cshtml", new { Current = accordion.Variant, Variants = showVariantSelector.String("Variants") })
+    @Html.Partial("./Variant Selector.cshtml", new VariantSelectorModel {
+      Current = accordion.Variant,
+      Variants = showVariantSelector.Variants
+    })
   }
 
   // Show each accordions one-by-one
-  foreach (var accSpecs in accords) {
-    @Html.Partial("./Section Block.cshtml", new { accordion, AccordionSpecs = accSpecs, skipPageTools = true, recursions })
+  foreach (var accSpecs in tutPage.Accordions) {
+    @Html.Partial("./Section Block.cshtml", new SectionBlockModel {
+      Accordion = accordion,
+      TutorialGroup = accSpecs,
+      SkipPageTools = true,
+      Recursions = recursions
+    })
   }
 } else {
   <div>

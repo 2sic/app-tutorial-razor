@@ -1,8 +1,9 @@
-@inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
+@inherits AppCode.Razor.AppRazor<VariantSelectorModel>
+@using ToSic.Razor.Blade
+@using AppCode.Razor
 @{
-  var current = MyModel.String("Current");
-  var variants = MyModel.IsNotEmpty("Variants") ? MyModel.String("Variants") : "typed,dyn";
+  var current = Model.Current;
+  var variants = Text.First(Model.Variants, "typed,dyn");
 }
 <div class="alert alert-info">
   The samples can differ based on your Razor base class or if you're running an old version. <br>

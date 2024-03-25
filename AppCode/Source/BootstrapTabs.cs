@@ -69,9 +69,9 @@ namespace AppCode.Source
         .Attr("aria-selected", selected.ToString().ToLower());
     }
 
-    private Div TabContentGroup() {
-      return Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5");
-    }
+    // private Div TabContentGroup() {
+    //   return Tag.Div().Class("tab-content p-3 border border-top-0 bg-light mb-5");
+    // }
 
     public object TabContentGroupOpen() {
       _tabContentGroupIsOpen = true;
