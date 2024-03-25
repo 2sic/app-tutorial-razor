@@ -1,8 +1,9 @@
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using static AppCode.Source.Constants;
+using AppCode.Source;
 
-namespace AppCode.Source
+namespace AppCode.Wrappers
 {
   internal class WrapOutSplitSrc: Wrap
     {

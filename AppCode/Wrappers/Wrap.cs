@@ -3,13 +3,15 @@ using ToSic.Razor.Markup;
 using System.Collections.Generic;
 using System.Linq;
 using static AppCode.Source.Constants;
+using AppCode.Source;
 
-namespace AppCode.Source
+namespace AppCode.Wrappers
 {
   public class Wrap
   {
     public const string Indent1 = "      ";
     public const string Indent2 = "        ";
+    
     public Wrap(TutorialSection sb, string name, bool combined = false, string tabsCsv = null) {
       Section = sb;
       Name = name ?? "Wrap";
@@ -17,6 +19,7 @@ namespace AppCode.Source
       TabSelected = Tabs.First();
       TagCount = new TagCount(Name, true);
     }
+
     protected readonly TutorialSection Section;
     public List<string> Tabs { get; protected set; }
     public string TabSelected {get; set;}

@@ -55,7 +55,7 @@ namespace AppCode.Source
     // }
 
     private ITag ShowResult(string source, string language) {
-      source = SourceProcessor.SourceTrim(source) as string;
+      source = SourceProcessor.SourceTrim(source);
       var specs = new ShowSourceSpecs() {
         Processed = source,
         Size = Size(null, source),

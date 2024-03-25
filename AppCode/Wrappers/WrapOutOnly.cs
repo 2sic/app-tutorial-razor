@@ -1,7 +1,8 @@
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
+using AppCode.Source;
 
-namespace AppCode.Source
+namespace AppCode.Wrappers
 {
   internal class WrapOutOnly: Wrap
     {

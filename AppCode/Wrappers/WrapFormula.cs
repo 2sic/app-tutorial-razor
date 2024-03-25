@@ -4,8 +4,9 @@ using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
 using static AppCode.Source.Constants;
+using AppCode.Source;
 
-namespace AppCode.Source
+namespace AppCode.Wrappers
 {
   internal class WrapFormula: Wrap
     {

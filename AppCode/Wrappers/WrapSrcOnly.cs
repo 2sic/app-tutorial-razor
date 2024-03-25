@@ -1,7 +1,8 @@
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
+using AppCode.Source;
 
-namespace AppCode.Source
+namespace AppCode.Wrappers
 {
   /// <summary>
   /// Show Source only - output is expected to result in empty HTML
