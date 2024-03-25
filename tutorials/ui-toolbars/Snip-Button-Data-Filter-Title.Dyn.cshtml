@@ -1,8 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @{/*!*/
   // 2sxclint:disable:toolbars-should-not-use-filter
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 <div class="alert alert-light" 
   @Kit.Toolbar.Empty().Data("Books", tweak: b=>b.Filter("Title", "Good Omens"))>
@@ -34,5 +33,5 @@
   </p>
 </div>
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

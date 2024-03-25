@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using static AppCode.Source.Constants;
+using AppCode.Output;
 
 namespace AppCode.Source
 {
@@ -23,9 +24,13 @@ namespace AppCode.Source
         SourceWrap = sourceCode.GetSourceWrap(this, item);
         TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
         SourceFile = sourceFile;
-        ViewConfig = ScParent.GetService<ViewConfigurationSimulation>().Setup(ScParent.Sys, this.TabHandler);
+        ViewConfig = ScParent.GetService<ViewConfigurationSimulation>().Setup(TabHandler);
       }
       internal SourceCode ScParent;
+
+      public FancyboxService Fancybox => _fancybox ??= ScParent.GetService<FancyboxService>();
+      private FancyboxService _fancybox;
+
       private BootstrapTabs BsTabs;
       internal ICodeLog Log;
       protected int SnippetCount;
@@ -202,7 +207,7 @@ namespace AppCode.Source
               .Wrap(
                 Tag.H4(tMd.String("Title")),
                 tMd.Html("Note"),
-                ScParent.Sys.Fancybox.Gallery(tMd, "Images")
+                Fancybox.Gallery(tMd, "Images")
               ),
             "\n"));
           return notesHtml;
@@ -214,7 +219,7 @@ namespace AppCode.Source
           return Tag.RawHtml(
             "\n",
             item.String(InDepthField),
-            ScParent.Sys.Fancybox.Gallery(item, "InDepthImages"),
+            Fancybox.Gallery(item, "InDepthImages"),
             "\n"
           );
         }

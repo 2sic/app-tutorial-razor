@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*!*/
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 @{
   var categoryButtonsTweak = Kit.Toolbar.Default()
@@ -17,5 +16,5 @@
   </h3>
 </div>
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{/*!*/
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 @{
   var moreButtonToolbar = Kit.Toolbar.Default().Settings(autoAddMore:"never");
@@ -11,5 +10,5 @@
   <h3>Remove <code>more</code> button</h3>
 </div>
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*!*/
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 @{
   // icon from https://fonts.google.com/icons?icon.query=func
@@ -30,5 +29,5 @@
   };
 }
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

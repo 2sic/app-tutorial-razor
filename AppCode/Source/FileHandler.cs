@@ -156,14 +156,15 @@ namespace AppCode.Source
       // return null;
     }
 
-    public bool FileContainsSnipCode(string file) {
-      try {
-        var specs = GetFileAndProcess(file);
-        return specs.Contents.Contains("snip = Sys.SourceCode.");
-      } catch {
-        return false;
-      }
-    }
+    // 2024-03-25 2dm - not used any more, there is no more such code left
+    // public bool FileContainsSnipCode(string file) {
+    //   try {
+    //     var specs = GetFileAndProcess(file);
+    //     return specs.Contents.Contains("snip = Sys.SourceCode.");
+    //   } catch {
+    //     return false;
+    //   }
+    // }
 
     private SourceInfo GetFileAndProcess(string file, string snippetId = null, string path = null) {
       path = path ?? Path;

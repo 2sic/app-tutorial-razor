@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AppCode.Output;
-using AppCode.Tutorial;
 using AppCode.Data;
 
 // 2sxclint:disable:no-EntityTitle-in-quotes
@@ -21,14 +20,14 @@ namespace AppCode.Source
 
     private const string ViewConfigCode = "ViewConfig";
 
-    public ViewConfigurationSimulation Setup(Sys sys, TabManager tabHandler) {
+    public ViewConfigurationSimulation Setup(TabManager tabHandler) {
       TabHandler = tabHandler;
-      Fancybox = sys.Fancybox;
       return this;
     }
 
     internal TabManager TabHandler;
-    private Fancybox Fancybox;
+    public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
+    private FancyboxService _fancybox;
 
     #endregion
 

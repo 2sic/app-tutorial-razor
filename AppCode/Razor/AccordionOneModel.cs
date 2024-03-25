@@ -12,7 +12,5 @@ namespace AppCode.Razor
 
     public TutorialGroup TutPage {get;set;} 
 
-    // public string Variant { get; set; }
-
   }
 }

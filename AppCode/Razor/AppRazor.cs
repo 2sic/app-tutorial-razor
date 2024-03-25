@@ -1,10 +1,14 @@
 using AppCode.Data;
 using AppCode.Tutorial;
+using AppCode.Output;
 
 namespace AppCode.Razor
 {
   partial class AppRazor<TModel>
   {
+    public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
+    private FancyboxService _fancybox;
+
     public Sys Sys => _sys ?? GetService<Sys>().Init(this);
     private Sys _sys;
 

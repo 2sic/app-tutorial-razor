@@ -6,7 +6,7 @@ using ToSic.Sxc.Images;
 namespace AppCode.Output
 {
 
-  public class Fancybox: Custom.Hybrid.CodeTyped
+  public class FancyboxService: Custom.Hybrid.CodeTyped
   {
     // Create an image which opens a larger version in a lightbox
     public IHtmlTag PreviewWithLightbox(string url, int width = 100, int height = 100, string classes = "", string label = null, bool figure = true)

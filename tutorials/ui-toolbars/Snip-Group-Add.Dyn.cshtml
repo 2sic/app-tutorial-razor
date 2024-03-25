@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @{/*!*/
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 @{
   var buttonGroupToolbar = Kit.Toolbar.Default()
@@ -18,5 +17,5 @@
   </h3>
 </div>
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

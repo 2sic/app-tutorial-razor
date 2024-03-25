@@ -1,7 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*!*/
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 <div class="alert alert-light" 
 @Kit.Toolbar.Default().New(tweak: b=>b.Color("pink,black"))
@@ -11,5 +10,5 @@
   </h3>
 </div>
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

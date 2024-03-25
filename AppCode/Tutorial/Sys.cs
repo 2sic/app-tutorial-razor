@@ -9,10 +9,10 @@ namespace AppCode.Tutorial
 
   public class Sys: Custom.Hybrid.CodeTyped
   {
-    public Sys Init(Razor14 page) {
-      Path = page.Path;
-      return this;
-    }
+    // public Sys Init(Razor14 page) {
+    //   Path = page.Path;
+    //   return this;
+    // }
 
     public Sys Init(RazorTyped page) {
       Path = page.Path;
@@ -24,8 +24,8 @@ namespace AppCode.Tutorial
     public SourceCode SourceCode => _sourceCode ??= GetService<SourceCode>().Init(this, Path);
     private SourceCode _sourceCode;
 
-    public Fancybox Fancybox => _fancybox ??= GetService<Fancybox>();
-    private Fancybox _fancybox;
+    // public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
+    // private FancyboxService _fancybox;
 
     public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
     private ToolbarHelpers _tlbHelpers;
@@ -49,9 +49,6 @@ namespace AppCode.Tutorial
       }
       return result;
     }
-    // public string TutPageUrlFromDyn(object dynTutPage) {
-    //   return TutPageUrl(AsItem(dynTutPage));
-    // }
 
     public string TutPageUrl(ITypedItem tutPage) {
       if (tutPage == null) return null;
@@ -60,20 +57,7 @@ namespace AppCode.Tutorial
 
     #endregion
 
-
-    // TODO: find usages (especially in app.xml) and correct
-    
-    public IHtmlTag TutLink(string label, string target) {
-      return Tag.A(label).Href(Link.To(parameters: GetTargetUrl(target)));
-    }
-
-    public string GetTargetUrl(string target) {
-      target = target.Replace("/", "=");
-      target = target + (target.Contains("=") ? "" : "=page");
-      return target;
-    }
-
-    public IHtmlTag Highlighted(string specialText) {
+    private IHtmlTag Highlighted(string specialText) {
       if (specialText == null) { return null; }
       return Tag.Span(specialText).Class("text-warning");
     }

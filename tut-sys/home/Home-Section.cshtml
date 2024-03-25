@@ -15,19 +15,6 @@
   var category = tutorialSet.Child("Category");
 }
 
-@* Show a heading section to introduce a new main topic *@
-@* @if (category != null) {
-  <div @Kit.Toolbar.Default(category)>
-    <br>
-    <h2>@category.Title</h2>
-    <br>
-  </div>
-} *@
-
-@* @if (isSubSection) { *@
-  @* <hr> *@
-@* } *@
-
 <div class='tutorial-item (isSubSection == true ? "sub-section" : "")'>
   <div class='tutorial-title' data-accordion-parent='@nameId'>
     <div class="row">

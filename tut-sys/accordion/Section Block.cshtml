@@ -27,6 +27,6 @@
     TutorialGroup = tutGroup
   })
   @accordion.Start(tutGroup)
-    @Html.Partial("./Sections.cshtml", accordion)
+    @Html.Partial("./Sections.cshtml", Model)
   @accordion.End()
 }

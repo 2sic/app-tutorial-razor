@@ -1,13 +1,11 @@
-@inherits AppCode.Razor.AppRazor<Accordion>
+@inherits AppCode.Razor.AppRazor<SectionBlockModel>
 @using ToSic.Razor.Blade
 @using AppCode.Razor
 @using AppCode.Source
 @using AppCode.Tutorial
 @{
-  var Sys = GetService<Sys>().Init(this);
-
   // The accordion is an external helper file, so we must treat it as dyn-amic
-  var acc = Model;
+  var acc = Model.Accordion;
 }
 @foreach (Section acs in acc.Sections(Path, backtrack: "../..")) {
   var item = acs.Item;
@@ -18,14 +16,15 @@
       // Check if the file has it's own snip.Start/snip.End
       // in which case we don't wrap it here, as the file will do the wrapping
       // this is for more complex samples, which also generate contents for the tabs
-      var containsSnipCode = runCode && Sys.SourceCode.FileHandler.FileContainsSnipCode(acs.SectionFile);
+      var containsSnipCode = runCode; // && Sys.SourceCode.FileHandler.FileContainsSnipCode(acs.SectionFile);
       var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
+      var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
       if (containsSnipCode) {
-        @Html.Partial(codeFile, new { item, SnippetSection = snip, Tutorial = snip })
+        @Html.Partial(codeFile, data)
       } else {
         @snip.SnipStart()
           if (runCode) {
-            @Html.Partial(codeFile, new { item, SnippetSection = snip, Tutorial = snip })
+            @Html.Partial(codeFile, data)
           }
         @snip.SnipEnd()
       }

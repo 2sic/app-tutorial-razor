@@ -7,7 +7,6 @@
   var accordion = Model.Accordion;
   var tutPage = Model.TutorialGroup;
   var nameId = tutPage.NameId;
-  var Sys = GetService<Sys>();
 
   var hasSpecs = tutPage.IsNotEmpty("RefSharedSpecs");
   var rightCols = hasSpecs ? 5 : 2;

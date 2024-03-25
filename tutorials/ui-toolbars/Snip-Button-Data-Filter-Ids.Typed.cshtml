@@ -1,8 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @{/*!*/
   // 2sxclint:disable:toolbars-should-not-use-filter - TODO: @2dm - change this in typed when bug is fixed
-  var tlbControl = GetCode("/tut-sys/ToolbarHelpers.cs");
-  tlbControl.ToolbarsAutoShowStart(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsStart();
 /*!*/}
 @{
   var firstThreeAuthorIds = AsItems(App.Data.GetStream("Persons"))
@@ -41,5 +40,5 @@
   </h3>
 </div>
 @{/*!*/
-  tlbControl.ToolbarsAutoShowEnd(Kit.Toolbar);
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsEnd();
 /*!*/}

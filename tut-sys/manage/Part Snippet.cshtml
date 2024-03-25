@@ -1,7 +1,6 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor
 @using AppCode.Tutorial
 @{
-  var Sys = GetService<Sys>().Init(this);
   var tg = MyModel.Item("TutorialGroup");
   var recursion = MyModel.Int("Recursion");
   if (recursion > 3) {

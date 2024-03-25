@@ -4,10 +4,8 @@
 @{
   var current = Model.Current;
   var variants = Text.First(Model.Variants, "typed,dyn");
-}
-<div class="alert alert-info">
-  The samples can differ based on your Razor base class or if you're running an old version. <br>
-  @foreach (var variant in variants.Split(',')) {
+
+  var variantButtons = variants.Split(',').Select(variant => {
     var variantIsSelected = variant == current;
     var classes = variantIsSelected ? "btn btn-success" : "btn btn-primary";
     var newVariant = variantIsSelected ? "" : variant;
@@ -37,7 +35,13 @@
         }
         break;
     }
-
-    <a class="@classes" href='@href'>@label</a>
+    return new { classes, href, label };
+  })
+  .ToList();
+}
+<div class="alert alert-info">
+  The samples can differ based on your Razor base class or if you're running an old version. <br>
+  @foreach (var btn in variantButtons) {
+    <a class="@btn.classes" href="@btn.href">@btn.label</a>
   }
 </div>

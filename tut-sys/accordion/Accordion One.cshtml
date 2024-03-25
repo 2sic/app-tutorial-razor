@@ -28,12 +28,14 @@
   // Check if this is a "Page" - WIP
   if (tutGroup.IsNotEmpty("Accordions")) {
     @Html.Partial("./Accordion Multi.cshtml", new AccordionMultiModel {
+      Sys = Model.Sys,
       TutorialGroup = tutGroup,
       Recursions = recursions,
       Accordion = accordion
     });
   } else {
     @Html.Partial("./Section Block.cshtml", new SectionBlockModel {
+      Sys = Model.Sys,
       Accordion = accordion,
       TutorialGroup = tutGroup,
       SkipPageTools = false,
