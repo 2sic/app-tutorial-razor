@@ -3,11 +3,8 @@
 @using AppCode.Razor
 @using AppCode.Source
 @using AppCode.Tutorial
-@{
-  // The accordion is an external helper file, so we must treat it as dyn-amic
-  var acc = Model.Accordion;
-}
-@foreach (Section acs in acc.Sections(Path, backtrack: "../..")) {
+
+@foreach (Section acs in Model.Accordion.Sections(Path, backtrack: "../..")) {
   var item = acs.Item;
   var runCode = item.IsEmpty("Formula");
   var codeFile = runCode ? acs.SectionFile : "ignore";
@@ -26,7 +23,7 @@
     @acs.End()
   } else if (MyUser.IsSystemAdmin) {
     <div @Kit.Toolbar.Empty(item).Edit().New()>
-      SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@acc.Variant</em>
+      SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@Model.Accordion.Variant</em>
     </div>
   } else {
     <!-- this section "@acs.TutorialId" does not exist -->
