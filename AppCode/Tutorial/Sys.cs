@@ -9,11 +9,6 @@ namespace AppCode.Tutorial
 
   public class Sys: Custom.Hybrid.CodeTyped
   {
-    // public Sys Init(Razor14 page) {
-    //   Path = page.Path;
-    //   return this;
-    // }
-
     public Sys Init(RazorTyped page) {
       Path = page.Path;
       return this;
@@ -23,9 +18,6 @@ namespace AppCode.Tutorial
 
     public SourceCode SourceCode => _sourceCode ??= GetService<SourceCode>().Init(this, Path);
     private SourceCode _sourceCode;
-
-    // public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
-    // private FancyboxService _fancybox;
 
     public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
     private ToolbarHelpers _tlbHelpers;

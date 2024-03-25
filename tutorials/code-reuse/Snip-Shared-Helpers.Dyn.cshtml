@@ -1,11 +1,11 @@
 @inherits Custom.Hybrid.Razor14
 @*!
-Tut.Tabs=file:../../shared/Fancybox.cs
+Tut.Tabs=file:./Fancybox.cs
 !*@
 @{
   // Use CreateInstance in Razor12 and Razor14
   // Path must be relative to current file
-  var lightbox = CreateInstance("../../shared/Fancybox.cs");
+  var lightbox = CreateInstance("./Fancybox.cs");
 }
 @* Url to app root folder is in App.Path *@
 @lightbox.PreviewWithLightbox(App.Path + "/app-icon.png")
