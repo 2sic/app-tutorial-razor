@@ -14,18 +14,16 @@ namespace AppCode.TutorialSystem.Source
   {
     #region Init / Dependencies
 
-    public SourceCode Init(Sys sys, string path) {
+    public SourceCode Init(Sys sys) {
       Sys = sys;
-      Path = path;
       BsTabs = GetService<BootstrapTabs>();
       return this;
     }
     public TagCount TagCount = new TagCount("SourceCode", true);
     public Sys Sys {get;set;}
-    public string Path { get; set; }
     internal BootstrapTabs BsTabs {get;set;}
 
-    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>(); //.Init(this);
+    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>();
     private SourceCodeFormulas _formulas;
 
     private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
@@ -36,7 +34,7 @@ namespace AppCode.TutorialSystem.Source
     #region All Available Entry Points to Show Snippets in Various Ways
 
     /// <summary>
-    /// Create a Snip/Section object from an Item (ITypedItem).
+    /// Create a Snip/Section object from a TutorialSnippet.
     /// Only used in Accordion
     /// </summary>
     /// <param name="item">The configuration item</param>

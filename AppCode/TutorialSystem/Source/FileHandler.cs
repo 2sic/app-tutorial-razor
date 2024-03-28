@@ -154,18 +154,7 @@ namespace AppCode.TutorialSystem.Source
         return Tag.Div("Error showing " + errPath).Class("alert alert-warning");
         return l(ShowError(path), "error");
       }
-      // return null;
     }
-
-    // 2024-03-25 2dm - not used any more, there is no more such code left
-    // public bool FileContainsSnipCode(string file) {
-    //   try {
-    //     var specs = GetFileAndProcess(file);
-    //     return specs.Contents.Contains("snip = Sys.SourceCode.");
-    //   } catch {
-    //     return false;
-    //   }
-    // }
 
     private SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
       // Note: for historical reasons the file is a path which can look like
@@ -198,7 +187,7 @@ namespace AppCode.TutorialSystem.Source
       // log all properties of FileInfo
       Log.Add($"fileInfo: {fileInfo}");
       // Log.Add($"newInfo: {newInfo}");
-      fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
+      fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents); //, snippetId);
       fileInfo.Size = Size(null, fileInfo.Processed);
       var isSnippet = !string.IsNullOrWhiteSpace(snippetId);
       fileInfo.ShowIntro = !isSnippet;

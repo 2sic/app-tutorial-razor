@@ -1,18 +1,18 @@
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Code;
-using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Source;
+using AppCode.Data;
 
 namespace AppCode.TutorialSystem.Tabs
 {
 
   public class TabManager
   {
-    public TabManager(SourceCode scParent, ITypedItem item, Dictionary<string, string> tabs, Wrap sourceWrap = null) {
+    public TabManager(SourceCode scParent, TutorialSnippet item, Dictionary<string, string> tabs, Wrap sourceWrap = null) {
       ScParent = scParent;
       Log = ScParent.Log;
       Item = item;
@@ -22,7 +22,7 @@ namespace AppCode.TutorialSystem.Tabs
     }
     public readonly Dictionary<string, string> Tabs;
     protected readonly SourceCode ScParent; // also used in Formulas
-    private ITypedItem Item { get; set; }
+    private TutorialSnippet Item { get; set; }
     public string ActiveTabName;
     private readonly Wrap SourceWrap;
     private readonly ICodeLog Log;

@@ -13,12 +13,6 @@ namespace AppCode.TutorialSystem.Source
   {
     #region Init / Dependencies
 
-    // public SourceCodeFormulas Init(SourceCode sourceCode) {
-    //   SourceCode = sourceCode;
-    //   return this;
-    // }
-
-    // private SourceCode SourceCode { get; set; }
     private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
 
@@ -26,7 +20,7 @@ namespace AppCode.TutorialSystem.Source
 
     #region Predefined Samples
 
-    public ITypedItem Specs(string sampleId) {
+    public TutFormulaSample Specs(string sampleId) {
       var list = App.Data.GetAll<TutFormulaSample>();
 
       var found = list.FirstOrDefault(s => string.Equals(s.TutorialId, sampleId, StringComparison.InvariantCultureIgnoreCase))
@@ -40,7 +34,7 @@ namespace AppCode.TutorialSystem.Source
 
     #endregion
 
-    public ITag Show(ITypedItem item, bool showIntro = true) {
+    public ITag Show(TutFormulaSample item, bool showIntro = true) {
       return Tag.RawHtml(
         showIntro ? Intro(item) : null,
         ShowFormulas(item)
@@ -87,8 +81,8 @@ namespace AppCode.TutorialSystem.Source
       return wrapper;
     }
 
-    private ITag ShowFormulas(ITypedItem item) {
-      var fields = item.String("Field");
+    private ITag ShowFormulas(TutFormulaSample item) {
+      var fields = item.Field;
 
       if (!Text.Has(fields)) return Tag.Comment("No field specified");
 
@@ -97,7 +91,7 @@ namespace AppCode.TutorialSystem.Source
         if (!Text.Has(field)) continue;
 
         var wrapper = Tag.Div().Class("mb-5").Wrap(
-          Tag.H3("Formulas of ", Tag.Code(item.String("ContentType") + "." + field))
+          Tag.H3("Formulas of ", Tag.Code(item.ContentType + "." + field))
         );
         var formulas = GetFormulas(item, field);
         foreach (var formula in formulas) {
@@ -115,8 +109,8 @@ namespace AppCode.TutorialSystem.Source
 
 
 
-    private IEnumerable<ITypedItem> GetFormulas(ITypedItem item, string field) {
-      var contentItemType = App.Data.GetContentType(item.String("ContentType"));
+    private IEnumerable<ITypedItem> GetFormulas(TutFormulaSample item, string field) {
+      var contentItemType = App.Data.GetContentType(item.ContentType);
       var fieldType = contentItemType.Attributes
         .Where(a => a.Name == field)
         .FirstOrDefault();

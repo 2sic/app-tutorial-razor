@@ -1,7 +1,6 @@
 using AppCode.Data;
 using AppCode.Tutorial;
 using AppCode.Output;
-using AppCode.Razor;
 
 namespace AppCode.Razor
 {
@@ -10,7 +9,7 @@ namespace AppCode.Razor
     public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
     private FancyboxService _fancybox;
 
-    public Sys Sys => _sys ?? GetService<Sys>().Init(this);
+    public Sys Sys => _sys ??= GetService<Sys>();
     private Sys _sys;
 
     public void SetOpenGraph(TutorialGroup tutPage)

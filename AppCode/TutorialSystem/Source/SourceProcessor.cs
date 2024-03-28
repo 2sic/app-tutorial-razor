@@ -7,59 +7,15 @@ using System.Text.RegularExpressions;
 namespace AppCode.TutorialSystem.Source
 {
   // Private Source Code Clean-up Helpers
-  public class SourceProcessor: Custom.Hybrid.Code14
+  public class SourceProcessor: AppCode.Services.ServiceBase
   {
-    public string CleanUpSource(string source, string snippetId) {
-      source = KeepOnlySnippet(source, snippetId);
+    public string CleanUpSource(string source) { // , string snippetId) {
+      // source = KeepOnlySnippet(source, snippetId);
       source = ProcessHideTrimSnippet(source);
       var result = SourceTrim(source);
       return result;
     }
 
-    private string KeepOnlySnippet(string source, string id) {
-      // Preparations
-      if (string.IsNullOrWhiteSpace(id)) return source;
-      var idInQuotes = "\"" + id + "\"";
-
-      // V3 New: Ability to auto-find the correct snippet by number
-      var patternSnipStartSnipEnd = @"(?:\.SnipStart\(\)+)(?<contents>[\s\S]*?)(?:(@.*\.SnipEnd\(|@Sys\.SourceCode\.Invisible\(\)))"; // note: we're not testing for the final ")"
-      var idNumber = Kit.Convert.ToInt(id, fallback: -1);
-      if (idNumber >= 0) {
-        // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
-        var matches = Regex.Matches(source, patternSnipStartSnipEnd);
-        if (matches.Count > idNumber) {
-          return matches[idNumber].Groups["contents"].Value;
-        }
-        
-      }
-
-      // trim unnecessary comments
-      var patternSnippet = @"(?:<snippet id=" + idInQuotes + @"[^>]*>)(?<contents>[\s\S]*?)(?:</snippet>)";
-      var match = Regex.Match(source, patternSnippet);
-      if (match.Length > 0) {
-        return match.Groups["contents"].Value;
-      }
-      // V2 with Snippet Tabs / Inline Tabs
-      var patternStartEnd = @"(?:@Sys\.SourceCode\.(Snippet|Formula)(Inline|Only|Init)?Start\(" + idInQuotes + @"[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Snippet|Invisible\())";
-      match = Regex.Match(source, patternStartEnd);
-      if (match.Length > 0) return match.Groups["contents"].Value;
-
-      // V2 with Result Tabs - for ResultStart(...) and ResultAndSnippetStart
-      patternStartEnd = @"(?:@Sys\.SourceCode\.Result[a-zA-Z]*Start\(" + idInQuotes + @"[^\)]*\))(?<contents>[\s\S]*?)(?:@Sys\.SourceCode\.(Result|Invisible))";
-      match = Regex.Match(source, patternStartEnd);
-      if (match.Length > 0) return match.Groups["contents"].Value;
-
-      // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...)
-      patternStartEnd = @"(?:\.SnipStart\(" + idInQuotes + @"\)+)(?<contents>[\s\S]*?)(?:@.*\.SnipEnd\(\))";
-      match = Regex.Match(source, patternStartEnd);
-      if (match.Length > 0) return match.Groups["contents"].Value;
-
-      // V3 with variable (so code doesn't start with @Sys.SourceCode) and SnipStart(...) - and no name!
-      match = Regex.Match(source, patternSnipStartSnipEnd);
-      if (match.Length > 0) return match.Groups["contents"].Value;
-
-      return source;
-    }
 
     private string ProcessHideTrimSnippet(string source) {
       // trim unnecessary comments
@@ -76,9 +32,12 @@ namespace AppCode.TutorialSystem.Source
 
       // hide unnecessary parts without comment
       source = ProcessHideSilent(source, "<hide-silent>", "</hide-silent>");
+      // hide things between @*! and !*@ - usually used for hiding parts of code
       source = ProcessHideSilent(source, "@\\*!", "!\\*@");
-      source = ProcessHideSilent(source, @"@{/\*!", @"!\*/}"); // Usually @{/*!*/ ... /*!*/}
-      source = ProcessHideSilent(source, @"@Sys\.SourceCode\.Invisible\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
+      // hide things between @{/*! and !*/} - usually used for hiding parts of code
+      // Usually @{/*!*/ ... /*!*/}
+      source = ProcessHideSilent(source, @"@{/\*!", @"!\*/}"); 
+      // source = ProcessHideSilent(source, @"@Sys\.SourceCode\.Invisible\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
 
       // remove snippet markers
       var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";

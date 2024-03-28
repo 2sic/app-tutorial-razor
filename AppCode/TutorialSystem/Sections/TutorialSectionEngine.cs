@@ -177,8 +177,10 @@ namespace AppCode.TutorialSystem.Sections
         : Tag.RawHtml(SourceWrap.SourceOpen(), snippet, SourceWrap.SourceClose());
     }
 
-    // Take a result and if it has a special prefix, process that
-    private object FlexibleResult(object result, ITypedItem item = null)
+    /// <summary>
+    /// Take a result and if it has a special prefix, process that
+    /// </summary>
+    private object FlexibleResult(object result, TutorialSnippet item = null)
     {
       // If it's not a string, then it must be something prepared, typically IHtmlTags; return that
       var strResult = result as string;
@@ -240,7 +242,7 @@ namespace AppCode.TutorialSystem.Sections
 
       // handle case Formulas
       if (strResult == FormulasTabName) {
-        var formulaSpecs = item.Child(FormulaField);
+        var formulaSpecs = item.Formula; //.Child(FormulaField);
         return ScParent.Formulas.Show(formulaSpecs, false);
       }
 

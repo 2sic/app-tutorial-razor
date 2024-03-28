@@ -1,4 +1,3 @@
-using Custom.Hybrid;
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
 using AppCode.Output;
@@ -9,14 +8,7 @@ namespace AppCode.Tutorial
 
   public class Sys: Custom.Hybrid.CodeTyped
   {
-    public Sys Init(RazorTyped page) {
-      Path = page.Path;
-      return this;
-    }
-
-    public string Path {get;set;}
-
-    public SourceCode SourceCode => _sourceCode ??= GetService<SourceCode>().Init(this, Path);
+    public SourceCode SourceCode => _sourceCode ??= GetService<SourceCode>().Init(this);
     private SourceCode _sourceCode;
 
     public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
