@@ -13,7 +13,7 @@
   var tutGroup = Model.TutorialGroup;
 }
 
-@Html.Partial("../snippets/Snippet Group Intro.cshtml", new SnippetIntroModel { Accordion = accordion, TutorialGroup = tutGroup })
+@Html.Partial("./Accordion Intro.cshtml", new SnippetIntroModel { Accordion = accordion, TutorialGroup = tutGroup })
 
 @if (tutGroup.IsNotEmpty("Accordions")) {
   // Check if any of the tutorials has variants - if yes, show the variant selector
@@ -30,7 +30,7 @@
 
   // Show each accordions one-by-one
   foreach (var accSpecs in tutGroup.Accordions) {
-    @Html.Partial("./Section Block.cshtml", new SectionBlockModel {
+    @Html.Partial("./Accordion One.cshtml", new SectionBlockModel {
       Sys = Model.Sys,
       Accordion = accordion,
       TutorialGroup = accSpecs,

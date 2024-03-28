@@ -1,18 +1,17 @@
-@inherits Custom.Hybrid.RazorTyped
+@inherits AppCode.Razor.AppRazor
 @using ToSic.Razor.Blade
+@using AppCode.Data
 @{
-  var tutorialSet = MyModel.Item("TutorialSet");
+  var tutorialSet = As<TutorialSection>(MyModel.Item("TutorialSet"));
   if (tutorialSet == null) { return; }
 
-  var Sys = MyModel.Code("Sys");
-
   var featureLogoPath = tutorialSet.IsNotEmpty("FeatureSet.Icon")
-    ? tutorialSet.Url("FeatureSet.Icon")
+    ? tutorialSet.FeatureSet.Icon
     : App.Folder.Url + "/app-icon.png";
 
   var isSubSection = MyModel.Bool("IsSubSection", required: false);
   var nameId = tutorialSet.Attribute("NameId");
-  var category = tutorialSet.Child("Category");
+  var category = tutorialSet.Category;
 }
 
 <div class='tutorial-item (isSubSection == true ? "sub-section" : "")'>
@@ -33,7 +32,11 @@
   <div class='tutorial-group pt-3' data-accordion-child="@nameId">
     @* New Setup with TutorialGroup *@
     @if (tutorialSet.IsNotEmpty("TutorialGroups")) {
-      @Html.Partial("./Home-Segment-List.cshtml", new { Sys, Segment = tutorialSet })
+      <ol>
+        @foreach (var tutGrp in tutorialSet.TutorialGroups) {
+          @TutLinks.TutPageLink(tutGrp)
+        }
+      </ol>
     }
   </div>
 </div>

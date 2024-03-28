@@ -30,7 +30,7 @@
 <div class="tutorial-wrapper" @Kit.Toolbar.Default(sequence)>
 
   @{
-    ITypedItem currentCategory = null;
+    TutorialCategory currentCategory = null;
   }
   @foreach (var section in sequence.Sections) {
     var category = section.Category;
@@ -39,7 +39,7 @@
       <h2 class="mt-5" @Kit.Toolbar.Empty().Edit(category)>@category.Title</h2>
       <hr>
     }
-    @Html.Partial("home-Section.cshtml", new { Sys, TutorialSet = section, IsSubSection = false })
+    @Html.Partial("home-Section.cshtml", new { TutorialSet = section, IsSubSection = false })
   }
 </div>
 
