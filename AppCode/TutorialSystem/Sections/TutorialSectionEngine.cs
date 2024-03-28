@@ -1,6 +1,5 @@
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
-using ToSic.Sxc.Code;
 using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
@@ -34,6 +33,9 @@ namespace AppCode.TutorialSystem.Sections
 
     public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
     private FancyboxService _fancybox;
+
+    private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
+    private FileHandler _fileHandler;
 
     private BootstrapTabs BsTabs;
     protected int SnippetCount;
@@ -169,7 +171,7 @@ namespace AppCode.TutorialSystem.Sections
     }
 
     private ITag SourceWrapped() {
-      var snippet = ScParent.FileHandler.ShowSnippet(SnippetId, item: Item, file: SourceFile) as ITag;
+      var snippet = FileHandler.ShowSnippet(SnippetId, item: Item, file: SourceFile) as ITag;
       return SourceWrap == null
         ? snippet
         : Tag.RawHtml(SourceWrap.SourceOpen(), snippet, SourceWrap.SourceClose());
@@ -184,11 +186,11 @@ namespace AppCode.TutorialSystem.Sections
 
       // If it's a string such as "file:abc.cshtml" then resolve that first
       if (strResult.StartsWith("file:"))
-        return ScParent.FileHandler.GetTabFileContents(strResult.Substring(5));
+        return FileHandler.GetTabFileContents(strResult.Substring(5));
 
       // Handle case "html-img:..."
       if (strResult.StartsWith("html-img:"))
-        return ScParent.FileHandler.ShowResultImg(strResult.Substring(9));
+        return FileHandler.ShowResultImg(strResult.Substring(9));
 
       // Optionally add tutorial links if defined in the item
       if (item == null) return result;

@@ -1,9 +1,6 @@
-using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
-using ToSic.Sxc.Data;
-using System.Collections.Generic;
 
 namespace AppCode.TutorialSystem.Source
 {

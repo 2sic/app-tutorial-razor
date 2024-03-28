@@ -13,12 +13,14 @@ namespace AppCode.TutorialSystem.Source
   {
     #region Init / Dependencies
 
-    public SourceCodeFormulas Init(SourceCode sourceCode) {
-      SourceCode = sourceCode;
-      return this;
-    }
+    // public SourceCodeFormulas Init(SourceCode sourceCode) {
+    //   SourceCode = sourceCode;
+    //   return this;
+    // }
 
-    private SourceCode SourceCode { get; set; }
+    // private SourceCode SourceCode { get; set; }
+    private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
+    private FileHandler _fileHandler;
 
     #endregion
 
@@ -101,7 +103,7 @@ namespace AppCode.TutorialSystem.Source
         foreach (var formula in formulas) {
           wrapper.Add(
             Tag.P(Tag.Strong(formula.Title), " (Formula-Target: " + formula.String("Target") + ")"),
-            SourceCode.FileHandler.ShowResultJs(formula.String("Formula"))
+            FileHandler.ShowResultJs(formula.String("Formula"))
           );
         }
         mainWrapper.Add(wrapper);

@@ -25,10 +25,10 @@ namespace AppCode.TutorialSystem.Source
     public string Path { get; set; }
     internal BootstrapTabs BsTabs {get;set;}
 
-    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>().Init(this);
+    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>(); //.Init(this);
     private SourceCodeFormulas _formulas;
 
-    public FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
+    private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
 
     #endregion
