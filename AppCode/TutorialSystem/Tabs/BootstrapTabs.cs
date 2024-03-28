@@ -8,7 +8,7 @@ using System.Linq;
 
 // Shared / re-used code to create bootstrap tabs
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Tabs
 {
   public class BootstrapTabs: AppCode.Services.ServiceBase
   {
@@ -37,21 +37,13 @@ namespace AppCode.Source
       );
     }
 
-    // WARNING: DUPLICATE CODE BootstrapTabs.cs / SourceCode.cs; keep in sync
-    private string Name2TabId(string name) {
-      return "-" + name.ToLower()
-        .Replace(" ", "-")
-        .Replace(".", "-")
-        .Replace("/", "-")
-        .Replace("\\", "-");
-    }
 
     private ITag TabLi(string prefix, string label, bool active) {
       return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
         "\n",
         IndentBtn + "<!-- Tab button -->\n",
         IndentBtn,
-        TabButton(prefix, label, Name2TabId(label), active),
+        TabButton(prefix, label, TabHelpers.Name2TabId(label), active),
         "\n" + IndentLi
       );
     }

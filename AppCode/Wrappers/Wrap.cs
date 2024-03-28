@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static AppCode.Source.Constants;
 using AppCode.Source;
+using AppCode.TutorialSystem.Tabs;
 
 namespace AppCode.Wrappers
 {
@@ -25,7 +26,7 @@ namespace AppCode.Wrappers
     public string TabSelected {get; set;}
     protected TagCount TagCount;
     protected string Name;
-    private bool ToolbarForAnonymous => _toolbarForAnon ??= (_toolbarForAnon = Section.Item.Bool("ToobarsForAnonymous")).Value;
+    private bool ToolbarForAnonymous => _toolbarForAnon ??= (_toolbarForAnon = Section.Item.Bool("ToolbarsForAnonymous")).Value;
     private bool? _toolbarForAnon;
     public virtual ITag OutputOpen() {
       // Special feature for Toolbar Demos

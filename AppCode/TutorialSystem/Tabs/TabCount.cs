@@ -1,6 +1,6 @@
 using ToSic.Razor.Blade;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Tabs
 {
   /// <summary>
   /// Helper class to count tags and add comments

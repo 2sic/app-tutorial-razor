@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AppCode.Wrappers;
+using AppCode.Source;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Tabs
 {
 
   public class TabManager

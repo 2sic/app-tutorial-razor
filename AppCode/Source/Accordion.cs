@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AppCode.Data;
+using AppCode.TutorialSystem.Tabs;
 using AppCode.Tutorial;
 using ToSic.Razor.Blade;
 

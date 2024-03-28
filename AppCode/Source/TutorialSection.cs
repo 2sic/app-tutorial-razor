@@ -8,6 +8,7 @@ using System.Linq;
 using static AppCode.Source.Constants;
 using AppCode.Output;
 using AppCode.Wrappers;
+using AppCode.TutorialSystem.Tabs;
 
 namespace AppCode.Source
 {
@@ -95,7 +96,7 @@ namespace AppCode.Source
           BsTabs.TabContentGroupOpen(),
           // Open the first tab-body item IF the snippet is right after this
           (firstName == ResultTabName || firstName == ResultAndSourceTabName)
-            ? BsTabs.TabContentOpen(TabPrefix, Name2TabId(firstName), firstIsActive)
+            ? BsTabs.TabContentOpen(TabPrefix, TabHelpers.Name2TabId(firstName), firstIsActive)
             : null,
           // If we have a source-wrap, add it here
           outputOpen
@@ -146,7 +147,7 @@ namespace AppCode.Source
             continue;
           }
 
-          var nameId = Name2TabId(name);
+          var nameId = TabHelpers.Name2TabId(name);
 
           // Special case: Source Tab
           if (m as string == SourceTabName) {
@@ -244,14 +245,6 @@ namespace AppCode.Source
         return result;
       }
 
-      // WARNING: DUPLICATE CODE BootstrapTabs.cs / SourceCode.cs; keep in sync
-      private static string Name2TabId(string name) {
-        return "-" + name.ToLower()
-          .Replace(" ", "-")
-          .Replace(".", "-")
-          .Replace("/", "-")
-          .Replace("\\", "-");
-      }
     }
 
 
