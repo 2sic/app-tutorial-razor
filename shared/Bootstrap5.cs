@@ -13,7 +13,7 @@ public class Bootstrap5 : Custom.Hybrid.CodeTyped
 
   // show warning for admin if koi.json is missing
   public IHtmlTag WarnAboutMissingOrUnknownBootstrap() {
-    if (Kit.Css.IsUnknown && CmsContext.User.IsSiteAdmin) {
+    if (Kit.Css.IsUnknown && MyUser.IsSiteAdmin) {
       return Tag.Div().Class("alert alert-warning").Wrap(
         Connect.Koi.Messages.CssInformationMissing,
         Tag.Br(),

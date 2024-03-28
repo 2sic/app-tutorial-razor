@@ -11,10 +11,10 @@ namespace AppCode.Data
 }
 */
 
-// Generator:   CSharpDataModelsGenerator v17.05.00
+// Generator:   CSharpDataModelsGenerator v17.06.00
 // App/Edition: Tutorial-Razor/
 // User:        2sic Web-Developer
-// When:        2024-03-22 17:00:25Z
+// When:        2024-03-28 18:17:21Z
 using ToSic.Sxc.Adam;
 
 namespace AppCode.Data
@@ -24,7 +24,7 @@ namespace AppCode.Data
 
   /// <summary>
   /// TutorialObjectInfo data. <br/>
-  /// Generated 2024-03-22 17:00:25Z. Re-generate whenever you change the ContentType. <br/>
+  /// Generated 2024-03-28 18:17:21Z. Re-generate whenever you change the ContentType. <br/>
   /// <br/>
   /// Default properties such as `.Title` or `.Id` are provided in the base class. <br/>
   /// Most properties have a simple access, such as `.Description`. <br/>

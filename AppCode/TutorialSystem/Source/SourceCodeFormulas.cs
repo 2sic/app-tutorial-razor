@@ -20,8 +20,8 @@ namespace AppCode.TutorialSystem.Source
 
     #region Predefined Samples
 
-    public TutFormulaSample Specs(string sampleId) {
-      var list = App.Data.GetAll<TutFormulaSample>();
+    public TutorialEditUiFormula Specs(string sampleId) {
+      var list = App.Data.GetAll<TutorialEditUiFormula>();
 
       var found = list.FirstOrDefault(s => string.Equals(s.TutorialId, sampleId, StringComparison.InvariantCultureIgnoreCase))
         ?? throw new Exception("Sample " + sampleId + " not found");
@@ -34,7 +34,7 @@ namespace AppCode.TutorialSystem.Source
 
     #endregion
 
-    public ITag Show(TutFormulaSample item, bool showIntro = true) {
+    public ITag Show(TutorialEditUiFormula item, bool showIntro = true) {
       return Tag.RawHtml(
         showIntro ? Intro(item) : null,
         ShowFormulas(item)
@@ -81,7 +81,7 @@ namespace AppCode.TutorialSystem.Source
       return wrapper;
     }
 
-    private ITag ShowFormulas(TutFormulaSample item) {
+    private ITag ShowFormulas(TutorialEditUiFormula item) {
       var fields = item.Field;
 
       if (!Text.Has(fields)) return Tag.Comment("No field specified");
@@ -109,7 +109,7 @@ namespace AppCode.TutorialSystem.Source
 
 
 
-    private IEnumerable<ITypedItem> GetFormulas(TutFormulaSample item, string field) {
+    private IEnumerable<ITypedItem> GetFormulas(TutorialEditUiFormula item, string field) {
       var contentItemType = App.Data.GetContentType(item.ContentType);
       var fieldType = contentItemType.Attributes
         .Where(a => a.Name == field)

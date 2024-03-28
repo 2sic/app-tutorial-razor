@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.05.00" ExportDate="2024-03-25T21:40:46.3134592+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.06.00" ExportDate="2024-03-28T18:18:03.6848188+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -3331,7 +3331,177 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
-    <AttributeSet StaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" Name="TutFormulaSample" Scope="Default" AlwaysShareConfiguration="false">
+    <AttributeSet StaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" Name="TutorialCategory" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Title" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7cd46dac-e71b-4162-b702-3e946e5ddfc0" Json="True" KeyNumber="5629">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Introduction" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="adc73f46-1cd6-476a-8404-ce11417b0b1a" Json="True" KeyNumber="5798">
+            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
+            <Value Key="Name" Value="Introduction" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="ef95e9e9-ee04-41f3-a42c-79d4154cf370" Name="TutorialCredits" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="TitleForPicker" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f06315f8-8140-4530-9612-9dacdbb85f96" Json="True" KeyNumber="5953">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Formulas" Value="3af610fd-4e52-46e4-8fce-0e2f05027fd5" Type="Entity" />
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="TitleForPicker" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="3783e09f-ddd6-45a8-bf19-7425380003c5" Json="True" KeyNumber="5953">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="6bea2674-05de-4c5d-b952-74f736e816a9" Json="True" KeyNumber="5953">
+            <Value Key="InputFontFamily" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="NameId" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="3925bbca-94c2-4249-859a-8af183b1a965" Json="True" KeyNumber="5954">
+            <Value Key="InputType" Value="string-url-path" Type="String" />
+            <Value Key="Name" Value="NameId" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Title" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="fd9a0ebc-8907-4088-ad00-b91fbd021c27" Json="True" KeyNumber="5955">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Title" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Credits" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="735bac85-a461-4c30-81bb-8447d6b5ffe3" Json="True" KeyNumber="5956">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-wysiwyg" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Credits" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="2b7b4897-58fc-45a0-a064-0a3d7303c86a" Json="True" KeyNumber="5956">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="55b65751-6ef2-468f-a5d2-28b37421607e" Json="True" KeyNumber="5956">
+            <Value Key="ButtonAdvanced" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ButtonSource" Value="true" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ContentCss" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Dialog" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InlineInitialHeight" Value="1" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" Name="TutorialEditUiFormula" Scope="Default" AlwaysShareConfiguration="false">
       <Attributes>
         <Attribute StaticName="TutorialId" Type="String" IsTitle="true">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7edec00d-2af1-4d42-a876-337d8f16aa53" Json="True" KeyNumber="5475">
@@ -3625,176 +3795,6 @@
             <Value Key="InputType" Value="boolean-default" Type="String" />
             <Value Key="Name" Value="ShowSnippet" Type="String" />
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-      </Attributes>
-    </AttributeSet>
-    <AttributeSet StaticName="93ea14fe-ed06-4785-be5e-40333d7f3704" Name="TutorialCategory" Scope="Default" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="Title" Type="String" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7cd46dac-e71b-4162-b702-3e946e5ddfc0" Json="True" KeyNumber="5629">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="Title" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Introduction" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="adc73f46-1cd6-476a-8404-ce11417b0b1a" Json="True" KeyNumber="5798">
-            <Value Key="InputType" Value="string-wysiwyg" Type="String" />
-            <Value Key="Name" Value="Introduction" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-      </Attributes>
-    </AttributeSet>
-    <AttributeSet StaticName="ef95e9e9-ee04-41f3-a42c-79d4154cf370" Name="TutorialCredits" Scope="Default" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="TitleForPicker" Type="String" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="f06315f8-8140-4530-9612-9dacdbb85f96" Json="True" KeyNumber="5953">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Formulas" Value="3af610fd-4e52-46e4-8fce-0e2f05027fd5" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="TitleForPicker" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="3783e09f-ddd6-45a8-bf19-7425380003c5" Json="True" KeyNumber="5953">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="6bea2674-05de-4c5d-b952-74f736e816a9" Json="True" KeyNumber="5953">
-            <Value Key="InputFontFamily" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="NameId" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="3925bbca-94c2-4249-859a-8af183b1a965" Json="True" KeyNumber="5954">
-            <Value Key="InputType" Value="string-url-path" Type="String" />
-            <Value Key="Name" Value="NameId" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Title" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="fd9a0ebc-8907-4088-ad00-b91fbd021c27" Json="True" KeyNumber="5955">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="Title" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Credits" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="735bac85-a461-4c30-81bb-8447d6b5ffe3" Json="True" KeyNumber="5956">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Credits" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="2b7b4897-58fc-45a0-a064-0a3d7303c86a" Json="True" KeyNumber="5956">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="55b65751-6ef2-468f-a5d2-28b37421607e" Json="True" KeyNumber="5956">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InlineInitialHeight" Value="1" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
           </Entity>
         </Attribute>
       </Attributes>
@@ -6881,7 +6881,7 @@
             <Value Key="EnableRemove" Value="True" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="EntityType" Value="TutFormulaSample" Type="String">
+            <Value Key="EntityType" Value="TutorialEditUiFormula" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Label" Value="" Type="String">
@@ -8111,7 +8111,7 @@
             </Value>
           </Entity>
         </Attribute>
-        <Attribute StaticName="ToobarsForAnonymous" Type="Boolean" IsTitle="false">
+        <Attribute StaticName="ToolbarsForAnonymous" Type="Boolean" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="ae21a029-3a07-4b43-8a21-a75a635f98a5" Json="True" KeyNumber="5993">
             <Value Key="InputType" Value="boolean-default" Type="String" />
             <Value Key="Name" Value="ToobarsForAnonymous" Type="String" />
@@ -9924,6 +9924,9 @@
       <Value Key="AllowTokenTemplates" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="DebugLog" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Description" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -9945,13 +9948,13 @@
       <Value Key="RequiredOqtaneVersion" Value="04.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="16.07.00" Type="String">
+      <Value Key="RequiredVersion" Value="17.06.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="16.07.01" Type="String">
+      <Value Key="Version" Value="17.06.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -15009,7 +15012,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="57f34a5a-9bb9-48a9-8c90-3cd430bbf2b3">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="57f34a5a-9bb9-48a9-8c90-3cd430bbf2b3">
       <Value Key="ContentType" Value="FormulasWebApiText" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15035,7 +15038,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="ab308baa-f68b-4984-9a1f-eeda80832b8f">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="ab308baa-f68b-4984-9a1f-eeda80832b8f">
       <Value Key="ContentType" Value="FormulasDropdownWebApi" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15061,7 +15064,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="0de0a16f-b4ff-4d79-93ca-87d36a368986">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="0de0a16f-b4ff-4d79-93ca-87d36a368986">
       <Value Key="ContentType" Value="FormulasDropDownWebApiData" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15087,7 +15090,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="d6b1a877-8b34-467e-9ffb-385a06b8c59a">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="d6b1a877-8b34-467e-9ffb-385a06b8c59a">
       <Value Key="ContentType" Value="FormulasBasic" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15107,7 +15110,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="afca8020-9370-4ea7-b57c-0e8866ee8b38">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="afca8020-9370-4ea7-b57c-0e8866ee8b38">
       <Value Key="ContentType" Value="FormulasIfEmpty" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15127,7 +15130,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="af676eed-53c0-480a-91d5-28e7db26e0ec">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="af676eed-53c0-480a-91d5-28e7db26e0ec">
       <Value Key="ContentType" Value="FormulasCombineValues" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15147,7 +15150,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="4a4c7d1a-5593-40c6-8571-36384aa32a07">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="4a4c7d1a-5593-40c6-8571-36384aa32a07">
       <Value Key="ContentType" Value="FormulasDates" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15167,7 +15170,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="bf74bd4e-fa69-481b-b015-131d95978290">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="bf74bd4e-fa69-481b-b015-131d95978290">
       <Value Key="ContentType" Value="FormulasDates" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15187,7 +15190,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="c792222c-5773-4400-ba1a-4a222c95139b">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="c792222c-5773-4400-ba1a-4a222c95139b">
       <Value Key="ContentType" Value="FormulasDropdown" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15207,7 +15210,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="4c7ff0a2-e6d4-45d7-991c-6bbd10e44fa3">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="4c7ff0a2-e6d4-45d7-991c-6bbd10e44fa3">
       <Value Key="ContentType" Value="FormulasDropdownDirections" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15227,7 +15230,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="d0c495b9-47f9-4244-a815-02ca766d6515">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="d0c495b9-47f9-4244-a815-02ca766d6515">
       <Value Key="ContentType" Value="FormulasBasic" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15247,7 +15250,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="ef2d2936-29a8-4479-8d3c-2aaf323f9337">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="ef2d2936-29a8-4479-8d3c-2aaf323f9337">
       <Value Key="ContentType" Value="FormulasRequired" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15267,7 +15270,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="f3467549-fea5-40c4-9024-7ec08e447480">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="f3467549-fea5-40c4-9024-7ec08e447480">
       <Value Key="ContentType" Value="FormulasDisabled" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15287,7 +15290,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="4b8e9e77-8a86-44fc-8815-1b738bf2c32c">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="4b8e9e77-8a86-44fc-8815-1b738bf2c32c">
       <Value Key="ContentType" Value="FormulasValidation" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15313,7 +15316,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="c7676123-0d47-4990-a722-bfa59109fa9f">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="c7676123-0d47-4990-a722-bfa59109fa9f">
       <Value Key="ContentType" Value="FormulasVisibleGroup" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15333,7 +15336,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="be1c8f77-d6a5-4c71-8927-4ee724dbd64c">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="be1c8f77-d6a5-4c71-8927-4ee724dbd64c">
       <Value Key="ContentType" Value="FormulasTextSummary" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15353,7 +15356,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="0bec6f91-b06b-4f66-91c1-c5f96f96bc59">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="0bec6f91-b06b-4f66-91c1-c5f96f96bc59">
       <Value Key="ContentType" Value="FormulasHelpText" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15379,7 +15382,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="d81c6036-7947-44b7-bd56-30fe2eac6b72">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="d81c6036-7947-44b7-bd56-30fe2eac6b72">
       <Value Key="ContentType" Value="FormulasEmojiSummary" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15410,7 +15413,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="cb718488-5d12-4001-8b34-f3f92d375742">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="cb718488-5d12-4001-8b34-f3f92d375742">
       <Value Key="ContentType" Value="FormulasRunAtStart" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15433,7 +15436,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="778c80d2-b222-4156-a800-ff31d952a925">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="778c80d2-b222-4156-a800-ff31d952a925">
       <Value Key="ContentType" Value="FormulasEphemeral" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15459,7 +15462,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="bd8e62c5-e13c-461d-aebd-62407da51e24">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="bd8e62c5-e13c-461d-aebd-62407da51e24">
       <Value Key="ContentType" Value="FormulasParameters" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15724,7 +15727,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="336b1b09-d2ba-4aae-97d5-c445516f4976">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="336b1b09-d2ba-4aae-97d5-c445516f4976">
       <Value Key="ContentType" Value="FormulasSetMany" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -15951,7 +15954,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="9b4550e4-2434-4d89-b7aa-04e435030292">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="9b4550e4-2434-4d89-b7aa-04e435030292">
       <Value Key="ContentType" Value="FormulasUseSettings" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16050,7 +16053,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="53860280-90a1-416d-bd5a-a839dd60ad13">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="53860280-90a1-416d-bd5a-a839dd60ad13">
       <Value Key="ContentType" Value="FormulasFeatures" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16150,7 +16153,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutFormulaSample" EntityGUID="a897f10f-04f0-49fc-a511-3f89f7dba10f">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="e52d98df-d72d-49c6-b8c6-dc2ab1126527" AttributeSetName="TutorialEditUiFormula" EntityGUID="a897f10f-04f0-49fc-a511-3f89f7dba10f">
       <Value Key="ContentType" Value="FormulasUser" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -16504,7 +16507,7 @@
       <Value Key="Title" Value="MyItem - Access Files using .File(…) or .Folder(…)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="block-quickref-item-files-folders" Type="String">
@@ -16575,7 +16578,7 @@
       <Value Key="Title" Value="Variables in Razor / C#" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-variables" Type="String">
@@ -16618,7 +16621,7 @@
       <Value Key="Title" Value="Conditions: if, else and ternary ? : syntax" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-if" Type="String">
@@ -16661,7 +16664,7 @@
       <Value Key="Title" Value="Loops: for, foreach" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-loop" Type="String">
@@ -16704,7 +16707,7 @@
       <Value Key="Title" Value="Show Raw HTML" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-html-raw" Type="String">
@@ -16747,7 +16750,7 @@
       <Value Key="Title" Value="Show Emojis" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-emoji" Type="String">
@@ -16977,7 +16980,7 @@
       <Value Key="Title" Value="&lt;p&gt;Reuse code using &lt;code&gt;@functions&lt;/code&gt; inside a Razor&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-functions" Type="String">
@@ -17020,7 +17023,7 @@
       <Value Key="Title" Value="&lt;p&gt;Reuse Razor Files as Partial Components&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-partials-basic" Type="String">
@@ -17063,7 +17066,7 @@
       <Value Key="Title" Value="&lt;p&gt;Reuse Razor Files (Partial Components) with Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-partials-parameters" Type="String">
@@ -17106,7 +17109,7 @@
       <Value Key="Title" Value="&lt;p&gt;Reuse Shared Code in C# &lt;code&gt;.cs&lt;/code&gt; Files&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-shared-code" Type="String">
@@ -17166,7 +17169,7 @@
       <Value Key="Title" Value="&lt;p&gt;Show a List of Items - AsItems(), MyData&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="query-quickref-basic" Type="String">
@@ -17208,7 +17211,7 @@
       <Value Key="Title" Value="&lt;p&gt;Compare Items using .Equals(…)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="query-quickref-selected-equals" Type="String">
@@ -17577,7 +17580,7 @@
       <Value Key="Title" Value="&lt;p&gt;Set Page Properties such as Title, Metadata, Keywords&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="page-quickref-set" Type="String">
@@ -17621,7 +17624,7 @@
       <Value Key="Title" Value="&lt;p&gt;Set Page OpenGraph information&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="page-quickref-opengraph" Type="String">
@@ -17664,7 +17667,7 @@
       <Value Key="Title" Value="&lt;p&gt;Get Context information (MyContext) about Site, Page, Platform, etc.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-quickref-all" Type="String">
@@ -17791,7 +17794,7 @@
       <Value Key="Title" Value="&lt;p&gt;How to pass complex Objects between Razor and Code&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-reuseobjects-example" Type="String">
@@ -17936,7 +17939,7 @@
       <Value Key="Title" Value="&lt;p&gt;Links - to other pages or to the same page with varying parameters.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-linking" Type="String">
@@ -18814,7 +18817,7 @@
       <Value Key="Title" Value="&lt;p&gt;Automatic Resize with Full Control&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="img-responsive-img-tag-manual" Type="String">
@@ -18911,7 +18914,7 @@
       <Value Key="Title" Value="&lt;p&gt;Basics - Just Link and Read the Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-pageparameters-intro" Type="String">
@@ -19315,7 +19318,7 @@
       <Value Key="Title" Value="&lt;p&gt;Platform Information (ICmsPlatform)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-platform" Type="String">
@@ -19380,7 +19383,7 @@
       <Value Key="Title" Value="&lt;p&gt;Interface ICmsCulture&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-culture" Type="String">
@@ -19445,7 +19448,7 @@
       <Value Key="Title" Value="&lt;p&gt;Interface ICmsSite&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-site" Type="String">
@@ -19487,7 +19490,7 @@
       <Value Key="Title" Value="&lt;p&gt;Interface ICmsPage&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-page" Type="String">
@@ -19529,7 +19532,7 @@
       <Value Key="Title" Value="&lt;p&gt;Interface ICmsModule&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-module" Type="String">
@@ -19594,7 +19597,7 @@
       <Value Key="Title" Value="&lt;p&gt;Interface ICmsUser&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-user" Type="String">
@@ -19636,7 +19639,7 @@
       <Value Key="Title" Value="&lt;p&gt;Interface ICmsView&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-system-view" Type="String">
@@ -20346,7 +20349,7 @@
       <Value Key="Title" Value="&lt;p&gt;Create a Variable Heading Tag using &lt;code&gt;@Tag.Custom(&quot;your-tag&quot;)&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-htmltags-custom-h3" Type="String">
@@ -21206,7 +21209,7 @@
       <Value Key="Title" Value="&lt;p&gt;Working with Number URL Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-pageparameters-number" Type="String">
@@ -21296,7 +21299,7 @@
       <Value Key="Title" Value="&lt;p&gt;Link to current page with all Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-pageparameters-preserve" Type="String">
@@ -21338,7 +21341,7 @@
       <Value Key="Title" Value="&lt;p&gt;Add Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-pageparameters-add" Type="String">
@@ -21380,7 +21383,7 @@
       <Value Key="Title" Value="&lt;p&gt;Remove Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-pageparameters-remove" Type="String">
@@ -21422,7 +21425,7 @@
       <Value Key="Title" Value="&lt;p&gt;Change Parameters&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="context-pageparameters-change" Type="String">
@@ -21504,7 +21507,7 @@
       <Value Key="Title" Value="&lt;p&gt;Simple Intro-Sample Showing Some Values&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="block-item-basic" Type="String">
@@ -21718,7 +21721,7 @@
       <Value Key="Title" Value="&lt;p&gt;SetBase&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="page-basic-base" Type="String">
@@ -21814,7 +21817,7 @@
       <Value Key="Title" Value="&lt;p&gt;Icons&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="page-basic-icons" Type="String">
@@ -22463,7 +22466,7 @@
       <Value Key="Title" Value="&lt;p&gt;Image with &lt;code&gt;factor&lt;/code&gt; &lt;em&gt;1/3rd&amp;nbsp; &lt;/em&gt;or&amp;nbsp; &lt;em&gt;0.25&amp;nbsp;&lt;/em&gt; the Content Settings&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="img-basic-content-factor" Type="String">
@@ -22975,7 +22978,7 @@
       <Value Key="Title" Value="&lt;p&gt;Resize to 200px Width&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="img-basic-parameters-width" Type="String">
@@ -23215,7 +23218,7 @@
       <Value Key="Title" Value="&lt;p&gt;Resize Mode &lt;code&gt;stretch&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="img-basic-resize-stretch" Type="String">
@@ -23656,7 +23659,7 @@
       <Value Key="Title" Value="&lt;p&gt;Word-Split Problems&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-crop" Type="String">
@@ -23878,7 +23881,7 @@
       <Value Key="Title" Value="&lt;p&gt;Examples&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-has-base" Type="String">
@@ -23974,7 +23977,7 @@
       <Value Key="Title" Value="&lt;p&gt;Special case: &amp;lt;BR&amp;gt; Whitespace&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-has-special" Type="String">
@@ -24145,7 +24148,7 @@
       <Value Key="Title" Value="&lt;p&gt;Basic 2-Value Demos&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-first-2-value" Type="String">
@@ -24216,7 +24219,7 @@
       <Value Key="Title" Value="&lt;p&gt;3-5 Value Demos&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-first-3-5-value" Type="String">
@@ -24345,7 +24348,7 @@
       <Value Key="Title" Value="&lt;p&gt;Example Text&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-zip-example" Type="String">
@@ -24387,7 +24390,7 @@
       <Value Key="Title" Value="&lt;p&gt;Correct and incorrect Character Counts&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-zip" Type="String">
@@ -24707,7 +24710,7 @@
       <Value Key="Title" Value="&lt;p&gt;Simple example&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-text-tags-br" Type="String">
@@ -26021,7 +26024,7 @@
       <Value Key="Title" Value="&lt;p&gt;Creating Attributes Containing JSON&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razorblade-htmltags-attribute-json" Type="String">
@@ -26778,7 +26781,7 @@
       <Value Key="Title" Value="&lt;p&gt;Get-Method&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="webapi-rest-get" Type="String">
@@ -26821,7 +26824,7 @@
       <Value Key="Title" Value="&lt;p&gt;Post-Method&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="webapi-rest-post" Type="String">
@@ -26864,7 +26867,7 @@
       <Value Key="Title" Value="&lt;p&gt;Put-Method&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="webapi-rest-put" Type="String">
@@ -26907,7 +26910,7 @@
       <Value Key="Title" Value="&lt;p&gt;Delete-Method&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="webapi-rest-delete" Type="String">
@@ -27009,7 +27012,7 @@
       <Value Key="Title" Value="&lt;p&gt;Bare Metal URLs&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="webapi-baremetal-url" Type="String">
@@ -27198,7 +27201,7 @@
       <Value Key="Title" Value="&lt;p&gt;Initial Setup, No Configuration&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-default-nodata" Type="String">
@@ -27240,7 +27243,7 @@
       <Value Key="Title" Value="&lt;p&gt;Initial Setup - for current Item&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-default-data" Type="String">
@@ -27423,7 +27426,7 @@
       <Value Key="Title" Value="&lt;p&gt;Standard TagToolbar&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-workflows-tag" Type="String">
@@ -27465,7 +27468,7 @@
       <Value Key="Title" Value="&lt;p&gt;Workflow on Standard Inline Toolbar&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-workflows-inline" Type="String">
@@ -27767,7 +27770,7 @@
       <Value Key="Title" Value="&lt;p&gt;Add two buttons&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-basic" Type="String">
@@ -27809,7 +27812,7 @@
       <Value Key="Title" Value="&lt;p&gt;Add &lt;code&gt;new&lt;/code&gt; button with colors&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-color" Type="String">
@@ -27851,7 +27854,7 @@
       <Value Key="Title" Value="&lt;p&gt;Add &lt;code&gt;new&lt;/code&gt; at the end of button-list&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-end" Type="String">
@@ -27893,7 +27896,7 @@
       <Value Key="Title" Value="&lt;p&gt;Remove &lt;code&gt;more&lt;/code&gt; button&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-more-none" Type="String">
@@ -27935,7 +27938,7 @@
       <Value Key="Title" Value="&lt;p&gt;Use empty toolbar template and add &lt;code&gt;edit&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-edit" Type="String">
@@ -28007,7 +28010,7 @@
       <Value Key="Title" Value="&lt;p&gt;Button with SVG Icon&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-add-icons" Type="String">
@@ -28049,7 +28052,7 @@
       <Value Key="Title" Value="&lt;p&gt;Add Info-Button with Note (v15.08+)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-info-and-note" Type="String">
@@ -28121,7 +28124,7 @@
       <Value Key="Title" Value="&lt;p&gt;Edit button is now red&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-edit-color" Type="String">
@@ -28163,7 +28166,7 @@
       <Value Key="Title" Value="&lt;p&gt;New &lt;code&gt;BlogPost&lt;/code&gt; is red, &lt;code&gt;Category&lt;/code&gt; is green&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-color" Type="String">
@@ -28205,7 +28208,7 @@
       <Value Key="Title" Value="&lt;p&gt;Always show &lt;code&gt;Delete&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-delete" Type="String">
@@ -28277,7 +28280,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-paramters-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-ui" Type="String">
@@ -28319,7 +28322,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-parameters-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-ui-icon" Type="String">
@@ -28391,7 +28394,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-filter-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-data-filter-title" Type="String">
@@ -28433,7 +28436,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-filter-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-data-filter-ids" Type="String">
@@ -28517,7 +28520,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-groups-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-group-add" Type="String">
@@ -28559,7 +28562,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-groups-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-group-add2" Type="String">
@@ -28631,7 +28634,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-hover-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-hover-left" Type="String">
@@ -28673,7 +28676,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-hover-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-hover-left-more-end" Type="String">
@@ -28715,7 +28718,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-custom-js-1&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-js-alert" Type="String">
@@ -28757,7 +28760,7 @@
       <Value Key="Title" Value="&lt;p&gt;ui-toolbars-button-custom-js-2&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-toolbars-button-js-alert-params" Type="String">
@@ -30925,7 +30928,7 @@
       <Value Key="Title" Value="&lt;p&gt;Get Data&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="js-data-rest-get" Type="String">
@@ -30967,7 +30970,7 @@
       <Value Key="Title" Value="&lt;p&gt;Use the sxc &lt;code&gt;query(...)&lt;/code&gt; API to get Queries in JS&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="js-data-rest-query" Type="String">
@@ -31009,7 +31012,7 @@
       <Value Key="Title" Value="&lt;p&gt;Use the sxc &lt;code&gt;query(...)&lt;/code&gt; API to get Queries in JS&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="js-data-rest-query-parameters" Type="String">
@@ -31903,7 +31906,7 @@
       <Value Key="Title" Value="&lt;p&gt;Basic Hello-World Custom Field&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-hello-world" Type="String">
@@ -32001,7 +32004,7 @@
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom Color-Picker Input Field&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-color-picker" Type="String">
@@ -32043,7 +32046,7 @@
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom Color-Picker Input Field - Configurable&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-color-picker-configurable" Type="String">
@@ -32085,7 +32088,7 @@
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom Micro-WYSIWYG Input Field&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-wysiwyg-light" Type="String">
@@ -32127,7 +32130,7 @@
       <Value Key="Title" Value="&lt;p&gt;2sxc Custom WYSIWYG with Additional Button&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="True" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="ui-fields-string-wysiwyg-add-button" Type="String">
@@ -33176,7 +33179,7 @@
       <Value Key="Title" Value="&lt;p&gt;Platform Specific Razor using Preprocessor&amp;nbsp;&lt;code&gt;#if&lt;/code&gt;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="hybrid-basics-preprocessor" Type="String">
@@ -33678,7 +33681,7 @@
       <Value Key="Title" Value="&lt;p&gt;Basic List Details using Code - with separate Details-File&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-listdetails-coded" Type="String">
@@ -34131,7 +34134,7 @@
       <Value Key="Title" Value="&lt;p&gt;Show Warning if Bootstrap5 not Included or Unclear&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="koi-basics-alert-if-missing" Type="String">
@@ -34271,7 +34274,7 @@
       <Value Key="Title" Value="&lt;p&gt;Basic View-Switch with 2 Optional Views&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="basics-viewswitch-basic" Type="String">
@@ -36867,7 +36870,7 @@
       <Value Key="Title" Value="&lt;p&gt;Get the Tab (Pages) List from DNN APIs&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="data-dnn-tab-list" Type="String">
@@ -37113,7 +37116,7 @@
       <Value Key="Title" Value="&lt;p&gt;C# 6 and C# 7 Language Features&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="ToobarsForAnonymous" Value="False" Type="Boolean">
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="razor-quickref-csharp7" Type="String">
@@ -37140,15 +37143,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="20fe3f84-9700-4732-a790-932604689e54" Json="True" KeyNumber="153">
-      <Value Key="DebugLog" Value="Caller: GetOrBuild; Line: 141; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Core\Caching\Apps\AppsCacheBase.cs&#xA;Caller: AppStateInitialized; Line: 117; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\Efc11Loader_App.cs&#xA;Caller: Config: False, Resources: False, Settings: False; AllOk: False; Line: 0; File: Message&#xA;Caller: App Entity Count: 0; Line: 0; File: Message&#xA;Caller: App ContentType Count: 177; Line: 0; File: Message&#xA;Caller: App Metadata Count: 0; Line: 0; File: Message&#xA;Caller: Has Type App Config: ToSic.Eav.Data.ContentTypeWrapper; Line: 0; File: Message&#xA;Caller: Has Type App Resources: App-Resources/App-Resources - ToSic.Eav.Data.ContentType; Line: 0; File: Message&#xA;Caller: Has Type App Settings: App-Settings/App-Settings - ToSic.Eav.Data.ContentType; Line: 0; File: Message&#xA;Caller: EnsureAppConfiguredAndInformIfRefreshNeeded; Line: 37; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Work\AppCreate\AppInitializedChecker.cs&#xA;Caller: Config: False, Resources: False, Settings: False; AllOk: False; Line: 0; File: Message&#xA;Caller: App Entity Count: 0; Line: 0; File: Message&#xA;Caller: App ContentType Count: 177; Line: 0; File: Message&#xA;Caller: App Metadata Count: 0; Line: 0; File: Message&#xA;Caller: Has Type App Config: ToSic.Eav.Data.ContentTypeWrapper; Line: 0; File: Message&#xA;Caller: Has Type App Resources: App-Resources/App-Resources - ToSic.Eav.Data.ContentType; Line: 0; File: Message&#xA;Caller: Has Type App Settings: App-Settings/App-Settings - ToSic.Eav.Data.ContentType; Line: 0; File: Message" Type="String" />
-      <Value Key="DisplayName" Value="efe3b9cf-1382-40b3-bee2-34becb5351bc" Type="String" />
-      <Value Key="Folder" Value="efe3b9cf-1382-40b3-bee2-34becb5351bc" Type="String" />
-      <Value Key="OriginalId" Value="" Type="String" />
-      <Value Key="Version" Value="00.00.17" Type="String" />
-    </Entity>
-    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="b1986578-fcb9-4dd9-9f68-144b5b7372ca" KeyNumber="153" />
-    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="061ea8b2-3a24-4722-ae24-1b0053b8cc71" KeyNumber="153" />
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
