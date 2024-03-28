@@ -1,9 +1,7 @@
 using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
-using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
 using ToSic.Sxc.Data;
-using System;
 using System.Collections.Generic;
 
 namespace AppCode.TutorialSystem.Source
@@ -19,13 +17,11 @@ namespace AppCode.TutorialSystem.Source
 
     #region Init / Dependencies
 
-    public FileHandler Init(string path) {
-      Path = path;
-      return this;
-    }
-    public string Path { get; set; }
     private SourceProcessor SourceProcessor => _sourceProcessor ??= GetService<SourceProcessor>();
     private SourceProcessor _sourceProcessor;
+
+    private Ace9Editor Ace9Editor => _ace9Editor ??= GetService<Ace9Editor>();
+    private Ace9Editor _ace9Editor;
 
     #endregion
 
@@ -61,9 +57,9 @@ namespace AppCode.TutorialSystem.Source
         Size = Size(null, source),
         Language = language,
       };
-      TurnOnSource(specs, "", false);
+      Ace9Editor.TurnOnSource(specs, "", false);
       return Tag.Div().Class("pre-result").Wrap(
-        SourceBlockCode(specs)
+        Ace9Editor.SourceBlockCode(specs)
       );
     }
 
@@ -116,8 +112,8 @@ namespace AppCode.TutorialSystem.Source
     {
       var l = Log.Call<ITag>("file: '" + file + "'; SnippetId: '" + snippetId + "'");
       var debug = false;
-      var path = Path;
-      var errPath = Path;
+      var path = "";
+      var errPath = "";
 
       // New: support for snippetId in path
       if (snippetId == null && file.Contains("#")) {
@@ -138,12 +134,12 @@ namespace AppCode.TutorialSystem.Source
         specs.ShowIntro = withIntro ?? specs.ShowIntro;
         specs.ShowTitle = showTitle ?? specs.ShowTitle;
 
-        TurnOnSource(specs, specs.FileName, specs.Wrap);
+        Ace9Editor.TurnOnSource(specs, specs.FileName, specs.Wrap);
 
         return l(Tag.RawHtml(
           debug ? Tag.Div(errPath).Class("alert alert-info") : null,
           "\n<!-- Source Code -->\n",
-          SourceBlock(specs, title),
+          Ace9Editor.SourceBlock(specs, title),
           "\n<!-- /Source Code -->\n"
         ), "ok");
       }
@@ -167,14 +163,36 @@ namespace AppCode.TutorialSystem.Source
     // }
 
     private SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
-      var path = /* path ?? */ Path;
-      var fullPath = GetFileFullPath(path, file);
-      var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
+      // Note: for historical reasons the file is a path which can look like
+      // - "../../tutorials/razor-quickref\Snip-partials-basic.typed.cshtml"
+      // - "../../tutorials/razor-quickref/../razor-partial/line.cshtml"
+      // maybe more variations - so we'll try to clean it here to be relative to the AppRoot
+
+      // Todo: remove one or more trailing "../" from the file variable
+      while (file.StartsWith("../"))
+        file = file.Substring(3);
+
+      // var path = App.Folder.Path.Replace("\\", "/"); // /* path ?? */ Path;
+      // var before = file;
+      // file = Text.After(file, "/tutorials/");
+      // var fullPath = GetFileFullPath(Path, file);
+      var fullPath = GetPhysicalPathOfFileInApp(file);
+      // Log.Add("New Path: " + newPath);
+      // throw new Exception($"2dm: before: '{before}'; File: '{file}'; Path '{Path}', AppPath: '{App.Folder.Path}', fullPath: '{fullPath}', tempPathWithHandedInPath: '{tempPathWithHandedInPath}'");
+
       // When getting cached, we must re-wrap to get a new randomID
-      // otherwise the source-display will get confused with muliple displays of the same file
-      if (_sourceInfoCache.ContainsKey(cacheKey))
-        return new SourceInfo(_sourceInfoCache[cacheKey]);
-      var fileInfo = GetFile(path, file, fullPath);
+      // otherwise the source-display will get confused with multiple displays of the same file
+      var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
+      if (_sourceInfoCache.TryGetValue(cacheKey, out var cached))
+        return new SourceInfo(cached);
+
+      // var fileInfo = GetFile(path, file, fullPath);
+      var fileInfo = GetFileSourceInfo(fullPath);
+      // fileInfo = newInfo;
+
+      // log all properties of FileInfo
+      Log.Add($"fileInfo: {fileInfo}");
+      // Log.Add($"newInfo: {newInfo}");
       fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents, snippetId);
       fileInfo.Size = Size(null, fileInfo.Processed);
       var isSnippet = !string.IsNullOrWhiteSpace(snippetId);
@@ -198,176 +216,36 @@ namespace AppCode.TutorialSystem.Source
 
 
 
-    private Div SourceBlock(ShowSourceSpecs specs, string title) {
-      return Tag.Div().Class("code-block " + (specs.Expand ? "is-expanded" : "")).Attr(specs.DomAttribute).Wrap(
-        specs.ShowIntro
-          ? Tag.Div().Class("header row justify-content-between").Wrap(
-              Tag.Div().Class("col-11").Wrap(
-                Tag.H3(title),
-                Tag.P("Below you'll see the source code of the " + specs.Type + @". 
-                      Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
-                      <strong>Click to expand the code</strong>")
-              ),
-              Tag.Div().Class("col-auto").Wrap(
-                // Up / Down arrows as SVG - hidden by default, become visible based on CSS 
-                Tag.Custom("<img src='" + App.Folder.Url + "/assets/svg/arrow-up.svg' class='fa-chevron-up' loading='lazy'>"),
-                Tag.Custom("<img src='" + App.Folder.Url + "/assets/svg/arrow-down.svg' class='fa-chevron-down' loading='lazy'>")
-              )
-            ) as ITag
-          : specs.ShowTitle
-            ? Tag.H3(title) as ITag
-            : Tag.Span(),
-        "\n<!-- Raw Source in Pre -->\n",
-        SourceBlockCode(specs),
-        "\n<!-- /Raw Source in Pre -->\n"
-      );
-    }
-
-
-
-    private ITag SourceBlockCode(ShowSourceSpecs specs) {
-      return Tag.Div().Class("source-code").Wrap(
-        "\n",
-        Tag.Pre(Tags.Encode(specs.Processed)).Id(specs.RandomId).Style("height: " + specs.Size + "px; font-size: 16px"),
-        "\n"
-      );
-    }
-
-    private void TurnOnSource(ShowSourceSpecs specs, string filePath, bool wrap) {
-      var l = Log.Call("filePath:" + filePath + ", wrap:" + wrap + "; specs.Language: " + specs.Language);
-      var language = "ace/mode/" + (specs.Language ?? (Text.Has(filePath)
-        ? FindAce3LanguageName(filePath)
-        : "html"));
-
-      Kit.Page.TurnOn("window.razorTutorial.initSourceCode()",
-        require: "window.ace",
-        data: new {
-          test = "now-automated",
-          domAttribute = specs.DomAttribute,
-          aceOptions = new {
-            wrap,
-            language,
-            sourceCodeId = specs.RandomId
-          }
-        }
-      );
-      l("language=" + language);
-    }
-
-    /// <summary>
-    /// Determine the ace9 language of the file
-    /// </summary>
-    private string FindAce3LanguageName(string filePath) {
-      var extension = filePath.Substring(filePath.LastIndexOf('.') + 1);
-      switch (extension)
-      {
-        case "cs": return "csharp";
-        case "js": return "javascript";
-        case "json": return "json";
-        default: return "razor";
-      }
-    }
-
 
     #endregion
 
-    #region (private/internal) File Processing
+    #region new path processing
 
-    private string GetFileFullPath(string filePath, string file) {
-      var l = Log.Call<string>("filePath:" + filePath + ", file:" + file);
-      if (Text.Has(file)) {
-        if (file.IndexOf(".") == -1)
-          file = file + ".cshtml";
-        var lastSlash = filePath.LastIndexOf("/");
-        filePath = filePath.Substring(0, lastSlash) + "/" + file;
-      }
-      var fullPath = filePath;
-      if (filePath.IndexOf(":") == -1 && filePath.IndexOf(@"\\") == -1)
-        fullPath = GetFullPath(filePath);
+    public string GetPhysicalPathOfFileInApp(string pathInApp)
+    {
+      var l = Log.Call<string>(pathInApp);
+      // Todo: handle "../" etc.;
+      // Note: not possible ATM, because we somehow seem to have these in the path on purpose
+      // if (pathInApp.Contains(".."))
+      //   throw new Exception("Path contains '..' which is not allowed: " + pathInApp);
+
+      var appPath = App.Folder.PhysicalPath;// + "\\";
+      Log.Add("AppPath: " + appPath);
+      var pathWithTrimmedFirstSlash = pathInApp.TrimStart(new [] { '/', '\\' });
+      var fullPath = System.IO.Path.Combine(appPath, pathWithTrimmedFirstSlash);
       return l(fullPath, fullPath);
     }
 
-    private SourceInfo GetFile(string filePath, string file, string fullPath = null) {
-      var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file + "; fullPath: " + fullPath);
-      fullPath = fullPath ?? GetFileFullPath(filePath, file);
+    private SourceInfo GetFileSourceInfo(string fullPath) {
+      var l = Log.Call<SourceInfo>("fullPath: " + fullPath);
       var cacheKey = fullPath.ToLowerInvariant();
-      var contents = _getFileCache.TryGetValue(cacheKey, out var c) //.ContainsKey(cacheKey)
-        ? c // _getFileCache[cacheKey]
-        : System.IO.File.ReadAllText(fullPath);
+      var contents = _getFileCache.TryGetValue(cacheKey, out var c) ? c : System.IO.File.ReadAllText(fullPath);
       var fileName = System.IO.Path.GetFileName(fullPath);
+      var filePath = fullPath.Substring(0, fullPath.LastIndexOf("/"));
       return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, fullPath);
     }
-
-    private Dictionary<string, string> _getFileCache = new Dictionary<string, string>();
-
-
-    internal class ShowSourceSpecs {
-      public ShowSourceSpecs() {
-        RandomId = "source" + Guid.NewGuid().ToString();
-      }
-      // public static ShowSourceSpecs CloneWithNewId(ShowSourceSpecs o) {
-      //   return new ShowSourceSpecs {
-      //     Processed = o.Processed,
-      //     Size = o.Size,
-      //     Language = o.Language,
-      //     Type = o.Type,
-      //     DomAttribute = o.DomAttribute,
-      //     ShowIntro = o.ShowIntro,
-      //     ShowTitle = o.ShowTitle,
-      //     Expand = o.Expand,
-      //     Wrap = o.Wrap
-      //   }
-      // }
-      public string Processed;
-      public int Size;
-      public string Language;
-      public string Type = "file";
-      public string DomAttribute;
-      public string RandomId;
-      public bool ShowIntro;
-      public bool ShowTitle;
-      public bool Expand = true;
-      public bool Wrap;
-    }
-
-    internal class SourceInfo : ShowSourceSpecs {
-      public SourceInfo() { }
-      public SourceInfo(SourceInfo o) {
-        Processed = o.Processed;
-        Size = o.Size;
-        Language = o.Language;
-        Type = o.Type;
-        DomAttribute = o.DomAttribute;
-        ShowIntro = o.ShowIntro;
-        ShowTitle = o.ShowTitle;
-        Expand = o.Expand;
-        Wrap = o.Wrap;
-        // field only in SourceInfo
-        FileName = o.FileName;
-        Path = o.Path;
-        FullPath = o.FullPath;
-        Contents = o.Contents;
-      }
-      public string FileName;
-      public string Path;
-      public string FullPath;
-      public string Contents;
-    }
-
-    public string GetFullPath(string filePath) {
-      var l = Log.Call<string>(filePath);
-      #if NETCOREAPP
-        // This is the Oqtane implementation - cannot use Server.MapPath
-        // 2sxclint:disable:v14-no-getservice
-        var hostingEnv = GetService<Microsoft.AspNetCore.Hosting.IHostingEnvironment>();
-        var pathWithTrimmedFirstSlash = filePath.TrimStart(new [] { '/', '\\' });
-        var result = System.IO.Path.Combine(hostingEnv.ContentRootPath, pathWithTrimmedFirstSlash);
-      #else
-        var result = System.Web.HttpContext.Current.Server.MapPath(filePath);
-      #endif
-      return l(result, result);
-    }
-
+    private readonly Dictionary<string, string> _getFileCache = new Dictionary<string, string>();
+    
     #endregion
 
     #region (private) Source Code Clean-up Helpers
@@ -387,5 +265,6 @@ namespace AppCode.TutorialSystem.Source
     #endregion
 
   }
+
 
 }

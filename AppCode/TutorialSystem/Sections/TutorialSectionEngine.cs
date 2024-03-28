@@ -10,38 +10,38 @@ using AppCode.Output;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Tabs;
 using AppCode.TutorialSystem.Source;
+using AppCode.Data;
 
 namespace AppCode.TutorialSystem.Sections
 {
   /// <summary>
   /// Engine to generate all kinds of tutorial sections within wrappers.
   /// </summary>
-  public class TutorialSectionEngine
+  public class TutorialSectionEngine: AppCode.Services.ServiceBase
   {
-    public TutorialSectionEngine(SourceCode sourceCode, ITypedItem item, Dictionary<string, string> tabs, string sourceFile = null) {
-      if (item == null) throw new Exception("Item should never be null");
+    public TutorialSectionEngine Init(SourceCode sourceCode, TutorialSnippet item, Dictionary<string, string> tabs, string sourceFile = null) {
+      Item = item ?? throw new Exception("Item should never be null");
       ScParent = sourceCode;
       BsTabs = ScParent.BsTabs;
-      Log = ScParent.Log;
-      Item = item;
       SourceWrap = sourceCode.GetSourceWrap(this, item);
       TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
       SourceFile = sourceFile;
       ViewConfig = ScParent.GetService<ViewConfigurationSimulation>().Setup(TabHandler);
+      return this;
     }
+
     internal SourceCode ScParent;
 
-    public FancyboxService Fancybox => _fancybox ??= ScParent.GetService<FancyboxService>();
+    public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
     private FancyboxService _fancybox;
 
     private BootstrapTabs BsTabs;
-    internal ICodeLog Log;
     protected int SnippetCount;
     internal string SnippetId {get; private set;}
     public string TabPrefix {get; protected set;}
     protected Wrap SourceWrap;
     internal TabManager TabHandler;
-    internal ITypedItem Item;
+    internal TutorialSnippet Item;
     internal string SourceFile;
     public ViewConfigurationSimulation ViewConfig;
 
@@ -206,7 +206,7 @@ namespace AppCode.TutorialSystem.Sections
         var notesHtml = item.Children(NotesFieldName).Select(tMd => Tag.RawHtml(
           "\n    ",
           Tag.Div().Class("alert alert-" + tMd.String("NoteType"))
-            .Attr(ScParent.Kit.Toolbar.Empty().Edit(tMd))
+            .Attr(Kit.Toolbar.Empty().Edit(tMd))
             .Wrap(
               Tag.H4(tMd.String("Title")),
               tMd.Html("Note"),

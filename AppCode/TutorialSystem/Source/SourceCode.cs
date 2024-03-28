@@ -1,16 +1,16 @@
 using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
-using ToSic.Sxc.Data;
 using System.Collections.Generic;
 using System.Linq;
 using AppCode.Tutorial;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Tabs;
 using AppCode.TutorialSystem.Sections;
+using AppCode.Data;
 
 namespace AppCode.TutorialSystem.Source
 {
-  public class SourceCode: Custom.Hybrid.CodeTyped
+  public class SourceCode: AppCode.Services.ServiceBase
   {
     #region Init / Dependencies
 
@@ -28,27 +28,12 @@ namespace AppCode.TutorialSystem.Source
     public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>().Init(this);
     private SourceCodeFormulas _formulas;
 
-    public FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>().Init(Path);
+    public FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
 
     #endregion
 
     #region All Available Entry Points to Show Snippets in Various Ways
-
-    /// <summary>
-    /// QuickRef section - only to be used in the Quick Reference
-    /// for manual adding complex cases - ATM not in use 2023-09-12
-    /// </summary>
-    /// <param name="item">ATM object, because when coming through a Razor14 the type is not known</param>
-    /// <param name="tabs"></param>
-    /// <returns></returns>
-    public TutorialSectionEngine QuickRef(object item, string tabs = null, Dictionary<string, string> tabDic = null)
-    {
-      var l = Log.Call<TutorialSectionEngine>("tabs: '" + tabs + "'");
-      tabDic = tabDic ?? TabStringToDic(tabs);
-      var result = new TutorialSectionEngine(this, item as ITypedItem, tabDic);
-      return l(result, "ok - count: " + tabDic.Count());
-    }
 
     /// <summary>
     /// Create a Snip/Section object from an Item (ITypedItem).
@@ -57,14 +42,14 @@ namespace AppCode.TutorialSystem.Source
     /// <param name="item">The configuration item</param>
     /// <param name="file">The file from which it will be relative to</param>
     /// <returns></returns>
-    public TutorialSectionEngine SnipFromItem(ITypedItem item, string file = null)
+    public TutorialSectionEngine SnipFromItem(TutorialSnippet item, string file = null)
     {
       var l = Log.Call<TutorialSectionEngine>("file: " + file);
       // If we have a file, we should try to look up the tabs
       var tabCsv = TryToGetTabsFromSource(file);
       Log.Add("tabs: '" + tabCsv + "'");
       var tabs = TabStringToDic(tabCsv);
-      var result = new TutorialSectionEngine(this, item, tabs, sourceFile: file);
+      var result = GetService<TutorialSectionEngine>().Init(this, item, tabs, sourceFile: file);
       return l(result, "ok - count: " + tabs.Count());
     }
 
@@ -136,15 +121,15 @@ namespace AppCode.TutorialSystem.Source
 
     #region Wrap: Source Wrappers like Wrap, WrapOutOverSrc, WrapOutOnly, WrapSrcOnly, WrapOutSplitSrc, WrapFormula
 
-    internal Wrap GetSourceWrap(TutorialSectionEngine section, ITypedItem item) {
+    internal Wrap GetSourceWrap(TutorialSectionEngine section, TutorialSnippet item) {
       // Figure out the type based on the item or it's parent
       string code = null;
       if (item != null) {
-        if (item.String("TutorialType") == "formula")
+        if (item.TutorialType == "formula")
           return new WrapFormula(section);
 
-        if (item.IsNotEmpty("OutputAndSourceDisplay"))
-          code = item.String("OutputAndSourceDisplay");
+        if (item.IsNotEmpty(nameof(item.OutputAndSourceDisplay)))
+          code = item.OutputAndSourceDisplay;
         else {
           var parent = AsItem(item.Parents(type: "TutorialGroup"));
           if (parent != null && parent.IsNotEmpty("OutputAndSourceDisplay"))
@@ -163,8 +148,10 @@ namespace AppCode.TutorialSystem.Source
       if (code == "split") {
         if (item.Int("OutputWidth") != 0)
           return new WrapOutSplitSrc(section);
-        var wrap = new Wrap(section, "WrapInsteadOfSplit");
-        wrap.TabSelected = Constants.SourceTabName;
+        var wrap = new Wrap(section, "WrapInsteadOfSplit")
+        {
+          TabSelected = Constants.SourceTabName
+        };
         return wrap;
       }
       

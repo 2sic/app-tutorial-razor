@@ -43,7 +43,7 @@ namespace AppCode.TutorialSystem.Wrappers
 
       public override ITag SourceClose() {
         // Ensure it's registered in turnOn
-        Section.ScParent.Kit.Page.TurnOn("window.splitter.init()", data: new {
+        Section.Kit.Page.TurnOn("window.splitter.init()", data: new {
           parts = new [] {
             "#" + Section.TabPrefix + "-splitter-left",
             "#" + Section.TabPrefix + "-splitter-right"

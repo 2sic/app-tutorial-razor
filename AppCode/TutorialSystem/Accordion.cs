@@ -51,15 +51,15 @@ namespace AppCode.TutorialSystem
 
     public IEnumerable<Section> Sections(string basePath, string backtrack) {
       if (Item == null) throw new Exception("Item in Accordion is null");
-      var appPath = App.Folder.Path;
+      // var appPath = App.Folder.Path;
       basePath = Text.BeforeLast(basePath, "/");
       var names = Item.Sections
         .Select(itm => {
           var tutorialId = itm.TutorialId;
           string fileName;
           // first try special extension eg. .Typed.Cshtml
-          if (!CheckFile(appPath, backtrack, tutorialId, _variantExtension, out fileName))
-            CheckFile(appPath, backtrack, tutorialId, null, out fileName);
+          if (!CheckFile(/* appPath, */ backtrack, tutorialId, _variantExtension, out fileName))
+            CheckFile(/*appPath, */ backtrack, tutorialId, null, out fileName);
           return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
         })
         .ToList();
@@ -91,7 +91,7 @@ namespace AppCode.TutorialSystem
       "webapi",
     };
 
-    private bool CheckFile(string appPath, string relBacktrack, string tutorialId, string variant, out string fileName) {
+    private bool CheckFile(/* string appPath, */ string relBacktrack, string tutorialId, string variant, out string fileName) {
       var l = Log.Call<bool>("tutorialId: " + tutorialId);
       var topPath = Text.Before(tutorialId, "-");
       var rest = Text.After(tutorialId, "-");
@@ -109,10 +109,13 @@ namespace AppCode.TutorialSystem
 
 
       var realName = "Snip-" + rest + variant + ".cshtml";
-      var filePath = System.IO.Path.Combine(appPath, topPath, secondPath, realName);
-      Log.Add("filePath: " + filePath);
+      // var filePath = System.IO.Path.Combine(appPath, topPath, secondPath, realName);
+      // Log.Add("filePath: " + filePath);
 
-      var fullPath = Sys.SourceCode.FileHandler.GetFullPath(filePath);
+      // var fullPath = Sys.SourceCode.FileHandler.GetFullPath(filePath);
+      var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", topPath, secondPath, realName);
+      // Log.Add("fullPath: " + fullPath);
+      // Log.Add("fullPath2: " + fullPath2);
       if (System.IO.File.Exists(fullPath)) {
         fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);
         return l(true, "exists");
