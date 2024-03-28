@@ -17,7 +17,7 @@
   // Skip Variant Selector if it was already done before
   // If we have variants, and the caller didn't explicitly say to skip page tools, then show them
   if (!Model.SkipPageTools && tutGroup.HasVariants) {
-    @Html.Partial("./Variant Selector.cshtml", new VariantSelectorModel { Current = accordion.Variant, Variants = null })
+    @Html.Partial("./Variant Selector.cshtml", new VariantSelectorModel { Current = accordion.Variant, Variants = tutGroup.Variants })
   }
 }
 <!-- Section Block -->

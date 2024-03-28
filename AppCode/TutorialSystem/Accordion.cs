@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using AppCode.Data;
 using AppCode.TutorialSystem.Tabs;
-using AppCode.Tutorial;
 using ToSic.Razor.Blade;
 using AppCode.TutorialSystem.Sections;
-using static AppCode.TutorialSystem.Constants;
+using static AppCode.TutorialSystem.Variants;
 
 namespace AppCode.TutorialSystem
 {
@@ -64,53 +63,14 @@ namespace AppCode.TutorialSystem
       return names;
     }
 
-    private static string[] MovedTutorials = new [] {
-      "basics",
-      "block",
-      "code",
-      "context",
-      "data",
-      "datasources",
-      "hybrid",
-      "img",
-      "items",
-      "js",
-      "json",
-      "koi",
-      "languages",
-      "linq",
-      "query",
-      "page",
-      "razor",
-      "razorblade",
-      "settings",
-      "turnon",
-      "ui",
-      "webapi",
-    };
-
     private bool CheckFile(string relBacktrack, string tutorialId, string variant, out string fileName) {
-      var l = Log.Call<bool>("tutorialId: " + tutorialId);
-      var topPath = Text.Before(tutorialId, "-");
-      var rest = Text.After(tutorialId, "-");
-      var secondPath = Text.Before(rest, "-");
-      rest = Text.After(rest, "-");
+      var l = Log.Call<bool>($"tutorialId: {tutorialId}; variant: {variant}");
+      var tutInfo = new TutorialIdToPath(tutorialId, variant);
 
-      if (!Text.Has(secondPath))
-        throw new Exception("Second path is empty, original was '" + tutorialId + "'");
-
-      // New 2023-09-26 2dm - moving all snips to an own folder
-      if (MovedTutorials.Contains(topPath)) {
-        topPath = "tutorials/" + topPath + "-" + secondPath;
-        secondPath = "";
-      }
-
-
-      var realName = "Snip-" + rest + variant + ".cshtml";
-      var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", topPath, secondPath, realName);
+      var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", tutInfo.Path, tutInfo.FileName);
 
       if (System.IO.File.Exists(fullPath)) {
-        fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);
+        fileName = relBacktrack + "/" + System.IO.Path.Combine(tutInfo.Path, /* secondPath, */ tutInfo.FileName);
         return l(true, "exists");
       }
       fileName = null;

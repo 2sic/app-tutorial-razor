@@ -16,9 +16,9 @@ namespace AppCode.TutorialSystem.Sections
       SectionFile = fileName;
       Show = Acc.Item.DefaultStateIsOpen; // later we can add more conditions
     }
-    private Accordion Acc;
-    public string Name { get; private set; }
-    public TutorialSnippet Item { get; private set; }
+    private readonly Accordion Acc;
+    public readonly string Name;
+    public readonly TutorialSnippet Item;
 
     private readonly IHtmlTagsService TagsSvc;
     public string HeadingId => Name + "-heading";
@@ -74,7 +74,9 @@ namespace AppCode.TutorialSystem.Sections
             // TagsSvc.Span("test").Style("float: right"),
             Item.String("Title", scrubHtml: "p"),
             Acc.MyUser.IsSystemAdmin
-              ? TagsSvc.Span("ℹ️").Title("This is the snip '" + TutorialId + "'").Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
+              ? TagsSvc.Span("ℹ️")
+                  .Title("This is the snip '" + TutorialId + "' - to be found in " + new TutorialIdToPath(TutorialId, "").FullPath)
+                  .Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
               : null
           ),
         "\n",
