@@ -1,7 +1,6 @@
 using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
-using ToSic.Sxc.Data;
 using System.Collections.Generic;
 
 namespace AppCode.TutorialSystem.Source
@@ -84,15 +83,15 @@ namespace AppCode.TutorialSystem.Source
     /// <summary>
     /// just show a snippet - used in SourceCode.cs
     /// </summary>
-    public ITag ShowSnippet(string snippetId, ITypedItem item = null, string file = null)
+    internal ITag ShowSnippet(string snippetId, string file = null)
       => file != null
         ? ShowFileContents(file, snippetId, withIntro: false, showTitle: false, expand: true)
         : ShowFileContents(null, snippetId, expand: true);
 
-    public ITag GetTabFileContents(string file) => ShowFileContents(file, withIntro: false, showTitle: true);
+    internal ITag GetTabFileContents(string file) => ShowFileContents(file, withIntro: false, showTitle: true);
 
     // Used in SourceCode.cs to see if it has tabs
-    public string GetFileContents(string file) => GetFileAndProcess(file).Contents;
+    internal string GetFileContents(string file) => GetFileAndProcess(file).Contents;
 
     /// <summary>
     /// 
@@ -106,9 +105,15 @@ namespace AppCode.TutorialSystem.Source
     /// <param name="withIntro"></param>
     /// <param name="showTitle"></param>
     /// <returns></returns>
-    private ITag ShowFileContents(string file,
-      string snippetId = null, string title = null, string titlePath = null, 
-      bool? expand = null, bool? wrap = null, bool? withIntro = null, bool? showTitle = null)
+    private ITag ShowFileContents(
+      string file,
+      string snippetId = null,
+      string title = null,
+      string titlePath = null, 
+      bool? expand = null,
+      bool? wrap = null,
+      bool? withIntro = null,
+      bool? showTitle = null)
     {
       var l = Log.Call<ITag>("file: '" + file + "'; SnippetId: '" + snippetId + "'");
       var debug = false;
@@ -126,7 +131,7 @@ namespace AppCode.TutorialSystem.Source
         var specs = GetFileAndProcess(file, snippetId);
         path = specs.Path;  // update in case of error
         errPath = debug ? specs.FullPath : path;
-        title = title ?? "Source Code of " + (Text.Has(specs.FileName)
+        title ??= "Source Code of " + (Text.Has(specs.FileName)
           ? titlePath + specs.FileName  // "Source code of .../SomeCodeFile.cs"
           : "this " + specs.Type); // "this snippet" vs "this file"
         specs.Expand = expand ?? specs.Expand;
@@ -221,7 +226,7 @@ namespace AppCode.TutorialSystem.Source
 
     #region new path processing
 
-    public string GetPhysicalPathOfFileInApp(string pathInApp)
+    private string GetPhysicalPathOfFileInApp(string pathInApp)
     {
       var l = Log.Call<string>(pathInApp);
       // Todo: handle "../" etc.;

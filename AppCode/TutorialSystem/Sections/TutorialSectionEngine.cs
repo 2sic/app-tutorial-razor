@@ -171,7 +171,7 @@ namespace AppCode.TutorialSystem.Sections
     }
 
     private ITag SourceWrapped() {
-      var snippet = FileHandler.ShowSnippet(SnippetId, item: Item, file: SourceFile) as ITag;
+      var snippet = FileHandler.ShowSnippet(SnippetId, file: SourceFile);
       return SourceWrap == null
         ? snippet
         : Tag.RawHtml(SourceWrap.SourceOpen(), snippet, SourceWrap.SourceClose());
