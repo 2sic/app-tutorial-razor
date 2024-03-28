@@ -25,16 +25,16 @@ namespace AppCode.TutorialSystem.Source
     #region Predefined Samples
 
     public ITypedItem Specs(string sampleId) {
-      var list = App.Data.GetAll<TutFormulaSample>(); // AsItems(App.Data["TutFormulaSample"]);
+      var list = App.Data.GetAll<TutFormulaSample>();
 
       var found = list.FirstOrDefault(s => string.Equals(s.TutorialId, sampleId, StringComparison.InvariantCultureIgnoreCase))
         ?? throw new Exception("Sample " + sampleId + " not found");
       return found;
     }
 
-    public bool ShowSnippet(ITypedItem item) {
-      return item == null ? false : item.Bool("ShowSnippet");
-    }
+    // public bool ShowSnippet(ITypedItem item) {
+    //   return item == null ? false : item.Bool("ShowSnippet");
+    // }
 
     #endregion
 
@@ -45,12 +45,12 @@ namespace AppCode.TutorialSystem.Source
       );
     }
 
-    public ITag Header(ITypedItem item) {
-      if (item.IsEmpty("Title")) return null;
-      var title = Tag.H3(item.String("Title"))
-        .Attr(Kit.Toolbar.Empty(item).Edit());
-      return title;
-    }
+    // public ITag Header(ITypedItem item) {
+    //   if (item.IsEmpty("Title")) return null;
+    //   var title = Tag.H3(item.String("Title"))
+    //     .Attr(Kit.Toolbar.Empty(item).Edit());
+    //   return title;
+    // }
 
     public ITag Intro(ITypedItem item) {
       // Start wrapper with title / instructions

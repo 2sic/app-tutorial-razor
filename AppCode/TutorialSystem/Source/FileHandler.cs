@@ -21,21 +21,21 @@ namespace AppCode.TutorialSystem.Source
 
     public FileHandler Init(string path) {
       Path = path;
-      SourceProcessor = GetService<SourceProcessor>();
       return this;
     }
     public string Path { get; set; }
-    private SourceProcessor SourceProcessor { get; set; }
+    private SourceProcessor SourceProcessor => _sourceProcessor ??= GetService<SourceProcessor>();
+    private SourceProcessor _sourceProcessor;
 
     #endregion
 
 
     #region Special ShowResult helpers
 
-    public ITag ShowResultJs(string source) { return ShowResult(source, "javascript"); }
-    public ITag ShowResultHtml(string source) { return ShowResult(source, "html"); }
+    public ITag ShowResultJs(string source) => ShowResult(source, "javascript");
+    public ITag ShowResultHtml(string source) => ShowResult(source, "html");
     // public ITag ShowResultText(string source) { return ShowResult(source, "text"); }
-    
+
     // Special use case for many picture / image tutorials
     public ITag ShowResultImg(object tag) {
       var cleaned = tag.ToString()
@@ -166,8 +166,8 @@ namespace AppCode.TutorialSystem.Source
     //   }
     // }
 
-    private SourceInfo GetFileAndProcess(string file, string snippetId = null, string path = null) {
-      path = path ?? Path;
+    private SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
+      var path = /* path ?? */ Path;
       var fullPath = GetFileFullPath(path, file);
       var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
       // When getting cached, we must re-wrap to get a new randomID
@@ -291,8 +291,8 @@ namespace AppCode.TutorialSystem.Source
       var l = Log.Call<SourceInfo>("filePath:" + filePath + ", file:" + file + "; fullPath: " + fullPath);
       fullPath = fullPath ?? GetFileFullPath(filePath, file);
       var cacheKey = fullPath.ToLowerInvariant();
-      var contents = (_getFileCache.ContainsKey(cacheKey))
-        ? _getFileCache[cacheKey]
+      var contents = _getFileCache.TryGetValue(cacheKey, out var c) //.ContainsKey(cacheKey)
+        ? c // _getFileCache[cacheKey]
         : System.IO.File.ReadAllText(fullPath);
       var fileName = System.IO.Path.GetFileName(fullPath);
       return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, fullPath);

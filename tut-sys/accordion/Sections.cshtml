@@ -1,17 +1,20 @@
 @inherits AppCode.Razor.AppRazor<SectionBlockModel>
 @using ToSic.Razor.Blade
+@using AppCode.Data
 @using AppCode.Razor
 @using AppCode.TutorialSystem.Sections
 @using AppCode.TutorialSystem.Razor
 @using AppCode.Tutorial
 
+<!-- Sections -->
 @foreach (Section acs in Model.Accordion.Sections(Path, backtrack: "../..")) {
-  var item = acs.Item;
+  TutorialSnippet item = acs.Item;
   var runCode = item.IsEmpty("Formula");
   var codeFile = runCode ? acs.SectionFile : "ignore";
   if (codeFile != null) {
+    <!-- code file -->
     @acs.Start()
-
+    @{
       var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
       var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
 
@@ -20,8 +23,9 @@
           @Html.Partial(codeFile, data)
         }
       @snip.SnipEnd()
-
+    }
     @acs.End()
+    <!-- /code file -->
   } else if (MyUser.IsSystemAdmin) {
     <div @Kit.Toolbar.Empty(item).Edit().New()>
       SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@Model.Accordion.Variant</em>
@@ -30,3 +34,4 @@
     <!-- this section "@acs.TutorialId" does not exist -->
   }
 }
+<!-- /Sections -->

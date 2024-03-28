@@ -6,7 +6,8 @@ namespace AppCode.TutorialSystem.Sections
   /// <summary>
   /// Accordion Part (Section)
   /// </summary>
-  public class Section {
+  public class Section
+  {
     public Section(Accordion accordion, IHtmlTagsService tags, string name, TutorialSnippet item = null, string fileName = null) {
       Acc = accordion;
       Name = name;
