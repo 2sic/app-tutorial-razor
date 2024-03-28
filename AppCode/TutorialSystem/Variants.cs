@@ -32,9 +32,9 @@ namespace AppCode.TutorialSystem
           {
             case Variants.VariantStrong:
               if (variantIsSelected) {
-                label = "Selected: Strong-Typed (2sxc 17.05+)";
+                label = "Selected: Strong-Typed (2sxc 17.06+)";
               } else {
-                label = "Switch to Strong-Typed (2sxc 17.05+)";
+                label = "Switch to Strong-Typed (2sxc 17.06+)";
               }
               break;
             case Variants.VariantTyped:
