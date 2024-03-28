@@ -1,7 +1,7 @@
 using AppCode.Data;
 using AppCode.Tutorial;
 
-namespace AppCode.Razor
+namespace AppCode.TutorialSystem.Razor
 {
   public class NavigationModel
   {

@@ -1,4 +1,5 @@
 @inherits AppCode.Razor.AppRazor<string>
+@using AppCode.TutorialSystem.Razor
 @{
   var title = Model; // MyModel.String("Title");
 
@@ -9,7 +10,7 @@
   var bsCheck = GetCode("../../Shared/Bootstrap5.cs");
   bsCheck.EnsureBootstrap5();
 
-  var hdHlp = new AppCode.Razor.HeaderHelpers();
+  var hdHlp = new HeaderHelpers();
 }
 
 @hdHlp.AddMainLogo(App, "app-icon.png", "https://2sxc.org/dnn-tutorials/en/razor")

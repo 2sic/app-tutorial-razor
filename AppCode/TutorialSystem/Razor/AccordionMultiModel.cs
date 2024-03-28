@@ -1,8 +1,7 @@
 using AppCode.Data;
 using AppCode.Tutorial;
-using AppCode.TutorialSystem;
 
-namespace AppCode.Razor
+namespace AppCode.TutorialSystem.Razor
 {
   public class SnippetIntroModel
   {

@@ -1,7 +1,7 @@
 using ToSic.Sxc.Apps;
 using ToSic.Razor.Blade;
 
-namespace AppCode.Razor
+namespace AppCode.TutorialSystem.Razor
 {
 
   public class HeaderHelpers
