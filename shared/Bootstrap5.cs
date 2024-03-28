@@ -1,6 +1,6 @@
 using ToSic.Razor.Blade;
 
-public class Bootstrap5 : Custom.Hybrid.Code14
+public class Bootstrap5 : Custom.Hybrid.CodeTyped
 {
   // if the theme framework is not BS4, just activate/load it from the WebResources
   // this solves both the cases where its unknown, or another framework

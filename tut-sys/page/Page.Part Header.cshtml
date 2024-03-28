@@ -28,8 +28,8 @@
 
   @Html.Partial("../Layout/Title and Assets.cshtml", title)
   
-  @Html.Partial("../Layout/Breadcrumb.cshtml", new { Topic = sectionName, TopicUrl = sectionLink })
+  @Html.Partial("./Page.Part Breadcrumb.cshtml", new { Topic = sectionName, TopicUrl = sectionLink })
 </div>
 
 @* Assets, Page Headers, OpenGraph etc. *@
-@Html.Partial("../Layout/Assets.cshtml")
+@Html.Partial("./Page.Part Assets.cshtml")
