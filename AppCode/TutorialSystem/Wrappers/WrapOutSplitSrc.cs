@@ -3,7 +3,7 @@ using ToSic.Razor.Markup;
 using static AppCode.Source.Constants;
 using AppCode.Source;
 
-namespace AppCode.Wrappers
+namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapOutSplitSrc: Wrap
     {

@@ -4,7 +4,7 @@ using ToSic.Sxc.Data;
 using System.Collections.Generic;
 using System.Linq;
 using AppCode.Tutorial;
-using AppCode.Wrappers;
+using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Tabs;
 
 namespace AppCode.Source

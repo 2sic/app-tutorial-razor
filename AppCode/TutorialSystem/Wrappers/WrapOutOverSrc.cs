@@ -2,18 +2,22 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using AppCode.Source;
 
-namespace AppCode.Wrappers
+namespace AppCode.TutorialSystem.Wrappers
 {
-  internal class WrapOutOnly: Wrap
+  /// <summary>
+  /// Show Output inside a box above Source
+  /// </summary>
+  internal class WrapOutOverSrc: Wrap
     {
-      public WrapOutOnly(TutorialSection section) : base(section, "WrapOutOnly", tabsCsv: Constants.ResultTabName)
-      { }
+      private const string nameOfClass = "WrapOutOverSrc";
+      public WrapOutOverSrc(TutorialSection section) : base(section, nameOfClass, tabsCsv: Constants.ResultAndSourceTabName) {
+      }
 
 
       public override ITag OutputOpen() { return Tag.RawHtml(
         base.OutputOpen(),
         // "\n",
-        // Comment(""),
+        // Comment(nameOfClass),
         TagCount.Open(Tag.Div().Data("start", Name).Class("alert alert-info")),
         Tag.H4(Constants.ResultTitle)
       ); }

@@ -6,7 +6,7 @@ using static AppCode.Source.Constants;
 using AppCode.Source;
 using AppCode.TutorialSystem.Tabs;
 
-namespace AppCode.Wrappers
+namespace AppCode.TutorialSystem.Wrappers
 {
   public class Wrap
   {

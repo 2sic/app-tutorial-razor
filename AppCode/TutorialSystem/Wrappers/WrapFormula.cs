@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using static AppCode.Source.Constants;
 using AppCode.Source;
 
-namespace AppCode.Wrappers
+namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapFormula: Wrap
     {
