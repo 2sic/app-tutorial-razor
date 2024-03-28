@@ -1,5 +1,6 @@
 @inherits AppCode.Razor.AppRazor<VariantSelectorModel>
 @using ToSic.Razor.Blade
+@using AppCode.TutorialSystem
 @using AppCode.TutorialSystem.Razor
 @{
   var current = Model.Current;
@@ -13,14 +14,14 @@
     var label = "";
     switch (variant)
     {
-      case "typed":
+      case Constants.VariantTyped:
         if (variantIsSelected) {
           label = "Selected: Typed (2sxc 16+)";
         } else {
           label = "Switch to Typed (2sxc 16+)";
         }
         break;
-      case "dyn":
+      case Constants.VariantDyn:
         if (variantIsSelected) {
           label = "Selected: Dynamic (Razor14 or below)";
         } else {

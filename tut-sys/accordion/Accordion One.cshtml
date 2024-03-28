@@ -21,7 +21,7 @@
   var tutGroup = Model.TutPage;
 
   // Get Accordion code
-  var accordion = GetService<Accordion>().Setup(Model.Sys, /* Model.Variant */ "", item: tutGroup);
+  var accordion = GetService<Accordion>().Setup(/* Model.Variant */ "", item: tutGroup);
 }
 
 @if (tutGroup != null) {

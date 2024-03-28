@@ -1,9 +1,7 @@
 using System;
-using System.Diagnostics;
 using System.Reflection;
-using System.IO;
 
-public class RazorBladeVersion: Custom.Hybrid.Code14
+public class RazorBladeVersion: Custom.Hybrid.CodeTyped
 {
 
   public Version GetRazorBladeVersion() {

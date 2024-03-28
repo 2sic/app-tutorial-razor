@@ -7,7 +7,7 @@
   var sequence = App.Data.GetAll<TutorialSequence>().First();
 
   // Set Title etc.
-  var pageTitle = sequence.String("Title") + " (" + App.Configuration.Version + ")";
+  var pageTitle = sequence.Title + " (" + App.Configuration.Version + ")";
   Kit.Page.SetBase();
   Kit.Page.SetTitle(pageTitle + " - 2sxc Razor Tutorials for Dnn / Oqtane");
 

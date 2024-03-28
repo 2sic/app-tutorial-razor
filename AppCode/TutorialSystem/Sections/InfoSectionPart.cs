@@ -17,13 +17,12 @@ namespace AppCode.TutorialSystem.Sections
   {
     #region Init / Dependencies
     
-    public InfoSectionPart Init(Sys sys, TutorialSpecs parent, string field) {
-      Sys = sys;
+    public InfoSectionPart Init(TutorialSpecs parent, string field) {
       Parent = parent;
       Field = field;
       return this;
     }
-    public Sys Sys = null;
+    
     public TutorialSpecs Parent = null;
     public string Field = null;
 

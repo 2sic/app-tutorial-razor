@@ -9,7 +9,7 @@
     ? myParams.String("tut") + "-page"
     : MyModel.String("TutorialGroupId");
 
-  var tutPage = App.Data.GetAll<TutorialGroup>().FirstOrDefault(i => i.String("NameId") == tutorialGroup);
+  var tutPage = App.Data.GetAll<TutorialGroup>().FirstOrDefault(i => i.NameId == tutorialGroup);
 
   // Find the parent, which has Segment Title, Link, etc.
   var segment = tutPage.Parent<TutorialSection>();

@@ -6,19 +6,18 @@ using AppCode.TutorialSystem.Tabs;
 using AppCode.Tutorial;
 using ToSic.Razor.Blade;
 using AppCode.TutorialSystem.Sections;
+using static AppCode.TutorialSystem.Constants;
 
 namespace AppCode.TutorialSystem
 {
   public class Accordion: Custom.Hybrid.CodeTyped
   {
-    public Accordion Setup(Sys sys, string variantExtension, TutorialGroup item = null) {
-      Sys = sys;
+    public Accordion Setup(string variantExtension, TutorialGroup item = null) {
       _variantExtension = variantExtension;
       Item = item;
       return this;
     }
     public TagCount TagCount = new TagCount("Accordion", true);
-    private Sys Sys;
     private string _variantExtension;
 
     public IHtmlTag Start(TutorialGroup item) {
@@ -34,8 +33,8 @@ namespace AppCode.TutorialSystem
       );
     }
 
-    public bool IsTyped  { get { return Variant == "typed"; }}
-    public string Variant { get { return MyPage.Parameters["variant"] ?? "typed"; }}
+    public bool IsTyped => Variant == VariantTyped;
+    public string Variant => MyPage.Parameters["variant"] ?? VariantTyped;
 
     public string Name { get; private set; }
 
@@ -58,8 +57,8 @@ namespace AppCode.TutorialSystem
           var tutorialId = itm.TutorialId;
           string fileName;
           // first try special extension eg. .Typed.Cshtml
-          if (!CheckFile(/* appPath, */ backtrack, tutorialId, _variantExtension, out fileName))
-            CheckFile(/*appPath, */ backtrack, tutorialId, null, out fileName);
+          if (!CheckFile(backtrack, tutorialId, _variantExtension, out fileName))
+            CheckFile(backtrack, tutorialId, null, out fileName);
           return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
         })
         .ToList();
@@ -91,7 +90,7 @@ namespace AppCode.TutorialSystem
       "webapi",
     };
 
-    private bool CheckFile(/* string appPath, */ string relBacktrack, string tutorialId, string variant, out string fileName) {
+    private bool CheckFile(string relBacktrack, string tutorialId, string variant, out string fileName) {
       var l = Log.Call<bool>("tutorialId: " + tutorialId);
       var topPath = Text.Before(tutorialId, "-");
       var rest = Text.After(tutorialId, "-");
@@ -110,7 +109,7 @@ namespace AppCode.TutorialSystem
 
       var realName = "Snip-" + rest + variant + ".cshtml";
       var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", topPath, secondPath, realName);
-      
+
       if (System.IO.File.Exists(fullPath)) {
         fileName = relBacktrack + "/" + System.IO.Path.Combine(topPath, secondPath, realName);
         return l(true, "exists");

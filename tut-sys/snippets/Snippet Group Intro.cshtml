@@ -19,9 +19,9 @@
   <div class="col-lg-@rightCols order-1 position-relative">
     @if (tutPage != null && hasSpecs) {
       var specs = tutPage.RefSharedSpecs;
-      @(GetService<InfoSectionPart>().Init(Sys, specs, "Requirements").Section(specs.Requirements))
-      @(GetService<InfoSectionPart>().Init(Sys, specs, "Resources").Section(specs.Resources))
-      @(GetService<InfoSectionPart>().Init(Sys, specs, "Related").Section(specs.Tutorials))
+      @(GetService<InfoSectionPart>().Init(specs, "Requirements").Section(specs.Requirements))
+      @(GetService<InfoSectionPart>().Init(specs, "Resources").Section(specs.Resources))
+      @(GetService<InfoSectionPart>().Init(specs, "Related").Section(specs.Tutorials))
     }
 
     @* Only show the collapse / open Accordions button if we have any inner sections *@
