@@ -3,8 +3,9 @@ using ToSic.Razor.Markup;
 using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
-using static AppCode.Source.Constants;
-using AppCode.Source;
+using static AppCode.TutorialSystem.Constants;
+using AppCode.TutorialSystem.Sections;
+
 
 namespace AppCode.TutorialSystem.Wrappers
 {

@@ -1,4 +1,4 @@
-namespace AppCode.Source
+namespace AppCode.TutorialSystem
 {
   public class Constants
   {

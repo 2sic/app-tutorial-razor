@@ -1,7 +1,7 @@
 using AppCode.Data;
 using ToSic.Razor.Blade;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Sections
 {
   /// <summary>
   /// Accordion Part (Section)
@@ -97,9 +97,9 @@ namespace AppCode.Source
         Indent2,
         Acc.TagCount.Open(TagsSvc.Div().Class("accordion-body")),
         "\n",
-        (Item == null ? "" : Indent2 + Item.Html("Intro")),
+        Indent2 + Item?.Html("Intro"),
         "\n",
-        (Item == null ? "" : Indent2 + Item.Html("IntroMore" + (Acc.IsTyped ? "Typed" : "Dyn"))),
+        Indent2 + Item?.Html("IntroMore" + (Acc.IsTyped ? "Typed" : "Dyn")),
         "\n",
         note,
         "\n"

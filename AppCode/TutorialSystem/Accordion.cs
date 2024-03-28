@@ -5,8 +5,9 @@ using AppCode.Data;
 using AppCode.TutorialSystem.Tabs;
 using AppCode.Tutorial;
 using ToSic.Razor.Blade;
+using AppCode.TutorialSystem.Sections;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem
 {
   public class Accordion: Custom.Hybrid.CodeTyped
   {

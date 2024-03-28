@@ -7,7 +7,7 @@ using System.Linq;
 using ToSic.Sxc.Edit.Toolbar;
 using AppCode.Data;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Source
 {
   public class SourceCodeFormulas: Custom.Hybrid.CodeTyped
   {

@@ -6,8 +6,9 @@ using System.Linq;
 using AppCode.Tutorial;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Tabs;
+using AppCode.TutorialSystem.Sections;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Source
 {
   public class SourceCode: Custom.Hybrid.CodeTyped
   {

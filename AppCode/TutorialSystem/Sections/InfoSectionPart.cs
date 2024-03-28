@@ -8,7 +8,7 @@ using ToSic.Sxc.Edit.Toolbar;
 using AppCode.Data;
 using AppCode.Tutorial;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Sections
 {
   // Class to generate shared parts on the page
   // Such as navigations etc.

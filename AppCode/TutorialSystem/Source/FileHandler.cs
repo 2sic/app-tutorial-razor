@@ -6,7 +6,7 @@ using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Source
 {
   public class FileHandler: Custom.Hybrid.CodeTyped
   {

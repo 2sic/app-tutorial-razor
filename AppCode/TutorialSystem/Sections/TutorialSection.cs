@@ -5,12 +5,13 @@ using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static AppCode.Source.Constants;
+using static AppCode.TutorialSystem.Constants;
 using AppCode.Output;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Tabs;
+using AppCode.TutorialSystem.Source;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Sections
 {
 
   /// <summary>

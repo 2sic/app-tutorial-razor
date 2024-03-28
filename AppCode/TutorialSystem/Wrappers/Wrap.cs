@@ -2,9 +2,9 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
 using System.Linq;
-using static AppCode.Source.Constants;
-using AppCode.Source;
+using static AppCode.TutorialSystem.Constants;
 using AppCode.TutorialSystem.Tabs;
+using AppCode.TutorialSystem.Sections;
 
 namespace AppCode.TutorialSystem.Wrappers
 {

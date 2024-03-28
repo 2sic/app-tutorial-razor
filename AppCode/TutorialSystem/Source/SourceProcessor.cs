@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem.Source
 {
   // Private Source Code Clean-up Helpers
   public class SourceProcessor: Custom.Hybrid.Code14

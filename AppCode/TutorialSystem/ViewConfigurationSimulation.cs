@@ -10,7 +10,7 @@ using AppCode.TutorialSystem.Tabs;
 
 // 2sxclint:disable:no-EntityTitle-in-quotes
 
-namespace AppCode.Source
+namespace AppCode.TutorialSystem
 {
   // Class to generate shared parts on the page
   // Such as navigations etc.

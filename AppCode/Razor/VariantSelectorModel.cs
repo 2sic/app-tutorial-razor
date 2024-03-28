@@ -1,6 +1,3 @@
-using AppCode.Data;
-using AppCode.Source;
-using AppCode.Tutorial;
 
 namespace AppCode.Razor
 {

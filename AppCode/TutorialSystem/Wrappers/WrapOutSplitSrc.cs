@@ -1,7 +1,8 @@
+using AppCode.TutorialSystem.Sections;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
-using static AppCode.Source.Constants;
-using AppCode.Source;
+using static AppCode.TutorialSystem.Constants;
+
 
 namespace AppCode.TutorialSystem.Wrappers
 {
