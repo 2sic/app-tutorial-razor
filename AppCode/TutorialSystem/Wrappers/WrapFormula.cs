@@ -11,7 +11,7 @@ namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapFormula: Wrap
     {
-      public WrapFormula(TutorialSection sb, ITypedItem specs = null) : base(sb, "WrapFormula") {
+      public WrapFormula(TutorialSectionEngine sb, ITypedItem specs = null) : base(sb, "WrapFormula") {
         FormulaSpecs = specs ?? Section.Item.Child("Formula");
         if (FormulaSpecs == null) throw new Exception("Formula section needs a Formula item");
         Tabs = new List<string> { ResultTabName, FormulasTabName };

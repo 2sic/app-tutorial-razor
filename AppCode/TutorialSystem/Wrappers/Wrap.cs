@@ -13,7 +13,7 @@ namespace AppCode.TutorialSystem.Wrappers
     public const string Indent1 = "      ";
     public const string Indent2 = "        ";
     
-    public Wrap(TutorialSection sb, string name, bool combined = false, string tabsCsv = null) {
+    public Wrap(TutorialSectionEngine sb, string name, bool combined = false, string tabsCsv = null) {
       Section = sb;
       Name = name ?? "Wrap";
       Tabs = (tabsCsv != null) ? tabsCsv.Split(',').ToList() : new List<string> { ResultTabName, SourceTabName };
@@ -21,7 +21,7 @@ namespace AppCode.TutorialSystem.Wrappers
       TagCount = new TagCount(Name, true);
     }
 
-    protected readonly TutorialSection Section;
+    protected readonly TutorialSectionEngine Section;
     public List<string> Tabs { get; protected set; }
     public string TabSelected {get; set;}
     protected TagCount TagCount;

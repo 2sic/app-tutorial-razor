@@ -10,7 +10,7 @@ namespace AppCode.TutorialSystem.Wrappers
   /// </summary>
   internal class WrapSrcOnly: Wrap
     {
-      public WrapSrcOnly(TutorialSection section) : base(section, "WrapSrcOnly", tabsCsv: Constants.SourceTabName)
+      public WrapSrcOnly(TutorialSectionEngine section) : base(section, "WrapSrcOnly", tabsCsv: Constants.SourceTabName)
       { }
 
       public override ITag SourceOpen() { return Tag.RawHtml(

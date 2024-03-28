@@ -14,11 +14,11 @@ using AppCode.TutorialSystem.Source;
 namespace AppCode.TutorialSystem.Sections
 {
   /// <summary>
-  /// Base class for all code sections with snippets etc.
+  /// Engine to generate all kinds of tutorial sections within wrappers.
   /// </summary>
-  public class TutorialSection
+  public class TutorialSectionEngine
   {
-    public TutorialSection(SourceCode sourceCode, ITypedItem item, Dictionary<string, string> tabs, string sourceFile = null) {
+    public TutorialSectionEngine(SourceCode sourceCode, ITypedItem item, Dictionary<string, string> tabs, string sourceFile = null) {
       if (item == null) throw new Exception("Item should never be null");
       ScParent = sourceCode;
       BsTabs = ScParent.BsTabs;

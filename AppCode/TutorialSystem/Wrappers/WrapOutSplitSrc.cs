@@ -8,7 +8,7 @@ namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapOutSplitSrc: Wrap
     {
-      public WrapOutSplitSrc(TutorialSection section) : base(section, "WrapOutSplitSrc", tabsCsv: ResultAndSourceTabName)
+      public WrapOutSplitSrc(TutorialSectionEngine section) : base(section, "WrapOutSplitSrc", tabsCsv: ResultAndSourceTabName)
       {
         FirstWidth = section.Item.Int("OutputWidth", fallback: 50);
       }

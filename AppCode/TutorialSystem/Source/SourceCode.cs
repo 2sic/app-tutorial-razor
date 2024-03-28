@@ -42,11 +42,11 @@ namespace AppCode.TutorialSystem.Source
     /// <param name="item">ATM object, because when coming through a Razor14 the type is not known</param>
     /// <param name="tabs"></param>
     /// <returns></returns>
-    public TutorialSection QuickRef(object item, string tabs = null, Dictionary<string, string> tabDic = null)
+    public TutorialSectionEngine QuickRef(object item, string tabs = null, Dictionary<string, string> tabDic = null)
     {
-      var l = Log.Call<TutorialSection>("tabs: '" + tabs + "'");
+      var l = Log.Call<TutorialSectionEngine>("tabs: '" + tabs + "'");
       tabDic = tabDic ?? TabStringToDic(tabs);
-      var result = new TutorialSection(this, item as ITypedItem, tabDic);
+      var result = new TutorialSectionEngine(this, item as ITypedItem, tabDic);
       return l(result, "ok - count: " + tabDic.Count());
     }
 
@@ -57,14 +57,14 @@ namespace AppCode.TutorialSystem.Source
     /// <param name="item">The configuration item</param>
     /// <param name="file">The file from which it will be relative to</param>
     /// <returns></returns>
-    public TutorialSection SnipFromItem(ITypedItem item, string file = null)
+    public TutorialSectionEngine SnipFromItem(ITypedItem item, string file = null)
     {
-      var l = Log.Call<TutorialSection>("file: " + file);
+      var l = Log.Call<TutorialSectionEngine>("file: " + file);
       // If we have a file, we should try to look up the tabs
       var tabCsv = TryToGetTabsFromSource(file);
       Log.Add("tabs: '" + tabCsv + "'");
       var tabs = TabStringToDic(tabCsv);
-      var result = new TutorialSection(this, item, tabs, sourceFile: file);
+      var result = new TutorialSectionEngine(this, item, tabs, sourceFile: file);
       return l(result, "ok - count: " + tabs.Count());
     }
 
@@ -136,7 +136,7 @@ namespace AppCode.TutorialSystem.Source
 
     #region Wrap: Source Wrappers like Wrap, WrapOutOverSrc, WrapOutOnly, WrapSrcOnly, WrapOutSplitSrc, WrapFormula
 
-    internal Wrap GetSourceWrap(TutorialSection section, ITypedItem item) {
+    internal Wrap GetSourceWrap(TutorialSectionEngine section, ITypedItem item) {
       // Figure out the type based on the item or it's parent
       string code = null;
       if (item != null) {

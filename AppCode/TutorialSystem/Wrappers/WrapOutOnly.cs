@@ -7,7 +7,7 @@ namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapOutOnly: Wrap
     {
-      public WrapOutOnly(TutorialSection section) : base(section, "WrapOutOnly", tabsCsv: Constants.ResultTabName)
+      public WrapOutOnly(TutorialSectionEngine section) : base(section, "WrapOutOnly", tabsCsv: Constants.ResultTabName)
       { }
 
 

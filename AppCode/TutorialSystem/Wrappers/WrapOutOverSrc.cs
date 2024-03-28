@@ -11,7 +11,7 @@ namespace AppCode.TutorialSystem.Wrappers
   internal class WrapOutOverSrc: Wrap
     {
       private const string nameOfClass = "WrapOutOverSrc";
-      public WrapOutOverSrc(TutorialSection section) : base(section, nameOfClass, tabsCsv: Constants.ResultAndSourceTabName) {
+      public WrapOutOverSrc(TutorialSectionEngine section) : base(section, nameOfClass, tabsCsv: Constants.ResultAndSourceTabName) {
       }
 
 
