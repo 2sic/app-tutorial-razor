@@ -29,17 +29,17 @@
   if (tutGroup.IsNotEmpty("Accordions")) {
     @Html.Partial("./Accordion Multi.cshtml", new AccordionMultiModel {
       Sys = Model.Sys,
+      Accordion = accordion,
       TutorialGroup = tutGroup,
-      Recursions = recursions,
-      Accordion = accordion
+      Recursions = recursions
     });
   } else {
     @Html.Partial("./Section Block.cshtml", new SectionBlockModel {
       Sys = Model.Sys,
       Accordion = accordion,
       TutorialGroup = tutGroup,
-      SkipPageTools = false,
-      Recursions = recursions
+      Recursions = recursions,
+      SkipPageTools = false
     })
   }
   // If it's empty, show info / toolbar to admin only

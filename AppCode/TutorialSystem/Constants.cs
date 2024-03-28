@@ -5,6 +5,10 @@ namespace AppCode.TutorialSystem
     public const string VariantTyped = "typed";
     public const string VariantDyn = "dyn";
 
+    public const string VariantsDefault = VariantTyped + "," + VariantDyn;
+
+    public const string VariantUrlParameter = "variant";
+
     public const string ResultTabName = "Output"; // must match js in img samples, where it becomes "-output"
     public const string SourceTabName = "Source Code";
     public const string ResultAndSourceTabName = "Output and Source";

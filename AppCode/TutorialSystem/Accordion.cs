@@ -12,7 +12,7 @@ namespace AppCode.TutorialSystem
 {
   public class Accordion: Custom.Hybrid.CodeTyped
   {
-    public Accordion Setup(string variantExtension, TutorialGroup item = null) {
+    public Accordion Setup(string variantExtension, TutorialGroup item) {
       _variantExtension = variantExtension;
       Item = item;
       return this;
@@ -34,7 +34,7 @@ namespace AppCode.TutorialSystem
     }
 
     public bool IsTyped => Variant == VariantTyped;
-    public string Variant => MyPage.Parameters["variant"] ?? VariantTyped;
+    public string Variant => MyPage.Parameters[VariantUrlParameter] ?? VariantTyped;
 
     public string Name { get; private set; }
 
@@ -55,9 +55,8 @@ namespace AppCode.TutorialSystem
       var names = Item.Sections
         .Select(itm => {
           var tutorialId = itm.TutorialId;
-          string fileName;
           // first try special extension eg. .Typed.Cshtml
-          if (!CheckFile(backtrack, tutorialId, _variantExtension, out fileName))
+          if (!CheckFile(backtrack, tutorialId, _variantExtension, out string fileName))
             CheckFile(backtrack, tutorialId, null, out fileName);
           return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
         })

@@ -4,13 +4,13 @@
 @using AppCode.TutorialSystem.Razor
 @{
   var current = Model.Current;
-  var variants = Text.First(Model.Variants, "typed,dyn");
+  var variants = Text.First(Model.Variants, Constants.VariantsDefault);
 
   var variantButtons = variants.Split(',').Select(variant => {
     var variantIsSelected = variant == current;
     var classes = variantIsSelected ? "btn btn-success" : "btn btn-primary";
     var newVariant = variantIsSelected ? "" : variant;
-    var href = variantIsSelected ? "#" : Link.To(parameters: MyPage.Parameters.Set("variant", newVariant));
+    var href = variantIsSelected ? "#" : Link.To(parameters: MyPage.Parameters.Set(Constants.VariantUrlParameter, newVariant));
     var label = "";
     switch (variant)
     {
