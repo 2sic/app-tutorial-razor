@@ -1,6 +1,5 @@
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
-using ToSic.Sxc.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,21 +20,31 @@ namespace AppCode.TutorialSystem.Sections
     public TutorialSectionEngine Init(SourceCode sourceCode, TutorialSnippet item, Dictionary<string, string> tabs, string sourceFile = null) {
       Item = item ?? throw new Exception("Item should never be null");
       ScParent = sourceCode;
-      BsTabs = ScParent.BsTabs;
+      BsTabs = GetService<BootstrapTabs>(); // ScParent.BsTabs;
       SourceWrap = sourceCode.GetSourceWrap(this, item);
       TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
       SourceFile = sourceFile;
-      ViewConfig = ScParent.GetService<ViewConfigurationSimulation>().Setup(TabHandler);
+      ViewConfig = GetService<ViewConfigurationSimulation>().Setup(TabHandler);
       return this;
     }
 
     internal SourceCode ScParent;
 
-    public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
+    private FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
     private FancyboxService _fancybox;
 
     private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
+
+    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>();
+    private SourceCodeFormulas _formulas;
+
+    public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
+    private ToolbarHelpers _tlbHelpers;
+
+    // note: not sure why I did this...
+    public new string UniqueKey => _uniqueKey ??= Kit.Key.UniqueKeyWith(this);
+    private string _uniqueKey;
 
     private BootstrapTabs BsTabs;
     protected int SnippetCount;
@@ -61,7 +70,7 @@ namespace AppCode.TutorialSystem.Sections
     protected void InitSnippetAndTabId(string snippetId = null) {
       SnippetCount = ScParent.SourceCodeTabCount++;
       SnippetId = snippetId ?? "" + SnippetCount;
-      TabPrefix = "tab-" + ScParent.UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
+      TabPrefix = "tab-" + UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
     }
 
     /// <summary>
@@ -199,7 +208,7 @@ namespace AppCode.TutorialSystem.Sections
 
       // Handle case Tutorials
       if (strResult == TutorialsTabName) {
-        var liLinks = Item.Children("Tutorials").Select(tutPage => "\n    " + ScParent.Sys.TutPageLink(tutPage) + "\n");
+        var liLinks = Item.Children("Tutorials").Select(tutPage => $"\n    {TutLinks.TutPageLink(tutPage)}\n");
         return Tag.Ol(liLinks);
       }
 
@@ -243,7 +252,7 @@ namespace AppCode.TutorialSystem.Sections
       // handle case Formulas
       if (strResult == FormulasTabName) {
         var formulaSpecs = item.Formula; //.Child(FormulaField);
-        return ScParent.Formulas.Show(formulaSpecs, false);
+        return Formulas.Show(formulaSpecs, false);
       }
 
       // Other cases - just return original - could be the label or a prepared string

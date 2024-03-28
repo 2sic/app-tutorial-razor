@@ -32,8 +32,8 @@ namespace AppCode.TutorialSystem.Wrappers
       // Special feature for Toolbar Demos
       var noteToolbar = Tag.RawHtml();
       if (ToolbarForAnonymous) {
-        Section.ScParent.Sys.ToolbarHelpers.EnableEditForAll();
-        Section.ScParent.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
+        Section.ToolbarHelpers.EnableEditForAll();
+        Section.ToolbarHelpers.AutoShowAllToolbarsStart();
         noteToolbar = noteToolbar.Add(Indent1, Comment("", "toolbar for anonymous")); // + "<!-- toolbar for anonymous -->\n";
       }
       return Tag.RawHtml(
@@ -45,7 +45,7 @@ namespace AppCode.TutorialSystem.Wrappers
     public virtual ITag OutputClose() {
       var noteToolbar = Tag.RawHtml();
       if (ToolbarForAnonymous) {
-        Section.ScParent.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
+        Section.ToolbarHelpers.AutoShowAllToolbarsEnd();
         noteToolbar = noteToolbar.Add(Indent1, Comment("/", "toolbar for anonymous")); // + "<!-- toolbar for anonymous -->\n";
       }
       return Tag.RawHtml(

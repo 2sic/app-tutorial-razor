@@ -1,5 +1,8 @@
 @inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
 @using AppCode.Tutorial
+@using AppCode.TutorialSystem.Razor
+
 <h1>Manage Tutorials</h1>
 <p>
   This is an overview over all tutorials / snippets to better manage them and keep an overview.
@@ -12,22 +15,22 @@
 }
 
 @{
-  var homeList = AsItem(App.Data.GetStream("TutorialSequence"));
-  var sectionsInHome = homeList.Children("Sections");
-  var allTutGroups = AsItems(App.Data.GetStream("TutorialGroup"));
+  var homeList = App.Data.GetAll<TutorialSequence>().First();
+  var sectionsInHome = homeList.Sections;
+  var allTutGroups = App.Data.GetAll<TutorialGroup>();
 }
 
 <ol>
   @foreach(var sect in sectionsInHome) {
     <li>
       <strong>
-        Section: @sect.String("Title", scrubHtml: true)  (@sect.Id | #@sect.Title | @sect.String("NameId"))
+        Section: @sect.String("Title", scrubHtml: true)  (@sect.Id | #@sect.Title | @sect.NameId)
       </strong>
-      @if (sect.IsNotEmpty("TutorialGroups")) {
+      @if (sect.IsNotEmpty(nameof(sect.TutorialGroups))) {
         <ul>
-          @foreach (var tg in sect.Children("TutorialGroups")) {
+          @foreach (var tg in sect.TutorialGroups) {
             <li>
-              @Html.Partial("./Part TutorialGroupContents.cshtml", new { TutorialGroup = tg, Recursion = 0 })
+              @Html.Partial("./Part TutorialGroupContents.cshtml", new ManageGroupModel { TutorialGroup = tg, Recursion = 0 })
             </li>
           }
         </ul>

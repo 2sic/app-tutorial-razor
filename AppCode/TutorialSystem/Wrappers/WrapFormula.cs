@@ -21,9 +21,9 @@ namespace AppCode.TutorialSystem.Wrappers
 
       public override ITag OutputOpen() {
         // Activate toolbar for anonymous so it will always work in demo-mode
-        Section.ScParent.Sys.ToolbarHelpers.EnableEditForAll();
+        Section.ToolbarHelpers.EnableEditForAll();
         return Tag.RawHtml(
-          Section.ScParent.Formulas.Intro(FormulaSpecs)
+          Section.Formulas.Intro(FormulaSpecs)
         );
       }
     }

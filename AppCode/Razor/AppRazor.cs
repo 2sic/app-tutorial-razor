@@ -9,6 +9,9 @@ namespace AppCode.Razor
     public FancyboxService Fancybox => _fancybox ??= GetService<FancyboxService>();
     private FancyboxService _fancybox;
 
+    protected TutLinks TutLinks => _tutLinks ??= GetService<TutLinks>();
+    private TutLinks _tutLinks;
+
     public Sys Sys => _sys ??= GetService<Sys>();
     private Sys _sys;
 

@@ -1,0 +1,35 @@
+@inherits AppCode.TutorialSystem.Razor.ManageGroup
+@using AppCode.Data
+@using AppCode.Tutorial
+@using System.Linq
+@{
+  // var tg = Model.TutorialGroup;
+  var recursion = Model.Recursion; MyModel.Int("Recursion");
+  if (recursion > 3) {
+    throw new Exception("Recursion too high");
+  }
+  xyz
+}
+
+@(TutorialGroup.IsPage ? "📄" : "🎁")
+
+Tutorial Group: @TutorialGroup.Title [Accs: @Accordions.Count() | Snips: @Sections.Count()]
+@if (TutorialGroup.IsPage) {
+  <a href='@TutLinks.TutPageUrl(tg)' target="_blank">📤</a>
+}
+<br>
+
+@if (Accordions.Any() || Sections.Any()) {
+  <ol>
+    @foreach (var acc in Accordions) {
+      <li>
+        @Html.Partial("./Part TutorialGroupContents.cshtml", new { TutorialGroup = acc, Recursion = recursion + 1 })
+      </li>
+    }
+    @foreach (var sc in Sections) {
+      <li>
+        Section: @sc.Title
+      </li>
+    }
+  </ol>
+}

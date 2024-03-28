@@ -91,7 +91,7 @@ namespace AppCode.TutorialSystem.Source
     internal ITag GetTabFileContents(string file) => ShowFileContents(file, withIntro: false, showTitle: true);
 
     // Used in SourceCode.cs to see if it has tabs
-    internal string GetFileContents(string file) => GetFileAndProcess(file).Contents;
+    // internal string GetFileContents(string file) => GetFileAndProcess(file).Contents;
 
     /// <summary>
     /// 
@@ -156,7 +156,7 @@ namespace AppCode.TutorialSystem.Source
       }
     }
 
-    private SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
+    internal SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
       // Note: for historical reasons the file is a path which can look like
       // - "../../tutorials/razor-quickref\Snip-partials-basic.typed.cshtml"
       // - "../../tutorials/razor-quickref/../razor-partial/line.cshtml"

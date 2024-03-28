@@ -1,33 +1,37 @@
-@inherits AppCode.Razor.AppRazor
+@inherits AppCode.TutorialSystem.Razor.ManageGroup
+@using AppCode.Data
 @using AppCode.Tutorial
+@using AppCode.TutorialSystem.Razor
+@using System.Linq
 @{
-  var tg = MyModel.Item("TutorialGroup");
-  var recursion = MyModel.Int("Recursion");
-  if (recursion > 3) {
+  if (Model.Recursion > 3) {
     throw new Exception("Recursion too high");
   }
 }
 
-@(tg.Bool("IsPage") ? "📄" : "🎁")
+@(TutorialGroup.IsPage ? "📄" : "🎁")
 
-Tutorial Group: @tg.Title [Accs: @tg.Children("Accordions").Count() | Snips: @tg.Children("Sections").Count()]
-@if (tg.Bool("IsPage")) {
-  <a href='@Sys.TutPageUrl(tg)' target="_blank">📤</a>
+Tutorial Group:
+<strong>@TutorialGroup.String("Title", scrubHtml: true)</strong>
+[Accs: @Accordions.Count() | Snips: @Sections.Count()]
+
+@if (TutorialGroup.IsPage) {
+  <a href='@TutLinks.TutPageUrl(TutorialGroup)' target="_blank">📤</a>
 }
 <br>
-@Html.Partial("./Part WithNotes.cshtml", new { Item = tg })
+@Html.Partial("./Part WithNotes.cshtml", TutorialGroup)
 
-@if (tg.IsNotEmpty("Accordions") || tg.IsNotEmpty("Sections")) {
+@if (Accordions.Any() || Sections.Any()) {
   <ol>
-    @foreach (var acc in tg.Children("Accordions")) {
+    @foreach (var acc in Accordions) {
       <li>
-        @Html.Partial("./Part TutorialGroupContents.cshtml", new { TutorialGroup = acc, Recursion = recursion + 1 })
+        @Html.Partial("./Part TutorialGroupContents.cshtml", new ManageGroupModel { TutorialGroup = acc, Recursion = Model.Recursion + 1 })
       </li>
     }
-    @foreach (var sc in tg.Children("Sections")) {
+    @foreach (var sc in Sections) {
       <li>
         Section: @sc.Title
-        @Html.Partial("./Part WithNotes.cshtml", new { Item = sc })
+        @Html.Partial("./Part WithNotes.cshtml", sc)
       </li>
     }
   </ol>

@@ -1,14 +1,15 @@
-@inherits Custom.Hybrid.RazorTyped
-@{
-  var noteHolder = MyModel.Item("Item");
+@inherits Custom.Hybrid.RazorTyped<IHasNotes>
+@using ToSic.Sxc.Data
+@using AppCode.Data
+
+@if (@Model.Notes.Any()) {
+  return;
 }
 
-@if (noteHolder.IsNotEmpty("Notes")) {
-  <ol>
-    @foreach (var note in noteHolder.Children("Notes")) {
-      <li>
-        📒 TutorialNote: @note.Title (@note.String("NameId"))
-      </li>
-    }
-  </ol>
-}
+<ol>
+  @foreach (var note in Model.Notes) {
+    <li>
+      📒 TutorialNote: @note.Title (@note.NameId))
+    </li>
+  }
+</ol>

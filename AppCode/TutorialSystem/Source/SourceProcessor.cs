@@ -37,7 +37,6 @@ namespace AppCode.TutorialSystem.Source
       // hide things between @{/*! and !*/} - usually used for hiding parts of code
       // Usually @{/*!*/ ... /*!*/}
       source = ProcessHideSilent(source, @"@{/\*!", @"!\*/}"); 
-      // source = ProcessHideSilent(source, @"@Sys\.SourceCode\.Invisible\(\)", @"@Sys.SourceCode.ResultEnd\(", true, false);
 
       // remove snippet markers
       var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";

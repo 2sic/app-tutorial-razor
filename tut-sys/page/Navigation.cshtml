@@ -37,7 +37,7 @@
       : null;
 
   // Previous Tutorial Metadata
-  var previousTutorialTarget = Sys.TutPageUrl(prev) ?? homeTarget;
+  var previousTutorialTarget = TutLinks.TutPageUrl(prev) ?? homeTarget;
 
   // Next Tutorial
   var next = currentIndex < tutGroups.Count() - 1 
@@ -48,7 +48,7 @@
 
 
   // Next Tutorial Metadata
-  var nextTutorialTarget = Sys.TutPageUrl(next) ?? homeTarget;
+  var nextTutorialTarget = TutLinks.TutPageUrl(next) ?? homeTarget;
 }
 <div class="alert alert-dark container-fluid">
   <div class="row justify-content-between">

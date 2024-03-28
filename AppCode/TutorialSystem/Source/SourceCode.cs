@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using AppCode.Tutorial;
 using AppCode.TutorialSystem.Wrappers;
-using AppCode.TutorialSystem.Tabs;
 using AppCode.TutorialSystem.Sections;
 using AppCode.Data;
 
@@ -14,17 +13,11 @@ namespace AppCode.TutorialSystem.Source
   {
     #region Init / Dependencies
 
-    public SourceCode Init(Sys sys) {
-      Sys = sys;
-      BsTabs = GetService<BootstrapTabs>();
-      return this;
-    }
-    public TagCount TagCount = new TagCount("SourceCode", true);
-    public Sys Sys {get;set;}
-    internal BootstrapTabs BsTabs {get;set;}
-
-    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>();
-    private SourceCodeFormulas _formulas;
+    // public SourceCode Init(Sys sys) {
+    //   Sys = sys;
+    //   return this;
+    // }
+    // public Sys Sys {get;set;}
 
     private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
@@ -80,7 +73,7 @@ namespace AppCode.TutorialSystem.Source
     {
       if (!file.Has() || file == Constants.IgnoreSourceFile) return null;
       var srcPath = file.Replace("\\", "/").BeforeLast("/");
-      var src = FileHandler.GetFileContents(file);
+      var src = FileHandler.GetFileAndProcess(file).Contents;
       if (!src.Contains("Tut.Tabs="))
         return null;
 
@@ -111,9 +104,6 @@ namespace AppCode.TutorialSystem.Source
     /// Count of source code snippets - used to create unique IDs
     /// </summary>
     public int SourceCodeTabCount = 0;
-
-    public new string UniqueKey => _uniqueKey ??= Kit.Key.UniqueKeyWith(this);
-    private string _uniqueKey;
 
     #endregion
 

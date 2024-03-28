@@ -13,7 +13,7 @@ namespace AppCode.TutorialSystem.Sections
   // Class to generate shared parts on the page
   // Such as navigations etc.
   // Should itself not have much code, it's more central API to access everything
-  public class InfoSectionPart: Custom.Hybrid.CodeTyped
+  public class InfoSectionPart: AppCode.Services.ServiceBase
   {
     #region Init / Dependencies
     
@@ -71,7 +71,7 @@ namespace AppCode.TutorialSystem.Sections
     private ITag LinksInSection(IEnumerable<ITypedItem> items) {
       var result = Tag.RawHtml();
       foreach (var dataEl in items) {
-        var tutUrl = dataEl.Type.Name == "TutorialGroup" ? Sys.TutPageUrl(dataEl) as string : null;
+        var tutUrl = dataEl.Type.Name == "TutorialGroup" ? TutLinks.TutPageUrl(dataEl) as string : null;
         string section = Field.ToLowerInvariant();
         var url = (section == SectRequirements || section == SectResources)
             ? dataEl.Url("Link")

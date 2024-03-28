@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using ToSic.Sxc.Data;
 
 namespace AppCode.Data
 {
-  public interface IHasNotes
+  public interface IHasNotes: ITypedItem
   {
     IEnumerable<TutorialNote> Notes {get;}
   }
