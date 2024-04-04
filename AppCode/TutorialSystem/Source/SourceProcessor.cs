@@ -9,8 +9,7 @@ namespace AppCode.TutorialSystem.Source
   // Private Source Code Clean-up Helpers
   public class SourceProcessor: AppCode.Services.ServiceBase
   {
-    public string CleanUpSource(string source) { // , string snippetId) {
-      // source = KeepOnlySnippet(source, snippetId);
+    public string CleanUpSource(string source) {
       source = ProcessHideTrimSnippet(source);
       var result = SourceTrim(source);
       return result;
@@ -37,10 +36,6 @@ namespace AppCode.TutorialSystem.Source
       // hide things between @{/*! and !*/} - usually used for hiding parts of code
       // Usually @{/*!*/ ... /*!*/}
       source = ProcessHideSilent(source, @"@{/\*!", @"!\*/}"); 
-
-      // remove snippet markers
-      var patternSnipStart = @"(?:</?snippet)([\s\S]*?)(?:>)";
-      source = Regex.Replace(source, patternSnipStart, "");
 
       // Remove all @Sys... lines - any whitespace followed by @Sys. till the end of the line
       var patternSysLines = @"^\s*@Sys\.[A-Z].*?$";

@@ -6,8 +6,8 @@
 @using AppCode.TutorialSystem.Razor
 @using AppCode.Tutorial
 
-<!-- Sections -->
-@foreach (Section acs in Model.Accordion.Sections(Path, backtrack: "../..")) {
+<!-- Accordion Sections / Drawers -->
+@foreach (Section acs in Model.Accordion.Sections(Path)) {
   TutorialSnippet item = acs.Item;
   var runCode = item.IsEmpty("Formula");
   var codeFile = runCode ? acs.SectionFile : "ignore";
@@ -20,7 +20,7 @@
 
       @snip.SnipStart()
         if (runCode) {
-          @Html.Partial(codeFile, data)
+          @Html.Partial("../.." + codeFile, data)
         }
       @snip.SnipEnd()
     }

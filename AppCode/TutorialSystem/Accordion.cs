@@ -47,7 +47,7 @@ namespace AppCode.TutorialSystem
 
     private string NextName() => Name + "-" + AutoPartName + AutoPartIndex++;
 
-    public IEnumerable<Section> Sections(string basePath, string backtrack) {
+    public IEnumerable<Section> Sections(string basePath) {
       if (Item == null) throw new Exception("Item in Accordion is null");
       // var appPath = App.Folder.Path;
       basePath = Text.BeforeLast(basePath, "/");
@@ -55,22 +55,22 @@ namespace AppCode.TutorialSystem
         .Select(itm => {
           var tutorialId = itm.TutorialId;
           // first try special extension eg. .Typed.Cshtml
-          if (!CheckFile(backtrack, tutorialId, _variantExtension, out string fileName))
-            CheckFile(backtrack, tutorialId, null, out fileName);
+          if (!CheckFile(tutorialId, _variantExtension, out string fileName))
+            CheckFile(tutorialId, null, out fileName);
           return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
         })
         .ToList();
       return names;
     }
 
-    private bool CheckFile(string relBacktrack, string tutorialId, string variant, out string fileName) {
+    private bool CheckFile(string tutorialId, string variant, out string fileName) {
       var l = Log.Call<bool>($"tutorialId: {tutorialId}; variant: {variant}");
       var tutInfo = new TutorialIdToPath(tutorialId, variant);
 
       var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", tutInfo.Path, tutInfo.FileName);
 
       if (System.IO.File.Exists(fullPath)) {
-        fileName = relBacktrack + "/" + System.IO.Path.Combine(tutInfo.Path, tutInfo.FileName);
+        fileName = "/" + System.IO.Path.Combine(tutInfo.Path, tutInfo.FileName);
         return l(true, "exists");
       }
       fileName = null;

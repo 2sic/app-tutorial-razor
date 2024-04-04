@@ -44,13 +44,7 @@ namespace AppCode.TutorialSystem.Sections
     internal ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
     private ToolbarHelpers _tlbHelpers;
 
-    // note: not sure why I did this...
-    public new string UniqueKey => _uniqueKey ??= Kit.Key.UniqueKeyWith(this);
-    private string _uniqueKey;
-
     private BootstrapTabs BsTabs;
-    protected int SnippetCount;
-    internal string SnippetId {get; private set;}
     public string TabPrefix {get; protected set;}
     protected Wrap SourceWrap;
     internal TabManager TabHandler;
@@ -59,45 +53,34 @@ namespace AppCode.TutorialSystem.Sections
     public ViewConfigurationSimulation ViewConfig;
 
     /// <summary>
-    /// The SnippetId must be provided here, so it can be found in the source code later on
+    /// ...
     /// </summary>
-    public ITag SnipStart(string snippetId = null) {
-      InitSnippetAndTabId(snippetId);
+    public ITag SnipStart() {
+      // note: not sure if the snippet-count is even relevant, could be an old leftover
+      var snippetCount = ScParent.SourceCodeTabCount++;
+      // The unique key should be unique for each instance of this class
+      var uniqueKey = Kit.Key.UniqueKeyWith(this);
+      TabPrefix = $"tab-{uniqueKey}-{snippetCount}-auto-id";
       return TabsBeforeContent();
     }
 
     /// <summary>
-    /// Helper which is usually called by implementations of SnipStart
-    /// </summary>
-    protected void InitSnippetAndTabId(string snippetId = null) {
-      SnippetCount = ScParent.SourceCodeTabCount++;
-      SnippetId = snippetId ?? "" + SnippetCount;
-      TabPrefix = "tab-" + UniqueKey + "-" + SnippetCount + "-" + (snippetId ?? "auto-id");
-    }
-
-    /// <summary>
-    /// Public method to replace the tab contents from outside
+    /// Public method to replace the tab contents from outside - typically used in img-tutorials
     /// </summary>
     /// <param name="tabs"></param>
-    public void SetTabContents(params object[] tabs) {
-      if (tabs != null & tabs.Any()) {
-        Log.Add("Replace tab contents with (new): " + tabs.Count());
-        TabHandler.ReplaceTabContents(tabs.ToList());
-      }
+    public void SetTabContents(params object[] tabs)
+    {
+      if (tabs == null || !tabs.Any()) return;
+      Log.Add("Replace tab contents with (new): " + tabs.Count());
+      TabHandler.ReplaceTabContents(tabs.ToList());
     }
-
-    /// <summary>
-    /// End of Snippet, so the source-analyzer can find it.
-    /// Usually overridden by the implementation.
-    /// </summary>
-    public virtual ITag SnipEnd()  { return SnipEndFinal(); }
 
     protected ITag TabsBeforeContent() {
       var tabNames = TabHandler.TabNames;
       var active = TabHandler.ActiveTabName;
       var l = Log.Call<ITag>("tabs (" + tabNames.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
 
-      var outputOpen = SourceWrap != null ? SourceWrap.OutputOpen() : null;
+      var outputOpen = SourceWrap?.OutputOpen();
 
       if (tabNames.Count() <= 1) return l(outputOpen, "no tabs");
 
@@ -118,13 +101,16 @@ namespace AppCode.TutorialSystem.Sections
       return l(result, "ok");
     }
 
-    protected ITag SnipEndFinal() {
+    /// <summary>
+    /// End of Snippet - called by the accordion
+    /// </summary>
+    public ITag SnipEnd()
+    {
       var results = TabHandler.TabContents;
       var names = TabHandler.TabNames;
       // Logging
       var active = TabHandler.ActiveTabName;
-      var l = Log.Call<ITag>("snippetId: " + SnippetId 
-        + "; tabPfx:" + TabPrefix 
+      var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
         + "; TabNames: " + TabHandler.TabNamesDebug
         + "; results:" + results.Count()
         + "; results:" + TabHandler.TabContentsDebug);
@@ -182,7 +168,7 @@ namespace AppCode.TutorialSystem.Sections
     }
 
     private ITag SourceWrapped() {
-      var snippet = FileHandler.ShowSnippet(SnippetId, file: SourceFile);
+      var snippet = FileHandler.ShowSnippet(file: SourceFile);
       return SourceWrap == null
         ? snippet
         : Tag.RawHtml(SourceWrap.SourceOpen(), snippet, SourceWrap.SourceClose());
@@ -253,7 +239,7 @@ namespace AppCode.TutorialSystem.Sections
 
       // handle case Formulas
       if (strResult == FormulasTabName) {
-        var formulaSpecs = item.Formula; //.Child(FormulaField);
+        var formulaSpecs = item.Formula;
         return Formulas.Show(formulaSpecs, false);
       }
 

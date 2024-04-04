@@ -9,21 +9,7 @@ namespace AppCode.TutorialSystem.Source
 
     internal Div SourceBlock(ShowSourceSpecs specs, string title) {
       return Tag.Div().Class("code-block " + (specs.Expand ? "is-expanded" : "")).Attr(specs.DomAttribute).Wrap(
-        specs.ShowIntro
-          ? Tag.Div().Class("header row justify-content-between").Wrap(
-              Tag.Div().Class("col-11").Wrap(
-                Tag.H3(title),
-                Tag.P("Below you'll see the source code of the " + specs.Type + @". 
-                      Note that we're just showing the main part, and hiding some parts of the file which are not relevant for understanding the essentials. 
-                      <strong>Click to expand the code</strong>")
-              ),
-              Tag.Div().Class("col-auto").Wrap(
-                // Up / Down arrows as SVG - hidden by default, become visible based on CSS 
-                Tag.Custom("<img src='" + App.Folder.Url + "/assets/svg/arrow-up.svg' class='fa-chevron-up' loading='lazy'>"),
-                Tag.Custom("<img src='" + App.Folder.Url + "/assets/svg/arrow-down.svg' class='fa-chevron-down' loading='lazy'>")
-              )
-            ) as ITag
-          : specs.ShowTitle
+        specs.ShowTitle
             ? Tag.H3(title) as ITag
             : Tag.Span(),
         "\n<!-- Raw Source in Pre -->\n",

@@ -71,25 +71,12 @@ namespace AppCode.TutorialSystem.Source
     #region Show Source Block
 
     /// <summary>
-    /// Not used any more!
-    /// ...then remove
-    /// </summary>
-    /// <param name="file"></param>
-    /// <param name="titlePath"></param>
-    /// <returns></returns>
-    // public ITag ShowFile(string file, string titlePath = null) {
-    //   return ShowFileContents(file, titlePath: titlePath);
-    // }
-
-    /// <summary>
     /// just show a snippet - used in SourceCode.cs
     /// </summary>
-    internal ITag ShowSnippet(string snippetId, string file = null)
-      => file != null
-        ? ShowFileContents(file, snippetId, withIntro: false, showTitle: false, expand: true)
-        : ShowFileContents(null, snippetId, expand: true);
+    internal ITag ShowSnippet(string file)
+      => ShowFileContents(file, showTitle: false, expand: true);
 
-    internal ITag GetTabFileContents(string file) => ShowFileContents(file, withIntro: false, showTitle: true);
+    internal ITag GetTabFileContents(string file) => ShowFileContents(file, showTitle: true);
 
     // Used in SourceCode.cs to see if it has tabs
     // internal string GetFileContents(string file) => GetFileAndProcess(file).Contents;
@@ -108,28 +95,26 @@ namespace AppCode.TutorialSystem.Source
     /// <returns></returns>
     private ITag ShowFileContents(
       string file,
-      string snippetId = null,
       string title = null,
       string titlePath = null, 
       bool? expand = null,
       bool? wrap = null,
-      bool? withIntro = null,
       bool? showTitle = null)
     {
-      var l = Log.Call<ITag>("file: '" + file + "'; SnippetId: '" + snippetId + "'");
+      var l = Log.Call<ITag>("file: '" + file);
       var debug = false;
       var path = "";
       var errPath = "";
 
-      // New: support for snippetId in path
-      if (snippetId == null && file.Contains("#")) {
-        snippetId = Text.AfterLast(file, "#");
-        file = Text.BeforeLast(file, "#");
-      }
+      // // New: support for snippetId in path
+      // if (snippetId == null && file.Contains("#")) {
+      //   snippetId = Text.AfterLast(file, "#");
+      //   file = Text.BeforeLast(file, "#");
+      // }
 
       try
       {
-        var specs = GetFileAndProcess(file, snippetId);
+        var specs = GetFileAndProcess(file);
         path = specs.Path;  // update in case of error
         errPath = debug ? specs.FullPath : path;
         title ??= "Source Code of " + (Text.Has(specs.FileName)
@@ -137,7 +122,6 @@ namespace AppCode.TutorialSystem.Source
           : "this " + specs.Type); // "this snippet" vs "this file"
         specs.Expand = expand ?? specs.Expand;
         specs.Wrap = wrap ?? specs.Wrap;
-        specs.ShowIntro = withIntro ?? specs.ShowIntro;
         specs.ShowTitle = showTitle ?? specs.ShowTitle;
 
         Ace9Editor.TurnOnSource(specs, specs.FileName, specs.Wrap);
@@ -157,8 +141,8 @@ namespace AppCode.TutorialSystem.Source
       }
     }
 
-    internal SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
-      var l = Log.Call<SourceInfo>("file: '" + file + "'; SnippetId: '" + snippetId + "'");
+    internal SourceInfo GetFileAndProcess(string file) {
+      var l = Log.Call<SourceInfo>("file: '" + file);
       // Note: for historical reasons the file is a path which can look like
       // - "../../tutorials/razor-quickref\Snip-partials-basic.typed.cshtml"
       // - "../../tutorials/razor-quickref/../razor-partial/line.cshtml"
@@ -181,7 +165,7 @@ namespace AppCode.TutorialSystem.Source
 
       // When getting cached, we must re-wrap to get a new randomID
       // otherwise the source-display will get confused with multiple displays of the same file
-      var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
+      var cacheKey = fullPath.ToLowerInvariant();
       if (_sourceInfoCache.TryGetValue(cacheKey, out var cached))
         // return but rewrap so changes won't affect the original
         return l(new SourceInfo(cached), "cached");
@@ -195,13 +179,12 @@ namespace AppCode.TutorialSystem.Source
       // Log.Add($"newInfo: {newInfo}");
       fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents);
       fileInfo.Size = Size(null, fileInfo.Processed);
-      var isSnippet = !string.IsNullOrWhiteSpace(snippetId);
-      fileInfo.ShowIntro = !isSnippet;
+      var isSnippet = false;
       fileInfo.ShowTitle = !isSnippet;
       fileInfo.Type = isSnippet ? "snippet" : "file";
       fileInfo.DomAttribute = "source-code-" + MyContext.Module.Id;
       // If no File name was specified, then it's the current file; don't expand
-      if (!snippetId.Has() && !file.Has()) fileInfo.Expand = false;
+      if (!file.Has()) fileInfo.Expand = false;
       _sourceInfoCache[cacheKey] = fileInfo;
       return l(fileInfo, "ok");
     }
