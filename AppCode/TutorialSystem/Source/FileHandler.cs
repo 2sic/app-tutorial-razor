@@ -193,7 +193,7 @@ namespace AppCode.TutorialSystem.Source
       // log all properties of FileInfo
       Log.Add($"fileInfo: {fileInfo}");
       // Log.Add($"newInfo: {newInfo}");
-      fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents); //, snippetId);
+      fileInfo.Processed = SourceProcessor.CleanUpSource(fileInfo.Contents);
       fileInfo.Size = Size(null, fileInfo.Processed);
       var isSnippet = !string.IsNullOrWhiteSpace(snippetId);
       fileInfo.ShowIntro = !isSnippet;

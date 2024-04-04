@@ -2,7 +2,6 @@ using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
 using System.Collections.Generic;
 using System.Linq;
-using AppCode.Tutorial;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Sections;
 using AppCode.Data;
@@ -46,8 +45,8 @@ namespace AppCode.TutorialSystem.Source
     }
 
 
-    private Dictionary<string, string> TabStringToDic(string tabs) {
-      var tabList = (tabs ?? "").Split(',').Select(t => t.Trim()).ToArray();
+    private Dictionary<string, string> TabStringToDic(string[] tabs) {
+      var tabList = (tabs ?? new string[0]).Select(t => t.Trim()).ToArray();
       var tabDic = tabList
         .Where(t => t.Has())
         .Select(t => {
@@ -70,7 +69,7 @@ namespace AppCode.TutorialSystem.Source
       return tabDic;
     }
 
-    private string TryToGetTabsFromSource(string file)
+    private string[] TryToGetTabsFromSource(string file)
     {
       if (!file.Has() || file == Constants.IgnoreSourceFile) return null;
       var srcPath = file.Replace("\\", "/").BeforeLast("/");
@@ -94,8 +93,8 @@ namespace AppCode.TutorialSystem.Source
           return prefix + "file:" + finalPath;
         })
         .ToArray();
-      var result = string.Join(",", tabs);
-      return result;
+      // var result = string.Join(",", tabs);
+      return tabs; //result;
     }
 
     #endregion

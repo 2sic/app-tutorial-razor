@@ -20,7 +20,7 @@ namespace AppCode.TutorialSystem.Sections
     public TutorialSectionEngine Init(SourceCode sourceCode, TutorialSnippet item, Dictionary<string, string> tabs, string sourceFile = null) {
       Item = item ?? throw new Exception("Item should never be null");
       ScParent = sourceCode;
-      BsTabs = GetService<BootstrapTabs>(); // ScParent.BsTabs;
+      BsTabs = GetService<BootstrapTabs>();
       SourceWrap = sourceCode.GetSourceWrap(this, item);
       TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
       SourceFile = sourceFile;
@@ -36,10 +36,12 @@ namespace AppCode.TutorialSystem.Sections
     private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
 
-    public SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>();
+    // internal so it can be used by wrappers
+    internal SourceCodeFormulas Formulas => _formulas ??= GetService<SourceCodeFormulas>();
     private SourceCodeFormulas _formulas;
 
-    public ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
+    // internal so it can be used by wrappers
+    internal ToolbarHelpers ToolbarHelpers => _tlbHelpers ??= GetService<ToolbarHelpers>();
     private ToolbarHelpers _tlbHelpers;
 
     // note: not sure why I did this...
