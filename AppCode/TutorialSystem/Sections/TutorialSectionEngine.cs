@@ -106,13 +106,13 @@ namespace AppCode.TutorialSystem.Sections
     /// </summary>
     public ITag SnipEnd()
     {
-      var results = TabHandler.TabContents;
+      var tabContents = TabHandler.TabContents;
       var names = TabHandler.TabNames;
       // Logging
       var active = TabHandler.ActiveTabName;
       var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
         + "; TabNames: " + TabHandler.TabNamesDebug
-        + "; results:" + results.Count()
+        + "; results:" + tabContents.Count()
         + "; results:" + TabHandler.TabContentsDebug);
       var nameCount = 0;
 
@@ -120,7 +120,7 @@ namespace AppCode.TutorialSystem.Sections
       var html = Tag.RawHtml();
 
       // If we have any results, add them here; Very often there are none left
-      foreach (var m in results) {
+      foreach (var m in tabContents) {
         string name;
         // Find Name and Log Stuff
 

@@ -59,10 +59,11 @@ namespace AppCode.TutorialSystem.Source
           // Figure out the parts
           var label = hasLabel ? pLabel : t; 
           var value = pVal;
+          Log.Add("Tab Entry: " + label + " = " + value);
           return new {
             label,
             value,
-            t
+            original = t
           };
         })
         .ToDictionary(t => t.label, t => t.value);
@@ -90,11 +91,13 @@ namespace AppCode.TutorialSystem.Source
           var fullPath = Text.After(entry, "file:");
           // the path could be "/AppCode/..." or it could be (older) "../../something"
           var finalPath = fullPath.StartsWith("/") ? fullPath : srcPath + "/" + fullPath;
+          var customLabel = prefix == "" && !finalPath.Contains("/AppCode/") ? "" : $"{finalPath}|";
+          Log.Add($"Prefix: '{prefix}'; Custom Label: '{customLabel}'; finalPath: '{finalPath}'");
+          prefix = customLabel;
           return prefix + "file:" + finalPath;
         })
         .ToArray();
-      // var result = string.Join(",", tabs);
-      return tabs; //result;
+      return tabs;
     }
 
     #endregion
