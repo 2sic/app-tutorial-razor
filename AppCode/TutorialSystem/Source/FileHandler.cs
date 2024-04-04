@@ -231,6 +231,7 @@ namespace AppCode.TutorialSystem.Source
       }
       catch (Exception ex)
       {
+        throw;
         return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = ex.Message, IsError = true }, fullPath);
       }
     }

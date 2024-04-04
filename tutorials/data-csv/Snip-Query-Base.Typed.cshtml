@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
-@{/*! Tut.Tabs=file:../../assets/data/products.csv.txt,ViewConfig */
+@{/*! Tut.Tabs=file:/assets/data/products.csv.txt,ViewConfig */
   var viewCnf = MyModel.Code("Tutorial").ViewConfig;
   viewCnf.Query("ProductsFromCSV" + MyContext.Platform.Name);
 /*!*/}
