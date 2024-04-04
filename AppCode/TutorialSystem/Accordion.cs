@@ -70,7 +70,7 @@ namespace AppCode.TutorialSystem
       var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", tutInfo.Path, tutInfo.FileName);
 
       if (System.IO.File.Exists(fullPath)) {
-        fileName = relBacktrack + "/" + System.IO.Path.Combine(tutInfo.Path, /* secondPath, */ tutInfo.FileName);
+        fileName = relBacktrack + "/" + System.IO.Path.Combine(tutInfo.Path, tutInfo.FileName);
         return l(true, "exists");
       }
       fileName = null;

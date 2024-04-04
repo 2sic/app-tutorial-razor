@@ -37,6 +37,7 @@ namespace AppCode.TutorialSystem.Source
     {
       var l = Log.Call<TutorialSectionEngine>("file: " + file);
       // If we have a file, we should try to look up the tabs
+      Log.Add("tabs before:" + file);
       var tabCsv = TryToGetTabsFromSource(file);
       Log.Add("tabs: '" + tabCsv + "'");
       var tabs = TabStringToDic(tabCsv);
@@ -87,8 +88,10 @@ namespace AppCode.TutorialSystem.Source
           var entry = t.Trim();
           if (!entry.Contains("file:")) return t;
           var prefix = Text.Before(entry, "file:");
-          var fileName = Text.After(entry, "file:");
-          return prefix + "file:" + srcPath + "/" + fileName;
+          var fullPath = Text.After(entry, "file:");
+          // the path could be "/AppCode/..." or it could be (older) "../../something"
+          var finalPath = fullPath.StartsWith("/") ? fullPath : srcPath + "/" + fullPath;
+          return prefix + "file:" + finalPath;
         })
         .ToArray();
       var result = string.Join(",", tabs);

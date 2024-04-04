@@ -53,11 +53,14 @@ namespace AppCode.TutorialSystem.Source
       Path = o.Path;
       FullPath = o.FullPath;
       Contents = o.Contents;
+      IsError = o.IsError;
     }
     public string FileName;
     public string Path;
     public string FullPath;
     public string Contents;
+
+    public bool IsError;
 
     public override string ToString()
     {

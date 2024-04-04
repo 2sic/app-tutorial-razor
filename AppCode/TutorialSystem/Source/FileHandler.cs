@@ -2,6 +2,7 @@ using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
+using System;
 
 namespace AppCode.TutorialSystem.Source
 {
@@ -157,12 +158,16 @@ namespace AppCode.TutorialSystem.Source
     }
 
     internal SourceInfo GetFileAndProcess(string file, string snippetId = null/*, string path = null*/) {
+      var l = Log.Call<SourceInfo>("file: '" + file + "'; SnippetId: '" + snippetId + "'");
       // Note: for historical reasons the file is a path which can look like
       // - "../../tutorials/razor-quickref\Snip-partials-basic.typed.cshtml"
       // - "../../tutorials/razor-quickref/../razor-partial/line.cshtml"
       // maybe more variations - so we'll try to clean it here to be relative to the AppRoot
 
       // Todo: remove one or more trailing "../" from the file variable
+      if (file.StartsWith("/"))
+        file = file.Substring(1);
+      
       while (file.StartsWith("../"))
         file = file.Substring(3);
 
@@ -178,7 +183,8 @@ namespace AppCode.TutorialSystem.Source
       // otherwise the source-display will get confused with multiple displays of the same file
       var cacheKey = (fullPath + "#" + snippetId).ToLowerInvariant();
       if (_sourceInfoCache.TryGetValue(cacheKey, out var cached))
-        return new SourceInfo(cached);
+        // return but rewrap so changes won't affect the original
+        return l(new SourceInfo(cached), "cached");
 
       // var fileInfo = GetFile(path, file, fullPath);
       var fileInfo = GetFileSourceInfo(fullPath);
@@ -197,7 +203,7 @@ namespace AppCode.TutorialSystem.Source
       // If no File name was specified, then it's the current file; don't expand
       if (!snippetId.Has() && !file.Has()) fileInfo.Expand = false;
       _sourceInfoCache[cacheKey] = fileInfo;
-      return fileInfo;
+      return l(fileInfo, "ok");
     }
     private Dictionary<string, SourceInfo> _sourceInfoCache = new Dictionary<string, SourceInfo>();
 
@@ -233,10 +239,17 @@ namespace AppCode.TutorialSystem.Source
     private SourceInfo GetFileSourceInfo(string fullPath) {
       var l = Log.Call<SourceInfo>("fullPath: " + fullPath);
       var cacheKey = fullPath.ToLowerInvariant();
-      var contents = _getFileCache.TryGetValue(cacheKey, out var c) ? c : System.IO.File.ReadAllText(fullPath);
       var fileName = System.IO.Path.GetFileName(fullPath);
       var filePath = fullPath.Substring(0, fullPath.LastIndexOf("/"));
-      return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, fullPath);
+      try
+      {
+        var contents = _getFileCache.TryGetValue(cacheKey, out var c) ? c : System.IO.File.ReadAllText(fullPath);
+        return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, fullPath);
+      }
+      catch (Exception ex)
+      {
+        return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = ex.Message, IsError = true }, fullPath);
+      }
     }
     private readonly Dictionary<string, string> _getFileCache = new Dictionary<string, string>();
     
