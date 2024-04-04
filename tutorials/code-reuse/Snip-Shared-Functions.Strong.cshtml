@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using AppCode.Helpers
+@*!
+Tut.Tabs=file:/AppCode/Helpers/QrHelper.cs
+!*@
+@{
+  // Use standard new in Strongly Typed Code
+  var lib = GetService<QrHelper>();
+}
+<div>Hello from lib: @lib.SayHello()</div>
+<div>
+  <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
+</div>

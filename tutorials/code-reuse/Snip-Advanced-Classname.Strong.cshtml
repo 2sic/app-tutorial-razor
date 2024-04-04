@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Helpers
+@*!
+Tut.Tabs=file:/AppCode/Helpers/FunctionsBasic.cs
+!*@
+@{
+  var lib = new SecondFunctionsBasic();
+}
+<div>
+  Hello from <code>SecondFunctionsBasic</code> in the <code>FunctionsBasic</code> file:
+  <br>
+  @lib.SayHello()
+</div>

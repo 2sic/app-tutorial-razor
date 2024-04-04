@@ -38,7 +38,6 @@ namespace AppCode.TutorialSystem
         ? "Strong"
         : "Dyn";
 
-    public bool IsTyped => Variant == VariantTyped;
     public string Variant => MyPage.Parameters[VariantUrlParameter] ?? VariantTyped;
 
     public string Name { get; private set; }

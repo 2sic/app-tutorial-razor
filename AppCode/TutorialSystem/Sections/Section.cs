@@ -102,7 +102,7 @@ namespace AppCode.TutorialSystem.Sections
         "\n",
         Indent2 + Item?.Html("Intro"),
         "\n",
-        Indent2 + Item?.Html("IntroMore" + (Acc.IsTyped ? "Typed" : "Dyn")),
+        Indent2 + Item?.Html("IntroMore" + Acc.VariantFieldSuffix),
         "\n",
         note,
         "\n"
