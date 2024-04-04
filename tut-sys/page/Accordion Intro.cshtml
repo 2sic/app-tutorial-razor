@@ -37,7 +37,7 @@
   <div class="col-lg-@leftCols">
     <h1>@Html.Raw(tutPage.String("Title", fallback: "no title", scrubHtml: "p"))</h1>
     @tutPage.Html("Intro")
-    @tutPage.Html("IntroMore" + (accordion.IsTyped ? "Typed" : "Dyn"))
+    @tutPage.Html("IntroMore" + accordion.VariantFieldSuffix)
     @if (tutPage.IsNotEmpty("Note")) {
       <div class="alert alert-warning">
         @tutPage.Html("Note")

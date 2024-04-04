@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.06.00" ExportDate="2024-04-02T14:30:20.4799231+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.06.02" ExportDate="2024-04-04T20:40:10.3568021+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -4491,6 +4491,80 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="WysiwygConfiguration" Value="52d79da0-b10d-4f62-9838-2e17b2254a3e" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="IntroMoreStrong" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="48315579-9a8b-47cc-b175-b70cd36fdac5" Json="True" KeyNumber="6415">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-wysiwyg" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="IntroMoreStrong" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="b531242c-1cdd-42af-8afe-b90de1786d55" Json="True" KeyNumber="6415">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="40870670-d7c5-4a11-adf5-b48ff57976c5" Json="True" KeyNumber="6415">
+            <Value Key="ButtonAdvanced" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ButtonSource" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ContentCss" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Dialog" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InlineInitialHeight" Value="1" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
@@ -34863,16 +34937,19 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;There are multiple ways to create shared Razor helpers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;public functions returning html&lt;br&gt;⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅&lt;/li&gt;&#xA;&lt;li&gt;the&amp;nbsp;&lt;code&gt;@helper&lt;/code&gt;&amp;nbsp;command&lt;br&gt;👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Razor helpers are functions that put HTML into the page. You can create them using either&lt;br&gt;&lt;code&gt;@functions { dynamic helpername() { ... } }&lt;/code&gt;&lt;br&gt;or&lt;br&gt;&lt;code&gt;@helper helpername() { ... }&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;You can also share them by placing them into a separate file (just remember to mark them&amp;nbsp;&lt;code&gt;public&lt;/code&gt;). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use&amp;nbsp;&lt;code&gt;CreateInstance&lt;/code&gt;&amp;nbsp;to get an object with these methods, and then use it.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;The best way shared C# helpers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;public functions returning strings, objects, ints etc.&lt;/li&gt;&#xA;&lt;li&gt;public functions returning html using RazorBlade&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅&lt;/p&gt;&#xA;&lt;p&gt;You share them by placing them into a separate CS file (just remember to mark them &lt;code&gt;public&lt;/code&gt;). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
+      <Value Key="IntroMoreDyn" Value="&lt;p&gt;To achieve this, we use&amp;nbsp;&lt;code&gt;CreateInstance&lt;/code&gt; to get an object with these methods, and then use it.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
+      <Value Key="IntroMoreStrong" Value="&lt;p&gt;In strong-typed code we place these in the AppCode folder, and get them using the standard&amp;nbsp;&lt;code&gt;new MyHelper()&lt;/code&gt;. In scenarios where the helper needs to know the full context, use &lt;code&gt;GetService&amp;lt;MyHelper&amp;gt;()&lt;/code&gt;.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="&lt;p&gt;To achieve this, we use&amp;nbsp;&lt;code&gt;GetCode&lt;/code&gt; to get an object with these methods, and then use it.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IsPage" Value="True" Type="Boolean">
@@ -34900,13 +34977,13 @@
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;Reuse Shared Razor Helpers (CreateInstance / GetCode)&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Use Shared C# Code&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="code-reuse-page - Reuse Shared Razor Helpers (CreateInstance / GetCode)" Type="String">
+      <Value Key="TitleForPicker" Value="code-reuse-page - Use Shared C# Code" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -36549,6 +36626,9 @@
       <Value Key="IntroMoreDyn" Value="&lt;p&gt;When Using other Razor or Code, you should also know:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;DynamicModel&lt;/code&gt; is the object used in sub-pages to receive parameters from the caller - see &lt;a href=&quot;https://docs.2sxc.org/net-code/dynamic-code/object-dynamic-model.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;CreateInstance(...)&lt;/code&gt; to create objects from .cs files - see &lt;a href=&quot;https://docs.2sxc.org/net-code/dynamic-code/create-instance.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="&lt;p&gt;When Using other Razor or Code, you should also know:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;Model&lt;/code&gt; is the &lt;strong&gt;typed &lt;/strong&gt;object used in sub-pages to receive parameters from the caller - see &lt;a href=&quot;https://docs.2sxc.org/net-code/api-typed-strong/razor-typed-models.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;MyModel&lt;/code&gt; is the&amp;nbsp;&lt;strong&gt;generic&lt;/strong&gt; object used in sub-pages to receive parameters from the caller - see &lt;a href=&quot;https://docs.2sxc.org/net-code/dynamic-code/object-dynamic-model.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;To get a helper, just use &lt;code&gt;new Helper(...)&lt;/code&gt; or &lt;code&gt;GetService&amp;lt;HelperType&amp;gt;()&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;GetCode(...)&lt;/code&gt; to create objects from .cs files sometimes still works, but is not recommended - see &lt;a href=&quot;https://docs.2sxc.org/net-code/dynamic-code/create-instance.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="&lt;p&gt;When Using other Razor or Code, you should also know:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;code&gt;MyModel&lt;/code&gt; is the object used in sub-pages to receive parameters from the caller - see &lt;a href=&quot;https://docs.2sxc.org/net-code/dynamic-code/object-dynamic-model.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;GetCode(...)&lt;/code&gt; to create objects from .cs files - see &lt;a href=&quot;https://docs.2sxc.org/net-code/dynamic-code/create-instance.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docs&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -36584,7 +36664,7 @@
       <Value Key="TitleForPicker" Value="code-reuse-intro-page - Reuse Code and Razor Templates" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -37142,6 +37222,29 @@
       <Value Key="Title" Value="Requirement to use this" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="c33191b0-ed65-4272-a519-ba6767e29fde" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="TempAppCodeDs" Type="String" />
+      <Value Key="Params" Value="ReplaceThis=27&#xA;ReplaceThisAsWell=[QueryString:Id]" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header" Type="String" />
+      <Value Key="StreamWiring" Value="459dff1b-abc2-4b5c-b9fc-fd4d935e645c:Default&gt;Out:Default&#xD;&#xA;5166d0e1-5bb0-4fe5-b5d1-e4fac7c87aff:Default&gt;Out:Header" Type="String" />
+      <Value Key="TestParameters" Value="[Demo:Demo]=true" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="459dff1b-abc2-4b5c-b9fc-fd4d935e645c" Json="True" KeyGuid="c33191b0-ed65-4272-a519-ba6767e29fde">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="AuthorsInAppCode" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="AuthorsInAppCode" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 260,&#xD;&#xA;  &quot;Left&quot;: 160&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="5166d0e1-5bb0-4fe5-b5d1-e4fac7c87aff" Json="True" KeyGuid="c33191b0-ed65-4272-a519-ba6767e29fde">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="AuthorsInAppCodeWithNs" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="AuthorsInAppCodeWithNs" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 260,&#xD;&#xA;  &quot;Left&quot;: 540&#xD;&#xA;}" Type="String" />
     </Entity>
   </Entities>
   <PortalFiles>

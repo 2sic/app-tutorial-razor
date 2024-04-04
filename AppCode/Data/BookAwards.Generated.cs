@@ -11,10 +11,10 @@ namespace AppCode.Data
 }
 */
 
-// Generator:   CSharpDataModelsGenerator v17.06.00
+// Generator:   CSharpDataModelsGenerator v17.06.02
 // App/Edition: Tutorial-Razor/
 // User:        2sic Web-Developer
-// When:        2024-03-28 18:17:21Z
+// When:        2024-04-04 20:28:06Z
 namespace AppCode.Data
 {
   // This is a generated class for BookAwards 
@@ -22,7 +22,7 @@ namespace AppCode.Data
 
   /// <summary>
   /// BookAwards data. <br/>
-  /// Generated 2024-03-28 18:17:21Z. Re-generate whenever you change the ContentType. <br/>
+  /// Generated 2024-04-04 20:28:06Z. Re-generate whenever you change the ContentType. <br/>
   /// <br/>
   /// Default properties such as `.Title` or `.Id` are provided in the base class. <br/>
   /// Most properties have a simple access, such as `.Name`. <br/>

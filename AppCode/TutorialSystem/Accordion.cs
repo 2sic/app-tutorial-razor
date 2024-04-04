@@ -32,6 +32,12 @@ namespace AppCode.TutorialSystem
       );
     }
 
+    public string VariantFieldSuffix => Variant == VariantTyped
+      ? "Typed" 
+      : Variant == VariantStrong
+        ? "Strong"
+        : "Dyn";
+
     public bool IsTyped => Variant == VariantTyped;
     public string Variant => MyPage.Parameters[VariantUrlParameter] ?? VariantTyped;
 
