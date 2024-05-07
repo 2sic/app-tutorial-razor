@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.Razor14
+@{/*!*/
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
+/*!*/}
+<script>
+  // this is the button code that will use the parameter
+  function showParameters(data) {
+    alert("I got this data: " + JSON.stringify(data));
+  }
+</script>
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().Code("showParameters",
+    tweak: t => t.Parameters("favoriteNumber", 42)
+  )>
+  <h3><code>parameters</code> for code or other actions</h3>
+</div>
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().Code("showParameters",
+    tweak: t => t.Parameters(new { favoriteNumber = 42, message = "wow!" })
+  )>
+  <h3>multiple <code>parameters</code> for code or other actions</h3>
+</div>
+
+<h3>or without tweak</h3>
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().Code("showParameters", parameters: new { favoriteNumber = 42, message = "wow!" })>
+  <h3>multiple <code>parameters</code> for code or other actions</h3>
+</div>
+
+@{/*!*/
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
+/*!*/}

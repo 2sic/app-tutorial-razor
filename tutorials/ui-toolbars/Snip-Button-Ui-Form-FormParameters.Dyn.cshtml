@@ -1,0 +1,46 @@
+@inherits Custom.Hybrid.Razor14
+@{/*!*/
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsStart();
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters",
+    tweak: t => t.FormParameters("demoFormParam", true)
+  )>
+  <h3><code>formParameter</code> on <strong>demoFormParam</strong> for formulas to make decisions</h3>
+</div>
+
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters",
+    tweak: t => t.FormParameters("demoFormParam", true)
+      .FormParameters("theAnswer", 42)
+  )>
+  <h3>2x <code>formParameters</code> on <strong>Title</strong> and <strong>Intro</strong> </h3>
+</div>
+
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters",
+    tweak: t => t.FormParameters(new {
+      demoFormParam = true,
+      theAnswer = 47
+    })
+  )>
+  <h3>2x <code>formParameters</code> with 1 <strong>object</strong> </h3>
+</div>
+
+
+@{
+  var pfReuse = new {
+    demoFormParam = true,
+    theAnswer = 42000
+  };
+}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters", tweak: t => t.FormParameters(pfReuse))>
+  <h3>2x <code>formParameters</code> with a prepared <strong>object</strong> </h3>
+</div>
+
+@{/*!*/
+  DynamicModel.Sys.ToolbarHelpers.AutoShowAllToolbarsEnd();
+/*!*/}
