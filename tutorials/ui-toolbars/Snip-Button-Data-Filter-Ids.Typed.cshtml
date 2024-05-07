@@ -23,7 +23,7 @@
   var authorsToolbar = Kit.Toolbar.Empty();
   foreach (var auth in AsItems(App.Data.GetStream("Persons"))) {
     authorsToolbar = authorsToolbar.Data("Books", tweak: t => t
-      .Filter("Authors", new int[] { auth.Id })
+      .Filter("Authors", auth.Id)
       .Tooltip("Books by " + auth.String("FirstName") + " " + auth.String("LastName"))  
     );
   }
