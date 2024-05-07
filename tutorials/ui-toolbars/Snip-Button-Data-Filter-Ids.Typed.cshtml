@@ -5,14 +5,13 @@
 /*!*/}
 @{
   var firstThreeAuthorIds = AsItems(App.Data.GetStream("Persons"))
-    .Select(author => author.Id)
     .Take(3)
+    .Select(author => author.Id)
     .ToArray();
 
+  // note: this filter only supports int-arrays since v17.07
   var toolbarTop3 = Kit.Toolbar.Empty()
-    .Data("Books", filter: new 
-      { Authors = firstThreeAuthorIds }
-    );
+    .Data("Books", tweak: t => t.Filter("Authors", firstThreeAuthorIds));
 }
 <div class="alert alert-light" @toolbarTop3>
   <h3><code>Data</code> buttons returning books which 
@@ -23,14 +22,9 @@
 @{
   var authorsToolbar = Kit.Toolbar.Empty();
   foreach (var auth in AsItems(App.Data.GetStream("Persons"))) {
-    authorsToolbar = authorsToolbar.Data("Books",
-      ui: new { Title = "Books by " 
-        + auth.String("FirstName") 
-        + " " 
-        + auth.String("LastName")},
-      filter: new { Authors = new int[] 
-        { auth.Id } 
-      }
+    authorsToolbar = authorsToolbar.Data("Books", tweak: t => t
+      .Filter("Authors", new int[] { auth.Id })
+      .Tooltip("Books by " + auth.String("FirstName") + " " + auth.String("LastName"))  
     );
   }
 }
