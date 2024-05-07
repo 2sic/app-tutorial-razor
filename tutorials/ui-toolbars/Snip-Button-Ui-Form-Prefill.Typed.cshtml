@@ -1,0 +1,46 @@
+@inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsStart();
+/*!*/}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters",
+    tweak: t => t.Prefill("Title", "This is a prepared title passed in by the page")
+  )>
+  <h3><code>prefill</code> on <strong>Title</strong> </h3>
+</div>
+
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters",
+    tweak: t => t.Prefill("Title", "This is a prepared title passed in by the page")
+      .Prefill("Intro", "this is some random intro")
+  )>
+  <h3>2x <code>prefill</code> on <strong>Title</strong> and <strong>Intro</strong> </h3>
+</div>
+
+
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters",
+    tweak: t => t.Prefill(new {
+      Title = "This is a prepared title passed in by the page",
+      Intro = "this is some random intro"
+    })
+  )>
+  <h3>2x <code>prefill</code> with 1 <strong>object</strong> </h3>
+</div>
+
+
+@{
+  var pfReuse = new {
+    Title = "this prefill was made in a object before",
+    Intro = "this is some intro from the premade object"
+  };
+}
+<div class="alert alert-light" 
+  @Kit.Toolbar.Empty().New("UiToolbarShowAllParameters", tweak: t => t.Prefill(pfReuse))>
+  <h3>2x <code>prefill</code> with a prepared <strong>object</strong> </h3>
+</div>
+
+@{/*!*/
+  MyModel.Code("Sys").ToolbarHelpers.AutoShowAllToolbarsEnd();
+/*!*/}
