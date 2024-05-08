@@ -12,18 +12,16 @@
   var runCode = item.IsEmpty("Formula");
   var codeFile = runCode ? acs.SectionFile : "ignore";
   if (codeFile != null) {
+    var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
+    var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
+
     <!-- code file -->
     @acs.Start()
-    @{
-      var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
-      var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
-
       @snip.SnipStart()
         if (runCode) {
           @Html.Partial("../.." + codeFile, data)
         }
       @snip.SnipEnd()
-    }
     @acs.End()
     <!-- /code file -->
   } else if (MyUser.IsSystemAdmin) {
