@@ -5,6 +5,7 @@ using System.Linq;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Sections;
 using AppCode.Data;
+using AppCode.TutorialSystem.Tabs;
 
 namespace AppCode.TutorialSystem.Source
 {
@@ -32,81 +33,94 @@ namespace AppCode.TutorialSystem.Source
       // If we have a file, we should try to look up the tabs
       Log.Add("tabs before:" + file);
       var tabCsv = TryToGetTabsFromSource(file);
+      foreach (var tab in tabCsv)
+        Log.Add("tabs: '" + tab + "'");
       Log.Add("tabs: '" + tabCsv + "'");
-      var tabs = TabStringToDic(tabCsv);
-      var result = GetService<TutorialSectionEngine>().Init(this, item, tabs, sourceFile: file);
-      return l(result, "ok - count: " + tabs.Count());
+      var result = GetService<TutorialSectionEngine>().Init(this, item, tabCsv, sourceFile: file);
+      return l(result, "ok - count: " + tabCsv.Count());
     }
 
-
-    private Dictionary<string, string> TabStringToDic(string[] tabs) {
-      var tabList = (tabs ?? new string[0]).Select(t => t.Trim()).ToArray();
-      var tabDic = tabList
-        .Where(t => t.Has())
-        .Select(t => {
-          // Pre-Split if possible
-          var pair = t.Split('|');
-          var hasLabel = pair.Length > 1;
-          var pVal = hasLabel ? pair[1] : pair[0];
-          var pLabel = pair[0];
-
-          // Figure out the parts
-          var label = hasLabel ? pLabel : t; 
-          var value = pVal;
-          Log.Add("Tab Entry: " + label + " = " + value);
-          return new {
-            label,
-            value,
-            original = t
-          };
-        })
-        .ToDictionary(t => t.label, t => t.value);
-      return tabDic;
-    }
-
-    private string[] TryToGetTabsFromSource(string file)
+    private List<TabSpecs> TryToGetTabsFromSource(string file)
     {
-      if (!file.Has() || file == Constants.IgnoreSourceFile) return null;
+      if (!file.Has() || file == Constants.IgnoreSourceFile)
+        return new List<TabSpecs>();
+
+      // Get the source code, find out if it contains anything
       var srcPath = file.Replace("\\", "/").BeforeLast("/");
       var src = FileHandler.GetFileAndProcess(file).Contents;
       if (!src.Contains("Tut.Tabs="))
-        return null;
+        return new List<TabSpecs>();
 
+      // Make sure there is actually something in the config
       var tabsLine = Text.After(src, "Tut.Tabs=");
       var tabsBeforeEol = Text.Before(tabsLine, "\n");
       var tabsString = Text.Before(tabsBeforeEol, "*/") ?? tabsBeforeEol;
-      if (!tabsString.Has()) return null;
-      var tabs = tabsString.Split(',')
-        .Select(t =>
+      if (!tabsString.Has())
+        return new List<TabSpecs>();
+
+      // Generate the TabSpecs
+      var tabs = tabsString.Split(',').Select(t =>
         {
           var entry = t.Trim();
-          string prefix;
-          string fullPath;
           if (entry.Contains("file:")) {
-            prefix = Text.Before(entry, "file:");
-            fullPath = Text.After(entry, "file:");
-          }
-          else if (entry.Contains("model:")) {
-            prefix = Text.Before(entry, "model:");
-            fullPath = "/AppCode/Data/" + Text.After(entry, "model:") + ".Generated.cs";
-          }
-          else if (entry.Contains("datasource:")) {
-            prefix = Text.Before(entry, "datasource:");
-            fullPath = "/AppCode/DataSources/" + Text.After(entry, "datasource:") + ".cs";
-          }
-          else
-            return t;
+            var prefix = Text.Before(entry, "file:");
+            var fullPath = Text.After(entry, "file:");
 
-          // if (!entry.Contains("file:")) return t;
-          // the path could be "/AppCode/..." or it could be (older) "../../something"
-          var finalPath = fullPath.StartsWith("/") ? fullPath : srcPath + "/" + fullPath;
-          var customLabel = prefix == "" && !finalPath.Contains("/AppCode/") ? "" : $"{finalPath}|";
-          Log.Add($"Prefix: '{prefix}'; Custom Label: '{customLabel}'; finalPath: '{finalPath}'");
-          prefix = customLabel;
-          return prefix + "file:" + finalPath;
+            // the path could be "/AppCode/..." or it could be (older) "../../something"
+            var finalPath = fullPath.StartsWith("/")
+              ? fullPath
+              : srcPath + "/" + fullPath;
+
+            var label = prefix != ""
+              ? prefix
+              : !finalPath.Contains("/AppCode/")
+                ? null
+                : $"{finalPath}";
+
+            Log.Add($"Prefix: '{prefix}'; Custom Label: '{label}'; finalPath: '{finalPath}'");
+            // return new TabSpecs { Label = label ?? "file:" + finalPath, Value = "file:" + finalPath, Original = t, Type = "file" };
+            var domIdProbably = "file:" + finalPath;
+            return new TabSpecs("file", domIdProbably, label ?? "file:" + finalPath, value: "file:" + finalPath, original: t);
+          }
+          
+          if (entry.Contains("model:")) {
+            var label = Text.Before(entry, "model:");
+            var name = Text.After(entry, "model:");
+            var modPath = $"file:/AppCode/Data/{name}.Generated.cs";
+            var domIdProbably = modPath;
+            return new TabSpecs("model", domIdProbably, label: label != "" ? label : $"Model {name}.cs", value: modPath, original: t);
+          }
+          
+          if (entry.Contains("datasource:")) {
+            var label = Text.Before(entry, "datasource:");
+            var name = Text.After(entry, "datasource:");
+            var dsPath = $"file:/AppCode/DataSources/{name}.cs";
+            // return new TabSpecs { Label = label != "" ? label : $"DataSource {name}.cs", Value = dsPath, Original = t, Type = "datasource" };
+            return new TabSpecs("datasource", domId: dsPath, label: label != "" ? label : $"DataSource {name}.cs", value: dsPath, original: t);
+          }
+
+          // Final - none of the special cases
+          return SplitStringToTabSpecs(t);
         })
-        .ToArray();
+        .ToList();
       return tabs;
+    }
+
+    /// <summary>
+    /// Split a string such as "label|value" into a TabSpecs object
+    /// If it doesn't have a label, it will use the value as label
+    /// </summary>
+    private TabSpecs SplitStringToTabSpecs(string tabString) {
+      var pair = tabString.Trim().Split('|');
+      var hasLabel = pair.Length > 1;
+      var pVal = hasLabel ? pair[1] : pair[0];
+      var pLabel = pair[0];
+
+      // Figure out the parts
+      var label = (hasLabel ? pLabel : tabString).Trim(); 
+      var value = pVal.Trim();
+      Log.Add("Tab Entry: " + label + " = " + value);
+      return new TabSpecs("string", label, label, value, tabString); // { Label = label, Value = value, Original = tabString, Type = "string" };
     }
 
     #endregion

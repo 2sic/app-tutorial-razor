@@ -17,12 +17,12 @@ namespace AppCode.TutorialSystem.Sections
   /// </summary>
   public class TutorialSectionEngine: AppCode.Services.ServiceBase
   {
-    public TutorialSectionEngine Init(SourceCode sourceCode, TutorialSnippet item, Dictionary<string, string> tabs, string sourceFile = null) {
+    public TutorialSectionEngine Init(SourceCode sourceCode, TutorialSnippet item, List<TabSpecs> tabSpecs, string sourceFile = null) {
       Item = item ?? throw new Exception("Item should never be null");
       ScParent = sourceCode;
       BsTabs = GetService<BootstrapTabs>();
       SourceWrap = sourceCode.GetSourceWrap(this, item);
-      TabHandler = new TabManager(sourceCode, item, tabs, sourceWrap: SourceWrap);
+      TabHandler = new TabManager(sourceCode, item, tabSpecs, sourceWrap: SourceWrap);
       SourceFile = sourceFile;
       ViewConfig = GetService<ViewConfigurationSimulation>().Setup(TabHandler);
       return this;

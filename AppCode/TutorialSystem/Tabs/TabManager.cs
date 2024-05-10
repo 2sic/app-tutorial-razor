@@ -12,15 +12,18 @@ namespace AppCode.TutorialSystem.Tabs
 
   public class TabManager
   {
-    public TabManager(SourceCode scParent, TutorialSnippet item, Dictionary<string, string> tabs, Wrap sourceWrap = null) {
+    public TabManager(SourceCode scParent, TutorialSnippet item, List<TabSpecs> tabSpecs, Wrap sourceWrap = null) {
       ScParent = scParent;
       Log = ScParent.Log;
       Item = item;
-      Tabs = tabs ?? new Dictionary<string, string>();
+      TabSpecs = tabSpecs ?? new List<TabSpecs>();
       SourceWrap = sourceWrap;
       ActiveTabName = sourceWrap.TabSelected;
     }
-    public readonly Dictionary<string, string> Tabs;
+
+    public readonly List<TabSpecs> TabSpecs;
+    public bool HasTab(string tabName) => TabSpecs.Any(t => t.Label.Equals(tabName, StringComparison.InvariantCultureIgnoreCase));
+
     protected readonly SourceCode ScParent; // also used in Formulas
     private TutorialSnippet Item { get; set; }
     public string ActiveTabName;
@@ -31,12 +34,12 @@ namespace AppCode.TutorialSystem.Tabs
 
     public List<string> TabNames => _tabNames ??= GetTabNames();
     private List<string> _tabNames;
-    protected virtual List<string> GetTabNames() {
+    private List<string> GetTabNames() {
       // Logging
       var l = Log.Call<List<string>>();
 
       // Build Names
-      var names = GetTabNamesAndContentBase(useKeys: true)
+      var names = GetTabLabelsOrContent(getLabels: true)
         .Select(s => s as string)
         .Where(s => s != null)
         .Select(n => {
@@ -52,7 +55,7 @@ namespace AppCode.TutorialSystem.Tabs
       return l(names, names.Count.ToString()); 
     }
 
-    private List<object> GetTabNamesAndContentBase(bool useKeys)
+    private List<object> GetTabLabelsOrContent(bool getLabels)
     {
       // Logging
       var l = Log.Call<List<object>>();
@@ -66,24 +69,25 @@ namespace AppCode.TutorialSystem.Tabs
         list.AddRange(SourceWrap.Tabs);
       }
 
-      if (Tabs.Any())
+      if (TabSpecs.Any())
       {
-        Log.Add("Tab Count: " + Tabs.Keys.Count());
-        if (useKeys)
-          list.AddRange(Tabs.Keys);
+        Log.Add("Tab Count: " + TabSpecs.Count());
+        if (getLabels)
+          list.AddRange(TabSpecs.Select(t => t.Label));
         else
         {
+          var values = TabSpecs.Select(t => t.Contents).ToList();
           if (_replaceTabContents != null)
           {
             list.AddRange(_replaceTabContents);
             // If the tabs have more entries - eg "ViewConfiguration" - then add that at the end as well
-            if (Tabs.Values.Count() > _replaceTabContents.Count())
-              list.AddRange(Tabs.Values.Skip(_replaceTabContents.Count()));
+            if (TabSpecs.Count() > _replaceTabContents.Count())
+              list.AddRange(values.Skip(_replaceTabContents.Count()));
           }
           else
           {
-            Log.Add("Add all Tab Values: " + string.Join(",", Tabs.Values));
-            list.AddRange(Tabs.Values);
+            Log.Add("Add all Tab Values: " + string.Join(",", values));
+            list.AddRange(values);
           }
         }
       }
@@ -139,10 +143,10 @@ namespace AppCode.TutorialSystem.Tabs
       l("ok");
     }
     private List<object> _replaceTabContents;
-    protected virtual List<object> GetTabContents()
+    private List<object> GetTabContents()
     {
       var l = Log.Call<List<object>>();
-      var list = GetTabNamesAndContentBase(useKeys: false);
+      var list = GetTabLabelsOrContent(getLabels: false);
       return l(list, "tabContents: " + list.Count);
     }
 

@@ -115,7 +115,7 @@ namespace AppCode.TutorialSystem
       // Prepare: Verify the Tab "ViewConfig" was specified
       // throw new Exception("th:" + TabHandler);
       var th = TabHandler;
-      if (th.Tabs == null || !th.Tabs.ContainsKey(ViewConfigCode))
+      if (!th.HasTab(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 
       IEnumerable<IEntity> data = null;
@@ -171,11 +171,16 @@ namespace AppCode.TutorialSystem
       ContentList = list.ToList();
       return l(list, "ok");
     }
+
+    /// <summary>
+    /// Get the simulated query result
+    /// This will have no code references, as it will be called from the Snip-* razor files.
+    /// </summary>
     public IDataSource Query(string query = null, string stream = null, object parameters = null) {
       var l = Log.Call<IDataSource>();
 
       // Prepare: Verify the Tab "ViewConfig" was specified
-      if (TabHandler.Tabs == null || !TabHandler.Tabs.ContainsKey(ViewConfigCode))
+      if (!TabHandler.HasTab(ViewConfigCode))
         throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
 
       var q = App.GetQuery(query, parameters: parameters);
@@ -190,7 +195,7 @@ namespace AppCode.TutorialSystem
       PresentationType = list.First().Type.Name;
 
       if (list.Count() < myItems.Count()) {
-        var pad = padWithNull ? (IEntity)null : list.First();
+        var pad = padWithNull ? null : list.First();
         list = list.Concat(Enumerable.Repeat(pad, myItems.Count() - list.Count()));
       }
       PresentationList = list.ToList();
