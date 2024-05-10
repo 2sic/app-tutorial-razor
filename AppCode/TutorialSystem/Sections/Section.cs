@@ -1,5 +1,6 @@
 using AppCode.Data;
 using ToSic.Razor.Blade;
+using ToSic.Razor.Html5;
 
 namespace AppCode.TutorialSystem.Sections
 {
@@ -8,13 +9,14 @@ namespace AppCode.TutorialSystem.Sections
   /// </summary>
   public class Section
   {
-    public Section(Accordion accordion, IHtmlTagsService tags, string name, TutorialSnippet item = null, string fileName = null) {
+    public Section(Accordion accordion, IHtmlTagsService tags, string name, TutorialSnippet item = null, string fileName = null, VariantMatch variantMatch = VariantMatch.General) {
       Acc = accordion;
       Name = name;
       Item = item;
       TagsSvc = tags;
       SectionFile = fileName;
       Show = Acc.Item.DefaultStateIsOpen; // later we can add more conditions
+      VariantMatch = variantMatch;
     }
     private readonly Accordion Acc;
     public readonly string Name;
@@ -27,6 +29,8 @@ namespace AppCode.TutorialSystem.Sections
 
     private bool Show {get;set;}
     private readonly string Indent = "    ";
+
+    private VariantMatch VariantMatch { get; }
 
     public IHtmlTag Start() { 
       var start = TagsSvc.Div().Class("accordion-item");
@@ -60,6 +64,21 @@ namespace AppCode.TutorialSystem.Sections
     #region Helpers to build Start
     private const string Indent2 = "      ";
     private IHtmlTag Header() {
+      var variantIcon = VariantMatch switch {
+        VariantMatch.Exact => "🎯",
+        VariantMatch.Fallback => "🪂",
+        VariantMatch.General => "🪖",
+        VariantMatch.NotFound => "❌",
+        _ => "❓"
+      };
+      var variantTitle = VariantMatch switch {
+        VariantMatch.Exact => "Exact Match",
+        VariantMatch.Fallback => "Fallback Match",
+        VariantMatch.General => "General Match",
+        VariantMatch.NotFound => "Not Found",
+        _ => "Unknown"
+      };
+      var tutIdPath = new TutorialIdToPath(TutorialId, "").FullPath;
       return TagsSvc.H2().Class("accordion-header").Id(HeadingId).Wrap(
         "\n",
         Indent2,
@@ -71,12 +90,13 @@ namespace AppCode.TutorialSystem.Sections
           .Attr("aria-expanded", "false")
           .Attr("aria-controls", BodyId)
           .Wrap(
-            // TagsSvc.Span("test").Style("float: right"),
             Item.String("Title", scrubHtml: "p"),
             Acc.MyUser.IsSystemAdmin
-              ? TagsSvc.Span("ℹ️")
-                  .Title("This is the snip '" + TutorialId + "' - to be found in " + new TutorialIdToPath(TutorialId, "").FullPath)
-                  .Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
+              ? TagsSvc.Span(
+                  Text.Ellipsis(tutIdPath.Replace("tutorials/", ""), 40),
+                  TagsSvc.Span("ℹ️").Title("This is the snip '" + TutorialId + "' - to be found in " + tutIdPath),
+                  TagsSvc.Span(variantIcon).Title(variantTitle)
+                ).Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
               : null
           ),
         "\n",

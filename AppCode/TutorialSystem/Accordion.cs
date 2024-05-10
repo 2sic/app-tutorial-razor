@@ -11,19 +11,16 @@ namespace AppCode.TutorialSystem
 {
   public class Accordion: Custom.Hybrid.CodeTyped
   {
-    public Accordion Setup(string variantExtension, TutorialGroup item) {
-      _variantExtension = variantExtension;
+    public Accordion Setup(TutorialGroup item) {
+      // _variantExtension = variantExtension;
       Item = item;
       return this;
     }
     public TagCount TagCount = new TagCount("Accordion", true);
-    private string _variantExtension;
 
     public IHtmlTag Start(TutorialGroup item) {
       Item = item;
       Name = item.NameId;
-      if (!_variantExtension.Has())
-        _variantExtension = "." + Variant;
       var t = Kit.HtmlTags;
 
       return t.RawHtml(
@@ -53,6 +50,7 @@ namespace AppCode.TutorialSystem
     private string NextName() => Name + "-" + AutoPartName + AutoPartIndex++;
 
     public IEnumerable<Section> Sections(string basePath) {
+      var l = Log.Call<IEnumerable<Section>>("basePath: " + basePath);
       if (Item == null) throw new Exception("Item in Accordion is null");
       // var appPath = App.Folder.Path;
       basePath = Text.BeforeLast(basePath, "/");
@@ -60,22 +58,34 @@ namespace AppCode.TutorialSystem
         .Select(itm => {
           var tutorialId = itm.TutorialId;
           // first try special extension eg. .Typed.Cshtml
-          if (!CheckFile(tutorialId, _variantExtension, out string fileName))
-            CheckFile(tutorialId, null, out fileName);
-          return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName);
+          if (CheckFile(tutorialId, "." + Variant, out string fileName)) {
+            Log.Add("Found exact: " + fileName);
+            return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName, variantMatch: VariantMatch.Exact);
+          }
+          if (Variant == "strong" &&  CheckFile(tutorialId, "." + "Typed", out string fileNameFb)) {
+            Log.Add("Found fallback: " + fileNameFb);
+            return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileNameFb, variantMatch: VariantMatch.Fallback);
+          }
+          if (CheckFile(tutorialId, null, out fileName)) {
+            Log.Add("Found general: " + fileName);
+            return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: fileName, variantMatch: VariantMatch.General);
+          }
+          Log.Add("Not found: " + tutorialId);
+          return new Section(this, Kit.HtmlTags, NextName(), item: itm, fileName: null, variantMatch: VariantMatch.NotFound);
         })
         .ToList();
-      return names;
+      return l(names, $"count: {names.Count}");
     }
 
     private bool CheckFile(string tutorialId, string variant, out string fileName) {
       var l = Log.Call<bool>($"tutorialId: {tutorialId}; variant: {variant}");
       var tutInfo = new TutorialIdToPath(tutorialId, variant);
 
-      var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", tutInfo.Path, tutInfo.FileName);
+      fileName = System.IO.Path.Combine(tutInfo.Path, tutInfo.FileName);
+      var fullPath = System.IO.Path.Combine(App.Folder.PhysicalPath + "\\", fileName);
 
       if (System.IO.File.Exists(fullPath)) {
-        fileName = "/" + System.IO.Path.Combine(tutInfo.Path, tutInfo.FileName);
+        fileName = "/" + fileName; // System.IO.Path.Combine(tutInfo.Path, tutInfo.FileName);
         return l(true, "exists");
       }
       fileName = null;

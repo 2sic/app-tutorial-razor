@@ -21,7 +21,7 @@ namespace AppCode.TutorialSystem.Source
       var patternTrim = @"(?:<trim>)([\s\S]*?)(?:</trim>)";
 
       source = Regex.Replace(source, patternTrim, m => { 
-        var part = Tags.Strip(m.ToString());
+        var part = Kit.Scrub.All(m.ToString());
         return Text.Ellipsis(part, 40, "... <!-- unimportant stuff, hidden -->");
       });
 

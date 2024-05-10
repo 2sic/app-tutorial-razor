@@ -12,12 +12,6 @@ namespace AppCode.TutorialSystem.Source
   {
     #region Init / Dependencies
 
-    // public SourceCode Init(Sys sys) {
-    //   Sys = sys;
-    //   return this;
-    // }
-    // public Sys Sys {get;set;}
-
     private FileHandler FileHandler => _fileHandler ??= GetService<FileHandler>();
     private FileHandler _fileHandler;
 
