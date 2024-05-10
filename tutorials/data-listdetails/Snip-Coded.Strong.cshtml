@@ -1,0 +1,10 @@
+@inherits Custom.Hybrid.RazorTyped
+@*!
+Tut.Tabs=file:./Coded-List.Strong.cshtml,file:./Coded-Details.Strong.cshtml,model:Persons
+!*@
+
+@if (MyPage.Parameters.IsEmpty("id")) {
+  @Html.Partial("Coded-List.Strong.cshtml")
+} else {
+  @Html.Partial("Coded-Details.Strong.cshtml", new { Id = MyPage.Parameters.Int("id") })
+}

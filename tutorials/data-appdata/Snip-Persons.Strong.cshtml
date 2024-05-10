@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@using ToSic.Razor.Blade
+@using System.Linq
+<ul>
+  @foreach (var person in App.Data.GetAll<Persons>()) {
+    <li>
+      @if (person.IsNotEmpty("Mugshot")) {
+        <img loading="lazy" src='@Link.Image(person.Mugshot, width: 50, height: 50, resizeMode: "crop")' width="50px" style="border-radius: 50%">
+      }
+      @person.FirstName  @person.LastName
+    </li>
+  }
+</ul>

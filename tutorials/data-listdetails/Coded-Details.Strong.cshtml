@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{
+  // the ID is already given by the caller, so we just get that
+  var id = MyModel.Int("Id");
+
+  // find the person with this Id using LINQ
+  var person = App.Data.GetOne<Persons>(id);
+}
+@person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "float-left", imgAttributes: new {
+  style = "border-radius: 50%"
+})
+<h3>Details of @person.FirstName @person.LastName</h3>
+<a href='@Link.To(parameters: MyPage.Parameters.Remove("id"))'>back to list</a>

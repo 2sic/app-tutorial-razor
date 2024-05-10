@@ -2,12 +2,8 @@
 @*!
 Tut.Tabs=file:./Coded-List.Typed.cshtml,file:./Coded-Details.Typed.cshtml
 !*@
-@{
-  // check if we have a url-parameter called "id" with a value - defaults to 0 if not found
-  int id = MyPage.Parameters.Int("id");
-}
-@if (id == 0) {
+@if (MyPage.Parameters.IsEmpty("id")) {
   @Html.Partial("Coded-List.Typed.cshtml")
 } else {
-  @Html.Partial("Coded-Details.Typed.cshtml", new { Id = id })
+  @Html.Partial("Coded-Details.Typed.cshtml", new { Id = MyPage.Parameters.Int("id") })
 }

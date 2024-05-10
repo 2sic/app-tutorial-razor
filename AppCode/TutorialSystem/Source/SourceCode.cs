@@ -80,9 +80,24 @@ namespace AppCode.TutorialSystem.Source
         .Select(t =>
         {
           var entry = t.Trim();
-          if (!entry.Contains("file:")) return t;
-          var prefix = Text.Before(entry, "file:");
-          var fullPath = Text.After(entry, "file:");
+          string prefix;
+          string fullPath;
+          if (entry.Contains("file:")) {
+            prefix = Text.Before(entry, "file:");
+            fullPath = Text.After(entry, "file:");
+          }
+          else if (entry.Contains("model:")) {
+            prefix = Text.Before(entry, "model:");
+            fullPath = "/AppCode/Data/" + Text.After(entry, "model:") + ".Generated.cs";
+          }
+          else if (entry.Contains("datasource:")) {
+            prefix = Text.Before(entry, "datasource:");
+            fullPath = "/AppCode/DataSources/" + Text.After(entry, "datasource:") + ".cs";
+          }
+          else
+            return t;
+
+          // if (!entry.Contains("file:")) return t;
           // the path could be "/AppCode/..." or it could be (older) "../../something"
           var finalPath = fullPath.StartsWith("/") ? fullPath : srcPath + "/" + fullPath;
           var customLabel = prefix == "" && !finalPath.Contains("/AppCode/") ? "" : $"{finalPath}|";

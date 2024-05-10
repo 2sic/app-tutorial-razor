@@ -1,0 +1,12 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+<h3>List of Persons</h3>
+<ul>
+  @foreach (var person in App.Data.GetAll<Persons>()) {
+    <li>
+      <a href='@Link.To(parameters: MyPage.Parameters.Set("id", person.Id))'>
+        @person.FirstName @person.LastName
+      </a>
+    </li>
+  }
+</ul>

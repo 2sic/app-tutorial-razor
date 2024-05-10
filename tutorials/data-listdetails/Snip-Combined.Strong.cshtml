@@ -1,0 +1,31 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+
+@* check if we have a url-parameter called "id" with a value *@
+@if (MyPage.Parameters.IsEmpty("id"))
+{
+  var persons = App.Data.GetAll<Persons>();
+  <h3>List of Persons</h3>
+  <ul>
+    @foreach (var person in persons) {
+      <li>
+        <a href='@Link.To(parameters: MyPage.Parameters.Set("id", person.Id))'>
+          @person.FirstName @person.LastName
+        </a>
+      </li>
+    }
+  </ul>
+}
+else
+{
+  // find the person with this Id using LINQ
+  int id = MyPage.Parameters.Int("id");
+  var person = App.Data.GetOne<Persons>(id); // persons.First(p => p.Id == id);
+
+  @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "float-left", imgAttributes: new {
+    style = "border-radius: 50%"
+  })
+
+  <h3>Details of @person.FirstName @person.LastName</h3>
+  <a href='@Link.To(parameters: MyPage.Parameters.Remove("id"))'>back to list</a>
+}
