@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  // Let's assume you have a property to which you don't know if it was set or not
+  // so it will be null in this example
+  var title = MyModel.String("Title", required: false)
+    ?? "Title not provided";
+}
+Title: @title

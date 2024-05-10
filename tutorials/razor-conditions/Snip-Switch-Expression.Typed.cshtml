@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode
+@{
+  var dayOfWeek = DateTime.Now.DayOfWeek;
+  var message = dayOfWeek switch {
+    DayOfWeek.Monday => "It's a tough workday 💪🏾",
+    DayOfWeek.Tuesday => "It's a workday",
+    DayOfWeek.Wednesday => "It's a workday",
+    DayOfWeek.Thursday => "It's a workday",
+    DayOfWeek.Friday => "It's the best workday 🏖️",
+    DayOfWeek.Saturday => "It's the weekend 🥳",
+    DayOfWeek.Sunday => "It's the weekend 🥳",
+    _ => "Invalid day"
+  };
+}
+Day of week: @dayOfWeek
+<br>
+@message

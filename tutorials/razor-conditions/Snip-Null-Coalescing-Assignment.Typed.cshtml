@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode
+@functions {
+  private string Title
+  {
+    // null coalescing assignment operator (??=) 
+    // this will assign a value to _title if it has not been set yet
+    get => _title ??= "Title not provided";
+    set => _title = value;
+  }
+  private string _title;
+}
+Title: @Title
+@{
+  // now change the title
+  Title = "My Title";
+}
+<br>
+Title after change: @Title

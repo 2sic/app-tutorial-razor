@@ -1,0 +1,44 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var dayOfWeek = DateTime.Now.DayOfWeek;
+  var message = "";
+  // use switch to show workdays and weekend
+  switch (dayOfWeek)
+  {
+    case DayOfWeek.Monday:
+    case DayOfWeek.Tuesday:
+    case DayOfWeek.Wednesday:
+    case DayOfWeek.Thursday:
+    case DayOfWeek.Friday:
+      message = "It's a workday";
+      break;
+    case DayOfWeek.Saturday:
+    case DayOfWeek.Sunday:
+      message = "It's the weekend";
+      break;
+  }
+}
+Day of week: @dayOfWeek
+<br>
+@message
+
+
+@switch (dayOfWeek)
+{
+  case DayOfWeek.Monday:
+    <p>It's a tough workday 💪🏾</p>
+    break;
+  case DayOfWeek.Tuesday:
+  case DayOfWeek.Wednesday:
+  case DayOfWeek.Thursday:
+    <p>It's a workday</p>
+    break;
+  case DayOfWeek.Friday:
+    <p>It's the best workday 🏖️</p>
+    break;
+  case DayOfWeek.Saturday:
+  case DayOfWeek.Sunday:
+    <p>It's the weekend 🥳</p>
+    break;
+}
