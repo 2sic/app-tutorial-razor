@@ -6,4 +6,23 @@
     <code>.Id</code> of the current module: 
     <strong>@MyContext.Module.Id</strong>
   </li>
+  <li>
+    <code>.Id</code> of the current block: 
+    <strong>@MyContext.Block.Id</strong>
+    <br>
+    <code>.Guid</code> of the current block: <br>
+    <strong>@MyContext.Block.Guid</strong>
+  </li>
+  <li>
+    <code>.Id</code> of the module-block: 
+    <strong>@MyContext.Module.Block.Id</strong>
+    <br>
+    <code>.Guid</code> of the current module-block: <br>
+    <strong>@MyContext.Module.Block.Guid</strong>
+  </li>
 </ol>
+
+<p>
+  Note: in most cases the Block.Id and Module.Block.Id are the same, but in some cases they are different.
+  For example when using inner-content (blocks in blocks).
+</p>

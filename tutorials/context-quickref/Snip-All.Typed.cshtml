@@ -1,33 +1,62 @@
 @inherits Custom.Hybrid.RazorTyped
 
+<h4>Platform</h4>
 <ol>
   <li>Platform name: '<code>@MyContext.Platform.Name</code>'</li>
   <li>Platform type: '<code>@MyContext.Platform.Type</code>'</li>
   <li>Platform version: '<code>@MyContext.Platform.Version</code>'</li>
-
+</ol>
+<h4>Culture</h4>
+<ol>
   <li>Culture Current Code: '<code>@MyContext.Culture.CurrentCode</code>'</li>
   <li>Culture Default Code: '<code>@MyContext.Culture.DefaultCode</code>'</li>
-
+</ol>
+<h4>Site</h4>
+<ol>
   <li>Site Id: '<code>@MyContext.Site.Id</code>'</li>
   <li>Site Url: '<code>@MyContext.Site.Url</code>'</li>
   <li>Site UrlRoot: '<code>@MyContext.Site.UrlRoot</code>'</li>
-
+</ol>
+<h4>Page</h4>
+<ol>
   <li>Page Id: '<code>@MyPage.Id</code>'</li>
   <li>Page Url: '<code>@MyPage.Url</code>'</li>
   <li>Page Url Parameters: '<code>@MyPage.Parameters</code>'</li>
-
+</ol>
+<h4>Module & Block</h4>
+<ol>
   <li>Module Id: '<code>@MyContext.Module.Id</code>'</li>
-
+  <li>Block Id / Guid:
+      '<code>@MyContext.Block.Id</code>'
+      '<code>@MyContext.Block.Guid</code>'
+  </li>
+  <li>Module Block Id:
+    '<code>@MyContext.Module.Block.Id</code>'
+    '<code>@MyContext.Module.Block.Guid</code>'
+  </li>
+</ol>
+<h4>User</h4>
+<ol>
   <li>User Id: '<code>@MyUser.Id</code>'</li>
   <li>User Name: '<code>@MyUser.Name</code>'</li>
   <li>User IsContentAdmin: '<code>@MyUser.IsContentAdmin</code>'</li>
   <li>User IsSiteAdmin: '<code>@MyUser.IsSiteAdmin</code>'</li>
   <li>User IsSystemAdmin: '<code>@MyUser.IsSystemAdmin</code>'</li>
-
+</ol>
+<h4>View</h4>
+<ol>
   <li>View Id: '<code>@MyView.Id</code>'</li>
-  <li>View Identifier: '<code>@MyView.Identifier</code>' (blank if no special identifier) </li>
+  <li>View Identifier:
+    '<code>@MyView.Identifier</code>'
+    (blank if no special identifier)
+  </li>
   <li>View Name: '<code>@MyView.Name</code>'</li>
-  <li>View Edition: '<code>@MyView.Edition</code>' (blank if no special CSS Framework edition) </li>
-
+  <li>View Edition:
+      '<code>@MyView.Edition</code>'
+      (blank if no special CSS Framework edition)
+  </li>
+</ol>
+<h4>Unique Key</h4>
+<ol>
   <li>Unique Key '<code>@UniqueKey</code>'</li>
 </ol>
