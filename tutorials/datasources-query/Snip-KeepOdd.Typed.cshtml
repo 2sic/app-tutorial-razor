@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
-@{/*! Tut.Tabs=file:/AppCode/DataSources/Authors.cs,file:/AppCode/DataSources/KeepOdd.cs,ViewConfig */
+@{/*! Tut.Tabs=datasource:Authors,datasource:KeepOdd,ViewConfig */
   var viewCnf = MyModel.Code("Tutorial").ViewConfig;
   var MyData = viewCnf.Query(query: "DynamicDataSourceKeepOdd") as ToSic.Eav.DataSource.IDataSource;
 /*!*/}
