@@ -116,7 +116,7 @@ namespace AppCode.TutorialSystem.Tabs
     #region Debug
 
     public string TabNamesDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.DisplayName /*.NiceName()*/, 20)));
-    public string TabContentsDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.Contents.ToString() ?? "", 20)));
+    public string TabContentsDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.Body.ToString() ?? "", 20)));
 
     #endregion
 

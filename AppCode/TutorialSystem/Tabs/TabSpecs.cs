@@ -11,36 +11,45 @@ namespace AppCode.TutorialSystem.Tabs
     public TabSpecs(string type, string label, string value, string original) {
       Type = type;
       Label = label;
-      Contents = value;
+      Value = value;
       Original = original;
     }
+
+    /// <summary>
+    /// Dom ID is used to identify the tab in the DOM - both for the activating tab as well as the div with the contents.
+    /// </summary>
     public string DomId => _domId ??= Name2TabId(DisplayName);
     private string _domId;
 
     /// <summary>
     /// The label, but ATM it's also used to generate DOM IDs,
-    /// TODO: SHOULD SPLIT FUNCTIONALITY, SO NICE NAME DOESN'T BREAK DOM
     /// </summary>
-    public string Label { get; set; }
+    public string Label { get; }
 
+    /// <summary>
+    /// The nice display name, derived from the label but shortened and cleaned up
+    /// </summary>
     public string DisplayName => _displayName ??= NiceName();
     private string _displayName;
 
     /// <summary>
-    /// The tab contents - can be a reference such as "file:xxx" or a value
+    /// The tab contents - can be a reference such as "file:xxx" or a value which is injected later
     /// </summary>
-    public string Contents { get; set; }
+    public string Value { get; }
 
+    /// <summary>
+    /// The real body - ic can just be the contents, but it can be a complex, later-injected object
+    /// </summary>
     public object Body
     {
-      get => body ?? Contents;
+      get => body ?? Value;
       set => body = value;
     }
 
-    public string Original { get; set; }
-    public string Type { get; set; }
+    public string Original { get; }
+    public string Type { get; }
 
-    public override string ToString() => $"Label: '{Label}'; Value: '{Contents}' ({Type}); #{DomId}";
+    public override string ToString() => $"Label: '{Label}'; Value: '{Value}' ({Type}); #{DomId}";
 
     private string NiceName() {
       var n = Label;
