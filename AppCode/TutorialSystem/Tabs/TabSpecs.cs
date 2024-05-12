@@ -2,11 +2,28 @@ using ToSic.Razor.Blade;
 
 namespace AppCode.TutorialSystem.Tabs
 {
+  public enum TabType
+  {
+    Unknown,
+    File,
+    Model,
+    DataSource,
+    Formulas,
+    ViewConfig,
+    InDepth,
+    Notes,
+    Results,
+    ResultsAndSource,
+    Source,
+    TutorialReferences,
+    Other
+  }
+
   public class TabSpecs
   {
     private object body;
 
-    public TabSpecs(string type, string everything): this(type, everything, everything, everything) { }
+    public TabSpecs(TabType type, string everything): this("predefined", everything, everything, everything) { }
 
     public TabSpecs(string type, string label, string value, string original) {
       Type = type;
@@ -48,6 +65,13 @@ namespace AppCode.TutorialSystem.Tabs
 
     public string Original { get; }
     public string Type { get; }
+
+    public TabType TabType => Type switch
+    {
+      Constants.ViewConfigCode => TabType.ViewConfig,
+      Constants.InDepthField => TabType.InDepth,
+      _ => TabType.Other
+    };
 
     public override string ToString() => $"Label: '{Label}'; Value: '{Value}' ({Type}); #{DomId}";
 

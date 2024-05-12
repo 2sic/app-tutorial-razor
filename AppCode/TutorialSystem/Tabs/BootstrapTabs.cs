@@ -15,11 +15,11 @@ namespace AppCode.TutorialSystem.Tabs
     private const string Indent = "    ";
     private const string IndentLi = "      ";
     private const string IndentBtn = "        ";
-    public ITag TabList(string prefix, List<TabSpecs> tabs, string active = null) {
+    public ITag TabList(string prefix, List<TabSpecs> tabs, TabSpecs active) /* string active = null) */ {
       var tabList = new List<object>();
       foreach (var tab in tabs) {
         var isFirst = tabList.Count == 0;
-        var isActive = (active == null && isFirst) || tab.DisplayName == active;
+        var isActive = (active == null && isFirst) || tab.DisplayName == active.DisplayName;
 
         tabList.Add("\n\n" + IndentLi + "<!-- Tab '" + tab.DisplayName + "'-->");
         tabList.Add("\n" + IndentLi);

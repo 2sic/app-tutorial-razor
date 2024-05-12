@@ -11,6 +11,7 @@ namespace AppCode.TutorialSystem
     public const string InDepthField = "InDepthExplanation";
     public const string InDepthTabName = "In-Depth Explanation";
     public const string ResultTitle = "Result";
+    
     public const string ViewConfigCode = "ViewConfig";
     public const string ViewConfigTabName = "View Configuration";
     public const string FormulaField = "Formula";

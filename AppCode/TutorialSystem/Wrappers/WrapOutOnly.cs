@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using AppCode.TutorialSystem.Sections;
+using AppCode.TutorialSystem.Tabs;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 
@@ -7,7 +9,9 @@ namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapOutOnly: Wrap
     {
-      public WrapOutOnly(TutorialSectionEngine section) : base(section, "WrapOutOnly", tabsCsv: Constants.ResultTabName)
+      public WrapOutOnly(TutorialSectionEngine section) : base(section, "WrapOutOnly",
+        tabSpecs: new List<TabSpecs> { new TabSpecs(TabType.Results, Constants.ResultTabName) }
+      )
       { }
 
 

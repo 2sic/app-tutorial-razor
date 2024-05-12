@@ -6,6 +6,7 @@ using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Sections;
 using AppCode.Data;
 using AppCode.TutorialSystem.Tabs;
+using ToSic.Razor.Html5;
 
 namespace AppCode.TutorialSystem.Source
 {
@@ -135,20 +136,24 @@ namespace AppCode.TutorialSystem.Source
     #region Wrap: Source Wrappers like Wrap, WrapOutOverSrc, WrapOutOnly, WrapSrcOnly, WrapOutSplitSrc, WrapFormula
 
     internal Wrap GetSourceWrap(TutorialSectionEngine section, TutorialSnippet item) {
+
+      // No item - unsure how this could happen, probably never possible?
+      if (item == null)
+        return new WrapOutOverSrc(section);
+
+      if (item.TutorialType == "formula")
+        return new WrapFormula(section);
+
       // Figure out the type based on the item or it's parent
       string code = null;
-      if (item != null) {
-        if (item.TutorialType == "formula")
-          return new WrapFormula(section);
-
-        if (item.IsNotEmpty(nameof(item.OutputAndSourceDisplay)))
-          code = item.OutputAndSourceDisplay;
-        else {
-          var parent = AsItem(item.Parents(type: "TutorialGroup"));
-          if (parent != null && parent.IsNotEmpty("OutputAndSourceDisplay"))
-            code = parent.String("OutputAndSourceDisplay");
-        }
+      if (item.IsNotEmpty(nameof(item.OutputAndSourceDisplay)))
+        code = item.OutputAndSourceDisplay;
+      else {
+        var parent = item.Parent<TutorialGroup>();
+        if (parent?.IsNotEmpty(nameof(parent.OutputAndSourceDisplay)) == true)
+          code = parent.OutputAndSourceDisplay;
       }
+
       // Default Output over Source
       if (!code.Has() || code == "out-over-src")
         return new WrapOutOverSrc(section);
@@ -161,11 +166,7 @@ namespace AppCode.TutorialSystem.Source
       if (code == "split") {
         if (item.Int("OutputWidth") != 0)
           return new WrapOutSplitSrc(section);
-        var wrap = new Wrap(section, "WrapInsteadOfSplit")
-        {
-          TabSelected = Constants.SourceTabName
-        };
-        return wrap;
+        return new Wrap(section, "WrapInsteadOfSplit", selectSkip: 1);
       }
       
       // SourceWrapIntro

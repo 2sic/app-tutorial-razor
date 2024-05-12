@@ -78,7 +78,7 @@ namespace AppCode.TutorialSystem.Sections
     protected ITag TabsBeforeContent()
     {
       var tabs = TabHandler.CompleteTabs;
-      var active = TabHandler.ActiveTabName;
+      var active = TabHandler.ActiveTab; // TabHandler.ActiveTabName;
       var l = Log.Call<ITag>("tabs (" + tabs.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
 
       var outputOpen = SourceWrap?.OutputOpen();
@@ -88,7 +88,8 @@ namespace AppCode.TutorialSystem.Sections
 
       var firstTab = tabs.FirstOrDefault();
       var firstName = firstTab.DisplayName;
-      var firstIsActive = active == null || active == firstName;
+      // var firstIsActive = active == null || active == firstName;
+      var firstIsActive = /* active == null || */ active.DisplayName == firstTab.DisplayName;
       var result = Tag.RawHtml(
         // Tab headers
         BsTabs.TabList(TabPrefix, tabs, active),
@@ -113,7 +114,7 @@ namespace AppCode.TutorialSystem.Sections
       // var tabContents = TabHandler.TabContents;
       // var names = TabHandler.TabNames;
       // Logging
-      var active = TabHandler.ActiveTabName;
+      var active = TabHandler.ActiveTab;// TabHandler.ActiveTabName;
       var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
         + "; TabNames: " + TabHandler.TabNamesDebug
         + "; results:" + tabs.Count()
@@ -155,14 +156,14 @@ namespace AppCode.TutorialSystem.Sections
         // Special case: Source Tab
         if (tab.Body as string == SourceTabName) {
           Log.Add("Contents of: " + SourceTabName);
-          html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
+          html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active.DomId == tab.DomId /* TabType.Source /* active == SourceTabName */));
           continue;
         }
 
         // Other: Normal predefined content
         Log.Add("Contents of: " + name + "; nameId: " + nameId);
-        var body = FlexibleResult(tab.Body, Item);
-        var isActive = active == nameId;
+        var body = FlexibleResult(tab, Item);
+        var isActive = active.DomId == tab.DomId;// active == nameId;
         html = html.Add(BsTabs.TabContent(TabPrefix, nameId, body, isActive: isActive));
       }
 
@@ -181,9 +182,10 @@ namespace AppCode.TutorialSystem.Sections
     /// <summary>
     /// Take a result and if it has a special prefix, process that
     /// </summary>
-    private object FlexibleResult(object result, TutorialSnippet item = null)
+    private object FlexibleResult(TabSpecs tab, TutorialSnippet item = null)
     {
       // If it's not a string, then it must be something prepared, typically IHtmlTags; return that
+      var result = tab.Body;
       var strResult = result as string;
       if (strResult == null) return result; 
 

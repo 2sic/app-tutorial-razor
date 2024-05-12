@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using AppCode.TutorialSystem.Sections;
+using AppCode.TutorialSystem.Tabs;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using static AppCode.TutorialSystem.Constants;
@@ -8,7 +10,9 @@ namespace AppCode.TutorialSystem.Wrappers
 {
   internal class WrapOutSplitSrc: Wrap
     {
-      public WrapOutSplitSrc(TutorialSectionEngine section) : base(section, "WrapOutSplitSrc", tabsCsv: ResultAndSourceTabName)
+      public WrapOutSplitSrc(TutorialSectionEngine section) : base(section, "WrapOutSplitSrc",
+        tabSpecs: new List<TabSpecs> { new TabSpecs(TabType.ResultsAndSource, ResultAndSourceTabName) }
+      )
       {
         FirstWidth = section.Item.Int("OutputWidth", fallback: 50);
       }

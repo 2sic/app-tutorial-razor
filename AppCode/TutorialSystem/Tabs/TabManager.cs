@@ -11,13 +11,13 @@ namespace AppCode.TutorialSystem.Tabs
 {
   public class TabManager
   {
-    public TabManager(SourceCode scParent, TutorialSnippet item, List<TabSpecs> tabSpecs, Wrap sourceWrap = null) {
+    public TabManager(SourceCode scParent, TutorialSnippet item, List<TabSpecs> tabSpecs, Wrap sourceWrap) {
       ScParent = scParent;
       Log = ScParent.Log;
       Item = item;
       TabSpecs = tabSpecs ?? new List<TabSpecs>();
       SourceWrap = sourceWrap;
-      ActiveTabName = sourceWrap.TabSelected;
+      // ActiveTabName = sourceWrap.TabSelected;
     }
 
     public readonly List<TabSpecs> TabSpecs;
@@ -25,8 +25,9 @@ namespace AppCode.TutorialSystem.Tabs
 
     protected readonly SourceCode ScParent; // also used in Formulas
     private TutorialSnippet Item { get; set; }
-    public string ActiveTabName;
+    // public string ActiveTabName;
     private readonly Wrap SourceWrap;
+    public TabSpecs ActiveTab => SourceWrap.TabSpecSelected;
     private readonly ICodeLog Log;
 
     #region TabNames
@@ -45,7 +46,8 @@ namespace AppCode.TutorialSystem.Tabs
       if (SourceWrap != null)
       {
         Log.Add("SourceWrap: " + SourceWrap);
-        list.AddRange(SourceWrap.Tabs.Select(t => new TabSpecs("wrap", t)));
+        // TODO: 2dm
+        list.AddRange(SourceWrap.TabSpecs /*. Select(t => new TabSpecs(TabType.Unknown, t))*/);
       }
 
       if (TabSpecs.Any())
@@ -65,10 +67,12 @@ namespace AppCode.TutorialSystem.Tabs
       // Else custom tabs in configuration
       else if (Item.IsNotEmpty("Tabs"))
       {
+        // TODO: 2dm - atm only used on 3 formulas, all which have files
+        // but should be changed to properly detect and set the type based on that
         Log.Add("Tabs: " + Item.Tabs);
         var addTabs = Item.Tabs.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None)
           .Select(t => t.Trim())
-          .Select(t => new TabSpecs("config", t));
+          .Select(t => new TabSpecs(TabType.File, t));
         list.AddRange(addTabs);
       }
 
@@ -80,18 +84,18 @@ namespace AppCode.TutorialSystem.Tabs
       if (Item.IsNotEmpty(Constants.InDepthField))
       {
         Log.Add(Constants.InDepthField);
-        list.Add(new TabSpecs("predefined", Constants.InDepthTabName));
+        list.Add(new TabSpecs(TabType.InDepth, Constants.InDepthTabName));
       }
       if (Item.IsNotEmpty(Constants.NotesFieldName))
       {
         Log.Add(Constants.NotesFieldName);
-        list.Add(new TabSpecs("predefined", Constants.NotesTabName));
+        list.Add(new TabSpecs(TabType.Notes, Constants.NotesTabName));
       }
       // TODO: OLD / NEW
       if (Item.IsNotEmpty("Tutorials"))
       {
         Log.Add("Tutorials");
-        list.Add(new TabSpecs("predefined", Constants.TutorialsTabName));
+        list.Add(new TabSpecs(TabType.TutorialReferences, Constants.TutorialsTabName));
       }
 
       return l(list, list.Count.ToString());

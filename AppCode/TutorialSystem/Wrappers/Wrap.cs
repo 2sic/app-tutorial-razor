@@ -13,17 +13,23 @@ namespace AppCode.TutorialSystem.Wrappers
     public const string Indent1 = "      ";
     public const string Indent2 = "        ";
     
-    public Wrap(TutorialSectionEngine sb, string name, bool combined = false, string tabsCsv = null) {
+    public Wrap(TutorialSectionEngine sb, string name, /* bool combined = false, string tabsCsv = null, */ List<TabSpecs> tabSpecs = default, int selectSkip = 0) {
       Section = sb;
       Name = name ?? "Wrap";
-      Tabs = (tabsCsv != null) ? tabsCsv.Split(',').ToList() : new List<string> { ResultTabName, SourceTabName };
-      TabSelected = Tabs.First();
+      // Tabs = (tabsCsv != null)
+      //   ? tabsCsv.Split(',').ToList()
+      //   : new List<string> { ResultTabName, SourceTabName };
+      TabSpecs = tabSpecs ?? new List<TabSpecs> { new TabSpecs(TabType.Results, ResultTabName), new TabSpecs(TabType.Source, SourceTabName) };
+      // TabSelected = Tabs.Skip(selectSkip).First();
+      TabSpecSelected = TabSpecs.Skip(selectSkip).First();
       TagCount = new TagCount(Name, true);
     }
 
     protected readonly TutorialSectionEngine Section;
-    public List<string> Tabs { get; protected set; }
-    public string TabSelected {get; set;}
+    // public List<string> Tabs { get; protected set; }
+    public List<TabSpecs> TabSpecs { get; protected set; }
+    // public string TabSelected {get; }
+    public TabSpecs TabSpecSelected { get; }
     protected TagCount TagCount;
     protected string Name;
     private bool ToolbarForAnonymous => _toolbarForAnon ??= (_toolbarForAnon = Section.Item.Bool("ToolbarsForAnonymous")).Value;
