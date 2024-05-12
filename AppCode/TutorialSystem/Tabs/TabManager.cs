@@ -9,7 +9,6 @@ using AppCode.Data;
 
 namespace AppCode.TutorialSystem.Tabs
 {
-
   public class TabManager
   {
     public TabManager(SourceCode scParent, TutorialSnippet item, List<TabSpecs> tabSpecs, Wrap sourceWrap = null) {
@@ -31,29 +30,6 @@ namespace AppCode.TutorialSystem.Tabs
     private readonly ICodeLog Log;
 
     #region TabNames
-
-    // public List<string> TabNames => _tabNames ??= GetTabNames();
-    // private List<string> _tabNames;
-    // private List<string> GetTabNames() {
-    //   // Logging
-    //   var l = Log.Call<List<string>>();
-
-    //   // Build Names
-    //   var names = GetTabLabelsOrContent(getLabels: true)
-    //     .Select(s => s as string)
-    //     .Where(s => s != null)
-    //     .Select(n => {
-    //       // If a known tab identifier, return the nice name
-    //       if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
-    //       if (n == Constants.InDepthField) return Constants.InDepthTabName;
-    //       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
-    //       if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
-    //       if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
-    //       return n;
-    //     })
-    //     .ToList();
-    //   return l(names, names.Count.ToString()); 
-    // }
 
     public List<TabSpecs> CompleteTabs => _completeTabs ??= GetFinalTabs();
     private List<TabSpecs> _completeTabs;
@@ -85,25 +61,6 @@ namespace AppCode.TutorialSystem.Tabs
             if (tab != null) tab.Body = replace;
           }
         list.AddRange(tabsToAdd);
-
-        // if (getLabels)
-        //   list.AddRange(TabSpecs.Select(t => t.Label));
-        // else
-        // {
-        //   var values = TabSpecs.Select(t => t.Contents).ToList();
-        //   if (_replaceTabContents != null)
-        //   {
-        //     list.AddRange(_replaceTabContents);
-        //     // If the tabs have more entries - eg "ViewConfiguration" - then add that at the end as well
-        //     if (TabSpecs.Count() > _replaceTabContents.Count())
-        //       list.AddRange(values.Skip(_replaceTabContents.Count()));
-        //   }
-        //   else
-        //   {
-        //     Log.Add("Add all Tab Values: " + string.Join(",", values));
-        //     list.AddRange(values);
-        //   }
-        // }
       }
       // Else custom tabs in configuration
       else if (Item.IsNotEmpty("Tabs"))
@@ -139,6 +96,57 @@ namespace AppCode.TutorialSystem.Tabs
 
       return l(list, list.Count.ToString());
     }
+
+    #endregion
+
+    #region TabContents
+
+    public void ReplaceTabContents(List<object> replacement) {
+      var l = Log.Call("replacement: " + (replacement == null ? "null" : "" + replacement.Count()));
+      _replaceTabContents = replacement;
+      _completeTabs = null;  // Reset so it will be regenerated
+      // _tabLabels = null;  // Reset so it will be regenerated
+      l("ok");
+    }
+    private List<object> _replaceTabContents;
+
+
+    #endregion
+
+    #region Debug
+
+    public string TabNamesDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.DisplayName /*.NiceName()*/, 20)));
+    public string TabContentsDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.Contents.ToString() ?? "", 20)));
+
+    #endregion
+
+    #region Archived Code 2024-05-12 when simplifying tabs initialization etc. - remove ca. 2027-07
+
+
+    // public List<string> TabNames => _tabNames ??= GetTabNames();
+    // private List<string> _tabNames;
+    // private List<string> GetTabNames() {
+    //   // Logging
+    //   var l = Log.Call<List<string>>();
+
+    //   // Build Names
+    //   var names = GetTabLabelsOrContent(getLabels: true)
+    //     .Select(s => s as string)
+    //     .Where(s => s != null)
+    //     .Select(n => {
+    //       // If a known tab identifier, return the nice name
+    //       if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
+    //       if (n == Constants.InDepthField) return Constants.InDepthTabName;
+    //       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
+    //       if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
+    //       if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
+    //       return n;
+    //     })
+    //     .ToList();
+    //   return l(names, names.Count.ToString()); 
+    // }
+
+
     // private List<object> GetTabLabelsOrContent(bool getLabels)
     // {
     //   // Logging
@@ -207,11 +215,6 @@ namespace AppCode.TutorialSystem.Tabs
     //   return l(list, list.Count.ToString());
     // }
 
-
-    #endregion
-
-    #region TabContents
-
     // /// <summary>
     // /// The TabContents is either automatic, or set by the caller.
     // /// 
@@ -220,14 +223,6 @@ namespace AppCode.TutorialSystem.Tabs
     // public List<object> TabContents => _tabLabels ??= GetTabContents();
     // private List<object> _tabLabels;
 
-    public void ReplaceTabContents(List<object> replacement) {
-      var l = Log.Call("replacement: " + (replacement == null ? "null" : "" + replacement.Count()));
-      _replaceTabContents = replacement;
-      _completeTabs = null;  // Reset so it will be regenerated
-      // _tabLabels = null;  // Reset so it will be regenerated
-      l("ok");
-    }
-    private List<object> _replaceTabContents;
     // private List<object> GetTabContents()
     // {
     //   var l = Log.Call<List<object>>();
@@ -235,14 +230,10 @@ namespace AppCode.TutorialSystem.Tabs
     //   return l(list, "tabContents: " + list.Count);
     // }
 
-    #endregion
-
-    #region Debug
-
-    public string TabNamesDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.NiceName(), 20)));
-    //  public string TabNamesDebug => string.Join(", ", TabNames);
-   public string TabContentsDebug => string.Join(", ", CompleteTabs.Select(tc => Text.Ellipsis(tc.Contents.ToString() ?? "", 20)));
     // public string TabContentsDebug => string.Join(", ", TabContents.Select(tc => Text.Ellipsis(tc.ToString() ?? "", 20)));
+    //  public string TabNamesDebug => string.Join(", ", TabNames);
+
+
     #endregion
 
   }

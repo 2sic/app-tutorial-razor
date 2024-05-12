@@ -78,9 +78,7 @@ namespace AppCode.TutorialSystem.Source
                 : $"{finalPath}";
 
             Log.Add($"Prefix: '{prefix}'; Custom Label: '{label}'; finalPath: '{finalPath}'");
-            // return new TabSpecs { Label = label ?? "file:" + finalPath, Value = "file:" + finalPath, Original = t, Type = "file" };
-            var domIdProbably = "file:" + finalPath;
-            return new TabSpecs("file", domIdProbably, label ?? "file:" + finalPath, value: "file:" + finalPath, original: t);
+            return new TabSpecs("file", label ?? "file:" + finalPath, value: "file:" + finalPath, original: t);
           }
           
           if (entry.Contains("model:")) {
@@ -88,15 +86,14 @@ namespace AppCode.TutorialSystem.Source
             var name = Text.After(entry, "model:");
             var modPath = $"file:/AppCode/Data/{name}.Generated.cs";
             var domIdProbably = modPath;
-            return new TabSpecs("model", domIdProbably, label: label != "" ? label : $"Model {name}.cs", value: modPath, original: t);
+            return new TabSpecs("model", label: label != "" ? label : $"Model: {name}.cs", value: modPath, original: t);
           }
           
           if (entry.Contains("datasource:")) {
             var label = Text.Before(entry, "datasource:");
             var name = Text.After(entry, "datasource:");
             var dsPath = $"file:/AppCode/DataSources/{name}.cs";
-            // return new TabSpecs { Label = label != "" ? label : $"DataSource {name}.cs", Value = dsPath, Original = t, Type = "datasource" };
-            return new TabSpecs("datasource", domId: dsPath, label: label != "" ? label : $"DataSource {name}.cs", value: dsPath, original: t);
+            return new TabSpecs("datasource", label: label != "" ? label : $"DataSource: {name}.cs", value: dsPath, original: t);
           }
 
           // Final - none of the special cases
@@ -120,7 +117,7 @@ namespace AppCode.TutorialSystem.Source
       var label = (hasLabel ? pLabel : tabString).Trim(); 
       var value = pVal.Trim();
       Log.Add("Tab Entry: " + label + " = " + value);
-      return new TabSpecs("string", label, label, value, tabString); // { Label = label, Value = value, Original = tabString, Type = "string" };
+      return new TabSpecs("string", label: label, value: value, original: tabString);
     }
 
     #endregion

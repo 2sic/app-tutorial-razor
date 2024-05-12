@@ -3,12 +3,12 @@ using ToSic.Razor.Markup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static AppCode.TutorialSystem.Constants;
 using AppCode.Output;
 using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Tabs;
 using AppCode.TutorialSystem.Source;
 using AppCode.Data;
+using static AppCode.TutorialSystem.Constants;
 
 namespace AppCode.TutorialSystem.Sections
 {
@@ -78,57 +78,31 @@ namespace AppCode.TutorialSystem.Sections
     protected ITag TabsBeforeContent()
     {
       var tabs = TabHandler.CompleteTabs;
-      // var tabNames = TabHandler.TabNames;
       var active = TabHandler.ActiveTabName;
       var l = Log.Call<ITag>("tabs (" + tabs.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
 
       var outputOpen = SourceWrap?.OutputOpen();
 
-      if (tabs.Count() <= 1) return l(outputOpen, "no tabs");
+      if (tabs.Count() <= 1)
+        return l(outputOpen, "no tabs");
 
-      var firstName = tabs.FirstOrDefault().NiceName();
+      var firstTab = tabs.FirstOrDefault();
+      var firstName = firstTab.DisplayName;
       var firstIsActive = active == null || active == firstName;
       var result = Tag.RawHtml(
         // Tab headers
-        BsTabs.TabList(TabPrefix, tabs.Select(t => t.NiceName()), active),
+        BsTabs.TabList(TabPrefix, tabs, active),
         // Tab bodies - must open the first one
         BsTabs.TabContentGroupOpen(),
         // Open the first tab-body item IF the snippet is right after this
         (firstName == ResultTabName || firstName == ResultAndSourceTabName)
-          ? BsTabs.TabContentOpen(TabPrefix, TabHelpers.Name2TabId(firstName), firstIsActive)
+          ? BsTabs.TabContentOpen(TabPrefix, firstTab.DomId, firstIsActive)
           : null,
         // If we have a source-wrap, add it here
         outputOpen
       );
       return l(result, "ok");
     }
-
-    // protected ITag TabsBeforeContentBackup()
-    // {
-    //   var tabNames = TabHandler.TabNames;
-    //   var active = TabHandler.ActiveTabName;
-    //   var l = Log.Call<ITag>("tabs (" + tabNames.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
-
-    //   var outputOpen = SourceWrap?.OutputOpen();
-
-    //   if (tabNames.Count() <= 1) return l(outputOpen, "no tabs");
-
-    //   var firstName = tabNames.FirstOrDefault();
-    //   var firstIsActive = active == null || active == firstName;
-    //   var result = Tag.RawHtml(
-    //     // Tab headers
-    //     BsTabs.TabList(TabPrefix, tabNames, active),
-    //     // Tab bodies - must open the first one
-    //     BsTabs.TabContentGroupOpen(),
-    //     // Open the first tab-body item IF the snippet is right after this
-    //     (firstName == ResultTabName || firstName == ResultAndSourceTabName)
-    //       ? BsTabs.TabContentOpen(TabPrefix, TabHelpers.Name2TabId(firstName), firstIsActive)
-    //       : null,
-    //     // If we have a source-wrap, add it here
-    //     outputOpen
-    //   );
-    //   return l(result, "ok");
-    // }
 
     /// <summary>
     /// End of Snippet - called by the accordion
@@ -151,10 +125,9 @@ namespace AppCode.TutorialSystem.Sections
 
       // If we have any results, add them here; Very often there are none left
       foreach (var tab in tabs) {
-        string name = tab.NiceName(); //.Label;
+        string name = tab.DisplayName;
         // Find Name and Log Stuff
 
-        // name = names.ElementAt(nameCount);
         nameCount++;
         var msg = "tab name: " + name + " (" + nameCount + ")";
         Log.Add(msg);
@@ -177,7 +150,7 @@ namespace AppCode.TutorialSystem.Sections
           continue;
         }
 
-        var nameId = TabHelpers.Name2TabId(name);
+        var nameId = tab.DomId;
 
         // Special case: Source Tab
         if (tab.Body as string == SourceTabName) {
@@ -197,69 +170,6 @@ namespace AppCode.TutorialSystem.Sections
       return l(html, "ok");
     }
 
-    // public ITag SnipEndBackup()
-    // {
-    //   var tabs = TabHandler.CompleteTabs;
-    //   var tabContents = TabHandler.TabContents;
-    //   var names = TabHandler.TabNames;
-    //   // Logging
-    //   var active = TabHandler.ActiveTabName;
-    //   var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
-    //     + "; TabNames: " + TabHandler.TabNamesDebug
-    //     + "; results:" + tabContents.Count()
-    //     + "; results:" + TabHandler.TabContentsDebug);
-    //   var nameCount = 0;
-
-    //   // Close the tabs / header div section if it hasn't been closed yet
-    //   var html = Tag.RawHtml();
-
-    //   // If we have any results, add them here; Very often there are none left
-    //   foreach (var m in tabContents) {
-    //     string name;
-    //     // Find Name and Log Stuff
-
-    //     name = names.ElementAt(nameCount);
-    //     nameCount++;
-    //     var msg = "tab name: " + name + " (" + nameCount + ")";
-    //     Log.Add(msg);
-    //     html = html.Add("<!-- " + msg + "-->");
-
-    //     // Special: if it's the ResultTab (usually the first) - close
-    //     if (name == ResultTabName) {
-    //       Log.Add("Contents of: " + ResultTabName);
-    //       if (SourceWrap != null) html = html.Add(SourceWrap.OutputClose());
-    //       html = html.Add(BsTabs.TabContentClose());
-    //       continue;
-    //     }
-
-    //     // Special case: Source-and-Result Tab
-    //     if (name == ResultAndSourceTabName) {
-    //       Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
-    //       html = html.Add(SourceWrap?.OutputClose(), SourceWrapped());
-    //       // Reliably close the "Content" section IF it had been opened
-    //       html = html.Add(BsTabs.TabContentClose());
-    //       continue;
-    //     }
-
-    //     var nameId = TabHelpers.Name2TabId(name);
-
-    //     // Special case: Source Tab
-    //     if (m as string == SourceTabName) {
-    //       Log.Add("Contents of: " + SourceTabName);
-    //       html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
-    //       continue;
-    //     }
-
-    //     // Other: Normal predefined content
-    //     Log.Add("Contents of: " + name + "; nameId: " + nameId);
-    //     var body = FlexibleResult(m, Item);
-    //     var isActive = active == nameId;
-    //     html = html.Add(BsTabs.TabContent(TabPrefix, nameId, body, isActive: isActive));
-    //   }
-
-    //   html = html.Add(BsTabs.TabContentGroupClose());
-    //   return l(html, "ok");
-    // }
 
     private ITag SourceWrapped() {
       var snippet = FileHandler.ShowSnippet(file: SourceFile);
@@ -340,6 +250,99 @@ namespace AppCode.TutorialSystem.Sections
       // Other cases - just return original - could be the label or a prepared string
       return result;
     }
+
+    // protected ITag TabsBeforeContentBackup()
+    // {
+    //   var tabNames = TabHandler.TabNames;
+    //   var active = TabHandler.ActiveTabName;
+    //   var l = Log.Call<ITag>("tabs (" + tabNames.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
+
+    //   var outputOpen = SourceWrap?.OutputOpen();
+
+    //   if (tabNames.Count() <= 1) return l(outputOpen, "no tabs");
+
+    //   var firstName = tabNames.FirstOrDefault();
+    //   var firstIsActive = active == null || active == firstName;
+    //   var result = Tag.RawHtml(
+    //     // Tab headers
+    //     BsTabs.TabList(TabPrefix, tabNames, active),
+    //     // Tab bodies - must open the first one
+    //     BsTabs.TabContentGroupOpen(),
+    //     // Open the first tab-body item IF the snippet is right after this
+    //     (firstName == ResultTabName || firstName == ResultAndSourceTabName)
+    //       ? BsTabs.TabContentOpen(TabPrefix, TabHelpers.Name2TabId(firstName), firstIsActive)
+    //       : null,
+    //     // If we have a source-wrap, add it here
+    //     outputOpen
+    //   );
+    //   return l(result, "ok");
+    // }
+
+
+    // public ITag SnipEndBackup()
+    // {
+    //   var tabs = TabHandler.CompleteTabs;
+    //   var tabContents = TabHandler.TabContents;
+    //   var names = TabHandler.TabNames;
+    //   // Logging
+    //   var active = TabHandler.ActiveTabName;
+    //   var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
+    //     + "; TabNames: " + TabHandler.TabNamesDebug
+    //     + "; results:" + tabContents.Count()
+    //     + "; results:" + TabHandler.TabContentsDebug);
+    //   var nameCount = 0;
+
+    //   // Close the tabs / header div section if it hasn't been closed yet
+    //   var html = Tag.RawHtml();
+
+    //   // If we have any results, add them here; Very often there are none left
+    //   foreach (var m in tabContents) {
+    //     string name;
+    //     // Find Name and Log Stuff
+
+    //     name = names.ElementAt(nameCount);
+    //     nameCount++;
+    //     var msg = "tab name: " + name + " (" + nameCount + ")";
+    //     Log.Add(msg);
+    //     html = html.Add("<!-- " + msg + "-->");
+
+    //     // Special: if it's the ResultTab (usually the first) - close
+    //     if (name == ResultTabName) {
+    //       Log.Add("Contents of: " + ResultTabName);
+    //       if (SourceWrap != null) html = html.Add(SourceWrap.OutputClose());
+    //       html = html.Add(BsTabs.TabContentClose());
+    //       continue;
+    //     }
+
+    //     // Special case: Source-and-Result Tab
+    //     if (name == ResultAndSourceTabName) {
+    //       Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
+    //       html = html.Add(SourceWrap?.OutputClose(), SourceWrapped());
+    //       // Reliably close the "Content" section IF it had been opened
+    //       html = html.Add(BsTabs.TabContentClose());
+    //       continue;
+    //     }
+
+    //     var nameId = TabHelpers.Name2TabId(name);
+
+    //     // Special case: Source Tab
+    //     if (m as string == SourceTabName) {
+    //       Log.Add("Contents of: " + SourceTabName);
+    //       html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
+    //       continue;
+    //     }
+
+    //     // Other: Normal predefined content
+    //     Log.Add("Contents of: " + name + "; nameId: " + nameId);
+    //     var body = FlexibleResult(m, Item);
+    //     var isActive = active == nameId;
+    //     html = html.Add(BsTabs.TabContent(TabPrefix, nameId, body, isActive: isActive));
+    //   }
+
+    //   html = html.Add(BsTabs.TabContentGroupClose());
+    //   return l(html, "ok");
+    // }
+
 
   }
 }

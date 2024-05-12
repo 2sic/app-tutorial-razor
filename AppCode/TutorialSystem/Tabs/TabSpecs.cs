@@ -6,22 +6,16 @@ namespace AppCode.TutorialSystem.Tabs
   {
     private object body;
 
-    public TabSpecs(string type, string everything) {
-      Type = type;
-      DomId = everything;
-      Label = everything;
-      Contents = everything;
-      Original = everything;
-    }
+    public TabSpecs(string type, string everything): this(type, everything, everything, everything) { }
 
-    public TabSpecs(string type, string domId, string label, string value, string original) {
+    public TabSpecs(string type, string label, string value, string original) {
       Type = type;
-      DomId = domId;
       Label = label;
       Contents = value;
       Original = original;
     }
-    public string DomId { get; set; }
+    public string DomId => _domId ??= Name2TabId(DisplayName);
+    private string _domId;
 
     /// <summary>
     /// The label, but ATM it's also used to generate DOM IDs,
@@ -29,16 +23,8 @@ namespace AppCode.TutorialSystem.Tabs
     /// </summary>
     public string Label { get; set; }
 
-    public string NiceName() {
-      var n = Label;
-      // If a known tab identifier, return the nice name
-      if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
-      if (n == Constants.InDepthField) return Constants.InDepthTabName;
-      // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
-      if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
-      if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
-      return n;
-    }
+    public string DisplayName => _displayName ??= NiceName();
+    private string _displayName;
 
     /// <summary>
     /// The tab contents - can be a reference such as "file:xxx" or a value
@@ -55,5 +41,44 @@ namespace AppCode.TutorialSystem.Tabs
     public string Type { get; set; }
 
     public override string ToString() => $"Label: '{Label}'; Value: '{Contents}' ({Type}); #{DomId}";
+
+    private string NiceName() {
+      var n = Label;
+      // If a known tab identifier, return the nice name
+      if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
+      if (n == Constants.InDepthField) return Constants.InDepthTabName;
+      // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
+      if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
+      if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
+      return n;
+    }
+
+    private static string Name2TabId(string name) {
+      return "-" + name.ToLower()
+        .Replace(" ", "-")
+        .Replace(".", "-")
+        .Replace(":", "-")
+        .Replace("(", "-")
+        .Replace(")", "-")
+        .Replace("[", "-")
+        .Replace("]", "-")
+        .Replace("{", "-")
+        .Replace("}", "-")
+        .Replace("!", "-")
+        .Replace("?", "-")
+        .Replace(";", "-")
+        .Replace(",", "-")
+        .Replace("=", "-")
+        .Replace("+", "-")
+        .Replace("*", "-")
+        .Replace("&", "-")
+        .Replace("%", "-")
+        .Replace("#", "-")
+        .Replace("@", "-")
+        .Replace("$", "-")
+        .Replace("^", "-")
+        .Replace("/", "-")
+        .Replace("\\", "-");
+    }
   }
 }

@@ -15,17 +15,15 @@ namespace AppCode.TutorialSystem.Tabs
     private const string Indent = "    ";
     private const string IndentLi = "      ";
     private const string IndentBtn = "        ";
-    public ITag TabList(string prefix, IEnumerable<string> names, string active = null) {
-      // Remember tab names
-      // _moreTabNames = names.ToArray();
+    public ITag TabList(string prefix, List<TabSpecs> tabs, string active = null) {
       var tabList = new List<object>();
-      foreach (var name in names) {
+      foreach (var tab in tabs) {
         var isFirst = tabList.Count == 0;
-        var isActive = (active == null && isFirst) || name == active;
+        var isActive = (active == null && isFirst) || tab.DisplayName == active;
 
-        tabList.Add("\n\n" + IndentLi + "<!-- Tab '" + name + "'-->");
+        tabList.Add("\n\n" + IndentLi + "<!-- Tab '" + tab.DisplayName + "'-->");
         tabList.Add("\n" + IndentLi);
-        tabList.Add(TabLi(prefix, name, isActive)); // first entry is active = true
+        tabList.Add(TabLi(tab, prefix, isActive)); // first entry is active = true
       }
       return Tag.RawHtml(
         "\n" + Indent + "<!-- TabList Start '" + prefix + "'-->\n",
@@ -38,12 +36,12 @@ namespace AppCode.TutorialSystem.Tabs
     }
 
 
-    private ITag TabLi(string prefix, string label, bool active) {
+    private ITag TabLi(TabSpecs tab, string prefix, bool active) {
       return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
         "\n",
         IndentBtn + "<!-- Tab button -->\n",
         IndentBtn,
-        TabButton(prefix, label, TabHelpers.Name2TabId(label), active),
+        TabButton(prefix, tab.DisplayName, tab.DomId, active),
         "\n" + IndentLi
       );
     }
