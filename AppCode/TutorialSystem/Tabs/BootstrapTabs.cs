@@ -17,7 +17,7 @@ namespace AppCode.TutorialSystem.Tabs
     private const string IndentBtn = "        ";
     public ITag TabList(string prefix, IEnumerable<string> names, string active = null) {
       // Remember tab names
-      _moreTabNames = names.ToArray();
+      // _moreTabNames = names.ToArray();
       var tabList = new List<object>();
       foreach (var name in names) {
         var isFirst = tabList.Count == 0;
@@ -117,7 +117,7 @@ namespace AppCode.TutorialSystem.Tabs
       );
     }
 
-    private string[] _moreTabNames;
+    // private string[] _moreTabNames;
     // 2023-09-12 2dm disabled, probably don't need any more
     // public string GetTabName(int index) {
     //   var l = Log.Call<string>("index:" + index);
