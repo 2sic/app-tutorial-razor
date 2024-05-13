@@ -57,7 +57,8 @@ namespace AppCode.TutorialSystem.Tabs
       // If a known tab identifier, return the nice name
       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
       if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
-      if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
+      if (Type == TabType.File || n.StartsWith("file:"))
+        return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
       return n;
     }
 
