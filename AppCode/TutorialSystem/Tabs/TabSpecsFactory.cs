@@ -59,29 +59,33 @@ namespace AppCode.TutorialSystem.Tabs
       var tabs = tabsString.Split(',').Select(t =>
         {
           var entry = t.Trim();
+
+          // Handle file: references
           var (found, label, value) = SplitTabEntry(entry, "file:");
           if (found)
           {
             // the path could be "/AppCode/..." or it could be (older) "../../something"
-            var finalPath = value.StartsWith("/") ? value: srcPath + "/" + value;
+            var finalPath = value.StartsWith("/") ? value: $"{srcPath}/{value}";
 
             label = label != ""
               ? label
               : finalPath.Contains("/AppCode/") ? finalPath : null;
 
             Log.Add($"Label: '{label}'; Custom Label: '{label}'; finalPath: '{finalPath}'");
-            return new TabSpecs(TabType.File, label ?? "file:" + finalPath, value: "file:" + finalPath, original: t);
+            return new TabSpecs(TabType.File, label ?? finalPath, value: finalPath, original: t);
           }
           
+          // Handle model: references
           (found, label, value) = SplitTabEntry(entry, "model:");
           if (found)
             return new TabSpecs(TabType.Model, label: label != "" ? label : $"Model: {value}.cs", value: value, original: t);
           
+          // Handle datasource: references
           (found, label, value) = SplitTabEntry(entry, "datasource:");
           if (found)
             return new TabSpecs(TabType.DataSource, label: label != "" ? label : $"DataSource: {value}.cs", value: value, original: t);
 
-          // Final - none of the special cases
+          // Final - none of the known special cases
           return SplitStringToTabSpecs(t);
         })
         .ToList();
@@ -90,7 +94,7 @@ namespace AppCode.TutorialSystem.Tabs
       static (bool found, string label, string value) SplitTabEntry(string entry, string prefix)
       {
         if (!entry.Contains(prefix)) return (false, null, null);
-        return (true, Text.Before(entry, prefix).TrimEnd('|'), Text.After(entry, prefix));
+        return (true, Text.Before(entry, prefix)?.TrimEnd('|') ?? "", Text.After(entry, prefix) ?? "");
       }
     }
 
@@ -103,23 +107,19 @@ namespace AppCode.TutorialSystem.Tabs
       var pair = tabString.Trim().Split('|');
       var hasLabel = pair.Length > 1;
       var pVal = hasLabel ? pair[1] : pair[0];
-      var pLabel = pair[0];
 
       // Figure out the parts
-      var label = (hasLabel ? pLabel : tabString).Trim(); 
+      var label = pair[0].Trim();
       var value = pVal.Trim();
       Log.Add("Tab Entry: " + label + " = " + value);
 
-      // Special cases
-      var specialCaseLabel = hasLabel ? pLabel : null;
-      if (pVal.Equals(Constants.ViewConfigCode))
+      // Special cases. Label should be null for correct fallback logic
+      var specialCaseLabel = hasLabel ? label : null;
+      if (value.Equals(Constants.ViewConfigCode))
         return ViewConfig(specialCaseLabel);
 
       // These are tabs which just show the name, the body will be filled by the code
       return new TabSpecs(TabType.FromCode, label: label, value: value, original: tabString);
     }
-
-
-
   }
 }

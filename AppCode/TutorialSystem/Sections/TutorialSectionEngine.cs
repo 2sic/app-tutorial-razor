@@ -200,8 +200,8 @@ namespace AppCode.TutorialSystem.Sections
         return tab.Body;
 
       // If it's a string such as "file:abc.cshtml" then resolve that first
-      if (strResult.StartsWith("file:"))
-        return FileHandler.GetTabFileContents(strResult.Substring(5));
+      if (tab.Type == TabType.File || strResult.StartsWith("file:"))
+        return FileHandler.GetTabFileContents(strResult.Replace("file:", ""));
 
       // Handle case "html-img:..."
       if (strResult.StartsWith("html-img:"))

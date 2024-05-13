@@ -55,8 +55,6 @@ namespace AppCode.TutorialSystem.Tabs
     private string NiceName() {
       var n = Label;
       // If a known tab identifier, return the nice name
-      // if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
-      // if (n == Constants.InDepthField) return Constants.InDepthTabName;
       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
       if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
       if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");
