@@ -184,14 +184,14 @@ namespace AppCode.TutorialSystem.Sections
     {
       // Start with special cases like DataSource or Model
       if (tab.Type == TabType.DataSource)
-        return FileHandler.GetTabFileContents($"/AppCode/DataSources/{tab.ContentsIdentity}.cs");
+        return FileHandler.GetTabFileContents($"/AppCode/DataSources/{tab.Value}.cs");
 
       // When showing a model, it can be either the model itself or the generated model or a mix
       // eg. CsvProduct is a manually created model, which doesn't have a generated part
       if (tab.Type == TabType.Model)
       {
-        var extended = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.ContentsIdentity}.cs", silent: true);
-        var generated = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.ContentsIdentity}.Generated.cs", silent: true);
+        var extended = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.Value}.cs", silent: true);
+        var generated = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.Value}.Generated.cs", silent: true);
         return Tag.RawHtml(extended, generated);
       }
 
