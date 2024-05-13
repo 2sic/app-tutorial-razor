@@ -9,11 +9,12 @@ namespace AppCode.TutorialSystem.Tabs
 
     public TabSpecs(TabType type, string everything): this(type, everything, everything, everything) { }
 
-    public TabSpecs(TabType type, string label, string value, string original) {
+    public TabSpecs(TabType type, string label, string value, string original, string contentsIdentity = default) {
       Type = type;
       Label = label;
       Value = value;
       Original = original;
+      ContentsIdentity = contentsIdentity;
     }
 
     /// <summary>
@@ -37,6 +38,8 @@ namespace AppCode.TutorialSystem.Tabs
     /// The tab contents - can be a reference such as "file:xxx" or a value which is injected later
     /// </summary>
     public string Value { get; }
+
+    public string ContentsIdentity { get; }
 
     /// <summary>
     /// The real body - ic can just be the contents, but it can be a complex, later-injected object

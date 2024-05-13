@@ -76,7 +76,8 @@ namespace AppCode.TutorialSystem.Source
     internal ITag ShowSnippet(string file)
       => ShowFileContents(file, showTitle: false, expand: true);
 
-    internal ITag GetTabFileContents(string file) => ShowFileContents(file, showTitle: true);
+    internal ITag GetTabFileContents(string file, bool silent = false)
+      => ShowFileContents(file, showTitle: true, silent: silent);
 
     // Used in SourceCode.cs to see if it has tabs
     // internal string GetFileContents(string file) => GetFileAndProcess(file).Contents;
@@ -99,22 +100,20 @@ namespace AppCode.TutorialSystem.Source
       string titlePath = null, 
       bool? expand = null,
       bool? wrap = null,
-      bool? showTitle = null)
+      bool? showTitle = null,
+      bool silent = false)
     {
       var l = Log.Call<ITag>("file: '" + file);
       var debug = false;
       var path = "";
       var errPath = "";
 
-      // // New: support for snippetId in path
-      // if (snippetId == null && file.Contains("#")) {
-      //   snippetId = Text.AfterLast(file, "#");
-      //   file = Text.BeforeLast(file, "#");
-      // }
-
       try
       {
-        var specs = GetFileAndProcess(file);
+        var specs = GetFileAndProcess(file, silent: silent);
+        if (specs.IsError && silent)
+          return null;
+
         path = specs.Path;  // update in case of error
         errPath = debug ? specs.FullPath : path;
         title ??= "Source Code of " + (Text.Has(specs.FileName)
@@ -126,12 +125,13 @@ namespace AppCode.TutorialSystem.Source
 
         Ace9Editor.TurnOnSource(specs, specs.FileName, specs.Wrap);
 
-        return l(Tag.RawHtml(
+        var result = Tag.RawHtml(
           debug ? Tag.Div(errPath).Class("alert alert-info") : null,
           "\n<!-- Source Code -->\n",
           Ace9Editor.SourceBlock(specs, title),
           "\n<!-- /Source Code -->\n"
-        ), "ok");
+        );
+        return l(result, "ok");
       }
       catch
       {
@@ -141,7 +141,7 @@ namespace AppCode.TutorialSystem.Source
       }
     }
 
-    internal SourceInfo GetFileAndProcess(string file) {
+    internal SourceInfo GetFileAndProcess(string file, bool silent = false) {
       var l = Log.Call<SourceInfo>("file: '" + file);
       // Note: for historical reasons the file is a path which can look like
       // - "../../tutorials/razor-quickref\Snip-partials-basic.typed.cshtml"
@@ -171,7 +171,7 @@ namespace AppCode.TutorialSystem.Source
         return l(new SourceInfo(cached), "cached");
 
       // var fileInfo = GetFile(path, file, fullPath);
-      var fileInfo = GetFileSourceInfo(fullPath);
+      var fileInfo = GetFileSourceInfo(fullPath, silent: silent);
       // fileInfo = newInfo;
 
       // log all properties of FileInfo
@@ -219,14 +219,25 @@ namespace AppCode.TutorialSystem.Source
       return l(fullPath, fullPath);
     }
 
-    private SourceInfo GetFileSourceInfo(string fullPath) {
+    private SourceInfo GetFileSourceInfo(string fullPath, bool silent = false) {
       var l = Log.Call<SourceInfo>("fullPath: " + fullPath);
       var cacheKey = fullPath.ToLowerInvariant();
       var fileName = System.IO.Path.GetFileName(fullPath);
       var filePath = fullPath.Substring(0, fullPath.LastIndexOf("/"));
       try
       {
-        var contents = _getFileCache.TryGetValue(cacheKey, out var c) ? c : System.IO.File.ReadAllText(fullPath);
+        var contents = _getFileCache.TryGetValue(cacheKey, out var c) ? c : null;
+        if (contents == null)
+          try
+          {
+            contents = System.IO.File.ReadAllText(fullPath);
+            _getFileCache[cacheKey] = contents;
+          }
+          catch (System.IO.FileNotFoundException ex)
+          {
+            if (!silent) throw;
+            return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = ex.Message, IsError = true }, fullPath);
+          }
         return l(new SourceInfo { FileName = fileName, Path = filePath, FullPath = fullPath, Contents = contents }, fullPath);
       }
       catch (Exception ex)

@@ -59,45 +59,39 @@ namespace AppCode.TutorialSystem.Tabs
       var tabs = tabsString.Split(',').Select(t =>
         {
           var entry = t.Trim();
-          if (entry.Contains("file:")) {
-            var prefix = Text.Before(entry, "file:");
-            var fullPath = Text.After(entry, "file:");
-
+          var (found, label, value) = SplitTabEntry(entry, "file:");
+          if (found)
+          {
             // the path could be "/AppCode/..." or it could be (older) "../../something"
-            var finalPath = fullPath.StartsWith("/")
-              ? fullPath
-              : srcPath + "/" + fullPath;
+            var finalPath = value.StartsWith("/") ? value: srcPath + "/" + value;
 
-            var label = prefix != ""
-              ? prefix
-              : !finalPath.Contains("/AppCode/")
-                ? null
-                : $"{finalPath}";
+            label = label != ""
+              ? label
+              : finalPath.Contains("/AppCode/") ? finalPath : null;
 
-            Log.Add($"Prefix: '{prefix}'; Custom Label: '{label}'; finalPath: '{finalPath}'");
+            Log.Add($"Label: '{label}'; Custom Label: '{label}'; finalPath: '{finalPath}'");
             return new TabSpecs(TabType.File, label ?? "file:" + finalPath, value: "file:" + finalPath, original: t);
           }
           
-          if (entry.Contains("model:")) {
-            var label = Text.Before(entry, "model:");
-            var name = Text.After(entry, "model:");
-            var modPath = $"file:/AppCode/Data/{name}.Generated.cs";
-            var domIdProbably = modPath;
-            return new TabSpecs(TabType.Model, label: label != "" ? label : $"Model: {name}.cs", value: modPath, original: t);
-          }
+          (found, label, value) = SplitTabEntry(entry, "model:");
+          if (found)
+            return new TabSpecs(TabType.Model, label: label != "" ? label : $"Model: {value}.cs", value: null, original: t, contentsIdentity: value);
           
-          if (entry.Contains("datasource:")) {
-            var label = Text.Before(entry, "datasource:");
-            var name = Text.After(entry, "datasource:");
-            var dsPath = $"file:/AppCode/DataSources/{name}.cs";
-            return new TabSpecs(TabType.DataSource, label: label != "" ? label : $"DataSource: {name}.cs", value: dsPath, original: t);
-          }
+          (found, label, value) = SplitTabEntry(entry, "datasource:");
+          if (found)
+            return new TabSpecs(TabType.DataSource, label: label != "" ? label : $"DataSource: {value}.cs", value: null, original: t, contentsIdentity: value);
 
           // Final - none of the special cases
           return SplitStringToTabSpecs(t);
         })
         .ToList();
       return tabs;
+
+      static (bool found, string label, string value) SplitTabEntry(string entry, string prefix)
+      {
+        if (!entry.Contains(prefix)) return (false, null, null);
+        return (true, Text.Before(entry, prefix), Text.After(entry, prefix));
+      }
     }
 
     /// <summary>

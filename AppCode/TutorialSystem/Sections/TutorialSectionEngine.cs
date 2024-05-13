@@ -140,7 +140,7 @@ namespace AppCode.TutorialSystem.Sections
         }
 
         // Special case: Source-and-Result Tab
-        if (tab.Type == TabType.ResultsAndSource) //  name == ResultAndSourceTabName)
+        if (tab.Type == TabType.ResultsAndSource)
         {
           Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
           html = html.Add(SourceWrap?.OutputClose(), SourceWrapped());
@@ -154,7 +154,7 @@ namespace AppCode.TutorialSystem.Sections
         // Special case: Source Tab
         if (tab.Body as string == SourceTabName) {
           Log.Add("Contents of: " + SourceTabName);
-          html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active.DomId == tab.DomId /* TabType.Source /* active == SourceTabName */));
+          html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active.DomId == tab.DomId));
           continue;
         }
 
@@ -182,6 +182,19 @@ namespace AppCode.TutorialSystem.Sections
     /// </summary>
     private object FlexibleResult(TabSpecs tab, TutorialSnippet item = null)
     {
+      // Start with special cases like DataSource or Model
+      if (tab.Type == TabType.DataSource)
+        return FileHandler.GetTabFileContents($"/AppCode/DataSources/{tab.ContentsIdentity}.cs");
+
+      // When showing a model, it can be either the model itself or the generated model or a mix
+      // eg. CsvProduct is a manually created model, which doesn't have a generated part
+      if (tab.Type == TabType.Model)
+      {
+        var extended = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.ContentsIdentity}.cs", silent: true);
+        var generated = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.ContentsIdentity}.Generated.cs", silent: true);
+        return Tag.RawHtml(extended, generated);
+      }
+
       // If it's not a string, then it must be something prepared, typically IHtmlTags; return that
       var result = tab.Body;
       var strResult = result as string;
