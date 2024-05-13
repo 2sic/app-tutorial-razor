@@ -196,9 +196,8 @@ namespace AppCode.TutorialSystem.Sections
       }
 
       // If it's not a string, then it must be something prepared, typically IHtmlTags; return that
-      var result = tab.Body;
-      var strResult = result as string;
-      if (strResult == null) return result; 
+      if (!(tab.Body is string strResult))
+        return tab.Body;
 
       // If it's a string such as "file:abc.cshtml" then resolve that first
       if (strResult.StartsWith("file:"))
@@ -209,7 +208,8 @@ namespace AppCode.TutorialSystem.Sections
         return FileHandler.ShowResultImg(strResult.Substring(9));
 
       // Optionally add tutorial links if defined in the item
-      if (item == null) return result;
+      if (item == null)
+        return tab.Body;
 
       // Handle case Tutorials
       if (tab.Type == TabType.TutorialReferences)
@@ -219,9 +219,10 @@ namespace AppCode.TutorialSystem.Sections
       }
 
       // Handle case Notes
-      if (tab.Type == TabType.Notes)// strResult == NotesTabName) {
+      if (tab.Type == TabType.Notes)
       {
-        if (item.IsEmpty(nameof(item.Notes))) return $"{nameof(item.Notes)} not found";
+        if (item.IsEmpty(nameof(item.Notes)))
+          return $"{nameof(item.Notes)} not found";
 
         var notesHtml = item.Notes.Select(tMd => Tag.RawHtml(
           "\n    ",
@@ -237,130 +238,28 @@ namespace AppCode.TutorialSystem.Sections
       }
 
       // handle case In-Depth Explanations
-      if (tab.Type == TabType.InDepth) // strResult == InDepthTabName)
-      {
-        if (item.IsEmpty(nameof(Item.InDepthExplanation))) return $"{nameof(Item.InDepthExplanation)} not found";
+      if (tab.Type == TabType.InDepth)
         return Tag.RawHtml(
           "\n",
           item.InDepthExplanation,
           Fancybox.Gallery(item, "InDepthImages"),
           "\n"
         );
-      }
 
       // Handle Case ViewConfig
       if (tab.Type == TabType.ViewConfig)
-      {
         return Tag.Div().Wrap(
           Tag.H4(tab.Label),
           Tag.P("This is how this view would be configured for this sample."),
           ViewConfig.TabContents()
         );
-      }
 
       // handle case Formulas
-      if (tab.Type == TabType.Formulas) // strResult == FormulasTabName)
-      {
-        var formulaSpecs = item.Formula;
-        return Formulas.Show(formulaSpecs, false);
-      }
+      if (tab.Type == TabType.Formulas)
+        return Formulas.Show(item.Formula, false);
 
       // Other cases - just return original - could be the label or a prepared string
-      return result;
+      return tab.Body;
     }
-
-    // protected ITag TabsBeforeContentBackup()
-    // {
-    //   var tabNames = TabHandler.TabNames;
-    //   var active = TabHandler.ActiveTabName;
-    //   var l = Log.Call<ITag>("tabs (" + tabNames.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
-
-    //   var outputOpen = SourceWrap?.OutputOpen();
-
-    //   if (tabNames.Count() <= 1) return l(outputOpen, "no tabs");
-
-    //   var firstName = tabNames.FirstOrDefault();
-    //   var firstIsActive = active == null || active == firstName;
-    //   var result = Tag.RawHtml(
-    //     // Tab headers
-    //     BsTabs.TabList(TabPrefix, tabNames, active),
-    //     // Tab bodies - must open the first one
-    //     BsTabs.TabContentGroupOpen(),
-    //     // Open the first tab-body item IF the snippet is right after this
-    //     (firstName == ResultTabName || firstName == ResultAndSourceTabName)
-    //       ? BsTabs.TabContentOpen(TabPrefix, TabHelpers.Name2TabId(firstName), firstIsActive)
-    //       : null,
-    //     // If we have a source-wrap, add it here
-    //     outputOpen
-    //   );
-    //   return l(result, "ok");
-    // }
-
-
-    // public ITag SnipEndBackup()
-    // {
-    //   var tabs = TabHandler.CompleteTabs;
-    //   var tabContents = TabHandler.TabContents;
-    //   var names = TabHandler.TabNames;
-    //   // Logging
-    //   var active = TabHandler.ActiveTabName;
-    //   var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
-    //     + "; TabNames: " + TabHandler.TabNamesDebug
-    //     + "; results:" + tabContents.Count()
-    //     + "; results:" + TabHandler.TabContentsDebug);
-    //   var nameCount = 0;
-
-    //   // Close the tabs / header div section if it hasn't been closed yet
-    //   var html = Tag.RawHtml();
-
-    //   // If we have any results, add them here; Very often there are none left
-    //   foreach (var m in tabContents) {
-    //     string name;
-    //     // Find Name and Log Stuff
-
-    //     name = names.ElementAt(nameCount);
-    //     nameCount++;
-    //     var msg = "tab name: " + name + " (" + nameCount + ")";
-    //     Log.Add(msg);
-    //     html = html.Add("<!-- " + msg + "-->");
-
-    //     // Special: if it's the ResultTab (usually the first) - close
-    //     if (name == ResultTabName) {
-    //       Log.Add("Contents of: " + ResultTabName);
-    //       if (SourceWrap != null) html = html.Add(SourceWrap.OutputClose());
-    //       html = html.Add(BsTabs.TabContentClose());
-    //       continue;
-    //     }
-
-    //     // Special case: Source-and-Result Tab
-    //     if (name == ResultAndSourceTabName) {
-    //       Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
-    //       html = html.Add(SourceWrap?.OutputClose(), SourceWrapped());
-    //       // Reliably close the "Content" section IF it had been opened
-    //       html = html.Add(BsTabs.TabContentClose());
-    //       continue;
-    //     }
-
-    //     var nameId = TabHelpers.Name2TabId(name);
-
-    //     // Special case: Source Tab
-    //     if (m as string == SourceTabName) {
-    //       Log.Add("Contents of: " + SourceTabName);
-    //       html = html.Add(BsTabs.TabContent(TabPrefix, nameId, SourceWrapped(), isActive: active == SourceTabName));
-    //       continue;
-    //     }
-
-    //     // Other: Normal predefined content
-    //     Log.Add("Contents of: " + name + "; nameId: " + nameId);
-    //     var body = FlexibleResult(m, Item);
-    //     var isActive = active == nameId;
-    //     html = html.Add(BsTabs.TabContent(TabPrefix, nameId, body, isActive: isActive));
-    //   }
-
-    //   html = html.Add(BsTabs.TabContentGroupClose());
-    //   return l(html, "ok");
-    // }
-
-
   }
 }

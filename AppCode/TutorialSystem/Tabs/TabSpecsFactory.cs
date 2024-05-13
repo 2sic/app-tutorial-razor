@@ -90,7 +90,7 @@ namespace AppCode.TutorialSystem.Tabs
       static (bool found, string label, string value) SplitTabEntry(string entry, string prefix)
       {
         if (!entry.Contains(prefix)) return (false, null, null);
-        return (true, Text.Before(entry, prefix), Text.After(entry, prefix));
+        return (true, Text.Before(entry, prefix).TrimEnd('|'), Text.After(entry, prefix));
       }
     }
 
@@ -114,16 +114,6 @@ namespace AppCode.TutorialSystem.Tabs
       var specialCaseLabel = hasLabel ? pLabel : null;
       if (pVal.Equals(Constants.ViewConfigCode))
         return ViewConfig(specialCaseLabel);
-
-      // This is probably never in use, as it shows data in the item
-      // so it never makes sense to specify it in the source code
-      // if (pVal.Equals(Constants.InDepthCode))
-      //   return InDepth(specialCaseLabel);
-
-      // if (pVal.Equals(Constants.NotesCode))
-      //   return Notes(specialCaseLabel);
-
-      // throw new System.Exception($"Tab '{label}', '{pVal}' not found - make sure the view has this");
 
       // These are tabs which just show the name, the body will be filled by the code
       return new TabSpecs(TabType.FromCode, label: label, value: value, original: tabString);

@@ -88,6 +88,7 @@ namespace AppCode.TutorialSystem.Tabs
         .Replace("$", "-")
         .Replace("^", "-")
         .Replace("/", "-")
+        .Replace("|", "-")
         .Replace("\\", "-");
     }
   }
