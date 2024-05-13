@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.07.00" ExportDate="2024-05-07T20:52:12.3711787+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.07.01" ExportDate="2024-05-13T18:42:13.1970278+02:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -5257,9 +5257,67 @@
         </Attribute>
         <Attribute StaticName="Variants" Type="String" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="753e8f88-b89b-4929-89d6-49b991ef4301" Json="True" KeyNumber="5935">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="Variants" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="HelpLink" Value="" Type="Hyperlink">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Information" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-dropdown" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Variants" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Tooltip" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="16a1b546-f76a-4351-bf8a-69a9fa7f5eed" Json="True" KeyNumber="5935">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="798f9c8f-6722-4180-9c1f-7f50466a873b" Json="True" KeyNumber="5935">
+            <Value Key="DropdownValues" Value=":Default - typed,dyn&#xA;strong,typed,dyn&#xA;typed,dyn,pre12&#xA;strong,typed,dyn,pre12" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DropdownValuesFormat" Value="value-label" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
           </Entity>
         </Attribute>
         <Attribute StaticName="GroupReferences" Type="Empty" IsTitle="false">
@@ -10421,16 +10479,16 @@
       <Value Key="RequiredDnnVersion" Value="09.06.01" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredOqtaneVersion" Value="04.00.00" Type="String">
+      <Value Key="RequiredOqtaneVersion" Value="05.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="17.06.00" Type="String">
+      <Value Key="RequiredVersion" Value="17.08.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="17.06.00" Type="String">
+      <Value Key="Version" Value="17.08.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -16724,7 +16782,7 @@
       <Value Key="Subsection" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Quick Reference for Razor APIs (WIP = Work in Progress)" Type="String">
+      <Value Key="Title" Value="Quick Reference for Razor APIs" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialGroups" Value="00740fec-5e2e-4d90-ae3a-173d36714bca" Type="Entity" />
@@ -18122,6 +18180,9 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -18131,7 +18192,7 @@
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="OutputWidth" Value="33" Type="Number">
+      <Value Key="OutputWidth" Value="50" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="PageActivate" Value="" Type="String">
@@ -18788,13 +18849,16 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -18822,7 +18886,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="e24672f0-25f2-43f8-bdf1-234a9fc4a2ee" Type="Entity" />
-      <Value Key="Sections" Value="3761d820-fafe-4dd4-8dfb-2b338a599e25,813b87da-6b22-40cd-9cfc-f73f8fb90887,21bb641c-94cc-49fd-9ca7-dce00c6d71e1,f85dca69-379d-4612-a4fe-fa0931e77fd0" Type="Entity" />
+      <Value Key="Sections" Value="3761d820-fafe-4dd4-8dfb-2b338a599e25,813b87da-6b22-40cd-9cfc-f73f8fb90887,21bb641c-94cc-49fd-9ca7-dce00c6d71e1,f85dca69-379d-4612-a4fe-fa0931e77fd0,9ef8912e-e5c0-4979-b1a1-965d00c0a0a6,6d8157a9-fdd9-4d44-af58-832a2cd3dd17,68713d9d-aeaa-4df8-8c7d-58006b8119c2,95b52d63-970f-49d0-a666-5008f55fe812" Type="Entity" />
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -18832,7 +18896,7 @@
       <Value Key="TitleForPicker" Value="razor-conditions-page - Razor Conditions such as if, if-else and ? :" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -21620,6 +21684,9 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21645,7 +21712,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="RefSharedSpecs" Value="e45646c5-f1f6-47ca-a965-96e95859b98d" Type="Entity" />
-      <Value Key="Sections" Value="ffceb72c-5fb4-404c-a002-9b41a6d3f0d8,d1e4d3cc-3fbf-4eda-b96a-3c48922729c0" Type="Entity" />
+      <Value Key="Sections" Value="ffceb72c-5fb4-404c-a002-9b41a6d3f0d8,d1e4d3cc-3fbf-4eda-b96a-3c48922729c0,aacf4f08-80ef-49b5-a7ae-48cab21beaab" Type="Entity" />
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -21655,7 +21722,7 @@
       <Value Key="TitleForPicker" Value="razor-partial-page - Reuse Shared Templates with Html.Partial and MyModel" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -21953,23 +22020,56 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="True" Type="Boolean">
+      <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;Showing values from Data (aka. Entities) is very easy. Normally they are accessed through&amp;nbsp;&lt;strong&gt;Item&lt;/strong&gt; (new Razor) or &lt;strong&gt;DynamicEntity&amp;nbsp;&lt;/strong&gt;(older Razor) objects.&amp;nbsp;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsPage" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="NameId" Value="block-read-basics" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="9bf88680-58f3-491e-80ff-18465730f8b3" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Show Entity Values from the current Data&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="block-read-basics - Show Entity Values from the current Data" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="XxxLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29420,10 +29520,14 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="&lt;p&gt;The following query will simply combine the two DataSources. The first will provide the authors. The second will apply the KeepOdd filters.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -29439,10 +29543,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Query using Authors and KeepOdd&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="datasources-query-keepodd" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -33435,13 +33551,16 @@
       <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets&amp;nbsp;&lt;code&gt;Persons&lt;/code&gt;&amp;nbsp;data from the&amp;nbsp;&lt;code&gt;App.Data[&quot;Persons&quot;]&lt;/code&gt;&amp;nbsp;and just loops through them. This is similar to the example in the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/content/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;content&lt;/a&gt;&amp;nbsp;tutorial, except that the data comes from the&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;&amp;nbsp;instead of the current&amp;nbsp;&lt;em&gt;instance&lt;/em&gt;&amp;nbsp;&lt;code&gt;Data&lt;/code&gt;.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
+      <Value Key="IntroMoreDyn" Value="&lt;p&gt;The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets&amp;nbsp;&lt;code&gt;Persons&lt;/code&gt;&amp;nbsp;data from the&amp;nbsp;&lt;code&gt;App.Data.GetStream(&quot;Persons&quot;)&lt;/code&gt;&amp;nbsp;and just loops through them. This is similar to the example in the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/content/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;content&lt;/a&gt;&amp;nbsp;tutorial, except that the data comes from the&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;&amp;nbsp;instead of the current&amp;nbsp;&lt;em&gt;instance&lt;/em&gt;&amp;nbsp;&lt;code&gt;Data&lt;/code&gt;.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
+      <Value Key="IntroMoreStrong" Value="&lt;p&gt;The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets&amp;nbsp;&lt;code&gt;Persons&lt;/code&gt;&amp;nbsp;data from the&amp;nbsp;&lt;code&gt;App.Data.GetAll&amp;lt;Persons&amp;gt;()&lt;/code&gt;&amp;nbsp;and just loops through them. This is similar to the example in the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/content/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;content&lt;/a&gt;&amp;nbsp;tutorial, except that the data comes from the&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;&amp;nbsp;instead of the current&amp;nbsp;&lt;em&gt;instance&lt;/em&gt;&amp;nbsp;&lt;code&gt;Data&lt;/code&gt;.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="&lt;p&gt;The easiest data to access comes from the current environment - like from the App or from DNN itself. The following example gets&amp;nbsp;&lt;code&gt;Persons&lt;/code&gt;&amp;nbsp;data from the&amp;nbsp;&lt;code&gt;App.Data.GetStream(&quot;Persons&quot;)&lt;/code&gt;&amp;nbsp;and just loops through them. This is similar to the example in the&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/content/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;content&lt;/a&gt;&amp;nbsp;tutorial, except that the data comes from the&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;&amp;nbsp;instead of the current&amp;nbsp;&lt;em&gt;instance&lt;/em&gt;&amp;nbsp;&lt;code&gt;Data&lt;/code&gt;.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IsPage" Value="True" Type="Boolean">
@@ -33476,7 +33595,7 @@
       <Value Key="TitleForPicker" Value="data-appdata-page - Basic Example from App.Data" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -34224,6 +34343,9 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -34259,7 +34381,7 @@
       <Value Key="TitleForPicker" Value="data-listdetails-coded-page - Basic List Details using Code - with separate Details-File" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -34366,6 +34488,9 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -34401,7 +34526,7 @@
       <Value Key="TitleForPicker" Value="data-listdetails-combined-page - Basic List Details using Code" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -35441,13 +35566,16 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;Every&amp;nbsp;&lt;em&gt;item&lt;/em&gt;&amp;nbsp;a.k.a.&amp;nbsp;&lt;em&gt;object&lt;/em&gt;&amp;nbsp;is called an&amp;nbsp;&lt;a href=&quot;https://docs.2sxc.org/specs/data/entities.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Entity&lt;/strong&gt;&lt;/a&gt;. Entities will have properties like&amp;nbsp;&lt;code&gt;Name&lt;/code&gt;,&amp;nbsp;&lt;code&gt;ProductNumber&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;Birthday&lt;/code&gt;, depending on the&amp;nbsp;&lt;a href=&quot;https://docs.2sxc.org/specs/data/content-types.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Content-Type&lt;/strong&gt;&lt;/a&gt;&amp;nbsp;they represent.&lt;/p&gt;&#xA;&lt;h3&gt;How your Razor Code receives Entities&lt;/h3&gt;&#xA;&lt;p&gt;When things are configured correctly, the right entities are given to your Razor-template so you can just show them or perform calculations as you need them. These are the common ways for the entities to be provided to your template:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;On simple templates, the UI allows users to add/edit content of a specific type (configured in the View). This content Entity is always available in your code in the variable called&amp;nbsp;&lt;code&gt;MyItem&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;Content&lt;/code&gt;&amp;nbsp;on older Razors.&lt;/li&gt;&#xA;&lt;li&gt;On templates which expect many items of the same type,&amp;nbsp;&lt;code&gt;MyItem&lt;/code&gt;/&lt;code&gt;Content&lt;/code&gt;&amp;nbsp;contains the first item only. To access all (for iterating and showing each one) the Entities are in a variable called&amp;nbsp;&lt;code&gt;MyItems&lt;/code&gt;&amp;nbsp;(&lt;code&gt;Data&lt;/code&gt;&amp;nbsp;on older Razors).&lt;/li&gt;&#xA;&lt;li&gt;If your code needs to find other data in the App, it can access it through&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;li&gt;If your code want to get Entities which have been pre-selected/filtered etc. through a query, it will get them from&amp;nbsp;&lt;code&gt;Query&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;In this example the template is configured to contain an Entity of the type&amp;nbsp;&lt;code&gt;Person&lt;/code&gt;&amp;nbsp;and has these fields:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;FirstName: a string (text)&lt;/li&gt;&#xA;&lt;li&gt;LastName: a string&lt;/li&gt;&#xA;&lt;li&gt;Birthday: a date&lt;/li&gt;&#xA;&lt;li&gt;Mugshot: a link to an image file&lt;/li&gt;&#xA;&lt;li&gt;Awards: a reference to one or more other Entities which describe awards&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;So the following examples will show how to put the values in these fields into the HTML.&lt;/p&gt;&#xA;&lt;p&gt;In the new typed&amp;nbsp;&lt;code&gt;RazorPro&lt;/code&gt;&amp;nbsp;the current item is on a variable called&amp;nbsp;&lt;code&gt;MyItem&lt;/code&gt;. It's a typed object, so to read properties you need to specify what you want it, eg.&amp;nbsp;&lt;code&gt;@MyItem.String(&quot;FirstName&quot;)&lt;/code&gt;.&lt;br&gt;This sample also uses the&amp;nbsp;&lt;code&gt;@MyItem.Picture(...)&lt;/code&gt;&amp;nbsp;to automatically show a responsive image on the page.&lt;/p&gt;&#xA;&lt;p&gt;In the dynamic Razor base classes lke&amp;nbsp;&lt;code&gt;Razor14&lt;/code&gt;&amp;nbsp;the current item is always available on the variable called&amp;nbsp;&lt;code&gt;Content&lt;/code&gt;. It's a&amp;nbsp;&lt;code&gt;dynamic&lt;/code&gt;&amp;nbsp;object, so you can just type things like&amp;nbsp;&lt;code&gt;@Content.FirstName&lt;/code&gt;&amp;nbsp;to access the properties.&lt;br&gt;This sample also uses the&amp;nbsp;&lt;code&gt;@Kit.Image.Img(...)&lt;/code&gt;&amp;nbsp;to automatically show a responsive image on the page.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -35484,7 +35612,7 @@
       <Value Key="TitleForPicker" Value="block-read-page - Working with Entity (Item) Values" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -35496,13 +35624,16 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it. The current content item (if it's just one) is always available on the variable called&amp;nbsp;&lt;code&gt;Content&lt;/code&gt;. It's a&amp;nbsp;&lt;code&gt;dynamic&lt;/code&gt;&amp;nbsp;object, so you can just type things like&amp;nbsp;&lt;code&gt;@Content.FirstName&lt;/code&gt;&amp;nbsp;to access the properties.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -35539,7 +35670,7 @@
       <Value Key="TitleForPicker" Value="block-read-all-page - Working with Block Contents" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Variants" Value="" Type="String">
+      <Value Key="Variants" Value="strong,typed,dyn" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
@@ -37904,6 +38035,260 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="68713d9d-aeaa-4df8-8c7d-58006b8119c2">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Null Coalescing &lt;code&gt;??&lt;/code&gt; operator C# 7.3+&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-conditions-null-coalescing" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="95b52d63-970f-49d0-a666-5008f55fe812">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;This requires C# 8 to work, so you must have&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Dnn: 2sxc 17 with the CodeDom and inherits from RazorTyped or newer&amp;nbsp;&lt;em&gt;and&lt;/em&gt; have a &lt;code&gt;@using AppCode&lt;/code&gt; (to force-use the latest compiler with C# 8)&lt;/li&gt;&#xA;&lt;li&gt;Oqtane: Should always work&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Null Coalescing Assignment &lt;code&gt;??=&lt;/code&gt; operator C# 8+&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-conditions-null-coalescing-assignment" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="9ef8912e-e5c0-4979-b1a1-965d00c0a0a6">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Switch Statements&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-conditions-switch" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="6d8157a9-fdd9-4d44-af58-832a2cd3dd17">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Switch Expressions C# 8&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-conditions-switch-expression" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="dbfa6f1f-31d0-48a6-b583-1d066ded4d6a" Json="True">
+      <Value Key="AllowEdit" Value="True" Type="Boolean" />
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
+      <Value Key="Name" Value="CustomDataSourceCustomized" Type="String" />
+      <Value Key="Params" Value="" Type="String" />
+      <Value Key="StreamsOut" Value="Default,Header" Type="String" />
+      <Value Key="StreamWiring" Value="4990fd86-384e-48b6-ae40-9ec0969f021b:Default&gt;Out:Default" Type="String" />
+      <Value Key="TestParameters" Value="" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&quot;ShowDataSourceDetails&quot;:true}" Type="String" />
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="DataPipelinePart" AttributeSetName="DataPipelinePart" EntityGUID="4990fd86-384e-48b6-ae40-9ec0969f021b" Json="True" KeyGuid="dbfa6f1f-31d0-48a6-b583-1d066ded4d6a">
+      <Value Key="Description" Value="" Type="String" />
+      <Value Key="Name" Value="Customized DataSource" Type="String" />
+      <Value Key="PartAssemblyAndType" Value="VisualQueryCustomized" Type="String" />
+      <Value Key="VisualDesignerData" Value="{&#xD;&#xA;  &quot;Top&quot;: 200,&#xD;&#xA;  &quot;Left&quot;: 420&#xD;&#xA;}" Type="String" />
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="bea8c8c2-ae6c-40ec-90ed-223d93612da3" AttributeSetName="TutorialObjectInfo" EntityGUID="e157ff71-a6d4-4477-ba00-5625cbe3ab0d">
+      <Value Key="Description" Value="&lt;p&gt;This data source has a bunch of properties such as icon, help-link etc. to assist when creating a query.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Images" Value="" Type="Hyperlink" />
+      <Value Key="NameId" Value="query-customdatasourcecustomized" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="the Customized DataSource" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="aacf4f08-80ef-49b5-a7ae-48cab21beaab">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Razor using Typed Models&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="razor-partial-box-razormodel-string" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -37952,6 +38337,7 @@
     <File Id="6417" RelativePath="adam\Tutorial-Razor\6cecZ_IQ30a110FfCQck1Q\Images\use-in-visual-query.jpg" />
     <File Id="6426" RelativePath="adam\Tutorial-Razor\7CIzsWWCsEeg5rLqxM6DCA\Intro\query-authors-with-books.png" />
     <File Id="5984" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\Per Anhalter.jpg" />
+    <File Id="6582" RelativePath="adam\Tutorial-Razor\cf9X4dSmd0S6AFYly-OrDQ\Images\Snag_373cbe94.png" />
     <File Id="6099" RelativePath="adam\Tutorial-Razor\EfPWrTxVJUO28sgaeOjq3Q\Image\app-icon.png" />
     <File Id="6418" RelativePath="adam\Tutorial-Razor\El9vl3tjpkaPvXrldB7YXg\Images\app-data-sources.jpg" />
     <File Id="6100" RelativePath="adam\Tutorial-Razor\G5TPkrD7q0GZE3BvTx790w\Image\app-icon.png" />
@@ -38028,6 +38414,7 @@
     <Folder Id="14087" RelativePath="adam/Tutorial-Razor/5vCHQdDArke38qk5hGmItQ/Images/" />
     <Folder Id="14080" RelativePath="adam/Tutorial-Razor/6cecZ_IQ30a110FfCQck1Q/Images/" />
     <Folder Id="14096" RelativePath="adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/" />
+    <Folder Id="14413" RelativePath="adam/Tutorial-Razor/cf9X4dSmd0S6AFYly-OrDQ/Images/" />
     <Folder Id="13646" RelativePath="adam/Tutorial-Razor/EfPWrTxVJUO28sgaeOjq3Q/Image/" />
     <Folder Id="14082" RelativePath="adam/Tutorial-Razor/El9vl3tjpkaPvXrldB7YXg/Images/" />
     <Folder Id="13648" RelativePath="adam/Tutorial-Razor/G5TPkrD7q0GZE3BvTx790w/Image/" />
@@ -38098,6 +38485,7 @@
     <Folder Id="12760" RelativePath="adam/Tutorial-Razor/bEcZa55BgUKV7tf58UHOnw/Icon/" />
     <Folder Id="14141" RelativePath="adam/Tutorial-Razor/bku-zIRfuU-Dt1oA9OrSFQ/" />
     <Folder Id="3098" RelativePath="adam/Tutorial-Razor/cAcM-LSz_UelGZ5AYQdlrw/" />
+    <Folder Id="14412" RelativePath="adam/Tutorial-Razor/cf9X4dSmd0S6AFYly-OrDQ/" />
     <Folder Id="13613" RelativePath="adam/Tutorial-Razor/D868ofIYSU66U3yVYdyWhg/" />
     <Folder Id="13614" RelativePath="adam/Tutorial-Razor/D868ofIYSU66U3yVYdyWhg/FeatureLogo/" />
     <Folder Id="14158" RelativePath="adam/Tutorial-Razor/DlmopQlNIU6n2TTZ5Y3xMw/" />

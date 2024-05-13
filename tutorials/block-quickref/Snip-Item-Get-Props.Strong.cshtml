@@ -1,0 +1,52 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{/*! Tut.Tabs=model:Persons,ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyItem = AsItem(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
+/*!*/}
+@{
+  var person = As<Persons>(MyItem);
+}
+<h4>Douglas Adams on <code>MyItem</code></h4>
+<p>
+  Id, Guid and Title are built-in properties
+</p>
+<ol>
+  <li>Id:             @person.Id</li>
+  <li>Guid:           @person.Guid</li>
+  <li>Title:          @person.Title</li>
+</ol>
+
+<p>Since <code>person</code> is fully typed, you can just call it's properties.</p>
+<ol>
+  <li>Name:           @person.FirstName</li>
+  <li>Birthday:       @person.Birthday</li>
+  <li>Is Alive:       @person.IsAlive</li>
+  <li>Fav Num. Int:   @person.FavoriteNumber</li>
+</ol>
+
+<p>Use <code>Get(…)</code> if you don't care about the var type or <code>Get&lt;T&gt;(…)</code> or typed methods such as <code>.String(…)</code>.</p>
+<ol>
+  <li>Name:           @person.Get("FirstName")</li>
+  <li>Birthday:       @person.Get("Birthday")</li>
+  <li>Birthday Get&lt;string&gt;    @(person.Get<string>("Birthday"))</li>
+  <li>Birthday Get&lt;DateTime&gt;  @(person.Get<DateTime>("Birthday"))</li>
+  <li>Name (strings): @person.String("FirstName")</li>
+  <li>Birthday:       @person.DateTime("Birthday").ToString("d")</li>
+  <li>Is Alive:       @person.Bool("IsAlive")</li>
+  <li>Fav Num. Int:   @person.Int("FavoriteNumber")</li>
+  <li>Fav Num. Float: @person.Float("FavoriteNumber")</li>
+</ol>
+
+<p>Use <code>fallback: …</code> to handle empty values or conversion problems.</p>
+<ol>
+  @* this has no effect, as the value works *@
+  <li>Name (strings): @person.String("FirstName", fallback: "unknown")
+  <li>Name (int):     @person.Int("FirstName", fallback: 12345)
+</ol>
+
+
+<p title='@person.Attribute("FirstName")'>
+  Use <code>.Attribute(…)</code> to safely encode properties.
+  Mouse over this to see the effect.
+</p>

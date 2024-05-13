@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{/*! Tut.Tabs=model:Persons,model:PersonAwards,ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyItem = AsItem(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
+/*!*/}
+<h4>Use <code>.Child("Awards")</code> to get one</h4>
+@{
+  var person = As<Persons>(MyItem);
+  var awards = person.Awards; // of type List<PersonAwards>
+  var award = awards.FirstOrDefault();
+}
+<ol>
+  <li>Award ID:          @award.Id</li>
+  <li>Award Name:        @award.Name</li>
+  <li>Award Name (Path): @person.String("Awards.Name")</li>
+</ol>
+
+<p>Use ContainsKey(…), IsEmpty(…), IsNotEmpty(…)</p>
+<ol>
+  <li>ContainsKey("Awards"):  @person.ContainsKey("Awards")</li>
+  <li>ContainsKey("Awards2"): @person.ContainsKey("Awards2")</li>
+  <li>IsEmpty("Awards"):      @person.IsEmpty("Awards")</li>
+  <li>IsNotEmpty("Awards"):   @person.IsNotEmpty("Awards")</li>
+  <li>IsEmpty("Awards.Name"): @person.IsEmpty("Awards.Name")</li>
+  <li>IsEmpty("Awards2.Name"): @person.IsEmpty("Awards2.Name")</li>
+  <li>IsEmpty("Awards.NameX"): @person.IsEmpty("Awards.NameX")</li>
+</ol>
+
+<h4>Use <code>.Children("Awards")</code> to get all</h4>
+<span>Award Count:       @person.Awards.Count()</span>
+<ol>
+  @foreach (var personAward in person.Awards)
+  {
+    <li>Award: @personAward.Name</li>
+  }
+</ol>

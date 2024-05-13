@@ -1,0 +1,43 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{/*! Tut.Tabs=model:Persons,model:QuickRefContentPresentation,ViewConfig */
+  // 2sxclint:disable:no-Presentation-in-quotes - it's just used as a stream-name
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
+  var MyItems = AsItems(itemEntities as object);
+  var prepPres = AsList<QuickRefContentPresentation>(viewCnf.PresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
+  var presCount = 0;
+/*!*/}
+@{
+  // Customize the items so that they are typed, with presentation of another known type
+  var persons = AsList<Persons>(MyItems);
+}
+<ul>
+  @foreach (var item in persons) {
+    // This is typed as QuickRefContentPresentation
+    var pres = item.Presentation;
+    <hide-silent>
+    @{
+      /* Silent patching for tutorial only, as it's not a standalone view */
+      pres = prepPres.Skip(presCount++).First();
+    }
+    </hide-silent>
+
+    // check if empty, and using nameof to be sure we spelled it right
+    var headingTagExists = pres.IsNotEmpty(nameof(pres.HeadingType));
+    var title = item.Title + (pres.Highlight ? " 🌟" : "");
+    <li>
+      @* Create a heading tag the size specified in Presentation *@
+      @if (headingTagExists) {
+        @Kit.HtmlTags.Custom(pres.HeadingType).Wrap(title)
+      } else {
+        @title
+      }
+      <br>
+      <em>FYI: Heading @(pres.IsEmpty("HeadingType") ? "none" : pres.HeadingType)</em>
+      <div style='color: @pres.Attribute("Color")'>
+        @item.Html("Contents")
+      </div>
+    </li>
+  }
+</ul>

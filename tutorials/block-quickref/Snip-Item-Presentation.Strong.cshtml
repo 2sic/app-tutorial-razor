@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{/*! Tut.Tabs=model:QuickRefContentPresentation,ViewConfig */
+  // 2sxclint:disable:no-Presentation-in-quotes - it's just used as a stream-name
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
+  var MyItem = AsItem(itemEntities as object);
+  var prepPres = As<QuickRefContentPresentation>(viewCnf.PresList(itemEntities, padWithNull: false, query: "QuickRef-Content-Simulation", stream: "Presentation") as object);
+/*!*/}
+<h4>A Person on <code>MyItem</code></h4>
+@{
+  var itemPres = As<QuickRefContentPresentation>(MyItem.Presentation);
+}
+@{/*! Silent patching for tutorial only, as it's not a standalone view  */
+ itemPres = prepPres;
+/*!*/}
+<p>
+  Note that the following should be @itemPres.Color (probably green)
+</p>
+<p style='color: @itemPres.Attribute("Color")'>
+  @MyItem.Title
+</p>

@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{/*! Tut.Tabs=model:Persons,ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var MyItems = AsItems(viewCnf.List(query: "QuickRef-Persons-Selected") as object);
+/*!*/}
+<h4>Loop persons which were added to this view</h4>
+<ul>
+  @foreach (var person in AsList<Persons>(MyItems)) {
+    <li>
+      @person.Picture("Mugshot", settings: "Square", width: 50, imgClass: "rounded-circle")
+      @person.FirstName @person.LastName
+    </li>
+  }
+</ul>
