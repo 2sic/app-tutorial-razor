@@ -1,0 +1,9 @@
+@inherits Custom.Hybrid.RazorTyped<(string, string)>
+@{
+  // pick up parameters which were passed in
+  var label = Model.Item1; // Model.Item1 is a string, tuple part 1
+  var color = Model.Item2 ?? "black"; // Model.Item2 is a string, tuple part 2
+}
+<div style="border: solid 2px @color">
+  @label
+</div>

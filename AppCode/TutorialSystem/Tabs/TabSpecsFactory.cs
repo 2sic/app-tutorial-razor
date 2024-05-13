@@ -75,6 +75,11 @@ namespace AppCode.TutorialSystem.Tabs
             return new TabSpecs(TabType.File, label ?? finalPath, value: finalPath, original: t);
           }
           
+          // Handle razormodel: references - do before 'model:' to avoid conflicts
+          (found, label, value) = SplitTabEntry(entry, "razormodel:");
+          if (found)
+            return new TabSpecs(TabType.RazorModel, label: /* label != "" ? label : */ $"Razor Model: {value}.cs", value: value, original: t);
+
           // Handle model: references
           (found, label, value) = SplitTabEntry(entry, "model:");
           if (found)

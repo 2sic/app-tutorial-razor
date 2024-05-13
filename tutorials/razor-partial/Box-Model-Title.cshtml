@@ -1,0 +1,8 @@
+@inherits Custom.Hybrid.RazorTyped<string>
+@{
+  // pick up parameters which were passed in
+  var label = Model; // Model, not MyModel, is a string, because of RazorTyped<string>
+}
+<div style="border: solid 2px black">
+  @label
+</div>

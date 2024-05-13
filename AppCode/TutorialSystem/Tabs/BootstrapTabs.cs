@@ -39,7 +39,7 @@ namespace AppCode.TutorialSystem.Tabs
     private ITag TabLi(TabSpecs tab, string prefix, bool active) {
       return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
         "\n",
-        IndentBtn + "<!-- Tab button -->\n",
+        IndentBtn + $"<!-- Tab button '{tab.Original}', type: {tab.Type} -->\n",
         IndentBtn,
         TabButton(prefix, tab.DisplayName, tab.DomId, active),
         "\n" + IndentLi

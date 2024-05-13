@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Razor
+@*!
+Tut.Tabs=file:./Box-Model-Title.cshtml,file:./Box-Model-Title-Color.cshtml,file:./Box-Model-TutTitleColor.cshtml,razormodel:TutTitleColorModel
+!*@
+@* In this example the Razor expects a string-only parameter *@
+@Html.Partial("Box-Model-Title.cshtml", "Hello, this is the first line")
+
+@* In this example the Razor expects a tuple with 2 strings *@
+@Html.Partial("Box-Model-Title-Color.cshtml", ("Second line!", "red"))
+
+@* This example uses a strictly typed model AppCode.Razor.TutTitleColorModel *@
+@Html.Partial("Box-Model-TutTitleColor.cshtml", new TutTitleColorModel {
+  Title = "I'm last!",
+  Color = "blue"
+})

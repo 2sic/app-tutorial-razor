@@ -15,6 +15,7 @@ namespace AppCode.TutorialSystem.Tabs
     File,
     Model,
     DataSource,
+    RazorModel,
 
     Formulas,
     ViewConfig,

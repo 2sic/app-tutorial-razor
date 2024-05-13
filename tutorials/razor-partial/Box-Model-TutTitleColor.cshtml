@@ -1,0 +1,11 @@
+@inherits Custom.Hybrid.RazorTyped<AppCode.Razor.TutTitleColorModel>
+@using AppCode.Razor
+@{
+  // pick up parameters which were passed in
+  // The Model is of type AppCode.Razor.TutTitleColorModel
+  var label = Model.Title;
+  var color = Model.Color ?? "black";
+}
+<div style="border: solid 2px @color">
+  @label
+</div>

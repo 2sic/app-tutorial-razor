@@ -195,6 +195,11 @@ namespace AppCode.TutorialSystem.Sections
         return Tag.RawHtml(extended, generated);
       }
 
+      // RazorModel
+      if (tab.Type == TabType.RazorModel)
+        return FileHandler.GetTabFileContents($"/AppCode/Razor/{tab.Value}.cs");
+
+
       // If it's not a string, then it must be something prepared, typically IHtmlTags; return that
       if (!(tab.Body is string strResult))
         return tab.Body;
