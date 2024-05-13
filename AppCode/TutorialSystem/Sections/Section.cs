@@ -14,7 +14,7 @@ namespace AppCode.TutorialSystem.Sections
       Name = name;
       Item = item;
       TagsSvc = tags;
-      SectionFile = fileName;
+      CodeFile = fileName;
       Show = Acc.Item.DefaultStateIsOpen; // later we can add more conditions
       VariantMatch = variantMatch;
     }
@@ -50,7 +50,10 @@ namespace AppCode.TutorialSystem.Sections
       );
     }
 
-    public string SectionFile { get; private set; }
+    /// <summary>
+    /// The real code file after detecting the variant, eg. /some-path/Snip-identifier.Typed.Cshtml
+    /// </summary>
+    public string CodeFile { get; private set; }
 
     public IHtmlTag End() {
       return TagsSvc.RawHtml(

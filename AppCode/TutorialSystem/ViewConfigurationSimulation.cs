@@ -19,8 +19,6 @@ namespace AppCode.TutorialSystem
   {
     #region Constructor and Main Objects
 
-    private const string ViewConfigCode = "ViewConfig";
-
     public ViewConfigurationSimulation Setup(TabManager tabHandler) {
       TabHandler = tabHandler;
       return this;
@@ -115,8 +113,8 @@ namespace AppCode.TutorialSystem
       // Prepare: Verify the Tab "ViewConfig" was specified
       // throw new Exception("th:" + TabHandler);
       var th = TabHandler;
-      if (!th.HasTab(ViewConfigCode))
-        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
+      if (!th.HasTab(TabType.ViewConfig))
+        throw new Exception("Tab '" + TabType.ViewConfig + "' not found - make sure the view has this");
 
       IEnumerable<IEntity> data = null;
 
@@ -180,8 +178,8 @@ namespace AppCode.TutorialSystem
       var l = Log.Call<IDataSource>();
 
       // Prepare: Verify the Tab "ViewConfig" was specified
-      if (!TabHandler.HasTab(ViewConfigCode))
-        throw new Exception("Tab '" + ViewConfigCode + "' not found - make sure the view has this");
+      if (!TabHandler.HasTab(TabType.ViewConfig))
+        throw new Exception("Tab '" + TabType.ViewConfig + "' not found - make sure the view has this");
 
       var q = App.GetQuery(query, parameters: parameters);
       QueryName = query;

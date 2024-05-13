@@ -2,7 +2,6 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
 using System.Linq;
-using static AppCode.TutorialSystem.Constants;
 using AppCode.TutorialSystem.Tabs;
 using AppCode.TutorialSystem.Sections;
 
@@ -19,7 +18,7 @@ namespace AppCode.TutorialSystem.Wrappers
       // Tabs = (tabsCsv != null)
       //   ? tabsCsv.Split(',').ToList()
       //   : new List<string> { ResultTabName, SourceTabName };
-      TabSpecs = tabSpecs ?? new List<TabSpecs> { new TabSpecs(TabType.Results, ResultTabName), new TabSpecs(TabType.Source, SourceTabName) };
+      TabSpecs = tabSpecs ?? new List<TabSpecs> { TabSpecsFactory.Results(), TabSpecsFactory.Source() };
       // TabSelected = Tabs.Skip(selectSkip).First();
       TabSpecSelected = TabSpecs.Skip(selectSkip).First();
       TagCount = new TagCount(Name, true);

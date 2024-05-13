@@ -22,6 +22,7 @@ namespace AppCode.TutorialSystem.Tabs
 
     public readonly List<TabSpecs> TabSpecs;
     public bool HasTab(string tabName) => TabSpecs.Any(t => t.Label.Equals(tabName, StringComparison.InvariantCultureIgnoreCase));
+    public bool HasTab(TabType type) => TabSpecs.Any(t => t.Type == type);
 
     protected readonly SourceCode ScParent; // also used in Formulas
     private TutorialSnippet Item { get; set; }
@@ -46,8 +47,7 @@ namespace AppCode.TutorialSystem.Tabs
       if (SourceWrap != null)
       {
         Log.Add("SourceWrap: " + SourceWrap);
-        // TODO: 2dm
-        list.AddRange(SourceWrap.TabSpecs /*. Select(t => new TabSpecs(TabType.Unknown, t))*/);
+        list.AddRange(SourceWrap.TabSpecs);
       }
 
       if (TabSpecs.Any())
@@ -80,25 +80,19 @@ namespace AppCode.TutorialSystem.Tabs
       if (Item == null)
         return l(list, list.Count.ToString());
 
-      // Otherwise add some default tabs as needed
-      if (Item.IsNotEmpty(Constants.InDepthField))
-      {
-        Log.Add(Constants.InDepthField);
-        list.Add(new TabSpecs(TabType.InDepth, Constants.InDepthTabName));
-      }
-      if (Item.IsNotEmpty(Constants.NotesFieldName))
-      {
-        Log.Add(Constants.NotesFieldName);
-        list.Add(new TabSpecs(TabType.Notes, Constants.NotesTabName));
-      }
-      // TODO: OLD / NEW
-      if (Item.IsNotEmpty("Tutorials"))
-      {
-        Log.Add("Tutorials");
-        list.Add(new TabSpecs(TabType.TutorialReferences, Constants.TutorialsTabName));
-      }
+      // Otherwise add some default tabs based on the data available
+      AddIfFound(nameof(Item.InDepthExplanation), () => TabSpecsFactory.InDepth());
+      AddIfFound(nameof(Item.Notes), () => TabSpecsFactory.Notes());
+      AddIfFound(nameof(Item.Tutorials), () => TabSpecsFactory.TutorialsRef());
 
       return l(list, list.Count.ToString());
+
+      void AddIfFound(string key, Func<TabSpecs> factory)
+      {
+        if (Item.IsEmpty(key)) return;
+        Log.Add(key);
+        list.Add(factory());
+      }
     }
 
     #endregion

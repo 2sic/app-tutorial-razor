@@ -2,30 +2,14 @@ using ToSic.Razor.Blade;
 
 namespace AppCode.TutorialSystem.Tabs
 {
-  public enum TabType
-  {
-    Unknown,
-    File,
-    Model,
-    DataSource,
-    Formulas,
-    ViewConfig,
-    InDepth,
-    Notes,
-    Results,
-    ResultsAndSource,
-    Source,
-    TutorialReferences,
-    Other
-  }
 
   public class TabSpecs
   {
     private object body;
 
-    public TabSpecs(TabType type, string everything): this("predefined", everything, everything, everything) { }
+    public TabSpecs(TabType type, string everything): this(type, everything, everything, everything) { }
 
-    public TabSpecs(string type, string label, string value, string original) {
+    public TabSpecs(TabType type, string label, string value, string original) {
       Type = type;
       Label = label;
       Value = value;
@@ -64,22 +48,15 @@ namespace AppCode.TutorialSystem.Tabs
     }
 
     public string Original { get; }
-    public string Type { get; }
-
-    public TabType TabType => Type switch
-    {
-      Constants.ViewConfigCode => TabType.ViewConfig,
-      Constants.InDepthField => TabType.InDepth,
-      _ => TabType.Other
-    };
+    public TabType Type { get; }
 
     public override string ToString() => $"Label: '{Label}'; Value: '{Value}' ({Type}); #{DomId}";
 
     private string NiceName() {
       var n = Label;
       // If a known tab identifier, return the nice name
-      if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
-      if (n == Constants.InDepthField) return Constants.InDepthTabName;
+      // if (n == Constants.ViewConfigCode) return Constants.ViewConfigTabName;
+      // if (n == Constants.InDepthField) return Constants.InDepthTabName;
       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
       if (n.EndsWith(".csv.txt")) n = n.Replace(".csv.txt", ".csv");
       if (n.StartsWith("file:")) return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":");

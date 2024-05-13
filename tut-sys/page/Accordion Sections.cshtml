@@ -2,17 +2,19 @@
 @using ToSic.Razor.Blade
 @using AppCode.Data
 @using AppCode.Razor
-@using AppCode.TutorialSystem.Sections
+@using AppCode.TutorialSystem
 @using AppCode.TutorialSystem.Razor
+@using AppCode.TutorialSystem.Sections
 @using AppCode.Tutorial
 
 <!-- Accordion Sections / Drawers -->
 @foreach (Section acs in Model.Accordion.Sections(Path)) {
   TutorialSnippet item = acs.Item;
   var runCode = item.IsEmpty("Formula");
-  var codeFile = runCode ? acs.SectionFile : "ignore";
-  if (codeFile != null) {
-    var snip = Sys.SourceCode.SnipFromItem(item: item, file: codeFile);
+  var codeFile = runCode ? acs.CodeFile : Constants.IgnoreSourceFile;
+  if (codeFile != null)
+  {
+    var snip = Sys.SourceCode.SnipFromItem(item: item, codeFile: codeFile);
     var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
 
     <!-- code file -->
@@ -24,7 +26,9 @@
       @snip.SnipEnd()
     @acs.End()
     <!-- /code file -->
-  } else if (MyUser.IsSystemAdmin) {
+  }
+  else if (MyUser.IsSystemAdmin)
+  {
     <div @Kit.Toolbar.Empty(item).Edit().New()>
       SysUserOnly: This section doesn't exist: <strong>@acs.TutorialId</strong> in <em>@Model.Accordion.Variant</em>
     </div>

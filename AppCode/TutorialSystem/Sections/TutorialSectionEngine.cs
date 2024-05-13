@@ -78,7 +78,7 @@ namespace AppCode.TutorialSystem.Sections
     protected ITag TabsBeforeContent()
     {
       var tabs = TabHandler.CompleteTabs;
-      var active = TabHandler.ActiveTab; // TabHandler.ActiveTabName;
+      var active = TabHandler.ActiveTab;
       var l = Log.Call<ITag>("tabs (" + tabs.Count() + "): " + TabHandler.TabNamesDebug + "; active: " + active);
 
       var outputOpen = SourceWrap?.OutputOpen();
@@ -87,16 +87,14 @@ namespace AppCode.TutorialSystem.Sections
         return l(outputOpen, "no tabs");
 
       var firstTab = tabs.FirstOrDefault();
-      var firstName = firstTab.DisplayName;
-      // var firstIsActive = active == null || active == firstName;
-      var firstIsActive = /* active == null || */ active.DisplayName == firstTab.DisplayName;
+      var firstIsActive = active.DisplayName == firstTab.DisplayName;
       var result = Tag.RawHtml(
         // Tab headers
         BsTabs.TabList(TabPrefix, tabs, active),
         // Tab bodies - must open the first one
         BsTabs.TabContentGroupOpen(),
         // Open the first tab-body item IF the snippet is right after this
-        (firstName == ResultTabName || firstName == ResultAndSourceTabName)
+        (firstTab.Type == TabType.Results || firstTab.Type == TabType.ResultsAndSource)
           ? BsTabs.TabContentOpen(TabPrefix, firstTab.DomId, firstIsActive)
           : null,
         // If we have a source-wrap, add it here
@@ -111,10 +109,8 @@ namespace AppCode.TutorialSystem.Sections
     public ITag SnipEnd()
     {
       var tabs = TabHandler.CompleteTabs;
-      // var tabContents = TabHandler.TabContents;
-      // var names = TabHandler.TabNames;
       // Logging
-      var active = TabHandler.ActiveTab;// TabHandler.ActiveTabName;
+      var active = TabHandler.ActiveTab;
       var l = Log.Call<ITag>("tabPfx:" + TabPrefix 
         + "; TabNames: " + TabHandler.TabNamesDebug
         + "; results:" + tabs.Count()
@@ -135,7 +131,8 @@ namespace AppCode.TutorialSystem.Sections
         html = html.Add("<!-- " + msg + "-->");
 
         // Special: if it's the ResultTab (usually the first) - close
-        if (name == ResultTabName) {
+        if (tab.Type == TabType.Results) // name == ResultTabName)
+        {
           Log.Add("Contents of: " + ResultTabName);
           if (SourceWrap != null) html = html.Add(SourceWrap.OutputClose());
           html = html.Add(BsTabs.TabContentClose());
@@ -143,7 +140,8 @@ namespace AppCode.TutorialSystem.Sections
         }
 
         // Special case: Source-and-Result Tab
-        if (name == ResultAndSourceTabName) {
+        if (tab.Type == TabType.ResultsAndSource) //  name == ResultAndSourceTabName)
+        {
           Log.Add("snippetInResultTab - SourceWrap: " + SourceWrap);
           html = html.Add(SourceWrap?.OutputClose(), SourceWrapped());
           // Reliably close the "Content" section IF it had been opened
@@ -201,16 +199,18 @@ namespace AppCode.TutorialSystem.Sections
       if (item == null) return result;
 
       // Handle case Tutorials
-      if (strResult == TutorialsTabName) {
-        var liLinks = Item.Children("Tutorials").Select(tutPage => $"\n    {TutLinks.TutPageLink(tutPage)}\n");
+      if (tab.Type == TabType.TutorialReferences)
+      {
+        var liLinks = Item.Tutorials.Select(tutPage => $"\n    {TutLinks.TutPageLink(tutPage)}\n");
         return Tag.Ol(liLinks);
       }
 
       // Handle case Notes
-      if (strResult == NotesTabName) {
-        if (item.IsEmpty(NotesFieldName)) return NotesTabName + " not found";
+      if (tab.Type == TabType.Notes)// strResult == NotesTabName) {
+      {
+        if (item.IsEmpty(nameof(item.Notes))) return $"{nameof(item.Notes)} not found";
 
-        var notesHtml = item.Children(NotesFieldName).Select(tMd => Tag.RawHtml(
+        var notesHtml = item.Notes.Select(tMd => Tag.RawHtml(
           "\n    ",
           Tag.Div().Class("alert alert-" + tMd.String("NoteType"))
             .Attr(Kit.Toolbar.Empty().Edit(tMd))
@@ -224,27 +224,30 @@ namespace AppCode.TutorialSystem.Sections
       }
 
       // handle case In-Depth Explanations
-      if (strResult == InDepthTabName) {
-        if (item.IsEmpty(InDepthField)) return InDepthTabName + " not found";
+      if (tab.Type == TabType.InDepth) // strResult == InDepthTabName)
+      {
+        if (item.IsEmpty(nameof(Item.InDepthExplanation))) return $"{nameof(Item.InDepthExplanation)} not found";
         return Tag.RawHtml(
           "\n",
-          item.String(InDepthField),
+          item.InDepthExplanation,
           Fancybox.Gallery(item, "InDepthImages"),
           "\n"
         );
       }
 
       // Handle Case ViewConfig
-      if (strResult == ViewConfigCode) {
+      if (tab.Type == TabType.ViewConfig)
+      {
         return Tag.Div().Wrap(
-          Tag.H4(ViewConfigTabName),
+          Tag.H4(tab.Label),
           Tag.P("This is how this view would be configured for this sample."),
           ViewConfig.TabContents()
         );
       }
 
       // handle case Formulas
-      if (strResult == FormulasTabName) {
+      if (tab.Type == TabType.Formulas) // strResult == FormulasTabName)
+      {
         var formulaSpecs = item.Formula;
         return Formulas.Show(formulaSpecs, false);
       }

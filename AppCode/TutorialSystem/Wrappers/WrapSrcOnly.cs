@@ -12,15 +12,15 @@ namespace AppCode.TutorialSystem.Wrappers
   internal class WrapSrcOnly: Wrap
     {
       public WrapSrcOnly(TutorialSectionEngine section) : base(section, "WrapSrcOnly",
-        tabSpecs: new List<TabSpecs> { new TabSpecs(TabType.Source, Constants.SourceTabName) }
+        tabSpecs: new List<TabSpecs> { TabSpecsFactory.Source() }
       )
       { }
 
-      public override ITag SourceOpen() { return Tag.RawHtml(
-        "\n",
-        Comment("")
-      ); }
+    public override ITag SourceOpen() => Tag.RawHtml(
+      "\n",
+      Comment("")
+    );
 
-      public override ITag SourceClose() { return Tag.RawHtml(Comment("/")); }
-    }
+    public override ITag SourceClose() => Tag.RawHtml(Comment("/"));
+  }
 }
