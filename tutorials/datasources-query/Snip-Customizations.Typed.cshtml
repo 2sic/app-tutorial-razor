@@ -3,8 +3,17 @@
 @using System.Linq
 @using ToSic.Eav.DataSources
 @{/*! Tut.Tabs=datasource:VisualQueryCustomized, ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  var Data = viewCnf.Query(query: "CustomDataSourceCustomized") as ToSic.Eav.DataSource.IDataSource;
 /*!*/}
-@* TODO:: @2dm Call the VisualQuery  *@
 
-@* To Customizations the VisualQuery, you can either use the VisualQueryCustomized.cs file. 
-Look at the file for more information about VisualQuery. *@
+<h3>Data in the Query (@Data.List.Count())</h3>
+<p>
+  The data coming out of this DataSource is not important for the demo here.
+  What's important is how the DataSource is customized to have specific properties
+  in the VisualQuery.
+</p>
+<p>
+  To Customizations the VisualQuery, you can either use the VisualQueryCustomized.cs file. 
+  Look at the file for more information about VisualQuery.
+</p>
