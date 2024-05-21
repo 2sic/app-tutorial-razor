@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.RazorTyped
+<h4>Use a Dictionary based Source</h4>
+@{
+  var template = "<strong>[Values:Greeting]</strong> <br> <em>[Values:Intro]</em>";
+
+  var dic = new Dictionary<string, string> {
+    { "Greeting", "Hello there 👋🏾" },
+    { "Intro", "This is a simple dic-sample" }
+  };
+
+  var dicSource = Kit.Template.CreateSource("Values", dic);
+  var engine = Kit.Template.Empty(sources: new [] { dicSource });
+}
+<ul>
+  <li>
+    <strong>Template:</strong> <code>@template</code>
+  </li>
+  <li>
+    <strong>Result:</strong>
+    <br>
+    <code>
+    @engine.Parse(template)
+    </code>
+  </li>
+  <li>
+    <strong>Result Raw:</strong>
+    <br>
+    @Html.Raw(engine.Parse(template))
+  </li>
+</ul>

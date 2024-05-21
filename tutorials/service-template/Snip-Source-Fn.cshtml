@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.RazorTyped
+<h4>Use a Function based Source</h4>
+@{
+  var fnTemplate = "I just wanted to say [Hello:World]";
+  var source1 = Kit.Template.CreateSource("Hello", key => $"Hello {key} from a function");
+  var engine1 = Kit.Template.Empty(sources: new [] { source1 });
+
+  var helloBye = "[Hello:John] [Bye:Samantha]";
+  var source2 = Kit.Template.CreateSource("Bye", key => $"Goodbye {key} from a function");
+  var engine2 = Kit.Template.Empty(sources: new [] { source1, source2 });
+}
+<ul>
+  <li>
+    <strong>Template:</strong> <code>@fnTemplate</code>
+    <br>
+    <strong>Result:</strong> @engine1.Parse(fnTemplate)
+  </li>
+  <li>
+    <strong>Template:</strong> <code>@helloBye</code>
+    <br>
+    <strong>Result:</strong> @engine2.Parse(helloBye)
+  </li>
+</ul>

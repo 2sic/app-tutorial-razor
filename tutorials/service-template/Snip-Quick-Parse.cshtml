@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.RazorTyped
+<h4>Use Quick and simple <code>Parse(...)</code></h4>
+@{
+  var dateTemplate = "It's already [DateTime:Now]";
+  var dateFormatted = "It's already [DateTime:Now|yyyy-MM-dd HH:mm:ss]";
+  var urlParam = "The current tutorial is [QueryString:tut]";
+  var urlTemplate = "The current URL is [Request:Url]";
+}
+<ul>
+  <li>
+    <strong>Template:</strong> <code>@dateTemplate</code>
+    <br>
+    <strong>Result:</strong> @Kit.Template.Parse(dateTemplate)
+  </li>
+  <li>
+    <strong>Template:</strong> <code>@dateFormatted</code>
+    <br>
+    <strong>Result:</strong> @Kit.Template.Parse(dateFormatted)
+  <li>
+    <strong>Template:</strong> <code>@urlParam</code>
+    <br>
+    <strong>Result:</strong> @Kit.Template.Parse(urlParam)
+  </li>
+  <li>
+    <strong>Template:</strong> <code>@urlTemplate</code>
+    <br>
+    <strong>Result:</strong> @Kit.Template.Parse(urlTemplate)
+  </li>
+
+</ul>

@@ -1,0 +1,32 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+<h4>Use a Entity/Item based Source</h4>
+@{
+  var template = @"<strong>[Person:FirstName] [Person:LastName]</strong>
+    <br>
+    <em>Fav. Number: [Person:FavoriteNumber]</em>";
+
+  
+
+  var item = App.Data.GetAll<Persons>().First();
+
+  var dicSource = Kit.Template.CreateSource("Person", item);
+  var engine = Kit.Template.Empty(sources: new [] { dicSource });
+}
+<ul>
+  <li>
+    <strong>Template:</strong> <code>@template</code>
+  </li>
+  <li>
+    <strong>Result:</strong>
+    <br>
+    <code>
+    @engine.Parse(template)
+    </code>
+  </li>
+  <li>
+    <strong>Result Raw:</strong>
+    <br>
+    @Html.Raw(engine.Parse(template))
+  </li>
+</ul>
