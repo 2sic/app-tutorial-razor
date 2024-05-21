@@ -1,32 +1,29 @@
 @inherits Custom.Hybrid.RazorTyped
 @using AppCode.Data
-<h4>Use a Entity/Item based Source</h4>
+<h4>Use Item-Source with Template in another Item</h4>
 @{
-  var template = @"<strong>[Person:FirstName] [Person:LastName]</strong>
-    <br>
-    <em>Fav. Number: [Person:FavoriteNumber]</em>";
+  // Get the template item
+  var templateItem = App.Data.GetAll<ServiceTemplateHtml>().First();
 
-  
-
+  // Get the item to use as source
   var item = App.Data.GetAll<Persons>().First();
-
-  var dicSource = Kit.Template.CreateSource("Person", item);
-  var engine = Kit.Template.Empty(sources: new [] { dicSource });
+  var source = Kit.Template.CreateSource("Person", item);
+  var engine = Kit.Template.Empty(sources: new [] { source });
 }
 <ul>
   <li>
-    <strong>Template:</strong> <code>@template</code>
+    <strong>Template:</strong> <code>@templateItem.Template</code>
   </li>
   <li>
     <strong>Result:</strong>
     <br>
     <code>
-    @engine.Parse(template)
+    @engine.Parse(templateItem.Template)
     </code>
   </li>
   <li>
-    <strong>Result Raw:</strong>
+    <strong>Result Raw HTML using Html(..., tweak: ...)</strong>
     <br>
-    @Html.Raw(engine.Parse(template))
+    @templateItem.Html("Template", tweak: t => t.Input(engine.Parse))
   </li>
 </ul>

@@ -1,0 +1,36 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+<h4>Use Merge to combine 2 sources</h4>
+@{
+  // Get the template item
+  var templateItem = App.Data.GetAll<ServiceTemplateHtml>().First();
+}
+<ul>
+  @foreach(var item in App.Data.GetAll<Persons>())
+  {
+    // Create a source for this loop iteration
+    var itemSource = Kit.Template.CreateSource("Main", item);
+
+    // Create an override-source to override certain values
+    var isFavorite = item.FirstName == "Douglas" || item.FirstName == "Terry"; 
+    var highlight = isFavorite ? " 💫" : "";
+    var overrideSource = Kit.Template.CreateSource("Override", new Dictionary<string, string> {
+      { "FirstName", item.FirstName + (isFavorite ? " 💫" : "") },
+      { "Introduction", isFavorite ? "is an awesome 🦾 author!" : null }
+    });
+
+    // Merge the sources so the custom one takes precedence
+    var mergedSource = Kit.Template.MergeSources("Person", sources: new [] {
+      overrideSource,
+      itemSource
+    });
+
+    // Get the default engine with this source
+    var engine = Kit.Template.Default(sources: new [] { mergedSource });
+
+    <li>
+      @* Call the engine, and give it a special source just for this loop *@
+      @templateItem.Html("Template", tweak: t => t.Input(engine.Parse))
+    </li>
+  }
+</ul>

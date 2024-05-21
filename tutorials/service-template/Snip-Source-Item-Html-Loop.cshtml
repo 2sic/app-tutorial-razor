@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+<h4>Use Item-Source with Template in another Item</h4>
+@{
+  // Get the template item
+  var templateItem = App.Data.GetAll<ServiceTemplateHtml>().First();
+}
+<ul>
+  @foreach(var item in App.Data.GetAll<Persons>())
+  {
+    // Create a source for this loop iteration
+    var source = Kit.Template.CreateSource("Person", item);
+
+    // Get the default engine with this source
+    var engine = Kit.Template.Default(sources: new [] { source });
+    <li>
+      @* Call the engine, and give it a special source just for this loop *@
+      @templateItem.Html("Template", tweak: t => t.Input(engine.Parse)
+      )
+    </li>
+  }
+</ul>
