@@ -11,10 +11,10 @@ namespace AppCode.Data
 }
 */
 
-// Generator:   CSharpDataModelsGenerator v17.07.01
+// Generator:   CSharpDataModelsGenerator v17.08.00
 // App/Edition: Tutorial-Razor/
 // User:        2sic Web-Developer
-// When:        2024-05-13 10:32:09Z
+// When:        2024-05-21 19:46:38Z
 using System;
 
 namespace AppCode.Data
@@ -24,7 +24,7 @@ namespace AppCode.Data
 
   /// <summary>
   /// XxxTutorialViewMetadata data. <br/>
-  /// Generated 2024-05-13 10:32:09Z. Re-generate whenever you change the ContentType. <br/>
+  /// Generated 2024-05-21 19:46:38Z. Re-generate whenever you change the ContentType. <br/>
   /// <br/>
   /// Default properties such as `.Title` or `.Id` are provided in the base class. <br/>
   /// Most properties have a simple access, such as `.Deprecated`. <br/>
