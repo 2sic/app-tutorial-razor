@@ -20,20 +20,28 @@ namespace AppCode.TutorialSystem.Tabs
 
     #region Static Create Standard TabSpecs
 
-    internal static TabSpecs InDepth(string label = null) => new TabSpecs(TabType.InDepth, label ?? Constants.InDepthTabName);
+    internal static TabSpecs InDepth(string label = null)
+      => new TabSpecs(TabType.InDepth, label ?? Constants.InDepthTabName);
 
-    internal static TabSpecs Notes(string label = null) => new TabSpecs(TabType.Notes, label ?? Constants.NotesTabName);
+    internal static TabSpecs Notes(string label = null)
+      => new TabSpecs(TabType.Notes, label ?? Constants.NotesTabName);
 
-    internal static TabSpecs TutorialsRef(string label = null) => new TabSpecs(TabType.TutorialReferences, label ?? Constants.TutorialsTabName);
+    internal static TabSpecs TutorialsRef(string label = null)
+      => new TabSpecs(TabType.TutorialReferences, label ?? Constants.TutorialsTabName);
 
-    internal static TabSpecs Results(string label = null) => new TabSpecs(TabType.Results, label ?? Constants.ResultTabName);
+    internal static TabSpecs Results(string label = null)
+      => new TabSpecs(TabType.Results, label ?? Constants.ResultTabName);
 
-    internal static TabSpecs Source(string label = null) => new TabSpecs(TabType.Source, label ?? Constants.SourceTabName);
-    internal static TabSpecs ResultsAndSource(string label = null) => new TabSpecs(TabType.ResultsAndSource, label ?? Constants.ResultAndSourceTabName);
+    internal static TabSpecs Source(string label = null)
+      => new TabSpecs(TabType.Source, label ?? Constants.SourceTabName);
+    internal static TabSpecs ResultsAndSource(string label = null)
+      => new TabSpecs(TabType.ResultsAndSource, label ?? Constants.ResultAndSourceTabName);
 
-    internal static TabSpecs ViewConfig(string label = null) => new TabSpecs(TabType.ViewConfig, label?? Constants.ViewConfigTabName);
+    internal static TabSpecs ViewConfig(string label = null)
+      => new TabSpecs(TabType.ViewConfig, label?? Constants.ViewConfigTabName);
 
-    internal static TabSpecs Formulas(string label = null) => new TabSpecs(TabType.Formulas, label ?? Constants.FormulasTabName);
+    internal static TabSpecs Formulas(string label = null)
+      => new TabSpecs(TabType.Formulas, label ?? Constants.FormulasTabName);
 
     #endregion
 
@@ -78,7 +86,7 @@ namespace AppCode.TutorialSystem.Tabs
           // Handle razormodel: references - do before 'model:' to avoid conflicts
           (found, label, value) = SplitTabEntry(entry, "razormodel:");
           if (found)
-            return new TabSpecs(TabType.RazorModel, label: /* label != "" ? label : */ $"Razor Model: {value}.cs", value: value, original: t);
+            return new TabSpecs(TabType.RazorModel, label: $"Razor Model: {value}.cs", value: value, original: t);
 
           // Handle model: references
           (found, label, value) = SplitTabEntry(entry, "model:");
@@ -96,10 +104,14 @@ namespace AppCode.TutorialSystem.Tabs
         .ToList();
       return tabs;
 
-      static (bool found, string label, string value) SplitTabEntry(string entry, string prefix)
+      (bool found, string label, string value) SplitTabEntry(string entry, string prefix)
       {
-        if (!entry.Contains(prefix)) return (false, null, null);
-        return (true, Text.Before(entry, prefix)?.TrimEnd('|') ?? "", Text.After(entry, prefix) ?? "");
+        if (!entry.Contains(prefix))
+          return (false, null, null);
+        var label = Text.Before(entry, prefix)?.TrimEnd('|') ?? "";
+        var value = Text.After(entry, prefix) ?? "";
+        Log.Add($"SplitTabEntry: '{entry}' -> '{label}' | '{value}'");
+        return (true, label, value);
       }
     }
 
