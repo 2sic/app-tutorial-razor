@@ -6,7 +6,9 @@
     tagStickyHeader = "header",           // This is the sticky header in the page, the height of which must be respected on scroll
     classIsExpanded = "is-expanded",      // This marks open accordions
     attrParent = "data-accordion-parent", // This attribute marks the title tag which will trigger expand/collapse, the value must be same as in the child
-    attrChild = "data-accordion-child"    // This attribute contains a key which is used in the #-fragment for navigating to a section
+    attrChild = "data-accordion-child",    // This attribute contains a key which is used in the #-fragment for navigating to a section
+
+    noHash = MyContext.Platform.Name == "Oqtane",  // in Oqtane we have a problem with the hashes, so we'll disable them
   };
   var data = new {
     // domId = MyModel.Int("DomId"),

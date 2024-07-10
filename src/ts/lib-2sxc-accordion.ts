@@ -13,7 +13,9 @@ import { AccordionOptions } from './lib-2sxc-accordion-options';
   Because this is shared, all parameters like DOM-IDs etc. must be provided in the Init-call that it can work across apps
 */ 
 
-// THIS FILE HAS MINOR MODIFICATIONS - SEE LINE 57
+// THIS FILE HAS MINOR MODIFICATIONS
+// - noHash because of Oqtane ca. line 38
+// - SEE LINE ca. 59
 
 export function initAccordion({ domId, options } : { domId: string, options: AccordionOptions }) {
   // get navHight for correct scrollposition
@@ -33,7 +35,8 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
       const targetOpenElem = document.querySelector(`[${options.attrChild}="${hash}"`) as HTMLElement;
 
       // add hash to url
-      location.hash = hash;
+      if (!options.noHash)
+        location.hash = hash;
 
       // open / close mechanic for slide
       toggle(targetOpenElem, {});
