@@ -10,8 +10,9 @@
 <script src="@App.Folder.Url/dist/scripts.min.js?v=2023-09-25" @Kit.Page.AssetAttributes()></script>
 <link rel="stylesheet" href="@App.Folder.Url/dist/styles.min.css" @Kit.Page.AssetAttributes()>
 
-<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8" @Kit.Page.AssetAttributes(priority: 200)></script>
-<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" @Kit.Page.AssetAttributes(priority: 201)></script>
+@* Note: whenever you update the path/version, be sure to also update the base path in the typescript *@
+<script src="//cdn.jsdelivr.net/npm/ace-builds@1.35.2/src-noconflict/ace.js" type="text/javascript" charset="utf-8" @Kit.Page.AssetAttributes(priority: 200)></script>
+<script src="//cdn.jsdelivr.net/npm/ace-builds@1.35.2/src-noconflict/ext-language_tools.js" @Kit.Page.AssetAttributes(priority: 201)></script>
 
 <!-- styles, mainly used for code show/hide -->
 <style>
