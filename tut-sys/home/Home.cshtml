@@ -27,7 +27,8 @@
 @sequence.Html("Teaser")
 
 @* The actual sequence with accordions *@
-<div class="tutorial-wrapper" @Kit.Toolbar.Default(sequence)>
+@* Note that the data-enhance-nav="false" is for Oqtane 5.1.2 which has major problems loading JS - ask @iJungleboy *@
+<div class="tutorial-wrapper" @Kit.Toolbar.Default(sequence) data-enhance-nav="false">
 
   @{
     TutorialCategory currentCategory = null;

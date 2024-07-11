@@ -18,14 +18,17 @@
 
   SetOpenGraph(tutPage);
 }
-@Html.Partial("./Page.Part Header.cshtml", headNavData)
+@* Note that the data-enhance-nav="false" is for Oqtane 5.1.2 which has major problems loading JS - ask @iJungleboy *@
+<div data-enhance-nav="false">
+  @Html.Partial("./Page.Part Header.cshtml", headNavData)
 
-@* Get the toolbar for: < previous | # Current | Next > *@
-@Html.Partial("./Page.Part Navigation.cshtml", headNavData)
+  @* Get the toolbar for: < previous | # Current | Next > *@
+  @Html.Partial("./Page.Part Navigation.cshtml", headNavData)
 
 
-@Html.Partial("./Accordion Entry.cshtml", new AccordionOneModel { Sys = Sys, TutPage = tutPage, NameId = tutorialGroup })
+  @Html.Partial("./Accordion Entry.cshtml", new AccordionOneModel { Sys = Sys, TutPage = tutPage, NameId = tutorialGroup })
 
-@* Footer *@
-@* Get the toolbar for: < previous | # Current | Next > *@
-@Html.Partial("./Page.Part Navigation.cshtml", headNavData)
+  @* Footer *@
+  @* Get the toolbar for: < previous | # Current | Next > *@
+  @Html.Partial("./Page.Part Navigation.cshtml", headNavData)
+</div>
