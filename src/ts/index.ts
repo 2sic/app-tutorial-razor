@@ -5,7 +5,15 @@ import { initRevealers } from './snippets';
 import { initSplit } from './split';
 import { createImgDemo } from './imgDemo';
 import { initToggleAll } from './accordions';
+
 declare let ace: any;
+
+// note
+// during research for Oqtane 5.1.2
+// we found that Interactive-Server mode breaks ace.
+// We believe that this can be circumvented using a
+// timeout which then sets the window.ace = null;
+// ATM not is use, but just as a reminder...
 
 function initSourceCode({ domAttribute, aceOptions  }: { domAttribute: string, aceOptions: { sourceCodeId: string, language: string, wrap: boolean } }) {  
   // debug
