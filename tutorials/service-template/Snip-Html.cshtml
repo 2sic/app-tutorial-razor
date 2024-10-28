@@ -1,0 +1,30 @@
+@inherits Custom.Hybrid.RazorTyped
+<h4>Use a Dictionary based Source</h4>
+@{
+  // Harmless looking template
+  var template = "<strong>ID</strong>: [QueryString:Id]";
+
+  // Source of Data containing bad XSS HTML
+  var mockQueryString = Kit.Template.CreateSource("QueryString", new Dictionary<string, string> {
+    { "Id", "<script>document.write('this is a XSS injection')</script>" },
+  });
+
+  // Create the engine which uses this and default sources
+  var engine = Kit.Template.Default(sources: new [] { mockQueryString });
+}
+<h3>Result</h3>
+<ul>
+  <li>
+    <strong>Template:</strong> <code>@template</code>
+  </li>
+  <li>
+    <strong>Result Normal (safe):</strong>
+    <br>
+    @Html.Raw(engine.Parse(template))
+  </li>
+  <li>
+    <strong>Result allowing HTML:</strong>
+    <br>
+    @Html.Raw(engine.Parse(template, allowHtml: true))
+  </li>
+</ul>
