@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.10.00" ExportDate="2024-05-31T14:44:27.8864867+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="18.03.00" ExportDate="2024-10-28T07:48:50.4893014+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -9,11 +9,6 @@
     </Dimensions>
   </Header>
   <AttributeSets>
-    <AttributeSet StaticName="459d4ce3-b96b-4664-9947-75e46df9d33e" Name="@string-app-color-pickr-pro" Scope="System.Fields" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="Swatches" Type="String" IsTitle="true" />
-      </Attributes>
-    </AttributeSet>
     <AttributeSet StaticName="App-Resources" Name="App-Resources" Scope="System.App" AlwaysShareConfiguration="false">
       <Attributes>
         <Attribute StaticName="Title" Type="String" IsTitle="true">
@@ -44,12 +39,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -63,9 +52,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -107,12 +93,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -126,9 +106,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -686,6 +663,63 @@
             </Value>
           </Entity>
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@entity-default" AttributeSetName="@entity-default" EntityGUID="f6ace3e4-648e-4f9d-9967-e7427e1becb2" Json="True" KeyNumber="4811" />
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="9cf480e9-6575-4409-943b-f1d15bba3582" Name="CompositionInherit" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Name" Type="String" IsTitle="true" SysSettings="{&quot;InheritMetadataOf&quot;:&quot;8424c312-3b13-48b3-a248-17e367e35772&quot;}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="92294ac4-b751-4c35-ae9c-753d96d5d96d" Json="True" KeyNumber="6641">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Name" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="EMail" Type="String" IsTitle="false" SysSettings="{&quot;InheritMetadataOf&quot;:&quot;fcf01b45-9c44-471e-8d74-a7ec318ddcfe&quot;}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="41830deb-0a07-4671-b5db-d772ef4a664a" Json="True" KeyNumber="6642">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="EMail" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Salutation" Type="String" IsTitle="false" SysSettings="{&quot;InheritMetadataOf&quot;:&quot;a46377d1-56d7-4997-99a9-d1c56e94a8e0&quot;}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="596b4f8b-9cb1-4441-8551-2f9716dcc5fd" Json="True" KeyNumber="6643">
+            <Value Key="InputType" Value="string-dropdown" Type="String" />
+            <Value Key="Name" Value="Salutation" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Salutation2" Type="String" IsTitle="false" SysSettings="{&quot;InheritMetadataOf&quot;:&quot;a46377d1-56d7-4997-99a9-d1c56e94a8e0&quot;}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="c83b282b-c34f-408e-89fd-75502bc98f6e" Json="True" KeyNumber="6644">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Salutation2" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="933d2ccc-63e7-4ad7-9c20-bb4503205667" Name="CompositionShared" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Name" Type="String" IsTitle="true" Guid="8424c312-3b13-48b3-a248-17e367e35772" SysSettings="{&quot;Share&quot;:true}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="09d1a8e1-71a2-41e4-a13f-ada4c13114a3" Json="True" KeyNumber="6638">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="Name" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="EMail" Type="String" IsTitle="false" Guid="fcf01b45-9c44-471e-8d74-a7ec318ddcfe" SysSettings="{&quot;Share&quot;:true}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="b4a98d2c-0d61-4b11-b05d-ab289db0add3" Json="True" KeyNumber="6639">
+            <Value Key="InputType" Value="string-default" Type="String" />
+            <Value Key="Name" Value="EMail" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Salutation" Type="String" IsTitle="false" Guid="a46377d1-56d7-4997-99a9-d1c56e94a8e0" SysSettings="{&quot;Share&quot;:true}">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="042a85fb-ecfb-4567-b0c8-77a36b27642c" Json="True" KeyNumber="6640">
+            <Value Key="InputType" Value="string-dropdown" Type="String" />
+            <Value Key="Name" Value="Salutation" Type="String" />
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+          </Entity>
         </Attribute>
       </Attributes>
     </AttributeSet>
@@ -1735,12 +1769,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="8eb96967-8266-4281-9b17-0478572ea6ec" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-message" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -1754,9 +1782,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -1782,12 +1807,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="ba557946-12eb-462c-8455-10d4b48d8948" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-message" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -1801,9 +1820,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2027,12 +2043,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="e7476a65-d000-4d0b-b9fe-80e0f6d4af0d" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2046,9 +2056,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2172,12 +2179,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2191,9 +2192,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2236,12 +2234,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="60bc5991-259e-4a3e-9b01-f672375364b2" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-message" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2255,9 +2247,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2288,12 +2277,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="0c4b6471-c544-4cd0-ba4f-296d6b28c53e" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-message" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2307,9 +2290,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2338,12 +2318,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-message" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2357,9 +2331,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -2392,12 +2363,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="1beb1122-884e-4f16-9e85-39a488ac80a5" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -2411,9 +2376,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3010,12 +2972,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3029,9 +2985,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3061,12 +3014,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EntityType" Value="PersonAwards" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Prefill" Value="" Type="String">
@@ -3163,12 +3110,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3182,9 +3123,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3341,12 +3279,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3360,9 +3292,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3447,12 +3376,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="3af610fd-4e52-46e4-8fce-0e2f05027fd5" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3466,9 +3389,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3520,12 +3440,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3539,9 +3453,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3626,12 +3537,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown-query" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3645,9 +3550,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3669,9 +3571,6 @@
             <Value Key="AllowMultiValue" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="EnableCreate" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="EnableEdit" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3679,9 +3578,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EnableTextEntry" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EntityType" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Label" Value="Name" Type="String">
@@ -3721,12 +3617,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown-query" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3740,9 +3630,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3764,9 +3651,6 @@
             <Value Key="AllowMultiValue" Value="True" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="EnableCreate" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="EnableEdit" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3774,9 +3658,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EnableTextEntry" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EntityType" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Label" Value="Name" Type="String">
@@ -3823,12 +3704,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3842,9 +3717,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3910,12 +3782,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="hyperlink-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -3929,9 +3795,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -3997,12 +3860,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="391fb889-3c2b-48c4-988a-ecdee308d5f5" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4016,9 +3873,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4056,12 +3910,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-url-path" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4075,9 +3923,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4118,12 +3963,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4137,9 +3976,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4200,12 +4036,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="1999224c-3b5a-4184-962b-720941ea0d37" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4219,9 +4049,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4251,12 +4078,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4270,9 +4091,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4325,12 +4143,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4344,9 +4156,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4399,12 +4208,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4418,9 +4221,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4465,12 +4265,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4484,9 +4278,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4516,12 +4307,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4535,9 +4320,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4590,12 +4372,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4609,9 +4385,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4664,12 +4437,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4683,9 +4450,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4738,12 +4502,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4757,9 +4515,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4812,12 +4567,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4831,9 +4580,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4886,12 +4632,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4905,9 +4645,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -4939,12 +4676,6 @@
             <Value Key="EntityType" Value="TutorialNote" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4964,12 +4695,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -4983,9 +4708,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5015,12 +4737,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5034,9 +4750,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5068,12 +4781,6 @@
             <Value Key="EntityType" Value="TutorialGroup" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5093,12 +4800,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5112,9 +4813,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5146,12 +4844,6 @@
             <Value Key="EntityType" Value="TutorialSnippet" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5171,12 +4863,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="boolean-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5190,9 +4876,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5228,12 +4911,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5247,9 +4924,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5293,12 +4967,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="boolean-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5312,9 +4980,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5350,12 +5015,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5369,9 +5028,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5422,12 +5078,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5441,9 +5091,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5475,12 +5122,6 @@
             <Value Key="EntityType" Value="TutorialSpecs" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5500,12 +5141,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5519,9 +5154,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5553,12 +5185,6 @@
             <Value Key="EntityType" Value="TutorialGroup" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5578,12 +5204,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5597,9 +5217,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5662,12 +5279,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5681,9 +5292,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5727,12 +5335,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5746,9 +5348,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -5801,12 +5400,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -5820,9 +5413,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6058,12 +5648,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6077,9 +5661,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6117,12 +5698,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6136,9 +5711,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6168,12 +5740,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EntityType" Value="TutorialCategory" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Prefill" Value="" Type="String">
@@ -6272,12 +5838,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6291,9 +5851,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6325,12 +5882,6 @@
             <Value Key="EntityType" Value="TutorialGroup" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6350,12 +5901,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6369,9 +5914,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6415,12 +5957,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6434,9 +5970,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6468,12 +6001,6 @@
             <Value Key="EntityType" Value="TutorialFeatureSet" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6500,12 +6027,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6519,9 +6040,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6553,12 +6071,6 @@
             <Value Key="EntityType" Value="TutorialRequirement" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6578,12 +6090,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6597,9 +6103,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6631,12 +6134,6 @@
             <Value Key="EntityType" Value="TutorialResource" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6656,12 +6153,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6675,9 +6166,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6709,12 +6197,6 @@
             <Value Key="EntityType" Value="TutorialGroup" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6734,12 +6216,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6753,9 +6229,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6785,12 +6258,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EntityType" Value="TutorialSpecs" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Prefill" Value="" Type="String">
@@ -6904,12 +6371,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6923,9 +6384,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -6978,12 +6436,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -6997,9 +6449,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7044,12 +6493,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="b94ec40a-4cbd-48f3-b1c6-86cc34cdb70a" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7063,9 +6506,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7097,12 +6537,6 @@
             <Value Key="EntityType" Value="TutorialEditUiFormula" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7122,12 +6556,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7141,9 +6569,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7173,12 +6598,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7192,9 +6611,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7247,12 +6663,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7266,9 +6676,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7321,12 +6728,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7340,9 +6741,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7395,12 +6793,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7414,9 +6806,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7469,12 +6858,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7488,9 +6871,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7543,12 +6923,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7562,9 +6936,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7596,12 +6967,6 @@
             <Value Key="EntityType" Value="TutorialNote" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7628,12 +6993,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7647,9 +7006,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7693,12 +7049,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="number-dropdown" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7712,9 +7062,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7762,12 +7109,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7781,9 +7122,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7843,12 +7181,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7862,9 +7194,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7896,12 +7225,6 @@
             <Value Key="EntityType" Value="TutorialCredits" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7921,12 +7244,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -7940,9 +7257,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -7990,12 +7304,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8009,9 +7317,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8043,12 +7348,6 @@
             <Value Key="EntityType" Value="TutorialResource" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8068,12 +7367,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8087,9 +7380,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8121,12 +7411,6 @@
             <Value Key="EntityType" Value="TutorialSpecs" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8146,12 +7430,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8165,9 +7443,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8199,12 +7474,6 @@
             <Value Key="EntityType" Value="TutorialGroup" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8224,12 +7493,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8243,9 +7506,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8277,12 +7537,6 @@
             <Value Key="EntityType" Value="TutorialViewMetadata" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8302,12 +7556,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8321,9 +7569,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8353,12 +7598,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8372,9 +7611,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8619,12 +7855,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8638,9 +7868,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -8670,12 +7897,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="EntityType" Value="TutorialGroup" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Prefill" Value="" Type="String">
@@ -8959,12 +8180,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -8978,9 +8193,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9018,12 +8230,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9037,9 +8243,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9078,12 +8281,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="f9b9e22d-1331-4db1-92f7-8e1a9ee399fa" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9097,9 +8294,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9138,12 +8332,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="9cdded25-7f4a-4193-962d-50d5c8aed2e3" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9157,9 +8345,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9290,12 +8475,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9309,9 +8488,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9371,12 +8547,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9390,9 +8560,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9445,12 +8612,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9464,9 +8625,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9519,12 +8677,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9538,9 +8690,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9593,12 +8742,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-wysiwyg" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9612,9 +8755,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9667,12 +8807,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9686,9 +8820,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9720,12 +8851,6 @@
             <Value Key="EntityType" Value="TutorialNote" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9752,12 +8877,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9771,9 +8890,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -9805,12 +8921,6 @@
             <Value Key="EntityType" Value="TutAccordion" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="Label" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="MoreFields" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="Prefill" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9835,12 +8945,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Formulas" Value="452a61ae-d680-4bb1-8456-86514b6a3e1d" Type="Entity" />
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -9854,9 +8958,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -10237,12 +9338,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="empty-default" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -10256,9 +9351,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -10460,12 +9552,6 @@
             <Value Key="DisableTranslation" Value="False" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
-            <Value Key="HelpLink" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Information" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
             <Value Key="InputType" Value="entity-picker" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
@@ -10479,9 +9565,6 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Tooltip" Value="" Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="ValidationRegExJavaScript" Value="" Type="String">
@@ -10563,13 +9646,13 @@
       <Value Key="RequiredOqtaneVersion" Value="05.00.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="17.08.00" Type="String">
+      <Value Key="RequiredVersion" Value="18.03.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="17.10.00" Type="String">
+      <Value Key="Version" Value="18.03.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -38493,7 +37576,7 @@
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Sections" Value="f7db8bb3-5e56-4359-8ba7-2d12a5512de2,1f789ba8-1300-47f9-8baa-46b96462afbe,3dbb2194-4531-4ca5-a517-94ef7745c46c,f60771e1-d8d8-4d78-9c96-8ee8e13c6a11,79131f97-93d2-4af9-b921-270cbbefe493,f9d77051-1174-4d13-9e56-c98a02fd016b,a412dc8e-7c1d-47ea-896b-d28feca77f17" Type="Entity" />
+      <Value Key="Sections" Value="f7db8bb3-5e56-4359-8ba7-2d12a5512de2,1f789ba8-1300-47f9-8baa-46b96462afbe,3dbb2194-4531-4ca5-a517-94ef7745c46c,f60771e1-d8d8-4d78-9c96-8ee8e13c6a11,79131f97-93d2-4af9-b921-270cbbefe493,f9d77051-1174-4d13-9e56-c98a02fd016b,a412dc8e-7c1d-47ea-896b-d28feca77f17,aedfe3dd-9186-4ea3-b0fe-5d059f5b5b6c" Type="Entity" />
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -38948,6 +38031,51 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="UrlParametersOthersDisableCache" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="aedfe3dd-9186-4ea3-b0fe-5d059f5b5b6c">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;Sometimes you want to ask a template engine which sources it currently has.&lt;/p&gt;&#xA;&lt;p&gt;Since Sources could be stacked (sources in sources), you can choose to only get the top level sources, or further layers below.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Get List of Sources on a Template Engine&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="service-template-sources" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
