@@ -11,10 +11,9 @@ namespace AppCode.Data
 }
 */
 
-// Generator:   CSharpDataModelsGenerator v17.08.00
+// Generator:   CSharpDataModelsGenerator v18.03.00
 // App/Edition: Tutorial-Razor/
 // User:        2sic Web-Developer
-// When:        2024-05-21 19:46:38Z
 namespace AppCode.Data
 {
   // This is a generated class for QuickRefContentPresentation 
@@ -22,7 +21,7 @@ namespace AppCode.Data
 
   /// <summary>
   /// QuickRefContentPresentation data. <br/>
-  /// Generated 2024-05-21 19:46:38Z. Re-generate whenever you change the ContentType. <br/>
+  /// Re-generate whenever you change the ContentType. <br/>
   /// <br/>
   /// Default properties such as `.Title` or `.Id` are provided in the base class. <br/>
   /// Most properties have a simple access, such as `.Color`. <br/>
