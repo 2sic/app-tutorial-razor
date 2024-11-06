@@ -9,12 +9,11 @@
     ? tutorialSet.FeatureSet.Icon
     : App.Folder.Url + "/app-icon.png";
 
-  var isSubSection = MyModel.Bool("IsSubSection", required: false);
   var nameId = tutorialSet.Attribute("NameId");
   var category = tutorialSet.Category;
 }
 
-<div class='tutorial-item (isSubSection == true ? "sub-section" : "")'>
+<div class='tutorial-item'>
   <div class='tutorial-title' data-accordion-parent='@nameId'>
     <div class="row">
       <div class="col-auto">
