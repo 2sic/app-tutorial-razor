@@ -11,7 +11,7 @@ namespace AppCode.Data
 }
 */
 
-// Generator:   CSharpDataModelsGenerator v18.03.00
+// Generator:   CSharpDataModelsGenerator v18.04.00
 // App/Edition: Tutorial-Razor/
 // User:        2sic Web-Developer
 using System;
