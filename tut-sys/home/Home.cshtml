@@ -12,7 +12,7 @@
   Kit.Page.SetTitle(pageTitle + " - 2sxc Razor Tutorials for Dnn / Oqtane");
 
   // Get Sharing Data and set OpenGraph headers
-  var homeShareData = App.Data.GetAll<TutorialGroup>().FirstOrDefault(tg => tg.NameId == "home-page");
+  var homeShareData = App.Data.GetAll<TutorialGroup>().FirstOrDefault(tg => tg.NameId == "home");
   SetOpenGraph(homeShareData);
 
   var shareToolbar = Kit.Toolbar.Empty()

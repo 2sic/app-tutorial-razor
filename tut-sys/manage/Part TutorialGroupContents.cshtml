@@ -7,15 +7,17 @@
   if (Model.Recursion > 3) {
     throw new Exception("Recursion too high");
   }
+
+  var isPage = TutorialGroup.IsPage;
 }
 
-@(TutorialGroup.IsPage ? "📄" : "🎁")
+@(isPage ? "📄" : "🎁")
 
 Tutorial Group:
 <strong>@TutorialGroup.String("Title", scrubHtml: true)</strong>
 [Accs: @Accordions.Count() | Snips: @Sections.Count()]
 
-@if (TutorialGroup.IsPage) {
+@if (isPage) {
   <a href='@TutLinks.TutPageUrl(TutorialGroup)' target="_blank">📤</a>
 }
 <br>

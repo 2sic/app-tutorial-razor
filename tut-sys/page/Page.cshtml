@@ -7,14 +7,34 @@
   var myParams = MyPage.Parameters;
   
   // This Razor is called with a parameter like tut=home
-  var tutorialGroup = myParams.String("tut") + "-page";
+  var tutIdFromUrl = myParams.String("tut");
+  var tutIdWithPage = tutIdFromUrl + "-page";
 
-  var tutPage = App.Data.GetAll<TutorialGroup>().FirstOrDefault(i => i.NameId == tutorialGroup);
+  var allGroups = App.Data.GetAll<TutorialGroup>().ToList();
+  var tutPage = allGroups.FirstOrDefault(i => i.NameId == tutIdWithPage)
+    ?? allGroups.FirstOrDefault(i => i.NameId == tutIdFromUrl);
 
+  if (tutPage == null) {
+    <h4>Sorry, the tutorial page @tutIdFromUrl was not found</h4>
+    @Kit.Page.SetHttpStatus(404);
+    return;
+  }
+
+  @if (!tutPage.IsPage) {
+    <h4>Sorry, @tutIdFromUrl is not a tutorial page</h4>
+    @Kit.Page.SetHttpStatus(404);
+    return;
+  }
+}
+@{
   // Find the parent, which has Segment Title, Link, etc.
-  var segment = tutPage.Parent<TutorialSection>();
+  var section = tutPage.Parent<TutorialSection>();
 
-  var headNavData = new NavigationModel { Sys = Sys, Section = segment, TutGroup = tutPage };
+  var headNavData = new NavigationModel {
+    Sys = Sys,
+    Section = section,
+    TutGroup = tutPage
+  };
 
   SetOpenGraph(tutPage);
 }
@@ -26,7 +46,7 @@
   @Html.Partial("./Page.Part Navigation.cshtml", headNavData)
 
 
-  @Html.Partial("./Accordion Entry.cshtml", new AccordionOneModel { Sys = Sys, TutPage = tutPage, NameId = tutorialGroup })
+  @Html.Partial("./Accordion Entry.cshtml", new AccordionOneModel { Sys = Sys, TutPage = tutPage, NameId = tutIdWithPage })
 
   @* Footer *@
   @* Get the toolbar for: < previous | # Current | Next > *@

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="18.03.00" ExportDate="2024-11-06T09:28:06.0868269+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="18.03.00" ExportDate="2024-11-06T13:18:49.8350932+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -4140,9 +4140,50 @@
         </Attribute>
         <Attribute StaticName="IsPage" Type="Boolean" IsTitle="false">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1409c6a9-9623-43ac-98bf-c6b59a622a09" Json="True" KeyNumber="5967">
-            <Value Key="InputType" Value="boolean-default" Type="String" />
-            <Value Key="Name" Value="IsPage" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="boolean-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="IsPage" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Boolean" AttributeSetName="@Boolean" EntityGUID="733d681b-af23-49b4-857e-3576f679a0dd" Json="True" KeyNumber="5967">
+            <Value Key="TitleFalse" Value="Is an Accordion / Group for Use in a Page" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleIndeterminate" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleTrue" Value="Is a Standalone Page" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
           </Entity>
         </Attribute>
         <Attribute StaticName="GroupLinking" Type="Empty" IsTitle="false">
@@ -8239,1175 +8280,6 @@
         </Attribute>
       </Attributes>
     </AttributeSet>
-    <AttributeSet StaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" Name="XxxTutorialPage" Scope="Default" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="TitleForPicker" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0170be49-0e96-4cf1-b4c2-d468cb64f2f9" Json="True" KeyNumber="5910">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="TitleForPicker" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="NameId" Type="String" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5253074b-076f-489a-9243-06fac7fe0d89" Json="True" KeyNumber="5892">
-            <Value Key="Formulas" Value="08377096-f320-4c2f-8ea9-0c5d597a55d0" Type="Entity" />
-            <Value Key="InputType" Value="string-url-path" Type="String" />
-            <Value Key="Name" Value="NameId" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Title" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="866092f8-d852-4c68-b25e-240f5c8917f9" Json="True" KeyNumber="5908">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Title (Page Title)" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="f2b93929-e35d-46b5-a9e8-f7018728a25b" Json="True" KeyNumber="5908">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="edea0d2c-ea74-4047-a786-44ca9b6b6825" Json="True" KeyNumber="5908">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InlineInitialHeight" Value="1" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="GroupIntro" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="e9d4ec04-ca74-43a9-82a3-e954f5ff4672" Json="True" KeyNumber="5913">
-            <Value Key="InputType" Value="empty-default" Type="String" />
-            <Value Key="Name" Value="GroupIntro" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Intro" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="568c7cc6-cfda-4e54-b313-f59f3142625f" Json="True" KeyNumber="5909">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Intro" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="220bfe36-68d8-4b13-9404-764300e1dccf" Json="True" KeyNumber="5909">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="89587d62-a2ce-44a1-b4c3-9977b72f8f5d" Json="True" KeyNumber="5909">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InlineInitialHeight" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="IntroMoreTyped" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5774ee1b-6faf-4ea8-9f77-e35a998b5de3" Json="True" KeyNumber="5911">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="IntroMoreTyped" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="b7d75724-ce5d-4333-a0e3-c2260ccf074b" Json="True" KeyNumber="5911">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="78fb9c27-5888-4bd3-8941-2a5966bace9b" Json="True" KeyNumber="5911">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InlineInitialHeight" Value="1" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="IntroMoreDyn" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="4dbb6f51-42af-4fc4-b326-3f76204b45ba" Json="True" KeyNumber="5912">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="IntroMoreDyn" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="7e30cda4-6f6e-49bf-bd1e-3cf47edc3020" Json="True" KeyNumber="5912">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="ebc75efc-4c9d-4a33-aa61-f94c249b477f" Json="True" KeyNumber="5912">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InlineInitialHeight" Value="1" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Note" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1edd93e7-cf97-43c4-a910-8174e0cf5da6" Json="True" KeyNumber="5925">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Note" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="3cafdff5-64bd-4b0a-9b11-e9b71d301641" Json="True" KeyNumber="5925">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="58b3b2ed-0fef-4aea-942c-061e6502fb55" Json="True" KeyNumber="5925">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InlineInitialHeight" Value="1" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="WysiwygConfiguration" Value="d3dde02f-c1dc-43b8-a8b7-4be3c43eadd0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Notes" Type="Entity" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="bd86eaa5-429b-408e-9d00-574abfcbba65" Json="True" KeyNumber="5933">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="entity-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Notes" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="e2b63c70-e31b-45ad-a075-0e7f6df393af" Json="True" KeyNumber="5933">
-            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableCreate" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableDelete" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableEdit" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableRemove" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EntityType" Value="TutorialNote" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Prefill" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="GroupIntroEnd" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="398c3a96-856c-4885-9cfa-90b2142b74e8" Json="True" KeyNumber="5914">
-            <Value Key="InputType" Value="empty-end" Type="String" />
-            <Value Key="Name" Value="GroupIntroEnd" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Accordions" Type="Entity" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="82be7789-277f-4f74-a307-9c0d3da4f94b" Json="True" KeyNumber="5893">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="entity-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Accordions" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="ddb9bebb-a044-4c3a-b36b-1b90c6b55e98" Json="True" KeyNumber="5893">
-            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableCreate" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableDelete" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableEdit" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableRemove" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EntityType" Value="TutAccordion" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Prefill" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-      </Attributes>
-    </AttributeSet>
-    <AttributeSet StaticName="24267d3c-296b-4645-9e85-22e1ad02371d" Name="XxxTutorialViewMetadata" Scope="Default" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="TitleAuto" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="1c3380af-e2cc-494a-a9a4-d2a44c2217da" Json="True" KeyNumber="5895">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Formulas" Value="452a61ae-d680-4bb1-8456-86514b6a3e1d" Type="Entity" />
-            <Value Key="InputType" Value="string-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="TitleAuto" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="bc8afac0-a8fa-46ee-8681-f2069cb9040b" Json="True" KeyNumber="5895">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="23d6447f-8e46-413a-8de9-705021eb72b6" Json="True" KeyNumber="5895">
-            <Value Key="InputFontFamily" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Title" Type="String" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="165a42b2-cad4-4f9e-8b92-5e7e5294a5cd" Json="True" KeyNumber="4943">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="Tutorial _100 - More" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Title Internal" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="f5286fcb-261c-46c4-86d6-627e19d8cae8" Json="True" KeyNumber="4943">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="f67587b7-e302-4865-be39-46bf873059f7" Json="True" KeyNumber="4943">
-            <Value Key="InputFontFamily" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="GroupDescription" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="48967735-b7b8-4769-9d91-baabf1b81181" Json="True" KeyNumber="5138">
-            <Value Key="InputType" Value="empty-default" Type="String" />
-            <Value Key="Name" Value="GroupDescription" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="LinkTitle" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="e7752c67-e06d-4796-a2c3-ea4dbbe67837" Json="True" KeyNumber="5146">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="LinkTitle" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="8b11345b-5a41-4090-b3fd-573b91750581" Json="True" KeyNumber="5146">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="5af49c72-214e-46cc-90bc-a75026ac07fc" Json="True" KeyNumber="5146">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="LinkTeaser" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="2477c43f-0ad3-45a2-b1fb-cf1abd9b2c28" Json="True" KeyNumber="5144">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-wysiwyg" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="LinkTeaser" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="7477d646-50df-4833-b7bb-1ddc1486434d" Json="True" KeyNumber="5144">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-wysiwyg" AttributeSetName="@string-wysiwyg" EntityGUID="6d101b85-1ea8-462d-be8a-889382ae5d6c" Json="True" KeyNumber="5144">
-            <Value Key="ButtonAdvanced" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ButtonSource" Value="true" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ContentCss" Value="" Type="Hyperlink">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Dialog" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="LinkEmphasis" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="d81db366-4922-401e-b9e4-6a741efba464" Json="True" KeyNumber="5153">
-            <Value Key="InputType" Value="string-default" Type="String" />
-            <Value Key="Name" Value="LinkHighlight" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="New" Type="DateTime" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="9c781656-ee16-4a00-8d9d-333b91d3b679" Json="True" KeyNumber="5143">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="2020-01-01" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="datetime-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="New When" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="&lt;p&gt;When this tutorial was new - to auto-add &quot;new!&quot; indicators&lt;/p&gt;" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@DateTime" AttributeSetName="@DateTime" EntityGUID="04dc00ea-5c5d-44ac-8afb-9abf8b570141" Json="True" KeyNumber="5143">
-            <Value Key="UseTimePicker" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Updated" Type="DateTime" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="5ccc6b3d-92f0-42b0-9cb0-ece3e5cf14de" Json="True" KeyNumber="5145">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="2020-01-01" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="datetime-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Updated When" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="&lt;p&gt;When the tutorial was enhanced - to show &quot;updated&quot;&lt;/p&gt;" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@DateTime" AttributeSetName="@DateTime" EntityGUID="0cf91870-34ca-49a1-8712-8232752414e0" Json="True" KeyNumber="5145">
-            <Value Key="UseTimePicker" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Deprecated" Type="Boolean" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="34f24cd5-a0fa-46a8-a26d-2461cb4d3199" Json="True" KeyNumber="5182">
-            <Value Key="InputType" Value="boolean-default" Type="String" />
-            <Value Key="Name" Value="Deprecated" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="GroupSpecs" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="e47611a6-7d40-4482-b537-24f5b2872a89" Json="True" KeyNumber="5178">
-            <Value Key="InputType" Value="empty-default" Type="String" />
-            <Value Key="Name" Value="GroupSpecs" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="Specs" Type="Entity" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="3909805c-e345-4155-8f8b-9adfa58e69f9" Json="True" KeyNumber="5174">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="entity-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="Specs" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Entity" AttributeSetName="@Entity" EntityGUID="4cee3cea-5a31-4c72-86bc-6b67684a200c" Json="True" KeyNumber="5174">
-            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableCreate" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableDelete" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableEdit" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableRemove" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EntityType" Value="TutorialSpecs" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Prefill" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="GroupUnused" Type="Empty" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8efaa2d4-2a5a-40b1-87fa-9cd026c1dd8a" Json="True" KeyNumber="5966">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="empty-default" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="GroupUnused" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@empty-default" AttributeSetName="@empty-default" EntityGUID="4d4d543e-3155-4250-b604-c045c5741934" Json="True" KeyNumber="5966">
-            <Value Key="DefaultCollapsed" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="For2sxc" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="0f5e0973-ca30-4228-9ad8-d8c97868106f" Json="True" KeyNumber="5142">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="10.00.00" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-dropdown" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="For2sxc" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="&lt;p&gt;Min 2sxc required for this demo to work&lt;/p&gt;" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="6acb0bbe-3440-4129-97cc-6d85251e4d48" Json="True" KeyNumber="5142">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="5b56074e-a733-4512-8561-47cac910ba0e" Json="True" KeyNumber="5142">
-            <Value Key="DropdownValues" Value="10.00.00:V 10.0&#xA;13.00.00:V 13.0" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DropdownValuesFormat" Value="value-label" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableTextEntry" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="ForDnn" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="c533a523-4724-4e2f-8cbb-fcd441d138a0" Json="True" KeyNumber="5140">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="07.04.02" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-dropdown" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="ForDnn" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="&lt;p&gt;Min Dnn required for this to work&lt;/p&gt;" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="eed64225-6734-4704-b64e-0e180da8f3ab" Json="True" KeyNumber="5140">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="607a75d2-5c14-4df9-a4c7-c67de55f7741" Json="True" KeyNumber="5140">
-            <Value Key="DropdownValues" Value="07.04.02:Default 07.04.02&#xA;none:Not for Dnn" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DropdownValuesFormat" Value="value-label" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableTextEntry" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-        <Attribute StaticName="ForOqtane" Type="String" IsTitle="false">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="11a12373-f817-4653-bf5b-9a174d2c9364" Json="True" KeyNumber="5141">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="03.00.00" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="string-dropdown" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="ForOqtane" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="1d14486b-e287-4d95-8399-dd122bb9c746" Json="True" KeyNumber="5141">
-            <Value Key="DropdownValues" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-dropdown" AttributeSetName="@string-dropdown" EntityGUID="dbeef4ea-4d07-4daf-9668-2480af658a31" Json="True" KeyNumber="5141">
-            <Value Key="DropdownValues" Value="03.00.00:Default 03.00.00&#xA;none:Not for Oqtane" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DropdownValuesFormat" Value="value-label" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableTextEntry" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-      </Attributes>
-    </AttributeSet>
-    <AttributeSet StaticName="84217736-92fa-4f02-9e12-06335605c9cf" Name="ZzzTemp" Scope="Default" AlwaysShareConfiguration="false">
-      <Attributes>
-        <Attribute StaticName="PickerFieldTree" Type="Entity" IsTitle="true">
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="7994dd35-3856-4b9b-b925-ed1aa82c9a9c" Json="True" KeyNumber="6417">
-            <Value Key="CustomJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DefaultValue" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Disabled" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DisableTranslation" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="InputType" Value="entity-picker" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Name" Value="PickerFieldTree" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Notes" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Placeholder" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="Required" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="6fa7f390-7612-40c6-baff-2bcf6140a85f" AttributeSetName="@entity-picker" EntityGUID="693ec6f1-ad13-4366-9584-c113638e64b6" Json="True" KeyNumber="6417">
-            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="CreateParameters" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="CreatePrefill" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="DataSources" Value="6350d3fb-4ad7-4972-9474-3dac3b826fc8" Type="Entity" />
-            <Value Key="EditParameters" Value="" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableCreate" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableDelete" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableEdit" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableRemove" Value="True" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="EnableReselect" Value="False" Type="Boolean">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-            <Value Key="PickerDisplayMode" Value="list" Type="String">
-              <Dimension DimensionID="141" ReadOnly="false" />
-            </Value>
-          </Entity>
-        </Attribute>
-      </Attributes>
-    </AttributeSet>
   </AttributeSets>
   <Entities>
     <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="406c2665-77c4-4838-af22-c5b2ef409dc5" Json="True" KeyNumber="153">
@@ -10917,35 +9789,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialGroups" Value="4e365827-1dc7-4840-87cc-ab3825e798d6" Type="Entity" />
-    </Entity>
-    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="24267d3c-296b-4645-9e85-22e1ad02371d" AttributeSetName="XxxTutorialViewMetadata" EntityGUID="b629fe64-b77f-4b97-a6e7-4bc3d7e80a23" KeyGuid="119ad869-416d-45ca-9929-475e89a31ccb">
-      <Value Key="For2sxc" Value="10.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForDnn" Value="07.04.02" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="ForOqtane" Value="03.00.00" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkEmphasis" Value="🆕 new in v12" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTeaser" Value="&lt;div&gt;&#xA;&lt;p&gt;Link.Image generates resize-links with centrally managed sizes / rules.&lt;/p&gt;&#xA;&lt;/div&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="LinkTitle" Value="&lt;p&gt;Automatically Resize Images based on Presets&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="New" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Automatically Resize Images based on Presets" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Updated" Value="2020-01-01T00:00:00" Type="DateTime">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-ContentGroup" AttributeSetName="2SexyContent-ContentGroup" EntityGUID="e493838b-82bf-4cb8-ae5b-942a035dd765" Json="True">
       <Value Key="Content" Value="25f4e604-0da9-46dc-99f5-e2d5bbaa42fa,null,null,null,null,null,null,null,null,null,null,null,null,null" Type="Entity" />
@@ -17094,6 +15937,9 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -17109,7 +15955,7 @@
       <Value Key="LinkTitle" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="NameId" Value="quickref-context-page" Type="String">
+      <Value Key="NameId" Value="quickref-context" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Note" Value="" Type="String">
@@ -17125,43 +15971,13 @@
       <Value Key="Title" Value="&lt;p&gt;Page, Site, Platform and More&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="quickref-context-page - Page, Site, Platform and More" Type="String">
+      <Value Key="TitleForPicker" Value="quickref-context - Page, Site, Platform and More" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Variants" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="a8740fec-5e2e-4d90-ae3a-173d36714bca">
-      <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,bc48caf4-8453-4cd0-90f1-d132b163103c,88cb83ce-be46-4024-bf28-f132569e4059,375acb62-cb97-46ee-81eb-68d8cad1741f,fc00f609-e1d2-4a04-80c0-a6873a7b321d,1f627760-f000-4e56-9838-d5a117b91169,f7d70b00-4d01-4edd-9735-b10e31694df4,9f6219e2-27ec-4187-82e7-4aba8a2726dd,ec3a8d47-ccb0-4c9e-a600-206cb6810d4a" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;This is a quick CheatSheet to provide you with a reference to most APIs you'll use.&lt;/p&gt;&#xA;&lt;p&gt;This uses a base class of&amp;nbsp;&lt;code&gt;@inherits Custom.Hybrid.RazorTyped&lt;/code&gt;. Most samples&amp;nbsp;&lt;em&gt;would not work&lt;/em&gt;&amp;nbsp;on older Razor base classes such as&amp;nbsp;&lt;code&gt;@inherits Custom.Hybrid.Razor14&lt;/code&gt;&amp;nbsp;as that provides different objects and methods.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="quickref-typed-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Razor Typed - Quick Reference&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="0ad69445-115a-414c-b818-11cf2d604507">
-      <Value Key="Accordions" Value="b853c203-14dc-4916-b870-8ab3b492e8c5,88cb83ce-be46-4024-bf28-f132569e4059,f7d70b00-4d01-4edd-9735-b10e31694df4" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;This is a quick CheatSheet to provide you with a reference to most APIs you'll use.&lt;/p&gt;&#xA;&lt;p&gt;This uses a base class of&amp;nbsp;&lt;code&gt;@inherits Custom.Hybrid.Razor14&lt;/code&gt;&amp;nbsp;and would also apply to&amp;nbsp;&lt;code&gt;...Razor12&lt;/code&gt;. Most samples do not work for the new&amp;nbsp;&lt;code&gt;@inherits Custom.Hybrid.Razorpro&lt;/code&gt;&amp;nbsp;as that provides different objects and methods. that uses a different syntax.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="quickref-dyn-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Dynamic Razor - Quick Reference&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -19960,31 +18776,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="14c1ecee-5807-45af-8661-5b84b0ede254">
-      <Value Key="Accordions" Value="5e558b0e-f888-4f0e-83f7-1452cb1755ca,1015dd4d-9ad1-4fe0-8313-4839d7ace0dc" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;These demos show how to strip all html from a string. You often need this in combination with&amp;nbsp;&lt;a href=&quot;/tutorial-razor/Home/blade110/page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;crop or ellipsis&lt;/a&gt;&amp;nbsp;to create teasers.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="razorblade-iscrub-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Notes" Value="cd95dfeb-b7f3-45cf-bec3-19a0f1cfb2f2" Type="Entity" />
-      <Value Key="Title" Value="&lt;p&gt;Scrub HTML Strings (Remove HTML Tags)&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="772dfff1-b236-4aa9-8359-5f53c08ff7bf" AttributeSetName="UiFormula" EntityGUID="391fb889-3c2b-48c4-988a-ecdee308d5f5" Json="True">
       <Value Key="Enabled" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -20044,21 +18835,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="code-reuse-shared - Using Shared Helpers / Libraries" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="82893c9c-1c04-4a55-928e-acbbcb878925">
-      <Value Key="Accordions" Value="fe8d9c49-27d8-4575-8f4e-01feb544e7f1,d8c90d03-0309-4782-b32c-123e06b45884" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;There are multiple ways to create shared Razor helpers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;public functions returning html&lt;br&gt;⭐ this is recommended in v12 and above as it works in Dnn ✅ and Oqtane ✅&lt;/li&gt;&#xA;&lt;li&gt;the&amp;nbsp;&lt;code&gt;@helper&lt;/code&gt;&amp;nbsp;command&lt;br&gt;👍 this is simpler, but only works in Dnn ✅ but not in Oqtane ⛔&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Razor helpers are functions that put HTML into the page. You can create them using either&lt;br&gt;&lt;code&gt;@functions { dynamic helpername() { ... } }&lt;/code&gt;&lt;br&gt;or&lt;br&gt;&lt;code&gt;@helper helpername() { ... }&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;You can also share them by placing them into a separate file (just remember to mark them&amp;nbsp;&lt;code&gt;public&lt;/code&gt;). This lets you put a bunch of tiny helpers into a helpers-library and use them from elsewhere. To achieve this, we use&amp;nbsp;&lt;code&gt;CreateInstance&lt;/code&gt;&amp;nbsp;to get an object with these methods, and then use it.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="code-reuse-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Reuse Shared Razor Helpers&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -20939,21 +19715,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="598b92c0-8a6c-46cc-bb5c-16f5524e41f3">
-      <Value Key="Accordions" Value="48dc212d-7720-46bb-8357-7a68f0ea30c8" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Every&amp;nbsp;&lt;em&gt;item&lt;/em&gt;&amp;nbsp;a.k.a.&amp;nbsp;&lt;em&gt;object&lt;/em&gt;&amp;nbsp;is called an&amp;nbsp;&lt;a href=&quot;https://docs.2sxc.org/specs/data/entities.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Entity&lt;/strong&gt;&lt;/a&gt;. Entities will have properties like&amp;nbsp;&lt;code&gt;Name&lt;/code&gt;,&amp;nbsp;&lt;code&gt;ProductNumber&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;Birthday&lt;/code&gt;, depending on the&amp;nbsp;&lt;a href=&quot;https://docs.2sxc.org/specs/data/content-types.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Content-Type&lt;/strong&gt;&lt;/a&gt;&amp;nbsp;they represent.&lt;/p&gt;&#xA;&lt;h3&gt;How your Razor Code receives Entities&lt;/h3&gt;&#xA;&lt;p&gt;When things are configured correctly, the right entities are given to your Razor-template so you can just show them or perform calculations as you need them. These are the common ways for the entities to be provided to your template:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;On simple templates, the UI allows users to add/edit content of a specific type (configured in the View). This content Entity is always available in your code in the variable called&amp;nbsp;&lt;code&gt;MyItem&lt;/code&gt;&amp;nbsp;or&amp;nbsp;&lt;code&gt;Content&lt;/code&gt;&amp;nbsp;on older Razors.&lt;/li&gt;&#xA;&lt;li&gt;On templates which expect many items of the same type,&amp;nbsp;&lt;code&gt;MyItem&lt;/code&gt;/&lt;code&gt;Content&lt;/code&gt;&amp;nbsp;contains the first item only. To access all (for iterating and showing each one) the Entities are in a variable called&amp;nbsp;&lt;code&gt;MyItems&lt;/code&gt;&amp;nbsp;(&lt;code&gt;Data&lt;/code&gt;&amp;nbsp;on older Razors).&lt;/li&gt;&#xA;&lt;li&gt;If your code needs to find other data in the App, it can access it through&amp;nbsp;&lt;code&gt;App.Data&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;li&gt;If your code want to get Entities which have been pre-selected/filtered etc. through a query, it will get them from&amp;nbsp;&lt;code&gt;Query&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;In this example the template is configured to contain an Entity of the type&amp;nbsp;&lt;code&gt;Person&lt;/code&gt;&amp;nbsp;and has these fields:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;FirstName: a string (text)&lt;/li&gt;&#xA;&lt;li&gt;LastName: a string&lt;/li&gt;&#xA;&lt;li&gt;Birthday: a date&lt;/li&gt;&#xA;&lt;li&gt;Mugshot: a link to an image file&lt;/li&gt;&#xA;&lt;li&gt;Awards: a reference to one or more other Entities which describe awards&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;So the following examples will show how to put the values in these fields into the HTML.&lt;/p&gt;&#xA;&lt;p&gt;In the new typed&amp;nbsp;&lt;code&gt;RazorPro&lt;/code&gt;&amp;nbsp;the current item is on a variable called&amp;nbsp;&lt;code&gt;MyItem&lt;/code&gt;. It's a typed object, so to read properties you need to specify what you want it, eg.&amp;nbsp;&lt;code&gt;@MyItem.String(&quot;FirstName&quot;)&lt;/code&gt;.&lt;br&gt;This sample also uses the&amp;nbsp;&lt;code&gt;@MyItem.Picture(...)&lt;/code&gt;&amp;nbsp;to automatically show a responsive image on the page.&lt;/p&gt;&#xA;&lt;p&gt;In the dynamic Razor base classes lke&amp;nbsp;&lt;code&gt;Razor14&lt;/code&gt;&amp;nbsp;the current item is always available on the variable called&amp;nbsp;&lt;code&gt;Content&lt;/code&gt;. It's a&amp;nbsp;&lt;code&gt;dynamic&lt;/code&gt;&amp;nbsp;object, so you can just type things like&amp;nbsp;&lt;code&gt;@Content.FirstName&lt;/code&gt;&amp;nbsp;to access the properties.&lt;br&gt;This sample also uses the&amp;nbsp;&lt;code&gt;@Kit.Image.Img(...)&lt;/code&gt;&amp;nbsp;to automatically show a responsive image on the page.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="block-read-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Working with Entity (Item) Values&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="9bf88680-58f3-491e-80ff-18465730f8b3">
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -20994,30 +19755,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialType" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="102eaeee-cf42-45e0-a9d3-8772cfd8480b">
-      <Value Key="Accordions" Value="48dc212d-7720-46bb-8357-7a68f0ea30c8,88cb83ce-be46-4024-bf28-f132569e4059,5757a64b-96cd-4e1b-ae9c-16bcd194354e" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;In most cases a template will run in a context - so something prepared data for the template, which should now be visualized. These examples assume you're working with 2sxc, which let's editors work with content - and your template only needs to visualize it. The current content item (if it's just one) is always available on the variable called&amp;nbsp;&lt;code&gt;Content&lt;/code&gt;. It's a&amp;nbsp;&lt;code&gt;dynamic&lt;/code&gt;&amp;nbsp;object, so you can just type things like&amp;nbsp;&lt;code&gt;@Content.FirstName&lt;/code&gt;&amp;nbsp;to access the properties.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="xxx-block-read-all-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Working with Block Contents&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -21688,27 +20425,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="7d717f52-49a2-45d1-887b-c4ee3b19a972">
-      <Value Key="Accordions" Value="44617cad-cb50-407a-b8ca-6386f53dc125" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="img-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="ac031f77-742f-46bb-937e-c214ff817bbd">
       <Value Key="Credits" Value="432dfcca-5e10-4e09-b97e-3b81ad57de68" Type="Entity" />
       <Value Key="InDepthExplanation" Value="" Type="String">
@@ -22069,27 +20785,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="122f33b4-1827-4c3b-9a80-f03e635dcd0c">
-      <Value Key="Accordions" Value="f1894808-ad7b-49b3-92d0-d2dc79d9ca6d" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Whenever you need to know about the current environment, you need&amp;nbsp;&lt;strong&gt;Context&lt;/strong&gt; information. These are the contexts you should know about:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Platform&lt;/li&gt;&#xA;&lt;li&gt;Site&lt;/li&gt;&#xA;&lt;li&gt;Page&lt;/li&gt;&#xA;&lt;li&gt;Module&lt;/li&gt;&#xA;&lt;li&gt;View&lt;/li&gt;&#xA;&lt;li&gt;User&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="code-context-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Context Information&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutorialGroup" EntityGUID="437c0383-e0ae-4e37-8209-307b68753265">
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -22175,27 +20870,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialType" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="531045a8-f783-42e4-aec8-43b484e846fa">
-      <Value Key="Accordions" Value="6f451a44-86b7-4026-a827-6d43592f451a,252119be-fbe7-46be-b237-6276eeb4d999" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="code-functions-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Code - Function and Similar Helpers&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -22324,30 +20998,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="img-resize-modes - Resize Modes" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="c65c0573-704e-463e-86e4-d199dba1bbc0">
-      <Value Key="Accordions" Value="c00b1ee4-12e4-46b1-af9f-9ab9e83ab2d7,957c82f4-4a45-4eb4-889c-7cfae5293136,6efd03dc-3686-4eab-859b-a3d03c63ab62,061378f4-1376-4426-85e4-e5a973ba01ea" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Above you can see that you shouldn't do &lt;code&gt;src='@@imgUrl'&lt;/code&gt; because it can cause trouble in a CMS - like when the image has special characters in the name. So you should always use &lt;code&gt;@@Link.Image(imgUrl)&lt;/code&gt; instead. &lt;br&gt;&lt;br&gt;The &lt;code&gt;Link.Image&lt;/code&gt; also makes it easy to create image urls containing the correct resize parameters. Even better: The parameters can be in a global setting for re-use across all apps and templates.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="img-settings-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;The &lt;code&gt;Link.Image(...)&lt;/code&gt; Helper&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -22584,30 +21234,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="41748365-16ac-42c3-91c2-057c562dad55">
-      <Value Key="Accordions" Value="6eb8b114-963c-490f-ad3d-134be0fa50fd" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;In Razor page URLs are generated using&amp;nbsp;&lt;code&gt;Link.To(...)&lt;/code&gt;. By default calling&amp;nbsp;&lt;code&gt;Link.To()&lt;/code&gt;&amp;nbsp;without any parameters returns the base URL of the site. In this case it would be:&amp;nbsp;&lt;code&gt;https://app-dev.2sxc.org/tutorial-razor/&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The key to retrieving the current page URL is to pass the current page parameters.&amp;nbsp;&lt;code&gt;Link.To(parameters: ...)&lt;/code&gt;&amp;nbsp;will then construct the URL based on the passed parameters.&lt;br&gt;Current page parameters are found in&amp;nbsp;&lt;code&gt;CmsContext.Page.Parameters&lt;/code&gt;.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="xxx-code-link-parameters-modify-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Linking with Modified Page Parameters&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="6d5acf3d-1d9d-44ab-af2c-b3082af88102">
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -22705,30 +21331,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialType" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="a0492040-f88c-4ea4-8e9e-a12925d206fa">
-      <Value Key="Accordions" Value="b850f22e-63cf-48cf-81cf-d937228e145f" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="xxx-code-link-parameters-int-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Linking with Number Url Parameters&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -22946,30 +21548,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="6aa1c4e6-9154-4ef4-a420-fdaa8e1f934b">
-      <Value Key="Accordions" Value="9fabd383-b99c-49ca-b3b0-08f0fb094955,a47c7b72-35f3-444a-9d73-ee0861f10fe3,f8b1a374-8058-41f3-baf1-24c5d0d47e01,abc3071d-3838-4b28-b23b-4bd3393b329b,622586a5-70b2-43e7-8e4b-736b5be70d49,1b166690-8855-41f9-af16-bfdee5b3364e" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;RazorBlade helps with many helper functions to optimize working with string variables, also when they contain html.&amp;nbsp;&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="xxx-blade-text-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;RazorBlade Text Operations&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutorialGroup" EntityGUID="5d4e7d43-d87d-4af7-8324-3c2098f901ee">
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -23149,30 +21727,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="c0d8c3ef-b764-417d-8271-93007f7d6990">
-      <Value Key="Accordions" Value="2e00a534-e95b-44f4-bab8-74fc135dcd09,1ac0be30-d75d-4abe-8348-f9d29221b8ed,30a67ce9-718d-4266-b9b8-1aa49740b0e3,f0e40547-a87c-4023-808c-4f4206c837aa,a506367b-7322-4694-8feb-b81d1bfa1f13" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Learn how to leverage LINQ (Language Integrated Query) of C# to sort, filter, group content-items. This demo uses the following data in app:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Persons&lt;/strong&gt;&amp;nbsp;- various people who are used in the data. A person can also have one or many favorite books.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Books&lt;/strong&gt;&amp;nbsp;- books people wrote or contributed to. Books have authors and&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="&lt;h2&gt;Some notes before we start&lt;/h2&gt;&#xA;&lt;p&gt;All our code uses some general stuff explained here:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;to enable LINQ commands we always need:&lt;br&gt;&lt;code&gt;@using System.Linq&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;most of the code starts by retrieving a list of&amp;nbsp;&lt;strong&gt;Books&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Authors&lt;/strong&gt;. This is done using:&lt;br&gt;&lt;code&gt;App.Data[&quot;Books&quot;]&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Since we want to use&amp;nbsp;&lt;code&gt;dynamic&lt;/code&gt;&amp;nbsp;types (which lets us write things like&amp;nbsp;&lt;code&gt;book.Name&lt;/code&gt;, we usually wrap it with:&lt;br&gt;&lt;code&gt;AsList(App.Data[&quot;Books&quot;])&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;The compiler often can't guess object types we are using, we often need to cast lists to:&lt;br&gt;&lt;code&gt;IEnumerable&amp;lt;dynamic&amp;gt;&lt;/code&gt;&lt;br&gt;The easiest way is to just run it through&amp;nbsp;&lt;code&gt;AsList(original as object)&lt;/code&gt;.&lt;br&gt;The&amp;nbsp;&lt;code&gt;as object&lt;/code&gt;&amp;nbsp;part necessary because of limitations in Razor.&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="&lt;h2&gt;Some notes before we start&lt;/h2&gt;&#xA;&lt;p&gt;All our code uses some general stuff explained here:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;to enable LINQ commands we always need:&lt;br&gt;&lt;code&gt;@using System.Linq&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;most of the code starts by retrieving a list of&amp;nbsp;&lt;strong&gt;Books&lt;/strong&gt;&amp;nbsp;and&amp;nbsp;&lt;strong&gt;Authors&lt;/strong&gt;. This is done using:&lt;br&gt;&lt;code&gt;App.Data.GetStream(&quot;Books&quot;)&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="linq-basics-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;LINQ Basics&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutorialGroup" EntityGUID="2e00a534-e95b-44f4-bab8-74fc135dcd09">
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -23305,27 +21859,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="linq-basics-sort - Simple Sorting of Persons" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="e16ec67d-397b-467c-bf96-799289212b96">
-      <Value Key="Accordions" Value="1f1ef56e-dfa2-4461-addf-67dfe61dd5e3,589ca806-aa16-4b65-87e7-9ad715097e73,df885cf5-3a7a-4904-8cff-0c674cd4c67e,1aaaa286-e7b4-431e-9d49-43c00d7e2678" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="linq-relationships-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;LINQ Relationships - Children, Parents, Grandchildren, ...&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -23518,27 +22051,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="linq-relationships-parents - Find Parents of Authors - Things that point to Authors" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="86b24448-b5c7-4e9d-8a1b-a1cf6abe3a97">
-      <Value Key="Accordions" Value="ebefafd2-34a9-4ab4-b7d1-8ab3c27d512a,44a70283-4a33-4d23-8bb3-4cd3526e3cda" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Settings allow your code to use predefined settings across all apps and sites. And they allow you to overide a setting at any level of the application. You can read more about the &lt;a href=&quot;https://r.2sxc.org/settings&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;settings in the docs 📕&lt;/a&gt;.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="settings-basics-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Settings in 2sxc&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -23907,27 +22419,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="d692d153-6366-45dd-9327-6067737ad4e5">
-      <Value Key="Accordions" Value="eb771804-e5ad-4a6c-b1c8-4d588e1b3203" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;2sxc 12.04 helps with many advanced challenges like these:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Make sure that certain scripts are only loaded once (like jQuery or FancyBox)&lt;/li&gt;&#xA;&lt;li&gt;Make sure that all apps use the same version of these scripts&lt;/li&gt;&#xA;&lt;li&gt;Starting things in the right order&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="code-pageservice-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Use PageService.Activate Features like JS/CSS&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="abf05759-ca41-415e-a706-e85135975d3b">
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -23954,30 +22445,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="code-pageservice-activate-feature" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="2d668523-58fd-4d83-9c4a-9dde63c76f0b">
-      <Value Key="Accordions" Value="d1f6afd4-ab93-474c-8364-fea8afaec712,96f142cb-f511-4c80-8509-09bac3bc24ca" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Everything in 2sxc is multi-language right from the start. It's important to understand that every field in 2sxc can be translated or not - and the lookup happens automatically. So the following examples will automatically show the correct value based on the language you're on.&lt;/p&gt;&#xA;&lt;p&gt;There are two important types of multi-language:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Multi-Language Resources - like messages / button labels etc.&lt;/li&gt;&#xA;&lt;li&gt;Multi-Language Content - things the content editor will work with&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="languages-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="&lt;p&gt;If you installed the Tutorial App on your system these examples may not work. That's because Dnn / 2sxc must be have DE and EN activated &lt;em&gt;before&lt;/em&gt; installing the tutorial app. Otherwise it will only import the EN data and not import the DE data.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Going all Multilanguage / i18n&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -24197,31 +22664,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialType" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="8cc18256-6a89-438f-b096-42a3bb274efd">
-      <Value Key="Accordions" Value="a1161d9f-acd3-4fd7-9dba-704e4edcdb84" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="page-base-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Notes" Value="becd94c6-8a90-419e-ad27-d6f5e4a52da6" Type="Entity" />
-      <Value Key="Title" Value="&lt;p&gt;Set &amp;lt;base&amp;gt; Tag in Header using the &lt;em&gt;IPageService&lt;/em&gt;&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -24852,30 +23294,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="2cc13efe-e571-48e2-9f24-48934a6fb3a9">
-      <Value Key="Accordions" Value="26a9ee20-b475-441e-b13b-f7d9ec6f9194,9122f80c-cccb-433d-80f0-01420c57db0a,0417e4be-bd8e-49c1-8734-66a8797cd14a" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;This API lets you safely create html from code in an elegant way. This basic introduction shows the most basic principles you can apply, and we'll build on that in the next tutorials.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="razorblade-htmltags-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;&lt;em&gt;RazorBlade&lt;/em&gt;&amp;nbsp;Basic Html5&amp;nbsp;&lt;code&gt;Tag&lt;/code&gt;&amp;nbsp;API Introduction&amp;nbsp;&lt;em&gt;v3.0&lt;/em&gt;&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutorialGroup" EntityGUID="9122f80c-cccb-433d-80f0-01420c57db0a">
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -24939,30 +23357,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="2b477d83-175b-4229-aa02-033b4d1c33ba">
-      <Value Key="Accordions" Value="687a066c-432f-4a29-8629-77391fcce7da,febe50fa-ec97-4be8-b892-a96f4dd4a04d" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;&lt;strong&gt;DataSources&lt;/strong&gt;&amp;nbsp;are the magic backbone of 2sxc. They can get data, filter it, sort it, and more. These samples show you how to use them in code (instead of in VisualQuery).&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You can use the IDataService with&amp;nbsp;&lt;code&gt;Kit.Data&lt;/code&gt;&amp;nbsp;in your C# code to get DataSource Objects. A common scenario is when you need to configure the parameters in ways that are not possible in the UI.&lt;/li&gt;&#xA;&lt;li&gt;Such DataSources can also be linked together (&lt;em&gt;attached&lt;/em&gt;) so the output of one DataSource becomes the input of another.&lt;/li&gt;&#xA;&lt;li&gt;You can also provide&amp;nbsp;&lt;code&gt;options&lt;/code&gt;&amp;nbsp;to give each DataSource it's configuration.&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="datasources-use-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Data Sources Tutorial - use in C# / Razor Code&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -25219,30 +23613,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="datasources-use-query-parameters" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="1fa13422-6f73-420e-b6a2-ecf8ec689d9d">
-      <Value Key="Accordions" Value="612f81a6-3861-4178-a01c-eaf70558c13b,dd2c6a9b-426c-4a81-ad5f-dcdc0b561760,a5a0b8d9-5673-4d81-83ce-495efb1bedd7,5e7c6457-4ee3-4b37-9574-e38f72a2d260,6433c46c-388d-436b-8cf9-e83731f262eb,845c5aad-a7f4-4613-b581-03f02e8d6888" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;&lt;strong&gt;DataSources&lt;/strong&gt;&amp;nbsp;are the magic backbone of 2sxc. They can get data, filter it, sort it, and more. In many cases you will simply use the DataSources provided by 2sxc and the EAV system, but you can do even more. Specifically:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You can create your own&amp;nbsp;&lt;strong&gt;Dynamic DataSources&lt;/strong&gt;&amp;nbsp;in C# and use them in your code and in Visual Query. This is a bit more advanced, but very powerful. Common scenarios are DataSources which do things or retrieve data which the built-in DataSources don't do.&lt;/li&gt;&#xA;&lt;li&gt;You can create&amp;nbsp;&lt;strong&gt;compiled DataSources&lt;/strong&gt;&amp;nbsp;in C# and use them in your code and in Visual Query. This is much more advanced, and not demonstrated in these tutorials, since it would be hard to install them.&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="datasources-dynamic-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Dynamic DataSources Tutorial&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -25793,30 +24163,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="datasources-dynamic-configuration - Custom Dynamic DataSources - Configuration" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="699128d7-68c5-496e-8e65-d785b5e5ee80">
-      <Value Key="Accordions" Value="cb3f9b8a-1e6f-49bc-ba80-ca47ade4e82c,f8138101-ac48-4c76-8db7-d199d987e32f,072d5b39-a8fe-4fb9-b207-2b0f2219635e,d925b819-8e5d-4211-8a0c-9b4d547b2515" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="webapi-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Call WebAPIs and REST using JavaScript&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -26733,30 +25079,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="c71935a8-6f71-4cbf-bce0-4efdb058151b">
-      <Value Key="Accordions" Value="bfedb8b3-3b9b-4939-a273-335b6f5cb262,a4b0586f-36e5-4000-b796-9b6da0db43de,a24cb8a3-96ca-4ec8-8002-1bb482c6fbc5,04d476bd-cfcf-42ab-9fa1-18a8284aff88,19ceea6a-e9a6-4302-a006-2530484dfbf3,94880879-abbe-4beb-b2bd-311078d0cc84,ce5b2107-6c74-4440-9510-f3da1c52bbc3,7d393e6f-6356-4bd3-b88e-fcaf205b4bb7,899674b3-680a-4aca-904e-3157d56c268e" Type="Entity" />
-      <Value Key="Intro" Value="&lt;p&gt;Since you can do so many things customizing the toolbar, we created a bunch of small examples for you. Note that we are basically providing a list of commands how the toolbar should be modified. You should also &lt;a href=&quot;https://docs.2sxc.org/how-to/customize-edit-ux/toolbars.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;read the docs&lt;/a&gt; to learn more about this.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="ui-toolbars-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="&lt;p&gt;Important: Normally only editors see these toolbars, so clicking on the buttons won't work, except for the ellipsis (&amp;hellip;). &lt;br&gt;The toolbars would usually only appear on hover, but the Tutorial runs in Demo-Mode so you can see them right away. The old samples still only work on hover. &lt;br&gt;Hover over the various boxes to see the result - like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&quot;/Portals/tutorial-razor/adam/Tutorial-Razor/qDUZx3Fvv0y84E79sFgVGw/Note/hover-example.jpg&quot; alt=&quot;hover-example&quot; data-cmsid=&quot;file:hover-example.jpg&quot;&gt;&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;2sxc Toolbar Customization&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="b98eacce-566f-42ce-ac37-3870a1b79e3e" AttributeSetName="TutorialNote" EntityGUID="3e14a6fc-7981-4595-984d-e3e640ca2bbf">
       <Value Key="CshtmlFile" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -26777,31 +25099,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="toolbar-hover - " Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="d39d552a-d7f3-4858-bcdb-85650a3a4274">
-      <Value Key="Accordions" Value="4c11db01-b811-4eac-9e3d-9ae820673f8a,189a4cac-579e-45b4-9ae6-984c8aab05d7" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="ui-toolbars-advanced-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Notes" Value="3e14a6fc-7981-4595-984d-e3e640ca2bbf" Type="Entity" />
-      <Value Key="Title" Value="&lt;p&gt;Advanced Toolbar Customizations&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -28358,30 +26655,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="22a7683f-6a45-4c50-8083-f51207d6b659">
-      <Value Key="Accordions" Value="29d9545e-cbe9-4bbd-9f77-90ce95a46e6d" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="datasources-inquery-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="2525d808-dff4-411f-8301-980caf018819">
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -28425,30 +26698,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialType" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="17c6fd25-7e92-47b1-87b1-25dbd589a98c">
-      <Value Key="Accordions" Value="29a78dec-bcf9-4045-810e-d66b60d667c1,6c46c9d3-78f1-4e60-9e9e-6045a33358ea,046020f0-6977-45a2-9cd8-6c73c45bfc8f" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="formulas-basic-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Get Started with Formulas&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -29036,30 +27285,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="90750594-328a-43a1-8094-b892ef93579e">
-      <Value Key="Accordions" Value="f275587f-23e3-4e14-8536-7ec4f3ea088e,b26d4a76-eac7-4995-9a79-fe71ad3bd85d" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="datasources-advanced-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="6e8db520-a735-421b-a2ca-f85a22644075">
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -29456,30 +27681,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="XxxLogo" Value="" Type="Hyperlink">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="82a7b6ec-67bc-4b0a-83f9-f1931daa4a61">
-      <Value Key="Accordions" Value="30f2116e-110b-48f0-a103-deacc3b8a5b1,11975531-ce09-47ae-8ab5-47b5fa6289c6,fefc5989-559f-431a-99b2-4860f70dc5ca,99c82166-98b9-44ea-9de4-4f33a1c019a1,5f1deef0-6264-4f25-bdda-a707a954144f" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="data-query-sql-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -31669,30 +29870,6 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="5ef39c7f-7928-4f7b-a3eb-eb924270e3aa" AttributeSetName="XxxTutorialPage" EntityGUID="33639a70-82b2-47d3-b9ba-e08f1e6b3df2">
-      <Value Key="Accordions" Value="67a5382a-8447-48d6-9c9e-37bb533827c0,e2309c14-d152-4075-bb6b-1067c41f6308,f0447e1c-9835-495f-94e9-2d0650a8acf6" Type="Entity" />
-      <Value Key="Intro" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreDyn" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="IntroMoreTyped" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="NameId" Value="xxx-formulas-parameters-page" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Note" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="&lt;p&gt;Formulas using Parameters&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="TitleForPicker" Value="" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="908119e9-7383-4550-bca5-08864f5af456" AttributeSetName="TutorialGroup" EntityGUID="67a5382a-8447-48d6-9c9e-37bb533827c0">
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
@@ -32710,10 +30887,13 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IsPage" Value="False" Type="Boolean">
+      <Value Key="IsPage" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkEmphasis" Value="" Type="String">
@@ -33270,10 +31450,13 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IsPage" Value="False" Type="Boolean">
+      <Value Key="IsPage" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkEmphasis" Value="" Type="String">
@@ -34330,10 +32513,13 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IsPage" Value="False" Type="Boolean">
+      <Value Key="IsPage" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkEmphasis" Value="" Type="String">
@@ -34839,10 +33025,13 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="IsPage" Value="False" Type="Boolean">
+      <Value Key="IsPage" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="LinkEmphasis" Value="" Type="String">
@@ -36019,6 +34208,9 @@
       <Value Key="IntroMoreDyn" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -36034,7 +34226,7 @@
       <Value Key="LinkTitle" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="NameId" Value="home-page" Type="String">
+      <Value Key="NameId" Value="home" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Note" Value="&lt;h2&gt;This is a fake virtual page&lt;/h2&gt;&#xA;&lt;p&gt;it's just here to store the Open Graph Metadata for Home!&lt;/p&gt;" Type="String">
@@ -36049,7 +34241,7 @@
       <Value Key="Title" Value="&lt;p&gt;Razor Tutorials for Dnn and Oqtane&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="home-page - Razor Tutorials for Dnn and Oqtane" Type="String">
+      <Value Key="TitleForPicker" Value="home - Razor Tutorials for Dnn and Oqtane" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Variants" Value="" Type="String">
@@ -36597,7 +34789,7 @@
       <Value Key="Icon" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Label" Value="T0 - Tutorial Sequence (List of all Sections on Home)" Type="String">
+      <Value Key="Label" Value="T1 - Tutorial Sequence (List of all Sections on Home)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Link" Value="" Type="Hyperlink">
@@ -37186,7 +35378,7 @@
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="" Type="String">
+      <Value Key="Intro" Value="&lt;p&gt;The ITemplateService - available on Kit.Template - allows you to mix a string containing placeholders with various data sources to generate things such as:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Greeting Texts&lt;/li&gt;&#xA;&lt;li&gt;Messages&lt;/li&gt;&#xA;&lt;li&gt;Mails&lt;/li&gt;&#xA;&lt;li&gt;...and more&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
@@ -37210,7 +35402,7 @@
       <Value Key="LinkTitle" Value="&lt;p&gt;Template Service Tutorials&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="NameId" Value="templateservice-page" Type="String">
+      <Value Key="NameId" Value="templateservice" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Note" Value="" Type="String">
@@ -37222,10 +35414,10 @@
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;Template Service (new v18.03)&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="templateservice-page - " Type="String">
+      <Value Key="TitleForPicker" Value="templateservice - Template Service (new v18.03)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Variants" Value="" Type="String">
@@ -37279,10 +35471,10 @@
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;How to Use the Template Service (new v18.03)&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;How to Use the Template Service&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="templateservice-basic - How to Use the Template Service (new v18.03)" Type="String">
+      <Value Key="TitleForPicker" Value="templateservice-basic - How to Use the Template Service" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Variants" Value="" Type="String">
@@ -38050,7 +36242,7 @@
       <Value Key="Icon" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Label" Value="T2 - TutorialGroup (Page or Accordion in Page)" Type="String">
+      <Value Key="Label" Value="T3 - TutorialGroup (Page or Accordion in Page)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Link" Value="" Type="Hyperlink">
@@ -38108,7 +36300,7 @@
       <Value Key="Icon" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Label" Value="T1 - Tutorial Section (Main Sections on Home)" Type="String">
+      <Value Key="Label" Value="T2 - Tutorial Section (Main Sections on Home)" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Link" Value="" Type="Hyperlink">
@@ -38118,6 +36310,38 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="be34f64b-7d1f-4ad0-b488-dabbbb01a186" AttributeSetName="LightSpeedOutputDecorator" EntityGUID="561df5b3-24c0-42b4-b663-c0013f8bdbb6" Json="True" KeyGuid="af52c092-9882-4837-b75c-e01c268a288e">
+      <Value Key="Advanced" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ByUrlParameters" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Duration" Value="-1" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DurationEditors" Value="300" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DurationSystemAdmin" Value="60" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DurationUsers" Value="-1" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="🚫" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlParameterNames" Value="tut&#xA;manage" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlParametersCaseSensitive" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlParametersOthersDisableCache" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>

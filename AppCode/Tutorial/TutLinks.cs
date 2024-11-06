@@ -31,6 +31,8 @@ namespace AppCode.Tutorial
 
     public string TutPageUrl(TutorialGroup tutPage) {
       if (tutPage == null) return null;
+      // Special / history, the IDs of pages had "-page" and must have it
+      // in the URL it's not visible though
       return Link.To(parameters: MyPage.Parameters.Set("tut", tutPage.NameId.BeforeLast("-page")));
     }
 
