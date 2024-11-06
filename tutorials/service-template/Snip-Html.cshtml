@@ -6,7 +6,7 @@
 
   // Source of Data containing bad XSS HTML
   var mockQueryString = Kit.Template.CreateSource("QueryString", new Dictionary<string, string> {
-    { "Id", "<script>document.write('this is a XSS injection')</script>" },
+    { "Id", "<script>document.write('this is as XSS injection demo')</script>" },
   });
 
   // Create the engine which uses this and default sources
