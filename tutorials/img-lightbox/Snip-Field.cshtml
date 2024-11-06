@@ -1,0 +1,33 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{
+  var img = App.Data.GetAll<ImgLightbox>().First();
+}
+
+<h4>Default: No Lightbox</h4>
+<p>
+  If the field (and image) are not configured, no lightbox will be made.
+</p>
+@img.Img(nameof(ImgLightbox.ImageNoConfig), factor: 0.05)
+
+<h4>Field Config: Standalone Lightbox</h4>
+<p>
+  These images will have a lightbox, because the field definition has it enabled.
+</p>
+@img.Img(nameof(ImgLightbox.ImageLightboxSolo), factor: 0.05)
+@img.Img(nameof(ImgLightbox.ImageLightboxSolo), factor: 0.05)
+<hr>
+
+<h4>Field Config: Grouped Lightbox</h4>
+@img.Img(nameof(ImgLightbox.ImageLightboxGrouped), factor: 0.05)
+@img.Img(nameof(ImgLightbox.ImageLightboxGrouped), factor: 0.05)
+<hr>
+
+<h4>Gallery</h4>
+<p>
+  These images all come from the same field,
+  which has lightbox enabled and specified as a gallery.
+</p>
+@foreach (var pic in img.LibraryLightboxGalleryFolder.Files) {
+  @Kit.Image.Img(pic, factor: 0.05)
+}

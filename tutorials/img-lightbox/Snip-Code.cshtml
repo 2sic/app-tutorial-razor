@@ -1,0 +1,43 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode.Data
+@{
+  var img = App.Data.GetAll<ImgLightbox>().First();
+}
+
+<h4>Simple Output</h4>
+@img.Img(nameof(ImgLightbox.ImageNoConfig),
+  tweak: t => t.ImgClass("float-end")
+    .Resize(tweak: r => r.Width(100))
+)
+<p>
+  This image has no configuration, so the lightbox will not be available.
+</p>
+
+<h4>Output with Config</h4>
+@img.Img(nameof(ImgLightbox.ImageNoConfig),
+  tweak: t => t.ImgClass("float-end")
+    .Resize(tweak: r => r.Width(100))
+    .LightboxEnable()
+    .LightboxDescription("this is an old 2sxc logo")
+)
+<p>
+  Here we enable the lightbox in code.
+  This would also override a configuration if it were set.
+  We also provide a description.
+</p>
+
+<h4>Output as part of Gallery</h4>
+<p>
+  These two images will now have a lightbox, and be grouped together.
+  The descriptions now come from the image Metadata.
+</p>
+@img.Img(nameof(ImgLightbox.ImageNoConfig),
+  tweak: t => t.Resize(tweak: r => r.Width(100))
+    .LightboxEnable()
+    .LightboxGroup("group1")
+)
+@img.Img(nameof(ImgLightbox.ImageLightboxGrouped),
+  tweak: t => t.Resize(tweak: r => r.Width(100))
+    .LightboxEnable()
+    .LightboxGroup("group1")
+)
