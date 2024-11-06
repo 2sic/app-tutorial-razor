@@ -70,7 +70,7 @@ namespace AppCode.TutorialSystem.Sections
     private ITag LinksInSection(IEnumerable<ITypedItem> items) {
       var result = Tag.RawHtml();
       foreach (var dataEl in items) {
-        var tutUrl = dataEl.Type.Name == "TutorialGroup" ? TutLinks.TutPageUrl(dataEl) as string : null;
+        var tutUrl = dataEl is TutorialGroup tutorialGroup ? TutLinks.TutPageUrl(tutorialGroup) : null;
         string section = Field.ToLowerInvariant();
         var url = (section == SectRequirements || section == SectResources)
             ? dataEl.Url("Link")

@@ -33,7 +33,7 @@
   var prev = currentIndex > 0 
     ? tutGroups[currentIndex - 1] 
     : sectionIndex > 0 
-      ? sortedTutorialSections[sectionIndex - 1].Children("TutorialGroups").LastOrDefault() 
+      ? sortedTutorialSections[sectionIndex - 1].TutorialGroups.LastOrDefault() 
       : null;
 
   // Previous Tutorial Metadata
@@ -43,7 +43,7 @@
   var next = currentIndex < tutGroups.Count() - 1 
     ? tutGroups[currentIndex + 1] 
     : sectionIndex < sortedTutorialSections.Count() - 1
-      ? sortedTutorialSections[sectionIndex + 1].Children("TutorialGroups").FirstOrDefault() 
+      ? sortedTutorialSections[sectionIndex + 1].TutorialGroups.FirstOrDefault() 
       : null;
 
 

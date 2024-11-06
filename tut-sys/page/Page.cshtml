@@ -5,9 +5,9 @@
 @using AppCode.Tutorial
 @{
   var myParams = MyPage.Parameters;
-  var tutorialGroup = myParams.IsNotEmpty("tut")
-    ? myParams.String("tut") + "-page"
-    : MyModel.String("TutorialGroupId");
+  
+  // This Razor is called with a parameter like tut=home
+  var tutorialGroup = myParams.String("tut") + "-page";
 
   var tutPage = App.Data.GetAll<TutorialGroup>().FirstOrDefault(i => i.NameId == tutorialGroup);
 
