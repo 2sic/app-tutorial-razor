@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="19.00.01" ExportDate="2024-12-28T15:25:52.2956551+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="19.00.01" ExportDate="2024-12-28T16:02:50.9866542+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -7816,6 +7816,162 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+      </Attributes>
+    </AttributeSet>
+    <AttributeSet StaticName="17237ce9-9377-4718-8a24-5a08744a3181" Name="UiPickerIconsCssFontAwesome" Scope="Default" AlwaysShareConfiguration="false">
+      <Attributes>
+        <Attribute StaticName="Dropdown" Type="String" IsTitle="true">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8e4de689-73c7-404b-b0c5-4fbfa815552b" Json="True" KeyNumber="6663">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="fa-undo" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-picker" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Dropdown" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="e64dd20e-0055-4410-87a1-1238fe44707f" AttributeSetName="@string-picker" EntityGUID="208bb417-e60f-4e27-b3a5-95980de84b0e" Json="True" KeyNumber="6663">
+            <Value Key="AllowMultiValue" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="CreateParameters" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="CreatePrefill" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DataSources" Value="39852b37-58dc-4432-b966-21aff17fbce9" Type="Entity" />
+            <Value Key="EditParameters" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableReselect" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="PickerDisplayMode" Value="list" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Separator" Value="," Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="Checkboxes" Type="String" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="cd0fee3b-d89f-4a4d-8c58-9c6b59cfb74f" Json="True" KeyNumber="6664">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="fa-align-center,fa-adjust" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-picker" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Checkboxes" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="e64dd20e-0055-4410-87a1-1238fe44707f" AttributeSetName="@string-picker" EntityGUID="b8d02378-8643-404d-a5f7-9f59a987c109" Json="True" KeyNumber="6664">
+            <Value Key="AllowMultiValue" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="CreateParameters" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="CreatePrefill" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DataSources" Value="39852b37-58dc-4432-b966-21aff17fbce9" Type="Entity" />
+            <Value Key="EditParameters" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableAddExisting" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableCreate" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableEdit" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableRemove" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableReselect" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="EnableTextEntry" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="PickerDisplayMode" Value="auto-inline" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Separator" Value="," Type="String">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
@@ -37146,7 +37302,7 @@
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Sections" Value="8e150d34-477f-4cdc-bb18-277a93307b6a,baf87bd4-7672-439b-809f-afd8353c12cb,614610e2-62be-4954-9529-d814c5bd295d" Type="Entity" />
+      <Value Key="Sections" Value="8e150d34-477f-4cdc-bb18-277a93307b6a,a837ade8-8d74-44a2-bb0a-bf82cdf673dd,baf87bd4-7672-439b-809f-afd8353c12cb,614610e2-62be-4954-9529-d814c5bd295d" Type="Entity" />
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
@@ -37538,6 +37694,147 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="78451625-053f-4e23-b4e8-e95c3fcf3320" AttributeSetName="UiPickerSourceCss" EntityGUID="39852b37-58dc-4432-b966-21aff17fbce9" Json="True">
+      <Value Key="CssSelectorFilter" Value=".fa-" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="CssSourceFile" Value="[App:Path]/tutorials/ui-pickers/fontawesome/css/fontawesome-nobrands.min.css" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ItemInformation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ItemLink" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ItemTooltip" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PreviewType" Value="icon-css" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PreviewValue" Value="fas [Item:Value]" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="UI Picker - Font-Awesome" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Value" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="2334910e-4c11-4ea5-aafb-d1eef74624f0" Json="True" KeyString="17237ce9-9377-4718-8a24-5a08744a3181">
+      <Value Key="AdditionalSettings" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="UI Picker - Icons Css (Font Awesome)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="9261e709-ef71-4582-82da-3a9b5fc89356" Json="True" KeyNumber="153">
+      <Value Key="DebugLog" Value="Caller: GetOrBuild; Line: 140; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Core\Caching\Apps\AppsCacheBase.cs&#xA;Message: App: Z61A153; Number: 0&#xA;Caller: AppStateInitialized; Line: 109; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Message: First Build; Number: 0&#xA;Caller: AppStateBuilderRaw; Line: 92; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Caller: LoadAppStateFromDb; Line: 139; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Message: App: 153, appGuidName: 'efe3b9cf-1382-40b3-bee2-34becb5351bc'; Number: 0&#xA;Caller: Update; Line: 178; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Message: App: 153; Number: 0&#xA;Caller: Update; Line: 183; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Caller: LoadEntities; Line: 20; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EntityLoader.cs&#xA;Caller: AppStateInitialized; Line: 114; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Caller: EnsureAppConfiguredAndInformIfRefreshNeeded; Line: 18; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Caller: CheckIfAllPartsExist; Line: 47; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: App: 153; Number: 0&#xA;Message: Config: False, Resources: False, Settings: False; AllOk: False; Number: 0&#xA;Message: App Entity Count: 0; Number: 0&#xA;Message: App ContentType Count: 202; Number: 0&#xA;Message: App Metadata Count: 0; Number: 0&#xA;Message: Has Type App Config: 2SexyContent-App/2SexyContent-App - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Resources: App-Resources/App-Resources - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Settings: App-Settings/App-Settings - ToSic.Eav.Data.ContentType; Number: 0&#xA;Caller: EnsureAppConfiguredAndInformIfRefreshNeeded; Line: 26; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: Add Requested; Number: 0&#xA;Caller: InitializeApp; Line: 42; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializer.cs&#xA;Message: App: 153; Number: 0&#xA;Caller: CheckIfAllPartsExist; Line: 47; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: App: 153; Number: 0&#xA;Message: Config: False, Resources: False, Settings: False; AllOk: False; Number: 0&#xA;Message: App Entity Count: 0; Number: 0&#xA;Message: App ContentType Count: 202; Number: 0&#xA;Message: App Metadata Count: 0; Number: 0&#xA;Message: Has Type App Config: 2SexyContent-App/2SexyContent-App - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Resources: App-Resources/App-Resources - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Settings: App-Settings/App-Settings - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Some parts missing: appConfig: ; appResources: : appSettings; ; Number: 0" Type="String" />
+      <Value Key="DisplayName" Value="efe3b9cf-1382-40b3-bee2-34becb5351bc" Type="String" />
+      <Value Key="Folder" Value="efe3b9cf-1382-40b3-bee2-34becb5351bc" Type="String" />
+      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="Version" Value="00.00.19" Type="String" />
+    </Entity>
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="44959cdf-db92-4eac-9380-0dbf59b92d5a" KeyNumber="153" />
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="b7380ecd-288a-4bf2-836e-575c209d76a3" KeyNumber="153" />
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="2SexyContent-App" AttributeSetName="2SexyContent-App" EntityGUID="fc553530-f3d7-4d60-8cdf-3d47ca767a24" Json="True" KeyNumber="153">
+      <Value Key="DebugLog" Value="Caller: GetOrBuild; Line: 140; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Core\Caching\Apps\AppsCacheBase.cs&#xA;Message: App: Z61A153; Number: 0&#xA;Caller: AppStateInitialized; Line: 109; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Message: First Build; Number: 0&#xA;Caller: AppStateBuilderRaw; Line: 92; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Caller: LoadAppStateFromDb; Line: 139; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Message: App: 153, appGuidName: 'efe3b9cf-1382-40b3-bee2-34becb5351bc'; Number: 0&#xA;Caller: Update; Line: 178; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Message: App: 153; Number: 0&#xA;Caller: Update; Line: 183; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Caller: LoadEntities; Line: 20; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EntityLoader.cs&#xA;Caller: AppStateInitialized; Line: 114; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Persistence.Efc\EfcAppLoader.cs&#xA;Caller: EnsureAppConfiguredAndInformIfRefreshNeeded; Line: 18; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Caller: CheckIfAllPartsExist; Line: 47; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: App: 153; Number: 0&#xA;Message: Config: False, Resources: False, Settings: False; AllOk: False; Number: 0&#xA;Message: App Entity Count: 0; Number: 0&#xA;Message: App ContentType Count: 202; Number: 0&#xA;Message: App Metadata Count: 0; Number: 0&#xA;Message: Has Type App Config: 2SexyContent-App/2SexyContent-App - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Resources: App-Resources/App-Resources - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Settings: App-Settings/App-Settings - ToSic.Eav.Data.ContentType; Number: 0&#xA;Caller: EnsureAppConfiguredAndInformIfRefreshNeeded; Line: 26; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: Add Requested; Number: 0&#xA;Caller: InitializeApp; Line: 42; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializer.cs&#xA;Message: App: 153; Number: 0&#xA;Caller: CheckIfAllPartsExist; Line: 47; File: C:\Projects\2sxc\eav-server\ToSic.Eav.Apps\Eav.Apps.Internal\Work\AppCreate\AppInitializedChecker.cs&#xA;Message: App: 153; Number: 0&#xA;Message: Config: False, Resources: False, Settings: False; AllOk: False; Number: 0&#xA;Message: App Entity Count: 0; Number: 0&#xA;Message: App ContentType Count: 202; Number: 0&#xA;Message: App Metadata Count: 0; Number: 0&#xA;Message: Has Type App Config: 2SexyContent-App/2SexyContent-App - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Resources: App-Resources/App-Resources - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Has Type App Settings: App-Settings/App-Settings - ToSic.Eav.Data.ContentType; Number: 0&#xA;Message: Some parts missing: appConfig: ; appResources: : appSettings; ; Number: 0" Type="String" />
+      <Value Key="DisplayName" Value="efe3b9cf-1382-40b3-bee2-34becb5351bc" Type="String" />
+      <Value Key="Folder" Value="efe3b9cf-1382-40b3-bee2-34becb5351bc" Type="String" />
+      <Value Key="OriginalId" Value="" Type="String" />
+      <Value Key="Version" Value="00.00.19" Type="String" />
+    </Entity>
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Settings" AttributeSetName="App-Settings" EntityGUID="31e0a506-f391-4362-8db7-51e5be48c5d6" KeyNumber="153" />
+    <Entity TargetType="3" AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="768318a4-20e0-4554-a0d1-c694bff4762d" KeyNumber="153" />
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="a837ade8-8d74-44a2-bb0a-bf82cdf673dd">
+      <Value Key="InDepthExplanation" Value="&lt;p&gt;See how this is configured.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="ui-pickers-icons-fontawesome" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="PermissionConfiguration" AttributeSetName="PermissionConfiguration" EntityGUID="7595ded7-ab16-4e23-b443-0f892d688aad" Json="True" KeyGuid="17237ce9-9377-4718-8a24-5a08744a3181">
+      <Value Key="Condition" Value="SecurityAccessLevel.View" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Grant" Value="č" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Identity" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PermissionType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Anonymous / View can create draft" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="6044" RelativePath="adam\Tutorial-Razor\FP6nrGBJZUKPRnldQOMQEQ\CsvFile\products.csv" />
@@ -37595,6 +37892,8 @@
     <File Id="6420" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\04-formulas-edit.png" />
     <File Id="6419" RelativePath="adam\Tutorial-Razor\5vCHQdDArke38qk5hGmItQ\Images\05-formulas-run.png" />
     <File Id="6417" RelativePath="adam\Tutorial-Razor\6cecZ_IQ30a110FfCQck1Q\Images\use-in-visual-query.jpg" />
+    <File Id="6631" RelativePath="adam\Tutorial-Razor\6K03qHSNokS7Cr-CzfZz3Q\InDepthImages\100 add source configuration.png" />
+    <File Id="6632" RelativePath="adam\Tutorial-Razor\6K03qHSNokS7Cr-CzfZz3Q\InDepthImages\201 configure font awesome.png" />
     <File Id="6426" RelativePath="adam\Tutorial-Razor\7CIzsWWCsEeg5rLqxM6DCA\Intro\query-authors-with-books.png" />
     <File Id="5984" RelativePath="adam\Tutorial-Razor\7md5eRsHbU6B0iHeIzYLCQ\Cover\Per Anhalter.jpg" />
     <File Id="6582" RelativePath="adam\Tutorial-Razor\cf9X4dSmd0S6AFYly-OrDQ\Images\Snag_373cbe94.png" />
@@ -37690,6 +37989,7 @@
     <Folder Id="14098" RelativePath="adam/Tutorial-Razor/4sK-vJoEB0KPN4JvIjieGA/Intro/" />
     <Folder Id="14087" RelativePath="adam/Tutorial-Razor/5vCHQdDArke38qk5hGmItQ/Images/" />
     <Folder Id="14080" RelativePath="adam/Tutorial-Razor/6cecZ_IQ30a110FfCQck1Q/Images/" />
+    <Folder Id="14552" RelativePath="adam/Tutorial-Razor/6K03qHSNokS7Cr-CzfZz3Q/InDepthImages/" />
     <Folder Id="14096" RelativePath="adam/Tutorial-Razor/7CIzsWWCsEeg5rLqxM6DCA/Intro/" />
     <Folder Id="14413" RelativePath="adam/Tutorial-Razor/cf9X4dSmd0S6AFYly-OrDQ/Images/" />
     <Folder Id="14544" RelativePath="adam/Tutorial-Razor/DpLz3i0Kd0yXXzMzFaC3zQ/InDepthImages/" />
@@ -37747,6 +38047,7 @@
     <Folder Id="14101" RelativePath="adam/Tutorial-Razor/5yVdN0Cu00-opFX9R3mrSA/" />
     <Folder Id="14102" RelativePath="adam/Tutorial-Razor/5yVdN0Cu00-opFX9R3mrSA/InDepthImages/" />
     <Folder Id="14079" RelativePath="adam/Tutorial-Razor/6cecZ_IQ30a110FfCQck1Q/" />
+    <Folder Id="14551" RelativePath="adam/Tutorial-Razor/6K03qHSNokS7Cr-CzfZz3Q/" />
     <Folder Id="12749" RelativePath="adam/Tutorial-Razor/6v4UsTVA_Uelntqmn0zE-g/" />
     <Folder Id="12750" RelativePath="adam/Tutorial-Razor/6v4UsTVA_Uelntqmn0zE-g/Icon/" />
     <Folder Id="14154" RelativePath="adam/Tutorial-Razor/7A90AC5ekE2uOhc9NnFLyg/" />
