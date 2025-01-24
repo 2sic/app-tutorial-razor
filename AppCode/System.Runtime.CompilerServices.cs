@@ -1,0 +1,16 @@
+// 2025-01-24 2dm tried to apply this, but it didn't have an effect.
+// Must try again some other time.
+
+// // Licensed to the .NET Foundation under one or more agreements.
+// // The .NET Foundation licenses this file to you under the MIT license.
+
+// namespace System.Runtime.CompilerServices
+// {
+//     /// <summary>
+//     /// Reserved to be used by the compiler for tracking metadata.
+//     /// This class should not be used by developers in source code.
+//     /// </summary>
+//     public static class IsExternalInit
+//     {
+//     }
+// } 

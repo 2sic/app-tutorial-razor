@@ -15,7 +15,11 @@ public class FactoryOptions : Custom.DataSource.DataSource16
         Greeting = "Greeting from FactoryOptions",
       }),
       // Set various options for how the factory will generate the Entities
-      options: () => new DataFactoryOptions(typeName: "MyContentType", titleField: "Greeting", idSeed: 1000)
+      options: () => new DataFactoryOptions(/* typeName: "MyContentType", titleField: "Greeting", idSeed: 1000 */) {
+        TypeName = "MyContentType",
+        TitleField = "Greeting",
+        IdSeed = 1000,
+      }
     );
   }
 }
