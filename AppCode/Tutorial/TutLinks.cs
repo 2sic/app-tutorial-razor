@@ -1,6 +1,7 @@
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
 using AppCode.Data;
+using AppCode.TutorialSystem;
 
 namespace AppCode.Tutorial
 {
@@ -30,10 +31,26 @@ namespace AppCode.Tutorial
     }
 
     public string TutPageUrl(TutorialGroup tutPage) {
-      if (tutPage == null) return null;
+      if (tutPage == null)
+        return null;
+
+      // Get the group (the page itself or an accordion within) which determines what variants are supported
+      var tutPageGroup = tutPage.ParentOrChildWithVariants;
+
+      // Figure out if the next page supports the variant
+      var keepVariantInUrl = (tutPageGroup?.HasVariants ?? false)
+        && Text.First(tutPageGroup.Variants, Variants.VariantsDefault).Contains(MyPage.Parameters.String("variant") ?? "dummy")
+        ? "variant"
+        : "";
+
       // Special / history, the IDs of pages had "-page" and must have it
       // in the URL it's not visible though
-      return Link.To(parameters: MyPage.Parameters.Set("tut", tutPage.NameId.BeforeLast("-page")));
+      var parameters = MyPage.Parameters
+        .Filter(keepVariantInUrl)
+        .Prioritize("tut")
+        .Set("tut", tutPage.NameId.BeforeLast("-page"));
+
+      return Link.To(parameters: parameters);
     }
 
 

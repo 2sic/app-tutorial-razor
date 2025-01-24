@@ -17,9 +17,7 @@
 
 @if (tutGroup.IsNotEmpty("Accordions")) {
   // Check if any of the tutorials has variants - if yes, show the variant selector
-  var showVariantSelector = tutGroup.HasVariants 
-    ? tutGroup 
-    : tutGroup.Accordions.FirstOrDefault(a => a.HasVariants);
+  var showVariantSelector = tutGroup.ParentOrChildWithVariants;
 
   if (showVariantSelector != null) {
     @Html.Partial("./Variant Selector.cshtml", new VariantSelectorModel {
