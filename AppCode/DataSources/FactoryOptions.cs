@@ -16,6 +16,9 @@ public class FactoryOptions : Custom.DataSource.DataSource16
       }),
       // Set various options for how the factory will generate the Entities
       options: () => new DataFactoryOptions(/* typeName: "MyContentType", titleField: "Greeting", idSeed: 1000 */) {
+        // TestInit = "hello",
+        // TestY = "abc",xyz12456
+        // change fingerprint abcdef
         TypeName = "MyContentType",
         TitleField = "Greeting",
         IdSeed = 1000,
