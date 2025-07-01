@@ -13,20 +13,20 @@ You can also download the latest copy of this App directly from the [releases](.
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v16.00
-| Dnn                 | ✅    | For v9.06.01+
-| Oqtane 2            | ✅    | Requires v4.00+
-| No jQuery           | ✅    |
-| Dnn Demo            | ✅    | See [Dnn Razor Tutorial](https://2sxc.org/dnn-tutorials/en/razor)
-| Oqtane Demo         | ✅    | See [Oqtane Razor Tutorial](https://blazor-cms.org/oqtane-tutorials)
-| Install Checklist   | ➖    | Just get from [releases](https://github.com/2sic/app-tutorial-razor/releases)
-| Source & License    | ✅    | included, ISC/MIT
-| App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)
-| Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)
-| Best Practices      | ✅    | Uses v16.00 conventions
-| Bootstrap 3         | ✔️    |
-| Bootstrap 4         | ✔️    | Works, but not optimized
-| Bootstrap 5         | ✅    | Works, but not optimized
+| 2sxc                | ✅    | requires 2sxc v19.00                                                          |
+| Dnn                 | ✅    | For v9.06.01+                                                                 |
+| Oqtane 2            | ✅    | Requires v4.00+                                                               |
+| No jQuery           | ✅    |                                                                               |
+| Dnn Demo            | ✅    | See [Dnn Razor Tutorial](https://2sxc.org/dnn-tutorials/en/razor)             |
+| Oqtane Demo         | ✅    | See [Oqtane Razor Tutorial](https://blazor-cms.org/oqtane-tutorials)          |
+| Install Checklist   | ➖    | Just get from [releases](https://github.com/2sic/app-tutorial-razor/releases) |
+| Source & License    | ✅    | included, ISC/MIT license                                                     |
+| App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)            |
+| Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)            |
+| Best Practices      | ✅    | Uses v16.00 conventions                                                       |
+| Bootstrap 3         | ✔️    |                                                                               |
+| Bootstrap 4         | ✔️    | Works, but not optimized                                                      |
+| Bootstrap 5         | ✅    | Works, but not optimized                                                      |
 
 ## Contribute
 
@@ -36,31 +36,32 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ## History
 
-* v12.05 2021-10
-  * Upgraded everythnig to also run in Oqtane (except for Dnn specific examples)
-  * Using the latest & greatest best-practices of 2sxc 12.05
-* v12.11 2021-12
-  * Added new tutorials for turnOn
+* v17 - v19 - lots of small changes, not detailed here
+* v16.07.01 2023-09-26
+  * reorganized so the snippets are all in the `/tutorials` folder
+  * removed unused images
+  * tested on Oqtane
+* v16.07.00 2023-09-25
+  * Restructured the entire system so each Snip is standalone in an own file
+  * Build new infrastructure for Snips to exist in variants
+  * Almost all infrastructure code is now typed
+  * Added more than 100 tutorials for Typed
+* v16.00.00 2023-05
+  * Removed _ from Filenames
+  * Enhanced Kit.Image with `imgAltFallback`
+  * Replaced turnOn Tag with `Kit.Page.TurnOn`
+* v14.07.05
+  * Migrated the app to the 14.07 best practices
+  * Changed the toolbar tutorials to also show the new IToolbarBuilder
+  * Added a CmsContext tutorial
 * v13.01
   * Enabled data-optimizations
   * Improved home
   * Added tutorial navigation
   * Added Oqtane support
   * Added IScrub tutorials
-* v14.07.05
-  * Migrated the app to the 14.07 best practices
-  * Changed the toolbar tutorials to also show the new IToolbarBuilder
-  * Added a CmsContext tutorial
-* v16.00.00 2023-05
-  * Removed _ from Filenames
-  * Enhanced Kit.Image with `imgAltFallback`
-  * Replaced turnOn Tag with `Kit.Page.TurnOn`
-* v16.07.00 2023-09-25
-  * Restructured the entire system so each Snip is standalone in an own file
-  * Build new infrastructure for Snips to exist in variants
-  * Almost all infrastructure code is now typed
-  * Added more than 100 tutorials for Typed
-* v16.07.01 2023-09-26
-  * reorganized so the snippets are all in the `/tutorials` folder
-  * removed unused images
-  * tested on Oqtane
+* v12.11 2021-12
+  * Added new tutorials for turnOn
+* v12.05 2021-10
+  * Upgraded everything to also run in Oqtane (except for Dnn specific examples)
+  * Using the latest & greatest best-practices of 2sxc 12.05
