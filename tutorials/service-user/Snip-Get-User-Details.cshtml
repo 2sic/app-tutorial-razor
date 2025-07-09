@@ -1,5 +1,31 @@
 @inherits Custom.Hybrid.RazorTyped
+@{/*!*/
+  var users = Kit.User.GetUsers();
+  var userId = users.FirstOrDefault(u => u.Username == "UserServiceDemoUser").Id;
+/*!*/}
+@{
+  // note: the variable userId is set behind the scenes,
+  // so that the demo works in all environments.
+  var demoUser = Kit.User.GetUser(userId);
+}
 
-<h1>
-  Get Users Details!
-</h1>
+@if (demoUser != null) {
+  <h3>User Details: UserServiceDemoUser (@userId)</h3>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> @demoUser.Id</li>
+    <li class="list-group-item"><strong>Username:</strong> @demoUser.Username</li>
+    <li class="list-group-item"><strong>Is System Admin:</strong> @demoUser.IsSystemAdmin</li>
+    <li class="list-group-item">
+      <strong>Roles:</strong>
+      @if (demoUser.Roles.Any()) {
+        <ul>
+          @foreach (var role in demoUser.Roles) {
+            <li>@role.Name</li>
+          }
+        </ul>
+      } else {
+        <span>No roles</span>
+      }
+    </li>
+  </ul>
+}

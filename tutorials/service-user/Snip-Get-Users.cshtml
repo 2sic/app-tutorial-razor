@@ -1,5 +1,20 @@
 @inherits Custom.Hybrid.RazorTyped
 
-<h1>
-  List Roles!
-</h1>
+@{
+  var demoRoleUsers = Kit.User.GetUsers()
+    .Where(u =>
+      u.Roles.Any(r =>
+        r.Name == "UserServiceDemoRole")
+      )
+    .ToList();
+}
+
+<h3>Users in 'UserServiceDemoRole'</h3>
+<ul class="list-group">
+  @foreach (var user in demoRoleUsers)
+  {
+    <li class="list-group-item">
+      <strong>Username:</strong> @user.Username (<strong>@user.Id</strong>)
+    </li>
+  }
+</ul>

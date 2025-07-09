@@ -1,5 +1,18 @@
 @inherits Custom.Hybrid.RazorTyped
 
-<h1>
-  Get Registered Users!
-</h1>
+@{
+  var users = Kit.User.GetUsers()
+    .Where(u =>
+      u.Roles.Any(r =>
+        r.Name == "Registered Users"
+      )
+    );
+}
+
+<h3>Users in 'Registered Users'</h3>
+<ul>
+  @foreach (var user in users)
+  {
+    <li>@user.Username</li>
+  }
+</ul>

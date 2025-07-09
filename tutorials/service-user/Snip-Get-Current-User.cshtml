@@ -1,5 +1,31 @@
 @inherits Custom.Hybrid.RazorTyped
 
-<h1>
-  Get Registered Users!
-</h1>
+@{
+  var user = Kit.User.GetCurrentUser();
+}
+
+<h3>Get Current User</h3>
+<ul class="user-info">
+  <li>
+    <strong>Name:</strong> @user.Username
+  </li>
+  <li>
+    <strong>ID:</strong> @user.Id</li>
+  <li>
+    <strong>Is System Admin:</strong> @user.IsSystemAdmin
+  </li>
+  <li>
+    <strong>Is Anonymous:</strong> @user.IsAnonymous</li>
+  <li>
+    <strong>Roles:</strong>
+    @if (user.Roles.Any())
+    {
+      <ul>
+        @foreach (var role in user.Roles)
+        {
+          <li>@role.Name</li>
+        }
+      </ul>
+    }
+  </li>
+</ul>

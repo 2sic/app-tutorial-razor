@@ -1,5 +1,14 @@
 @inherits Custom.Hybrid.RazorTyped
 
-<h1>
-  List Roles!
-</h1>
+@{
+  var allRoles = Kit.User.GetRoles();
+}
+
+<h3>All Roles</h3>
+<ul>
+  @foreach (var role in allRoles)
+  {
+    @* if(user.Roles.Any()) *@
+    <li>@role.Name</li>
+  }
+</ul>
