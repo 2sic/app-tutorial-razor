@@ -11,7 +11,7 @@ namespace AppCode.Data
 }
 */
 
-// Generator:   CSharpDataModelsGenerator v18.04.00
+// Generator:   CSharpDataModelsGenerator
 // App/Edition: Tutorial-Razor/
 // User:        2sic Web-Developer
 using System.Text.Json.Serialization;
