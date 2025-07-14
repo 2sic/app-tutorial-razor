@@ -1,0 +1,15 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var query = App.GetQuery("AllUsers");
+  var data = query.GetStream("Users").List; 
+}
+
+<ul>
+  @foreach (var user in data)
+  {
+    <li>
+      @user.Get("Name")
+    </li>
+  }
+</ul>
