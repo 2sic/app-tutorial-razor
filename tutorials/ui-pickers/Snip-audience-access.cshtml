@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@Kit.Toolbar.Empty().Audience(
+  everyone: true
+).Info().AsTag()
+
+@Kit.Toolbar.Empty().Audience(
+  roleNames: new[] { "MyDemoRole" }
+).Info().AsTag()
+
+@Kit.Toolbar.Empty().Audience(
+  denyRoleNames: new[] { "MyDemoRole" }
+).Info().AsTag()

@@ -1,0 +1,49 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@Kit.Toolbar.Empty().Info(
+  tweak: b => b
+    .Note(
+      note: "Styled Background",
+      background: "#fff3cd"
+    )
+).AsTag()
+
+@Kit.Toolbar.Empty().Info(
+  link: "https://2sxc.org",
+  target: "_blank",
+  tweak: b => b.Note("Link (2sxc.org)")
+).AsTag()
+
+
+@Kit.Toolbar.Empty().Info(
+  tweak: b => b
+    .Note(
+      note: "Delayed Note",
+      delay: 500
+    )
+).AsTag()
+
+@Kit.Toolbar.Empty().Info(
+  tweak: b => b
+    .Note(
+      note: "Lingered Note",
+      linger: 500
+    )
+).AsTag()
+
+
+@Kit.Toolbar.Empty().Info(
+  tweak: b => b
+    .Note(
+      note: "<strong><code>HTML</code></strong> Note",
+      format: "html"
+    )
+).AsTag()
+
+@Kit.Toolbar.Empty().Info(
+  tweak: b => b
+    .Note(
+      note: "Warning Note",
+      type: "warning"
+    )
+).AsTag()
