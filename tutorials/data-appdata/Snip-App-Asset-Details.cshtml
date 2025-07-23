@@ -1,0 +1,33 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var query = App.GetQuery("AppAssets");
+  var file = query.GetStream("Files")
+              .Where(f => f.Get("FullName").Equals("star.svg"))
+              .FirstOrDefault();
+}
+
+@if (file != null)
+{
+  <img
+    alt="@file.Get("Name")"
+    src="@file.Get("Url")"
+    style="max-width: 48px;"
+  />
+  <div>
+    <strong>Name:</strong> @file.Get("Name") <br />
+    <strong>FullName:</strong> @file.Get("FullName") <br />
+    <strong>Extension:</strong> @file.Get("Extension") <br />
+    <strong>Url:</strong> @file.Get("Url") <br />
+    <strong>Size:</strong> @file.Get("Size") bytes<br />
+    <strong>Path:</strong> @file.Get("Path") <br />
+    <strong>Folder:</strong> @file.Get("Folder") <br />
+    <strong>Id:</strong> @file.Get("Id") <br />
+    <strong>Title:</strong> @file.Get("Title") <br />
+    <strong>Modified:</strong> @file.Get("Modified") <br />
+    <strong>Created:</strong> @file.Get("Created") <br />
+  </div>
+} else
+{
+  <p>Po file found with the specified criteria.</p>
+}

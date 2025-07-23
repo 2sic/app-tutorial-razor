@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var query = App.GetQuery("AppAssets");
+  var data = query.GetStream("Files").List;
+}
+
+<ul class="w-25 list-unstyled">
+  @foreach (var file in data)
+  {
+    <li>
+      <img
+        alt="@file.Get("Name")"
+        src="@file.Get("Url")"
+      />
+      
+      <span class="ms-2">
+        @file.Get("FullName")
+      </span>
+    </li>
+  }
+</ul>
