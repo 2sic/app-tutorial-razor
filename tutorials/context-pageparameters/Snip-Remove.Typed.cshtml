@@ -2,11 +2,17 @@
 @using ToSic.Razor.Blade
 
 @{
-  var currentParamsRemoved = MyPage.Parameters.Remove("basics320");
+  var startParams = MyPage.Parameters
+    .Add("sort", "title")
+    .Add("tag", "2sxc")
+    .Add("details", "true");
+
+  var currentParamsRemoved = startParams.Remove("tag");
 }
-<hide>
-<p>See adjusted page parameters:
-  <code>@currentParamsRemoved</code>
-</p>
-</hide>
-<p>Current page URL with removed parameter: @Link.To(parameters: currentParamsRemoved)</p>
+
+@{/*!*/
+  <!-- unimportant stuff, hidden -->
+  <p>Remove <em><strong>tag</strong></em> parameter:</p>
+  <hr />
+  <p><em>https://app-dev.2sxc.org/tutorial-razor/<strong>@Link.To(parameters: currentParamsRemoved).Replace("https://app-dev.2sxc.org/tutorial-razor/", "")</strong></em></p>
+/*!*/}

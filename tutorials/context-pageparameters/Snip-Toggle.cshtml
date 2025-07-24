@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.RazorTyped
 
 @{
-  var startParams = MyPage.Parameters.Flush().Set("tag", "2sxc");
+  var startParams = MyPage.Parameters.Add("tag", "2sxc");
 
   var toggledNewParams = startParams.Toggle("test", "tutorial");
   
