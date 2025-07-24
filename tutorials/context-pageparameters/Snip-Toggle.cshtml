@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var startParams = MyPage.Parameters.Flush().Set("tag", "2sxc");
+
+  var toggledNewParams = startParams.Toggle("test", "tutorial");
+  
+  var toggledParams = toggledNewParams.Toggle("tag", "2sxc");
+}
+
+@{/*!*/
+  <!-- unimportant stuff, hidden -->
+  <p>Toggle existing <em><strong>tag</strong></em> and new <em><strong>test</strong></em> parameter:</p>
+  <hr />
+  <p><em>https://app-dev.2sxc.org/tutorial-razor/<strong>@Link.To(parameters: toggledParams).Replace("https://app-dev.2sxc.org/tutorial-razor/", "")</strong></em></p>
+/*!*/}

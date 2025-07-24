@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var startParams = MyPage.Parameters.Add("sort", "asc");
+
+  var hasSort = startParams.ContainsKey("sort");
+  var hasView = startParams.ContainsKey("view");
+}
+
+@{/*!*/
+  <!-- unimportant stuff, hidden -->
+  <p>Check if parameters contain a value by a key:</p>
+  <hr />
+  <p>Contains sort: <strong>@hasSort</strong></p>
+  <p>Contains view: <strong>@hasView</strong></p>
+/*!*/}

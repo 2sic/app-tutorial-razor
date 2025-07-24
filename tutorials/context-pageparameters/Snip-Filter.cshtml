@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var startParams = MyPage.Parameters
+    .Add("id", "7")
+    .Add("sort", "desc")
+    .Add("extra", "ignored");
+
+  var onlyKeep = startParams.Filter("id,sort");
+}
+
+@{/*!*/
+  <!-- unimportant stuff, hidden -->
+  <p>Filter for <em><strong>id</strong></em> and <em><strong>sort</strong></em> parameter:</p>
+  <hr />
+  <p><em>https://app-dev.2sxc.org/tutorial-razor/<strong>@Link.To(parameters: onlyKeep).Replace("https://app-dev.2sxc.org/tutorial-razor/", "")</strong></em></p>
+/*!*/}

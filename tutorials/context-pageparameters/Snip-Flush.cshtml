@@ -1,0 +1,14 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var startParams = MyPage.Parameters.Add("view", "compact");
+
+  var flushedParams = startParams.Flush();
+}
+
+@{/*!*/
+  <!-- unimportant stuff, hidden -->
+  <p>Remove <strong>all</strong> existing parameters:</p>
+  <hr />
+  <p><em>https://app-dev.2sxc.org/tutorial-razor/<strong>@Link.To(parameters: flushedParams).Replace("https://app-dev.2sxc.org/tutorial-razor/", "")</strong></em></p>
+/*!*/}

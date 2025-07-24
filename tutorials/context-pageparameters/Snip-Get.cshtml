@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.RazorTyped
+
+@{
+  var startParams = MyPage.Parameters
+    .Add("sort", "title")
+    .Add("details", "true");
+
+  var sort = startParams.Get("sort");
+  var pageNumber = startParams.Get<int>("page", fallback: 1);
+  var showDetails = startParams.Get<bool>("details", fallback: false);
+}
+
+@{/*!*/
+  <!-- unimportant stuff, hidden -->
+  <p>Get parameter with Fallback:</p>
+  <hr />
+  <p>Sort: <strong>@sort</strong></p>
+  <p>Page: <strong>@pageNumber</strong></p>
+  <p>Show Details: <strong>@showDetails</strong></p>
+/*!*/}
