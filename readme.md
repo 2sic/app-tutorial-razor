@@ -13,20 +13,20 @@ You can also download the latest copy of this App directly from the [releases](.
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v19.00                                                          |
-| Dnn                 | ✅    | For v9.06.01+                                                                 |
-| Oqtane 2            | ✅    | Requires v4.00+                                                               |
-| No jQuery           | ✅    |                                                                               |
-| Dnn Demo            | ✅    | See [Dnn Razor Tutorial](https://2sxc.org/dnn-tutorials/en/razor)             |
-| Oqtane Demo         | ✅    | See [Oqtane Razor Tutorial](https://blazor-cms.org/oqtane-tutorials)          |
-| Install Checklist   | ➖    | Just get from [releases](https://github.com/2sic/app-tutorial-razor/releases) |
-| Source & License    | ✅    | included, ISC/MIT license                                                     |
-| App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)            |
-| Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)            |
-| Best Practices      | ✅    | Uses v16.00 conventions                                                       |
-| Bootstrap 3         | ✔️    |                                                                               |
-| Bootstrap 4         | ✔️    | Works, but not optimized                                                      |
-| Bootstrap 5         | ✅    | Works, but not optimized                                                      |
+| 2sxc                | ✅     | requires 2sxc v20.00                                                          |
+| Dnn                 | ✅     | For v9.11.02+                                                                 |
+| Oqtane 2            | ✅     | Requires v6.00+                                                               |
+| No jQuery           | ✅     |                                                                               |
+| Dnn Demo            | ✅     | See [Dnn Razor Tutorial](https://2sxc.org/dnn-tutorials/en/razor)             |
+| Oqtane Demo         | ✅     | See [Oqtane Razor Tutorial](https://blazor-cms.org/oqtane-tutorials)          |
+| Install Checklist   | ➖     | Just get from [releases](https://github.com/2sic/app-tutorial-razor/releases) |
+| Source & License    | ✅     | included, ISC/MIT license                                                     |
+| App Catalog         | ✅     | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)            |
+| Screenshots         | ✅     | See [app catalog](https://2sxc.org/en/apps/app/dnn-razor-tutorial)            |
+| Best Practices      | ✅     | Uses v16.00 conventions                                                       |
+| Bootstrap 3         | ✔️     |                                                                               |
+| Bootstrap 4         | ✔️     | Works, but not optimized                                                      |
+| Bootstrap 5         | ✅     | Works, optimized                                                              |
 
 ## Contribute
 
@@ -36,7 +36,16 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ## History
 
-* v17 - v19 - lots of small changes, not detailed here
+### v20 (2025-05+)
+
+1. TODO: @2pp
+
+### v17 - v19
+
+Lots of small changes, not detailed here
+
+### v16
+
 * v16.07.01 2023-09-26
   * reorganized so the snippets are all in the `/tutorials` folder
   * removed unused images
@@ -50,6 +59,9 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
   * Removed _ from Filenames
   * Enhanced Kit.Image with `imgAltFallback`
   * Replaced turnOn Tag with `Kit.Page.TurnOn`
+
+### v12 - v14
+
 * v14.07.05
   * Migrated the app to the 14.07 best practices
   * Changed the toolbar tutorials to also show the new IToolbarBuilder
