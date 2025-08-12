@@ -38,7 +38,29 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ### v20 (2025-05+)
 
-1. TODO: @2pp
+* Added Tutorials for [Static Assets Retreavel with App Query](https://2sxc.org/dnn-tutorials/en/razor/tut/data-app-assets)
+  * Get Files via App Query
+  * Get File via App Query
+* Updated [URL Parameteres Tutorials](https://2sxc.org/dnn-tutorials/en/razor/tut/code-link-parameters-modify)
+  * Toggle()
+  * Remove()
+  * Filter()
+  * Flush()
+  * ContainsKey(Key)
+  * Get(Key)
+* Added Tutorials for [new Toolbar Features](https://2sxc.org/dnn-tutorials/en/razor/tut/ui-pickers-v20)
+  * Tweak Notes
+  * Audience Access
+  * Edition Access/ Switching
+* Extended User Service Tutorials with [App Query Fetching](https://2sxc.org/dnn-tutorials/en/razor/tut/get-users-appquery)
+  * Get Users via App Query
+  * Get Roles via App Query
+* Added Tutorials for new [User Service](https://2sxc.org/dnn-tutorials/en/razor/tut/userservice)
+  * Get Current User
+  * Get Registered Users
+  * Get Roles
+  * Get User by Property
+  * Get Users By Role
 
 ### v17 - v19
 
