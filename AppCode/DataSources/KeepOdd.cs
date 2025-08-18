@@ -2,7 +2,7 @@ using System.Linq;
 
 public class KeepOdd : Custom.DataSource.DataSource16
 {
-  public KeepOdd(MyServices services) : base(services)
+  public KeepOdd(Dependencies services) : base(services)
   {
     ProvideOut(() => {
       // Make sure we have an In stream - otherwise return an error

@@ -3,7 +3,7 @@ using System.Linq;
 
 public class ListBasic : Custom.DataSource.DataSource16
 {
-  public ListBasic(MyServices services) : base(services)
+  public ListBasic(Dependencies services) : base(services)
   {
     ProvideOut(() =>
       // For demo, create a few of these items using numbers 1 to 5

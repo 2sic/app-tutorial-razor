@@ -3,7 +3,7 @@ using ToSic.Eav.DataSource; // This namespace is for the [Configuration] attribu
 
 public class WithConfig : Custom.DataSource.DataSource16
 {
-  public WithConfig(MyServices services) : base(services, "My.Magic")
+  public WithConfig(Dependencies services) : base(services, "My.Magic")
   {
     ProvideOut(() => {
       var result = Enumerable.Range(1, AmountOfItems).Select(i => new {

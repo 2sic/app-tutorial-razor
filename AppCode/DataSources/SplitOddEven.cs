@@ -2,7 +2,7 @@ using System.Linq;
 
 public class SplitOddEven : Custom.DataSource.DataSource16
 {
-  public SplitOddEven(MyServices services) : base(services)
+  public SplitOddEven(Dependencies services) : base(services)
   {
     ProvideOut(() => TryGetIn());
     ProvideOut(() => Split().Odd, name: "Odd");

@@ -3,7 +3,7 @@ using ToSic.Eav.Data.Build;   // This is for the FactoryOptions
 
 public class FactoryOptions : Custom.DataSource.DataSource16
 {
-  public FactoryOptions(MyServices services) : base(services)
+  public FactoryOptions(Dependencies services) : base(services)
   {
     ProvideOut(() =>
       // For demo, create a few of these items

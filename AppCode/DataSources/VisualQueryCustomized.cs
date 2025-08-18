@@ -16,7 +16,7 @@ using ToSic.Eav.DataSource.VisualQuery;
 )]
 public class VisualQueryCustomized : Custom.DataSource.DataSource16
 {
-  public VisualQueryCustomized(MyServices services) : base(services)
+  public VisualQueryCustomized(Dependencies services) : base(services)
   {
     // Trivial example, as this demo should focus on the VisualQuery
     ProvideOut(() => new {

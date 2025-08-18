@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class TreeBasic : Custom.DataSource.DataSource16
 {
-  public TreeBasic(MyServices services) : base(services, "My.Magic")
+  public TreeBasic(Dependencies services) : base(services, "My.Magic")
   {
     ProvideOut(() => {     
       return new List<object> {

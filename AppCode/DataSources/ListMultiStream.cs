@@ -3,7 +3,7 @@ using System.Linq;
 
 public class ListMultiStream : Custom.DataSource.DataSource16
 {
-  public ListMultiStream(MyServices services) : base(services)
+  public ListMultiStream(Dependencies services) : base(services)
   {
     // First stream "Settings" containing just one item
     ProvideOut(() => new {

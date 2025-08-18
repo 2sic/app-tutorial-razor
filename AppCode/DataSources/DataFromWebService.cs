@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;   // For JsonPropertyName
 
 public class DataFromWebService : Custom.DataSource.DataSource16
 {
-  public DataFromWebService(MyServices services) : base(services)
+  public DataFromWebService(Dependencies services) : base(services)
   {
     ProvideOut(() => {
       var response = new HttpClient()

@@ -6,7 +6,7 @@ public class Basic101Commented : Custom.DataSource.DataSource16
   // 2.2 It must also have a parameter of type MyServices
   // 2.3 It must call the base constructor with the same parameter
   // 2.4 This ensures that any internal functionality is initialized
-  public Basic101Commented(MyServices services) : base(services)
+  public Basic101Commented(Dependencies services) : base(services)
   {
     // 3.1 The ProvideOut method must be called to define the output
     // 3.2 It must be called with a lambda expression (the () => part)

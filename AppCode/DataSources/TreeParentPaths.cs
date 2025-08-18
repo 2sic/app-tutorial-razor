@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class TreeParentPaths : Custom.DataSource.DataSource16
 {
-  public TreeParentPaths(MyServices services) : base(services, "My.Magic")
+  public TreeParentPaths(Dependencies services) : base(services, "My.Magic")
   {
     ProvideOut(() => {
       return new List<object> {

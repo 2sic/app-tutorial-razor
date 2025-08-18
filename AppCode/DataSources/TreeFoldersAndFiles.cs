@@ -6,7 +6,7 @@ using ToSic.Eav.Data;
 
 public class TreeFoldersAndFiles : Custom.DataSource.DataSource16
 {
-  public TreeFoldersAndFiles(MyServices services) : base(services)
+  public TreeFoldersAndFiles(Dependencies services) : base(services)
   {
     // The "Default" stream contains both files and folders
     ProvideOut(() => {

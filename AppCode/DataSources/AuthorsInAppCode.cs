@@ -3,7 +3,7 @@ using ToSic.Eav.DataSources;
 
 public class AuthorsInAppCode : Custom.DataSource.DataSource16
 {
-  public AuthorsInAppCode(MyServices services) : base(services)
+  public AuthorsInAppCode(Dependencies services) : base(services)
   {
     ProvideOut(() => {
       // Get the app data
