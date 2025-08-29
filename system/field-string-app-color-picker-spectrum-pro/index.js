@@ -6,7 +6,7 @@
 
 // always use an IIFE to ensure you don't put variables in the window scope
 (() => {
-  const tagName = 'field-string-app-color-picker-spectrum';
+  const tagName = 'field-string-app-color-picker-spectrum-pro';
   const spectrumJsCdn = 'https://unpkg.com/spectrum-vanilla/dist/spectrum.min.js';
   const spectrumCssCdn = 'https://unpkg.com/spectrum-vanilla/dist/spectrum.min.css';
   const html = `
@@ -15,7 +15,7 @@
       <input id="color-picker" type="text" />
     </div>`;
 
-  class StringColorPicker extends HTMLElement {
+  class StringColorPickerPro extends HTMLElement {
 
     /** connectedCallback() is the standard callback when the component has been attached */
     connectedCallback() {
@@ -41,7 +41,8 @@
         showInput: true,
         showInitial: true,
         preferredFormat: "hex",
-        showPalette: false,
+        showPalette: true,
+        palette: [],
         allowEmpty: true, // enables clear functionality
         change: color => this.handleChange(),
         hide: () => this.handleHide()
@@ -78,5 +79,5 @@
   }
 
   // Register this web component - if it hasn't been registered yet
-  if (!customElements.get(tagName)) customElements.define(tagName, StringColorPicker);
+  if (!customElements.get(tagName)) customElements.define(tagName, StringColorPickerPro);
 })();
