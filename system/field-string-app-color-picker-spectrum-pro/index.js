@@ -42,7 +42,7 @@
         showInitial: true,
         preferredFormat: "hex",
         showPalette: true,
-        palette: [],
+        palette: [this.getSwatches()],
         allowEmpty: true, // enables clear functionality
         change: color => this.handleChange(),
         hide: () => this.handleHide()
@@ -75,6 +75,18 @@
       if (data.value === '' && value == null) return;
       if (data.value === value) return;
       data.update(value);
+    }
+    
+    /** Load the settings and convert to swatch-list */
+    getSwatches() {
+      // the field "Swatches" is the field in the content-type containing the colors
+      // it's upper-case, because that's how the field is named
+      var swatches = this.connector.field.settings.Swatches;
+      if (!swatches) return [];
+      return swatches.split('\n').map((colorLine) => {
+        var withLabel = colorLine.trim().split(' ');
+        return withLabel[0]; // first part is the color
+      });
     }
   }
 
