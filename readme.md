@@ -36,12 +36,18 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ## History
 
+### 2025-09-18
+
+1. 2dm: Added url protection to home and tutorial page, to stop crawlers from generating infinite urls
+    1. If the home page has parameters, it will show a 404 since this is not expected
+    1. If the tutorial page has a parameter with `=tut` it will show a 404 since this is not expected, it should always be `tut=...`
+
 ### v20 (2025-05+)
 
-* Added Tutorials for [Static Assets Retreavel with App Query](https://2sxc.org/dnn-tutorials/en/razor/tut/data-app-assets)
+* Added Tutorials for [Static Assets Retrieval with App Query](https://2sxc.org/dnn-tutorials/en/razor/tut/data-app-assets)
   * Get Files via App Query
   * Get File via App Query
-* Updated [URL Parameteres Tutorials](https://2sxc.org/dnn-tutorials/en/razor/tut/code-link-parameters-modify)
+* Updated [URL Parameters Tutorials](https://2sxc.org/dnn-tutorials/en/razor/tut/code-link-parameters-modify)
   * Toggle()
   * Remove()
   * Filter()
