@@ -15,7 +15,7 @@
     ?? allGroups.FirstOrDefault(i => i.NameId == tutIdFromUrl);
 
   if (tutPage == null) {
-    <h4>Sorry, the tutorial page @tutIdFromUrl was not found</h4>
+    <h4>Sorry, the tutorial page '@tutIdFromUrl' was not found</h4>
     @Kit.Page.SetHttpStatus(404);
     return;
   }
