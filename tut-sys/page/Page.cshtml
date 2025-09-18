@@ -3,6 +3,26 @@
 @using AppCode.Data
 @using AppCode.TutorialSystem.Razor
 @using AppCode.Tutorial
+@* Catch invalid links, wherever they come from *@
+@{
+  // Background: for some reasons we seem to have links which drop the "/tut" and a lot of xyz=tut - which is the reverse of what's expected.
+  // We assume that this happens because somewhere a link goes back one path, and then adds parameters.
+  // So DNN will renumber the url-parameters incorrectly.
+  // These will land here, and that's bad.
+  // We were getting loads of links like /dnn-tutorials/en/razor?page-icons&code-functions=tut&datasources-dynamic=tut&doc=content&img=tut&img-picture=tut&items=tut&page-icons=tut
+  // Overwhelming the live system / making it slow.
+  // So the goal is to catch any links which have a value "tut" but are not supposed to be here.
+  if (MyPage.Parameters.Any(p => p.Value == "tut")) {
+    <h4>Sorry, the link which brought you here is broken.</h4>
+    <p>
+      Tutorial pages should not have the URL parameters of the current page.
+      <br>
+      You can always start over on <a href="@Link.To()">the tutorial home</a>.
+    </p>
+    @Kit.Page.SetHttpStatus(404);
+    return;
+  }
+}
 @{
   var myParams = MyPage.Parameters;
   

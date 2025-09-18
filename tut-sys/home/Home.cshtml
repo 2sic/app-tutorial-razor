@@ -10,8 +10,7 @@
   // We were getting loads of links like /dnn-tutorials/en/razor?page-icons&code-functions=tut&datasources-dynamic=tut&doc=content&img=tut&img-picture=tut&items=tut&page-icons=tut
   // Overwhelming the live system / making it slow.
   // So the goal is to catch any links coming to home, but having more parameters, and ensure they return a simple 404
-  var myParams = MyPage.Parameters;
-  if (myParams.Count() > 0) {
+  if (MyPage.Parameters.Count() > 0) {
     <h4>Sorry, the link which brought you here is broken.</h4>
     <p>
       The tutorial home page should not have any URL parameters.
