@@ -42,7 +42,7 @@
         showInitial: true,
         preferredFormat: "hex",
         showPalette: true,
-        palette: [this.getSwatches()],
+        // palette: [this.getSwatches()],
         allowEmpty: true, // enables clear functionality
         change: color => this.handleChange(),
         hide: () => this.handleHide()
