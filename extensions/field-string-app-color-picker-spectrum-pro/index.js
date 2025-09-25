@@ -42,13 +42,18 @@
         showInitial: true,
         preferredFormat: "hex",
         showPalette: true,
-        // palette: [this.getSwatches()],
-        allowEmpty: true, // enables clear functionality
+        allowEmpty: true,
         change: color => this.handleChange(),
         hide: () => this.handleHide()
       });
 
-      // remember if we're working empty as of now
+      // merge additional custom swatches into default Spectrum palette
+      const extraSwatches = this.getSwatches();
+      if (extraSwatches.length) {
+        const currentPalette = this.sp.option("palette") || [];
+        this.sp.option("palette", [...currentPalette, extraSwatches]);
+      }
+
       this.cleared = !this.connector.data.value;
     }
 
