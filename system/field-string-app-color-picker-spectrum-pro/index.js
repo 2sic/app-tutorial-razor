@@ -11,10 +11,12 @@
 
 (() => {
   const tagName = "field-string-app-color-picker-spectrum-pro";
-  const spectrumJsCdn =
-    "https://unpkg.com/spectrum-vanilla/dist/spectrum.min.js";
-  const spectrumCssCdn =
-    "https://unpkg.com/spectrum-vanilla/dist/spectrum.min.css";
+  const spectrumVersion = "1.1.1";
+  const spectrumBase = `https://unpkg.com/spectrum-vanilla@${spectrumVersion}/dist`;
+
+  const spectrumJsCdn = `${spectrumBase}/spectrum.min.js`;
+  const spectrumCssCdn = `${spectrumBase}/spectrum.min.css`;
+
   const html = `
     <link rel="stylesheet" href="${spectrumCssCdn}"/>
     <div class="spectrum-container">
