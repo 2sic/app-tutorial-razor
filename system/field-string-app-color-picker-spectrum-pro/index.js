@@ -19,6 +19,30 @@
 
   const html = `
     <link rel="stylesheet" href="${spectrumCssCdn}"/>
+    <style>
+      #color-picker {
+        padding: 2px 8px;
+        margin-top: 2px;
+        font-size: 1.1rem;
+        border-radius: 0 5px 5px 0;
+        border-style: solid;
+        border-color: #cbcbcb;
+        border-width: 2px 2px 2px 0;
+        width: 100px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .sp-colorize-container {
+        border-radius: 5px !important;
+        border: #cbcbcb 2px solid;
+      }
+      .sp-original-input-container:has(#color-picker:focus) .sp-colorize-container {
+        border-color: #a8a8a8 !important;
+      }
+      #color-picker:focus {
+        border-color: #a8a8a8;
+      }
+    </style>
     <div class="spectrum-container">
       <input id="color-picker" type="text" />
     </div>`;
