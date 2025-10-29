@@ -18,25 +18,15 @@
     <style>
       #color-picker {
         padding: 2px 8px;
-        margin-top: 2px;
+        margin-top: 5px;
         font-size: 1.1rem;
-        border-radius: 0 5px 5px 0;
-        border-style: solid;
-        border-color: #cbcbcb;
-        border-width: 2px 2px 2px 0;
-        width: 100px;
+        width: 100%;
         outline: none;
         transition: border-color 0.2s;
+        border: none;
       }
-      .sp-colorize-container {
-        border-radius: 5px !important;
-        border: #cbcbcb 2px solid;
-      }
-      .sp-original-input-container:has(#color-picker:focus) .sp-colorize-container {
-        border-color: #a8a8a8 !important;
-      }
-      #color-picker:focus {
-        border-color: #a8a8a8;
+      .sp-original-input-container {
+        display: flex !important;
       }
     </style>
     <div class="spectrum-container">
