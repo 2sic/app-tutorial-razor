@@ -31,6 +31,7 @@
       }
       .sp-original-input-container {
         display: flex !important;
+        cursor: pointer;
       }
     </style>
     <div class="spectrum-container">
@@ -58,6 +59,13 @@
       if (this.sp) {
         this.sp.destroy();
         this.sp = null;
+      }
+      // Remove the click handler if it exists
+      if (this.containerClickHandler) {
+        const container = this.querySelector(".sp-original-input-container");
+        if (container) {
+          container.removeEventListener("click", this.containerClickHandler);
+        }
       }
     }
 
@@ -107,6 +115,7 @@
         // pass the color argument through to handler (Spectrum may give different shapes)
         change: (color) => this.handleChange(color),
         hide: () => this.handleHide(),
+        show: () => this.setupContainerClickHandler(), // Set up click handler when shown
       };
 
       // If we should NOT show the default palette but have swatches, set palette to swatches
@@ -133,6 +142,37 @@
       }
 
       this.cleared = !this.connector.data.value;
+
+      // Set up click handler for the entire container after Spectrum is initialized
+      this.setupContainerClickHandler();
+    }
+
+    /** Set up click handler to make the entire picker container clickable */
+    setupContainerClickHandler() {
+      const container = this.querySelector(".sp-original-input-container");
+      if (!container || !this.sp) return;
+
+      // Remove old handler if exists
+      if (this.containerClickHandler) {
+        container.removeEventListener("click", this.containerClickHandler);
+      }
+
+      // Delegate clicks inside the container
+      this.containerClickHandler = (event) => {
+        // Ignore clicks directly on the input field
+        if (event.target === this.input || event.target.tagName === "INPUT")
+          return;
+
+        // Prevent unwanted bubbling
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Toggle or show the picker
+        if (typeof this.sp.toggle === "function") this.sp.toggle();
+        else if (typeof this.sp.show === "function") this.sp.show();
+      };
+
+      container.addEventListener("click", this.containerClickHandler);
     }
 
     /** Update the value when color is selected (live changes) */

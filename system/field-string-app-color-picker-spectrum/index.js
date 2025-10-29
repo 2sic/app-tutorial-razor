@@ -27,6 +27,7 @@
       }
       .sp-original-input-container {
         display: flex !important;
+        cursor: pointer;
       }
     </style>
     <div class="spectrum-container">
@@ -52,6 +53,13 @@
         this.sp.destroy();
         this.sp = null;
       }
+      // Remove the click handler if it exists
+      if (this.containerClickHandler) {
+        const container = this.querySelector(".sp-original-input-container");
+        if (container) {
+          container.removeEventListener("click", this.containerClickHandler);
+        }
+      }
     }
 
     /** This is called when the JS is loaded from loadScript - so Spectrum is ready */
@@ -68,6 +76,35 @@
 
       // remember if we're working empty as of now
       this.cleared = !this.connector.data.value;
+
+      // set up click handler for the container to toggle picker
+      this.setupContainerClickHandler();
+    }
+
+    /** Set up click handler to make the entire picker container clickable */
+    setupContainerClickHandler() {
+      const container = this.querySelector(".sp-original-input-container");
+      if (!container || !this.sp) return;
+
+      // Remove old handler if exists
+      if (this.containerClickHandler) {
+        container.removeEventListener("click", this.containerClickHandler);
+      }
+
+      // Delegate clicks inside the container
+      this.containerClickHandler = (event) => {
+        // Ignore clicks directly on the input field
+        if (event.target === this.input || event.target.tagName === "INPUT") return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Toggle or show the picker
+        if (typeof this.sp.toggle === "function") this.sp.toggle();
+        else if (typeof this.sp.show === "function") this.sp.show();
+      };
+
+      container.addEventListener("click", this.containerClickHandler);
     }
 
     /** Update the value when color is selected */
@@ -89,7 +126,7 @@
     /** Only update the value if it really changed, so form isn't dirty if nothing was set */
     updateIfChanged(value) {
       var data = this.connector.data;
-      // Debug output, see what's being sent
+      if (!data) return;
       if (data.value === "" && value == null) return;
       if (data.value === value) return;
       data.update(value);
