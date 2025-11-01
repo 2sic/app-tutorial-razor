@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="20.00.07" ExportDate="2025-09-15T20:14:26.9535566+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="20.00.09" ExportDate="2025-11-01T16:14:12.9848459+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -11,11 +11,156 @@
   <AttributeSets>
     <AttributeSet StaticName="40ce6cae-2efa-42ab-a96b-e281d301ebd2" Name="@string-app-color-picker-spectrum-pro" Scope="System.Fields" AlwaysShareConfiguration="false">
       <Attributes>
+        <Attribute StaticName="ShowDefaultPalette" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="343f3264-3c5a-481a-b808-c72146681da1" Json="True" KeyNumber="6902">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="true" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="boolean-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Show Default Palette" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Show a list of nice pre-selected colors to choose from.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Boolean" AttributeSetName="@Boolean" EntityGUID="f56915d6-0f7f-4250-abe3-91ad221e4ad7" Json="True" KeyNumber="6902">
+            <Value Key="TitleFalse" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleIndeterminate" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleTrue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
         <Attribute StaticName="Swatches" Type="String" IsTitle="true">
           <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="8c49d6e8-1d47-4162-bb86-0c5c08cb47b6" Json="True" KeyNumber="6680">
-            <Value Key="InputType" Value="string-json" Type="String" />
-            <Value Key="Name" Value="Swatches" Type="String" />
-            <Value Key="VisibleInEditUI" Value="True" Type="Boolean" />
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="string-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Additional Palette" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;List the colors you want added to the swatches to the left, one per row.&amp;nbsp;&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@String" AttributeSetName="@String" EntityGUID="008c8bdf-df6c-4a36-bbc3-36689cfeeacd" Json="True" KeyNumber="6680">
+            <Value Key="DropdownValues" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@string-default" AttributeSetName="@string-default" EntityGUID="1a1e94a4-0651-448e-80af-5f3ab3f43c7f" Json="True" KeyNumber="6680">
+            <Value Key="InputFontFamily" Value="monospace" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="RowCount" Value="10" Type="Number">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TextWrapping" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+        </Attribute>
+        <Attribute StaticName="UseAlphaValues" Type="Boolean" IsTitle="false">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@All" AttributeSetName="@All" EntityGUID="4fceee31-3bdf-4d72-807e-d1a5560b28f5" Json="True" KeyNumber="6903">
+            <Value Key="CustomJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DefaultValue" Value="false" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Disabled" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="DisableTranslation" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="InputType" Value="boolean-default" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Enable Alpha Selection (Transparency)" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Placeholder" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Required" Value="False" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="ValidationRegExJavaScript" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+          </Entity>
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="@Boolean" AttributeSetName="@Boolean" EntityGUID="2e5865df-d8a5-4dbe-965a-c159586469ac" Json="True" KeyNumber="6903">
+            <Value Key="TitleFalse" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleIndeterminate" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="TitleTrue" Value="" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
           </Entity>
         </Attribute>
       </Attributes>
@@ -8742,8 +8887,14 @@
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
-          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="40ce6cae-2efa-42ab-a96b-e281d301ebd2" AttributeSetName="@string-app-color-picker-spectrum-pro" EntityGUID="d36b3c0a-872b-47ac-aaae-e383b3122ad4" KeyNumber="6679">
-            <Value Key="Swatches" Value="#0088F4&#xD;&#xA;#D50F7E&#xD;&#xA;#97D600&#xD;&#xA;#000879&#xD;&#xA;#7E0D00&#xD;&#xA;#007200" Type="String">
+          <Entity TargetType="2" AssignmentObjectType="EAV Field Properties" AttributeSetStaticName="40ce6cae-2efa-42ab-a96b-e281d301ebd2" AttributeSetName="@string-app-color-picker-spectrum-pro" EntityGUID="b231a420-dac6-4d29-8540-52986ff81e64" KeyNumber="6679">
+            <Value Key="ShowDefaultPalette" Value="True" Type="Boolean">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="Swatches" Value="#d61081&#xA;#97d601&#xA;#0088f6" Type="String">
+              <Dimension DimensionID="141" ReadOnly="false" />
+            </Value>
+            <Value Key="UseAlphaValues" Value="True" Type="Boolean">
               <Dimension DimensionID="141" ReadOnly="false" />
             </Value>
           </Entity>
@@ -9299,7 +9450,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="20.00.01" Type="String">
+      <Value Key="Version" Value="20.09.00" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -30684,10 +30835,10 @@
       <Value Key="ShareImage" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;2sxc Custom Input Fields (11.02+)&lt;/p&gt;" Type="String">
+      <Value Key="Title" Value="&lt;p&gt;2sxc Custom Input Fields&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TitleForPicker" Value="ui-fields-page - 2sxc Custom Input Fields (11.02+)" Type="String">
+      <Value Key="TitleForPicker" Value="ui-fields-page - 2sxc Custom Input Fields" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Variants" Value="" Type="String">
@@ -30743,7 +30894,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="0abf5130-9bd3-444a-9b91-a4b5bc7fd84c">
-      <Value Key="InDepthExplanation" Value="&lt;p&gt;This example contains the json-exported content-type in the folder &lt;code&gt;/system/field-string-app-color-pickr-pro/.data/contenttypes/&lt;/code&gt;&amp;nbsp;so you could just copy the extension folder to another app and use it from there.&lt;/p&gt;&#xA;&lt;p&gt;So in this tutorial you'll learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;To see how the UI changes based on field configuration&lt;/li&gt;&#xA;&lt;li&gt;How to access such pre-configured settings with&amp;nbsp;&lt;code&gt;connector.field.settings&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;The Content-Type for configuration is included in the extension folder&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
+      <Value Key="InDepthExplanation" Value="&lt;p&gt;This example contains the json-exported content-type in the folder &lt;code&gt;/system/field-string-app-color-picker-spectrum-pro/App_Data/system/bundles/&lt;/code&gt;&amp;nbsp;so you could just copy the extension folder to another app and use it from there.&lt;/p&gt;&#xA;&lt;p&gt;So in this tutorial you'll learn how to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;To see how the UI changes based on field configuration&lt;/li&gt;&#xA;&lt;li&gt;How to access such pre-configured settings with&amp;nbsp;&lt;code&gt;connector.field.settings&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;The Content-Type for configuration must be included in the extension folder, either as a content-type export in the &lt;code&gt;/system/contentypes/&lt;/code&gt; folder or as a bundle in the &amp;nbsp;&lt;code&gt;/system/bundles/&lt;/code&gt;&amp;nbsp;folder&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="InDepthImages" Value="" Type="Hyperlink" />
@@ -30751,6 +30902,9 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -39305,13 +39459,102 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="40ce6cae-2efa-42ab-a96b-e281d301ebd2" AttributeSetName="@string-app-color-picker-spectrum-pro" EntityGUID="e69fac3e-6085-4c9e-b889-1564e27bbbe3">
-      <Value Key="Swatches" Value="#0088F4 Cyan&#xD;&#xA;#D50F7E Magenta&#xD;&#xA;#97D600 Lime&#xD;&#xA;#000879 Mix cyan and magenta&#xD;&#xA;#7E0D00 Mix magenta and lime&#xD;&#xA;#007200 Mix cyan and lime" Type="String">
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d6c5942c-bd88-4b47-bbcc-706c3eb7c457" AttributeSetName="UiStringColorPickerSpectrumPro" EntityGUID="1bc3b2f9-908e-4dac-9a97-28f1500de9b8">
+      <Value Key="Color" Value="#4b2525" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d6c5942c-bd88-4b47-bbcc-706c3eb7c457" AttributeSetName="UiStringColorPickerSpectrumPro" EntityGUID="1bc3b2f9-908e-4dac-9a97-28f1500de9b8">
-      <Value Key="Color" Value="#4b2525" Type="String">
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType" AttributeSetName="ContentType" EntityGUID="4ce27f39-057a-4a7c-bd56-875a7efb45dc" Json="True" KeyString="40ce6cae-2efa-42ab-a96b-e281d301ebd2">
+      <Value Key="AdditionalSettings" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DynamicChildrenField" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="EditInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Icon" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Color Picker Spectrum" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Link" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ListInstructions" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Notes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="d7f2e4fa-5306-41bb-a3cd-d9529c838879" AttributeSetName="🧑‍💻SystemExportConfiguration" EntityGUID="54e48274-6059-49cd-a716-19d65dd412e2" Json="True">
+      <Value Key="EntitiesWithMetadata" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ExportFormat" Value="json" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="FileName" Value="color-picker-spectrum.json" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Name" Value="Extension Input Color-Picker Spectrum" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PreserveMarkers" Value="True" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="32698880-1c2e-41ab-bcfc-420091d3263f" AttributeSetName="SystemExportDecorator" EntityGUID="bcbc6fa7-a796-4925-9c99-3a806997ba45" Json="True" KeyString="40ce6cae-2efa-42ab-a96b-e281d301ebd2">
+      <Value Key="Configuration" Value="54e48274-6059-49cd-a716-19d65dd412e2" Type="Entity" />
+    </Entity>
+    <Entity TargetType="5" AssignmentObjectType="ContentType" AttributeSetStaticName="ContentType-InputType" AttributeSetName="ContentType-InputType" EntityGUID="da6ee6f8-a93a-499f-b5a4-9da77021a011" Json="True" KeyString="40ce6cae-2efa-42ab-a96b-e281d301ebd2">
+      <Value Key="AngularAssets" Value="[App:Path]/system/field-string-app-color-picker-spectrum-pro/index.js" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ConfigTypes" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Description" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="DisableI18n" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Label" Value="Color Picker Spectrum Pro (configurable)" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Type" Value="string-app-color-picker-spectrum-pro" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="UseAdam" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="5e958dc6-2922-4d68-835c-7b9711538b12" AttributeSetName="NoteDecorator" EntityGUID="3815e348-06de-4668-ad89-ec588e2953ea" Json="True" KeyGuid="da6ee6f8-a93a-499f-b5a4-9da77021a011">
+      <Value Key="Note" Value="&lt;p&gt;This metadata isn't necessary, but 2dm added it for testing. Everything should also work without it.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="NoteType" Value="note" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="This metadata isn't necessary,..." Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1d91a2c0-4d5d-4197-8cb8-d4bfebf72f15" AttributeSetName="AppExtensionRelease" EntityGUID="f63f3ca6-b99f-45c9-9448-3f50813c867f" Json="True">
+      <Value Key="isBreaking" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="releaseNotes" Value="&lt;p&gt;First release as a 2sxc extension.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="version" Value="00.00.01" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
