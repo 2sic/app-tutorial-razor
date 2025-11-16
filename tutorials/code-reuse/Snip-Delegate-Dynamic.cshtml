@@ -5,15 +5,14 @@
   var normalText = "this is text, it doesn't have tags";
   var htmlText = "this string <em>has</em> html <strong>tags</strong>";
 
-  // Simple Hybrid (Dnn/Oqtane) Template Delegate
-  Func<dynamic, dynamic> FancyLink = @<li>
-    <strong style="color: @item.Color">
+  // Hybrid (Dnn/Oqtane) Template Delegate with Dynamic properties
+  Func<dynamic, object> FancyLink =
+    @<li>
+      <strong style="color: @item.Color">
         @Html.Raw(item.Label)
-          @if (item.AddStar) {
-            <text>🌟</text>
-          }
-    </strong>
-  </li>;
+        @(item.AddStar ? "🌟" : "")
+      </strong>
+    </li>;
 }
 <ul>
   @FancyLink(new { Label = normalText, Color = "red", AddStar = true })

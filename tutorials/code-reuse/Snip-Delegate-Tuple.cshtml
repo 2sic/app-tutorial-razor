@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.RazorTyped
+@{
+  // Hybrid (Dnn/Oqtane) Template Delegate with Named Tuples
+  Func<(string Label, string Color, bool AddStar), object> FancyLink =
+    @<li>
+      <strong style="color: @item.Color">
+        @Html.Raw(item.Label)
+        @(item.AddStar ? "🌟" : "")
+      </strong>
+    </li>;
+}
+<ul>
+  @FancyLink((
+    Label: "this is text, it doesn't have tags",
+    Color: "red",
+    AddStar: true
+  ))
+  @FancyLink((
+    Label: "this string <em>has</em> html <strong>tags</strong>",
+    Color: "lime",
+    AddStar: false
+  ))
+</ul>

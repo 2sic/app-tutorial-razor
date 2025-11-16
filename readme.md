@@ -36,6 +36,10 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ## History
 
+### 2025-11-16
+
+1. 2dm: Improved sample with Template Delegates - added named tuples; much nicer
+
 ### 2025-09-18
 
 1. 2dm: Added url protection to home and tutorial page, to stop crawlers from generating infinite urls
