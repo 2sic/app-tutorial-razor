@@ -1,0 +1,391 @@
+{
+  "_": {
+    "V": 1
+  },
+  "Bundles": [
+    {
+      "Name": "default",
+      "ContentTypes": [
+        {
+          "ContentType": {
+            "Id": "40ce6cae-2efa-42ab-a96b-e281d301ebd2",
+            "Name": "@string-color-picker-spectrum",
+            "Scope": "Extensions.ColorPickerSpectrum",
+            "Metadata": [
+              {
+                "Id": 32790,
+                "Version": 1,
+                "Guid": "0b41f2b1-c7c3-42c1-b657-756d1e2aa06b",
+                "Type": {
+                  "Id": "ContentType",
+                  "Name": "ContentType"
+                },
+                "Attributes": {
+                  "String": {
+                    "AdditionalSettings": {
+                      "en-us": ""
+                    },
+                    "Description": {
+                      "en-us": ""
+                    },
+                    "DynamicChildrenField": {
+                      "en-us": ""
+                    },
+                    "EditInstructions": {
+                      "en-us": ""
+                    },
+                    "Label": {
+                      "en-us": "Color Picker Spectrum"
+                    },
+                    "ListInstructions": {
+                      "en-us": ""
+                    },
+                    "Notes": {
+                      "en-us": ""
+                    }
+                  },
+                  "Hyperlink": {
+                    "Icon": {
+                      "en-us": ""
+                    },
+                    "Link": {
+                      "en-us": ""
+                    }
+                  }
+                },
+                "Owner": "dnn:userid=1",
+                "For": {
+                  "Target": "ContentType",
+                  "TargetType": 5,
+                  "String": "40ce6cae-2efa-42ab-a96b-e281d301ebd2"
+                }
+              },
+              {
+                "Id": 32813,
+                "Version": 1,
+                "Guid": "d539c74f-a5ed-4013-8798-faf914a4b025",
+                "Type": {
+                  "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                  "Name": "SystemExportDecorator"
+                },
+                "Attributes": {
+                  "Entity": {
+                    "Configuration": {
+                      "*": [
+                        "6a859d7c-09f5-4804-9fd6-02dd731579da"
+                      ]
+                    }
+                  }
+                },
+                "Owner": "dnn:userid=1",
+                "For": {
+                  "Target": "ContentType",
+                  "TargetType": 5,
+                  "String": "40ce6cae-2efa-42ab-a96b-e281d301ebd2"
+                }
+              }
+            ],
+            "Attributes": [
+              {
+                "Name": "ShowDefaultPalette",
+                "Type": "Boolean",
+                "InputType": "boolean-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 32793,
+                    "Version": 3,
+                    "Guid": "f2b9fdd2-73c6-430b-98b4-9818f8e716c3",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": "true"
+                        },
+                        "InputType": {
+                          "en-us": "boolean-default"
+                        },
+                        "Name": {
+                          "en-us": "Show Default Palette"
+                        },
+                        "Notes": {
+                          "en-us": "<p>Show a list of nice pre-selected colors to choose from.</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "unknown"
+                  },
+                  {
+                    "Id": 32794,
+                    "Version": 2,
+                    "Guid": "8beec587-17d8-454e-8dce-63c9221fd1e6",
+                    "Type": {
+                      "Id": "@Boolean",
+                      "Name": "@Boolean"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "TitleFalse": {
+                          "en-us": ""
+                        },
+                        "TitleIndeterminate": {
+                          "en-us": ""
+                        },
+                        "TitleTrue": {
+                          "en-us": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=1"
+                  }
+                ]
+              },
+              {
+                "Name": "Swatches",
+                "Type": "String",
+                "InputType": "string-default",
+                "IsTitle": true,
+                "Metadata": [
+                  {
+                    "Id": 32795,
+                    "Version": 6,
+                    "Guid": "646a6e18-6cd5-4ddb-aae2-dc60b1342514",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": "string-default"
+                        },
+                        "Name": {
+                          "en-us": "Additional Palette"
+                        },
+                        "Notes": {
+                          "en-us": "<p>List the colors you want added to the swatches to the left, one per row.&nbsp;</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "unknown"
+                  },
+                  {
+                    "Id": 32796,
+                    "Version": 4,
+                    "Guid": "394739e7-47fc-4482-ad95-e45897b3beba",
+                    "Type": {
+                      "Id": "@String",
+                      "Name": "@String"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "DropdownValues": {
+                          "en-us": ""
+                        },
+                        "InputType": {
+                          "en-us": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=1"
+                  },
+                  {
+                    "Id": 32797,
+                    "Version": 4,
+                    "Guid": "0ffe6eaf-ddef-4630-b29b-f5f4b2867759",
+                    "Type": {
+                      "Id": "@string-default",
+                      "Name": "@string-default"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "InputFontFamily": {
+                          "en-us": "monospace"
+                        },
+                        "TextWrapping": {
+                          "en-us": ""
+                        }
+                      },
+                      "Number": {
+                        "RowCount": {
+                          "en-us": 10
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=1"
+                  }
+                ]
+              },
+              {
+                "Name": "UseAlphaValues",
+                "Type": "Boolean",
+                "InputType": "boolean-default",
+                "IsTitle": false,
+                "Metadata": [
+                  {
+                    "Id": 32798,
+                    "Version": 3,
+                    "Guid": "41ca42b3-e320-4f97-a0db-45d61a06b30e",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": "false"
+                        },
+                        "InputType": {
+                          "en-us": "boolean-default"
+                        },
+                        "Name": {
+                          "en-us": "Enable Alpha Selection (Transparency)"
+                        },
+                        "Notes": {
+                          "en-us": ""
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "unknown"
+                  },
+                  {
+                    "Id": 32799,
+                    "Version": 2,
+                    "Guid": "1ac1f83f-93be-4ded-ab83-767c9cfe8c47",
+                    "Type": {
+                      "Id": "@Boolean",
+                      "Name": "@Boolean"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "TitleFalse": {
+                          "en-us": ""
+                        },
+                        "TitleIndeterminate": {
+                          "en-us": ""
+                        },
+                        "TitleTrue": {
+                          "en-us": ""
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=1"
+                  }
+                ]
+              }
+            ]
+          },
+          "Entities": []
+        }
+      ]
+    }
+  ]
+}
