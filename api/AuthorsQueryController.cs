@@ -18,9 +18,10 @@ public class AuthorsQueryController : Custom.Hybrid.Api14 // see https://r.2sxc.
   [HttpGet]                               // [HttpGet] says we're listening to GET requests
   public object Get(int authorId)
   {
-    var query = Kit.Data.GetQuery("AuthorsWithBooks", parameters: new {
-      AuthorId = authorId
-    });
+    var query = Kit.Data.GetQuery("AuthorsWithBooks",
+      parameters: new {
+        AuthorId = authorId
+      });
     
     var a = AsDynamic(query["Current"].First());
 
