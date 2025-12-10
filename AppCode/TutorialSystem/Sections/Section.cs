@@ -36,7 +36,7 @@ namespace AppCode.TutorialSystem.Sections
       var start = TagsSvc.Div().Class("accordion-item");
       if (Item != null)
         start = (Item.Id != 0)
-          ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit().New())
+          ? start.Attr(Acc.Kit.Toolbar.Empty(Item).Edit().New().Copy(Item))
           : start.Attr(Acc.Kit.Toolbar.Empty().New("TutorialSnippet", prefill: new { TutorialId }));
       return TagsSvc.RawHtml(
         "\n" + Indent + "<!-- Part.Start(" + Name + ") -->\n",
