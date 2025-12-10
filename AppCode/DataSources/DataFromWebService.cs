@@ -30,6 +30,7 @@ namespace AppCode.DataSources
       var result = Kit.Convert.Json.To<WeatherData>(responseBody);
 
       // Return an anonymous object with selected properties
+      // As of now, only one or lists of: anonymous objects, IEntity or IEntityRaw are supported.
       return new {
         result.Current.Temperature,
         result.Current.WindSpeed,
