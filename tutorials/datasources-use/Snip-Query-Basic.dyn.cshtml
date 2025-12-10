@@ -1,10 +1,9 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
 @using System.Linq
-@using ToSic.Eav.DataSources
 @{/*! Tut.Tabs=ViewConfig */
   var viewCnf = DynamicModel.Tutorial.ViewConfig;
-  viewCnf.Query("GetQueryDemoAuthorsSorted" + CmsContext.Platform.Name);
+  viewCnf.Query("GetQueryDemoAuthorsSorted");
 /*!*/}
 @{
   var queryNoParams = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted");
@@ -17,5 +16,3 @@
     </li>
   }
 </ul>
-
-@* TODO:: @2dm Query Img *@

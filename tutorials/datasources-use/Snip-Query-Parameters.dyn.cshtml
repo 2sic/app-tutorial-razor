@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+@using System.Linq
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = DynamicModel.Tutorial.ViewConfig;
+  viewCnf.Query("GetQueryDemoAuthorsSorted");
+/*!*/}
+@{
+  var queryFirstNameDesc = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted",
+    parameters: new {
+      Sort = "Desc",
+      Field = "FirstName"
+    });
+  var items = AsList(queryFirstNameDesc);
+}
+<h3>List of Persons from the DataSource</h3>
+<ul>
+  @foreach (var person in items) {
+    <li>
+      @person.FirstName @person.LastName
+    </li>
+  }
+</ul>

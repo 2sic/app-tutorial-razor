@@ -1,0 +1,20 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using System.Linq
+@using AppCode.Data
+@{/*! Tut.Tabs=ViewConfig */
+  var viewCnf = MyModel.Code("Tutorial").ViewConfig;
+  viewCnf.Query("GetQueryDemoAuthorsSorted");
+/*!*/}
+@{
+  var queryNoParams = Kit.Data.GetQuery("GetQueryDemoAuthorsSorted");
+  var items = AsList<Persons>(queryNoParams);
+}
+<h3>List of Persons from the DataSource</h3>
+<ul>
+  @foreach (var person in items) {
+    <li>
+      @person.FirstName @person.LastName
+    </li>
+  }
+</ul>

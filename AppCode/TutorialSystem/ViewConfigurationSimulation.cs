@@ -40,6 +40,10 @@ namespace AppCode.TutorialSystem
     public string HeaderType;
     public IEntity HeaderItem;
     public bool IsList;
+
+    /// <summary>
+    /// The query name is used to show details about the query
+    /// </summary>
     public string QueryName;
 
     public IHtmlTag TabContents() {
