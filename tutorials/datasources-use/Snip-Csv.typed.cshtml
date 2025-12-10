@@ -1,0 +1,24 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using System.Linq
+@using ToSic.Eav.DataSources
+@*!
+Tut.Tabs=file:/assets/data/products.csv.txt
+!*@
+@{
+  // Create the data source and provide configuration in the options
+  var productsDs = Kit.Data.GetSource<Csv>(parameters: new {
+    FilePath = App.Folder.Path + "/assets/data/products.csv.txt",
+    Delimiter = ";",
+  });
+  var products = AsItems(productsDs);
+}
+<h3>List of Data in the CSV DataSource (@products.Count())</h3>
+<ul>
+  @foreach (var product in products) {
+    <li>
+      @product.String("Name")
+      (@product.String("Description"))
+    </li>
+  }
+</ul>
