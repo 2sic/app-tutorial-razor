@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="20.00.09" ExportDate="2025-12-09T00:10:44.7137067+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="20.00.09" ExportDate="2025-12-10T13:04:55.3512671+01:00">
   <Header>
     <App Guid="efe3b9cf-1382-40b3-bee2-34becb5351bc" />
     <Language Default="en-us" />
@@ -24197,10 +24197,31 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;To get started, let's look at some samples to just use a DataSource in code.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsPage" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="datasources-use-csv" Type="String">
@@ -24213,10 +24234,19 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Sections" Value="9d6a160f-a7b3-46c9-a0b3-59a01657635d,5aec7995-d3b3-4e9f-ae64-d66ab7cd2686,96d4986a-63ec-4d70-9e2d-f96f307f8500" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Data Sources Tutorial - Basic Use&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="datasources-use-csv - Data Sources Tutorial - Basic Use" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="XxxLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -24311,13 +24341,16 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;&lt;code&gt;Kit.Data.GetQuery()&lt;/code&gt;&amp;nbsp;should be used to retrieve a query. It also allows us to pass in parameters if the query supports it. The following demos all use this query. TODO: PIC of query&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -24456,7 +24489,28 @@
       <Value Key="HasVariants" Value="False" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;Here we'll give you a first taste of &lt;strong&gt;Custom Dynamic DataSources&lt;/strong&gt; - a new feature in 2sxc 15.&lt;/p&gt;&#xA;&lt;p&gt;This allows you to create DataSources directly in your App, without compiling to DLL or anything.&lt;/p&gt;" Type="String">
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="&lt;p&gt;Here we'll give you a first taste of &lt;strong&gt;Custom Dynamic DataSources&lt;/strong&gt; - a new feature in 2sxc 15.&lt;/p&gt;&#xA;&lt;p&gt;This allows you to create DataSources directly in your App, without compiling to DLL or anything.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="&lt;p&gt;Here we'll give you a first taste of &lt;strong&gt;Custom DataSources&lt;/strong&gt; - a new feature in 2sxc 16.&lt;/p&gt;&#xA;&lt;p&gt;This allows you to create DataSources directly in your App, without compiling to DLL or anything.&lt;/p&gt;&#xA;&lt;p&gt;The files are placed in the &lt;strong&gt;AppCode&lt;/strong&gt;, usually in the subfolder &lt;strong&gt;DataSources&lt;/strong&gt; and precompiled in the background to include in your razor and other code.&amp;nbsp;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IsPage" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkEmphasis" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTeaser" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="LinkTitle" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="NameId" Value="datasources-dynamic-basics" Type="String">
@@ -24468,11 +24522,20 @@
       <Value Key="OutputAndSourceDisplay" Value="split" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Sections" Value="7e5ddfd4-e20b-49af-9831-29183515104e,8fc99305-7623-4167-a135-f6b80f1e0d1d" Type="Entity" />
+      <Value Key="Sections" Value="7e5ddfd4-e20b-49af-9831-29183515104e,8fc99305-7623-4167-a135-f6b80f1e0d1d,774f711b-f331-48ed-affd-e716e38edba7" Type="Entity" />
+      <Value Key="ShareImage" Value="" Type="Hyperlink">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;Custom Dynamic DataSources - Introduction&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TitleForPicker" Value="datasources-dynamic-basics - Custom Dynamic DataSources - Introduction" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Variants" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="XxxLogo" Value="" Type="Hyperlink">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -24480,10 +24543,14 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Intro" Value="&lt;p&gt;This is a 10-line super-simple example of a DataSource called &lt;code&gt;Basic101&lt;/code&gt;. It will only return a single item with the answer to the meaning of life 😉. Afterwards we'll explain in more detail what's happening.&lt;/p&gt;" Type="String">
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;This is a 10-line super-simple example of a DataSource called &lt;code&gt;Basic101&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;It will only return a single item with the answer to the meaning of life 😉.&lt;/p&gt;&#xA;&lt;p&gt;In the tutorial after this, we'll explain in more detail what's happening.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -24498,10 +24565,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="Title" Value="&lt;p&gt;My First Custom Dynamic DataSource&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
       <Value Key="TutorialId" Value="datasources-dynamic-basics-first" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -24594,10 +24673,14 @@
       <Value Key="InDepthExplanation" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
       <Value Key="Intro" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -24612,10 +24695,22 @@
       <Value Key="OutputWidth" Value="33" Type="Number">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="&lt;p&gt;Advanced List&lt;/p&gt;" Type="String">
+      <Value Key="PageActivate" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="TutorialId" Value="datasources-dynamic-lists-advanced" Type="String">
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;Data Source with Data from a Remote Web Service&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="datasources-dynamic-lists-webservice" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -33082,7 +33177,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Images" Value="" Type="Hyperlink" />
-      <Value Key="NameId" Value="query-productsfromcsvdnn" Type="String">
+      <Value Key="NameId" Value="query-productsfromcsv" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Products CSV" Type="String">
@@ -33111,7 +33206,7 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Images" Value="" Type="Hyperlink" />
-      <Value Key="NameId" Value="query-authorswithbooksdnn" Type="String">
+      <Value Key="NameId" Value="query-authorswithbooks" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Query Authors with Books" Type="String">
@@ -33123,22 +33218,10 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Images" Value="" Type="Hyperlink" />
-      <Value Key="NameId" Value="query-getquerydemoauthorssorteddnn" Type="String">
+      <Value Key="NameId" Value="query-getquerydemoauthorssorted" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Authors Sorted" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="bea8c8c2-ae6c-40ec-90ed-223d93612da3" AttributeSetName="TutorialObjectInfo" EntityGUID="5481d763-a43c-4f1d-ab4e-d2fdefb5b3e7">
-      <Value Key="Description" Value="&lt;p&gt;Basic query which can also take a parameter Max&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Images" Value="" Type="Hyperlink" />
-      <Value Key="NameId" Value="query-quickref-getquerydnn" Type="String">
-        <Dimension DimensionID="141" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="QuickRef" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
     </Entity>
@@ -34338,13 +34421,16 @@
       <Value Key="DefaultStateIsOpen" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
-      <Value Key="HasVariants" Value="False" Type="Boolean">
+      <Value Key="HasVariants" Value="True" Type="Boolean">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Intro" Value="&lt;p&gt;&lt;strong&gt;DataSources&lt;/strong&gt;&amp;nbsp;are the magic backbone of 2sxc. They can get data, filter it, sort it, and more. In many cases you will simply use the DataSources provided by 2sxc and the EAV system, but you can do even more. Specifically:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You can create your own&amp;nbsp;&lt;strong&gt;Dynamic DataSources&lt;/strong&gt;&amp;nbsp;in C# and use them in your code and in Visual Query. This is a bit more advanced, but very powerful. Common scenarios are DataSources which do things or retrieve data which the built-in DataSources don't do.&lt;/li&gt;&#xA;&lt;li&gt;You can create&amp;nbsp;&lt;strong&gt;compiled DataSources&lt;/strong&gt;&amp;nbsp;in C# and use them in your code and in Visual Query. This is much more advanced, and not demonstrated in these tutorials, since it would be hard to install them.&lt;/li&gt;&#xA;&lt;/ul&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="IntroMoreTyped" Value="" Type="String">
@@ -35483,7 +35569,7 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="30dd6c73-50b5-4792-b096-95b4a39d92aa" AttributeSetName="UiEmptyHelloWorld" EntityGUID="7aeaf32e-e79e-4dcb-b8f8-183fa13c3043" />
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="bea8c8c2-ae6c-40ec-90ed-223d93612da3" AttributeSetName="TutorialObjectInfo" EntityGUID="b2b689f9-4a67-4ff3-a374-81c598e57381">
-      <Value Key="Description" Value="" Type="String">
+      <Value Key="Description" Value="&lt;p&gt;Basic query which can also take a parameter Max&lt;/p&gt;" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="Images" Value="" Type="Hyperlink" />
@@ -39244,6 +39330,96 @@
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialId" Value="code-reuse-delegate-tuple" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="774f711b-f331-48ed-affd-e716e38edba7">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="&lt;p&gt;This is almost like above, but instead of using a typed item, we're using a custom&amp;nbsp;&lt;strong&gt;Data Model&lt;/strong&gt; to make the code nicer and type-safe.&lt;/p&gt;&#xA;&lt;p&gt;Note that we're using a plain&amp;nbsp;&lt;em&gt;Model&lt;/em&gt; and not a TypedItem, because for custom data it usually makes more sense to keep the API clean, as methods such as &lt;code&gt;Children(...)&lt;/code&gt; don't really make sense.&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="&lt;p&gt;My First Custom Dynamic DataSource with&amp;nbsp;&lt;strong&gt;Custom Model&lt;/strong&gt;&lt;/p&gt;" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="datasources-dynamic-basics-with-model" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialType" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="38af8959-8662-4718-be05-4e5119d466a4" AttributeSetName="TutorialSnippet" EntityGUID="f1db6d2c-1ab3-4df4-aae2-c059a2681258">
+      <Value Key="InDepthExplanation" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="InDepthImages" Value="" Type="Hyperlink" />
+      <Value Key="Intro" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreDyn" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreStrong" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="IntroMoreTyped" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Note" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputAndSourceDisplay" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="OutputWidth" Value="33" Type="Number">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="PageActivate" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Tabs" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="" Type="String">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="ToolbarsForAnonymous" Value="False" Type="Boolean">
+        <Dimension DimensionID="141" ReadOnly="false" />
+      </Value>
+      <Value Key="TutorialId" Value="" Type="String">
         <Dimension DimensionID="141" ReadOnly="false" />
       </Value>
       <Value Key="TutorialType" Value="" Type="String">
