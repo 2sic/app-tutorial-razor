@@ -1,13 +1,13 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
+@using AppCode.DataSources
 @*!
 Tut.Tabs=datasource:ListBasic
 !*@
 @{
-  // Create the Dynamic DataSource with the name "Basic101"
-  var basic101 = Kit.Data.GetSource(name: "ListBasic");
-  var items = AsList(basic101);
+  var basic101 = Kit.Data.GetSource<ListBasic>();
+  var items = AsItems(basic101);
 }
 <h3>List of Data in the DataSource (@items.Count())</h3>
 <ul>
@@ -15,7 +15,7 @@ Tut.Tabs=datasource:ListBasic
     <li>
       <strong>@item.Title</strong>
       (@item.Id / @item.Guid)
-      - Fav Number: @item.FavoriteNumber
+      - Fav Number: @item.Int("FavoriteNumber")
     </li>
   }
 </ul>

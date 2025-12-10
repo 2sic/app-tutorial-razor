@@ -1,20 +1,20 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
-@using ToSic.Eav.DataSources
+@using AppCode.DataSources
 @*!
 Tut.Tabs=datasource:Basic101Commented
 !*@
 @{
   // Create the Dynamic DataSource with the name "Basic101Commented"
-  var basic101c = Kit.Data.GetSource(name: "Basic101Commented");
-  var items = AsList(basic101c);
+  var basic101c = Kit.Data.GetSource<Basic101Commented>();
+  var items = AsItems(basic101c);
 }
 <h3>List of Data in the CSV DataSource (@items.Count())</h3>
 <ul>
   @foreach (var item in items) {
     <li>
-      <strong>@item.Title</strong> - the Answer: @item.TheAnswer
+      <strong>@item.Title</strong> - the Answer: @item.Int("TheAnswer")
     </li>
   }
 </ul>

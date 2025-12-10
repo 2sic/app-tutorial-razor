@@ -7,10 +7,11 @@ Tut.Tabs=datasource:Basic101
 @{
   // Create the Dynamic DataSource with the name "Basic101"
   var basic101 = Kit.Data.GetSource(name: "Basic101");
+  var items = AsList(basic101);
 }
-<h3>List of Data in the CSV DataSource (@basic101.List.Count())</h3>
+<h3>List of Data in the CSV DataSource (@items.Count())</h3>
 <ul>
-  @foreach (var item in AsList(basic101)) {
+  @foreach (var item in items) {
     <li>
       <strong>@item.Title</strong> - the Answer: @item.TheAnswer
     </li>
