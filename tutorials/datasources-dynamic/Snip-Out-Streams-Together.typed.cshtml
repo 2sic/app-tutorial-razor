@@ -1,0 +1,38 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using System.Linq
+@using AppCode.DataSources
+@*!
+Tut.Tabs=datasource:SplitOddEven
+!*@
+@{
+  var persons = App.Data.GetStream("Persons");
+  var oddEven = Kit.Data.GetSource<SplitOddEven>(attach: persons);
+  var all = AsItems(oddEven);
+  var odd = AsItems(oddEven.GetStream("Odd"));
+  var even = AsItems(oddEven.GetStream("Even"));
+}
+<h3>List of Data in the All stream (@all.Count())</h3>
+<ul>
+  @foreach (var item in all) {
+    <li>
+      <strong>@item.Title</strong> (#@item.Id)
+    </li>
+  }
+</ul>
+<h3>List of Data in the Odd stream (@odd.Count())</h3>
+<ul>
+  @foreach (var item in odd) {
+    <li>
+      <strong>@item.Title</strong> (#@item.Id)
+    </li>
+  }
+</ul>
+<h3>List of Data in the Even stream (@even.Count())</h3>
+<ul>
+  @foreach (var item in even) {
+    <li>
+      <strong>@item.Title</strong> (#@item.Id)
+    </li>
+  }
+</ul>

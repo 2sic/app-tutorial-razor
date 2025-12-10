@@ -1,0 +1,25 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using System.Linq
+@using AppCode.DataSources
+@*!
+Tut.Tabs=datasource:KeepOdd
+!*@
+@{
+  // Create the Dynamic DataSource "KeepOdd" and forget to attach the In
+  var keepOdd = Kit.Data.GetSource<KeepOdd>();
+
+  // Note: the items now contain an error-entity with a Message property
+  var items = AsItems(keepOdd);
+}
+<h3>Data from the KeepOdd DataSource (@items.Count())</h3>
+<ul>
+  @foreach (var item in items) {
+    <li>
+      <strong>@item.Title</strong> (ID: @item.Id)
+      <br>
+      <strong>Message: </strong>
+      @item.String("Message")
+    </li>
+  }
+</ul>

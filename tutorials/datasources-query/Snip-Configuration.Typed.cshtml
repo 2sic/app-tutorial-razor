@@ -10,7 +10,8 @@
 <ul>
   @foreach (var item in AsItems(MyData)) {
     <li>
-      <strong>@item.Get("Title")</strong> - Favorite Color: @item.Get("FavoriteColor")
+      <strong>@item.Get("Title")</strong>
+      - Favorite Color: @item.Get("FavoriteColor")
     </li>
   }
 </ul>

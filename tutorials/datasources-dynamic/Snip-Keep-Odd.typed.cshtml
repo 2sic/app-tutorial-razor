@@ -1,0 +1,22 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using System.Linq
+@using AppCode.DataSources
+@*!
+Tut.Tabs=datasource:KeepOdd
+!*@
+@{
+  // Get the stream of all authors
+  var authors = App.Data["Persons"];
+  // Create the DataSource "KeepOdd" and attach the authors to it
+  var keepOdd = Kit.Data.GetSource<KeepOdd>(attach: authors);
+  var items = AsItems(keepOdd);
+}
+<h3>Data from the KeepOdd DataSource (@items.Count())</h3>
+<ul>
+  @foreach (var item in items) {
+    <li>
+      <strong>@item.Title</strong> (ID: @item.Id)
+    </li>
+  }
+</ul>

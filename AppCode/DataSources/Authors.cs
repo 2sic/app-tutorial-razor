@@ -10,7 +10,12 @@ public class Authors : Custom.DataSource.DataSource16
       var appData = Kit.Data.GetAppSource();
 
       // Get the Content-Type Filter DataSource
-      var contentTypeFilter = Kit.Data.GetSource<EntityTypeFilter>(attach: appData, parameters: new { TypeName = "Persons"});
+      var contentTypeFilter = Kit.Data.GetSource<EntityTypeFilter>(
+        attach: appData,
+        parameters: new {
+          TypeName = "Persons"
+        }
+      );
 
       // Return all the items after filtering
       return contentTypeFilter.List;

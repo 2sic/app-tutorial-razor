@@ -1,0 +1,33 @@
+@inherits Custom.Hybrid.RazorTyped
+@using ToSic.Razor.Blade
+@using System.Linq
+@using AppCode.DataSources
+@*!
+Tut.Tabs=datasource:ListMultiStream
+!*@
+@{
+  // Create the Dynamic DataSource with the name "ListMultiStream"
+  var multiStream = Kit.Data.GetSource<ListMultiStream>();
+  
+  // This will contain all items in the default stream
+  var allItems = AsItems(multiStream);
+
+  // Get the "Settings" stream as a single item
+  var settings = AsItem(multiStream.GetStream("Settings"));
+}
+<h3>Data in the <strong>Settings</strong> stream</h3>
+<ul>
+  <li>PageSize: @settings.Int("PageSize")</li>
+  <li>ShowStuff: @settings.Bool("ShowStuff")</li>
+</ul>
+
+<h3>List of Data in the <strong>Default</strong> stream (@allItems.Count())</h3>
+<ul>
+  @foreach (var item in allItems) {
+    <li>
+      <strong>@item.Title</strong>
+      (@item.Id / @item.Guid)
+      - Fav Number: @item.Int("FavoriteNumber")
+    </li>
+  }
+</ul>

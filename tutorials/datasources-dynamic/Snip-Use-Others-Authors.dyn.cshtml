@@ -1,0 +1,19 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade
+@using System.Linq
+@*!
+Tut.Tabs=datasource:Authors
+!*@
+@{
+  // Create the Dynamic DataSource of type "Authors"
+  var authorsDS = Kit.Data.GetSource(name: "Authors");
+  var authors = AsList(authorsDS);
+}
+<h3>Items in the DataSource (@authors.Count())</h3>
+<ul>
+  @foreach (var item in authors) {
+    <li>
+      <strong>@item.EntityTitle</strong>
+    </li>
+  }
+</ul>
