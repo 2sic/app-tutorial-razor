@@ -1,7 +1,7 @@
 /*
   Spectrum Vanilla color picker WebComponent with correct default-palette handling.
 
-  Behaviour:
+  Behavior:
   - If ShowDefaultPalette setting is true -> show Spectrum's default palette.
     - If Swatches are also provided -> merge swatches into the default palette (so both appear).
   - If ShowDefaultPalette setting is false -> only show Swatches (if any).
@@ -10,13 +10,17 @@
 */
 
 (() => {
+  // Tag name for the web component according to 2sxc conventions
   const tagName = "field-string-color-picker-spectrum";
+
+  // Spectrum CDN URLs
   const spectrumVersion = "1.1.1";
   const spectrumBase = `https://unpkg.com/spectrum-vanilla@${spectrumVersion}/dist`;
-
   const spectrumJsCdn = `${spectrumBase}/spectrum.min.js`;
   const spectrumCssCdn = `${spectrumBase}/spectrum.min.css`;
 
+  // HTML template for the component
+  // also loads the css
   const html = `
     <link rel="stylesheet" href="${spectrumCssCdn}"/>
     <style>
@@ -33,11 +37,16 @@
         display: flex !important;
         cursor: pointer;
       }
+      div.sp-container {
+        position: fixed;
+      }
     </style>
     <div class="spectrum-container">
       <input id="color-picker" type="text" />
     </div>`;
 
+  // Debug flag for logs during development
+  const debug = false;
   class StringColorPickerPro extends HTMLElement {
     /** connectedCallback() is the standard callback when the component has been attached */
     connectedCallback() {
@@ -48,6 +57,7 @@
         this.connector && this.connector.data
           ? this.connector.data.value || ""
           : "";
+
       // load Spectrum if not loaded
       this.connector.loadScript("Spectrum", spectrumJsCdn, () => {
         this.initSpectrum();
@@ -60,36 +70,28 @@
         this.sp.destroy();
         this.sp = null;
       }
+
       // Remove the click handler if it exists
       if (this.containerClickHandler) {
         const container = this.querySelector(".sp-original-input-container");
-        if (container) {
+        if (container)
           container.removeEventListener("click", this.containerClickHandler);
-        }
       }
     }
 
     /** Utility: read UseAlphaValues setting as boolean */
     useAlphaFromSettings() {
-      const s =
-        this.connector && this.connector.field && this.connector.field.settings
-          ? this.connector.field.settings.UseAlphaValues
-          : undefined;
+      const c = this.connector;
+      const s = c && c.field && c.field.settings && c.field.settings.UseAlphaValues;
       // Accept boolean true, string "true", number 1 as true
-      return (
-        s === true || String(s).toLowerCase() === "true" || Number(s) === 1
-      );
+      return (s === true || String(s).toLowerCase() === "true" || Number(s) === 1);
     }
 
     showDefaultPaletteFromSettings() {
-      const s =
-        this.connector && this.connector.field && this.connector.field.settings
-          ? this.connector.field.settings.ShowDefaultPalette
-          : undefined;
+      const c = this.connector;
+      const s = c && c.field && c.field.settings && c.field.settings.ShowDefaultPalette;
       // Accept boolean true, string "true", number 1 as true
-      return (
-        s === true || String(s).toLowerCase() === "true" || Number(s) === 1
-      );
+      return (s === true || String(s).toLowerCase() === "true" || Number(s) === 1);
     }
 
     /** This is called when the JS is loaded from loadScript - so Spectrum is ready */
@@ -112,6 +114,7 @@
         showAlpha: showAlpha,
         showPalette: shouldShowPalette,
         allowEmpty: true,
+        appendTo: this, //'parent', // ensure it appends within the container
         // pass the color argument through to handler (Spectrum may give different shapes)
         change: (color) => this.handleChange(color),
         hide: () => this.handleHide(),
@@ -141,6 +144,9 @@
         }
       }
 
+      if (debug)
+        console.log("Spectrum initialized with options:", options, this.sp);
+
       this.cleared = !this.connector.data.value;
 
       // Set up click handler for the entire container after Spectrum is initialized
@@ -150,12 +156,12 @@
     /** Set up click handler to make the entire picker container clickable */
     setupContainerClickHandler() {
       const container = this.querySelector(".sp-original-input-container");
-      if (!container || !this.sp) return;
+      if (!container || !this.sp)
+        return;
 
       // Remove old handler if exists
-      if (this.containerClickHandler) {
+      if (this.containerClickHandler)
         container.removeEventListener("click", this.containerClickHandler);
-      }
 
       // Delegate clicks inside the container
       this.containerClickHandler = (event) => {
@@ -168,11 +174,27 @@
         event.stopPropagation();
 
         // Toggle or show the picker
-        if (typeof this.sp.toggle === "function") this.sp.toggle();
-        else if (typeof this.sp.show === "function") this.sp.show();
+        if (typeof this.sp.toggle === "function")
+          this.sp.toggle();
+        else if (typeof this.sp.show === "function")
+          this.sp.show();
+
+        this.forcePositionFixed(this.sp);
       };
 
       container.addEventListener("click", this.containerClickHandler);
+    }
+
+    // Temporary workaround because angular cdk is now fixed, covering this element
+    forcePositionFixed(sp) {
+      const style = sp?.spectrum?.container?.style;
+      if (!style)
+        return;
+      style.position = "fixed";
+      // set in beside the this bounding rect
+      const rect = this.getBoundingClientRect();
+      style.top = `${rect.bottom + 5}px`;
+      style.left = `${rect.left}px`;
     }
 
     /** Update the value when color is selected (live changes) */
@@ -188,22 +210,19 @@
         try {
           // If fully opaque, use 6-digit hex; otherwise use 8-digit hex
           if (typeof color.getAlpha === "function") {
-            value =
-              color.getAlpha() === 1
-                ? color.toHexString()
-                : color.toHex8String();
-          } else if (typeof color.toHexString === "function") {
+            value = color.getAlpha() === 1
+              ? color.toHexString()
+              : color.toHex8String();
+          } else if (typeof color.toHexString === "function")
             value = color.toHexString();
-          } else if (color && color.hex) {
+          else if (color.hex)
             // some spectrum versions might pass { hex: "#rrggbb", a: 1 }-like objects
-            value =
-              color.a === 1 || color.a == null
-                ? color.hex
-                : color.hex + Math.round((color.a || 1) * 255).toString(16);
-          } else {
+            value = color.a === 1 || color.a == null
+              ? color.hex
+              : color.hex + Math.round((color.a || 1) * 255).toString(16);
+          else
             // Fallback to input value
             value = this.input.value || null;
-          }
         } catch (err) {
           value = this.input.value || null;
         }
@@ -224,21 +243,20 @@
       // Try to get the color object from the Spectrum instance and convert to hex/hex8
       let value = null;
       try {
-        const colorObj =
-          this.sp && typeof this.sp.get === "function" ? this.sp.get() : null;
+        const colorObj = this.sp && typeof this.sp.get === "function"
+          ? this.sp.get()
+          : null;
 
         if (colorObj) {
-          if (typeof colorObj.getAlpha === "function") {
-            value =
-              colorObj.getAlpha() === 1
-                ? colorObj.toHexString()
-                : colorObj.toHex8String();
-          } else if (typeof colorObj.toHexString === "function") {
+          if (typeof colorObj.getAlpha === "function")
+            value = colorObj.getAlpha() === 1
+              ? colorObj.toHexString()
+              : colorObj.toHex8String();
+          else if (typeof colorObj.toHexString === "function")
             value = colorObj.toHexString();
-          } else {
+          else
             // If the color object doesn't provide helpers, fall back to the displayed input
             value = this.input.value || null;
-          }
         } else {
           // No color object (empty), use the input value or null
           value = this.input.value || null;
@@ -266,17 +284,17 @@
     getSwatches() {
       // the field "Swatches" is the field in the content-type containing the colors
       // it's upper-case, because that's how the field is named
-      var swatches =
-        this.connector && this.connector.field && this.connector.field.settings
-          ? this.connector.field.settings.Swatches
-          : null;
-      if (!swatches) return [];
+      var swatches = this.connector && this.connector.field && this.connector.field.settings
+        ? this.connector.field.settings.Swatches
+        : null;
+      if (!swatches)
+        return [];
       return swatches
         .split("\n")
         .map((colorLine) => colorLine.trim())
         .filter(Boolean)
         .map((colorLine) => {
-          var withLabel = colorLine.split(" ");
+          const withLabel = colorLine.split(" ");
           return withLabel[0]; // first part is the color
         });
     }
@@ -285,4 +303,5 @@
   // Register this web component - if it hasn't been registered yet
   if (!customElements.get(tagName))
     customElements.define(tagName, StringColorPickerPro);
+
 })();
