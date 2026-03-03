@@ -9,6 +9,7 @@ using AppCode.TutorialSystem.Tabs;
 using AppCode.TutorialSystem.Source;
 using AppCode.Data;
 using static AppCode.TutorialSystem.Constants;
+using ToSic.Razor.Html5;
 
 namespace AppCode.TutorialSystem.Sections
 {
@@ -184,14 +185,21 @@ namespace AppCode.TutorialSystem.Sections
     {
       // Start with special cases like DataSource or Model
       if (tab.Type == TabType.DataSource)
-        return FileHandler.GetTabFileContents($"/AppCode/DataSources/{tab.Value}.cs");
+        return FileHandler.GetTabFileContents($"/AppCode/DataSources/{tab.Value}.cs", snippetAddOn: tab.AddOn);
 
       // When showing a model, it can be either the model itself or the generated model or a mix
       // eg. CsvProduct is a manually created model, which doesn't have a generated part
       if (tab.Type == TabType.Model)
       {
-        var extended = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.Value}.cs", silent: true);
-        var generated = FileHandler.GetTabFileContents($"/AppCode/Data/{tab.Value}.Generated.cs", silent: true);
+        var modPath = tab.AddOn == null
+          ? $"/AppCode/Data/{tab.Value}.cs"
+          : tab.AddOn.FilePath;
+        var modPathGenerated = tab.AddOn == null
+          ? $"/AppCode/Data/{tab.Value}.Generated.cs"
+           : tab.AddOn.FilePath.Replace(".cs", ".Generated.cs");
+        
+        var extended = FileHandler.GetTabFileContents(modPath, silent: true, snippetAddOn: tab.AddOn);
+        var generated = FileHandler.GetTabFileContents(modPathGenerated, silent: true, snippetAddOn: tab.AddOn);
         return Tag.RawHtml(extended, generated);
       }
 
@@ -211,7 +219,7 @@ namespace AppCode.TutorialSystem.Sections
 
       // If it's a string such as "file:abc.cshtml" then resolve that first
       if (tab.Type == TabType.File || strResult.StartsWith("file:"))
-        return FileHandler.GetTabFileContents(strResult.Replace("file:", ""));
+        return FileHandler.GetTabFileContents(strResult.Replace("file:", ""), snippetAddOn: tab.AddOn);
 
       // Handle case "html-img:..."
       if (strResult.StartsWith("html-img:"))

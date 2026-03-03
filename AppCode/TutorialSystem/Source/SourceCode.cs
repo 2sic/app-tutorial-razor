@@ -42,7 +42,8 @@ namespace AppCode.TutorialSystem.Source
       // should probably move once done
       if (item.IsNotEmpty(nameof(item.AddOns))) {
         var additionalTabs = item.AddOns
-          .Select(a => new TabSpecs(TabType.File, "TT" + a.TabTitle, a.FilePath, a.FilePath) { AddOn = a });
+          .Select(a => new TabSpecs(a))
+          .ToList();
         foreach (var tab in additionalTabs)
           Log.Add("tabs: '" + tab + "'");
         tabs.AddRange(additionalTabs);

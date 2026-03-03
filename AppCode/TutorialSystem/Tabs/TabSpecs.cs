@@ -1,6 +1,5 @@
 using AppCode.Data;
 using ToSic.Razor.Blade;
-using ToSic.Razor.Html5;
 
 namespace AppCode.TutorialSystem.Tabs
 {
@@ -8,6 +7,18 @@ namespace AppCode.TutorialSystem.Tabs
   public class TabSpecs
   {
     private object body;
+
+    /// <summary>
+    /// New constructor, should be used from now on...
+    /// </summary>
+    /// <param name="addOn"></param>
+    public TabSpecs(TutorialSnippetAddOn addOn) {
+      Type = FromAddOn(addOn);
+      AddOn = addOn;
+      Label = "TT" + addOn.TabTitle; // this will become obsolete, WIP
+      Value = addOn.FilePath;
+      Original = addOn.FilePath;
+    }
 
     public TabSpecs(TabType type, string everything): this(type, everything, everything, everything) { }
 
@@ -62,11 +73,23 @@ namespace AppCode.TutorialSystem.Tabs
         if (AddOn.IsNotEmpty(nameof(AddOn.TabTitle)))
           return AddOn.TabTitle;
         if (AddOn.AddOnType == "file" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
-          return NiceName(AddOn.FilePath);
+          return NiceNameNewForAddOn(AddOn.FilePath);
+        if (AddOn.AddOnType == "model" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
+          return "Model: " + NiceNameNewForAddOn(AddOn.FilePath);
         
         return "Err:AddOn-TitleUnclear";
       }
       return NiceName(Label);
+    }
+
+    private string NiceNameNewForAddOn(string n) {
+      // If a known tab identifier, return the nice name
+      // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
+      if (n.EndsWith(".csv.txt"))
+        n = n.Replace(".csv.txt", ".csv");
+      if (Type == TabType.File || Type == TabType.Model)
+        return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":") ?? n;
+      return n;
     }
 
     private string NiceName(string n) {
@@ -107,6 +130,24 @@ namespace AppCode.TutorialSystem.Tabs
         .Replace("/", "-")
         .Replace("|", "-")
         .Replace("\\", "-");
+    }
+  
+    private static TabType FromAddOn(TutorialSnippetAddOn addOn) {
+      if (addOn.AddOnType == "file")
+        return TabType.File;
+      if (addOn.AddOnType == "model")
+        return TabType.Model;
+      if (addOn.AddOnType == "datasource")
+        return TabType.DataSource;
+      return TabType.Unknown; // default, but should probably be an error
+    }
+
+    public string ToAddOnType() {
+      if (Type == TabType.File)
+        return "file";
+      if (Type == TabType.Model)
+        return "model";
+      return "file";
     }
   }
 }

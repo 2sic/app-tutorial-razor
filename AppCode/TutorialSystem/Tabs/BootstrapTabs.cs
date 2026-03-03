@@ -31,11 +31,13 @@ namespace AppCode.TutorialSystem.Tabs
           tabLi = tabLi.Attr(Kit.Toolbar.Edit(tab.AddOn));
         else {
           // Create a toolbar to convert the current code-based tab into an add-on, pre-filling the file path and type
+
+          // WIP convert old string names to new name
           var tlb = Kit.Toolbar.Empty().New(
             item.AddOns,
             tweak: t => t
               .Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value)
-              .Prefill(nameof(TutorialSnippetAddOn.AddOnType), "file")
+              .Prefill(nameof(TutorialSnippetAddOn.AddOnType), tab.ToAddOnType())
           );
           tabLi = tabLi.Attr(tlb);
         }

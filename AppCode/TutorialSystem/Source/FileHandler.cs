@@ -76,8 +76,8 @@ namespace AppCode.TutorialSystem.Source
     internal ITag ShowSnippet(string file)
       => ShowFileContents(file, showTitle: false, expand: true);
 
-    internal ITag GetTabFileContents(string file, bool silent = false)
-      => ShowFileContents(file, showTitle: true, silent: silent);
+    internal ITag GetTabFileContents(string file, bool silent = false, TutorialSnippetAddOn snippetAddOn = null)
+      => ShowFileContents(file, showTitle: true, silent: silent, snippetAddOn: snippetAddOn);
 
     internal ITag GetTabSpecsSource(TutorialSnippetAddOn addOn, string file, bool silent = false)
     {
