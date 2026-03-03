@@ -90,9 +90,9 @@ namespace AppCode.TutorialSystem.Tabs
           //   return new TabSpecs(TabType.RazorModel, label: $"Razor Model: {value}.cs", value: value, original: t);
 
           // Handle model: references
-          (found, label, value) = SplitTabEntry(entry, "model:");
-          if (found)
-            return new TabSpecs(TabType.Model, label: label != "" ? label : $"Model: {value}.cs", value: value, original: t);
+          // (found, label, value) = SplitTabEntry(entry, "model:");
+          // if (found)
+          //   return new TabSpecs(TabType.Model, label: label != "" ? label : $"Model: {value}.cs", value: value, original: t);
           
           // Handle datasource: references
           (found, label, value) = SplitTabEntry(entry, "datasource:");
