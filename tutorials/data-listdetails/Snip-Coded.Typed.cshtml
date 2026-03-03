@@ -1,7 +1,5 @@
 @inherits Custom.Hybrid.RazorTyped
-@*!
-Tut.Tabs=file:./Coded-List.Typed.cshtml,file:./Coded-Details.Typed.cshtml
-!*@
+
 @if (MyPage.Parameters.IsEmpty("id")) {
   @Html.Partial("Coded-List.Typed.cshtml")
 } else {

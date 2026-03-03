@@ -1,7 +1,5 @@
 @inherits Custom.Hybrid.Razor14
-@*!
-Tut.Tabs=file:./coded-list.cshtml,file:./coded-details.cshtml
-!*@
+
 @{
   // check if we have a url-parameter called "id" with a value - defaults to 0 if not found
   int id = Kit.Convert.ToInt(CmsContext.Page.Parameters["id"]);
