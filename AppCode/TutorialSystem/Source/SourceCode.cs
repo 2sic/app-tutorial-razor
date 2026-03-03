@@ -43,7 +43,7 @@ namespace AppCode.TutorialSystem.Source
       // should probably move once done
       if (item.IsNotEmpty(nameof(item.AddOns))) {
         var additionalTabs = item.AddOns
-          .Where(a => a.IsEmpty(nameof(a.Variants)) || a.Variants.IndexOf(variant, StringComparison.InvariantCultureIgnoreCase) >= 0)
+          .Where(a => a.UseForVariant(variant))
           .Select(a => new TabSpecs(a))
           .ToList();
         foreach (var tab in additionalTabs)
