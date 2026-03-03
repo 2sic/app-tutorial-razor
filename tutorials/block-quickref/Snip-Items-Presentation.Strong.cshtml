@@ -1,6 +1,6 @@
 @inherits Custom.Hybrid.RazorTyped
 @using AppCode.Data
-@{/*! Tut.Tabs=model:Persons,model:QuickRefContentPresentation,ViewConfig */
+@{/*!*/
   // 2sxclint:disable:no-Presentation-in-quotes - it's just used as a stream-name
   var viewCnf = MyModel.Code("Tutorial").ViewConfig;
   var itemEntities = viewCnf.List(query: "QuickRef-Content-Simulation");
@@ -23,7 +23,7 @@
     }
     </hide-silent>
 
-    // check if empty, and using nameof to be sure we spelled it right
+    // check if empty
     var headingTagExists = pres.IsNotEmpty(nameof(pres.HeadingType));
     var title = item.Title + (pres.Highlight ? " 🌟" : "");
     <li>
@@ -34,7 +34,7 @@
         @title
       }
       <br>
-      <em>FYI: Heading @(pres.IsEmpty("HeadingType") ? "none" : pres.HeadingType)</em>
+      <em>FYI: Heading @(!headingTagExists ? "none" : pres.HeadingType)</em>
       <div style='color: @pres.Attribute("Color")'>
         @item.Html("Contents")
       </div>
