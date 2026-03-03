@@ -14,8 +14,14 @@
   var codeFile = runCode ? acs.CodeFile : Constants.IgnoreSourceFile;
   if (codeFile != null)
   {
-    var snip = Sys.SourceCode.SnipFromItem(item: item, codeFile: codeFile);
-    var data = new { item, SnippetSection = snip, Tutorial = snip, Dm = "test", Sys = Model.Sys };
+    var snip = Sys.SourceCode.SnipFromItem(item: item, codeFile: codeFile, variant: Model.Accordion.Variant);
+    var data = new {
+      item,
+      SnippetSection = snip,
+      Tutorial = snip,
+      Dm = "test",
+      Sys = Model.Sys
+    };
 
     <!-- code file -->
     @acs.Start()

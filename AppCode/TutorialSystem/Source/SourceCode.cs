@@ -5,6 +5,7 @@ using AppCode.TutorialSystem.Wrappers;
 using AppCode.TutorialSystem.Sections;
 using AppCode.Data;
 using AppCode.TutorialSystem.Tabs;
+using System;
 
 namespace AppCode.TutorialSystem.Source
 {
@@ -26,7 +27,7 @@ namespace AppCode.TutorialSystem.Source
     /// <param name="item">The configuration item</param>
     /// <param name="file">The file from which it will be relative to</param>
     /// <returns></returns>
-    public TutorialSectionEngine SnipFromItem(TutorialSnippet item, string codeFile)
+    public TutorialSectionEngine SnipFromItem(TutorialSnippet item, string codeFile, string variant)
     {
       var l = Log.Call<TutorialSectionEngine>($"{nameof(codeFile)}: {codeFile}");
       // If we have a file, we should try to look up the tabs
@@ -42,6 +43,7 @@ namespace AppCode.TutorialSystem.Source
       // should probably move once done
       if (item.IsNotEmpty(nameof(item.AddOns))) {
         var additionalTabs = item.AddOns
+          .Where(a => a.IsEmpty(nameof(a.Variants)) || a.Variants.IndexOf(variant, StringComparison.InvariantCultureIgnoreCase) >= 0)
           .Select(a => new TabSpecs(a))
           .ToList();
         foreach (var tab in additionalTabs)
