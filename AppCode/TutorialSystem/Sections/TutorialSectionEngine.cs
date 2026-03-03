@@ -75,7 +75,7 @@ namespace AppCode.TutorialSystem.Sections
       TabHandler.ReplaceTabContents(tabs.ToList());
     }
 
-    protected ITag TabsBeforeContent()
+    private ITag TabsBeforeContent()
     {
       var tabs = TabHandler.CompleteTabs;
       var active = TabHandler.ActiveTab;
@@ -90,7 +90,7 @@ namespace AppCode.TutorialSystem.Sections
       var firstIsActive = active.DisplayName == firstTab.DisplayName;
       var result = Tag.RawHtml(
         // Tab headers
-        BsTabs.TabList(TabPrefix, tabs, active),
+        BsTabs.TabList(Item, TabPrefix, tabs, active),
         // Tab bodies - must open the first one
         BsTabs.TabContentGroupOpen(),
         // Open the first tab-body item IF the snippet is right after this

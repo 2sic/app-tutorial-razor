@@ -2,7 +2,7 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
-using System.Linq;
+using AppCode.Data;
 
 // 2sxclint:disable:no-Presentation-in-quotes - it's just used as a css-class below
 
@@ -10,12 +10,13 @@ using System.Linq;
 
 namespace AppCode.TutorialSystem.Tabs
 {
-  public class BootstrapTabs: AppCode.Services.ServiceBase
+  public class BootstrapTabs: Custom.Hybrid.CodeTyped
   {
     private const string Indent = "    ";
     private const string IndentLi = "      ";
     private const string IndentBtn = "        ";
-    public ITag TabList(string prefix, List<TabSpecs> tabs, TabSpecs active) /* string active = null) */ {
+
+    public ITag TabList(TutorialSnippet item, string prefix, List<TabSpecs> tabs, TabSpecs active) /* string active = null) */ {
       var tabList = new List<object>();
       foreach (var tab in tabs) {
         var isFirst = tabList.Count == 0;
@@ -23,7 +24,22 @@ namespace AppCode.TutorialSystem.Tabs
 
         tabList.Add("\n\n" + IndentLi + "<!-- Tab '" + tab.DisplayName + "'-->");
         tabList.Add("\n" + IndentLi);
-        tabList.Add(TabLi(tab, prefix, isActive)); // first entry is active = true
+
+        // Generate button, and toolbar to edit/create the add-on definition
+        var tabLi = TabLi(tab, prefix, isActive);
+        if (tab.AddOn != null)
+          tabLi = tabLi.Attr(Kit.Toolbar.Edit(tab.AddOn));
+        else {
+          // Create a toolbar to convert the current code-based tab into an add-on, pre-filling the file path and type
+          var tlb = Kit.Toolbar.Empty().New(
+            item.AddOns,
+            tweak: t => t
+              .Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value)
+              .Prefill(nameof(TutorialSnippetAddOn.AddOnType), "file")
+          );
+          tabLi = tabLi.Attr(tlb);
+        }
+        tabList.Add(tabLi); // first entry is active = true
       }
       return Tag.RawHtml(
         "\n" + Indent + "<!-- TabList Start '" + prefix + "'-->\n",
@@ -36,7 +52,7 @@ namespace AppCode.TutorialSystem.Tabs
     }
 
 
-    private ITag TabLi(TabSpecs tab, string prefix, bool active) {
+    private Li TabLi(TabSpecs tab, string prefix, bool active) {
       return Tag.Li().Class("nav-item").Attr("role", "presentation").Wrap(
         "\n",
         IndentBtn + $"<!-- Tab button '{tab.Original}', type: {tab.Type} -->\n",

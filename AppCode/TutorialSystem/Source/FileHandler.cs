@@ -1,10 +1,8 @@
-using ToSic.Eav.Data;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
 using System;
 using AppCode.Data;
-using AppCode.TutorialSystem.Tabs;
 
 namespace AppCode.TutorialSystem.Source
 {
