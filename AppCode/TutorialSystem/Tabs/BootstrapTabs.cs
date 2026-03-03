@@ -35,9 +35,14 @@ namespace AppCode.TutorialSystem.Tabs
           // WIP convert old string names to new name
           var tlb = Kit.Toolbar.Empty().New(
             item.AddOns,
-            tweak: t => t
-              .Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value)
-              .Prefill(nameof(TutorialSnippetAddOn.AddOnType), tab.ToAddOnType())
+            tweak: t => {
+              t = t.Prefill(nameof(TutorialSnippetAddOn.AddOnType), tab.ToAddOnType());
+
+              if (tab.Type != TabType.ViewConfig)
+                t = t.Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value);
+                
+              return t;
+            }
           );
           tabLi = tabLi.Attr(tlb);
         }

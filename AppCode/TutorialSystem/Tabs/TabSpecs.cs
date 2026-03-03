@@ -1,5 +1,6 @@
 using AppCode.Data;
 using ToSic.Razor.Blade;
+using ToSic.Razor.Html5;
 
 namespace AppCode.TutorialSystem.Tabs
 {
@@ -72,6 +73,8 @@ namespace AppCode.TutorialSystem.Tabs
       if (AddOn != null) {
         if (AddOn.IsNotEmpty(nameof(AddOn.TabTitle)))
           return AddOn.TabTitle;
+        if (AddOn.AddOnType == "view-config")
+          return "View Configuration";
         if (AddOn.AddOnType == "file" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
           return NiceNameNewForAddOn(AddOn.FilePath);
         if (AddOn.AddOnType == "model" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
@@ -137,6 +140,8 @@ namespace AppCode.TutorialSystem.Tabs
         return TabType.File;
       if (addOn.AddOnType == "model")
         return TabType.Model;
+      if (addOn.AddOnType == "view-config")
+        return TabType.ViewConfig;
       if (addOn.AddOnType == "datasource")
         return TabType.DataSource;
       return TabType.Unknown; // default, but should probably be an error
@@ -147,6 +152,10 @@ namespace AppCode.TutorialSystem.Tabs
         return "file";
       if (Type == TabType.Model)
         return "model";
+      if (Type == TabType.ViewConfig)
+        return "view-config";
+      if (Type == TabType.DataSource)
+        return "datasource";
       return "file";
     }
   }
