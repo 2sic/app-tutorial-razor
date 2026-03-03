@@ -2,9 +2,6 @@
 @using ToSic.Razor.Blade
 @using System.Linq
 @using AppCode.DataSources
-@*!
-Tut.Tabs=datasource:ListBasic
-!*@
 @{
   var basic101 = Kit.Data.GetSource<ListBasic>();
   var items = AsItems(basic101);

@@ -2,9 +2,6 @@
 @using ToSic.Razor.Blade
 @using System.Linq
 @using AppCode.DataSources
-@*!
-Tut.Tabs=datasource:SplitOddEven
-!*@
 @{
   var persons = App.Data.GetStream("Persons");
   var oddEven = Kit.Data.GetSource<SplitOddEven>(attach: persons);

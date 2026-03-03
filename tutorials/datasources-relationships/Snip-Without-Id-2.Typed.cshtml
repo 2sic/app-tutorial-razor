@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
-@using ToSic.Eav.DataSources
-@{/*! Tut.Tabs=datasource:TreeParentPaths */
-/*!*/}
+@using AppCode.DataSources
 @{
-  var tree = Kit.Data.GetSource(name: "TreeParentPaths");
+  var tree = Kit.Data.GetSource<TreeParentPaths>();
   var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 

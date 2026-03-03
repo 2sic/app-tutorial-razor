@@ -185,7 +185,12 @@ namespace AppCode.TutorialSystem.Sections
     {
       // Start with special cases like DataSource or Model
       if (tab.Type == TabType.DataSource)
-        return FileHandler.GetTabFileContents($"/AppCode/DataSources/{tab.Value}.cs", snippetAddOn: tab.AddOn);
+      {
+        var dsPath = tab.AddOn == null
+          ? $"/AppCode/DataSources/{tab.Value}.cs"
+          : tab.AddOn.FilePath;
+        return FileHandler.GetTabFileContents(dsPath, snippetAddOn: tab.AddOn);
+      }
 
       // When showing a model, it can be either the model itself or the generated model or a mix
       // eg. CsvProduct is a manually created model, which doesn't have a generated part

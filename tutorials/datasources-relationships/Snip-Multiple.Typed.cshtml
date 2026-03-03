@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
-@using ToSic.Eav.DataSources
-@{/*! Tut.Tabs=datasource:TreeFoldersAndFiles */
-/*!*/}
+@using AppCode.DataSources
 @{
-  var tree = Kit.Data.GetSource(name: "TreeFoldersAndFiles");
+  var tree = Kit.Data.GetSource<TreeFoldersAndFiles>();
   var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 
@@ -16,7 +14,7 @@
   new { Title = "Flat List of All Items", Data = tree })
 
 @Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
-  new { Title = "Flat List of Folders", Data = tree["Folders"] })
+  new { Title = "Flat List of Folders", Data = tree.GetStream("Folders") })
 
 @Html.Partial("../../tut-sys/show/data/Show Data List.cshtml", 
-  new { Title = "Flat List of Files", Data = tree["Folders"] })
+  new { Title = "Flat List of Files", Data = tree.GetStream("Folders") })

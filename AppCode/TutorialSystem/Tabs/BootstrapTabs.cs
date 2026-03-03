@@ -31,20 +31,22 @@ namespace AppCode.TutorialSystem.Tabs
           tabLi = tabLi.Attr(Kit.Toolbar.Edit(tab.AddOn));
         else {
           // Create a toolbar to convert the current code-based tab into an add-on, pre-filling the file path and type
+          // But skip for Output-tabs
+          if (tab.Type != TabType.Results && tab.Type != TabType.ResultsAndSource && tab.Type != TabType.Source && tab.Type != TabType.TutorialReferences && tab.Type != TabType.InDepth)
+          {
+            var tlb = Kit.Toolbar.Empty().New(
+              item.AddOns,
+              tweak: t => {
+                t = t.Prefill(nameof(TutorialSnippetAddOn.AddOnType), tab.ToAddOnType());
 
-          // WIP convert old string names to new name
-          var tlb = Kit.Toolbar.Empty().New(
-            item.AddOns,
-            tweak: t => {
-              t = t.Prefill(nameof(TutorialSnippetAddOn.AddOnType), tab.ToAddOnType());
-
-              if (tab.Type != TabType.ViewConfig)
-                t = t.Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value);
-                
-              return t;
-            }
-          );
-          tabLi = tabLi.Attr(tlb);
+                if (tab.Type != TabType.ViewConfig)
+                  t = t.Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value);
+                  
+                return t;
+              }
+            );
+            tabLi = tabLi.Attr(tlb);
+          }
         }
         tabList.Add(tabLi); // first entry is active = true
       }

@@ -73,12 +73,16 @@ namespace AppCode.TutorialSystem.Tabs
       if (AddOn != null) {
         if (AddOn.IsNotEmpty(nameof(AddOn.TabTitle)))
           return AddOn.TabTitle;
-        if (AddOn.AddOnType == "view-config")
+        if (Type == TabType.ViewConfig)
           return "View Configuration";
-        if (AddOn.AddOnType == "file" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
+        if (Type == TabType.File && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
           return NiceNameNewForAddOn(AddOn.FilePath);
-        if (AddOn.AddOnType == "model" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
+        if (Type == TabType.Model && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
           return "Model: " + NiceNameNewForAddOn(AddOn.FilePath).Replace(".Generated", "").Replace(".cs", "");
+
+        if (Type == TabType.DataSource && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
+          return "DataSource: " + NiceNameNewForAddOn(AddOn.FilePath).Replace(".Generated", "").Replace(".cs", "");
+        
         
         return "Err:AddOn-TitleUnclear";
       }
@@ -90,9 +94,7 @@ namespace AppCode.TutorialSystem.Tabs
       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
       if (n.EndsWith(".csv.txt"))
         n = n.Replace(".csv.txt", ".csv");
-      if (Type == TabType.File || Type == TabType.Model)
-        return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":") ?? n;
-      return n;
+      return Text.AfterLast(n, "/") ?? Text.AfterLast(n, ":") ?? n;
     }
 
     private string NiceName(string n) {

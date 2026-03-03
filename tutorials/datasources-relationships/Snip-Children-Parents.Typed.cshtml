@@ -1,11 +1,9 @@
 @inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade
 @using System.Linq
-@using ToSic.Eav.DataSources
-@{/*! Tut.Tabs=datasource:TreeBasicWithParents */
-/*!*/}
+@using AppCode.DataSources
 @{
-  var tree = Kit.Data.GetSource(name: "TreeBasicWithParents");
+  var tree = Kit.Data.GetSource<TreeBasicWithParents>();
   var root = AsItem(tree.List.FirstOrDefault(i => i.EntityId == 1));
 }
 @Html.Partial("../../tut-sys/show/data/Show Tree.cshtml",

@@ -1,9 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
 @using System.Linq
-@using ToSic.Eav.DataSources
-@{/*! Tut.Tabs=datasource:TreeBasicWithParents */
-/*!*/}
 @{
   var tree = Kit.Data.GetSource(name: "TreeBasicWithParents");
   var root = AsDynamic(tree.List.FirstOrDefault(i => i.EntityId == 1));

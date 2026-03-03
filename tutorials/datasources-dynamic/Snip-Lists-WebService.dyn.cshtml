@@ -1,9 +1,6 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade
 @using System.Linq
-@*!
-Tut.Tabs=datasource:DataFromWebService,file:/AppCode/DataSources/DataFromWebServiceJsonModels.cs
-!*@
 @{
   // Create the Dynamic DataSource with the name "DataFromWebService"
   var weather = Kit.Data.GetSource(name: "DataFromWebService");

@@ -95,9 +95,9 @@ namespace AppCode.TutorialSystem.Tabs
           //   return new TabSpecs(TabType.Model, label: label != "" ? label : $"Model: {value}.cs", value: value, original: t);
           
           // Handle datasource: references
-          (found, label, value) = SplitTabEntry(entry, "datasource:");
-          if (found)
-            return new TabSpecs(TabType.DataSource, label: label != "" ? label : $"DataSource: {value}.cs", value: value, original: t);
+          // (found, label, value) = SplitTabEntry(entry, "datasource:");
+          // if (found)
+          //   return new TabSpecs(TabType.DataSource, label: label != "" ? label : $"DataSource: {value}.cs", value: value, original: t);
 
           // Final - none of the known special cases
           return SplitStringToTabSpecs(t);

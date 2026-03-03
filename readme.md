@@ -40,6 +40,7 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 1. 2dm: regenerate models, now with TutorialSnippetAddOn
 1. 2dm: introduce tabs with files from configuration instead of metadata in source
+1. 2dm: migrate all add-on infos for `model`, `razormodel`, `datasource` to the new system
 
 ### 2025-11-16
 
