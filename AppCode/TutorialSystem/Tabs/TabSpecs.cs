@@ -1,5 +1,6 @@
 using AppCode.Data;
 using ToSic.Razor.Blade;
+using ToSic.Razor.Html5;
 
 namespace AppCode.TutorialSystem.Tabs
 {
@@ -56,7 +57,19 @@ namespace AppCode.TutorialSystem.Tabs
     public override string ToString() => $"Label: '{Label}'; Value: '{Value}' ({Type}); #{DomId}";
 
     private string NiceName() {
-      var n = Label;
+      // New 2026-03-03 using add-on, should replace everything else
+      if (AddOn != null) {
+        if (AddOn.IsNotEmpty(nameof(AddOn.TabTitle)))
+          return AddOn.TabTitle;
+        if (AddOn.AddOnType == "file" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
+          return NiceName(AddOn.FilePath);
+        
+        return "Err:AddOn-TitleUnclear";
+      }
+      return NiceName(Label);
+    }
+
+    private string NiceName(string n) {
       // If a known tab identifier, return the nice name
       // if a file, return the file name only (and on csv, fix a workaround to ensure import/export)
       if (n.EndsWith(".csv.txt"))

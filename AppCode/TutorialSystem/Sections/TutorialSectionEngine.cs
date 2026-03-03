@@ -196,8 +196,9 @@ namespace AppCode.TutorialSystem.Sections
       }
 
       // RazorModel
-      if (tab.Type == TabType.RazorModel)
-        return FileHandler.GetTabFileContents($"/AppCode/Razor/{tab.Value}.cs");
+      // 2026-03-03 2dm disable
+      // if (tab.Type == TabType.RazorModel)
+      //   return FileHandler.GetTabFileContents($"/AppCode/Razor/{tab.Value}.cs");
 
 
       // If it's not a string, then it must be something prepared, typically IHtmlTags; return that

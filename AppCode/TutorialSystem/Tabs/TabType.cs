@@ -15,7 +15,9 @@ namespace AppCode.TutorialSystem.Tabs
     File,
     Model,
     DataSource,
-    RazorModel,
+
+    // 2026-03-03 2dm disable
+    // RazorModel,
 
     Formulas,
     ViewConfig,

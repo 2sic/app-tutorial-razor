@@ -82,11 +82,12 @@ namespace AppCode.TutorialSystem.Tabs
             Log.Add($"Label: '{label}'; Custom Label: '{label}'; finalPath: '{finalPath}'");
             return new TabSpecs(TabType.File, label ?? finalPath, value: finalPath, original: t);
           }
-          
+
+          // 2026-03-03 2dm disable
           // Handle razormodel: references - do before 'model:' to avoid conflicts
-          (found, label, value) = SplitTabEntry(entry, "razormodel:");
-          if (found)
-            return new TabSpecs(TabType.RazorModel, label: $"Razor Model: {value}.cs", value: value, original: t);
+          // (found, label, value) = SplitTabEntry(entry, "razormodel:");
+          // if (found)
+          //   return new TabSpecs(TabType.RazorModel, label: $"Razor Model: {value}.cs", value: value, original: t);
 
           // Handle model: references
           (found, label, value) = SplitTabEntry(entry, "model:");

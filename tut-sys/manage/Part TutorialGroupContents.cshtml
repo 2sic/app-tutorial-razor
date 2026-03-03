@@ -32,7 +32,7 @@ Tutorial Group:
     }
     @foreach (var sc in Sections) {
       <li>
-        Section: @sc.Title
+        Section: @sc.Title (@sc.TutorialId)
         @Html.Partial("./Part WithNotes.cshtml", sc)
       </li>
     }
