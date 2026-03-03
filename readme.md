@@ -36,6 +36,10 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ## History
 
+### 2026-03-03
+
+1. 2dm: regenerate models, now with TutorialSnippetAddOn
+
 ### 2025-11-16
 
 1. 2dm: Improved sample with Template Delegates - added named tuples; much nicer
