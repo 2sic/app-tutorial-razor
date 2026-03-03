@@ -17,14 +17,13 @@
     parameters: new { TypeName = "Persons" }
   );
 
-  // To attach multiple data sources, we need to create a list of links
-  // Note that these lines are written in expanded form so we can explain them.
-  // Usually you would write in inline
-  var dataSourceLinks = books.Link    // Get the link to the books
-    .Add(authors.Link                 // Add the authors link renamed as "Stream2"
-      .Rename(inName: "Stream2")      // but rename the link so it's attached as "Stream2"
-    );
-  var mergedDs = Kit.Data.GetSource<StreamMerge>(attach: dataSourceLinks);
+  // To attach multiple data sources, we need a list of DataSource links
+  var mergedDs = Kit.Data.GetSource<StreamMerge>(
+    attach: Kit.Data.CombineLinks(
+      books,  // Link to the books, will connect to "Default" in-stream
+      Kit.Data.CreateLink(authors, inName: "Stream2") // Link authors on "Stream2" In-stream
+    )
+  );
 }
 <h3>Statistics</h3>
 <ul>
