@@ -78,7 +78,7 @@ namespace AppCode.TutorialSystem.Tabs
         if (AddOn.AddOnType == "file" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
           return NiceNameNewForAddOn(AddOn.FilePath);
         if (AddOn.AddOnType == "model" && AddOn.IsNotEmpty(nameof(AddOn.FilePath)))
-          return "Model: " + NiceNameNewForAddOn(AddOn.FilePath);
+          return "Model: " + NiceNameNewForAddOn(AddOn.FilePath).Replace(".Generated", "").Replace(".cs", "");
         
         return "Err:AddOn-TitleUnclear";
       }

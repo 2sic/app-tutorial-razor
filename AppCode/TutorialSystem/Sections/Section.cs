@@ -96,10 +96,12 @@ namespace AppCode.TutorialSystem.Sections
             Item.String("Title", scrubHtml: "p"),
             Acc.MyUser.IsSystemAdmin
               ? TagsSvc.Span(
-                  Text.Ellipsis(tutIdPath.Replace("tutorials/", ""), 40),
-                  TagsSvc.Span("ℹ️").Title("This is the snip '" + TutorialId + "' - to be found in " + tutIdPath),
+                  Text.Ellipsis(tutIdPath.Replace("tutorials/", ""), 50),
+                  TagsSvc.Span("ℹ️"),
                   TagsSvc.Span(variantIcon).Title(variantTitle)
-                ).Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
+                )
+                .Style("flex: 1 0 auto; text-align: right; margin-right: 60px;")
+                .Title("This is the snip '" + TutorialId + "' - to be found in " + tutIdPath)
               : null
           ),
         "\n",
