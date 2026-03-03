@@ -204,6 +204,10 @@ namespace AppCode.TutorialSystem.Sections
       if (!(tab.Body is string strResult))
         return tab.Body;
 
+      // NEW: If it's snippet from the TabSpecs AddOn (future solution), use that
+      if (tab.AddOn != null && tab.AddOn.AddOnType == "file")
+        return FileHandler.GetTabSpecsSource(tab.AddOn, strResult.Replace("file:", ""));
+
       // If it's a string such as "file:abc.cshtml" then resolve that first
       if (tab.Type == TabType.File || strResult.StartsWith("file:"))
         return FileHandler.GetTabFileContents(strResult.Replace("file:", ""));

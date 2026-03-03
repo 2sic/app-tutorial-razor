@@ -39,6 +39,7 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 ### 2026-03-03
 
 1. 2dm: regenerate models, now with TutorialSnippetAddOn
+1. 2dm: introduce tabs with files from configuration instead of metadata in source
 
 ### 2025-11-16
 

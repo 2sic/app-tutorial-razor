@@ -31,12 +31,25 @@ namespace AppCode.TutorialSystem.Source
       var l = Log.Call<TutorialSectionEngine>($"{nameof(codeFile)}: {codeFile}");
       // If we have a file, we should try to look up the tabs
       Log.Add("tabs before:" + codeFile);
-      var tabCsv = TabSpecsFactory.TryToGetTabsFromSource(codeFile);
-      foreach (var tab in tabCsv)
+
+      // Figure out tabs from the source code
+      var tabs = TabSpecsFactory.TryToGetTabsFromSource(codeFile);
+      foreach (var tab in tabs)
         Log.Add("tabs: '" + tab + "'");
-      Log.Add("tabs: '" + tabCsv + "'");
-      var result = GetService<TutorialSectionEngine>().Init(this, item, tabCsv, sourceFile: codeFile);
-      return l(result, "ok - count: " + tabCsv.Count());
+      Log.Add("tabs: '" + tabs + "'");
+
+      // Try to add tabs from the data itself - WIP 2026-03-03 2dm
+      // should probably move once done
+      if (item.IsNotEmpty(nameof(item.AddOns))) {
+        var additionalTabs = item.AddOns
+          .Select(a => new TabSpecs(TabType.File, a.Title, a.FilePath, a.FilePath) { AddOn = a });
+        foreach (var tab in additionalTabs)
+          Log.Add("tabs: '" + tab + "'");
+        tabs.AddRange(additionalTabs);
+      }
+
+      var result = GetService<TutorialSectionEngine>().Init(this, item, tabs, sourceFile: codeFile);
+      return l(result, "ok - count: " + tabs.Count());
     }
 
     #endregion

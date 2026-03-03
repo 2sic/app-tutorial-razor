@@ -28,10 +28,6 @@ namespace AppCode.TutorialSystem.Source
       return found;
     }
 
-    // public bool ShowSnippet(ITypedItem item) {
-    //   return item == null ? false : item.Bool("ShowSnippet");
-    // }
-
     #endregion
 
     public ITag Show(TutorialEditUiFormula item, bool showIntro = true) {

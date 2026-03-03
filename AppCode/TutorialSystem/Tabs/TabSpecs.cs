@@ -1,3 +1,4 @@
+using AppCode.Data;
 using ToSic.Razor.Blade;
 
 namespace AppCode.TutorialSystem.Tabs
@@ -49,6 +50,8 @@ namespace AppCode.TutorialSystem.Tabs
 
     public string Original { get; }
     public TabType Type { get; }
+
+    public TutorialSnippetAddOn AddOn { get; set;}
 
     public override string ToString() => $"Label: '{Label}'; Value: '{Value}' ({Type}); #{DomId}";
 

@@ -3,6 +3,8 @@ using ToSic.Razor.Blade;
 using ToSic.Razor.Markup;
 using System.Collections.Generic;
 using System;
+using AppCode.Data;
+using AppCode.TutorialSystem.Tabs;
 
 namespace AppCode.TutorialSystem.Source
 {
@@ -71,13 +73,21 @@ namespace AppCode.TutorialSystem.Source
     #region Show Source Block
 
     /// <summary>
-    /// just show a snippet - used in SourceCode.cs
+    /// just show a snippet - used in SourceCode.cs to show the main source code.
     /// </summary>
     internal ITag ShowSnippet(string file)
       => ShowFileContents(file, showTitle: false, expand: true);
 
     internal ITag GetTabFileContents(string file, bool silent = false)
       => ShowFileContents(file, showTitle: true, silent: silent);
+
+    internal ITag GetTabSpecsSource(TutorialSnippetAddOn addOn, string file, bool silent = false)
+    {
+      var path = addOn?.FilePath;
+      if (path == null)
+        throw new ArgumentException("Calling GetTabSpecsSource with a TabSpecs that has no FilePath", nameof(TutorialSnippetAddOn.FilePath));
+      return ShowFileContents(path, snippetAddOn: addOn, showTitle: true, silent: silent, debugMessage: $"GetTabSpecsSource: {file}; ");
+    }
 
     // Used in SourceCode.cs to see if it has tabs
     // internal string GetFileContents(string file) => GetFileAndProcess(file).Contents;
@@ -96,15 +106,21 @@ namespace AppCode.TutorialSystem.Source
     /// <returns></returns>
     private ITag ShowFileContents(
       string file,
+      TutorialSnippetAddOn snippetAddOn = null,
       string title = null,
       string titlePath = null, 
       bool? expand = null,
       bool? wrap = null,
       bool? showTitle = null,
-      bool silent = false)
+      bool silent = false,
+      string debugMessage = null
+    )
     {
       var l = Log.Call<ITag>("file: '" + file);
       var debug = false;
+      if (debugMessage != null && MyUser.IsSystemAdmin)
+        debug = true;
+
       var path = "";
       var errPath = "";
 
@@ -115,7 +131,9 @@ namespace AppCode.TutorialSystem.Source
           return null;
 
         path = specs.Path;  // update in case of error
-        errPath = debug ? specs.FullPath : path;
+        errPath = debug
+          ? specs.FullPath
+          : path;
         title ??= "Source Code of " + (Text.Has(specs.FileName)
           ? titlePath + specs.FileName  // "Source code of .../SomeCodeFile.cs"
           : "this " + specs.Type); // "this snippet" vs "this file"
@@ -126,10 +144,15 @@ namespace AppCode.TutorialSystem.Source
         Ace9Editor.TurnOnSource(specs, specs.FileName, specs.Wrap);
 
         var result = Tag.RawHtml(
-          debug ? Tag.Div(errPath).Class("alert alert-info") : null,
           "\n<!-- Source Code -->\n",
-          Ace9Editor.SourceBlock(specs, title),
-          "\n<!-- /Source Code -->\n"
+          Ace9Editor.SourceBlock(snippetAddOn, specs, title),
+          "\n<!-- /Source Code -->\n",
+          debug
+            ? Tag.RawHtml(
+                Tag.Br(),
+                Tag.Div(Tag.H5("Debug ⚠️ for Super-User"), debugMessage + errPath).Class("alert alert-info")
+              )
+            : null
         );
         return l(result, "ok");
       }

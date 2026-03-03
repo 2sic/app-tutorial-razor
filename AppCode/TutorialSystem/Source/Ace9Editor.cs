@@ -1,3 +1,4 @@
+using AppCode.Data;
 using ToSic.Razor.Blade;
 using ToSic.Razor.Html5;
 using ToSic.Razor.Markup;
@@ -7,15 +8,28 @@ namespace AppCode.TutorialSystem.Source
   public class Ace9Editor: Custom.Hybrid.CodeTyped
   {
 
-    internal Div SourceBlock(ShowSourceSpecs specs, string title) {
-      return Tag.Div().Class("code-block " + (specs.Expand ? "is-expanded" : "")).Attr(specs.DomAttribute).Wrap(
-        specs.ShowTitle
-            ? Tag.H3(title) as ITag
-            : Tag.Span(),
-        "\n<!-- Raw Source in Pre -->\n",
-        SourceBlockCode(specs),
-        "\n<!-- /Raw Source in Pre -->\n"
-      );
+    internal Div SourceBlock(TutorialSnippetAddOn addOn, ShowSourceSpecs specs, string title) {
+      var toolbar = addOn != null
+        ? Kit.Toolbar.Edit(addOn)
+        : null;
+      return Tag.Div()
+        .Class("code-block " + (specs.Expand ? "is-expanded" : ""))
+        .Attr(specs.DomAttribute)
+        .Attr(toolbar)
+        .Wrap(
+          specs.ShowTitle
+              ? Tag.H3(title) as ITag
+              : Tag.Span(),
+          addOn?.ShowFullFilePath == true
+            ? Tag.Div("Full file Path: ", Tag.Code("/" + addOn.FilePath))
+            : null,
+          addOn?.IsNotEmpty(nameof(TutorialSnippetAddOn.Notes)) == true
+            ? addOn.Html(nameof(TutorialSnippetAddOn.Notes))
+            : null,
+          "\n<!-- Raw Source in Pre -->\n",
+          SourceBlockCode(specs),
+          "\n<!-- /Raw Source in Pre -->\n"
+        );
     }
 
 
