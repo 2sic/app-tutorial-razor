@@ -37,9 +37,15 @@ namespace AppCode.TutorialSystem.Tabs
             var tlb = Kit.Toolbar.Empty().New(
               item.AddOns,
               tweak: t => {
+                // set new type
                 t = t.Prefill(nameof(TutorialSnippetAddOn.AddOnType), tab.ToAddOnType());
 
-                if (tab.Type != TabType.ViewConfig)
+                t = t.Prefill("test", tab.Type.ToString());
+
+                // If code-based, prefill the title, otherwise prefill the file path
+                if (tab.Type == TabType.FromCode)
+                  t = t.Prefill(nameof(TutorialSnippetAddOn.TabTitle), tab.Label);
+                else if (tab.Type != TabType.ViewConfig)
                   t = t.Prefill(nameof(TutorialSnippetAddOn.FilePath), tab.Value);
                   
                 return t;

@@ -146,6 +146,8 @@ namespace AppCode.TutorialSystem.Tabs
         return TabType.ViewConfig;
       if (addOn.AddOnType == "datasource")
         return TabType.DataSource;
+      if (addOn.AddOnType == "code-output")
+        return TabType.FromCode;
       return TabType.Unknown; // default, but should probably be an error
     }
 
@@ -158,6 +160,8 @@ namespace AppCode.TutorialSystem.Tabs
         return "view-config";
       if (Type == TabType.DataSource)
         return "datasource";
+      if (Type == TabType.FromCode)
+        return "code-output";
       return "file";
     }
   }
