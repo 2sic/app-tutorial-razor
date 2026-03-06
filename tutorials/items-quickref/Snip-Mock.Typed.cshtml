@@ -2,10 +2,10 @@
 
 @{
   // Create a mock item, to be used if nothing else is found
-  var mockPerson = AsItem(new {
+  var mockPerson = Kit.Convert.ToMockItem(new {
     FirstName = "John",
     LastName = "Doe"
-  }, mock: true); // mock: true is required to be sure you wanted this
+  }); // mock: true is required to be sure you wanted this
 
   // Let's pretend the query may have a stream or may not
   var stream = MyData.GetStream("Guys", emptyIfNotFound: true);
