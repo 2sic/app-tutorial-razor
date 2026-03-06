@@ -1,0 +1,166 @@
+<Project>
+  <!-- This file helps VS Code provide IntelliSense - see https://go.2sxc.org/vscode -->
+  <!-- Managed by the 2sxc dotnet-project extension -->
+  <!-- User-overridable properties:
+    HelperHostMode (Auto|Dnn|Oqtane)
+    DnnBinPath, OqtaneProdBinPath, OqtaneDevBinPath
+    DnnTargetFramework, OqtaneTargetFramework
+    DnnLangVersion, OqtaneLangVersion
+    RazorCompilerAnalyzerPath
+  -->
+
+  <!-- Import the namespace and output type settings -->
+  <Import Project="parts\namespace-and-output-type.import.csproj" />
+
+
+
+  <PropertyGroup>
+    <!-- Defaults for a reusable helper setup -->
+    <HelperHostMode Condition="'$(HelperHostMode)' == ''">Auto</HelperHostMode>
+    <DnnBinPath Condition="'$(DnnBinPath)' == ''">..\..\..\..\bin</DnnBinPath>
+    <!-- PathBin Oqtane production, the bin folder is in the root, just up 6 folders, no bin-subfolder -->
+    <OqtaneProdBinPath Condition="'$(OqtaneProdBinPath)' == ''">..\..\..\..\..\..</OqtaneProdBinPath>
+    <!-- PathBin Oqtane dev/debug, the bin folder is deeper down, up 6 folders and current build folder -->
+    <OqtaneDevBinPath Condition="'$(OqtaneDevBinPath)' == ''">..\..\..\..\..\..\bin\Debug\net10.0</OqtaneDevBinPath>
+    <!-- Specify net472 for DNN - see https://go.2sxc.org/vscode -->
+    <DnnTargetFramework Condition="'$(DnnTargetFramework)' == ''">net472</DnnTargetFramework>
+    <!-- Specify net10.0 for Oqtane - see https://go.2sxc.org/vscode -->
+    <OqtaneTargetFramework Condition="'$(OqtaneTargetFramework)' == ''">net10.0</OqtaneTargetFramework>
+    <!-- Specify C# 8.0 for DNN - see https://go.2sxc.org/vscode -->
+    <DnnLangVersion Condition="'$(DnnLangVersion)' == ''">8.0</DnnLangVersion>
+    <!-- Specify C# latest for Oqtane - see https://go.2sxc.org/vscode -->
+    <OqtaneLangVersion Condition="'$(OqtaneLangVersion)' == ''">latest</OqtaneLangVersion>
+
+    <!-- Keep TargetFramework valid even before host resolution, so custom validation can run -->
+    <TargetFramework Condition="'$(TargetFramework)' == ''">$(DnnTargetFramework)</TargetFramework>
+  </PropertyGroup>
+
+  <!-- First: Detect if it's running in Dnn, Oqtane-Production or Oqtane-Dev -->
+  <PropertyGroup>
+    <HelperHostModeNormalized>$(HelperHostMode.ToLowerInvariant())</HelperHostModeNormalized>
+
+    <!-- Detect host footprints from configured paths -->
+    <DetectedDnn Condition="Exists('$(DnnBinPath)\DotNetNuke.dll')">true</DetectedDnn>
+    <DetectedOqtaneProd Condition="Exists('$(OqtaneProdBinPath)\Oqtane.Server.dll')">true</DetectedOqtaneProd>
+    <DetectedOqtaneDev Condition="Exists('$(OqtaneDevBinPath)\Oqtane.Server.dll')">true</DetectedOqtaneDev>
+    <DetectedOqtane Condition="'$(DetectedOqtaneProd)' == 'true' Or '$(DetectedOqtaneDev)' == 'true'">true</DetectedOqtane>
+
+    <!-- Host selection: explicit mode or auto-detect -->
+    <RunningInDnn Condition="'$(HelperHostModeNormalized)' == 'dnn'">true</RunningInDnn>
+    <RunningInOqtane Condition="'$(HelperHostModeNormalized)' == 'oqtane'">true</RunningInOqtane>
+    <RunningInDnn Condition="'$(HelperHostModeNormalized)' == 'auto' And '$(DetectedDnn)' == 'true' And '$(DetectedOqtane)' != 'true'">true</RunningInDnn>
+    <RunningInOqtane Condition="'$(HelperHostModeNormalized)' == 'auto' And '$(DetectedOqtane)' == 'true' And '$(DetectedDnn)' != 'true'">true</RunningInOqtane>
+
+    <OqtaneIsProd Condition="'$(RunningInOqtane)' == 'true' And '$(DetectedOqtaneProd)' == 'true'">true</OqtaneIsProd>
+    <OqtaneIsDev Condition="'$(RunningInOqtane)' == 'true' And '$(DetectedOqtaneDev)' == 'true'">true</OqtaneIsDev>
+    <OqtaneIsDev Condition="'$(RunningInOqtane)' == 'true' And '$(OqtaneIsProd)' != 'true' And '$(OqtaneIsDev)' != 'true'">true</OqtaneIsDev>
+  </PropertyGroup>
+
+  <Target Name="ValidateHelperHostResolution" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(HelperHostModeNormalized)' != 'auto' And '$(HelperHostModeNormalized)' != 'dnn' And '$(HelperHostModeNormalized)' != 'oqtane'" Text="Invalid HelperHostMode '$(HelperHostMode)'. Valid values: Auto, Dnn, Oqtane." />
+    <Error Condition="'$(HelperHostModeNormalized)' == 'auto' And '$(DetectedDnn)' == 'true' And '$(DetectedOqtane)' == 'true'" Text="Auto-detection is ambiguous: both DNN and Oqtane markers were found. Set HelperHostMode to Dnn or Oqtane, or adjust DnnBinPath/OqtaneProdBinPath/OqtaneDevBinPath." />
+    <Error Condition="'$(HelperHostModeNormalized)' == 'auto' And '$(RunningInDnn)' != 'true' And '$(RunningInOqtane)' != 'true'" Text="Auto-detection failed: no DNN/Oqtane host markers found. Set HelperHostMode explicitly or override DnnBinPath/OqtaneProdBinPath/OqtaneDevBinPath." />
+  </Target>
+
+  <!-- Settings for Dnn -->
+  <PropertyGroup Condition="'$(RunningInDnn)' == 'true'">
+    <TargetFramework>$(DnnTargetFramework)</TargetFramework>
+    <LangVersion>$(DnnLangVersion)</LangVersion>
+    <PathBin>$(DnnBinPath)</PathBin>
+  </PropertyGroup>
+
+  <!-- Settings for Oqtane -->
+  <PropertyGroup Condition="'$(RunningInOqtane)' == 'true'">
+    <TargetFramework>$(OqtaneTargetFramework)</TargetFramework>
+    <LangVersion>$(OqtaneLangVersion)</LangVersion>
+    <PathBin Condition="'$(OqtaneIsProd)' == 'true'">$(OqtaneProdBinPath)</PathBin>
+    <PathBin Condition="'$(PathBin)' == ''">$(OqtaneDevBinPath)</PathBin>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Resolve Razor analyzer/dependencies from SDK first, then fallback -->
+    <RazorSdkPath>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Razor</RazorSdkPath>
+    <RazorSourceGeneratorsPath>$(RazorSdkPath)\source-generators</RazorSourceGeneratorsPath>
+    <RazorToolsPath>$(RazorSdkPath)\tools</RazorToolsPath>
+
+    <RazorCompilerAnalyzerPath Condition="'$(RazorCompilerAnalyzerPath)' == '' And Exists('$(RazorSourceGeneratorsPath)\Microsoft.CodeAnalysis.Razor.Compiler.dll')">$(RazorSourceGeneratorsPath)\Microsoft.CodeAnalysis.Razor.Compiler.dll</RazorCompilerAnalyzerPath>
+    <RazorCompilerAnalyzerPath Condition="'$(RazorCompilerAnalyzerPath)' == '' And Exists('$(RazorToolsPath)\Microsoft.CodeAnalysis.Razor.Compiler.dll')">$(RazorToolsPath)\Microsoft.CodeAnalysis.Razor.Compiler.dll</RazorCompilerAnalyzerPath>
+    <RazorCompilerAnalyzerPath Condition="'$(RazorCompilerAnalyzerPath)' == ''">Microsoft.CodeAnalysis.Razor.Compiler.dll</RazorCompilerAnalyzerPath>
+
+    <RazorUtilitiesSharedPath Condition="Exists('$(RazorSourceGeneratorsPath)\Microsoft.AspNetCore.Razor.Utilities.Shared.dll')">$(RazorSourceGeneratorsPath)\Microsoft.AspNetCore.Razor.Utilities.Shared.dll</RazorUtilitiesSharedPath>
+    <RazorUtilitiesSharedPath Condition="'$(RazorUtilitiesSharedPath)' == '' And Exists('$(RazorToolsPath)\Microsoft.AspNetCore.Razor.Utilities.Shared.dll')">$(RazorToolsPath)\Microsoft.AspNetCore.Razor.Utilities.Shared.dll</RazorUtilitiesSharedPath>
+    <RazorObjectPoolPath Condition="Exists('$(RazorSourceGeneratorsPath)\Microsoft.Extensions.ObjectPool.dll')">$(RazorSourceGeneratorsPath)\Microsoft.Extensions.ObjectPool.dll</RazorObjectPoolPath>
+    <RazorObjectPoolPath Condition="'$(RazorObjectPoolPath)' == '' And Exists('$(RazorToolsPath)\Microsoft.Extensions.ObjectPool.dll')">$(RazorToolsPath)\Microsoft.Extensions.ObjectPool.dll</RazorObjectPoolPath>
+  </PropertyGroup>
+
+  <!-- IntelliSense: load DLLs from platform bin and local app Dependencies -->
+  <ItemGroup>
+    <Reference Include="$(PathBin)\ToSic.*.dll" />
+    <Reference Include="$(PathBin)\Connect.Koi.dll" Condition="Exists('$(PathBin)\Connect.Koi.dll')" />
+
+    <!-- Common Microsoft DLLs -->
+    <Reference Include="$(PathBin)\System.Text.Json.dll" Condition="Exists('$(PathBin)\System.Text.Json.dll')" />
+
+    <!-- Also load files in the Dependencies folder of the current App -->
+    <Reference Include="Dependencies\*.dll" />
+  </ItemGroup>
+
+  <!-- IntelliSense: DNN specific -->
+  <ItemGroup Condition="'$(RunningInDnn)' == 'true'">
+    <!-- also add System.Web and DotNetNuke DLLs - useful when creating APIs, but be aware that it
+    may make your code less hybrid -->
+    <Reference Include="$(PathBin)\DotNetNuke.dll" Condition="Exists('$(PathBin)\DotNetNuke.dll')" />
+    <Reference Include="$(PathBin)\DotNetNuke.*.dll" />
+    <Reference Include="$(PathBin)\System.Web.Http.dll" Condition="Exists('$(PathBin)\System.Web.Http.dll')" />
+    <Reference Include="$(PathBin)\System.Web.WebPages.dll" Condition="Exists('$(PathBin)\System.Web.WebPages.dll')" />
+
+    <!-- Classic ASP.NET Razor references for DNN/net472 -->
+    <Reference Include="$(PathBin)\System.Web.Razor.dll" Condition="Exists('$(PathBin)\System.Web.Razor.dll')" />
+    <Reference Include="$(PathBin)\System.Web.WebPages.Razor.dll" Condition="Exists('$(PathBin)\System.Web.WebPages.Razor.dll')" />
+    <Reference Include="$(PathBin)\DotNetNuke.Web.Razor.dll" Condition="Exists('$(PathBin)\DotNetNuke.Web.Razor.dll')" />
+    <Reference Include="$(PathBin)\DotNetNuke.Modules.RazorHost.dll" Condition="Exists('$(PathBin)\DotNetNuke.Modules.RazorHost.dll')" />
+    <Reference Include="$(PathBin)\ToSic.Sxc.Dnn.Razor.dll" Condition="Exists('$(PathBin)\ToSic.Sxc.Dnn.Razor.dll')" />
+
+    <!-- .NET Framework references
+    System.Web is not in the DNN folder but in the .net Framework installed on the server -->
+    <Reference Include="System.Web" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <!-- DNN design-time Razor source generator dependencies -->
+  <ItemGroup Condition="'$(RunningInDnn)' == 'true'">
+    <Reference Include="Microsoft.AspNetCore.Razor.Utilities.Shared" Condition="'$(RazorUtilitiesSharedPath)' != ''">
+      <HintPath>$(RazorUtilitiesSharedPath)</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool" Condition="'$(RazorObjectPoolPath)' != ''">
+      <HintPath>$(RazorObjectPoolPath)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(DesignTimeBuild)' == 'true'">
+    <DefineConstants>$(DefineConstants);DESIGN_TIME_BUILD</DefineConstants>
+    <NoWarn>$(NoWarn);CS0108;CS0234;CS0115;CS0534;CS0103;CS0114</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="**\*.cshtml">
+      <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+    </AdditionalFiles>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(DesignTimeBuild)' == 'true'">
+    <Analyzer Include="$(RazorCompilerAnalyzerPath)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(RunningInDnn)' == 'true'">
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Polymorphism - ignore duplicate files with the same classes as it confuses IntelliSense - see https://go.2sxc.org/vscode -->
+  <Import Project="parts\ignore-edition-live.import.csproj" />
+
+</Project>

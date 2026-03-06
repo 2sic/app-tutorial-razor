@@ -1,0 +1,10 @@
+<Project>
+  <!-- Polymorphism - if have files with the same classes confuse IntelliSense - see https://go.2sxc.org/vscode -->
+  <!-- Example: exclude /live as we're always working on /staging -->
+  <ItemGroup>
+    <None Remove="live\**" />
+    <Content Remove="live\**" />
+    <Compile Remove="live\**" />
+    <EmbeddedResource Remove="live\**" />
+  </ItemGroup>
+</Project>
