@@ -1,0 +1,184 @@
+{
+  "_": {
+    "V": 1
+  },
+  "Bundles": [
+    {
+      "Name": "default",
+      "ContentTypes": [
+        {
+          "ContentType": {
+            "Id": "b84b4cbd-c058-4d85-92e5-71e163f9429e",
+            "Name": "@number-slider-basic",
+            "Scope": "Extensions.NumberSliderBasic",
+            "Metadata": [
+              {
+                "Id": 32836,
+                "Version": 3,
+                "Guid": "face5a41-e2de-4e30-942b-5494379a164e",
+                "Type": {
+                  "Id": "ContentType",
+                  "Name": "ContentType"
+                },
+                "Attributes": {
+                  "String": {
+                    "AdditionalSettings": {
+                      "*": ""
+                    },
+                    "Description": {
+                      "*": ""
+                    },
+                    "DynamicChildrenField": {
+                      "*": ""
+                    },
+                    "EditInstructions": {
+                      "*": ""
+                    },
+                    "Label": {
+                      "*": "Number Slider Basic"
+                    },
+                    "ListInstructions": {
+                      "*": ""
+                    },
+                    "Notes": {
+                      "*": ""
+                    }
+                  },
+                  "Hyperlink": {
+                    "Icon": {
+                      "*": ""
+                    },
+                    "Link": {
+                      "*": ""
+                    }
+                  }
+                },
+                "Owner": "dnn:userid=1",
+                "For": {
+                  "Target": "ContentType",
+                  "TargetType": 5,
+                  "String": "b84b4cbd-c058-4d85-92e5-71e163f9429e"
+                }
+              },
+              {
+                "Id": 33564,
+                "Version": 1,
+                "Guid": "8bd87842-b519-44ef-85f8-2c20a9dc8365",
+                "Type": {
+                  "Id": "32698880-1c2e-41ab-bcfc-420091d3263f",
+                  "Name": "SystemExportDecorator"
+                },
+                "Attributes": {
+                  "Entity": {
+                    "Configuration": {
+                      "*": [
+                        "fcf55c5d-b37f-4c72-a584-c273d71cef29"
+                      ]
+                    }
+                  }
+                },
+                "Owner": "dnn:userid=1",
+                "For": {
+                  "Target": "ContentType",
+                  "TargetType": 5,
+                  "String": "b84b4cbd-c058-4d85-92e5-71e163f9429e"
+                }
+              }
+            ],
+            "Attributes": [
+              {
+                "Name": "SliderStep",
+                "Type": "Number",
+                "InputType": "number-default",
+                "IsTitle": true,
+                "Metadata": [
+                  {
+                    "Id": 32837,
+                    "Version": 2,
+                    "Guid": "5d617d54-42b6-4feb-9c99-8c029dd9d8c7",
+                    "Type": {
+                      "Id": "@All",
+                      "Name": "@All"
+                    },
+                    "Attributes": {
+                      "String": {
+                        "CustomJavaScript": {
+                          "en-us": ""
+                        },
+                        "DefaultValue": {
+                          "en-us": "1"
+                        },
+                        "InputType": {
+                          "en-us": "number-default"
+                        },
+                        "Name": {
+                          "en-us": "Slider Step Size"
+                        },
+                        "Notes": {
+                          "en-us": "<p>Step size of the slider, typically 1.</p>"
+                        },
+                        "Placeholder": {
+                          "en-us": ""
+                        },
+                        "ValidationRegExJavaScript": {
+                          "en-us": ""
+                        }
+                      },
+                      "Entity": {
+                        "Errors": {
+                          "*": []
+                        },
+                        "Formulas": {
+                          "*": []
+                        },
+                        "Warnings": {
+                          "*": []
+                        }
+                      },
+                      "Boolean": {
+                        "Disabled": {
+                          "en-us": false
+                        },
+                        "DisableTranslation": {
+                          "en-us": false
+                        },
+                        "Required": {
+                          "en-us": false
+                        },
+                        "VisibleInEditUI": {
+                          "en-us": true
+                        }
+                      }
+                    },
+                    "Owner": "unknown"
+                  },
+                  {
+                    "Id": 32963,
+                    "Version": 1,
+                    "Guid": "d47f534c-2195-410c-8585-69ee7f3079fa",
+                    "Type": {
+                      "Id": "@Number",
+                      "Name": "@Number"
+                    },
+                    "Attributes": {
+                      "Number": {
+                        "Decimals": {
+                          "en-us": 0
+                        },
+                        "Min": {
+                          "en-us": 1
+                        }
+                      }
+                    },
+                    "Owner": "dnn:userid=1"
+                  }
+                ]
+              }
+            ]
+          },
+          "Entities": []
+        }
+      ]
+    }
+  ]
+}

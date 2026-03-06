@@ -1,5 +1,3 @@
 @inherits Custom.Hybrid.Razor14
-@*!
-Tut.Tabs=file:./CodeSwitching.Dnn.cshtml,file:./CodeSwitching.Oqtane.cshtml
-!*@
+
 @Html.Partial("CodeSwitching." + CmsContext.Platform.Name + ".cshtml")

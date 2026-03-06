@@ -38,7 +38,7 @@
         cursor: pointer;
       }
       div.sp-container {
-        position: fixed;
+        position: fixed !important;
       }
     </style>
     <div class="spectrum-container">
@@ -178,24 +178,24 @@
           this.sp.toggle();
         else if (typeof this.sp.show === "function")
           this.sp.show();
-
-        this.forcePositionFixed(this.sp);
+        
+        // this.forcePositionFixed(this.sp);
       };
 
       container.addEventListener("click", this.containerClickHandler);
     }
 
     // Temporary workaround because angular cdk is now fixed, covering this element
-    forcePositionFixed(sp) {
-      const style = sp?.spectrum?.container?.style;
-      if (!style)
-        return;
-      style.position = "fixed";
-      // set in beside the this bounding rect
-      const rect = this.getBoundingClientRect();
-      style.top = `${rect.bottom + 5}px`;
-      style.left = `${rect.left}px`;
-    }
+    // forcePositionFixed(sp) {
+    //   const style = sp?.spectrum?.container?.style;
+    //   if (!style)
+    //     return;
+    //   style.position = "fixed";
+    //   // set in beside the this bounding rect
+    //   const rect = this.getBoundingClientRect();
+    //   style.top = `${rect.bottom + 5}px`;
+    //   style.left = `${rect.left}px`;
+    // }
 
     /** Update the value when color is selected (live changes) */
     handleChange(color) {

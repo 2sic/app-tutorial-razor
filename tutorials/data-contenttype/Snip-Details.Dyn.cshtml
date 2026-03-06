@@ -1,7 +1,7 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Eav.Data;
 @* TODO: make it get a Content of the expected type *@
-@{/*! Tut.Tabs=ViewConfig */
+@{/*!*/
   var viewCnf = DynamicModel.Tutorial.ViewConfig;
   var Content = AsDynamic(viewCnf.Content(query: "QuickRef-Persons-Selected") as object);
 /*!*/}

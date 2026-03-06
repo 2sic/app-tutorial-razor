@@ -2,9 +2,7 @@
 @using ToSic.Razor.Blade
 @using System.Linq
 @using ToSic.Eav.DataSources
-@*!
-Tut.Tabs=file:/assets/data/products.csv.txt
-!*@
+
 @{
   // Create the data source and provide configuration in the options
   var productsDs = Kit.Data.GetSource<Csv>(parameters: new {

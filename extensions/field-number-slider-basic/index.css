@@ -1,0 +1,95 @@
+field-number-slider-basic .ns-wrapper {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+field-number-slider-basic .ns-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 14px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+field-number-slider-basic .ns-min,
+field-number-slider-basic .ns-max {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+field-number-slider-basic .ns-slider-container {
+  position: relative;
+  flex: 1 1 240px;
+  min-width: 160px;
+  max-width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding-top: 4px;
+  --tooltip-offset: 6px;
+}
+
+field-number-slider-basic .ns-range {
+  --thumb-size: 20px;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #ddd;
+  appearance: none;
+}
+
+field-number-slider-basic .ns-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+field-number-slider-basic .ns-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+field-number-slider-basic .ns-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  --tooltip-correction: 0px;
+  transform: translateX(calc(-50% + var(--tooltip-correction))) translateY(calc(-100% + var(--tooltip-offset)));
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+field-number-slider-basic .ns-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(calc(-50% + var(--tooltip-correction))) translateY(calc(-1 * var(--tooltip-offset)));
+  border-width: 5px;
+  border-style: solid;
+  border-color: #222 transparent transparent transparent;
+}

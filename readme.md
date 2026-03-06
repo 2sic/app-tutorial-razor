@@ -36,6 +36,19 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 
 ## History
 
+### 2026-03-06
+
+1. 2rb: Overworked Tabs on each View for new system
+
+### 2026-03-05
+
+1. 2rb: Added `Number Slider (Basic)` and `Color Spectrum` input extensions to the Tutorial app.
+2. 2rb: Added tutorials for both extensions in the new `Extensions` section.
+
+## 2026-03-04
+
+1. 2rb: removed tabs from tutorials `App Extensions` due to new system
+
 ### 2026-03-03
 
 1. 2dm: regenerate models, now with TutorialSnippetAddOn
