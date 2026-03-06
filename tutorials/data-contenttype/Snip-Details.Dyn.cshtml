@@ -10,11 +10,11 @@
   var attributes = type.Attributes as IEnumerable<IContentTypeAttribute>;
   var sexAttr = attributes.First(t => t.Name == "Sex");
   // Check the metadata for the DropdownValues in the type @string-dropdown
-  var sexDropdown = sexAttr.Metadata.GetBestValue<string>("DropdownValues", "@string-dropdown");
+  var sexDropdown = sexAttr.Metadata.Get<string>("DropdownValues", typeName: "@string-dropdown");
 }
 <ol>
   <li>Type Name: "@type.Name"</li>
-  <li>Type Internal Name: "@type.StaticName"</li>
+  <li>Type Internal Name: "@type.NameId"</li>
   <li>Type of the Awards field: "@attributes.First(t => t.Name == "Awards").Type"</li>
   <li>
     Values in the <code>Sex</code> field (@sexAttr.Type) dropdown
