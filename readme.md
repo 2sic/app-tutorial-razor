@@ -13,9 +13,9 @@ You can also download the latest copy of this App directly from the [releases](.
 
 | Aspect              | Status | Comments or Version |
 | ------------------- | :----: | ------------------- |
-| 2sxc                | ✅     | requires 2sxc v20.00                                                          |
+| 2sxc                | ✅     | requires 2sxc v21.00 as it demos the latest features                          |
 | Dnn                 | ✅     | For v9.11.02+                                                                 |
-| Oqtane 2            | ✅     | Requires v6.00+                                                               |
+| Oqtane              | ✅     | Requires v10.00+                                                              |
 | No jQuery           | ✅     |                                                                               |
 | Dnn Demo            | ✅     | See [Dnn Razor Tutorial](https://2sxc.org/dnn-tutorials/en/razor)             |
 | Oqtane Demo         | ✅     | See [Oqtane Razor Tutorial](https://blazor-cms.org/oqtane-tutorials)          |
@@ -26,11 +26,12 @@ You can also download the latest copy of this App directly from the [releases](.
 | Best Practices      | ✅     | Uses v16.00 conventions                                                       |
 | Bootstrap 3         | ✔️     |                                                                               |
 | Bootstrap 4         | ✔️     | Works, but not optimized                                                      |
-| Bootstrap 5         | ✅     | Works, optimized                                                              |
+| Bootstrap 5         | ✅     | Works, optimized; previous versions work but are not optimized                |
 
 ## Contribute
 
 Feel free to contribute to this app, please just coordinate it w/iJungleboy.
+Please follow the [guide](https://docs.2sxc.org/abyss/contribute/tutorials/index.html).
 
 [//]: # (## Customize the App not needed, so commented out)
 
@@ -39,6 +40,7 @@ Feel free to contribute to this app, please just coordinate it w/iJungleboy.
 ### 2026-03-06
 
 1. 2rb: Overworked Tabs on each View for new system
+1. 2dm: Implemented the new `app.csproj` with better IntelliSense
 
 ### 2026-03-05
 

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <!-- This file helps VS Code provide IntelliSense - see https://go.2sxc.org/vscode -->
 
-  <!-- Keep this file intentionally small and use the imports from extensions/dotnet-project to add the necessary logic. -->
+  <!-- Best keep this file small and use imports from extensions/dotnet-project. -->
 
-  <!-- Import everything so it just magically works. For fine-grained control, import the individual files instead of the all-in-one. -->
+  <!-- Import everything so it just magically works. -->
   <Import Project="extensions\dotnet-project\all-in-one.import.csproj" />
+  <!-- Note: For fine-grained control, import individual files instead of the all-in-one. -->
 
-  <!-- IntelliSense: Load important DLLs which are not in the main bundle -->
+  <!-- Load other important DLLs which are not in the main bundle -->
   <ItemGroup>
     <Reference Include="$(PathBin)\System.Collections.Immutable.dll" />
   </ItemGroup>
-
 </Project>
