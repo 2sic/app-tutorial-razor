@@ -1,0 +1,16 @@
+@inherits Custom.Hybrid.RazorTyped
+@using AppCode  @* we really need this, so the compiler uses the new compiler and forces different error behavior *@
+
+@*
+  Special file to run the snippet.
+  We need it, because any code in this file will terminate if an exception happens.
+  But the parent code will continue.
+  So by moving the real call into an own file, the exception stops here.
+  And the parent can still continue creating the final HTML with the tabs and everything.
+*@
+
+@{
+  var codeFile = MyModel.String("CodeFile");
+  var data = MyModel.Get("Data");
+}
+@Html.Partial(codeFile, data)

@@ -10,8 +10,12 @@
 <!-- Accordion Sections / Drawers -->
 @foreach (Section acs in Model.Accordion.Sections(Path)) {
   TutorialSnippet item = acs.Item;
+
   var runCode = item.IsEmpty("Formula");
-  var codeFile = runCode ? acs.CodeFile : Constants.IgnoreSourceFile;
+  var codeFile = runCode
+    ? acs.CodeFile
+    : Constants.IgnoreSourceFile;
+
   if (codeFile != null)
   {
     var snip = Sys.SourceCode.SnipFromItem(item: item, codeFile: codeFile, variant: Model.Accordion.Variant);
@@ -19,7 +23,7 @@
       item,
       SnippetSection = snip,
       Tutorial = snip,
-      Dm = "test",
+      // Dm = "test",
       Sys = Model.Sys
     };
 
@@ -27,7 +31,7 @@
     @acs.Start()
       @snip.SnipStart()
         if (runCode) {
-          @Html.Partial("../.." + codeFile, data)
+          @Html.Partial("./Accordion Sections.Part Show Snippet.cshtml", new { CodeFile = "../.." + codeFile, Data = data })
         }
       @snip.SnipEnd()
     @acs.End()

@@ -37,6 +37,10 @@ Please follow the [guide](https://docs.2sxc.org/abyss/contribute/tutorials/index
 
 ## History
 
+### 2026-03-12
+
+1. 2dm: Improve exception handling so a broken snip doesn't break the entire page (otherwise accordions are inside the last broken accordion)
+
 ### 2026-03-06
 
 1. 2rb: Overworked Tabs on each View for new system
